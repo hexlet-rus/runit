@@ -1,0 +1,90 @@
+doctype html
+html
+  head
+    title Landing page - #{title}
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="theme-color" content="#000000")
+    meta(name="description" content="Runit")
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous")
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet")
+
+
+  body.min-vh-100.d-flex.flex-column
+    header.bg-light
+      nav.py-4.border-bottom
+        .container.d-flex.flex-wrap.justify-content-between
+          a.navbar-brand.mb-0.fs-4.link-secondary(href="#") Runit
+          .d-flex
+            a.nav-link.link-primary.px-3(href="http://hexlet-editor.herokuapp.com/about") About
+            a.nav-link.px-3(href="http://hexlet-editor.herokuapp.com/login") Sign in
+            a.nav-link.px-3(href="http://hexlet-editor.herokuapp.com/signup") Sign up
+    
+    .container
+      .row.mt-3.border-bottom
+        .col-md-6.col-lg-5.d-flex.flex-column.justify-content-center.align-items-center.pe-xl-5
+            h1.text-center.mb-3 Runit
+            h3.lead.text-muted.text-center.mb-5 
+                em Интерактивная среда для написания
+                    br
+                    span и исполнения кода от © ООО “Хекслет Рус”
+                    hr
+            .card.w-100.rounded.shadow-lg.p-2.p-lg-4
+                h2.text-center.mb-3 Возможности сервиса
+                ul.text-secondary
+                    li Редактируй код
+                    li Делись кодом с другими пользователями
+                    li Возвращайся к своему коду, когда хочешь
+        .col-md-6.col-lg-7.d-none.d-md-block.px-lg-5
+            img.img-fluid(src="./images/Tota-13.png", alt="Тота кодит")
+
+    .container.my-3.my-lg-5
+      .card.bg-light.text-center
+        .card-body.my-3
+          h3.card-title Испытать на практике
+          p.lead.card-text Опробуй возможности Runit прямо сейчас
+          a.btn.btn-primary.btn-lg.d-inline-flex.align-items-center(href="http://hexlet-editor.herokuapp.com/") 
+            span.px-1.pb-1 Начать кодить
+            i.bi.bi-code.px-1(style="font-size: 1.8rem")
+   
+    footer.bg-light.border-top.py-4.mt-auto
+        .container-xl
+            .row.justify-content-lg-around
+                .col-sm-6.col-md-3.col-lg-auto
+                    a.text-dark.px-0.py-0.text-decoration-none(href="https://ru.hexlet.io")
+                        p.h3.mb-2 © ООО “Хекслет Рус”
+                    ul.nav.flex-column
+                        li.nav-item
+                            a.nav-link.px-0.py-1.text-primary(href="https://sicp.hexlet.io/ru/pages/about") О проекте
+                        li.nav-item
+                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://github.com/Hexlet/hexlet-sicp") Исходный код
+                        li.nav-item
+                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://slack-ru.hexlet.io/") Slack #hexlet-volunteers
+                div.col-sm-6.col-md-3.col-lg-auto
+                    p.h5.mb-3 Помощь
+                    ul.nav.flex-column
+                        li.nav-item
+                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://ru.hexlet.io/blog") Блог
+                        li.nav-item
+                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://ru.hexlet.io/knowledge") База знаний
+                        li.nav-item
+                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://ru.hexlet.io/pages/recommended-books") Рекомендуемые книги
+                div.col-sm-6.col-md-3.col-lg-auto
+                    p.h5.mb-3 Другие open-source проекты
+                    ul.nav.flex-column
+                        li.nav-item
+                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://github.com/Hexlet/hexlet-cv") Хекслет-резюме
+                        li.nav-item
+                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://github.com/Hexlet/hexlet-editor") Хекслет-редактор
+                        li.nav-item
+                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://github.com/Hexlet/hexlet-friends") Друзья Хекслета
+
+                div.col-sm-6.col-md-3.col-lg-auto
+                    p.h5.mb-3 Дополнительно
+                    ul.nav.flex-column
+                        li.nav-item
+                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://ru.code-basics.com/") Code Basics
+                        li.nav-item
+                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://codebattle.hexlet.io/") Кодбаттл
+                        li.nav-item
+                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://guides.hexlet.io/") Гайды Хекслета

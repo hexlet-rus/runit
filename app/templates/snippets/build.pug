@@ -1,0 +1,11 @@
+extends ../layouts/application.pug
+
+block content
+  .container
+    form.mt-4(action="/snippets" method="post")
+      .form-group.d-flex.flex-column.align-items-center
+        label.h4.font-italic.font-weight-lighter Choose language
+        select.form-control(name="snippet[language]")
+          each language in languages
+            option= language
+      input.btn.btn-primary(type="submit" value="Select")

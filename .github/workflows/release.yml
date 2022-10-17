@@ -1,0 +1,15 @@
+name: On Release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+
+  build:
+    if: github.repository == 'hexlet/hexlet-editor'
+    runs-on: ubuntu-latest
+    steps:
+      - name: GitHub Action for Heroku
+        uses: actions/heroku@1.0.0
