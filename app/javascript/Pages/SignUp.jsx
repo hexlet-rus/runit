@@ -7,9 +7,9 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import axios from 'axios';
-import { useAuth } from '../hooks';
+import { useAuth } from './../hooks';
 
+import axios from 'axios';
 import routes from '../routes.js';
 
 export const SignUp = () => {
@@ -17,6 +17,7 @@ export const SignUp = () => {
   const { t } = useTranslation();
   const [regFailed, setRegFailed] = useState(false);
   const navigate = useNavigate();
+  const auth = useAuth();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -62,6 +63,7 @@ export const SignUp = () => {
       try {
         actions.setSubmitting(true);
         await axios.post(routes.usersPath(), values);
+        auth.logIn();
         actions.setSubmitting(false);
         navigate(routes.homePagePath());
       } catch (err) {
@@ -184,7 +186,7 @@ export const SignUp = () => {
                     <Form.Control.Feedback type="invalid">
                       {formik.errors.confirmPassword
                         ? formik.errors.confirmPassword
-                        : regFailed}
+                        : t('signUp.signUpFailed')}
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Button
@@ -192,6 +194,7 @@ export const SignUp = () => {
                     variant="primary"
                     className="w-100 mt-3 pt-2 pb-2"
                     data-disable-with="Войти"
+                    disabled={formik.isSubmitting}
                   >
                     {t('signUp.registerButton')}
                   </Button>
