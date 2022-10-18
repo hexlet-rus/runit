@@ -11,7 +11,9 @@ import { rootReducer } from './slices';
 import resources from './locales/locales.js';
 import AppRoutes from './AppRoutes.jsx';
 import { Navbar } from './components/Navbar.jsx';
+import ModalWindow from './components/Modals/Modal.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
+import SnippetsProvider from './providers/SnippetsProvider.jsx';
 
 export default async () => {
   const defaultLanguage = 'ru';
@@ -30,8 +32,11 @@ export default async () => {
     <Provider store={store}>
       <BrowserRouter>
         <AuthProvider>
-          <Navbar />
-          <AppRoutes />
+          <SnippetsProvider>
+            <Navbar />
+            <AppRoutes />
+            <ModalWindow />
+          </SnippetsProvider>
         </AuthProvider>
       </BrowserRouter>
     </Provider>,
