@@ -1,24 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { useSnippets } from '../hooks';
 
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import routes from '../routes.js';
-import { actions } from '../slices';
 
 export function Profile() {
   const [snippets, setSnippets] = useState([]);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { t } = useTranslation();
   const [userdata, setUserdata] = useState([]);
-
-  const openTerminal = (code) => () => {
-    dispatch(actions.updateCode(code));
-    navigate(routes.homePagePath());
-  };
+  const snippetApi = useSnippets();
 
   const parseDate = (date) => {
     try {
@@ -76,7 +68,7 @@ export function Profile() {
           <div className="d-flex flex-column h-100">
             <h2>{t('profile.replsHeader')}</h2>
             <Row xs={1} md={2} className="g-4">
-              {snippets.map(({ id, name, code }) => (
+              {snippets.map(({ id, name }) => (
                 <Col xs lg="3" key={id}>
                   <Card border="primary">
                     <Card.Header>{name}</Card.Header>
@@ -84,7 +76,10 @@ export function Profile() {
                       <Card.Text>
                         {/* TODO: add a snapshot for snippet */}
                       </Card.Text>
-                      <Button variant="primary" onClick={openTerminal(code)}>
+                      <Button
+                        variant="primary"
+                        href={snippetApi.genSnippetLink(snippetApi.encodeId(id))}
+                      >
                         {t('profile.openReplButton')}
                       </Button>
                     </Card.Body>
