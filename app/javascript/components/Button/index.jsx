@@ -1,27 +1,38 @@
+import classes from './Button.module.css';
 import React, { memo, useEffect, useState } from 'react';
-import axios from 'axios';
 import { useButton } from './hooks';
-import routes from '../../routes';
+import { useDispatch } from 'react-redux';
+import { useAuth } from '../../hooks';
+import { useSnippets } from '../../hooks'
+
+import { actions as modalActions } from '../../slices/modalSlice.js';
 
 export const Button = memo(() => {
   const { onClick, disabled, update } = useButton();
   const [currentSnippetId, setCurrentSnippetId] = useState();
+  const dispatch = useDispatch();
+  const auth = useAuth();
+  const snippetsApi = useSnippets();
 
   useEffect(() => {
-    const createSnippet = async () => {
-      const response = await axios.post(routes.createSnippetPath(), {
-        code: '',
-      });
-      setCurrentSnippetId(response.data.id);
-    };
-    createSnippet();
+    if (snippetsApi.hasSnippetParams()) {
+      const decodedId = snippetsApi.getSnippetIdFromParams();
+      console.log(decodedId);
+      setCurrentSnippetId(decodedId);
+    } else {
+      setCurrentSnippetId(false);
+    }
   }, []);
 
+  const getTypeOfModal = (isLoggedIn) => {
+    return isLoggedIn ?  { type: 'savingRepl' } : { type: 'gettingInfo' };
+  };
+
   return (
-    <div className="text-center">
+    <div className={`text-center ${classes.container}`}>
       <button
         type="button"
-        className="btn btn-success btn-lg"
+        className={`btn btn-success btn-lg ${classes.runButton}`}
         disabled={disabled}
         onClick={() => {
           onClick();
@@ -29,6 +40,14 @@ export const Button = memo(() => {
         }}
       >
         Run
+      </button>
+      <button
+      type="button"
+      className={`btn btn-primary btn-lg ${classes.shareButton}`}
+      onClick={() => dispatch(modalActions
+        .openModal(getTypeOfModal(auth.isLoggedIn)))}
+      >
+        Share
       </button>
     </div>
   );
