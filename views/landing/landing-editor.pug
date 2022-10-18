@@ -1,90 +1,86 @@
+- var title = "Runit"
+
 doctype html
-html
-  head
-    title Landing page - #{title}
-    meta(charset="utf-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1")
-    meta(name="theme-color" content="#000000")
-    meta(name="description" content="Runit")
-    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous")
-    link(href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet")
-
-
-  body.min-vh-100.d-flex.flex-column
-    header.bg-light
-      nav.py-4.border-bottom
-        .container.d-flex.flex-wrap.justify-content-between
-          a.navbar-brand.mb-0.fs-4.link-secondary(href="#") Runit
-          .d-flex
-            a.nav-link.link-primary.px-3(href="http://hexlet-editor.herokuapp.com/about") About
-            a.nav-link.px-3(href="http://hexlet-editor.herokuapp.com/login") Sign in
-            a.nav-link.px-3(href="http://hexlet-editor.herokuapp.com/signup") Sign up
+html(lang="ru")
+    head
+        title #{title}
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        meta(name="theme-color" content="#212529")
+        meta(name="description" content="Runit")
+        link(href="./styles/normalize.css" rel="stylesheet")
+        link(href="./styles/style.css" rel="stylesheet")
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous")
     
-    .container
-      .row.mt-3.border-bottom
-        .col-md-6.col-lg-5.d-flex.flex-column.justify-content-center.align-items-center.pe-xl-5
-            h1.text-center.mb-3 Runit
-            h3.lead.text-muted.text-center.mb-5 
-                em Интерактивная среда для написания
-                    br
-                    span и исполнения кода от © ООО “Хекслет Рус”
-                    hr
-            .card.w-100.rounded.shadow-lg.p-2.p-lg-4
-                h2.text-center.mb-3 Возможности сервиса
-                ul.text-secondary
-                    li Редактируй код
-                    li Делись кодом с другими пользователями
-                    li Возвращайся к своему коду, когда хочешь
-        .col-md-6.col-lg-7.d-none.d-md-block.px-lg-5
-            img.img-fluid(src="./images/Tota-13.png", alt="Тота кодит")
-
-    .container.my-3.my-lg-5
-      .card.bg-light.text-center
-        .card-body.my-3
-          h3.card-title Испытать на практике
-          p.lead.card-text Опробуй возможности Runit прямо сейчас
-          a.btn.btn-primary.btn-lg.d-inline-flex.align-items-center(href="http://hexlet-editor.herokuapp.com/") 
-            span.px-1.pb-1 Начать кодить
-            i.bi.bi-code.px-1(style="font-size: 1.8rem")
-   
-    footer.bg-light.border-top.py-4.mt-auto
-        .container-xl
-            .row.justify-content-lg-around
-                .col-sm-6.col-md-3.col-lg-auto
-                    a.text-dark.px-0.py-0.text-decoration-none(href="https://ru.hexlet.io")
-                        p.h3.mb-2 © ООО “Хекслет Рус”
-                    ul.nav.flex-column
-                        li.nav-item
-                            a.nav-link.px-0.py-1.text-primary(href="https://sicp.hexlet.io/ru/pages/about") О проекте
-                        li.nav-item
-                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://github.com/Hexlet/hexlet-sicp") Исходный код
-                        li.nav-item
-                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://slack-ru.hexlet.io/") Slack #hexlet-volunteers
-                div.col-sm-6.col-md-3.col-lg-auto
-                    p.h5.mb-3 Помощь
-                    ul.nav.flex-column
-                        li.nav-item
-                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://ru.hexlet.io/blog") Блог
-                        li.nav-item
-                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://ru.hexlet.io/knowledge") База знаний
-                        li.nav-item
-                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://ru.hexlet.io/pages/recommended-books") Рекомендуемые книги
-                div.col-sm-6.col-md-3.col-lg-auto
-                    p.h5.mb-3 Другие open-source проекты
-                    ul.nav.flex-column
-                        li.nav-item
-                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://github.com/Hexlet/hexlet-cv") Хекслет-резюме
-                        li.nav-item
-                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://github.com/Hexlet/hexlet-editor") Хекслет-редактор
-                        li.nav-item
-                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://github.com/Hexlet/hexlet-friends") Друзья Хекслета
-
-                div.col-sm-6.col-md-3.col-lg-auto
-                    p.h5.mb-3 Дополнительно
-                    ul.nav.flex-column
-                        li.nav-item
-                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://ru.code-basics.com/") Code Basics
-                        li.nav-item
-                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://codebattle.hexlet.io/") Кодбаттл
-                        li.nav-item
-                            a.nav-link.px-0.py-1.text-primary(target="_blank", href="https://guides.hexlet.io/") Гайды Хекслета
+    body.min-vh-100.d-flex.flex-column.bg-dark.text-light
+        include modules/header
+        main.container
+            section.ide-head
+                .row
+                    p.text-center.ide-head--text.text Бесплатный проект Хекслета
+                .row
+                    h1.text-center.ide-head--title.title Мгновенный IDE
+                .row
+                    h3.text-center.ide-head--slogan.slogan Пишите код прямо в браузере!
+            section.ide-features
+                .row
+                    .col
+                        .d-flex.flex-column.ide-features--item
+                            img.mb-3(src="./images/tag.png" alt="tag" width="39" height="39")
+                            p.text.ide-features--text Запускайте JavaScript код,#[br] не устанавливая приложение
+                    .col
+                        .d-flex.flex-column.ide-features--item
+                            img.mb-3(src="./images/os.png" alt="os" width="39" height="39")
+                            p.text.ide-features--text Работайте на любом устройстве,#[br] с любой операционной системой
+                    .col
+                        .d-flex.flex-column.ide-features--item
+                            img.mb-3(src="./images/share.png" alt="share" width="39" height="39")
+                            p.text.ide-features--text Делитесь своим кодом с другими#[br] участниками
+            section.ide-go.pt-4
+                .row
+                    .col
+                        a.ide-btn.ide-btn--blue.ide-go--btn(href="http://hexlet-editor.herokuapp.com/signup") Начать кодить
+            section.ide-desc
+                .row
+                    h2.text-center.ide-desc--title.title Без загрузок, конфигураций и настроек
+                .row
+                    .col
+                        p.text.ide-desc--text В современной веб-разработке нужно постоянно следить за последними новостями, а еще лучше — испытывать новинки в реальных условиях.#[br] #[br] Бесплатный онлайн-редактор кода Runit позволит это делать быстро и без лишней суеты с настройками
+                    .col
+                        ul.ide-desc--list
+                            li.mb-3.position-relative
+                                p.text Редактор полностью запускается в браузере, поэтому вы можете начать кодить за считанные секунды
+                            li.mb-3.position-relative
+                                p.text Больше никаких ZIP, PKG, DMG и WTF
+                            li.mb-3.position-relative
+                                p.text Работайте с любого компьютера, имеющего доступ в интернет
+                            li.mb-3.position-relative
+                                p.text Используйте редактор на macOS, Windows, Linux или любой другой ОС
+                            li.mb-3.position-relative
+                                p.text Не тратьте время на настройку среды
+            section.ide-features
+                .row
+                    h2.text-center.ide-features--title.title Еще больше возможностей в будущем
+                .row
+                    .col
+                        .d-flex.flex-column.ide-features--item
+                            img(src="./images/code.png" alt="code" width="39" height="39")
+                            h4.ide-features--subtitle.subtitle Все языки
+                            p.text.ide-features--text Пока наша среда разработки запускает код только на JavaScript. В ближайшем будущем мы реализуем в редакторе поддержку других популярных языков программирования
+                    .col
+                        .d-flex.flex-column.ide-features--item
+                            img(src="./images/person.png" alt="person" width="39" height="39")
+                            h4.ide-features--subtitle.subtitle Совместная работа
+                            p.text.ide-features--text Вы сможете делиться ссылкой на фрагменты своего кода с другими участниками. Или работать вместе прямо в Runit!
+                    .col
+                        .d-flex.flex-column.ide-features--item
+                            img(src="./images/blank.png" alt="blank" width="39" height="39")
+                            h4.ide-features--subtitle.subtitle Готовые шаблоны с кодом
+                            p.text.ide-features--text Больше не будет необходимости каждый раз писать код с нуля. Мы сделаем шаблоны, чтобы вы могли проверить свои идеи на практике еще быстрее
+            section.ide-go
+                .row
+                    h2.text-center.ide-go--slogan.slogan Попробуйте написать свой код прямо сейчас!
+                .row
+                    .col
+                        a.ide-btn.ide-btn--blue.ide-go--btn(href="http://hexlet-editor.herokuapp.com/signup") Начать кодить
+        include modules/footer
