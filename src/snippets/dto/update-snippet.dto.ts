@@ -1,8 +1,9 @@
-import { IsString, Length } from 'class-validator';
+import { IsString, Length, IsOptional } from 'class-validator';
 
 export class UpdateSnippetDto {
-  @Length(1, 30)
+  @IsOptional()
   @IsString()
+  @Length(1, 30)
   name?: string;
 
   @IsString()

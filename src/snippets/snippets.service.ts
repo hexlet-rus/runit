@@ -28,6 +28,7 @@ export class SnippetsService {
     { id }: User,
   ): Promise<Snippets> {
     const snippet = new Snippets();
+    snippet.name = createSnippetDto.name;
     snippet.user = await this.usersRepository.findOneBy({ id });
     snippet.code = createSnippetDto.code;
     return this.snippetsRepository.save(snippet);
