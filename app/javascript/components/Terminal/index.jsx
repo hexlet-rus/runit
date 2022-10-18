@@ -22,5 +22,9 @@ export const Terminal = () => {
     // return () => xTermRef.current?.componentWillUnmount();
   }, [output]);
 
-  return <XTerm ref={xTermRef} />;
+  return (
+    <div className="terminal-container" style={{ overflow: 'auto' }}>
+      <XTerm ref={xTermRef} className={"xterm"} />
+    </div>
+  );
 };
