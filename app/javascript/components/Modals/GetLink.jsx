@@ -16,6 +16,7 @@ function GetLink() {
   const handleHide = () => {
     dispatch(modalActions.closeModal());
     navigate(link);
+    navigate(0);
   }
 
   return (
