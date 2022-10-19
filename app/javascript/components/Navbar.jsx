@@ -44,10 +44,10 @@ export function Navbar() {
                 </a>
               </li>
               {auth.isLoggedIn &&
-              <li className='nav-item'>
+              <li className="nav-item">
                 <a
-                  className='nav-link active'
-                  aria-current='page'
+                  className="nav-link active"
+                  aria-current="page"
                   href={routes.replsPagePath()}
                 >
                   {t('navbar.myRepls')}
