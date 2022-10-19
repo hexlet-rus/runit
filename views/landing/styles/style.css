@@ -1,0 +1,178 @@
+@font-face {
+  font-family: 'Onest Regular';
+  src: url('../fonts/Onest-regular.woff');
+}
+
+@font-face {
+  font-family: 'Onest Bold';
+  src: url('../fonts/Onest-bold.woff');
+}
+
+body {
+  font-family: 'Onest Regular', sans-serif !important;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+.logo-text {
+  line-height: 0.7 !important;
+  font-weight: 500;
+}
+
+.text {
+  font-family: 'Onest Regular', sans-serif !important;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 24px;
+  margin-bottom: 0;
+  font-size: 18px;
+}
+
+.title {
+  font-family: 'Onest Bold', sans-serif !important;
+  font-weight: 700;
+  color: #136ef6;
+  margin-bottom: 0;
+}
+
+.subtitle {
+  font-family: 'Onest Bold', sans-serif !important;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 0;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.slogan {
+  font-family: 'Onest Bold', sans-serif !important;
+  font-weight: 500;
+  color: #ffffff;
+  margin-bottom: 0;
+}
+
+/* ide */
+
+.ide-btn {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 24px;
+  text-decoration: none;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.ide-btn--blue {
+  font-family: 'Onest Regular', sans-serif !important;
+  background: #136ef6;
+  color: #ffffff;
+}
+
+.ide-btn--light {
+  font-family: 'Onest Regular', sans-serif !important;
+  background: #ffffff;
+  color: #6d757d;
+}
+
+.ide-btn--blue:hover {
+  background: #7c7cf7;
+  color: #ffffff;
+}
+
+.ide-btn--light:hover {
+  background: #ffffff;
+  color: #136ef6;
+}
+
+.ide-btn--blue:disabled {
+  background: #6d757d;
+  color: #ffffff;
+}
+
+.ide-btn--light:disabled {
+  background: #6d757d;
+  color: #f0f0f0;
+}
+
+.ide-head {
+  margin-top: 72px;
+  margin-bottom: 64px;
+}
+
+.ide-head--text {
+  padding-top: 80px;
+  font-size: 18px;
+}
+
+.ide-head--title {
+  padding-top: 45px;
+  line-height: 117px;
+  font-size: 90px;
+}
+
+.ide-head--slogan {
+  padding-top: 35px;
+  line-height: 28px;
+  font-size: 22px;
+}
+
+.ide-go--slogan {
+  font-size: 30px;
+  line-height: 39px;
+  margin-top: 90px !important;
+}
+
+.ide-desc {
+  margin-bottom: 160px;
+  margin-top: 160px;
+}
+
+.ide-desc--title,
+.ide-features--title {
+  line-height: 65px;
+  font-size: 50px;
+  margin-bottom: 50px;
+}
+
+.ide-features--item {
+  max-width: 350px;
+}
+
+.ide-features--subtitle {
+  margin: 18px 0 10px;
+}
+
+.ide-go--btn {
+  font-family: 'Onest Bold', sans-serif !important;
+  margin: 40px auto 0;
+  padding: 16px 25px;
+  max-width: 330px;
+}
+
+.ide-desc--text {
+  max-width: 510px;
+}
+
+.ide-desc--list {
+  list-style: none;
+  max-width: 510px;
+}
+
+.ide-desc--list li::before {
+  content: '';
+  display: block;
+  width: 27px;
+  height: 27px;
+  margin-right: 13px;
+  position: absolute;
+  top: 0;
+  left: -40px;
+  background: url('../images/checked.svg') no-repeat;
+}
+
+.footer {
+  height: 80px;
+}
