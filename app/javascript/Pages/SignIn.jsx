@@ -5,6 +5,8 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from './../hooks';
+
 import routes from '../routes.js';
 
 export function SignIn() {
@@ -12,6 +14,7 @@ export function SignIn() {
   const [authFailed, setAuthFailed] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const auth = useAuth();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -27,6 +30,7 @@ export function SignIn() {
         actions.setSubmitting(true);
         const response = await axios.post(routes.loginPath(), values);
         setAuthFailed(false);
+        auth.logIn();
         actions.setSubmitting(false);
         navigate(routes.homePagePath());
         return response.data;
@@ -92,7 +96,7 @@ export function SignIn() {
                     />
 
                     <Form.Control.Feedback type="invalid">
-                      Неверный пароль или электронная почта
+                      {t('signIn.signInFailed')}
                     </Form.Control.Feedback>
                   </Form.Group>
                   <div className="text-end my-3">
@@ -108,6 +112,7 @@ export function SignIn() {
                     variant="primary"
                     className="w-100 pb-2 pt-2"
                     data-disable-with="Войти"
+                    disabled={formik.isSubmitting}
                   >
                     {t('signIn.loginButton')}
                   </Button>

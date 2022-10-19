@@ -7,6 +7,7 @@ const ruLocales = {
       passwordLabel: 'Пароль',
       confirmPasswordLabel: 'Подтвердить пароль',
       registerButton: 'Зарегистрироваться',
+      signUpFailed: 'Такой пользователь уже существует',
       footer: {
         signInHeader: 'Уже есть аккаунт? ',
         signIn: 'Войти',
@@ -40,6 +41,7 @@ const ruLocales = {
       passwordLabel: 'Пароль',
       loginButton: 'Войти',
       remindPass: 'Не помню пароль',
+      signInFailed: 'Неверный пароль или электронная почта',
       footer: {
         signUpHeader: 'Нет аккаунта? ',
         signUp: 'Создать бесплатный аккаунт',
@@ -53,7 +55,7 @@ const ruLocales = {
       email: 'Email:',
       editProfileButton: 'Edit',
       copyProfileButton: 'Copy profile link',
-      openReplButton: 'Open repls',
+      openReplButton: 'Open repl',
     },
     navbar: {
       mainLabel: 'Editor',
@@ -65,6 +67,16 @@ const ruLocales = {
       logout: 'Log out',
       signIn: 'Sign in',
       signUp: 'Sign up',
+    },
+    modals: {
+      signInButton: 'Войти',
+      signUpButton: 'Создать аккаунт',
+      signInHeader: 'Авторизация',
+      signUpHeader: 'Регистрация',
+      infoBody: 'Авторизуйтесь, чтобы сохранять реплы.',
+      cancelButton: 'Отмена',
+      saveButton: 'Сохранить',
+      goToReplButton: 'Перейти к этому реплу',
     },
     errors: {
       unknown: 'Неизвестная ошибка',

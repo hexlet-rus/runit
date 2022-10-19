@@ -11,7 +11,7 @@ export default {
   logoutPath: () => [apiPath, 'logout'].join('/'), // post
   deleteUserPath: (id) => [apiPath, 'users', `:${id}`].join('/'), // delete user
   snippetsPath: () => [apiPath, 'snippets'].join('/'), // get - shows all snippets
-  createSnippetPath: () => [apiPath, 'snippets'].join('/'), // post - create snippet: { code }
+  createSnippetPath: () => [apiPath, 'snippets'].join('/'), // post - create snippet: { name, code }
   getSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // get snippet
   updateSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // put - update snippet info: { name, code }
   deleteSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // delete snippet

@@ -1,10 +1,8 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import axios from 'axios';
-import { getData } from '../../slices/editorSlice';
-
 import { actions } from '../../slices/index.js';
-
 import routes from '../../routes.js';
 
 const { runCode } = actions;
@@ -20,17 +18,12 @@ export const useButton = () => {
     [dispatch, runCode, code],
   );
   const update = async (id) => {
-    // const data = await getData();
-    const response = await axios.put(routes.updateSnippetPath(id), { code });
-    return response;
-    /*    if (!data) {
-      return 'Please signin for save snippets';
+    if (id) {
+      const response = await axios.put(routes.updateSnippetPath(id), { code: code });
+      return response;
     }
-    const response = await axios.put(`api/snippets/${data}`, {
-      code,
-    });
-    return response; */
   };
+
   const disabled = codeExecutionState === 'executing';
 
   return {

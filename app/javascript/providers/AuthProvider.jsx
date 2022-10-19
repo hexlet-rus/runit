@@ -7,9 +7,13 @@ function AuthProvider({ children }) {
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   const logOut = async () => {
-    await axios.post(routes.logoutPath());
+    const response = await axios.post(routes.logoutPath());
     setLoggedIn(false);
   };
+
+  const logIn = () => {
+    setLoggedIn(true);
+  }
 
   useEffect(() => {
     const fetchAuthData = async () => {
@@ -23,8 +27,8 @@ function AuthProvider({ children }) {
     fetchAuthData();
   }, []);
 
-  const auth = useMemo(() => ({ logOut, isLoggedIn }), []);
-  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
+  // const auth = useMemo(() => ({ logOut, isLoggedIn }), []); - not working
+  return <AuthContext.Provider value={{ logOut, isLoggedIn, logIn }}>{children}</AuthContext.Provider>;
 }
 
 export default AuthProvider;

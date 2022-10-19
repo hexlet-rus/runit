@@ -7,6 +7,7 @@ export function Navbar() {
   const [menuStatus, setMenuStatus] = useState(false);
   const auth = useAuth();
   const { t } = useTranslation();
+
   return (
     <>
       {menuStatus && (
@@ -42,9 +43,8 @@ export function Navbar() {
                   {t('navbar.home')}
                 </a>
               </li>
+              {auth.isLoggedIn &&
               <li className="nav-item">
-                {' '}
-                {/* TODO: add if logged in */}
                 <a
                   className="nav-link active"
                   aria-current="page"
@@ -53,6 +53,7 @@ export function Navbar() {
                   {t('navbar.myRepls')}
                 </a>
               </li>
+              }
             </ul>
           </div>
         </div>
@@ -88,7 +89,7 @@ export function Navbar() {
               <a
                 className="nav-link px-3"
                 href={routes.homePagePath()}
-                onClick={async () => await auth.logout()}
+                onClick={auth.logOut}
               >
                 {t('navbar.logout')}
               </a>

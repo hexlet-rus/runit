@@ -44,6 +44,7 @@
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.2.0",
+    "buffer": "^6.0.3",
     "chai": "^4.3.6",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
