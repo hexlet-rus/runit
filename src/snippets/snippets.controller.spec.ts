@@ -59,7 +59,7 @@ describe('SnippetController', () => {
         id: 3,
         email: 'test@mail.ru',
       };
-      const createData = { code: 'test' };
+      const createData = { code: 'test', name: 'test' };
       jest.spyOn(snippetsController, 'create');
       await snippetsController.create(userData, createData);
       expect(snippetsService.create).toHaveBeenCalledWith(createData, userData);
