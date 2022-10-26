@@ -30,17 +30,21 @@ function GetLink() {
       </Modal.Header>
 
       <Modal.Body>
-        <h5>{`Репл ${name} успешно создан и сохранен в вашем профиле!`}</h5>
+        <h5>
+          <span style={{ color: "#136EF6"}}>{name}</span>
+          {t('modals.getLinkHeader')}
+          </h5>
         <Form>
           <Form.Group className="mb-3">
             <Form.Label
               controlId="name"
-              label="Ссылка"
+              label={t('modals.replLinkLabel')}
             />
               <Form.Control
+                className="text-muted"
                 readOnly
                 name="name"
-                placeholder="Repl's name"
+                placeholder={t('modals.replLinkLabel')}
                 value={fullPath}
               />
           </Form.Group>
