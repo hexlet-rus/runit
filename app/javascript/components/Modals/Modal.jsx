@@ -14,15 +14,13 @@ const modals = {
   gettingLink: GetLinkModal,
 };
 
-function Modal() {
+function ModalWindow() {
   const modalType = useSelector((state) => state.modal.type);
   const Modal = modals[modalType];
   if (!Modal) {
     return null;
   }
-  return (
-    <Modal />
-  );
-};
+  return <Modal />;
+}
 
-export default Modal;
+export default ModalWindow;

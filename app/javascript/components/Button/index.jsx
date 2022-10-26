@@ -3,7 +3,7 @@ import React, { memo, useEffect, useState } from 'react';
 import { useButton } from './hooks';
 import { useDispatch } from 'react-redux';
 import { useAuth } from '../../hooks';
-import { useSnippets } from '../../hooks'
+import { useSnippets } from '../../hooks';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
 
@@ -24,7 +24,7 @@ export const Button = memo(() => {
   }, []);
 
   const getTypeOfModal = (isLoggedIn) => {
-    return isLoggedIn ?  { type: 'savingRepl' } : { type: 'gettingInfo' };
+    return isLoggedIn ? { type: 'savingRepl' } : { type: 'gettingInfo' };
   };
 
   return (
@@ -41,10 +41,11 @@ export const Button = memo(() => {
         Run
       </button>
       <button
-      type="button"
-      className={`btn btn-primary btn-lg ${classes.shareButton}`}
-      onClick={() => dispatch(modalActions
-        .openModal(getTypeOfModal(auth.isLoggedIn)))}
+        type="button"
+        className={`btn btn-primary btn-lg ${classes.shareButton}`}
+        onClick={() =>
+          dispatch(modalActions.openModal(getTypeOfModal(auth.isLoggedIn)))
+        }
       >
         Share
       </button>

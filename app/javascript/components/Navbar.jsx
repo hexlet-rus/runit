@@ -43,17 +43,17 @@ export function Navbar() {
                   {t('navbar.home')}
                 </a>
               </li>
-              {auth.isLoggedIn &&
-              <li className="nav-item">
-                <a
-                  className="nav-link active"
-                  aria-current="page"
-                  href={routes.replsPagePath()}
-                >
-                  {t('navbar.myRepls')}
-                </a>
-              </li>
-              }
+              {auth.isLoggedIn && (
+                <li className="nav-item">
+                  <a
+                    className="nav-link active"
+                    aria-current="page"
+                    href={routes.profilePagePath()}
+                  >
+                    {t('navbar.myRepls')}
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>

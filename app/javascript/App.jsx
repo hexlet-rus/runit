@@ -10,7 +10,7 @@ export function App() {
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
 
-  useEffect( () => {
+  useEffect(() => {
     const loadSnippet = async () => {
       if (snippetApi.hasSnippetParams()) {
         const decodedId = snippetApi.getSnippetIdFromParams();

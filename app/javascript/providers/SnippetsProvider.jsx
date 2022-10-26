@@ -5,7 +5,6 @@ import routes from '../routes';
 const { Buffer } = require('buffer');
 
 function SnippetsProvider({ children }) {
-
   const encodeId = (id) => {
     const idString = id.toString();
     const encodedId = Buffer.from(idString).toString('base64');
@@ -23,8 +22,11 @@ function SnippetsProvider({ children }) {
   };
 
   const saveSnippet = async (code, name) => {
-    const response = await axios.post(routes.createSnippetPath(), { name, code });
-    const id = (response.data.id).toString();
+    const response = await axios.post(routes.createSnippetPath(), {
+      name,
+      code,
+    });
+    const id = response.data.id.toString();
     const encodedId = encodeId(id);
     return encodedId;
   };
@@ -47,15 +49,15 @@ function SnippetsProvider({ children }) {
 
   return (
     <SnippetsContext.Provider
-    value={{
-      encodeId,
-      decodeId,
-      saveSnippet,
-      genSnippetLink,
-      getSnippetData,
-      hasSnippetParams,
-      getSnippetIdFromParams,
-    }}
+      value={{
+        encodeId,
+        decodeId,
+        saveSnippet,
+        genSnippetLink,
+        getSnippetData,
+        hasSnippetParams,
+        getSnippetIdFromParams,
+      }}
     >
       {children}
     </SnippetsContext.Provider>

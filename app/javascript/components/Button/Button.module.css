@@ -1,31 +1,30 @@
 .container {
-    display: flex;
-    flex-direction: row;
-    column-gap: 12px;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  column-gap: 12px;
+  justify-content: center;
 }
 
 .shareButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    font-size: 2rem;
-    background: #3161BFF2;
-    height: 45px;
-    width: calc(10% - 10px);
-    padding: 5px;
+  font-size: 2rem;
+  background: #3161bff2;
+  height: 45px;
+  width: calc(10% - 10px);
+  padding: 5px;
 }
 
 .runButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-
-    font-size: 2rem;
-    background: #208743fc;
-    height: 45px;
-    padding: 5px;
-    width: calc(10% - 10px);
+  font-size: 2rem;
+  background: #208743fc;
+  height: 45px;
+  padding: 5px;
+  width: calc(10% - 10px);
 }
