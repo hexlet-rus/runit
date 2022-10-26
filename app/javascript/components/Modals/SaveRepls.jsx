@@ -13,9 +13,13 @@ function SaveRepl() {
   const inputRef = useRef();
   const { t } = useTranslation();
   const snippetsApi = useSnippets();
-  const { code } = useSelector(({ editor }) => ({
+  const { code, currentLanguage } = useSelector(({ editor, languages }) => ({
     code: editor.code,
+    currentLanguage: languages.currentLanguage,
   }));
+  const languages = new Map().set('javascript', '.js')
+    .set('python', '.py')
+    .set('php', '.php');
 
   useEffect(() => {
     inputRef.current.focus();
@@ -27,13 +31,14 @@ function SaveRepl() {
     },
     validationSchema: yup.object({
       name: yup.string()
-        .required('Имя не может быть пустым')
-        .max(20, 'Имя не может состоять из более чем 20 символов'),
+        .required(t('modals.validation.required'))
+        .max(20, t('modals.validation.snippetNameMaxLength'))
+        .matches(/^[a-zA-Z0-9_-]*$/, t('modals.validation.singleWord')),
     }),
     onSubmit: async (values, actions) => {
       actions.setSubmitting(true);
       try {
-        const name = values.name;
+        const name = `${values.name}${languages.get(currentLanguage)}`;
         const encodedId = await snippetsApi.saveSnippet(code, name);
         const link = snippetsApi.genSnippetLink(encodedId);
         dispatch(modalActions.openModal({ type: 'gettingLink', item: { name, link } }))
@@ -69,18 +74,21 @@ function SaveRepl() {
           <Form.Group className="mb-3">
             <FloatingLabel
               controlId="name"
-              label="Repl's name"
+              label={t('modals.replNameLabel')}
             >
               <Form.Control
                 name="name"
                 onChange={formik.handleChange}
-                placeholder="Repl's name"
+                placeholder={t('modals.replNameLabel')}
                 ref={inputRef}
                 value={formik.values.name}
+                isInvalid={
+                  (formik.touched.name && formik.errors.name)
+                }
               />
 
               <Form.Control.Feedback type="invalid">
-                {formik.errors.name ? formik.errors.name : null}
+                {formik.touched.name && formik.errors.name}
               </Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>
