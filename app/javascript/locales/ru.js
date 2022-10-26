@@ -52,10 +52,11 @@ const ruLocales = {
       username: 'Username:',
       createdAt: 'Created at:',
       userId: 'UserId:',
-      email: 'Email:',
+      email: 'Email: ',
       editProfileButton: 'Edit',
       copyProfileButton: 'Copy profile link',
-      openReplButton: 'Open repl',
+      openReplButton: 'Open',
+      newReplButton: 'New Repl',
     },
     navbar: {
       mainLabel: 'Editor',
@@ -73,10 +74,18 @@ const ruLocales = {
       signUpButton: 'Создать аккаунт',
       signInHeader: 'Авторизация',
       signUpHeader: 'Регистрация',
+      getLinkHeader: ' создан и сохранен в вашем профиле.',
+      replNameLabel: "Repl's Name",
+      replLinkLabel: "Repl's Link",
       infoBody: 'Авторизуйтесь, чтобы сохранять реплы.',
       cancelButton: 'Отмена',
       saveButton: 'Сохранить',
       goToReplButton: 'Перейти к этому реплу',
+      validation: {
+        snippetNameMaxLength: 'Не больше 20 символов',
+        required: 'Не может быть пустым',
+        singleWord: 'Допустимы буквы латинского алфавита, цифры и символы "-_"',
+      }
     },
     errors: {
       unknown: 'Неизвестная ошибка',
