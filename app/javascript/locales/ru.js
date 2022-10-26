@@ -52,7 +52,7 @@ const ruLocales = {
       username: 'Username:',
       createdAt: 'Created at:',
       userId: 'UserId:',
-      email: 'Email: ',
+      email: 'Email:',
       editProfileButton: 'Edit',
       copyProfileButton: 'Copy profile link',
       openReplButton: 'Open',

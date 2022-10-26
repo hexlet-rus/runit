@@ -45,7 +45,7 @@ export function Profile() {
               <div>
                 <h1 className="my-2">{userdata.name}</h1>
                 <div>
-                  {t('profile.email')}
+                  {`${t('profile.email')} `}
                   <span className="text-muted">{userdata.email}</span>
                 </div>
 
