@@ -17,43 +17,37 @@ function GetLink() {
     dispatch(modalActions.closeModal());
     navigate(link);
     navigate(0);
-  }
+  };
 
   return (
-    <Modal
-      animation
-      centered
-      onHide={handleHide}
-      show
-    >
-      <Modal.Header closeButton>
-      </Modal.Header>
+    <Modal animation centered onHide={handleHide} show>
+      <Modal.Header closeButton></Modal.Header>
 
       <Modal.Body>
         <h5>
-          <span style={{ color: "#136EF6"}}>{name}</span>
+          <span style={{ color: '#136EF6' }}>{name}</span>
           {t('modals.getLinkHeader')}
-          </h5>
+        </h5>
         <Form>
           <Form.Group className="mb-3">
-            <Form.Label
-              controlId="name"
-              label={t('modals.replLinkLabel')}
+            <Form.Label controlId="name" label={t('modals.replLinkLabel')} />
+            <Form.Control
+              className="text-muted"
+              readOnly
+              name="name"
+              placeholder={t('modals.replLinkLabel')}
+              value={fullPath}
             />
-              <Form.Control
-                className="text-muted"
-                readOnly
-                name="name"
-                placeholder={t('modals.replLinkLabel')}
-                value={fullPath}
-              />
           </Form.Group>
 
-          <div className="d-flex mt-3 justify-content-center" style={{columnGap: "12px"}}>
+          <div
+            className="d-flex mt-3 justify-content-center"
+            style={{ columnGap: '12px' }}
+          >
             <Button
               variant="outline-primary"
               type="submit"
-              style={{ width: "calc(35% - 10px)"}}
+              style={{ width: 'calc(35% - 10px)' }}
               href={link}
             >
               {t('modals.goToReplButton')}

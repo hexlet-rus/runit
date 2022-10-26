@@ -24,7 +24,7 @@ export const Terminal = () => {
 
   return (
     <div className="terminal-container" style={{ overflow: 'auto' }}>
-      <XTerm ref={xTermRef} className={"xterm"} />
+      <XTerm ref={xTermRef} className={'xterm'} />
     </div>
   );
 };

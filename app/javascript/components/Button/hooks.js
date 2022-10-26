@@ -19,7 +19,9 @@ export const useButton = () => {
   );
   const update = async (id) => {
     if (id) {
-      const response = await axios.put(routes.updateSnippetPath(id), { code: code });
+      const response = await axios.put(routes.updateSnippetPath(id), {
+        code: code,
+      });
       return response;
     }
   };

@@ -81,18 +81,17 @@ function SignUpModal() {
       animation
       centered
       show
-      onHide={() => dispatch(modalActions.closeModal())}>
+      onHide={() => dispatch(modalActions.closeModal())}
+    >
       <Modal.Header closeButton>
-        <Modal.Title className="display-6">{t('modals.signUpHeader')}</Modal.Title>
+        <Modal.Title className="display-6">
+          {t('modals.signUpHeader')}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form noValidate onSubmit={formik.handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label
-              htmlFor="email"
-              controlId="email"
-              label="Email"
-            >
+            <Form.Label htmlFor="email" controlId="email" label="Email">
               {t('signUp.emailLabel')}
             </Form.Label>
             <Form.Control
@@ -108,29 +107,24 @@ function SignUpModal() {
               }
             />
             <Form.Control.Feedback type="invalid">
-              {(formik.touched.email && formik.errors.email) ||
-              regFailed}
+              {(formik.touched.email && formik.errors.email) || regFailed}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label
-              htmlFor="name"
-              controlId="name"
-              label="Name"
-            >
+            <Form.Label htmlFor="name" controlId="name" label="Name">
               {t('signUp.usernameLabel')}
             </Form.Label>
-              <Form.Control
-                name="name"
-                type="name"
-                autoComplete="username"
-                required
-                onChange={formik.handleChange}
-                value={formik.values.name}
-                isInvalid={
-                  (formik.touched.name && formik.errors.name) || regFailed
-                }
-              />
+            <Form.Control
+              name="name"
+              type="name"
+              autoComplete="username"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.name}
+              isInvalid={
+                (formik.touched.name && formik.errors.name) || regFailed
+              }
+            />
             <Form.Control.Feedback type="invalid">
               {formik.errors.name ? formik.errors.name : regFailed}
             </Form.Control.Feedback>
@@ -143,17 +137,17 @@ function SignUpModal() {
             >
               {t('signUp.passwordLabel')}
             </Form.Label>
-              <Form.Control
-                name="password"
-                type="password"
-                autoComplete="new-password"
-                required
-                onChange={formik.handleChange}
-                value={formik.values.password}
-                isInvalid={
-                  (formik.touched.password && formik.errors.password) || regFailed
-                }
-              />
+            <Form.Control
+              name="password"
+              type="password"
+              autoComplete="new-password"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.password}
+              isInvalid={
+                (formik.touched.password && formik.errors.password) || regFailed
+              }
+            />
             <Form.Control.Feedback type="invalid">
               {formik.errors.password ? formik.errors.password : regFailed}
             </Form.Control.Feedback>
@@ -166,18 +160,19 @@ function SignUpModal() {
             >
               {t('signUp.confirmPasswordLabel')}
             </Form.Label>
-              <Form.Control
-                name="confirmPassword"
-                type="password"
-                autoComplete="new-password"
-                required
-                onChange={formik.handleChange}
-                value={formik.values.confirmPassword}
-                isInvalid={
-                  (formik.touched.confirmPassword &&
-                    formik.errors.confirmPassword) || regFailed
-                }
-              />
+            <Form.Control
+              name="confirmPassword"
+              type="password"
+              autoComplete="new-password"
+              required
+              onChange={formik.handleChange}
+              value={formik.values.confirmPassword}
+              isInvalid={
+                (formik.touched.confirmPassword &&
+                  formik.errors.confirmPassword) ||
+                regFailed
+              }
+            />
             <Form.Control.Feedback type="invalid">
               {formik.errors.confirmPassword
                 ? formik.errors.confirmPassword
@@ -195,21 +190,26 @@ function SignUpModal() {
           </Button>
         </Form>
       </Modal.Body>
-      <Modal.Footer className="d-flex mt-3" style={{justifyContent: "flex-end"}}>
+      <Modal.Footer
+        className="d-flex mt-3"
+        style={{ justifyContent: 'flex-end' }}
+      >
         <Button
           variant="danger"
           className="bt-lg"
-          style={{ width: "calc(20% - 10px)"}}
+          style={{ width: 'calc(20% - 10px)' }}
           onClick={() => dispatch(modalActions.closeModal())}
         >
           {t('modals.cancelButton')}
         </Button>
-        <div className="gap" style={{ marginLeft: 'auto'}} />
+        <div className="gap" style={{ marginLeft: 'auto' }} />
         <Button
           variant="outline-primary"
           className="bt-lg"
-          style={{ width: "calc(35% - 10px)"}}
-          onClick={() => dispatch(modalActions.openModal({ type: 'signingIn'}))}
+          style={{ width: 'calc(35% - 10px)' }}
+          onClick={() =>
+            dispatch(modalActions.openModal({ type: 'signingIn' }))
+          }
         >
           {t('modals.signInButton')}
         </Button>

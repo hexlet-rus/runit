@@ -54,18 +54,17 @@ function SignInModal() {
       animation
       centered
       show
-      onHide={() => dispatch(modalActions.closeModal())}>
+      onHide={() => dispatch(modalActions.closeModal())}
+    >
       <Modal.Header closeButton>
-        <Modal.Title className="display-6">{t('modals.signInHeader')}</Modal.Title>
+        <Modal.Title className="display-6">
+          {t('modals.signInHeader')}
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form noValidate onSubmit={formik.handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label
-              htmlFor="email"
-              controlId="email"
-              label="Email"
-            >
+            <Form.Label htmlFor="email" controlId="email" label="Email">
               {t('signUp.emailLabel')}
             </Form.Label>
             <Form.Control
@@ -110,20 +109,25 @@ function SignInModal() {
           </Button>
         </Form>
       </Modal.Body>
-      <Modal.Footer className="d-flex mt-3" style={{justifyContent: "flex-end"}}>
+      <Modal.Footer
+        className="d-flex mt-3"
+        style={{ justifyContent: 'flex-end' }}
+      >
         <Button
           variant="danger"
           className="bt-lg"
           onClick={() => dispatch(modalActions.closeModal())}
-          style={{ width: "calc(20% - 10px)"}}
+          style={{ width: 'calc(20% - 10px)' }}
         >
           {t('modals.cancelButton')}
         </Button>
-        <div className="gap" style={{ marginLeft: 'auto'}} />
+        <div className="gap" style={{ marginLeft: 'auto' }} />
         <Button
           variant="outline-primary"
           className="bt-lg"
-          onClick={() => dispatch(modalActions.openModal({ type: 'signingUp' }))}
+          onClick={() =>
+            dispatch(modalActions.openModal({ type: 'signingUp' }))
+          }
         >
           {t('modals.signUpButton')}
         </Button>

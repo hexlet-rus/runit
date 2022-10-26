@@ -43,14 +43,10 @@ export function Profile() {
           <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
             <div className={`w-100 ${classes.profile}`}>
               <div>
-                  <h1 className="my-2">
-                    {userdata.name}
-                  </h1>
+                <h1 className="my-2">{userdata.name}</h1>
                 <div>
                   {t('profile.email')}
-                  <span className="text-muted">
-                {userdata.email}
-                  </span>
+                  <span className="text-muted">{userdata.email}</span>
                 </div>
 
                 {/* "userdata.created_at", "userdata.id" are also available. Add if needed. */}
@@ -58,89 +54,96 @@ export function Profile() {
               <div className={`${classes.profileButtons}`}>
                 <Button className={`${classes.button}`}>
                   <div>
-                  <span>
-                    {t('profile.editProfileButton')}
-                  </span>
+                    <span>{t('profile.editProfileButton')}</span>
                   </div>
                   {/* TODO: add edit tool */}
                 </Button>
                 <Button className={`${classes.button}`}>
                   <div>
-                  <span>
-                    {t('profile.copyProfileButton')}{' '}
-                  </span>
+                    <span>{t('profile.copyProfileButton')} </span>
                   </div>
                   {/* TODO: add ability to copy user profile link */}
                 </Button>
               </div>
-              <div className="gap" style={{ marginBottom: "auto" }}></div>
-              <div className="d-flex flex-md-column w-100"
-                   style={{ alignItems: "center" }}
+              <div className="gap" style={{ marginBottom: 'auto' }}></div>
+              <div
+                className="d-flex flex-md-column w-100"
+                style={{ alignItems: 'center' }}
               >
-                <span>{"Created"}</span>
+                <span>{'Created'}</span>
                 <span>{parseDate(userdata.created_at)}</span>
               </div>
             </div>
           </Col>
           <Col className={`rounded w-100 ${classes.replsCol}`}>
             <div className={`${classes.newRepl}`}>
-
-                <Button
-                  className={`${classes.newReplButton}`}
-                  onClick={() => dispatch(modalActions.openModal({ type: 'savingRepl' }))}
-                >
-                  {t('profile.newReplButton')}
-                </Button>
-
+              <Button
+                className={`${classes.newReplButton}`}
+                onClick={() =>
+                  dispatch(modalActions.openModal({ type: 'savingRepl' }))
+                }
+              >
+                {t('profile.newReplButton')}
+              </Button>
             </div>
             <div className={`w-100 h-100 d-flex flex-column ${classes.repls}`}>
-              <Row className="my-2 flex-md-row" style={{ borderBottom: "1px solid #293746"}}>
-                  <div className="flex-md-column w-auto"><h2 >{t('profile.replsHeader')}</h2></div>
+              <Row
+                className="my-2 flex-md-row"
+                style={{ borderBottom: '1px solid #293746' }}
+              >
+                <div className="flex-md-column w-auto">
+                  <h2>{t('profile.replsHeader')}</h2>
+                </div>
               </Row>
               <Row xs={1} md={2} className="g-4 my-1">
                 {snippets.map(({ id, name }) => (
                   <Col xs lg="3" key={id}>
                     <Card style={{ border: 0 }}>
-                      <Card.Header className={`${classes.snippetHeader}`}>{name}</Card.Header>
+                      <Card.Header className={`${classes.snippetHeader}`}>
+                        {name}
+                      </Card.Header>
                       <Card.Body className={`${classes.snippetBody}`}>
                         <Card.Text>
                           {/* TODO: add a screenshot for snippet */}
                         </Card.Text>
-                          <Dropdown
+                        <Dropdown
                           className={`mt-1 ${classes.snippetTools}`}
                           id="snippet"
+                        >
+                          <Button
+                            className={`${classes.button}`}
+                            variant="primary"
+                            href={snippetApi.genSnippetLink(
+                              snippetApi.encodeId(id),
+                            )}
                           >
-                            <Button
-                              className={`${classes.button}`}
-                              variant="primary"
-                              href={snippetApi.genSnippetLink(snippetApi.encodeId(id))}
-                            >
-                              {t('profile.openReplButton')}
-                            </Button>
-                            <div className="gap" style={{ marginLeft: 'auto' }}></div>
-                            <Dropdown.Toggle
+                            {t('profile.openReplButton')}
+                          </Button>
+                          <div
+                            className="gap"
+                            style={{ marginLeft: 'auto' }}
+                          ></div>
+                          <Dropdown.Toggle
                             aria-expanded="false"
                             className={`flex-grow-0 dropdown-toggle-split ${classes.dropdown}`}
-                            >
-                              <span className="visually-hidden">
-                                Edit the snippet
-                              </span>
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu
-                            className={`${classes.dropdownMenu}`}
-                            >
-                              <Dropdown.Item
+                          >
+                            <span className="visually-hidden">
+                              Edit the snippet
+                            </span>
+                          </Dropdown.Toggle>
+                          <Dropdown.Menu className={`${classes.dropdownMenu}`}>
+                            <Dropdown.Item
                               className={`${classes.dropdownItem}`}
-                              >
-                                Rename
-                              </Dropdown.Item>
-                              <Dropdown.Item
+                            >
+                              Rename
+                            </Dropdown.Item>
+                            <Dropdown.Item
                               className={`${classes.dropdownItem}`}
-                              >
-                                Delete
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </Dropdown>
+                            >
+                              Delete
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
                       </Card.Body>
                     </Card>
                   </Col>
@@ -151,6 +154,5 @@ export function Profile() {
         </Row>
       </div>
     </div>
-
   );
 }

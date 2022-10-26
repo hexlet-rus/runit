@@ -20,9 +20,7 @@ function ModalWindow() {
   if (!Modal) {
     return null;
   }
-  return (
-    <Modal />
-  );
-};
+  return <Modal />;
+}
 
 export default ModalWindow;

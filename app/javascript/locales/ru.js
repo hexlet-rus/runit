@@ -85,7 +85,7 @@ const ruLocales = {
         snippetNameMaxLength: 'Не больше 20 символов',
         required: 'Не может быть пустым',
         singleWord: 'Допустимы буквы латинского алфавита, цифры и символы "-_"',
-      }
+      },
     },
     errors: {
       unknown: 'Неизвестная ошибка',
