@@ -4,14 +4,17 @@ import { AuthContext } from '../contexts';
 import routes from '../routes.js';
 
 function AuthProvider({ children }) {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const loginStatus = JSON.parse(localStorage.getItem('loginStatus'));
+  const [isLoggedIn, setLoggedIn] = useState(loginStatus ? loginStatus.status : false);
 
   const logOut = async () => {
-    const response = await axios.post(routes.logoutPath());
+    await axios.post(routes.logoutPath());
+    localStorage.removeItem('loginStatus');
     setLoggedIn(false);
   };
 
   const logIn = () => {
+    localStorage.setItem('loginStatus', JSON.stringify({ status: true }));
     setLoggedIn(true);
   }
 
@@ -27,7 +30,6 @@ function AuthProvider({ children }) {
     fetchAuthData();
   }, []);
 
-  // const auth = useMemo(() => ({ logOut, isLoggedIn }), []); - not working
   return <AuthContext.Provider value={{ logOut, isLoggedIn, logIn }}>{children}</AuthContext.Provider>;
 }
 
