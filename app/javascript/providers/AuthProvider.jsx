@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts';
 import routes from '../routes.js';
 
@@ -8,11 +9,13 @@ function AuthProvider({ children }) {
   const [isLoggedIn, setLoggedIn] = useState(
     loginStatus ? loginStatus.status : false,
   );
+  const navigate = useNavigate();
 
   const logOut = async () => {
     await axios.post(routes.logoutPath());
     localStorage.removeItem('loginStatus');
     setLoggedIn(false);
+    navigate(routes.homePagePath());
   };
 
   const logIn = () => {
@@ -26,6 +29,7 @@ function AuthProvider({ children }) {
         await axios.get(routes.userProfilePath());
         setLoggedIn(true);
       } catch (err) {
+        localStorage.removeItem('loginStatus');
         setLoggedIn(false);
       }
     };
