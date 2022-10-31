@@ -86,13 +86,12 @@ export function Navbar() {
               {t('navbar.about')}
             </a>
             {auth.isLoggedIn && (
-              <a
-                className="nav-link px-3"
-                href={routes.homePagePath()}
+              <button
+                className="nav-link px-3 border-0 bg-transparent"
                 onClick={auth.logOut}
               >
                 {t('navbar.logout')}
-              </a>
+              </button>
             )}
             {!auth.isLoggedIn && (
               <a className="nav-link px-3" href={routes.loginPagePath()}>
