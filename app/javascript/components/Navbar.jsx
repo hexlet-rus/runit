@@ -87,7 +87,8 @@ export function Navbar() {
             </a>
             {auth.isLoggedIn && (
               <button
-                className="nav-link px-3 border-0 bg-transparent"
+                type="button"
+                className="btn nav-link px-3"
                 onClick={auth.logOut}
               >
                 {t('navbar.logout')}
