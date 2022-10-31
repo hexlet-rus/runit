@@ -65,7 +65,7 @@ export const SignUp = () => {
         await axios.post(routes.usersPath(), values);
         auth.logIn();
         actions.setSubmitting(false);
-        navigate(routes.homePagePath());
+        navigate(routes.profilePagePath());
       } catch (err) {
         if (!err.isAxiosError) {
           console.log(t('errors.unknown'));

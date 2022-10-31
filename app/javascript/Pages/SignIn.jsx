@@ -32,7 +32,7 @@ export function SignIn() {
         setAuthFailed(false);
         auth.logIn();
         actions.setSubmitting(false);
-        navigate(routes.homePagePath());
+        navigate(routes.profilePagePath());
         return response.data;
       } catch (err) {
         if (!err.isAxiosError) {
