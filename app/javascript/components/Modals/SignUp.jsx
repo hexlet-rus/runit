@@ -57,7 +57,7 @@ function SignUpModal() {
         actions.setSubmitting(true);
         const response = await axios.post(routes.usersPath(), values);
         auth.logIn();
-        dispatch(modalActions.openModal({ type: 'savingRepl' }));
+        dispatch(modalActions.closeModal());
         actions.setSubmitting(false);
         return response.data;
       } catch (err) {

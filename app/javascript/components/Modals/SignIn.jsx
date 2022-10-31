@@ -30,7 +30,7 @@ function SignInModal() {
         const response = await axios.post(routes.loginPath(), values);
         auth.logIn();
         setAuthFailed(false);
-        dispatch(modalActions.openModal({ type: 'savingRepl' }));
+        dispatch(modalActions.closeModal());
         actions.setSubmitting(false);
         return response.data;
       } catch (err) {
