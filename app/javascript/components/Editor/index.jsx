@@ -9,6 +9,7 @@ export function MonacoEditor() {
 
   const options = {
     selectOnLineNumbers: true,
+    wordWrap: true,
   };
 
   return (
