@@ -4,15 +4,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { useSnippets } from '../../hooks';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
 
-function SaveRepl() {
+function NewRepl() {
   const dispatch = useDispatch();
   const inputRef = useRef();
   const { t } = useTranslation();
   const snippetsApi = useSnippets();
+  const navigate = useNavigate();
   const { code, currentLanguage } = useSelector(({ editor, languages }) => ({
     code: editor.code,
     currentLanguage: languages.currentLanguage,
@@ -43,9 +45,9 @@ function SaveRepl() {
         const name = `${values.name}${languages.get(currentLanguage)}`;
         const encodedId = await snippetsApi.saveSnippet(code, name);
         const link = snippetsApi.genSnippetLink(encodedId);
-        dispatch(
-          modalActions.openModal({ type: 'gettingLink', item: { name, link } }),
-        );
+        const url = new URL(link);
+        navigate(`/${url.search}`);
+        dispatch(modalActions.closeModal());
         actions.setSubmitting(false);
       } catch (err) {
         actions.setSubmitting(false);
@@ -74,11 +76,14 @@ function SaveRepl() {
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
           <Form.Group className="mb-3">
-            <FloatingLabel controlId="name" label={t('modals.replNameLabel')}>
+            <FloatingLabel
+              controlId="name"
+              label={t('modals.share.snippetNameLabel')}
+            >
               <Form.Control
                 name="name"
                 onChange={formik.handleChange}
-                placeholder={t('modals.replNameLabel')}
+                placeholder={t('modals.share.snippetNameLabel')}
                 ref={inputRef}
                 value={formik.values.name}
                 isInvalid={formik.touched.name && formik.errors.name}
@@ -109,7 +114,7 @@ function SaveRepl() {
               type="submit"
               style={{ width: 'calc(35% - 10px)' }}
             >
-              {t('modals.saveButton')}
+              {t('modals.share.saveSnippetButton')}
             </Button>
           </div>
         </Form>
@@ -118,4 +123,4 @@ function SaveRepl() {
   );
 }
 
-export default SaveRepl;
+export default NewRepl;
