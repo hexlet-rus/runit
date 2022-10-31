@@ -29,6 +29,7 @@ function AuthProvider({ children }) {
         await axios.get(routes.userProfilePath());
         setLoggedIn(true);
       } catch (err) {
+        localStorage.removeItem('loginStatus');
         setLoggedIn(false);
       }
     };

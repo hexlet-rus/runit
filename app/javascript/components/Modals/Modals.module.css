@@ -1,0 +1,17 @@
+.shareReplTools {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10%;
+}
+
+.button {
+  color: #fff;
+  background: #136ef6;
+  border: 1px solid #3e496b;
+  border-radius: 5px;
+}
+
+.button:hover {
+  --bs-btn-hover-bg: #7c7cf7;
+}

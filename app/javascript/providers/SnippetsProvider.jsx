@@ -44,7 +44,27 @@ function SnippetsProvider({ children }) {
   };
 
   const genSnippetLink = (encodedId) => {
-    return `/?snippet=${encodedId}`;
+    const url = new URL(window.location);
+    const origin = url.origin;
+    return `${origin}/?snippet=${encodedId}`;
+  };
+
+  const genEmbedSnippetLink = (encodedId) => {
+    const url = new URL(window.location);
+    const origin = url.origin;
+    return `${origin}/embed?snippet=${encodedId}`;
+  };
+
+  const genEmbedFrame = (link) => {
+    return `<iframe 
+      height="300"
+      scrolling="no"
+      style="width: 754px"
+      src="${link}"
+      loading="lazy"
+      allowTransparency
+      allowFullScreen
+    >`;
   };
 
   return (
@@ -53,9 +73,11 @@ function SnippetsProvider({ children }) {
         encodeId,
         decodeId,
         saveSnippet,
+        genEmbedFrame,
         genSnippetLink,
         getSnippetData,
         hasSnippetParams,
+        genEmbedSnippetLink,
         getSnippetIdFromParams,
       }}
     >

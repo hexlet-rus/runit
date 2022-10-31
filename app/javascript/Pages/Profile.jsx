@@ -38,7 +38,7 @@ export function Profile() {
   return (
     <div className="main-content">
       <div className={`${classes.upperLine}`}></div>
-      <div className={`px-3 ${classes.container}`}>
+      <div className={`h-100 w-100 px-3 ${classes.container}`}>
         <Row className={`${classes.profileContainer}`}>
           <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
             <div className={`w-100 ${classes.profile}`}>
@@ -80,7 +80,7 @@ export function Profile() {
               <Button
                 className={`${classes.newReplButton}`}
                 onClick={() =>
-                  dispatch(modalActions.openModal({ type: 'savingRepl' }))
+                  dispatch(modalActions.openModal({ type: 'genNewRepl' }))
                 }
               >
                 {t('profile.newReplButton')}
@@ -110,39 +110,60 @@ export function Profile() {
                           className={`mt-1 ${classes.snippetTools}`}
                           id="snippet"
                         >
-                          <Button
-                            className={`${classes.button}`}
-                            variant="primary"
-                            href={snippetApi.genSnippetLink(
-                              snippetApi.encodeId(id),
-                            )}
-                          >
-                            {t('profile.openReplButton')}
-                          </Button>
-                          <div
-                            className="gap"
-                            style={{ marginLeft: 'auto' }}
-                          ></div>
-                          <Dropdown.Toggle
-                            aria-expanded="false"
-                            className={`flex-grow-0 dropdown-toggle-split ${classes.dropdown}`}
-                          >
-                            <span className="visually-hidden">
-                              Edit the snippet
-                            </span>
-                          </Dropdown.Toggle>
-                          <Dropdown.Menu className={`${classes.dropdownMenu}`}>
-                            <Dropdown.Item
-                              className={`${classes.dropdownItem}`}
+                          <div className="d-flex flex-start gap-1">
+                            <Button
+                              className={`${classes.button}`}
+                              variant="primary"
+                              href={snippetApi.genSnippetLink(
+                                snippetApi.encodeId(id),
+                              )}
                             >
-                              Rename
-                            </Dropdown.Item>
-                            <Dropdown.Item
-                              className={`${classes.dropdownItem}`}
+                              {t('profile.openReplButton')}
+                            </Button>
+                            <Button
+                              className={`${classes.button}`}
+                              variant="primary"
+                              onClick={() =>
+                                dispatch(
+                                  modalActions.openModal({
+                                    type: 'sharingRepl',
+                                    item: {
+                                      name,
+                                      link: snippetApi.genSnippetLink(
+                                        snippetApi.encodeId(id),
+                                      ),
+                                    },
+                                  }),
+                                )
+                              }
                             >
-                              Delete
-                            </Dropdown.Item>
-                          </Dropdown.Menu>
+                              Share
+                            </Button>
+                          </div>
+                          <div className="d-flex flex-end">
+                            <Dropdown.Toggle
+                              aria-expanded="false"
+                              className={`flex-grow-0  dropdown-toggle-split ${classes.dropdown}`}
+                            >
+                              <span className="visually-hidden">
+                                Edit the snippet
+                              </span>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu
+                              className={`${classes.dropdownMenu}`}
+                            >
+                              <Dropdown.Item
+                                className={`${classes.dropdownItem}`}
+                              >
+                                Rename
+                              </Dropdown.Item>
+                              <Dropdown.Item
+                                className={`${classes.dropdownItem}`}
+                              >
+                                Delete
+                              </Dropdown.Item>
+                            </Dropdown.Menu>
+                          </div>
                         </Dropdown>
                       </Card.Body>
                     </Card>

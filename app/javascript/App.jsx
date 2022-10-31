@@ -19,7 +19,7 @@ export function App() {
       }
     };
     loadSnippet();
-  });
+  }, []);
 
   return (
     <main className="container-fluid my-5">

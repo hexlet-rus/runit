@@ -33,7 +33,6 @@ export default async () => {
       <BrowserRouter>
         <AuthProvider>
           <SnippetsProvider>
-            <Navbar />
             <AppRoutes />
             <ModalWindow />
           </SnippetsProvider>

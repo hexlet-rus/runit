@@ -24,7 +24,32 @@ export const Button = memo(() => {
   }, []);
 
   const getTypeOfModal = (isLoggedIn) => {
-    return isLoggedIn ? { type: 'savingRepl' } : { type: 'gettingInfo' };
+    return isLoggedIn
+      ? { type: 'sharingRepl', item: null }
+      : { type: 'gettingInfo' };
+  };
+
+  const handleShareEvent = async () => {
+    if (!snippetsApi.hasSnippetParams()) {
+      dispatch(modalActions.openModal(getTypeOfModal(auth.isLoggedIn)));
+    } else {
+      if (!auth.isLoggedIn) {
+        dispatch(modalActions.openModal({ type: 'gettingInfo' }));
+      } else {
+        const decodedId = snippetsApi.getSnippetIdFromParams();
+        const snippetData = await snippetsApi.getSnippetData(decodedId);
+        const snippetName = snippetData.name;
+        dispatch(
+          modalActions.openModal({
+            type: 'sharingRepl',
+            item: {
+              name: snippetName,
+              link: snippetsApi.genSnippetLink(snippetsApi.encodeId(decodedId)),
+            },
+          }),
+        );
+      }
+    }
   };
 
   return (
@@ -43,9 +68,7 @@ export const Button = memo(() => {
       <button
         type="button"
         className={`btn btn-primary btn-lg ${classes.shareButton}`}
-        onClick={() =>
-          dispatch(modalActions.openModal(getTypeOfModal(auth.isLoggedIn)))
-        }
+        onClick={handleShareEvent}
       >
         Share
       </button>
