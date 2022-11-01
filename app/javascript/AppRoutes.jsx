@@ -14,7 +14,9 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path={routes.aboutPagePath()} element={<About />} />
-      <Route path={routes.homePagePath()} element={<App />} />
+      <Route path={routes.homePagePath()} element={<App />}>
+        <Route path={'/snippets/:id'} element={<App />} />
+      </Route>
       <Route path={routes.profilePagePath()} element={<Profile />} />
       <Route path={routes.signUpPagePath()} element={<SignUp />} />
       <Route path={routes.loginPagePath()} element={<SignIn />} />

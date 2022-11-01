@@ -15,9 +15,9 @@ export const Button = memo(() => {
   const snippetsApi = useSnippets();
 
   useEffect(() => {
-    if (snippetsApi.hasSnippetParams()) {
-      const decodedId = snippetsApi.getSnippetIdFromParams();
-      setCurrentSnippetId(decodedId);
+    if (snippetsApi.hasSnippetsPath()) {
+      const id = snippetsApi.getSnippetIdFromPath();
+      setCurrentSnippetId(id);
     } else {
       setCurrentSnippetId(false);
     }

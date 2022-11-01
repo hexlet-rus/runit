@@ -29,20 +29,20 @@ function SnippetsProvider({ children }) {
     return encodedId;
   };
 
-  const hasSnippetParams = () => {
+  const hasSnippetsPath = () => {
     const url = new URL(window.location);
-    return url.searchParams.has('snippet');
+    return url.pathname.split('/').filter(path => path === 'snippets').length;
   };
 
-  const getSnippetIdFromParams = () => {
+  const getSnippetIdFromPath = () => {
     const url = new URL(window.location);
-    const encodedId = url.searchParams.get('snippet');
-    const decodedId = decodeId(encodedId);
-    return decodedId;
+    const elementsPath = url.pathname.split('/');
+    const lastElementPath = elementsPath[elementsPath.length - 1];
+    return Number(lastElementPath);
   };
 
-  const genSnippetLink = (encodedId) => {
-    return `/?snippet=${encodedId}`;
+  const genSnippetLink = (id) => {
+    return `/snippets/${id}`;
   };
 
   return (
@@ -53,8 +53,8 @@ function SnippetsProvider({ children }) {
       saveSnippet,
       genSnippetLink,
       getSnippetData,
-      hasSnippetParams,
-      getSnippetIdFromParams,
+      hasSnippetsPath,
+      getSnippetIdFromPath,
     }}
     >
       {children}

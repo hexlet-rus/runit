@@ -12,9 +12,9 @@ export function App() {
 
   useEffect( () => {
     const loadSnippet = async () => {
-      if (snippetApi.hasSnippetParams()) {
-        const decodedId = snippetApi.getSnippetIdFromParams();
-        const snippetData = await snippetApi.getSnippetData(decodedId);
+      if (snippetApi.hasSnippetsPath()) {
+        const id = snippetApi.getSnippetIdFromPath();
+        const snippetData = await snippetApi.getSnippetData(id);
         dispatch(actions.updateCode(snippetData.code));
       }
     };

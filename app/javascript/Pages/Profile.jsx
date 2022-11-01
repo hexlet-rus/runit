@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { useSnippets } from '../hooks';
 
 import axios from 'axios';
@@ -76,12 +77,11 @@ export function Profile() {
                       <Card.Text>
                         {/* TODO: add a snapshot for snippet */}
                       </Card.Text>
-                      <Button
-                        variant="primary"
-                        href={snippetApi.genSnippetLink(snippetApi.encodeId(id))}
-                      >
-                        {t('profile.openReplButton')}
-                      </Button>
+                        <Link to={snippetApi.genSnippetLink(id)}>
+                          <Button variant="primary">
+                            {t('profile.openReplButton')}
+                          </Button>
+                        </Link>
                     </Card.Body>
                   </Card>
                 </Col>

@@ -5,8 +5,10 @@ import axios from 'axios';
 export const runCode = createAsyncThunk(
   'terminal/runCode',
   async (code) => {
+    const url = new URL(window.location);
     const { data, status } = await axios.get(`api/compile`, {
       params: { code },
+      baseURL: url.origin,
     });
 
     if (status === 200) return data;
