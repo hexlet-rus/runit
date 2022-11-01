@@ -46,7 +46,7 @@ function NewRepl() {
         const encodedId = await snippetsApi.saveSnippet(code, name);
         const link = snippetsApi.genSnippetLink(encodedId);
         const url = new URL(link);
-        navigate(`/${url.search}`);
+        navigate(`${url.pathname}${url.search}`);
         dispatch(modalActions.closeModal());
         actions.setSubmitting(false);
       } catch (err) {
