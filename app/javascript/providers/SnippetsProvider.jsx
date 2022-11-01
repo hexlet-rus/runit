@@ -44,15 +44,15 @@ function SnippetsProvider({ children }) {
   };
 
   const genSnippetLink = (encodedId) => {
-    const url = new URL(window.location);
-    const origin = url.origin;
-    return `${origin}/?snippet=${encodedId}`;
+    const url = new URL(routes.homePagePath(), window.location);
+    url.searchParams.set('snippet', encodedId);
+    return url.toString();
   };
 
   const genEmbedSnippetLink = (encodedId) => {
-    const url = new URL(window.location);
-    const origin = url.origin;
-    return `${origin}/embed?snippet=${encodedId}`;
+    const url = new URL(routes.embedPagePath(), window.location);
+    url.searchParams.set('snippet', encodedId);
+    return url.toString();
   };
 
   const genEmbedFrame = (link) => {
