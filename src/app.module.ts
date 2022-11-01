@@ -21,6 +21,7 @@ import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
 import { AuthController } from './auth/auth.controller';
 import getDataSourceConfig from './data-source.config';
+import { PagesController } from './pages/pages.controller';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import getDataSourceConfig from './data-source.config';
     SnippetsController,
     UsersController,
     AuthController,
+    PagesController,
   ],
   providers: [AppService, SnippetsService, UsersService, AuthModule],
 })

@@ -15,7 +15,7 @@ export default {
   getSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // get snippet
   updateSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // put - update snippet info: { name, code }
   deleteSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // delete snippet
-  homePagePath: () => '/',
+  homePagePath: () => '/editor',
   aboutPagePath: () => '/about',
   profilePagePath: () => '/profile',
   loginPagePath: () => '/login',
