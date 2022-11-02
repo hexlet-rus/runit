@@ -26,7 +26,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<App />} />
+        <Route path="/editor" element={<App />} />
         <Route path={routes.aboutPagePath()} element={<About />} />
         <Route element={<ProtectedRoute user={isLoggedIn} />}>
           <Route path={routes.profilePagePath()} element={<Profile />} />
