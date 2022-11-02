@@ -10,7 +10,7 @@ export function MonacoEditor() {
   const { code, language, onChange, editorDidMount } = useEditor();
   const { t } = useTranslation();
   const loginStatus = JSON.parse(localStorage.getItem('loginStatus'));
-  const isLoggedIn = loginStatus ?? false;
+  const isLoggedIn = loginStatus ? loginStatus.status : false;
 
   const options = {
     selectOnLineNumbers: true,
