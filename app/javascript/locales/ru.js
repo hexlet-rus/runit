@@ -74,6 +74,9 @@ const ruLocales = {
       logoOffer: 'Try it on',
       logo: 'Runit',
     },
+    editor: {
+      authBanner: 'Authorize to edit',
+    },
     modals: {
       share: {
         header: 'Save snippet to share.',
