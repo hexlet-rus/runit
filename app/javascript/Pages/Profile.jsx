@@ -26,6 +26,12 @@ export function Profile() {
     }
   };
 
+  const handleSnippetDelete = async (id) => {
+    await snippetApi.deleteSnippet(id);
+    const response = await axios.get(routes.userProfilePath());
+    setSnippets(response.data.snippets);
+  };
+
   useEffect(() => {
     const fetchUserSnippets = async () => {
       const response = await axios.get(routes.userProfilePath());
@@ -33,7 +39,7 @@ export function Profile() {
       setSnippets(response.data.snippets);
     };
     fetchUserSnippets();
-  }, []);
+  }, [snippets]);
 
   return (
     <div className="main-content">
@@ -159,6 +165,7 @@ export function Profile() {
                               </Dropdown.Item>
                               <Dropdown.Item
                                 className={`${classes.dropdownItem}`}
+                                onClick={() => handleSnippetDelete(id)}
                               >
                                 Delete
                               </Dropdown.Item>
