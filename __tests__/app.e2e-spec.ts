@@ -26,4 +26,8 @@ describe('AppController (e2e)', () => {
       .expect(200)
       .expect(testData.output);
   });
+
+  afterAll(async () => {
+    await app.close();
+  });
 });
