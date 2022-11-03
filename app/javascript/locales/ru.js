@@ -3,7 +3,7 @@ const ruLocales = {
     signUp: {
       pageHeader: 'Регистрация',
       emailLabel: 'Электронная почта',
-      usernameLabel: 'Имя',
+      usernameLabel: 'Логин',
       passwordLabel: 'Пароль',
       confirmPasswordLabel: 'Подтвердить пароль',
       registerButton: 'Зарегистрироваться',
@@ -14,7 +14,7 @@ const ruLocales = {
       },
       validation: {
         requiredField: 'Обязательное поле',
-        correctUsername: 'Введите корректное имя',
+        correctUsername: 'Введите корректный логин',
         correctEmail: 'Некорректная электронная почта',
         usernameLength: 'От 3 до 20 символов',
         passwordLength: 'от 8 до 30 символов',
