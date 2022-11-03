@@ -31,6 +31,11 @@ function SnippetsProvider({ children }) {
     return encodedId;
   };
 
+  const deleteSnippet = async (decodedId) => {
+    const response = await axios.delete(routes.deleteSnippetPath(decodedId));
+    return response;
+  }
+
   const hasSnippetParams = () => {
     const url = new URL(window.location);
     return url.searchParams.has('snippet');
@@ -73,6 +78,7 @@ function SnippetsProvider({ children }) {
         encodeId,
         decodeId,
         saveSnippet,
+        deleteSnippet,
         genEmbedFrame,
         genSnippetLink,
         getSnippetData,
