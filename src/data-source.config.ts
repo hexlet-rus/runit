@@ -19,6 +19,14 @@ export default (): DataSourceOptions => {
         entities: [`${__dirname}/entities/*.entity.{ts,js}`],
         migrations: [migration1663236009774],
       };
+    case 'test':
+      return {
+        type: 'sqlite',
+        database: ':memory:',
+        synchronize: true,
+        entities: [Users, Snippets],
+        migrations: [migration1663236009774],
+      };
     default:
       return {
         type: 'sqlite',

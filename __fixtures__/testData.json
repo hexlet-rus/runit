@@ -1,0 +1,84 @@
+{
+  "code": {
+    "input": "console.log('Hello console!');\nalert('Hello alert!');",
+    "output": {
+        "terminal": ["Hello console!", ""], 
+        "alertLogs": ["Hello alert!"]
+    }
+  },
+  "users": {
+    "read": {
+      "id": 1,
+      "name": "JohnDoe",
+      "email": "undefined@mail.ru"
+    },
+    "create": {
+      "name": "Nick",
+      "email": "myEmail@mail.ru",
+      "password": "MyTestPass123",
+      "confirmPassword": "MyTestPass123"
+    },
+    "createIncorrect": {
+      "name": "",
+      "email": "",
+      "password": "",
+      "confirmPassword": "confirmed"
+    },
+    "createErrs": [
+      "name must match /[A-Za-z]/ regular expression",
+      "name should not be empty",
+      "name must be longer than or equal to 3 characters",
+      "email should not be empty",
+      "email must be an email",
+      "password should not be empty",
+      "password must be longer than or equal to 8 characters",
+      "Пароли не совпадают!"
+    ],
+    "update": {
+      "name": "redactedNick",
+      "email": "myNewEmail@mail.ru",
+      "password": "MyNewTestPass123"
+    },
+    "sign": {
+      "sub": 1,
+      "email": "undefined@mail.ru"
+    },
+    "login": {
+      "email": "undefined@mail.ru",
+      "password": "NotFound404"
+    },
+    "profile": {
+      "currentUser": {
+        "id": 1,
+        "name": "JohnDoe",
+        "email": "undefined@mail.ru"
+      },
+      "snippets": [
+        {
+          "id": 1,
+          "name": "testSnippet",
+          "code": "console.log('test')"
+        },
+        {
+          "id": 2,
+          "name": "snippet",
+          "code": "const test = () => 1 + 1"
+        }
+      ]
+    }
+  },
+  "snippets": {
+    "read": {
+      "name": "testSnippet",
+      "code": "console.log('test')"
+    },
+    "create": {
+      "name": "newSnippet",
+      "code": "console.log('hey');"
+    },
+    "update": {
+      "name": "Redacted",
+      "code": "console.log('hello!);\nconsole.log('test');"
+    }
+  }
+}

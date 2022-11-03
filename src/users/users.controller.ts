@@ -32,6 +32,7 @@ export class UsersController {
     private authService: AuthService,
   ) {}
 
+  @UseGuards(JwtAuthGuard)
   @Get()
   async findAll(): Promise<User[]> {
     return this.usersService.findAll();
@@ -43,6 +44,7 @@ export class UsersController {
     return this.usersService.getData(user);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async findOne(@Param('id', new ParseIntPipe()) id: number): Promise<User> {
     return this.usersService.findOne(id);

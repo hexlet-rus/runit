@@ -9,7 +9,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('compile')
-  getLogs(@Query('code') code: any): Output {
+  async getLogs(@Query('code') code: any): Promise<Output> {
     return this.appService.run(code);
   }
 }
