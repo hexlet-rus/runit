@@ -70,7 +70,7 @@ function NewRepl() {
       show
     >
       <Modal.Header closeButton>
-        <Modal.Title>Название Репла</Modal.Title>
+        <Modal.Title>{t('modals.newSnippetName')}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
