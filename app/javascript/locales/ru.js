@@ -75,7 +75,7 @@ const ruLocales = {
       logo: 'Runit',
     },
     editor: {
-      authBanner: 'Authorize to edit',
+      authBanner: 'Авторизуйтесь для редактирования',
     },
     modals: {
       share: {
