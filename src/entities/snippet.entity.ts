@@ -20,7 +20,7 @@ export class Snippets {
   @Column()
   code: string;
 
-  @ManyToOne('Users', 'snippets')
+  @ManyToOne('Users', 'snippets', { onDelete: 'CASCADE' })
   @JoinColumn()
   user: Users;
 

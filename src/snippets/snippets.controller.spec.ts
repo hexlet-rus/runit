@@ -74,6 +74,7 @@ describe('SnippetController', () => {
     it('should update snippet', async () => {
       const updateData = {
         name: 'changedName',
+        code: "console.log('hello!')",
       };
       jest.spyOn(snippetsController, 'update');
       await snippetsController.update(3, updateData);
