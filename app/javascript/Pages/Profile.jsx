@@ -28,8 +28,8 @@ export function Profile() {
 
   const handleSnippetDelete = async (id) => {
     await snippetApi.deleteSnippet(id);
-    const response = await axios.get(routes.userProfilePath());
-    setSnippets(response.data.snippets);
+    const filteredSnippets = snippets.filter((snippet) => snippet.id !== id);
+    setSnippets(filteredSnippets);
   };
 
   useEffect(() => {
