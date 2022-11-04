@@ -37,9 +37,9 @@ export class SnippetsService {
   async update(
     id: number,
     updateSnippetDto: UpdateSnippetDto,
-  ): Promise<Snippets[]> {
+  ): Promise<Snippets> {
     await this.snippetsRepository.update(id, updateSnippetDto);
-    return this.snippetsRepository.find();
+    return this.snippetsRepository.findOneBy({ id });
   }
 
   async delete(id: number): Promise<void> {

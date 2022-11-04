@@ -4,8 +4,8 @@ export class UpdateSnippetDto {
   @IsOptional()
   @IsString()
   @Length(1, 30)
-  name?: string;
+  name: string;
 
   @IsString()
-  code?: any;
+  code: string;
 }

@@ -38,6 +38,18 @@ make start-dev
 ```
 http://localhost:3000
 
+## Unit tests
+
+```bash
+make test
+```
+
+## e2e tests
+
+```bash
+make test-e2e
+```
+
 ## How to help
 
 Look at the list of issues, choose an interesting task, write to the issue to say you would like to work on the task.

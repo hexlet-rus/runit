@@ -48,7 +48,6 @@ export function Profile() {
                   {`${t('profile.email')} `}
                   <span className="text-muted">{userdata.email}</span>
                 </div>
-
                 {/* "userdata.created_at", "userdata.id" are also available. Add if needed. */}
               </div>
               <div className={`${classes.profileButtons}`}>
@@ -70,7 +69,7 @@ export function Profile() {
                 className="d-flex flex-md-column w-100"
                 style={{ alignItems: 'center' }}
               >
-                <span>{'Created'}</span>
+                <span>{t('profile.createdAt')}</span>
                 <span>{parseDate(userdata.created_at)}</span>
               </div>
             </div>
@@ -137,7 +136,7 @@ export function Profile() {
                                 )
                               }
                             >
-                              Share
+                              {t('profile.shareReplButton')}
                             </Button>
                           </div>
                           <div className="d-flex flex-end">
@@ -155,12 +154,12 @@ export function Profile() {
                               <Dropdown.Item
                                 className={`${classes.dropdownItem}`}
                               >
-                                Rename
+                                {t('profile.renameReplButton')}
                               </Dropdown.Item>
                               <Dropdown.Item
                                 className={`${classes.dropdownItem}`}
                               >
-                                Delete
+                                {t('profile.deleteReplButton')}
                               </Dropdown.Item>
                             </Dropdown.Menu>
                           </div>

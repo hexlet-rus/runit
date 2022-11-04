@@ -6,8 +6,16 @@ import { useFormik } from 'formik';
 import { useSnippets } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
+import { faker } from '@faker-js/faker';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
+
+const generateInitialName = () => {
+  const adjectiveLength = 3 + Math.round(Math.random() * 6);
+  const adjective = faker.word.adjective(adjectiveLength);
+  const animal = faker.animal.type();
+  return `${adjective}-${animal}`;
+};
 
 function NewRepl() {
   const dispatch = useDispatch();
@@ -30,7 +38,7 @@ function NewRepl() {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      name: generateInitialName(),
     },
     validationSchema: yup.object({
       name: yup
@@ -70,7 +78,7 @@ function NewRepl() {
       show
     >
       <Modal.Header closeButton>
-        <Modal.Title>Название Репла</Modal.Title>
+        <Modal.Title>{t('modals.newSnippetName')}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
