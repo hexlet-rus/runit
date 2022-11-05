@@ -27,6 +27,10 @@ export class UsersService {
     return this.usersRepository.findOneBy({ email });
   }
 
+  async findByName(name: string): Promise<Users> {
+    return this.usersRepository.findOneBy({ name });
+  }
+
   create(createUserDto: CreateUserDto): Promise<Users> {
     const user = new Users();
     user.name = createUserDto.name;
