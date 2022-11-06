@@ -7,7 +7,7 @@ import {
   Validate,
 } from 'class-validator';
 import { CheckEmail } from '../validation/check-email';
-import { CheckName } from '../validation/check-name';
+import { CheckLogin } from '../validation/check-login';
 import { ComparePasswords } from '../validation/compare-passwords';
 
 export class CreateUserDto {
@@ -15,10 +15,10 @@ export class CreateUserDto {
   @Length(3, 20)
   @IsNotEmpty()
   @Matches(/[A-Za-z]/)
-  @Validate(CheckName, {
+  @Validate(CheckLogin, {
     message: 'Login уже существует!',
   })
-  name: string;
+  login: string;
 
   @IsString()
   @IsEmail()
