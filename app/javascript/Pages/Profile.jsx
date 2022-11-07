@@ -39,7 +39,7 @@ export function Profile() {
       setSnippets(response.data.snippets);
     };
     fetchUserSnippets();
-  }, [snippets]);
+  }, []);
 
   return (
     <div className="main-content">
