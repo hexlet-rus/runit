@@ -17,7 +17,7 @@ export class Users {
   id: number;
 
   @Column({ default: 'Untitled' })
-  name: string;
+  login: string;
 
   @Index({ unique: true })
   @Column()
