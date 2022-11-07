@@ -1,0 +1,14 @@
+.banner {
+  background-color: #3c69c24f;
+  color: #e6e6e6d9;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  z-index: 10;
+}
+
+.wrapper {
+  position: relative;
+  height: 100%;
+};
