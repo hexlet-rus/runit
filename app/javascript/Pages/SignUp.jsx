@@ -71,7 +71,7 @@ export const SignUp = () => {
           console.log(t('errors.unknown'));
           throw err;
         }
-        if (err.response?.status === 409) {
+        if (err.response?.status === 400) {
           setRegFailed(true);
           inputRef.current.select();
         } else {

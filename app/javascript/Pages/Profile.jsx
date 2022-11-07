@@ -26,6 +26,12 @@ export function Profile() {
     }
   };
 
+  const handleSnippetDelete = async (id) => {
+    await snippetApi.deleteSnippet(id);
+    const filteredSnippets = snippets.filter((snippet) => snippet.id !== id);
+    setSnippets(filteredSnippets);
+  };
+
   useEffect(() => {
     const fetchUserSnippets = async () => {
       const response = await axios.get(routes.userProfilePath());
@@ -158,6 +164,7 @@ export function Profile() {
                               </Dropdown.Item>
                               <Dropdown.Item
                                 className={`${classes.dropdownItem}`}
+                                onClick={() => handleSnippetDelete(id)}
                               >
                                 {t('profile.deleteReplButton')}
                               </Dropdown.Item>
