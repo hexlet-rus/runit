@@ -17,7 +17,7 @@ export class migration1663236009774 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'name',
+            name: 'login',
             type: 'character',
             isNullable: false,
             default: "'Untitled'",

@@ -3,13 +3,13 @@
 /* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from './../hooks';
+import { useAuth } from '../hooks';
 
-import axios from 'axios';
 import routes from '../routes.js';
 
 export const SignUp = () => {
@@ -24,7 +24,7 @@ export const SignUp = () => {
   }, []);
 
   const signUpValidation = yup.object().shape({
-    name: yup
+    login: yup
       .string()
       .trim()
       .min(3, t('signUp.validation.usernameLength'))
@@ -53,7 +53,7 @@ export const SignUp = () => {
   });
   const formik = useFormik({
     initialValues: {
-      name: '',
+      login: '',
       email: '',
       password: '',
       confirmPassword: '',
@@ -117,24 +117,25 @@ export const SignUp = () => {
                   </Form.Group>
 
                   <Form.Group className="mb-2">
-                    <Form.Label htmlFor="name">
+                    <Form.Label htmlFor="login">
                       {t('signUp.usernameLabel')}
                     </Form.Label>
                     <Form.Control
                       onChange={formik.handleChange}
-                      value={formik.values.name}
+                      value={formik.values.login}
                       onBlur={formik.handleBlur}
                       className="form-input"
-                      name="name"
-                      id="name"
+                      name="login"
+                      id="login"
                       autoComplete="username"
                       required
                       isInvalid={
-                        (formik.touched.name && formik.errors.name) || regFailed
+                        (formik.touched.login && formik.errors.login) ||
+                        regFailed
                       }
                     />
                     <Form.Control.Feedback type="invalid">
-                      {formik.errors.name ? formik.errors.name : regFailed}
+                      {formik.errors.login ? formik.errors.login : regFailed}
                     </Form.Control.Feedback>
                   </Form.Group>
 
