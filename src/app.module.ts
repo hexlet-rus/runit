@@ -22,6 +22,7 @@ import { UsersModule } from './users/users.module';
 import { AuthController } from './auth/auth.controller';
 import getDataSourceConfig from './data-source.config';
 import { PagesController } from './pages/pages.controller';
+import { HttpsRedirectMiddleware } from './common/https.middleware';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ export class AppModule implements NestModule {
   constructor(private dataSource: DataSource) {}
 
   configure(consumer: MiddlewareConsumer) {
+    consumer.apply(HttpsRedirectMiddleware).forRoutes('*');
     consumer
       .apply(LoggerMiddleware)
       .forRoutes({ path: 'snippets', method: RequestMethod.POST });
