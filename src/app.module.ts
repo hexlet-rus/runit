@@ -1,17 +1,11 @@
 /* eslint-disable class-methods-use-this */
-import {
-  MiddlewareConsumer,
-  RequestMethod,
-  Module,
-  NestModule,
-} from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { LoggerMiddleware } from './snippets/common/logger.middleware';
 import { SnippetsController } from './snippets/snippets.controller';
 import { SnippetsModule } from './snippets/snippets.module';
 import { SnippetsService } from './snippets/snippets.service';
@@ -49,8 +43,5 @@ export class AppModule implements NestModule {
 
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(HttpsRedirectMiddleware).forRoutes('*');
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes({ path: 'snippets', method: RequestMethod.POST });
   }
 }
