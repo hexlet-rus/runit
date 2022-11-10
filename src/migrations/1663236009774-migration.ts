@@ -18,19 +18,19 @@ export class migration1663236009774 implements MigrationInterface {
           },
           {
             name: 'login',
-            type: 'character',
+            type: 'varchar(20)',
             isNullable: false,
-            default: "'Untitled'",
+            isUnique: true,
           },
           {
             name: 'email',
-            type: 'character',
+            type: 'varchar(60)',
             isNullable: false,
             isUnique: true,
           },
           {
             name: 'password',
-            type: 'character',
+            type: 'varchar(60)',
             isNullable: false,
           },
           {
@@ -64,13 +64,13 @@ export class migration1663236009774 implements MigrationInterface {
           },
           {
             name: 'name',
-            type: 'character',
+            type: 'varchar(30)',
             isNullable: false,
             default: "'Untitled'",
           },
           {
             name: 'code',
-            type: 'character',
+            type: 'text',
             isNullable: false,
           },
           {
