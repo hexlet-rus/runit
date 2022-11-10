@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /editor
+Disallow: /login
+Disallow: /signup
+Disallow: *?
