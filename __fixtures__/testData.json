@@ -9,25 +9,25 @@
   "users": {
     "read": {
       "id": 1,
-      "name": "JohnDoe",
+      "login": "JohnDoe",
       "email": "undefined@mail.ru"
     },
     "create": {
-      "name": "Nick",
+      "login": "Nick",
       "email": "myEmail@mail.ru",
       "password": "MyTestPass123",
       "confirmPassword": "MyTestPass123"
     },
     "createIncorrect": {
-      "name": "",
+      "login": "",
       "email": "",
       "password": "",
       "confirmPassword": "confirmed"
     },
     "createErrs": [
-      "name must match /[A-Za-z]/ regular expression",
-      "name should not be empty",
-      "name must be longer than or equal to 3 characters",
+      "login must match /[A-Za-z]/ regular expression",
+      "login should not be empty",
+      "login must be longer than or equal to 3 characters",
       "email should not be empty",
       "email must be an email",
       "password should not be empty",
@@ -35,7 +35,7 @@
       "Пароли не совпадают!"
     ],
     "update": {
-      "name": "redactedNick",
+      "login": "redactedNick",
       "email": "myNewEmail@mail.ru",
       "password": "MyNewTestPass123"
     },
@@ -50,7 +50,7 @@
     "profile": {
       "currentUser": {
         "id": 1,
-        "name": "JohnDoe",
+        "login": "JohnDoe",
         "email": "undefined@mail.ru"
       },
       "snippets": [
