@@ -69,7 +69,7 @@ export const Button = memo(() => {
       </button>
       <button
         type="button"
-        className={`btn btn-primary btn-lg ${classes.shareButton}`}
+        className={`btn btn-outline-primary btn-lg ${classes.shareButton}`}
         onClick={handleShareEvent}
       >
         {t('editor.shareButton')}
