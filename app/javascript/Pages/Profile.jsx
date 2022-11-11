@@ -32,6 +32,22 @@ export function Profile() {
     setSnippets(filteredSnippets);
   };
 
+  const handleSnippetRename = (id, name, code) => {
+    const updateSnippets = (renamedSnippet) => {
+      const updatedSnippets = snippets.map((sn) =>
+        sn.id === renamedSnippet.id ? renamedSnippet : sn,
+      );
+      setSnippets(updatedSnippets);
+    };
+
+    dispatch(
+      modalActions.openModal({
+        type: 'renameRepl',
+        item: { id, name, code, updateSnippets },
+      }),
+    );
+  };
+
   useEffect(() => {
     const fetchUserSnippets = async () => {
       const response = await axios.get(routes.userProfilePath());
@@ -49,7 +65,7 @@ export function Profile() {
           <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
             <div className={`w-100 ${classes.profile}`}>
               <div>
-                <h1 className="my-2">{userdata.name}</h1>
+                <h1 className="my-2">{userdata.login}</h1>
                 <div>
                   {`${t('profile.email')} `}
                   <span className="text-muted">{userdata.email}</span>
@@ -101,7 +117,7 @@ export function Profile() {
                 </div>
               </Row>
               <Row xs={1} md={2} className="g-4 my-1">
-                {snippets.map(({ id, name }) => (
+                {snippets.map(({ id, name, code }) => (
                   <Col xs lg="3" key={id}>
                     <Card style={{ border: 0 }}>
                       <Card.Header className={`${classes.snippetHeader}`}>
@@ -159,6 +175,9 @@ export function Profile() {
                             >
                               <Dropdown.Item
                                 className={`${classes.dropdownItem}`}
+                                onClick={() =>
+                                  handleSnippetRename(id, name, code)
+                                }
                               >
                                 {t('profile.renameReplButton')}
                               </Dropdown.Item>
