@@ -9,6 +9,8 @@ import { useAuth } from './../hooks';
 
 import routes from '../routes.js';
 
+import classes from './SignIn.module.css';
+
 export function SignIn() {
   const inputRef = useRef();
   const [authFailed, setAuthFailed] = useState(false);
@@ -69,7 +71,7 @@ export function SignIn() {
                       onChange={formik.handleChange}
                       value={formik.values.email}
                       onBlur={formik.handleBlur}
-                      className="form-input bg-dark text-white"
+                      className={`form-input bg-dark text-white ${classes.signinInput}`}
                       name="email"
                       id="email"
                       autoComplete="email"
@@ -87,7 +89,7 @@ export function SignIn() {
                       value={formik.values.password}
                       onBlur={formik.handleBlur}
                       type="password"
-                      className="form-input bg-dark text-white"
+                      className={`form-input bg-dark text-white ${classes.signinInput}`}
                       name="password"
                       id="password"
                       autoComplete="password"
