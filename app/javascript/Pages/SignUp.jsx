@@ -210,7 +210,7 @@ export const SignUp = () => {
                   <span className="text-muted">
                     {t('signUp.footer.signInHeader')}
                   </span>
-                  <a className="link-dark" href={routes.loginPagePath()}>
+                  <a className="link-light" href={routes.loginPagePath()}>
                     {t('signUp.footer.signIn')}
                   </a>
                 </div>
