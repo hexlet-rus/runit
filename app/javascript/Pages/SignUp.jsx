@@ -86,7 +86,7 @@ export const SignUp = () => {
     <Container className="h-100 bg-dark" fluid>
       <Row className="justify-content-center align-content-center h-100">
         <Col xs={12} md={6} xxl={5} className="mt-5 mb-5">
-          <Card className="shadow-sm">
+          <Card className="shadow-sm bg-dark text-white">
             <Card.Body className="p-lg-4 p-xl-5">
               <h1 className="mb-4 fw-light">{t('signUp.pageHeader')}</h1>
               <div className="pt-lg-3">
