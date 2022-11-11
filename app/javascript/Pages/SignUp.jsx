@@ -12,6 +12,8 @@ import { useAuth } from '../hooks';
 
 import routes from '../routes.js';
 
+import classes from './SignUp.module.css';
+
 export const SignUp = () => {
   const inputRef = useRef();
   const { t } = useTranslation();
@@ -99,7 +101,7 @@ export const SignUp = () => {
                       onChange={formik.handleChange}
                       value={formik.values.email}
                       onBlur={formik.handleBlur}
-                      className="form-input"
+                      className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="email"
                       isInvalid={
                         (formik.touched.email && formik.errors.email) ||
@@ -124,7 +126,7 @@ export const SignUp = () => {
                       onChange={formik.handleChange}
                       value={formik.values.login}
                       onBlur={formik.handleBlur}
-                      className="form-input"
+                      className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="login"
                       id="login"
                       autoComplete="username"
@@ -148,7 +150,7 @@ export const SignUp = () => {
                       value={formik.values.password}
                       onBlur={formik.handleBlur}
                       type="password"
-                      className="form-input"
+                      className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="password"
                       id="password"
                       autoComplete="new-password"
@@ -173,7 +175,7 @@ export const SignUp = () => {
                       value={formik.values.confirmPassword}
                       onBlur={formik.handleBlur}
                       type="password"
-                      className="form-input"
+                      className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="confirmPassword"
                       id="confirmPassword"
                       autoComplete="new-password"
