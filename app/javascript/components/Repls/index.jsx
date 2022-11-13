@@ -4,6 +4,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { actions } from '../../slices';
 import { db } from './db.js';
 import routes from '../../routes.js';
@@ -11,6 +12,7 @@ import routes from '../../routes.js';
 export const Repls = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const openTerminal = (code) => () => {
     dispatch(actions.updateCode(code)); // далее роутинг на App
@@ -27,7 +29,7 @@ export const Repls = () => {
               <Card.Body>
                 <Card.Text>{img}</Card.Text>
                 <Button variant="primary" onClick={openTerminal(code)}>
-                  Open repl
+                  {t('profile.openReplButton')}
                 </Button>
               </Card.Body>
             </Card>

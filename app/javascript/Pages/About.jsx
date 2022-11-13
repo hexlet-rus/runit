@@ -1,54 +1,56 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import routes from '../routes.js';
 
 export function About() {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="container mt-5">
-        <h3>Информация о проекте</h3>
+        <h3>{t('about.pageHeader')}</h3>
         <p>
-          <strong>Runit</strong> — среда для написания и исполнения кода,
-          которую будем активно использовать на всех платформах Хекслета.
+          <strong>{t('about.projectName')}</strong>{t('about.projectDescription')}
         </p>
         <p>
-          Ближайший аналог — сервис&nbsp;
+          {t('about.analogueIs')}&nbsp;
           <a
             className="text-secondary text-decoration-none"
             href="https://replit.com/~"
             target="_blank"
             rel="noopener noreferrer"
           >
-            repl.it
+            {t('about.analogueName')}
           </a>
           .
         </p>
         <p>
-          Бэкенд разрабатывается на&nbsp;
+          {t('about.backendIsOn')}&nbsp;
           <a
             className="text-secondary text-decoration-none"
             href="https://ru.hexlet.io/blog/posts/gid-po-nest-js?ysclid=l7ew5lpeiw134812170"
             target="_blank"
             rel="noopener noreferrer"
           >
-            NestJS
+            {t('about.firstBackendDevTool')}
           </a>
-          &nbsp;и&nbsp;
+          &nbsp;{t('about.and')}&nbsp;
           <a
             className="text-secondary text-decoration-none"
             href="https://ru.hexlet.io/blog/posts/vse-chto-nuzhno-znat-novichku-o-typescript-ischerpyvayuschiy-gayd?ysclid=l7ewa0mrdp61534639"
             target="_blank"
             rel="noopener noreferrer"
           >
-            TypeScript
+            {t('about.secondBackendDevTool')}
           </a>
-          , на фронтенде используется&nbsp;
+          {t('about.frontendIsOn')}&nbsp;
           <a
             className="text-secondary text-decoration-none"
             href="https://ru.hexlet.io/blog/posts/biblioteka-react-review-article?ysclid=l7eweuntdr505174264"
             target="_blank"
             rel="noopener noreferrer"
           >
-            React
+            {t('about.frontendDevTool')}
           </a>
           .
         </p>
@@ -57,9 +59,9 @@ export function About() {
         <div className="container-xl">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 pt-3">
             <div className="col d-flex flex-column mb-2">
-              <h3 className="h3 pb-2 border-bottom">© ООО “Хекслет Рус”</h3>
+              <h3 className="h3 pb-2 border-bottom">{t('about.footer.hexlet')}</h3>
               <a className="text-secondary" href={routes.aboutPagePath()}>
-                О проекте
+                {t('about.footer.about')}
               </a>
               <a
                 className="text-secondary"
@@ -67,7 +69,7 @@ export function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Исходный код
+                {t('about.footer.code')}
               </a>
               <a
                 className="text-secondary"
@@ -75,18 +77,18 @@ export function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Slack #hexlet-volunteers
+                {t('about.footer.linkToSlack')}
               </a>
             </div>
             <div className="col d-flex flex-column mb-2">
-              <h3 className="h3 pb-2 border-bottom">Помощь</h3>
+              <h3 className="h3 pb-2 border-bottom">{t('about.footer.help')}</h3>
               <a
                 className="text-secondary"
                 href="https://ru.hexlet.io/webinars"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                База знаний
+                {t('about.footer.knowledgeBase')}
               </a>
               <a
                 className="text-secondary"
@@ -94,18 +96,18 @@ export function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Hexlet Guides
+                {t('about.footer.linkToHexletGuides')}
               </a>
             </div>
             <div className="col d-flex flex-column mb-2">
-              <h3 className="h3 pb-2 border-bottom">Дополнительно</h3>
+              <h3 className="h3 pb-2 border-bottom">{t('about.footer.more')}</h3>
               <a
                 className="text-secondary"
                 href="https://ru.code-basics.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Code Basics
+                {t('about.footer.linkToCodeBasics')}
               </a>
               <a
                 className="text-secondary"
@@ -113,7 +115,7 @@ export function About() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Code Battles
+                {t('about.footer.linkToCodeBattles')}
               </a>
             </div>
           </div>

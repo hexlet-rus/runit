@@ -22,7 +22,7 @@ export function Profile() {
     try {
       return new Intl.DateTimeFormat().format(new Date(date));
     } catch {
-      return 'date is loading!';
+      return t('profile.succesfulLoading');
     }
   };
 
@@ -137,7 +137,7 @@ export function Profile() {
                                 )
                               }
                             >
-                              Share
+                              {t('profile.shareButton')}
                             </Button>
                           </div>
                           <div className="d-flex flex-end">
@@ -146,7 +146,7 @@ export function Profile() {
                               className={`flex-grow-0  dropdown-toggle-split ${classes.dropdown}`}
                             >
                               <span className="visually-hidden">
-                                Edit the snippet
+                                {t('profile.editSnippet')}
                               </span>
                             </Dropdown.Toggle>
                             <Dropdown.Menu
@@ -155,12 +155,12 @@ export function Profile() {
                               <Dropdown.Item
                                 className={`${classes.dropdownItem}`}
                               >
-                                Rename
+                                {t('profile.renameButton')}
                               </Dropdown.Item>
                               <Dropdown.Item
                                 className={`${classes.dropdownItem}`}
                               >
-                                Delete
+                                {t('profile.deleteButton')}
                               </Dropdown.Item>
                             </Dropdown.Menu>
                           </div>

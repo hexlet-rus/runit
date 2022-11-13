@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { App } from './App.jsx';
 import { Profile } from './Pages/Profile.jsx';
 import { SignUp } from './Pages/SignUp.jsx';
@@ -22,6 +23,7 @@ const ProtectedRoute = ({ user, children }) => {
 
 function AppRoutes() {
   const { isLoggedIn } = useAuth();
+  const { t } = useTranslation();
 
   return (
     <Routes>
@@ -39,7 +41,7 @@ function AppRoutes() {
         />
       </Route>
       <Route path={routes.embedPagePath()} element={<EmbedSnippet />} />
-      <Route path="*" element={<div>Page Not Found</div>} />
+      <Route path="*" element={<div>{t('appRotes.pageNotFound')}</div>} />
     </Routes>
   );
 }
