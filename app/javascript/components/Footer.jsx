@@ -14,7 +14,7 @@ import { Container, Row, Col, Nav, Dropdown } from 'react-bootstrap';
 export function buildFooter() {
   const { t } = useTranslation();
   return (
-    <footer className="bg-light border-top pt-4 pb-5 mt-5">
+    <footer className="bg-dark border-top border-secondary pt-4 pb-5">
       <Container>
         <Row className="gy-2 row-cols-1 row-cols-sm-2 row-cols-md-3 row pt-3">
           <Col>

@@ -44,7 +44,7 @@ export function Profile() {
   return (
     <div className="main-content">
       <div className={`${classes.upperLine}`}></div>
-      <div className={`h-100 w-100 px-3 ${classes.container}`}>
+      <div className={`h-100 w-100 px-3 bg-dark ${classes.container}`}>
         <Row className={`${classes.profileContainer}`}>
           <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
             <div className={`w-100 ${classes.profile}`}>

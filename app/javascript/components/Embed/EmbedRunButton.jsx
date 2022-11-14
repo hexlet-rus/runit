@@ -11,7 +11,7 @@ export const EmbedRunButton = memo(() => {
     <button
       style={{ width: '25%' }}
       type="button"
-      className={`btn btn-success btn-lg ${classes.embedRunButton}`}
+      className={`btn btn-primary btn-lg ${classes.embedRunButton}`}
       disabled={disabled}
       onClick={() => {
         onClick();

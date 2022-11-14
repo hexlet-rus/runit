@@ -9,6 +9,8 @@ import { useAuth } from './../hooks';
 
 import routes from '../routes.js';
 
+import classes from './SignIn.module.css';
+
 export function SignIn() {
   const inputRef = useRef();
   const [authFailed, setAuthFailed] = useState(false);
@@ -53,10 +55,10 @@ export function SignIn() {
   });
 
   return (
-    <Container className="h-100">
+    <Container className="h-100 bg-dark" fluid>
       <Row className="justify-content-center align-content-center h-100">
-        <Col xs={12} md={6} xxl={5} className="mt-5">
-          <Card className="shadow-sm">
+        <Col xs={12} md={6} xxl={5} className="mt-5 mb-5">
+          <Card className="shadow-sm bg-dark text-white">
             <Card.Body className="p-lg-4 p-xl-5">
               <h1 className="mb-4 fw-light">{t('signIn.pageHeader')}</h1>
               <div className="pt-lg-3">
@@ -69,7 +71,7 @@ export function SignIn() {
                       onChange={formik.handleChange}
                       value={formik.values.email}
                       onBlur={formik.handleBlur}
-                      className="form-input"
+                      className={`form-input bg-dark text-white ${classes.signinInput}`}
                       name="email"
                       id="email"
                       autoComplete="email"
@@ -87,7 +89,7 @@ export function SignIn() {
                       value={formik.values.password}
                       onBlur={formik.handleBlur}
                       type="password"
-                      className="form-input"
+                      className={`form-input bg-dark text-white ${classes.signinInput}`}
                       name="password"
                       id="password"
                       autoComplete="password"
@@ -124,7 +126,7 @@ export function SignIn() {
                 <span className="text-muted">
                   {t('signIn.footer.signUpHeader')}
                 </span>
-                <a className="link-dark" href={routes.signUpPagePath()}>
+                <a className="link-light" href={routes.signUpPagePath()}>
                   {t('signIn.footer.signUp')}
                 </a>
               </div>

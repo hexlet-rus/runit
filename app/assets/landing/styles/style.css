@@ -34,6 +34,13 @@ body {
   --bs-btn-disabled-border-color: var(--color-grey);
 }
 
+.btn-outline-primary {
+  --bs-btn-hover-bg: var(--color-purple);
+  --bs-btn-hover-border-color: var(--color-purple);
+  --bs-btn-disabled-bg: var(--color-grey);
+  --bs-btn-disabled-border-color: var(--color-grey);
+}
+
 .btn-light {
   --bs-btn-color: var(--color-grey);
   --bs-btn-hover-color: var(--color-blue);

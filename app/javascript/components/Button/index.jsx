@@ -58,7 +58,7 @@ export const Button = memo(() => {
     <div className={`text-center ${classes.container}`}>
       <button
         type="button"
-        className={`btn btn-success btn-lg ${classes.runButton}`}
+        className={`btn btn-primary btn-lg ${classes.runButton}`}
         disabled={disabled}
         onClick={() => {
           onClick();
@@ -69,7 +69,7 @@ export const Button = memo(() => {
       </button>
       <button
         type="button"
-        className={`btn btn-primary btn-lg ${classes.shareButton}`}
+        className={`btn btn-outline-primary btn-lg ${classes.shareButton}`}
         onClick={handleShareEvent}
       >
         {t('editor.shareButton')}

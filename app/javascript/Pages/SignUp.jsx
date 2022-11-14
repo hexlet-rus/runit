@@ -12,6 +12,8 @@ import { useAuth } from '../hooks';
 
 import routes from '../routes.js';
 
+import classes from './SignUp.module.css';
+
 export const SignUp = () => {
   const inputRef = useRef();
   const { t } = useTranslation();
@@ -83,10 +85,10 @@ export const SignUp = () => {
     },
   });
   return (
-    <Container className="h-100">
+    <Container className="h-100 bg-dark" fluid>
       <Row className="justify-content-center align-content-center h-100">
-        <Col xs={12} md={6} xxl={5} className="mt-5">
-          <Card className="shadow-sm">
+        <Col xs={12} md={6} xxl={5} className="mt-5 mb-5">
+          <Card className="shadow-sm bg-dark text-white">
             <Card.Body className="p-lg-4 p-xl-5">
               <h1 className="mb-4 fw-light">{t('signUp.pageHeader')}</h1>
               <div className="pt-lg-3">
@@ -99,7 +101,7 @@ export const SignUp = () => {
                       onChange={formik.handleChange}
                       value={formik.values.email}
                       onBlur={formik.handleBlur}
-                      className="form-input"
+                      className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="email"
                       isInvalid={
                         (formik.touched.email && formik.errors.email) ||
@@ -124,7 +126,7 @@ export const SignUp = () => {
                       onChange={formik.handleChange}
                       value={formik.values.login}
                       onBlur={formik.handleBlur}
-                      className="form-input"
+                      className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="login"
                       id="login"
                       autoComplete="username"
@@ -148,7 +150,7 @@ export const SignUp = () => {
                       value={formik.values.password}
                       onBlur={formik.handleBlur}
                       type="password"
-                      className="form-input"
+                      className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="password"
                       id="password"
                       autoComplete="new-password"
@@ -173,7 +175,7 @@ export const SignUp = () => {
                       value={formik.values.confirmPassword}
                       onBlur={formik.handleBlur}
                       type="password"
-                      className="form-input"
+                      className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="confirmPassword"
                       id="confirmPassword"
                       autoComplete="new-password"
@@ -208,7 +210,7 @@ export const SignUp = () => {
                   <span className="text-muted">
                     {t('signUp.footer.signInHeader')}
                   </span>
-                  <a className="link-dark" href={routes.loginPagePath()}>
+                  <a className="link-light" href={routes.loginPagePath()}>
                     {t('signUp.footer.signIn')}
                   </a>
                 </div>
