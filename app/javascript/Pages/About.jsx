@@ -55,11 +55,11 @@ export function About() {
           </p>
         </div>
       </div>
-      <footer className="mt-auto pb-5 bg-light fixed-bottom">
+      <footer className="mt-auto pb-5 bg-dark text-secondary fixed-bottom">
         <div className="container-xl">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 pt-3">
             <div className="col d-flex flex-column mb-2">
-              <h3 className="h3 pb-2 border-bottom">© ООО “Хекслет Рус”</h3>
+              <h3 className="h3 pb-2 border-bottom border-secondary">© ООО “Хекслет Рус”</h3>
               <a className="text-secondary" href={routes.aboutPagePath()}>
                 О проекте
               </a>
@@ -81,7 +81,7 @@ export function About() {
               </a>
             </div>
             <div className="col d-flex flex-column mb-2">
-              <h3 className="h3 pb-2 border-bottom">Помощь</h3>
+              <h3 className="h3 pb-2 border-bottom border-secondary">Помощь</h3>
               <a
                 className="text-secondary"
                 href="https://ru.hexlet.io/webinars"
@@ -100,7 +100,7 @@ export function About() {
               </a>
             </div>
             <div className="col d-flex flex-column mb-2">
-              <h3 className="h3 pb-2 border-bottom">Дополнительно</h3>
+              <h3 className="h3 pb-2 border-bottom border-secondary">Дополнительно</h3>
               <a
                 className="text-secondary"
                 href="https://ru.code-basics.com/"
