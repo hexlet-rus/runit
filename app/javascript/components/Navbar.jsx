@@ -63,7 +63,7 @@ export function Navbar() {
         <div className="container-fluid">
           <div className="d-flex justify-content-start">
             <button
-              className="border-0 bg-white"
+              className="border-0 bg-dark"
               type="button"
               onClick={() => setMenuStatus(!menuStatus)}
             >
@@ -95,7 +95,7 @@ export function Navbar() {
             {auth.isLoggedIn && (
               <button
                 type="button"
-                className="btn nav-link px-3"
+                className={`btn nav-link px-3 ${classes.navigationLink}`}
                 onClick={auth.logOut}
               >
                 {t('navbar.logout')}
