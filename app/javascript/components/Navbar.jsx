@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import routes from '../routes.js';
 import { useAuth } from '../hooks';
+import classes from './Navbar.module.css';
 
 export function Navbar() {
   const [menuStatus, setMenuStatus] = useState(false);
@@ -58,7 +59,7 @@ export function Navbar() {
           </div>
         </div>
       )}
-      <nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm border-bottom-mb-5">
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark text-white shadow-sm border-bottom-mb-5">
         <div className="container-fluid">
           <div className="d-flex justify-content-start">
             <button
@@ -69,7 +70,7 @@ export function Navbar() {
               <span className="navbar-toggler-icon" />
             </button>
             <a
-              className="navbar-brand"
+              className={`navbar-brand ${classes.navigationBrand}`}
               aria-hidden="true"
               href={routes.homePagePath()}
             >
@@ -78,11 +79,17 @@ export function Navbar() {
           </div>
           <div className="d-flex justify-content-end">
             {auth.isLoggedIn && (
-              <a className="nav-link px-3" href={routes.profilePagePath()}>
+              <a
+                className={`nav-link px-3 ${classes.navigationLink}`}
+                href={routes.profilePagePath()}
+              >
                 {t('navbar.profile')}
               </a>
             )}
-            <a className="nav-link px-3" href={routes.aboutPagePath()}>
+            <a
+              className={`nav-link px-3 ${classes.navigationLink}`}
+              href={routes.aboutPagePath()}
+            >
               {t('navbar.about')}
             </a>
             {auth.isLoggedIn && (
@@ -95,12 +102,18 @@ export function Navbar() {
               </button>
             )}
             {!auth.isLoggedIn && (
-              <a className="nav-link px-3" href={routes.loginPagePath()}>
+              <a
+                className={`nav-link px-3 ${classes.navigationLink}`}
+                href={routes.loginPagePath()}
+              >
                 {t('navbar.signIn')}
               </a>
             )}
             {!auth.isLoggedIn && (
-              <a className="nav-link px-3" href={routes.signUpPagePath()}>
+              <a
+                className={`nav-link px-3 ${classes.navigationLink}`}
+                href={routes.signUpPagePath()}
+              >
                 {t('navbar.signUp')}
               </a>
             )}
