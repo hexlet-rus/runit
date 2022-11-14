@@ -2,21 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Button, Card, Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSnippets } from '../hooks';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import axios from 'axios';
 import routes from '../routes.js';
 
 import { actions as modalActions } from '../slices/modalSlice.js';
+import { actions as snippetsActions } from '../slices/snippetsSlice.js';
 
 import classes from './Profile.module.css';
 
 export function Profile() {
-  const [snippets, setSnippets] = useState([]);
   const { t } = useTranslation();
   const [userdata, setUserdata] = useState([]);
   const snippetApi = useSnippets();
   const dispatch = useDispatch();
+  const snippets = useSelector((state) => state.snippets.snippets);
 
   const parseDate = (date) => {
     try {
@@ -28,22 +29,14 @@ export function Profile() {
 
   const handleSnippetDelete = async (id) => {
     await snippetApi.deleteSnippet(id);
-    const filteredSnippets = snippets.filter((snippet) => snippet.id !== id);
-    setSnippets(filteredSnippets);
+    dispatch(snippetsActions.deleteSnippet(id));
   };
 
   const handleSnippetRename = (id, name, code) => {
-    const updateSnippets = (renamedSnippet) => {
-      const updatedSnippets = snippets.map((sn) =>
-        sn.id === renamedSnippet.id ? renamedSnippet : sn,
-      );
-      setSnippets(updatedSnippets);
-    };
-
     dispatch(
       modalActions.openModal({
         type: 'renameRepl',
-        item: { id, name, code, updateSnippets },
+        item: { id, name, code },
       }),
     );
   };
@@ -52,7 +45,7 @@ export function Profile() {
     const fetchUserSnippets = async () => {
       const response = await axios.get(routes.userProfilePath());
       setUserdata(response.data.currentUser);
-      setSnippets(response.data.snippets);
+      dispatch(snippetsActions.addSnippets(response.data.snippets));
     };
     fetchUserSnippets();
   }, []);

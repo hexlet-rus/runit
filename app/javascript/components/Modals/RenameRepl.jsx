@@ -7,16 +7,15 @@ import * as yup from 'yup';
 import { useSnippets } from '../../hooks';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
+import { actions as snippetsAction } from '../../slices/snippetsSlice.js';
 
 function RenameRepl() {
   const dispatch = useDispatch();
   const inputRef = useRef();
   const { t } = useTranslation();
   const snippetsApi = useSnippets();
-  const { name, id, code, updateSnippets } = useSelector(
-    (state) => state.modal.item,
-  );
-  const [snippetName, language] = name.split('.');
+  const { name, id, code } = useSelector((state) => state.modal.item);
+  const [previousName, extension] = name.split('.');
 
   useEffect(() => {
     inputRef.current.select();
@@ -24,7 +23,7 @@ function RenameRepl() {
 
   const formik = useFormik({
     initialValues: {
-      name: snippetName,
+      name: previousName,
     },
     validationSchema: yup.object({
       name: yup
@@ -36,11 +35,11 @@ function RenameRepl() {
     onSubmit: async (values, actions) => {
       actions.setSubmitting(true);
       try {
-        const replName = `${values.name}.${language}`;
-        const data = { code, name: replName };
-        const renamedSnippet = await snippetsApi.renameSnippet(id, data);
-        updateSnippets(renamedSnippet);
+        const newName = `${values.name}.${extension}`;
+        const data = { code, name: newName };
+        await snippetsApi.renameSnippet(id, data);
 
+        dispatch(snippetsAction.updateSnippet({ id, name: newName }));
         dispatch(modalActions.closeModal());
         actions.setSubmitting(false);
       } catch (err) {
