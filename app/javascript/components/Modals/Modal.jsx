@@ -5,6 +5,7 @@ import SignUpModal from './SignUp.jsx';
 import SignInModal from './SignIn.jsx';
 import ShareRepl from './ShareRepl.jsx';
 import NewRepl from './NewRepl.jsx';
+import RenameRepl from './RenameRepl.jsx';
 
 const modals = {
   gettingInfo: InfoModal,
@@ -12,6 +13,7 @@ const modals = {
   signingIn: SignInModal,
   sharingRepl: ShareRepl,
   genNewRepl: NewRepl,
+  renameRepl: RenameRepl,
 };
 
 function ModalWindow() {

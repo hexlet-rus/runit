@@ -8,12 +8,14 @@ import languagesReducer, {
   actions as languagesActions,
 } from './languagesSlice.js';
 import modalReducer, { actions as modalActions } from './modalSlice.js';
+import snippetsSlice, { actions as snippetsActions } from './snippetsSlice.js';
 
 export const rootReducer = combineReducers({
   editor: editorReducer,
   terminal: terminalReducer,
   languages: languagesReducer,
   modal: modalReducer,
+  snippets: snippetsSlice,
 });
 
 // export const setupState = (gon) => (dispatch) => {
@@ -26,5 +28,6 @@ export const actions = {
   ...terminalActions,
   ...languagesActions,
   ...modalActions,
+  ...snippetsActions,
   runCode,
 };

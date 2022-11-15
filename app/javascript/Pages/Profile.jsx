@@ -2,21 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Button, Card, Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSnippets } from '../hooks';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import axios from 'axios';
 import routes from '../routes.js';
 
 import { actions as modalActions } from '../slices/modalSlice.js';
+import { actions as snippetsActions } from '../slices/snippetsSlice.js';
 
 import classes from './Profile.module.css';
 
 export function Profile() {
-  const [snippets, setSnippets] = useState([]);
   const { t } = useTranslation();
   const [userdata, setUserdata] = useState([]);
   const snippetApi = useSnippets();
   const dispatch = useDispatch();
+  const snippets = useSelector((state) => state.snippets.snippets);
 
   const parseDate = (date) => {
     try {
@@ -28,15 +29,23 @@ export function Profile() {
 
   const handleSnippetDelete = async (id) => {
     await snippetApi.deleteSnippet(id);
-    const filteredSnippets = snippets.filter((snippet) => snippet.id !== id);
-    setSnippets(filteredSnippets);
+    dispatch(snippetsActions.deleteSnippet(id));
+  };
+
+  const handleSnippetRename = (id, name, code) => {
+    dispatch(
+      modalActions.openModal({
+        type: 'renameRepl',
+        item: { id, name, code },
+      }),
+    );
   };
 
   useEffect(() => {
     const fetchUserSnippets = async () => {
       const response = await axios.get(routes.userProfilePath());
       setUserdata(response.data.currentUser);
-      setSnippets(response.data.snippets);
+      dispatch(snippetsActions.addSnippets(response.data.snippets));
     };
     fetchUserSnippets();
   }, []);
@@ -49,7 +58,7 @@ export function Profile() {
           <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
             <div className={`w-100 ${classes.profile}`}>
               <div>
-                <h1 className="my-2">{userdata.name}</h1>
+                <h1 className="my-2">{userdata.login}</h1>
                 <div>
                   {`${t('profile.email')} `}
                   <span className="text-muted">{userdata.email}</span>
@@ -101,7 +110,7 @@ export function Profile() {
                 </div>
               </Row>
               <Row xs={1} md={2} className="g-4 my-1">
-                {snippets.map(({ id, name }) => (
+                {snippets.map(({ id, name, code }) => (
                   <Col xs lg="3" key={id}>
                     <Card style={{ border: 0 }}>
                       <Card.Header className={`${classes.snippetHeader}`}>
@@ -159,6 +168,9 @@ export function Profile() {
                             >
                               <Dropdown.Item
                                 className={`${classes.dropdownItem}`}
+                                onClick={() =>
+                                  handleSnippetRename(id, name, code)
+                                }
                               >
                                 {t('profile.renameReplButton')}
                               </Dropdown.Item>
