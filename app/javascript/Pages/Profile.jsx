@@ -2,21 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Button, Card, Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSnippets } from '../hooks';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import axios from 'axios';
 import routes from '../routes.js';
 
 import { actions as modalActions } from '../slices/modalSlice.js';
+import { actions as snippetsActions } from '../slices/snippetsSlice.js';
 
 import classes from './Profile.module.css';
 
 export function Profile() {
-  const [snippets, setSnippets] = useState([]);
   const { t } = useTranslation();
   const [userdata, setUserdata] = useState([]);
   const snippetApi = useSnippets();
   const dispatch = useDispatch();
+  const snippets = useSelector((state) => state.snippets.snippets);
 
   const parseDate = (date) => {
     try {
@@ -26,11 +27,25 @@ export function Profile() {
     }
   };
 
+  const handleSnippetDelete = async (id) => {
+    await snippetApi.deleteSnippet(id);
+    dispatch(snippetsActions.deleteSnippet(id));
+  };
+
+  const handleSnippetRename = (id, name, code) => {
+    dispatch(
+      modalActions.openModal({
+        type: 'renameRepl',
+        item: { id, name, code },
+      }),
+    );
+  };
+
   useEffect(() => {
     const fetchUserSnippets = async () => {
       const response = await axios.get(routes.userProfilePath());
       setUserdata(response.data.currentUser);
-      setSnippets(response.data.snippets);
+      dispatch(snippetsActions.addSnippets(response.data.snippets));
     };
     fetchUserSnippets();
   }, []);
@@ -38,17 +53,16 @@ export function Profile() {
   return (
     <div className="main-content">
       <div className={`${classes.upperLine}`}></div>
-      <div className={`h-100 w-100 px-3 ${classes.container}`}>
+      <div className={`h-100 w-100 px-3 bg-dark ${classes.container}`}>
         <Row className={`${classes.profileContainer}`}>
           <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
             <div className={`w-100 ${classes.profile}`}>
               <div>
-                <h1 className="my-2">{userdata.name}</h1>
+                <h1 className="my-2">{userdata.login}</h1>
                 <div>
                   {`${t('profile.email')} `}
                   <span className="text-muted">{userdata.email}</span>
                 </div>
-
                 {/* "userdata.created_at", "userdata.id" are also available. Add if needed. */}
               </div>
               <div className={`${classes.profileButtons}`}>
@@ -70,7 +84,7 @@ export function Profile() {
                 className="d-flex flex-md-column w-100"
                 style={{ alignItems: 'center' }}
               >
-                <span>{'Created'}</span>
+                <span>{t('profile.createdAt')}</span>
                 <span>{parseDate(userdata.created_at)}</span>
               </div>
             </div>
@@ -96,7 +110,7 @@ export function Profile() {
                 </div>
               </Row>
               <Row xs={1} md={2} className="g-4 my-1">
-                {snippets.map(({ id, name }) => (
+                {snippets.map(({ id, name, code }) => (
                   <Col xs lg="3" key={id}>
                     <Card style={{ border: 0 }}>
                       <Card.Header className={`${classes.snippetHeader}`}>
@@ -137,7 +151,7 @@ export function Profile() {
                                 )
                               }
                             >
-                              {t('profile.shareButton')}
+                              {t('profile.shareReplButton')}
                             </Button>
                           </div>
                           <div className="d-flex flex-end">
@@ -154,13 +168,17 @@ export function Profile() {
                             >
                               <Dropdown.Item
                                 className={`${classes.dropdownItem}`}
+                                onClick={() =>
+                                  handleSnippetRename(id, name, code)
+                                }
                               >
-                                {t('profile.renameButton')}
+                                {t('profile.renameReplButton')}
                               </Dropdown.Item>
                               <Dropdown.Item
                                 className={`${classes.dropdownItem}`}
+                                onClick={() => handleSnippetDelete(id)}
                               >
-                                {t('profile.deleteButton')}
+                                {t('profile.deleteReplButton')}
                               </Dropdown.Item>
                             </Dropdown.Menu>
                           </div>

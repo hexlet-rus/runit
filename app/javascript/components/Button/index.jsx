@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import classes from './Button.module.css';
 import React, { memo, useEffect, useState } from 'react';
 import { useButton } from './hooks';
@@ -13,6 +14,7 @@ export const Button = memo(() => {
   const dispatch = useDispatch();
   const auth = useAuth();
   const snippetsApi = useSnippets();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (snippetsApi.hasSnippetParams()) {
@@ -56,21 +58,21 @@ export const Button = memo(() => {
     <div className={`text-center ${classes.container}`}>
       <button
         type="button"
-        className={`btn btn-success btn-lg ${classes.runButton}`}
+        className={`btn btn-primary btn-lg ${classes.runButton}`}
         disabled={disabled}
         onClick={() => {
           onClick();
           update(currentSnippetId);
         }}
       >
-        Run
+        {t('editor.runButton')}
       </button>
       <button
         type="button"
-        className={`btn btn-primary btn-lg ${classes.shareButton}`}
+        className={`btn btn-outline-primary btn-lg ${classes.shareButton}`}
         onClick={handleShareEvent}
       >
-        Share
+        {t('editor.shareButton')}
       </button>
     </div>
   );

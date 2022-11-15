@@ -24,8 +24,6 @@ export class AuthService {
     const payload = { email: user.email, sub: user.id };
     const token = this.jwtService.sign(payload);
     response.cookie('access_token', token);
-    response.send({
-      token,
-    });
+    response.send({ token });
   }
 }

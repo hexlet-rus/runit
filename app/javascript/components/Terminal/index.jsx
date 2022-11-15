@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { XTerm } from 'xterm-for-react';
 import 'xterm/css/xterm.css';
+import classes from './Terminal.module.css';
 
 import { useTerminal } from './hooks.js';
 
@@ -23,7 +24,7 @@ export const Terminal = () => {
   }, [output]);
 
   return (
-    <div className="terminal-container" style={{ overflow: 'auto' }}>
+    <div className={classes.terminalContainer} style={{ overflow: 'auto' }}>
       <XTerm ref={xTermRef} className={'xterm'} />
     </div>
   );

@@ -10,10 +10,9 @@
   justify-content: center;
   align-items: center;
 
-  font-size: 2rem;
-  background: #3161bff2;
+  font-size: 1.75rem;
   height: 45px;
-  width: calc(10% - 10px);
+  width: calc(20% - 10px);
   padding: 5px;
 }
 
@@ -22,11 +21,10 @@
   justify-content: center;
   align-items: center;
 
-  font-size: 2rem;
-  background: #208743fc;
+  font-size: 1.75rem;
   height: 45px;
   padding: 5px;
-  width: calc(10% - 10px);
+  width: calc(20% - 10px);
 }
 
 .embedRunButton {

@@ -1,0 +1,17 @@
+[
+  {
+    "login": "JohnDoe",
+    "email": "undefined@mail.ru",
+    "password": "NotFound404"
+  },
+  {
+    "login": "JaneDoe",
+    "email": "null@yandex.ru",
+    "password": "Deleted410"
+  },
+  {
+    "login": "BobSlices",
+    "email": "sousageLove@gmail.com",
+    "password": "MyPassword1234"
+  }
+]

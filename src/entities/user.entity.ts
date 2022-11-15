@@ -16,8 +16,8 @@ export class Users {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: 'Untitled' })
-  name: string;
+  @Column({ unique: true })
+  login: string;
 
   @Index({ unique: true })
   @Column()

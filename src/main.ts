@@ -15,6 +15,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api', {
     exclude: [{ path: '/', method: RequestMethod.GET }],
   });
+  app.enable('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
   app.use(cookieParser());
   app.setViewEngine('pug');
   app.useGlobalPipes(new ValidationPipe());

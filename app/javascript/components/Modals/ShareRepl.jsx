@@ -85,10 +85,9 @@ function ShareRepl() {
             defaultActiveKey={snippetData ? 'share-link' : 'save-snippet'}
             className="mb-3"
             fill
-            justify
           >
             {snippetData && (
-              <Tab eventKey="share-link" title="Link">
+              <Tab eventKey="share-link" title={t('modals.share.linkTab')}>
                 <Form.Group className="mb-3">
                   <Form.Label
                     controlId="name"
@@ -109,7 +108,7 @@ function ShareRepl() {
                     className="button-copy"
                     data-clipboard-action="copy"
                     data-clipboard-target="#link-input"
-                    style={{ width: '35%' }}
+                    style={{ width: '45%' }}
                   >
                     {t('modals.share.copyLinkButton')}
                   </Button>
@@ -117,7 +116,7 @@ function ShareRepl() {
               </Tab>
             )}
             {snippetData && (
-              <Tab eventKey="share-embed" title="Embed">
+              <Tab eventKey="share-embed" title={t('modals.share.embedTab')}>
                 <Form.Group className="mb-3">
                   <Form.Label
                     controlId="name"
@@ -145,7 +144,10 @@ function ShareRepl() {
                 </div>
               </Tab>
             )}
-            <Tab eventKey="save-snippet" title="Save snippet">
+            <Tab
+              eventKey="save-snippet"
+              title={t('modals.share.saveSnippetTab')}
+            >
               <Form onSubmit={formik.handleSubmit}>
                 <Form.Group className="mb-3">
                   <FloatingLabel

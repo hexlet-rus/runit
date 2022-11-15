@@ -22,7 +22,7 @@ export function App() {
   }, []);
 
   return (
-    <main className="container-fluid my-5">
+    <main className="container-fluid bg-dark py-5">
       <div className="row mb-4">
         <div className="col-12">
           <Button />
