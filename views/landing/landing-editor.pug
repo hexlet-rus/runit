@@ -7,43 +7,45 @@ html(lang="ru")
         meta(name="description" content="Runit")
         meta(name='yandex-verification' content='e8335f9c0dabd025')
         link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous")
-        link(href="/landing/styles/style.css" rel="stylesheet")
-    
+        link(href="./styles/style.css" rel="stylesheet")
+
     body.min-vh-100.d-flex.flex-column.bg-dark.text-white.fw-normal
-        include modules/header
         main.container
-            section.mt-160
+            section.general.d-flex.flex-column
+                include modules/header
+                section.d-flex.flex-column.flex-grow.h-100.py-3.py-md-4.py-lg-5.justify-content-evenly
+                  section
+                      .row
+                          p.text-center.mb-0.fs-5.lh-5 Бесплатный проект Хекслета
+                      .row.my-3
+                          h1.text-center.fw-bold.mb-0.mt-sm-5.display-1 Мгновенный IDE
+                      .row
+                          p.text-center.mb-0.fw-bolder.mt-sm-4.fs-3.lh-3 Пишите код прямо в браузере!
+                  section
+                      .row.row-cols-1.row-cols-sm-3
+                          .col
+                              .d-flex.flex-sm-column.align-items-center.align-items-sm-start.mb-3.mb-sm-0
+                                  img.mb-sm-3.mb-1.me-3.me-sm-0(src="./images/tag.png" alt="tag" width="39" height="39")
+                                  p.fs-5.mb-0.lh-5 Запускайте JavaScript код,#[br] не устанавливая приложение
+                          .col
+                              .d-flex.flex-sm-column.align-items-center.align-items-sm-start.mb-3.mb-sm-0
+                                  img.mb-sm-3.mb-1.me-3.me-sm-0(src="./images/os.png" alt="os" width="39" height="39")
+                                  p.fs-5.mb-0.lh-5 Работайте на любом устройстве,#[br] с любой операционной системой
+                          .col
+                              .d-flex.flex-sm-column.align-items-center.align-items-sm-start.mb-3.mb-sm-0
+                                  img.mb-sm-3.mb-1.me-3.me-sm-0(src="./images/share.png" alt="share" width="39" height="39")
+                                  p.fs-5.mb-0.lh-5 Делитесь своим кодом с другими#[br] участниками
+                  section
+                    .d-grid.col-md-4.col-sm-5.col-6.mx-auto
+                        a.btn.btn-primary.py-3.fs-5.fw-bold.lh-5(href="/profile") Начать кодить
+            section.mt-5
                 .row
-                    p.text-center.mb-0.fs-5.lh-5 Бесплатный проект Хекслета
-                .row
-                    h1.text-center.h1.fw-bold.mb-0.mt-45 Мгновенный IDE
-                .row
-                    p.text-center.mb-0.fw-bolder.mt-35.fs-3.lh-3 Пишите код прямо в браузере!
-            section.mt-65
-                .row
-                    .col
-                        .d-flex.flex-column
-                            img.mb-3(src="/landing/images/tag.png" alt="tag" width="39" height="39")
-                            p.fs-5.mb-0.lh-5 Запускайте JavaScript код,#[br] не устанавливая приложение
-                    .col
-                        .d-flex.flex-column
-                            img.mb-3(src="/landing/images/os.png" alt="os" width="39" height="39")
-                            p.fs-5.mb-0.lh-5 Работайте на любом устройстве,#[br] с любой операционной системой
-                    .col
-                        .d-flex.flex-column
-                            img.mb-3(src="/landing/images/share.png" alt="share" width="39" height="39")
-                            p.fs-5.mb-0.lh-5 Делитесь своим кодом с другими#[br] участниками
-            section.mt-65
-                .d-grid.col-3.mx-auto
-                    a.btn.btn-primary.py-3.fs-5.fw-bold.lh-5(href="/profile") Начать кодить
-            section.mt-160
-                .row
-                    h2.text-center.h2.fw-bold.mb-0 Без загрузок, конфигураций и настроек
-                .row.mt-55.d-flex.justify-content-between
-                    .col.mw-600
+                    h2.text-center.display-4.fw-bold.mb-0 Без загрузок, конфигураций и настроек
+                .row.mt-5.row-cols-1.row-cols-sm-2.d-flex.justify-content-between
+                    .col.mb-5.mb-sm-0
                         p.fs-4.mb-0.lh-5 В современной веб-разработке нужно постоянно следить за последними новостями, а еще лучше — испытывать новинки в реальных условиях.#[br] #[br] Бесплатный онлайн-редактор кода Runit позволит это делать быстро и без лишней суеты с настройками.
-                    .col.mw-600
-                        ul.mb-0.custom-list
+                    .col
+                        ul.mb-0.custom-list.mx-2.mx-sm-0
                             li.mb-3.position-relative
                                 p.fs-5.lh-5 Редактор полностью запускается в браузере, поэтому вы можете начать кодить за считанные секунды
                             li.mb-3.position-relative
@@ -54,29 +56,31 @@ html(lang="ru")
                                 p.fs-5.lh-5 Используйте редактор на macOS, Windows, Linux или любой другой ОС
                             li.mb-3.position-relative
                                 p.fs-5.lh-5 Не тратьте время на настройку среды
-            section.mt-160
+            section.mt-90
                 .row
-                    h2.text-center.h2.fw-bold.mb-0 Еще больше возможностей в будущем
-                .row.mt-55
-                    .col
+                    h2.text-center.display-4.fw-bold.mb-0 Еще больше возможностей в будущем
+                .row.row-cols-1.row-cols-sm-3.mt-55
+                    .col.mb-4.mb-sm-0
                         .d-flex.flex-column
-                            img.mb-3(src="/landing/images/code.png" alt="code" width="39" height="39")
+                            img.mb-3(src="./images/code.png" alt="code" width="39" height="39")
                             p.mb-2.fs-4.lh-4 Все языки
                             p.mb-0 Пока наша среда разработки запускает код только на JavaScript. В ближайшем будущем мы реализуем в редакторе поддержку других популярных языков программирования
-                    .col
+                    .col.mb-4.mb-sm-0
                         .d-flex.flex-column
-                            img.mb-3(src="/landing/images/person.png" alt="person" width="39" height="39")
+                            img.mb-3(src="./images/person.png" alt="person" width="39" height="39")
                             p.mb-2.fs-4.lh-4 Совместная работа
                             p.mb-0 Вы сможете делиться ссылкой на фрагменты своего кода с другими участниками. Или работать вместе прямо в Runit!
-                    .col
+                    .col.mb-4.mb-sm-0
                         .d-flex.flex-column
-                            img.mb-3(src="/landing/images/blank.png" alt="blank" width="39" height="39")
+                            img.mb-3(src="./images/blank.png" alt="blank" width="39" height="39")
                             p.mb-2.fs-4.lh-4 Готовые шаблоны с кодом
                             p.mb-0 Больше не будет необходимости каждый раз писать код с нуля. Мы сделаем шаблоны, чтобы вы могли проверить свои идеи на практике еще быстрее
             section.mt-90
                 .row
                     h3.text-center.fs-2.mb-0.lh-2 Попробуйте написать свой код прямо сейчас!
                 .row.mt-40
-                    .d-grid.col-3.mx-auto
+                    .d-grid.col-7.col-sm-5.col-md-4.mx-auto
                         a.btn.btn-primary.py-3.fs-5.fw-bold.lh-5(href="/signup") Начать кодить
+                
         include modules/footer
+        script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous")
