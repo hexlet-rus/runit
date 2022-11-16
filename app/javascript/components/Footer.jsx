@@ -33,12 +33,12 @@ export function buildFooter() {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="carerr"
+                  eventKey="career"
                   className="py-1 text-muted px-0"
                   href="https://www.notion.so/c6406ed8890747e690d32b050faf42c2"
                   target="_blank"
                 >
-                  {t('footer.carerr')}
+                  {t('footer.career')}
                 </Nav.Link>
               </li>
               <li>
@@ -53,7 +53,7 @@ export function buildFooter() {
                 </Nav.Link>
               </li>
             </Nav>
-            <div className="fw-bold mt-3 mb-2">{t('footer.doc')}</div>
+            <div className="fw-bold mt-3 mb-2 text-white">{t('footer.doc')}</div>
             <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link
@@ -86,17 +86,6 @@ export function buildFooter() {
                   target="_blank"
                 >
                   {t('footer.offer')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="promo"
-                  className="py-1 text-muted px-0"
-                  href="https://ru.hexlet.io/pages/promo"
-                  target="_blank"
-                >
-                  {t('footer.promo')}
                 </Nav.Link>
               </li>
             </Nav>
@@ -132,221 +121,19 @@ export function buildFooter() {
             </p>
           </Col>
           <Col>
-            <div className="fw-bold mb-2">{t('footer.study')}</div>
+            <div className="fw-bold mt-3 mb-2 text-white">{t('footer.project')}</div>
             <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link
-                  as="a"
-                  eventKey="programs"
-                  className="py-1 text-muted px-0"
-                  href="https://ru.hexlet.io/programs"
-                  target="_blank"
+                    as="a"
+                    eventKey="hexlet"
+                    className="py-1 text-muted px-0"
+                    href="https://ru.hexlet.io/my"
+                    target="_blank"
                 >
-                  {t('footer.programs')}
+                  {t('footer.hexlet')}
                 </Nav.Link>
               </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="courses"
-                  className="py-1 text-muted px-0"
-                  href="https://ru.hexlet.io/courses"
-                  target="_blank"
-                >
-                  {t('footer.courses')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="individually"
-                  className="py-1 text-muted px-0"
-                  href="https://premium.hexlet.io/?roistat_visit=4835603&_gl=1*1h3rjl5*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2ODA5OTEzOS4xOTEuMS4xNjY4MDk5Mjk1LjAuMC4w"
-                  target="_blank"
-                >
-                  {t('footer.individually')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="teams"
-                  className="py-1 text-muted px-0"
-                  href="https://ru.hexlet.io/teams"
-                  target="_blank"
-                >
-                  {t('footer.teams')}
-                </Nav.Link>
-              </li>
-            </Nav>
-
-            <div className="fw-bold mt-3 mb-2">{t('footer.read')}</div>
-            <Nav as="ul" className="flex-column align-items-start">
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="success"
-                  className="py-1 text-muted px-0"
-                  href="https://ru.hexlet.io/blog/categories/success"
-                  target="_blank"
-                >
-                  {t('footer.success')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="feedback"
-                  className="py-1 text-muted px-0"
-                  href="https://ru.hexlet.io/testimonials"
-                  target="_blank"
-                >
-                  {t('footer.feedback')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="blog"
-                  className="py-1 text-muted px-0"
-                  href="https://ru.hexlet.io/blog"
-                  target="_blank"
-                >
-                  {t('footer.blog')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="questions"
-                  className="py-1 text-muted px-0"
-                  href="https://ru.hexlet.io/community"
-                  target="_blank"
-                >
-                  {t('footer.questions')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="recommended"
-                  className="py-1 text-muted px-0"
-                  href="https://ru.hexlet.io/pages/recommended-books"
-                  target="_blank"
-                >
-                  {t('footer.recommended')}
-                </Nav.Link>
-              </li>
-            </Nav>
-            <div className="fw-bold mt-3 mb-3">{t('footer.subscribe')}</div>
-            <ul className="list-unstyled h3 text-start d-flex flex-wrap">
-              <li className="me-4 mb-2">
-                <a
-                  href="https://slack-ru.hexlet.io/?_gl=1*gwa8w0*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2Nzk5NTczNy4xODcuMS4xNjY3OTk3NTg4LjAuMC4w"
-                  aria-label="Slack"
-                  target="_blank"
-                  className="text-muted"
-                  rel="noopener noreferrer nofollow"
-                >
-                  <FontAwesomeIcon icon={faSlack} className="fa-1x" />
-                </a>
-              </li>
-              <li className="me-4 mb-2">
-                <a
-                  href="https://www.youtube.com/user/HexletUniversity"
-                  aria-label="Youtube"
-                  target="_blank"
-                  className="text-muted"
-                  rel="noopener noreferrer nofollow"
-                >
-                  <FontAwesomeIcon icon={faYoutube} className="fa-1x" />
-                </a>
-              </li>
-              <li className="me-4 mb-2">
-                <a
-                  href="https://t.me/hexlet_ru"
-                  aria-label="Telegram"
-                  target="_blank"
-                  className="text-muted"
-                  rel="noopener noreferrer nofollow"
-                >
-                  <FontAwesomeIcon icon={faTelegram} className="fa-1x" />
-                </a>
-              </li>
-              <li className="me-4 mb-2">
-                <a
-                  href="https://vk.com/hexlet"
-                  aria-label="Vk"
-                  target="_blank"
-                  className="text-muted"
-                  rel="noopener noreferrer nofollow"
-                >
-                  <FontAwesomeIcon icon={faVk} className="fa-1x" />
-                </a>
-              </li>
-              <li className="me-4 mb-2">
-                <a
-                  href="https://twitter.com/HexletHQ"
-                  aria-label="Twitter"
-                  target="_blank"
-                  className="text-muted"
-                  rel="noopener noreferrer nofollow"
-                >
-                  <FontAwesomeIcon icon={faTwitter} className="fa-1x" />
-                </a>
-              </li>
-            </ul>
-          </Col>
-          <Col>
-            <div className="fw-bold mb-2">{t('footer.help')}</div>
-            <Nav as="ul" className="flex-column align-items-start">
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="info"
-                  className="py-1 text-muted px-0"
-                  href="https://help.hexlet.io/ru?_gl=1*fi7fno*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2ODA5OTEzOS4xOTEuMS4xNjY4MDk5NTk1LjAuMC4w"
-                  target="_blank"
-                >
-                  {t('footer.info')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="qna"
-                  className="py-1 text-muted px-0"
-                  href="https://ru.hexlet.io/qna"
-                  target="_blank"
-                >
-                  {t('footer.qna')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="mail"
-                  className="py-1 text-muted px-0"
-                  href={t('footer.mailHref')}
-                  target="_blank"
-                >
-                  {t('footer.mail')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  eventKey="improve"
-                  className="py-1 text-muted px-0"
-                  href="https://github.com/Hexlet/ru-proposals"
-                  target="_blank"
-                >
-                  {t('footer.improve')}
-                </Nav.Link>
-              </li>
-            </Nav>
-            <div className="fw-bold mt-3 mb-2">{t('footer.project')}</div>
-            <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link
                   as="a"
@@ -403,6 +190,66 @@ export function buildFooter() {
                 </Nav.Link>
               </li>
             </Nav>
+            <Nav as='ul' className='flex-column align-items-start'>
+            <div className="fw-bold mt-3 mb-3 text-white">{t('footer.subscribe')}</div>
+            <ul className="list-unstyled h3 text-start d-flex flex-wrap">
+              <li className="me-4 mb-2">
+                <a
+                    href="https://slack-ru.hexlet.io/?_gl=1*gwa8w0*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2Nzk5NTczNy4xODcuMS4xNjY3OTk3NTg4LjAuMC4w"
+                    aria-label="Slack"
+                    target="_blank"
+                    className="text-muted"
+                    rel="noopener noreferrer nofollow"
+                >
+                  <FontAwesomeIcon icon={faSlack} className="fa-1x" />
+                </a>
+              </li>
+              <li className="me-4 mb-2">
+                <a
+                    href="https://www.youtube.com/user/HexletUniversity"
+                    aria-label="Youtube"
+                    target="_blank"
+                    className="text-muted"
+                    rel="noopener noreferrer nofollow"
+                >
+                  <FontAwesomeIcon icon={faYoutube} className="fa-1x" />
+                </a>
+              </li>
+              <li className="me-4 mb-2">
+                <a
+                    href="https://t.me/hexlet_ru"
+                    aria-label="Telegram"
+                    target="_blank"
+                    className="text-muted"
+                    rel="noopener noreferrer nofollow"
+                >
+                  <FontAwesomeIcon icon={faTelegram} className="fa-1x" />
+                </a>
+              </li>
+              <li className="me-4 mb-2">
+                <a
+                    href="https://vk.com/hexlet"
+                    aria-label="Vk"
+                    target="_blank"
+                    className="text-muted"
+                    rel="noopener noreferrer nofollow"
+                >
+                  <FontAwesomeIcon icon={faVk} className="fa-1x" />
+                </a>
+              </li>
+              <li className="me-4 mb-2">
+                <a
+                    href="https://twitter.com/HexletHQ"
+                    aria-label="Twitter"
+                    target="_blank"
+                    className="text-muted"
+                    rel="noopener noreferrer nofollow"
+                >
+                  <FontAwesomeIcon icon={faTwitter} className="fa-1x" />
+                </a>
+              </li>
+            </ul>
+          </Nav>
             {/* Add it when english version will be available
             <Dropdown role="group" className="mt-3">
               <Dropdown.Toggle
