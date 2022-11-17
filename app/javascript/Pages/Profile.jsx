@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Button, Card, Dropdown } from 'react-bootstrap';
+import { Row, Col, Button, Card, Dropdown, ButtonToolbar } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSnippets } from '../hooks';
 import { useDispatch, useSelector } from 'react-redux';
@@ -120,13 +120,10 @@ export function Profile() {
                         <Card.Text>
                           {/* TODO: add a screenshot for snippet */}
                         </Card.Text>
-                        <Dropdown
-                          className={`mt-1 ${classes.snippetTools}`}
-                          id="snippet"
-                        >
-                          <div className="d-flex flex-start gap-1">
+                          <ButtonToolbar className="justify-content-center">
+                            
                             <Button
-                              className={`${classes.button}`}
+                              className={`ms-2 ${classes.button}`}
                               variant="primary"
                               href={snippetApi.genSnippetLink(
                                 snippetApi.encodeId(id),
@@ -135,7 +132,7 @@ export function Profile() {
                               {t('profile.openReplButton')}
                             </Button>
                             <Button
-                              className={`${classes.button}`}
+                              className={`ms-2 ${classes.button}`}
                               variant="primary"
                               onClick={() =>
                                 dispatch(
@@ -153,36 +150,38 @@ export function Profile() {
                             >
                               {t('profile.shareReplButton')}
                             </Button>
-                          </div>
-                          <div className="d-flex flex-end">
-                            <Dropdown.Toggle
-                              aria-expanded="false"
-                              className={`flex-grow-0  dropdown-toggle-split ${classes.dropdown}`}
+                            <Dropdown
+                              className={`mt-1 ms-2 ${classes.snippetTools}`}
+                              id="snippet"
                             >
-                              <span className="visually-hidden">
-                                Edit the snippet
-                              </span>
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu
-                              className={`${classes.dropdownMenu}`}
-                            >
-                              <Dropdown.Item
-                                className={`${classes.dropdownItem}`}
-                                onClick={() =>
-                                  handleSnippetRename(id, name, code)
-                                }
+                              <Dropdown.Toggle
+                                aria-expanded="false"
+                                className={`flex-grow-0  dropdown-toggle-split ${classes.dropdown}`}
                               >
-                                {t('profile.renameReplButton')}
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                className={`${classes.dropdownItem}`}
-                                onClick={() => handleSnippetDelete(id)}
+                                <span className="visually-hidden">
+                                  Edit the snippet
+                                </span>
+                              </Dropdown.Toggle>
+                              <Dropdown.Menu
+                                className={`${classes.dropdownMenu}`}
                               >
-                                {t('profile.deleteReplButton')}
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </div>
-                        </Dropdown>
+                                <Dropdown.Item
+                                  className={`${classes.dropdownItem}`}
+                                  onClick={() =>
+                                    handleSnippetRename(id, name, code)
+                                  }
+                                >
+                                  {t('profile.renameReplButton')}
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                  className={`${classes.dropdownItem}`}
+                                  onClick={() => handleSnippetDelete(id)}
+                                >
+                                  {t('profile.deleteReplButton')}
+                                </Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                          </ButtonToolbar>
                       </Card.Body>
                     </Card>
                   </Col>
