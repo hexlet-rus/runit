@@ -44,6 +44,7 @@ const EmbedSnippet = () => {
             style={{ color: '#136ef6', fontFamily: 'Onest, sans-serif' }}
             href={snippetLink}
             title="Runit-logo"
+            target="_blank"
           >
             <div
               className="d-flex flex-column align-items-end"
