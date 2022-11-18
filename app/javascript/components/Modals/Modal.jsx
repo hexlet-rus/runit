@@ -6,6 +6,7 @@ import SignInModal from './SignIn.jsx';
 import ShareRepl from './ShareRepl.jsx';
 import NewRepl from './NewRepl.jsx';
 import RenameRepl from './RenameRepl.jsx';
+import ConfirmationModal from './Confirmation.jsx';
 
 const modals = {
   gettingInfo: InfoModal,
@@ -14,6 +15,7 @@ const modals = {
   sharingRepl: ShareRepl,
   genNewRepl: NewRepl,
   renameRepl: RenameRepl,
+  confirmDelete: ConfirmationModal,
 };
 
 function ModalWindow() {
