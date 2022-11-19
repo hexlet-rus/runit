@@ -163,7 +163,7 @@ export function Profile() {
                               className={`flex-grow-0  dropdown-toggle-split ${classes.dropdown}`}
                             >
                               <span className="visually-hidden">
-                                Edit the snippet
+                                {t('profile.editSnippet')}
                               </span>
                             </Dropdown.Toggle>
                             <Dropdown.Menu
