@@ -90,23 +90,26 @@ export function Profile() {
             </div>
           </Col>
           <Col className={`rounded w-100 ${classes.replsCol}`}>
-            <div className={`${classes.newRepl}`}>
-              <Button
-                className={`${classes.newReplButton}`}
-                onClick={() =>
-                  dispatch(modalActions.openModal({ type: 'genNewRepl' }))
-                }
-              >
-                {t('profile.newReplButton')}
-              </Button>
-            </div>
-            <div className={`w-100 h-100 d-flex flex-column ${classes.repls}`}>
+            <div
+              className={`w-100 h-100 d-flex flex-column ${classes.repls}`}
+              style={{ paddingTop: '30px' }}
+            >
               <Row
                 className="my-2 flex-md-row"
                 style={{ borderBottom: '1px solid #293746' }}
               >
-                <div className="flex-md-column w-auto">
+                <div className="d-flex justify-content-between align-items-center flex-md-row w-100">
                   <h2>{t('profile.replsHeader')}</h2>
+                  <div className={`${classes.newRepl}`}>
+                    <Button
+                      className={`${classes.newReplButton}`}
+                      onClick={() =>
+                        dispatch(modalActions.openModal({ type: 'genNewRepl' }))
+                      }
+                    >
+                      {t('profile.newReplButton')}
+                    </Button>
+                  </div>
                 </div>
               </Row>
               <Row xs={1} md={2} className="g-4 my-1">
@@ -160,7 +163,7 @@ export function Profile() {
                               className={`flex-grow-0  dropdown-toggle-split ${classes.dropdown}`}
                             >
                               <span className="visually-hidden">
-                                {t('profile.editSnippet')}
+                                Edit the snippet
                               </span>
                             </Dropdown.Toggle>
                             <Dropdown.Menu
