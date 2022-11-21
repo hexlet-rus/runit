@@ -1,55 +1,57 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import routes from '../routes.js';
 
 export function About() {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="container-fluid py-5 m-0 bg-dark text-white">
         <div className="container">
-          <h3>Информация о проекте</h3>
+          <h3>{t('about.pageHeader')}</h3>
           <p>
-            <strong>Runit</strong> — среда для написания и исполнения кода,
-            которую будем активно использовать на всех платформах Хекслета.
+            <strong>{t('about.projectName')}</strong>{t('about.projectDescription')}
           </p>
           <p>
-            Ближайший аналог — сервис&nbsp;
+            {t('about.analogueIs')}&nbsp;
             <a
               className="text-secondary text-decoration-none"
               href="https://replit.com/~"
               target="_blank"
               rel="noopener noreferrer"
             >
-              repl.it
+              {t('about.analogueName')}
             </a>
             .
           </p>
           <p>
-            Бэкенд разрабатывается на&nbsp;
+            {t('about.backendIsOn')}&nbsp;
             <a
               className="text-secondary text-decoration-none"
               href="https://ru.hexlet.io/blog/posts/gid-po-nest-js?ysclid=l7ew5lpeiw134812170"
               target="_blank"
               rel="noopener noreferrer"
             >
-              NestJS
+              {t('about.firstBackendDevTool')}
             </a>
-            &nbsp;и&nbsp;
+            &nbsp;{t('about.and')}&nbsp;
             <a
               className="text-secondary text-decoration-none"
               href="https://ru.hexlet.io/blog/posts/vse-chto-nuzhno-znat-novichku-o-typescript-ischerpyvayuschiy-gayd?ysclid=l7ewa0mrdp61534639"
               target="_blank"
               rel="noopener noreferrer"
             >
-              TypeScript
+              {t('about.secondBackendDevTool')}
             </a>
-            , на фронтенде используется&nbsp;
+            {t('about.frontendIsOn')}&nbsp;
             <a
               className="text-secondary text-decoration-none"
               href="https://ru.hexlet.io/blog/posts/biblioteka-react-review-article?ysclid=l7eweuntdr505174264"
               target="_blank"
               rel="noopener noreferrer"
             >
-              React
+              {t('about.frontendDevTool')}
             </a>
             .
           </p>

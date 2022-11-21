@@ -1,79 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import routes from '../routes.js';
 import { useAuth } from '../hooks';
 import classes from './Navbar.module.css';
+import Logo from '/app/assets/landing/images/logo.png'
 
 export function Navbar() {
-  const [menuStatus, setMenuStatus] = useState(false);
   const auth = useAuth();
   const { t } = useTranslation();
 
   return (
     <>
-      {menuStatus && (
-        <div
-          className="offcanvas offcanvas-start show"
-          style={{ 'z-index': 5000, width: '10rem', visibility: 'visible' }}
-          tabIndex="-1"
-          id="offcanvasStart"
-          aria-labelledby="offcanvasStartLabel"
-          aria-modal="true"
-          role="dialog"
-        >
-          <div className="offcanvas-header">
-            <p className="h5" id="offcanvasStartLabel">
-              {t('navbar.menu')}
-            </p>
-            <button
-              className="btn-close text-reset"
-              type="button"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-              onClick={() => setMenuStatus(!menuStatus)}
-            />
-          </div>
-          <div className="offcanvas-body">
-            <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li className="nav-item">
-                <a
-                  className="nav-link active"
-                  aria-current="page"
-                  href={routes.homePagePath()}
-                >
-                  {t('navbar.home')}
-                </a>
-              </li>
-              {auth.isLoggedIn && (
-                <li className="nav-item">
-                  <a
-                    className="nav-link active"
-                    aria-current="page"
-                    href={routes.profilePagePath()}
-                  >
-                    {t('navbar.myRepls')}
-                  </a>
-                </li>
-              )}
-            </ul>
-          </div>
-        </div>
-      )}
       <nav className="navbar navbar-expand-md navbar-dark bg-dark text-white shadow-sm border-bottom-mb-5">
         <div className="container-fluid">
-          <div className="d-flex justify-content-start">
-            <button
-              className="border-0 bg-dark"
-              type="button"
-              onClick={() => setMenuStatus(!menuStatus)}
-            >
-              <span className="navbar-toggler-icon" />
-            </button>
+          <div className="d-flex justify-content-start ps-4">
             <a
               className={`navbar-brand ${classes.navigationBrand}`}
               aria-hidden="true"
               href={routes.homePagePath()}
             >
+              <img alt='mainLabel' src={ Logo } className='align-baseline me-1'/>
               {t('navbar.mainLabel')}
             </a>
           </div>

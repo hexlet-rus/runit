@@ -17,6 +17,7 @@ import { AuthController } from './auth/auth.controller';
 import getDataSourceConfig from './data-source.config';
 import { PagesController } from './pages/pages.controller';
 import { HttpsRedirectMiddleware } from './common/https.middleware';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { HttpsRedirectMiddleware } from './common/https.middleware';
     SnippetsModule,
     UsersModule,
     AuthModule,
+    EventsModule,
     TypeOrmModule.forRoot(getDataSourceConfig()),
   ],
   controllers: [

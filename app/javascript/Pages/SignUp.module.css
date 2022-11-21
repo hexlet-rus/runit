@@ -13,3 +13,7 @@
   box-shadow: none;
   background-color: #212529;
 }
+
+.formGroup {
+  min-height: 100px;
+}

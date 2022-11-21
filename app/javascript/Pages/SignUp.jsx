@@ -93,7 +93,7 @@ export const SignUp = () => {
               <h1 className="mb-4 fw-light">{t('signUp.pageHeader')}</h1>
               <div className="pt-lg-3">
                 <Form onSubmit={formik.handleSubmit} noValidate>
-                  <Form.Group className="mb-2">
+                  <Form.Group className={classes.formGroup}>
                     <Form.Label htmlFor="email">
                       {t('signUp.emailLabel')}
                     </Form.Label>
@@ -118,7 +118,7 @@ export const SignUp = () => {
                     </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group className="mb-2">
+                  <Form.Group className={classes.formGroup}>
                     <Form.Label htmlFor="login">
                       {t('signUp.usernameLabel')}
                     </Form.Label>
@@ -141,7 +141,7 @@ export const SignUp = () => {
                     </Form.Control.Feedback>
                   </Form.Group>
 
-                  <Form.Group className="mb-2">
+                  <Form.Group className={classes.formGroup}>
                     <Form.Label htmlFor="password">
                       {t('signUp.passwordLabel')}
                     </Form.Label>
@@ -166,7 +166,7 @@ export const SignUp = () => {
                         : regFailed}
                     </Form.Control.Feedback>
                   </Form.Group>
-                  <Form.Group className="mb-2">
+                  <Form.Group className={classes.formGroup}>
                     <Form.Label htmlFor="confirmPassword">
                       {t('signUp.confirmPasswordLabel')}
                     </Form.Label>

@@ -1,5 +1,30 @@
 const ruLocales = {
   translation: {
+    about: {
+      pageHeader: 'Информация о проекте',
+      projectName: 'Runit',
+      projectDescription: ` — среда для написания и исполнения кода, которую будем активно использовать на всех платформах Хекслета.`,
+      analogueIs: 'Ближайший аналог — сервис',
+      analogueName: 'repl.it',
+      backendIsOn: 'Бэкенд разрабатывается на',
+      firstBackendDevTool: 'NestJS',
+      and: 'и',
+      secondBackendDevTool: 'TypeScript',
+      frontendIsOn: ', на фронтенде используется',
+      frontendDevTool: 'React',
+      footer: {
+        hexlet: '© ООО “Хекслет Рус”',
+        about: 'О проекте',
+        code: 'Исходный код',
+        linkToSlack: 'Slack #hexlet-volunteers',
+        help: 'Помощь',
+        knowledgeBase: 'База знаний',
+        linkToHexletGuides: 'Hexlet Guides',
+        more: 'Дополнительно',
+        linkToCodeBasics: 'Code Basics',
+        linkToCodeBattles: 'Code Battles',
+      },
+    },
     signUp: {
       pageHeader: 'Регистрация',
       emailLabel: 'Электронная почта',
@@ -62,7 +87,7 @@ const ruLocales = {
       newReplButton: 'Новый сниппет',
     },
     navbar: {
-      mainLabel: 'Редактор',
+      mainLabel: 'Runit',
       menu: 'Меню',
       home: 'Домой',
       myRepls: 'Мои сниппеты',
@@ -156,10 +181,19 @@ const ruLocales = {
         singleWord: 'Допустимы буквы латинского алфавита, цифры и символы "-_"',
       },
     },
+    appRotes: {
+      pageNotFound: 'Страница не найдена',
+    },
     errors: {
       unknown: 'Неизвестная ошибка',
       network: 'Ошибка сети',
     },
+    pageNotFound: {
+      oops: 'Упс!',
+      notFound: 'Страница не найдена.',
+      noExist: 'Страница, которую вы ищете, не существует.',
+      returnButton: 'Вернуться на главную',
+    }
   },
 };
 
