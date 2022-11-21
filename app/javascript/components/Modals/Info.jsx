@@ -16,9 +16,13 @@ function Info() {
       show
       cl
     >
-      <Modal.Header closeButton className="border-bottom-0"></Modal.Header>
+      <Modal.Header
+        closeButton
+        closeVariant="white"
+        className="border-bottom-0 bg-dark"
+      />
 
-      <Modal.Body>
+      <Modal.Body className="bg-dark text-white">
         <div>
           <h5>{t('modals.infoBody')}</h5>
         </div>
@@ -36,7 +40,7 @@ function Info() {
           </Button>
           <div className="gap" style={{ marginLeft: 'auto' }} />
           <Button
-            variant="outline-success"
+            variant="outline-primary"
             className="bt-lg"
             style={{ width: 'calc(35% - 10px)' }}
             onClick={() =>
@@ -46,7 +50,7 @@ function Info() {
             {t('modals.signInButton')}
           </Button>
           <Button
-            variant="outline-primary"
+            variant="primary"
             className="bt-lg"
             style={{ width: 'calc(35% - 10px)' }}
             onClick={() =>
