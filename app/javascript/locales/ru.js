@@ -87,7 +87,7 @@ const ruLocales = {
       newReplButton: 'Новый сниппет',
     },
     navbar: {
-      mainLabel: 'Редактор',
+      mainLabel: 'Runit',
       menu: 'Меню',
       home: 'Домой',
       myRepls: 'Мои сниппеты',
@@ -188,6 +188,12 @@ const ruLocales = {
       unknown: 'Неизвестная ошибка',
       network: 'Ошибка сети',
     },
+    pageNotFound: {
+      oops: 'Упс!',
+      notFound: 'Страница не найдена.',
+      noExist: 'Страница, которую вы ищете, не существует.',
+      returnButton: 'Вернуться на главную',
+    }
   },
 };
 
