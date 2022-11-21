@@ -22,7 +22,7 @@
 }
 
 body {
-  font-family: 'Onest', sans-serif;
+  font-family: "Onest", sans-serif;
 }
 
 .btn-primary {
@@ -74,10 +74,13 @@ body {
   line-height: var(--dist-118);
 }
 
-.h2 {
+.display-1 {
   color: var(--color-blue);
-  font-size: var(--text-size-50) !important;
-  line-height: var(--dist-65);
+  white-space: nowrap;
+}
+
+.display-4 {
+  color: var(--color-blue);
 }
 
 .lh-2 {
@@ -97,6 +100,9 @@ body {
 }
 
 /* custom */
+.general {
+  height: 100vh;
+}
 
 .mt-160 {
   margin-top: var(--dist-160);
@@ -135,7 +141,7 @@ body {
 }
 
 .custom-list li::before {
-  content: '';
+  content: "";
   display: block;
   width: 27px;
   height: 27px;
@@ -143,5 +149,7 @@ body {
   position: absolute;
   top: 0;
   left: -40px;
-  background: url('../images/checked.svg') no-repeat;
+  background: url("../images/checked.svg") no-repeat;
 }
+
+/*# sourceMappingURL=style.css.map */
