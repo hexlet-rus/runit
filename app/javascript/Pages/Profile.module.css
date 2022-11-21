@@ -79,23 +79,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
-  height: 150px;
-  background: #1b243e;
-  position: relative;
+  height: 80px;
   bottom: 40px;
-  border-radius: 20px;
-  box-shadow: 1px -1px 3px #1f2430;
+  border-radius: 5px;
 }
 
 .newReplButton {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40%;
   height: 50px;
   position: relative;
-  border-radius: 20px;
+  border-radius: 5px;
   font-family: 'Onest', sans-serif;
   font-style: normal;
   font-weight: 600;
