@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Button, Card, Dropdown } from 'react-bootstrap';
+import { Row, Col, Button, Card, Dropdown, ButtonToolbar } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSnippets } from '../hooks';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ export function Profile() {
     try {
       return new Intl.DateTimeFormat().format(new Date(date));
     } catch {
-      return 'date is loading!';
+      return t('profile.succesfulLoading');
     }
   };
 
@@ -94,23 +94,26 @@ export function Profile() {
             </div>
           </Col>
           <Col className={`rounded w-100 ${classes.replsCol}`}>
-            <div className={`${classes.newRepl}`}>
-              <Button
-                className={`${classes.newReplButton}`}
-                onClick={() =>
-                  dispatch(modalActions.openModal({ type: 'genNewRepl' }))
-                }
-              >
-                {t('profile.newReplButton')}
-              </Button>
-            </div>
-            <div className={`w-100 h-100 d-flex flex-column ${classes.repls}`}>
+            <div
+              className={`w-100 h-100 d-flex flex-column ${classes.repls}`}
+              style={{ paddingTop: '30px' }}
+            >
               <Row
                 className="my-2 flex-md-row"
                 style={{ borderBottom: '1px solid #293746' }}
               >
-                <div className="flex-md-column w-auto">
+                <div className="d-flex justify-content-between align-items-center flex-md-row w-100">
                   <h2>{t('profile.replsHeader')}</h2>
+                  <div className={`${classes.newRepl}`}>
+                    <Button
+                      className={`${classes.newReplButton}`}
+                      onClick={() =>
+                        dispatch(modalActions.openModal({ type: 'genNewRepl' }))
+                      }
+                    >
+                      {t('profile.newReplButton')}
+                    </Button>
+                  </div>
                 </div>
               </Row>
               <Row xs={1} md={2} className="g-4 my-1">
@@ -124,13 +127,10 @@ export function Profile() {
                         <Card.Text>
                           {/* TODO: add a screenshot for snippet */}
                         </Card.Text>
-                        <Dropdown
-                          className={`mt-1 ${classes.snippetTools}`}
-                          id="snippet"
-                        >
-                          <div className="d-flex flex-start gap-1">
+                          <ButtonToolbar className="justify-content-center">
+                            
                             <Button
-                              className={`${classes.button}`}
+                              className={`ms-2 ${classes.button}`}
                               variant="primary"
                               href={snippetApi.genSnippetLink(
                                 snippetApi.encodeId(id),
@@ -139,7 +139,7 @@ export function Profile() {
                               {t('profile.openReplButton')}
                             </Button>
                             <Button
-                              className={`${classes.button}`}
+                              className={`ms-2 ${classes.button}`}
                               variant="primary"
                               onClick={() =>
                                 dispatch(
@@ -157,36 +157,37 @@ export function Profile() {
                             >
                               {t('profile.shareReplButton')}
                             </Button>
-                          </div>
-                          <div className="d-flex flex-end">
-                            <Dropdown.Toggle
-                              aria-expanded="false"
-                              className={`flex-grow-0  dropdown-toggle-split ${classes.dropdown}`}
+                            <Dropdown
+                              className={`mt-1 ms-2 ${classes.snippetTools}`}
+                              id="snippet"
                             >
-                              <span className="visually-hidden">
-                                Edit the snippet
-                              </span>
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu
-                              className={`${classes.dropdownMenu}`}
-                            >
-                              <Dropdown.Item
-                                className={`${classes.dropdownItem}`}
-                                onClick={() =>
-                                  handleSnippetRename(id, name, code)
-                                }
+                              <Dropdown.Toggle
+                                aria-expanded="false"
+                                className={`flex-grow-0  dropdown-toggle-split ${classes.dropdown}`}
                               >
-                                {t('profile.renameReplButton')}
-                              </Dropdown.Item>
-                              <Dropdown.Item
-                                className={`${classes.dropdownItem}`}
-                                onClick={() => handleDeleteConfirmation(id)}
-                              >
-                                {t('profile.deleteReplButton')}
-                              </Dropdown.Item>
-                            </Dropdown.Menu>
-                          </div>
-                        </Dropdown>
+                                <span className="visually-hidden">
+                                  {t('profile.editSnippet')}
+                                </span>
+                              </Dropdown.Toggle>
+                              <Dropdown.Menu
+                                className={`${classes.dropdownMenu}`}
+                                <Dropdown.Item
+                                  className={`${classes.dropdownItem}`}
+                                  onClick={() =>
+                                    handleSnippetRename(id, name, code)
+                                  }
+                                >
+                                  {t('profile.renameReplButton')}
+                                </Dropdown.Item>
+                                <Dropdown.Item
+                                  className={`${classes.dropdownItem}`}
+                                  onClick={() => handleDeleteConfirmation(id)}
+                                >
+                                  {t('profile.deleteReplButton')}
+                                </Dropdown.Item>
+                              </Dropdown.Menu>
+                            </Dropdown>
+                          </ButtonToolbar>
                       </Card.Body>
                     </Card>
                   </Col>

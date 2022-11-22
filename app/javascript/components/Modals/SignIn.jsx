@@ -12,6 +12,7 @@ import axios from 'axios';
 import routes from '../../routes';
 
 import { actions as modalActions } from '../../slices/modalSlice';
+import classes from './Modals.module.css';
 
 function SignInModal() {
   const dispatch = useDispatch();
@@ -56,14 +57,18 @@ function SignInModal() {
       show
       onHide={() => dispatch(modalActions.closeModal())}
     >
-      <Modal.Header closeButton>
+      <Modal.Header
+        closeButton
+        closeVariant="white"
+        className="text-white bg-dark border-secondary"
+      >
         <Modal.Title className="display-6">
           {t('modals.signInHeader')}
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="bg-dark text-white">
         <Form noValidate onSubmit={formik.handleSubmit}>
-          <Form.Group className="mb-3">
+          <Form.Group className={classes.formGroup}>
             <Form.Label htmlFor="email" controlId="email" label="Email">
               {t('signUp.emailLabel')}
             </Form.Label>
@@ -71,6 +76,7 @@ function SignInModal() {
               name="email"
               type="email"
               autoComplete="email"
+              className={`form-input bg-dark text-white ${classes.signInput}`}
               required
               autoFocus
               onChange={formik.handleChange}
@@ -78,7 +84,7 @@ function SignInModal() {
               isInvalid={authFailed}
             />
           </Form.Group>
-          <Form.Group className="mb-3">
+          <Form.Group className={classes.formGroup}>
             <Form.Label
               htmlFor="password"
               controlId="password"
@@ -90,6 +96,7 @@ function SignInModal() {
               name="password"
               type="password"
               autoComplete="new-password"
+              className={`form-input bg-dark text-white ${classes.signInput}`}
               required
               onChange={formik.handleChange}
               value={formik.values.password}
@@ -110,7 +117,7 @@ function SignInModal() {
         </Form>
       </Modal.Body>
       <Modal.Footer
-        className="d-flex mt-3"
+        className="d-flex bg-dark border-secondary"
         style={{ justifyContent: 'flex-end' }}
       >
         <Button

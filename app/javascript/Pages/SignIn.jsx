@@ -63,7 +63,7 @@ export function SignIn() {
               <h1 className="mb-4 fw-light">{t('signIn.pageHeader')}</h1>
               <div className="pt-lg-3">
                 <Form onSubmit={formik.handleSubmit} noValidate>
-                  <Form.Group className="mb-2">
+                  <Form.Group className={classes.formGroup}>
                     <Form.Label htmlFor="email">
                       {t('signIn.emailLabel')}
                     </Form.Label>
@@ -80,7 +80,7 @@ export function SignIn() {
                       ref={inputRef}
                     />
                   </Form.Group>
-                  <Form.Group className="mb-2">
+                  <Form.Group className={classes.formGroup}>
                     <Form.Label htmlFor="password">
                       {t('signIn.passwordLabel')}
                     </Form.Label>
