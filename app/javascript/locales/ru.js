@@ -167,6 +167,11 @@ const ruLocales = {
         snippetLinkLabel: 'Ссылка на сниппет',
         snippetEmbedLabel: 'Код сниппета для вставки',
       },
+      confirmation: {
+        header: 'Вы точно хотите удалить сниппет?',
+        confirmButton: 'Удалить',
+        cancelButton: 'Отмена',
+      },
       newSnippetName: 'Название сниппета',
       signInButton: 'Войти',
       signUpButton: 'Создать аккаунт',

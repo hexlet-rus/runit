@@ -27,9 +27,13 @@ export function Profile() {
     }
   };
 
-  const handleSnippetDelete = async (id) => {
-    await snippetApi.deleteSnippet(id);
-    dispatch(snippetsActions.deleteSnippet(id));
+  const handleDeleteConfirmation = (id) => {
+    dispatch(
+      modalActions.openModal({
+        type: 'confirmDelete',
+        item: { id },
+      }),
+    );
   };
 
   const handleSnippetRename = (id, name, code) => {
@@ -167,7 +171,7 @@ export function Profile() {
                               </Dropdown.Toggle>
                               <Dropdown.Menu
                                 className={`${classes.dropdownMenu}`}
-                              >
+                                >
                                 <Dropdown.Item
                                   className={`${classes.dropdownItem}`}
                                   onClick={() =>
@@ -178,7 +182,7 @@ export function Profile() {
                                 </Dropdown.Item>
                                 <Dropdown.Item
                                   className={`${classes.dropdownItem}`}
-                                  onClick={() => handleSnippetDelete(id)}
+                                  onClick={() => handleDeleteConfirmation(id)}
                                 >
                                   {t('profile.deleteReplButton')}
                                 </Dropdown.Item>
