@@ -171,6 +171,7 @@ export function Profile() {
                               </Dropdown.Toggle>
                               <Dropdown.Menu
                                 className={`${classes.dropdownMenu}`}
+                                >
                                 <Dropdown.Item
                                   className={`${classes.dropdownItem}`}
                                   onClick={() =>
