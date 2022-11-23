@@ -8,7 +8,7 @@ on:
 jobs:
 
   build:
-    if: github.repository == 'hexlet/runit'
+    if: github.repository == 'hexlet-rus/runit'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
