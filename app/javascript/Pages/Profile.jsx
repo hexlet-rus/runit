@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Button, Card, Dropdown } from 'react-bootstrap';
+import { ThreeDots } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
 import { useSnippets } from '../hooks';
 import { useDispatch, useSelector } from 'react-redux';
@@ -132,17 +133,7 @@ export function Profile() {
                             aria-expanded="false"
                             className={`flex-grow-0 btn btn-primary ${classes.dropdown}`}
                           >
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="white"
-                              className="bi bi-three-dots"
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5
-                                1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"
-                              />
-                            </svg>
+                            <ThreeDots color="white" size="16" />
                             <span className="visually-hidden">
                               {t('profile.editSnippet')}
                             </span>
