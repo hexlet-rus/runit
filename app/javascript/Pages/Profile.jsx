@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Button, Card, Dropdown, ButtonToolbar } from 'react-bootstrap';
+import { Row, Col, Button, Card, Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useSnippets } from '../hooks';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +11,7 @@ import { actions as modalActions } from '../slices/modalSlice.js';
 import { actions as snippetsActions } from '../slices/snippetsSlice.js';
 
 import classes from './Profile.module.css';
+import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 
 export function Profile() {
   const { t } = useTranslation();
@@ -120,17 +121,59 @@ export function Profile() {
                 {snippets.map(({ id, name, code }) => (
                   <Col xs lg="3" key={id}>
                     <Card style={{ border: 0 }}>
-                      <Card.Header className={`${classes.snippetHeader}`}>
-                        {name}
+                      <Card.Header className={`d-flex justify-content-between ${classes.snippetHeader}`}>
+                        <p className="m-0 p-2">{name}</p>
+                        <Dropdown
+                          className={`${classes.snippetTools}`}
+                          id="snippet"
+                        >
+                          <DropdownToggle
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            className={`flex-grow-0 btn btn-primary ${classes.dropdown}`}
+                          >
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              fill="white"
+                              className="bi bi-three-dots"
+                              viewBox="0 0 16 16"
+                            >
+                              <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5
+                                1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"
+                              />
+                            </svg>
+                            <span className="visually-hidden">
+                              {t('profile.editSnippet')}
+                            </span>
+                          </DropdownToggle>
+                          <Dropdown.Menu
+                            className={`${classes.dropdownMenu}`}
+                            >
+                            <Dropdown.Item
+                              className={`${classes.dropdownItem}`}
+                              onClick={() =>
+                                handleSnippetRename(id, name, code)
+                              }
+                            >
+                              {t('profile.renameReplButton')}
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              className={`${classes.dropdownItem}`}
+                              onClick={() => handleDeleteConfirmation(id)}
+                            >
+                              {t('profile.deleteReplButton')}
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
                       </Card.Header>
                       <Card.Body className={`${classes.snippetBody}`}>
                         <Card.Text>
                           {/* TODO: add a screenshot for snippet */}
                         </Card.Text>
-                          <ButtonToolbar className="justify-content-center">
-                            
+                          <div className="d-flex justify-content-center gap-2">
                             <Button
-                              className={`ms-2 ${classes.button}`}
+                              className={`btn-sm p-1 ${classes.button}`}
                               variant="primary"
                               href={snippetApi.genSnippetLink(
                                 snippetApi.encodeId(id),
@@ -139,7 +182,7 @@ export function Profile() {
                               {t('profile.openReplButton')}
                             </Button>
                             <Button
-                              className={`ms-2 ${classes.button}`}
+                              className={`btn-sm p-1 ${classes.button}`}
                               variant="primary"
                               onClick={() =>
                                 dispatch(
@@ -157,7 +200,7 @@ export function Profile() {
                             >
                               {t('profile.shareReplButton')}
                             </Button>
-                            <Dropdown
+                            {/* <Dropdown
                               className={`mt-1 ms-2 ${classes.snippetTools}`}
                               id="snippet"
                             >
@@ -187,8 +230,8 @@ export function Profile() {
                                   {t('profile.deleteReplButton')}
                                 </Dropdown.Item>
                               </Dropdown.Menu>
-                            </Dropdown>
-                          </ButtonToolbar>
+                            </Dropdown> */}
+                          </div>
                       </Card.Body>
                     </Card>
                   </Col>
