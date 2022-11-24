@@ -200,37 +200,6 @@ export function Profile() {
                             >
                               {t('profile.shareReplButton')}
                             </Button>
-                            {/* <Dropdown
-                              className={`mt-1 ms-2 ${classes.snippetTools}`}
-                              id="snippet"
-                            >
-                              <Dropdown.Toggle
-                                aria-expanded="false"
-                                className={`flex-grow-0  dropdown-toggle-split ${classes.dropdown}`}
-                              >
-                                <span className="visually-hidden">
-                                  {t('profile.editSnippet')}
-                                </span>
-                              </Dropdown.Toggle>
-                              <Dropdown.Menu
-                                className={`${classes.dropdownMenu}`}
-                                >
-                                <Dropdown.Item
-                                  className={`${classes.dropdownItem}`}
-                                  onClick={() =>
-                                    handleSnippetRename(id, name, code)
-                                  }
-                                >
-                                  {t('profile.renameReplButton')}
-                                </Dropdown.Item>
-                                <Dropdown.Item
-                                  className={`${classes.dropdownItem}`}
-                                  onClick={() => handleDeleteConfirmation(id)}
-                                >
-                                  {t('profile.deleteReplButton')}
-                                </Dropdown.Item>
-                              </Dropdown.Menu>
-                            </Dropdown> */}
                           </div>
                       </Card.Body>
                     </Card>
