@@ -156,7 +156,7 @@
   border: 0;
   padding: 0;
   color: #136ef6;
-  font-size: 1.5em;
+  font-size: 0;
 
   --bs-btn-hover-bg: transparent;
   --bs-btn-hover-color: #7c7cf7;

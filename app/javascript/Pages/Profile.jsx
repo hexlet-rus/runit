@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Button, Card, Dropdown, ButtonToolbar } from 'react-bootstrap';
+import { Row, Col, Button, Card, Dropdown } from 'react-bootstrap';
+import { ThreeDots } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
 import { useSnippets } from '../hooks';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +12,7 @@ import { actions as modalActions } from '../slices/modalSlice.js';
 import { actions as snippetsActions } from '../slices/snippetsSlice.js';
 
 import classes from './Profile.module.css';
+import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 
 export function Profile() {
   const { t } = useTranslation();
@@ -120,17 +122,49 @@ export function Profile() {
                 {snippets.map(({ id, name, code }) => (
                   <Col xs lg="3" key={id}>
                     <Card style={{ border: 0 }}>
-                      <Card.Header className={`${classes.snippetHeader}`}>
-                        {name}
+                      <Card.Header className={`d-flex justify-content-between ${classes.snippetHeader}`}>
+                        <p className="m-0 p-2">{name}</p>
+                        <Dropdown
+                          className={`${classes.snippetTools}`}
+                          id="snippet"
+                        >
+                          <DropdownToggle
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            className={`flex-grow-0 btn btn-primary ${classes.dropdown}`}
+                          >
+                            <ThreeDots color="white" size="16" />
+                            <span className="visually-hidden">
+                              {t('profile.editSnippet')}
+                            </span>
+                          </DropdownToggle>
+                          <Dropdown.Menu
+                            className={`${classes.dropdownMenu}`}
+                            >
+                            <Dropdown.Item
+                              className={`${classes.dropdownItem}`}
+                              onClick={() =>
+                                handleSnippetRename(id, name, code)
+                              }
+                            >
+                              {t('profile.renameReplButton')}
+                            </Dropdown.Item>
+                            <Dropdown.Item
+                              className={`${classes.dropdownItem}`}
+                              onClick={() => handleDeleteConfirmation(id)}
+                            >
+                              {t('profile.deleteReplButton')}
+                            </Dropdown.Item>
+                          </Dropdown.Menu>
+                        </Dropdown>
                       </Card.Header>
                       <Card.Body className={`${classes.snippetBody}`}>
                         <Card.Text>
                           {/* TODO: add a screenshot for snippet */}
                         </Card.Text>
-                          <ButtonToolbar className="justify-content-center">
-                            
+                          <div className="d-flex justify-content-center gap-2">
                             <Button
-                              className={`ms-2 ${classes.button}`}
+                              className={`btn-sm p-1 ${classes.button}`}
                               variant="primary"
                               href={snippetApi.genSnippetLink(
                                 snippetApi.encodeId(id),
@@ -139,7 +173,7 @@ export function Profile() {
                               {t('profile.openReplButton')}
                             </Button>
                             <Button
-                              className={`ms-2 ${classes.button}`}
+                              className={`btn-sm p-1 ${classes.button}`}
                               variant="primary"
                               onClick={() =>
                                 dispatch(
@@ -157,38 +191,7 @@ export function Profile() {
                             >
                               {t('profile.shareReplButton')}
                             </Button>
-                            <Dropdown
-                              className={`mt-1 ms-2 ${classes.snippetTools}`}
-                              id="snippet"
-                            >
-                              <Dropdown.Toggle
-                                aria-expanded="false"
-                                className={`flex-grow-0  dropdown-toggle-split ${classes.dropdown}`}
-                              >
-                                <span className="visually-hidden">
-                                  {t('profile.editSnippet')}
-                                </span>
-                              </Dropdown.Toggle>
-                              <Dropdown.Menu
-                                className={`${classes.dropdownMenu}`}
-                                >
-                                <Dropdown.Item
-                                  className={`${classes.dropdownItem}`}
-                                  onClick={() =>
-                                    handleSnippetRename(id, name, code)
-                                  }
-                                >
-                                  {t('profile.renameReplButton')}
-                                </Dropdown.Item>
-                                <Dropdown.Item
-                                  className={`${classes.dropdownItem}`}
-                                  onClick={() => handleDeleteConfirmation(id)}
-                                >
-                                  {t('profile.deleteReplButton')}
-                                </Dropdown.Item>
-                              </Dropdown.Menu>
-                            </Dropdown>
-                          </ButtonToolbar>
+                          </div>
                       </Card.Body>
                     </Card>
                   </Col>
