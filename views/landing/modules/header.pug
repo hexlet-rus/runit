@@ -1,10 +1,15 @@
 header
-    .container
-        nav.navbar.navbar-dark.justify-content-between.py-3.align-items-center
-            a.navbar-brand(href="/")
-                img.d-inline-block.align-top(src="/landing/images/logo.png" alt='hexlet')
-                p.d-inline-block.align-bottom.ms-1.mb-0.lh-sm Runit
-            .d-flex.justify-content-end
-                a.btn.btn-link.me-4.align-self-center.fs-5.lh-5(href="/about") О проекте
-                a.btn.btn-light.me-4.py-2.fs-5.lh-5(href="/login") Войти
-                a.btn.btn-primary.py-2.fs-5.lh-5(href="/signup") Регистрация
+    nav.navbar.navbar-dark.py-3.navbar-expand-md
+        a.pt-lg-0.pb-lg-2.navbar-brand(href="/")
+            img.d-inline-block.align-top(src="/landing/images/logo.svg" alt='hexlet' width="100" height="30")
+            p.d-inline-block.align-bottom.ms-1.mb-0.lh-sm Runit
+        button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation")
+            span.navbar-toggler-icon
+        .collapse.navbar-collapse(id="navbarToggler")
+            ul.navbar-nav.ms-auto.text-end
+                li.nav-item.mb-2.mb-md-0
+                    a.btn.btn-link.me-md-4.align-self-center.fs-md-5.fs-6.lh-5(href="/about") О проекте
+                li.nav-item.mb-2.mb-md-0
+                    a.btn.btn-light.me-md-4.py-2.fs-md-5.fs-6.lh-5(href="/login") Войти
+                li.nav-item
+                    a.btn.btn-primary.py-2.fs-md-5.fs-6.lh-5(href="/signup") Регистрация
