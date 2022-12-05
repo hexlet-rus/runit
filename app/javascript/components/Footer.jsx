@@ -9,10 +9,10 @@ import {
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 import { useTranslation } from 'react-i18next';
-import { Container, Row, Col, Nav, Dropdown } from 'react-bootstrap';
+import { Container, Row, Col, Nav, Dropdown, ButtonGroup, DropdownButton } from 'react-bootstrap';
 
 export function buildFooter() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   return (
     <footer className="bg-dark border-top border-secondary pt-4 pb-5">
       <Container>
@@ -125,11 +125,11 @@ export function buildFooter() {
             <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link
-                    as="a"
-                    eventKey="hexlet"
-                    className="py-1 text-muted px-0"
-                    href="https://ru.hexlet.io/my"
-                    target="_blank"
+                  as="a"
+                  eventKey="hexlet"
+                  className="py-1 text-muted px-0"
+                  href="https://ru.hexlet.io/my"
+                  target="_blank"
                 >
                   {t('footer.hexlet')}
                 </Nav.Link>
@@ -191,66 +191,79 @@ export function buildFooter() {
               </li>
             </Nav>
             <Nav as='ul' className='flex-column align-items-start'>
-            <div className="fw-bold mt-3 mb-3 text-white">{t('footer.subscribe')}</div>
-            <ul className="list-unstyled h3 text-start d-flex flex-wrap">
-              <li className="me-4 mb-2">
-                <a
+              <div className="fw-bold mt-3 mb-3 text-white">{t('footer.subscribe')}</div>
+              <ul className="list-unstyled h3 text-start d-flex flex-wrap">
+                <li className="me-4 mb-2">
+                  <a
                     href="https://slack-ru.hexlet.io/?_gl=1*gwa8w0*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2Nzk5NTczNy4xODcuMS4xNjY3OTk3NTg4LjAuMC4w"
                     aria-label="Slack"
                     target="_blank"
                     className="text-muted"
                     rel="noopener noreferrer nofollow"
-                >
-                  <FontAwesomeIcon icon={faSlack} className="fa-1x" />
-                </a>
-              </li>
-              <li className="me-4 mb-2">
-                <a
+                  >
+                    <FontAwesomeIcon icon={faSlack} className="fa-1x" />
+                  </a>
+                </li>
+                <li className="me-4 mb-2">
+                  <a
                     href="https://www.youtube.com/user/HexletUniversity"
                     aria-label="Youtube"
                     target="_blank"
                     className="text-muted"
                     rel="noopener noreferrer nofollow"
-                >
-                  <FontAwesomeIcon icon={faYoutube} className="fa-1x" />
-                </a>
-              </li>
-              <li className="me-4 mb-2">
-                <a
+                  >
+                    <FontAwesomeIcon icon={faYoutube} className="fa-1x" />
+                  </a>
+                </li>
+                <li className="me-4 mb-2">
+                  <a
                     href="https://t.me/hexlet_ru"
                     aria-label="Telegram"
                     target="_blank"
                     className="text-muted"
                     rel="noopener noreferrer nofollow"
-                >
-                  <FontAwesomeIcon icon={faTelegram} className="fa-1x" />
-                </a>
-              </li>
-              <li className="me-4 mb-2">
-                <a
+                  >
+                    <FontAwesomeIcon icon={faTelegram} className="fa-1x" />
+                  </a>
+                </li>
+                <li className="me-4 mb-2">
+                  <a
                     href="https://vk.com/hexlet"
                     aria-label="Vk"
                     target="_blank"
                     className="text-muted"
                     rel="noopener noreferrer nofollow"
-                >
-                  <FontAwesomeIcon icon={faVk} className="fa-1x" />
-                </a>
-              </li>
-              <li className="me-4 mb-2">
-                <a
+                  >
+                    <FontAwesomeIcon icon={faVk} className="fa-1x" />
+                  </a>
+                </li>
+                <li className="me-4 mb-2">
+                  <a
                     href="https://twitter.com/HexletHQ"
                     aria-label="Twitter"
                     target="_blank"
                     className="text-muted"
                     rel="noopener noreferrer nofollow"
-                >
-                  <FontAwesomeIcon icon={faTwitter} className="fa-1x" />
-                </a>
-              </li>
-            </ul>
-          </Nav>
-            {/* Add it when english version will be available
+                  >
+                    <FontAwesomeIcon icon={faTwitter} className="fa-1x" />
+                  </a>
+                </li>
+              </ul>
+            </Nav>
+            <ButtonGroup>
+              <DropdownButton as={ButtonGroup} title={t('navBar.languageSelection')} id="bg-nested-dropdown" variant="info">
+                <Dropdown.Item eventKey="1" onClick={() => i18n.changeLanguage('ru')}>{t('navBar.ru')}</Dropdown.Item>
+                <Dropdown.Item eventKey="2" onClick={() => i18n.changeLanguage('en')}>{t('navBar.en')}</Dropdown.Item>
+              </DropdownButton>
+            </ButtonGroup>
+          </Col>
+        </Row>
+      </Container>
+    </footer>
+  );
+};
+
+{/* Add it when english version will be available
             <Dropdown role="group" className="mt-3">
               <Dropdown.Toggle
                 className="btn-link text-body text-decoration-none p-0 x-btn-focus-visible"
@@ -288,9 +301,3 @@ export function buildFooter() {
                 </li>
               </Dropdown.Menu>
             </Dropdown> */}
-          </Col>
-        </Row>
-      </Container>
-    </footer>
-  );
-}
