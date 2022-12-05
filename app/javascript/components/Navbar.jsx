@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import routes from '../routes.js';
 import { useAuth } from '../hooks';
 import classes from './Navbar.module.css';
-import Logo from '/app/assets/landing/images/logo.svg'
+import Logo from '/app/assets/landing/images/logo.svg';
 
 export function Navbar() {
   const auth = useAuth();
