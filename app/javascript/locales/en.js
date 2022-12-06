@@ -98,8 +98,9 @@ const enLocales = {
       signUp: 'Sign up',
     },
     footer: {
+      hexlet: 'Hexlet',
       about: 'About',
-      carerr: 'Careers at Hexlet',
+      career: 'Careers at Hexlet',
       shop: 'Merch Shop',
       doc: 'Documents',
       conditions: 'Terms of Use',
