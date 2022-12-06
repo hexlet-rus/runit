@@ -9,10 +9,11 @@ import {
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 import { useTranslation } from 'react-i18next';
-import { Container, Row, Col, Nav, Dropdown, ButtonGroup, DropdownButton } from 'react-bootstrap';
+import { Container, Row, Col, Nav, Dropdown } from 'react-bootstrap';
 
 export function buildFooter() {
   const { t, i18n } = useTranslation();
+
   return (
     <footer className="bg-dark border-top border-secondary pt-4 pb-5">
       <Container>
@@ -250,33 +251,18 @@ export function buildFooter() {
                 </li>
               </ul>
             </Nav>
-            <ButtonGroup>
-              <DropdownButton as={ButtonGroup} title={t('navBar.languageSelection')} id="bg-nested-dropdown" variant="info">
-                <Dropdown.Item eventKey="1" onClick={() => i18n.changeLanguage('ru')}>{t('navBar.ru')}</Dropdown.Item>
-                <Dropdown.Item eventKey="2" onClick={() => i18n.changeLanguage('en')}>{t('navBar.en')}</Dropdown.Item>
-              </DropdownButton>
-            </ButtonGroup>
-          </Col>
-        </Row>
-      </Container>
-    </footer>
-  );
-};
-
-{/* Add it when english version will be available
-            <Dropdown role="group" className="mt-3">
+            <Dropdown role="group" className="mt-3" variant="success">
               <Dropdown.Toggle
-                className="btn-link text-body text-decoration-none p-0 x-btn-focus-visible"
-                split
-                variant="none"
+                className="text-decoration-none text-white"
+                data-bs-toggle="dropdown"
+                aria-expanded
               >
                 <FontAwesomeIcon icon={faGlobe} className="me-2" />
                 <span className="fw-bold me-2">{t('footer.language')}</span>
               </Dropdown.Toggle>
-
               <Dropdown.Menu as="ul">
                 <li>
-                  <Dropdown.Item as="a" className="dropdown-item" href="/#">
+                  <Dropdown.Item as="button" className="dropdown-item" onClick={() => i18n.changeLanguage('en')}>
                     <img
                       width="22"
                       alt="Переключить язык на en"
@@ -284,11 +270,11 @@ export function buildFooter() {
                       loading="lazy"
                       src="https://cdn2.hexlet.io/assets/flag-en-f0b48c6562bb27879fbd685ece0133271ea043384dd9793843c246f862ac7cc1.svg"
                     />
-                    <span className="my-auto text-muted">{t('footer.en')}</span>
+                    {t('footer.en')}
                   </Dropdown.Item>
                 </li>
                 <li>
-                  <Dropdown.Item as="a" className="dropdown-item" href="/#">
+                  <Dropdown.Item as="button" className="dropdown-item" onClick={() => i18n.changeLanguage('ru')}>
                     <img
                       width="22"
                       alt="Переключить язык на ru"
@@ -296,8 +282,14 @@ export function buildFooter() {
                       loading="lazy"
                       src="https://cdn2.hexlet.io/assets/flag-ru-593864ce87ae202b2c2e9393b2a6cf9384ac9cbb1c70632f4c6eeca34341483e.svg"
                     />
-                    <span className="my-auto text-muted">{t('footer.ru')}</span>
+                    {t('footer.ru')}
                   </Dropdown.Item>
                 </li>
               </Dropdown.Menu>
-            </Dropdown> */}
+            </Dropdown>
+          </Col>
+        </Row>
+      </Container>
+    </footer>
+  );
+};
