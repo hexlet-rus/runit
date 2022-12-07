@@ -11,7 +11,7 @@ export function Faq() {
       <div className="row">
         <h2 className="text-center h2 fw-bold mb-0">{t('faq.faq')}</h2>
       </div>
-      <Accordion flush>
+      <Accordion className="mt-40" flush>
         <Accordion.Item eventKey="0">
           <Accordion.Header>{t('faq.q0')}</Accordion.Header>
           <Accordion.Body>{t('faq.a0')}</Accordion.Body>
