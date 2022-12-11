@@ -30,10 +30,10 @@ export function RemindPassword() {
 
   const { handleBlur, handleChange, handleSubmit, values } = formik;
   return (
-    <Container className="h-100">
+    <Container className="h-100 bg-dark" fluid>
       <Row className="justify-content-center align-content-center h-100">
-        <Col xs={12} md={6} xxl={5} className="mt-5">
-          <Card className="shadow-sm">
+        <Col xs={12} md={6} xxl={5} className="mt-5 mb-5">
+          <Card className="shadow-sm bg-dark text-white">
             <Card.Body className="p-lg-4 p-xl-5">
               <h1 className="mb-4 fw-light">{t('remindPass.pageHeader')}</h1>
               <div className="pt-lg-3">
@@ -46,7 +46,7 @@ export function RemindPassword() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.email}
-                      className="form-input"
+                      className="form-input bg-dark text-white"
                       name="email"
                       id="email"
                       autoComplete="email"
@@ -70,7 +70,7 @@ export function RemindPassword() {
                   <span className="text-muted">
                     {t('remindPass.footer.signUpHeader')}
                   </span>
-                  <a className="link-dark" href={routes.signUpPagePath()}>
+                  <a className="link-light" href={routes.signUpPagePath()}>
                     {t('remindPass.footer.signUp')}
                   </a>
                 </div>
@@ -78,7 +78,7 @@ export function RemindPassword() {
                   <span className="text-muted">
                     {t('remindPass.footer.signInHeader')}
                   </span>
-                  <a className="link-dark" href={routes.loginPagePath()}>
+                  <a className="link-light" href={routes.loginPagePath()}>
                     {t('remindPass.footer.signIn')}
                   </a>
                 </div>
