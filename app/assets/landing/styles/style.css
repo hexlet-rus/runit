@@ -25,6 +25,48 @@ body {
   font-family: 'Onest', sans-serif;
 }
 
+.accordion {
+  --bs-accordion-bg: none;
+  --bs-accordion-color: white;
+  --bs-accordion-btn-color: white;
+  --bs-accordion-icon-color: #fff;
+  --bs-accordion-border-width: 0px;
+}
+
+.accordion-collapse {
+  margin-left: 35px;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: transparent;
+}
+
+.accordion-button:not(.collapsed)::before {
+  transform: var(--bs-accordion-btn-icon-transform);
+  background-image: var(--bs-accordion-btn-active-icon);
+}
+
+.accordion-button::before {
+  content: '';
+  flex-shrink: 0;
+  width: var(--bs-accordion-btn-icon-width);
+  height: var(--bs-accordion-btn-icon-width);
+  background-repeat: no-repeat;
+  background-size: var(--bs-accordion-btn-icon-width);
+  transition: var(--bs-accordion-btn-icon-transition);
+  margin-right: 15px;
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
+}
+
+.accordion-button::after {
+  display: none;
+}
+
 .btn-primary {
   --bs-btn-bg: var(--color-blue);
   --bs-btn-border-color: var(--color-blue);
