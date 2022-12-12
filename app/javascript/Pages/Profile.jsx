@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Button, Card, Dropdown } from 'react-bootstrap';
 import { ThreeDots } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
-import { useSnippets } from '../hooks';
+import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 import { useDispatch, useSelector } from 'react-redux';
 
 import axios from 'axios';
+import { useSnippets } from '../hooks';
 import routes from '../routes.js';
 
 import { actions as modalActions } from '../slices/modalSlice.js';
 import { actions as snippetsActions } from '../slices/snippetsSlice.js';
 
 import classes from './Profile.module.css';
-import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 
 export function Profile() {
   const { t } = useTranslation();
@@ -58,7 +58,7 @@ export function Profile() {
 
   return (
     <div className="main-content">
-      <div className={`${classes.upperLine}`}></div>
+      <div className={`${classes.upperLine}`} />
       <div className={`h-100 w-100 px-3 bg-dark ${classes.container}`}>
         <Row className={`${classes.profileContainer}`}>
           <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
@@ -85,7 +85,7 @@ export function Profile() {
                   {/* TODO: add ability to copy user profile link */}
                 </Button>
               </div>
-              <div className="gap" style={{ marginBottom: 'auto' }}></div>
+              <div className="gap" style={{ marginBottom: 'auto' }} />
               <div
                 className="d-flex flex-md-column w-100"
                 style={{ alignItems: 'center' }}
@@ -119,10 +119,12 @@ export function Profile() {
                 </div>
               </Row>
               <Row xs={1} md={2} className="g-4 my-1">
-                {snippets.map(({ id, name, code }) => (
+                {snippets.map(({ id, slug, name, code }) => (
                   <Col xs lg="3" key={id}>
                     <Card style={{ border: 0 }}>
-                      <Card.Header className={`d-flex justify-content-between ${classes.snippetHeader}`}>
+                      <Card.Header
+                        className={`d-flex justify-content-between ${classes.snippetHeader}`}
+                      >
                         <p className="m-0 p-2">{name}</p>
                         <Dropdown
                           className={`${classes.snippetTools}`}
@@ -138,9 +140,7 @@ export function Profile() {
                               {t('profile.editSnippet')}
                             </span>
                           </DropdownToggle>
-                          <Dropdown.Menu
-                            className={`${classes.dropdownMenu}`}
-                            >
+                          <Dropdown.Menu className={`${classes.dropdownMenu}`}>
                             <Dropdown.Item
                               className={`${classes.dropdownItem}`}
                               onClick={() =>
@@ -162,36 +162,37 @@ export function Profile() {
                         <Card.Text>
                           {/* TODO: add a screenshot for snippet */}
                         </Card.Text>
-                          <div className="d-flex justify-content-center gap-2">
-                            <Button
-                              className={`btn-sm p-1 ${classes.button}`}
-                              variant="primary"
-                              href={snippetApi.genSnippetLink(
-                                snippetApi.encodeId(id),
-                              )}
-                            >
-                              {t('profile.openReplButton')}
-                            </Button>
-                            <Button
-                              className={`btn-sm p-1 ${classes.button}`}
-                              variant="primary"
-                              onClick={() =>
-                                dispatch(
-                                  modalActions.openModal({
-                                    type: 'sharingRepl',
-                                    item: {
-                                      name,
-                                      link: snippetApi.genSnippetLink(
-                                        snippetApi.encodeId(id),
-                                      ),
-                                    },
-                                  }),
-                                )
-                              }
-                            >
-                              {t('profile.shareReplButton')}
-                            </Button>
-                          </div>
+                        <div className="d-flex justify-content-center gap-2">
+                          <Button
+                            className={`btn-sm p-1 ${classes.button}`}
+                            variant="primary"
+                            href={snippetApi.genViewSnippetLink(
+                              userdata.login,
+                              slug,
+                            )}
+                          >
+                            {t('profile.openReplButton')}
+                          </Button>
+                          <Button
+                            className={`btn-sm p-1 ${classes.button}`}
+                            variant="primary"
+                            onClick={() =>
+                              dispatch(
+                                modalActions.openModal({
+                                  type: 'sharingRepl',
+                                  item: {
+                                    name,
+                                    link: snippetApi.genSnippetLink(
+                                      snippetApi.encodeId(id),
+                                    ),
+                                  },
+                                }),
+                              )
+                            }
+                          >
+                            {t('profile.shareReplButton')}
+                          </Button>
+                        </div>
                       </Card.Body>
                     </Card>
                   </Col>

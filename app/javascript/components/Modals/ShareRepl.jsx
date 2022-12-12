@@ -1,13 +1,13 @@
 import React from 'react';
 import { Button, Form, Modal, Tabs, Tab, FloatingLabel } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { actions as modalActions } from '../../slices/modalSlice.js';
 import { useTranslation } from 'react-i18next';
-import { useSnippets } from '../../hooks';
 import ClipboardJS from 'clipboard';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { actions as modalActions } from '../../slices/modalSlice.js';
+import { useSnippets } from '../../hooks';
 
 new ClipboardJS('.button-copy');
 
@@ -46,8 +46,8 @@ function ShareRepl() {
       actions.setSubmitting(true);
       try {
         const name = `${values.name}${languages.get(currentLanguage)}`;
-        const encodedId = await snippetApi.saveSnippet(code, name);
-        const link = snippetApi.genSnippetLink(encodedId);
+        const id = await snippetApi.saveSnippet(code, name);
+        const link = snippetApi.genSnippetLink(snippetApi.encodeId(id));
         const url = new URL(link);
         navigate(url.search);
         navigate(0);

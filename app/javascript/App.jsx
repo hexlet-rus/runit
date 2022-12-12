@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { MonacoEditor } from './components/Editor/index.jsx';
 import { Button } from './components/Button/index.jsx';
 import { Terminal } from './components/Terminal/index.jsx';
 import { actions } from './slices/index.js';
-import { useDispatch } from 'react-redux';
 import { useSnippets } from './hooks';
 
 export function App() {
@@ -12,9 +12,11 @@ export function App() {
 
   useEffect(() => {
     const loadSnippet = async () => {
-      if (snippetApi.hasSnippetParams()) {
-        const decodedId = snippetApi.getSnippetIdFromParams();
-        const snippetData = await snippetApi.getSnippetData(decodedId);
+      if (snippetApi.hasViewSnippetParams()) {
+        const viewSnippetParams = snippetApi.getViewSnippetParams();
+        const snippetData = await snippetApi.getSnippetDataByViewParams(
+          viewSnippetParams,
+        );
         dispatch(actions.updateCode(snippetData.code));
       }
     };

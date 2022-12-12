@@ -1,7 +1,9 @@
 import React from 'react';
-import { SnippetsContext } from '../contexts';
+import { useLoaderData } from 'react-router';
 import axios from 'axios';
+import { SnippetsContext } from '../contexts';
 import routes from '../routes';
+
 const { Buffer } = require('buffer');
 
 function SnippetsProvider({ children }) {
@@ -21,14 +23,17 @@ function SnippetsProvider({ children }) {
     return response.data;
   };
 
+  const getSnippetDataByViewParams = async ({ login, slug }) => {
+    const { data } = await axios.get(routes.userInfoPath(login));
+    return data.snippets.find((snippet) => snippet.slug === slug);
+  };
+
   const saveSnippet = async (code, name) => {
-    const response = await axios.post(routes.createSnippetPath(), {
+    const { data } = await axios.post(routes.createSnippetPath(), {
       name,
       code,
     });
-    const id = response.data.id.toString();
-    const encodedId = encodeId(id);
-    return encodedId;
+    return data.id;
   };
 
   const deleteSnippet = async (decodedId) => {
@@ -47,11 +52,26 @@ function SnippetsProvider({ children }) {
     return url.searchParams.has('snippet');
   };
 
+  const hasViewSnippetParams = () => {
+    const urlData = useLoaderData();
+    return urlData.login && urlData.slug;
+  };
+
   const getSnippetIdFromParams = () => {
     const url = new URL(window.location);
     const encodedId = url.searchParams.get('snippet');
     const decodedId = decodeId(encodedId);
     return decodedId;
+  };
+
+  const getViewSnippetParams = () => {
+    const { login, slug } = useLoaderData();
+    return { login, slug };
+  };
+
+  const genViewSnippetLink = (login, slug) => {
+    const url = new URL(`/users/${login}/snippets/${slug}`, window.location);
+    return url.toString();
   };
 
   const genSnippetLink = (encodedId) => {
@@ -88,10 +108,14 @@ function SnippetsProvider({ children }) {
         deleteSnippet,
         genEmbedFrame,
         genSnippetLink,
+        genViewSnippetLink,
         getSnippetData,
+        getSnippetDataByViewParams,
         hasSnippetParams,
+        hasViewSnippetParams,
         genEmbedSnippetLink,
         getSnippetIdFromParams,
+        getViewSnippetParams,
       }}
     >
       {children}

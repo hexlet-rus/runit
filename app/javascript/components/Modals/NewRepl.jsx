@@ -3,10 +3,10 @@ import { Modal, Form, FloatingLabel, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
-import { useSnippets } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { faker } from '@faker-js/faker';
+import { useSnippets } from '../../hooks';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
 
@@ -51,8 +51,8 @@ function NewRepl() {
       actions.setSubmitting(true);
       try {
         const name = `${values.name}${languages.get(currentLanguage)}`;
-        const encodedId = await snippetsApi.saveSnippet(code, name);
-        const link = snippetsApi.genSnippetLink(encodedId);
+        const id = await snippetsApi.saveSnippet(code, name);
+        const link = snippetsApi.genViewSnippetLink(id);
         const url = new URL(link);
         navigate(`${url.pathname}${url.search}`);
         dispatch(modalActions.closeModal());

@@ -97,6 +97,7 @@
     "react-i18next": "^11.18.4",
     "react-monaco-editor": "^0.48.0",
     "react-redux": "^8.0.2",
+    "react-router": "^6.4.5",
     "react-router-dom": "^6.3.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
