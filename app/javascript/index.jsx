@@ -4,6 +4,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing';
 // import gon from 'gon';
 
 import { BrowserRouter } from 'react-router-dom';
@@ -24,6 +26,12 @@ export default async () => {
   });
   const store = configureStore({
     reducer: rootReducer,
+  });
+
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN,
+    integrations: [new BrowserTracing()],
+    tracesSampleRate: 1.0,
   });
 
   // store.dispatch(setupState(gon));
