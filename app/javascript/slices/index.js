@@ -9,6 +9,7 @@ import languagesReducer, {
 } from './languagesSlice.js';
 import modalReducer, { actions as modalActions } from './modalSlice.js';
 import snippetsSlice, { actions as snippetsActions } from './snippetsSlice.js';
+import userSlice, { actions as userActions } from './userSlice';
 
 export const rootReducer = combineReducers({
   editor: editorReducer,
@@ -16,6 +17,7 @@ export const rootReducer = combineReducers({
   languages: languagesReducer,
   modal: modalReducer,
   snippets: snippetsSlice,
+  user: userSlice,
 });
 
 // export const setupState = (gon) => (dispatch) => {
@@ -29,5 +31,6 @@ export const actions = {
   ...languagesActions,
   ...modalActions,
   ...snippetsActions,
+  ...userActions,
   runCode,
 };
