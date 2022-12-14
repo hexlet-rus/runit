@@ -53,7 +53,9 @@ function ChangePassword() {
     onSubmit: async (values) => {
       try {
         // await axios.put(routes.changePasswordPath(id), values);
-        // вероятно, надо как-то уведомить пользователя о смене пароля
+
+        /* TODO: add a path to change the password */
+        /* TODO: Add a user notification about password change */
         dispatch(modalActions.closeModal());
       } catch (err) {
         if (err.response?.status === 400) {
