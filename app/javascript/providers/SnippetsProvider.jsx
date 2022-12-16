@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLoaderData } from 'react-router';
 import axios from 'axios';
 import { SnippetsContext } from '../contexts';
 import routes from '../routes';
@@ -52,8 +51,7 @@ function SnippetsProvider({ children }) {
     return url.searchParams.has('snippet');
   };
 
-  const hasViewSnippetParams = () => {
-    const urlData = useLoaderData();
+  const hasViewSnippetParams = (urlData) => {
     return urlData.login && urlData.slug;
   };
 
@@ -64,9 +62,8 @@ function SnippetsProvider({ children }) {
     return decodedId;
   };
 
-  const getViewSnippetParams = () => {
-    const { login, slug } = useLoaderData();
-    return { login, slug };
+  const getViewSnippetParams = (loaderData) => {
+    return loaderData;
   };
 
   const genViewSnippetLink = (login, slug) => {

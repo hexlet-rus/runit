@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Form, FloatingLabel, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -6,9 +6,12 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { faker } from '@faker-js/faker';
+import axios from 'axios';
 import { useSnippets } from '../../hooks';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
+import routes from '../../routes';
+import { actions as snippetsActions } from '../../slices/snippetsSlice';
 
 const generateInitialName = () => {
   const adjectiveLength = 3 + Math.round(Math.random() * 6);
@@ -18,6 +21,8 @@ const generateInitialName = () => {
 };
 
 function NewRepl() {
+  const [userData, setUserData] = useState({});
+
   const dispatch = useDispatch();
   const inputRef = useRef();
   const { t } = useTranslation();
@@ -31,6 +36,15 @@ function NewRepl() {
     .set('javascript', '.js')
     .set('python', '.py')
     .set('php', '.php');
+
+  useEffect(() => {
+    const fetchUserSnippets = async () => {
+      const response = await axios.get(routes.userProfilePath());
+      setUserData(response.data.currentUser);
+      dispatch(snippetsActions.addSnippets(response.data.snippets));
+    };
+    fetchUserSnippets();
+  }, []);
 
   useEffect(() => {
     inputRef.current.focus();
@@ -52,7 +66,7 @@ function NewRepl() {
       try {
         const name = `${values.name}${languages.get(currentLanguage)}`;
         const id = await snippetsApi.saveSnippet(code, name);
-        const link = snippetsApi.genViewSnippetLink(id);
+        const link = snippetsApi.genViewSnippetLink(userData.login, id);
         const url = new URL(link);
         navigate(`${url.pathname}${url.search}`);
         dispatch(modalActions.closeModal());

@@ -4,7 +4,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, Repository } from 'typeorm';
-import path from 'path';
+import * as path from 'path';
 import { Users } from '../entities/user.entity';
 import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
@@ -27,8 +27,12 @@ export class SnippetsService {
   }
 
   async getSlug(name: string, login: string, id: number): Promise<string> {
-    const basename = path.basename(name, path.extname(name));
-    const slug = `${login}_${basename.replace(/\s/g, '-').toLowerCase()}`;
+    const trimmedName = name.trim();
+    const extension = path.extname(trimmedName);
+    const basename = path.basename(trimmedName, extension);
+    const slug = `${basename
+      .replace(/\s/g, '-')
+      .toLowerCase()}_${extension.slice(1)}`;
     const snippets = await this.snippetManager
       .createQueryBuilder(Snippets, 'snippet')
       .where('snippet.userId= :id', { id })
