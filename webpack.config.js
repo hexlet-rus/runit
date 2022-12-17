@@ -9,6 +9,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const env = process.env.NODE_ENV || 'development';
 const isProd = env === 'production';
+const webpack = require('webpack');
 
 module.exports = {
   mode: env,
@@ -80,6 +81,9 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
+    new webpack.ProvidePlugin({
+      process: 'process/browser',
+    }),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],

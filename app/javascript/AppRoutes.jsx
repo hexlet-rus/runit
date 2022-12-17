@@ -7,6 +7,7 @@ import { SignUp } from './Pages/SignUp.jsx';
 import { SignIn } from './Pages/SignIn.jsx';
 import { About } from './Pages/About.jsx';
 import { RemindPassword } from './Pages/RemindPassword.jsx';
+import { LicenseAgreement } from './Pages/LicenseAgreement.jsx';
 import { Repls } from './components/Repls';
 import { useAuth } from './hooks';
 import Layout from './components/Layout.jsx';
@@ -38,6 +39,10 @@ function AppRoutes() {
         <Route
           path={routes.remindPassPagePath()}
           element={<RemindPassword />}
+        />
+        <Route
+          path={routes.licenseAgreementPath()}
+          element={<LicenseAgreement />}
         />
       </Route>
       <Route path={routes.embedPagePath()} element={<EmbedSnippet />} />
