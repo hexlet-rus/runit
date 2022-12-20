@@ -12,9 +12,6 @@ db-generate:
 start:
 	npm run start:dev
 
-start-dev:
-	NODE_ENV=development npm run start:dev
-
 front-dev:
 	npm run serve
 
