@@ -15,7 +15,6 @@ import { UsersService } from './users/users.service';
 import { UsersModule } from './users/users.module';
 import { AuthController } from './auth/auth.controller';
 import getDataSourceConfig from './data-source.config';
-import { PagesController } from './pages/pages.controller';
 import { HttpsRedirectMiddleware } from './common/https.middleware';
 import { EventsModule } from './events/events.module';
 
@@ -35,7 +34,6 @@ import { EventsModule } from './events/events.module';
     SnippetsController,
     UsersController,
     AuthController,
-    PagesController,
   ],
   providers: [AppService, SnippetsService, UsersService, AuthModule],
 })

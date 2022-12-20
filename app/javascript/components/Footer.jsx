@@ -125,55 +125,55 @@ export function buildFooter() {
               <ul className="list-unstyled h3 text-start d-flex flex-wrap">
                 <li className="me-4 mb-2">
                   <a
-                      href="https://slack-ru.hexlet.io/?_gl=1*gwa8w0*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2Nzk5NTczNy4xODcuMS4xNjY3OTk3NTg4LjAuMC4w"
-                      aria-label="Slack"
-                      target="_blank"
-                      className="text-muted"
-                      rel="noopener noreferrer nofollow"
+                    href="https://slack-ru.hexlet.io/?_gl=1*gwa8w0*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2Nzk5NTczNy4xODcuMS4xNjY3OTk3NTg4LjAuMC4w"
+                    aria-label="Slack"
+                    target="_blank"
+                    className="text-muted"
+                    rel="noopener noreferrer nofollow"
                   >
                     <FontAwesomeIcon icon={faSlack} className="fa-1x" />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
                   <a
-                      href="https://www.youtube.com/user/HexletUniversity"
-                      aria-label="Youtube"
-                      target="_blank"
-                      className="text-muted"
-                      rel="noopener noreferrer nofollow"
+                    href="https://www.youtube.com/user/HexletUniversity"
+                    aria-label="Youtube"
+                    target="_blank"
+                    className="text-muted"
+                    rel="noopener noreferrer nofollow"
                   >
                     <FontAwesomeIcon icon={faYoutube} className="fa-1x" />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
                   <a
-                      href="https://t.me/hexlet_ru"
-                      aria-label="Telegram"
-                      target="_blank"
-                      className="text-muted"
-                      rel="noopener noreferrer nofollow"
+                    href="https://t.me/hexlet_ru"
+                    aria-label="Telegram"
+                    target="_blank"
+                    className="text-muted"
+                    rel="noopener noreferrer nofollow"
                   >
                     <FontAwesomeIcon icon={faTelegram} className="fa-1x" />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
                   <a
-                      href="https://vk.com/hexlet"
-                      aria-label="Vk"
-                      target="_blank"
-                      className="text-muted"
-                      rel="noopener noreferrer nofollow"
+                    href="https://vk.com/hexlet"
+                    aria-label="Vk"
+                    target="_blank"
+                    className="text-muted"
+                    rel="noopener noreferrer nofollow"
                   >
                     <FontAwesomeIcon icon={faVk} className="fa-1x" />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
                   <a
-                      href="https://twitter.com/HexletHQ"
-                      aria-label="Twitter"
-                      target="_blank"
-                      className="text-muted"
-                      rel="noopener noreferrer nofollow"
+                    href="https://twitter.com/HexletHQ"
+                    aria-label="Twitter"
+                    target="_blank"
+                    className="text-muted"
+                    rel="noopener noreferrer nofollow"
                   >
                     <FontAwesomeIcon icon={faTwitter} className="fa-1x" />
                   </a>
@@ -224,11 +224,11 @@ export function buildFooter() {
             <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link
-                    as="a"
-                    eventKey="hexlet"
-                    className="py-1 text-muted px-0"
-                    href="https://ru.hexlet.io/my"
-                    target="_blank"
+                  as="a"
+                  eventKey="hexlet"
+                  className="py-1 text-muted px-0"
+                  href="https://ru.hexlet.io/my"
+                  target="_blank"
                 >
                   {t('footer.hexlet')}
                 </Nav.Link>
