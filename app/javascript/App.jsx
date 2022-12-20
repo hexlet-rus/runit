@@ -1,20 +1,23 @@
 import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useLoaderData } from 'react-router';
 import { MonacoEditor } from './components/Editor/index.jsx';
 import { Button } from './components/Button/index.jsx';
 import { Terminal } from './components/Terminal/index.jsx';
 import { actions } from './slices/index.js';
-import { useDispatch } from 'react-redux';
 import { useSnippets } from './hooks';
 
 export function App() {
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
+  const loaderData = useLoaderData();
 
   useEffect(() => {
     const loadSnippet = async () => {
-      if (snippetApi.hasSnippetParams()) {
-        const decodedId = snippetApi.getSnippetIdFromParams();
-        const snippetData = await snippetApi.getSnippetData(decodedId);
+      if (snippetApi.hasViewSnippetParams(loaderData)) {
+        const snippetData = await snippetApi.getSnippetDataByViewParams(
+          loaderData,
+        );
         dispatch(actions.updateCode(snippetData.code));
       }
     };

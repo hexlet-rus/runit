@@ -50,6 +50,12 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get(':login')
+  async findByLogin(@Param('login') login: string): Promise<User> {
+    return this.usersService.findByLogin(login);
+  }
+
   @Post()
   @UseFilters(new HttpValidationFilter())
   async create(@Body() createUserDto: CreateUserDto, @Response() res: any) {

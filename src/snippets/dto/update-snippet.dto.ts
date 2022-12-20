@@ -6,6 +6,8 @@ export class UpdateSnippetDto {
   @Length(1, 30)
   name: string;
 
+  slug: string;
+
   @IsString()
   code: string;
 }

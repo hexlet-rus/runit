@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import classes from './Button.module.css';
 import React, { memo, useEffect, useState } from 'react';
-import { useButton } from './hooks';
 import { useDispatch } from 'react-redux';
-import { useAuth } from '../../hooks';
-import { useSnippets } from '../../hooks';
+import classes from './Button.module.css';
+import { useButton } from './hooks';
+import { useAuth, useSnippets } from '../../hooks';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
 
@@ -17,7 +16,7 @@ export const Button = memo(() => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (snippetsApi.hasSnippetParams()) {
+    if (snippetsApi.hasViewSnippetParams()) {
       const decodedId = snippetsApi.getSnippetIdFromParams();
       setCurrentSnippetId(decodedId);
     } else {
@@ -32,25 +31,27 @@ export const Button = memo(() => {
   };
 
   const handleShareEvent = async () => {
-    if (!snippetsApi.hasSnippetParams()) {
+    if (!snippetsApi.hasViewSnippetParams()) {
       dispatch(modalActions.openModal(getTypeOfModal(auth.isLoggedIn)));
+    } else if (!auth.isLoggedIn) {
+      dispatch(modalActions.openModal({ type: 'gettingInfo' }));
     } else {
-      if (!auth.isLoggedIn) {
-        dispatch(modalActions.openModal({ type: 'gettingInfo' }));
-      } else {
-        const decodedId = snippetsApi.getSnippetIdFromParams();
-        const snippetData = await snippetsApi.getSnippetData(decodedId);
-        const snippetName = snippetData.name;
-        dispatch(
-          modalActions.openModal({
-            type: 'sharingRepl',
-            item: {
-              name: snippetName,
-              link: snippetsApi.genSnippetLink(snippetsApi.encodeId(decodedId)),
-            },
-          }),
-        );
-      }
+      const viewSnippetParams = snippetsApi.getViewSnippetParams();
+      const snippetData = await snippetsApi.getSnippetDataByViewParams(
+        viewSnippetParams,
+      );
+      const snippetName = snippetData.name;
+      dispatch(
+        modalActions.openModal({
+          type: 'sharingRepl',
+          item: {
+            name: snippetName,
+            link: snippetsApi.genSnippetLink(
+              snippetsApi.encodeId(snippetData.id),
+            ),
+          },
+        }),
+      );
     }
   };
 

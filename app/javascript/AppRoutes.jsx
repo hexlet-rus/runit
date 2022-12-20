@@ -14,12 +14,12 @@ import EmbedSnippet from './components/Embed/EmbedSnippet.jsx';
 
 import routes from './routes.js';
 
-const ProtectedRoute = ({ user, children }) => {
+function ProtectedRoute({ user, children }) {
   if (!user) {
     return <Navigate to={routes.signUpPagePath()} replace />;
   }
-  return children ? children : <Outlet />;
-};
+  return children || <Outlet />;
+}
 
 function AppRoutes() {
   const { isLoggedIn } = useAuth();
@@ -41,6 +41,11 @@ function AppRoutes() {
         />
       </Route>
       <Route path={routes.embedPagePath()} element={<EmbedSnippet />} />
+      <Route
+        path={routes.snippetPagePath()}
+        element={<App />}
+        loader={({ params }) => ({ login: params.login, slug: params.slug })}
+      />
       <Route path="*" element={<div>{t('appRotes.pageNotFound')}</div>} />
     </Routes>
   );
