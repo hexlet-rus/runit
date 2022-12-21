@@ -6,20 +6,14 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const webpack = require('webpack');
-// const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
-
-const env = process.env.NODE_ENV || 'development';
-const isProd = env === 'production';
-const webpack = require('webpack');
 
 module.exports = {
-  mode: env,
+  mode: 'production',
   entry: './app/javascript/application.js',
   output: {
     publicPath: '/',
     path: path.resolve(__dirname, 'assets'),
   },
-  devtool: isProd ? false : 'eval-source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
   },

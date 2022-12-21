@@ -31,13 +31,6 @@ make start
 ```
 http://localhost:3000
 
-## Running the app in development mode
-
-```bash
-make start-dev
-```
-http://localhost:3000
-
 ## Unit tests
 
 ```bash
