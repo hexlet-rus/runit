@@ -112,12 +112,11 @@ export function buildFooter() {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="offer"
+                  eventKey="licenseAgreement"
                   className="py-1 text-muted px-0"
-                  href="https://ru.hexlet.io/pages/offer"
-                  target="_blank"
+                  href="/licenseAgreement"
                 >
-                  {t('footer.offer')}
+                  {t('footer.licenseAgreement')}
                 </Nav.Link>
               </li>
             </Nav>

@@ -10,6 +10,7 @@ const webpack = require('webpack');
 
 const env = process.env.NODE_ENV || 'development';
 const isProd = env === 'production';
+const webpack = require('webpack');
 
 module.exports = {
   mode: env,
