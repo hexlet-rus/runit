@@ -81,9 +81,6 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
-    new webpack.ProvidePlugin({
-      process: 'process/browser',
-    }),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
