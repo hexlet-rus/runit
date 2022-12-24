@@ -15,6 +15,7 @@ function EditProfile() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [editFailed, setEditFailed] = useState('');
+  const [errorFeedback, setErrorFeedback] = useState('');
   const { login, email, id } = useSelector((state) => state.modal.item);
   const loginInputRef = useRef(null);
 
@@ -43,10 +44,16 @@ function EditProfile() {
     }),
     onSubmit: async (values) => {
       try {
-        const response = await axios.put(routes.updateUserPath(id), values);
+        const response = await axios.put(routes.updateUserPath(id), {
+          id,
+          ...values,
+        });
         dispatch(userActions.setUserInfo(response.data));
         dispatch(modalActions.closeModal());
       } catch (err) {
+        if (err.response?.status === 400) {
+          setErrorFeedback(t('signUp.signUpFailed'));
+        }
         if (err.isAxiosError) {
           console.log(t('errors.network'));
         } else {
@@ -114,7 +121,7 @@ function EditProfile() {
               }
             />
             <Form.Control.Feedback type="invalid">
-              {formik.touched.email && formik.errors.email}
+              {(formik.touched.email && formik.errors.email) || errorFeedback}
             </Form.Control.Feedback>
           </Form.Group>
         </Form>

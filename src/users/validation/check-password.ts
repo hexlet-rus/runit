@@ -1,4 +1,3 @@
-/* eslint-disable dot-notation */
 /* eslint-disable no-useless-constructor */
 import { Injectable } from '@nestjs/common';
 import {
@@ -6,20 +5,17 @@ import {
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
+import * as bcrypt from 'bcrypt';
 import { UsersService } from '../users.service';
 
-@ValidatorConstraint({ name: 'email', async: true })
+@ValidatorConstraint({ name: 'currPassword', async: true })
 @Injectable()
-export class CheckEmail implements ValidatorConstraintInterface {
+export class CheckPassword implements ValidatorConstraintInterface {
   constructor(private usersService: UsersService) {}
 
   async validate(text: string, validationArguments: ValidationArguments) {
-    const email = validationArguments.value;
-    const { object } = validationArguments;
-    const exists = await this.usersService.find(email);
-    if (object['id'] && exists) {
-      return exists.id === object['id'];
-    }
-    return !exists;
+    const { ...object }: any = validationArguments.object;
+    const exists = await this.usersService.findOne(object.id);
+    return bcrypt.compareSync(object.currPassword, exists.password);
   }
 }

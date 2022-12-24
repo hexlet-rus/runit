@@ -1,5 +1,7 @@
 import {
+  AfterLoad,
   BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
@@ -38,5 +40,19 @@ export class Users {
   @BeforeInsert()
   async hashPassword() {
     this.password = encrypt(this.password);
+  }
+
+  private tempPassword: string;
+
+  @AfterLoad()
+  async loadTempPassword() {
+    this.tempPassword = this.password;
+  }
+
+  @BeforeUpdate()
+  async hashPasswordIfNew() {
+    if (this.tempPassword !== this.password) {
+      this.password = encrypt(this.password);
+    }
   }
 }
