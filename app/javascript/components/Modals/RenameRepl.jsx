@@ -62,18 +62,24 @@ function RenameRepl() {
       onHide={() => dispatch(modalActions.closeModal())}
       show
     >
-      <Modal.Header closeButton>
+      <Modal.Header
+        closeButton
+        className="bg-dark text-white"
+        closeVariant="white"
+      >
         <Modal.Title>{t('modals.newSnippetName')}</Modal.Title>
       </Modal.Header>
 
-      <Modal.Body>
+      <Modal.Body className="bg-dark">
         <Form onSubmit={formik.handleSubmit}>
           <Form.Group className="mb-3">
             <FloatingLabel
               controlId="name"
               label={t('modals.share.snippetNameLabel')}
+              className="text-white"
             >
               <Form.Control
+                className="bg-dark text-white"
                 name="name"
                 onChange={formik.handleChange}
                 placeholder={t('modals.share.snippetNameLabel')}

@@ -167,7 +167,7 @@ function ShareRepl() {
                   className="text-white"
                 >
                   <Form.Control
-                    className="bg-dark"
+                    className="bg-dark text-white"
                     name="name"
                     onChange={formik.handleChange}
                     placeholder={t('modals.share.snippetNameLabel')}

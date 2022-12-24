@@ -3,11 +3,11 @@ import { Modal, Form, FloatingLabel, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
-import { useSnippets } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { faker } from '@faker-js/faker';
 
+import { useSnippets } from '../../hooks';
 import { actions as modalActions } from '../../slices/modalSlice.js';
 
 const generateInitialName = () => {
@@ -77,18 +77,24 @@ function NewRepl() {
       onHide={() => dispatch(modalActions.closeModal())}
       show
     >
-      <Modal.Header closeButton>
+      <Modal.Header
+        className="bg-dark text-white"
+        closeButton
+        closeVariant="white"
+      >
         <Modal.Title>{t('modals.newSnippetName')}</Modal.Title>
       </Modal.Header>
 
-      <Modal.Body>
+      <Modal.Body className="bg-dark">
         <Form onSubmit={formik.handleSubmit}>
           <Form.Group className="mb-3">
             <FloatingLabel
               controlId="name"
               label={t('modals.share.snippetNameLabel')}
+              className="text-white"
             >
               <Form.Control
+                className="text-white bg-dark"
                 name="name"
                 onChange={formik.handleChange}
                 placeholder={t('modals.share.snippetNameLabel')}
