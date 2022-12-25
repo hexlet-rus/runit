@@ -14,25 +14,38 @@
     },
     "create": {
       "login": "Nick",
-      "email": "myEmail@mail.ru",
+      "email": "myemail@mail.ru",
       "password": "MyTestPass123",
       "confirmPassword": "MyTestPass123"
     },
-    "createIncorrect": {
+    "empty": {
       "login": "",
       "email": "",
       "password": "",
       "confirmPassword": "confirmed"
     },
-    "createErrs": [
+    "updateIncorrect": {
+      "login": "JohnDoe",
+      "currPassword": "NotThisPassword",
+      "email": "undefined@mail.ru",
+      "password": "NewPassword",
+      "confirmPassword": "NewPassword"
+    },
+    "errs": [
       "login must match /[A-Za-z]/ regular expression",
-      "login should not be empty",
       "login must be longer than or equal to 3 characters",
-      "email should not be empty",
+      "login should not be empty",
       "email must be an email",
-      "password should not be empty",
+      "email should not be empty",
       "password must be longer than or equal to 8 characters",
+      "password should not be empty",
       "Пароли не совпадают!"
+    ],
+    "updateErrsUnique": [
+      "Уже существует!", "Уже существует!", "Неверный пароль!"
+    ],
+    "createErrsUnique": [
+      "Пользователь уже существует!", "Пользователь уже существует!"
     ],
     "update": {
       "login": "redactedNick",

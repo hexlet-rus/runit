@@ -3,6 +3,8 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  Length,
+  Matches,
   Validate,
 } from 'class-validator';
 import { CheckEmail } from '../validation/check-email';
@@ -13,7 +15,9 @@ import { ComparePasswords } from '../validation/compare-passwords';
 export class UpdateUserDto {
   @IsOptional()
   @IsNotEmpty()
+  @Length(3, 20)
   @IsString()
+  @Matches(/[A-Za-z]/)
   @Validate(CheckLogin, {
     message: 'Уже существует!',
   })
@@ -21,10 +25,11 @@ export class UpdateUserDto {
 
   @IsOptional()
   @IsNotEmpty()
+  @IsString()
+  @IsEmail()
   @Validate(CheckEmail, {
     message: 'Уже существует!',
   })
-  @IsEmail()
   email?: string;
 
   @IsOptional()
@@ -38,6 +43,7 @@ export class UpdateUserDto {
   @IsOptional()
   @IsNotEmpty()
   @IsString()
+  @Length(8, 30)
   password?: string;
 
   @IsOptional()

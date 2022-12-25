@@ -71,18 +71,35 @@ describe('UsersController (e2e)', () => {
     token = jwtService.sign(testData.sign);
   });
 
-  it('create', async () => {
+  it('create empty user', async () => {
     const { body } = await request(app.getHttpServer())
       .post('/users')
-      .send(testData.createIncorrect)
+      .send(testData.empty)
       .expect(400);
-    expect(body.errs.message).toEqual(testData.createErrs);
+    expect(body.errs.message).toEqual(testData.errs);
+  });
+
+  it('update empty user', async () => {
+    const { body } = await request(app.getHttpServer())
+      .put('/users/1')
+      .auth(token, { type: 'bearer' })
+      .send(testData.empty)
+      .expect(400);
+    expect(body.errs.message).toEqual(testData.errs);
+  });
+
+  it('create', async () => {
+    const { body } = await request(app.getHttpServer())
+      .post(`/users`)
+      .send(testData.create)
+      .expect(201);
+    expect(body.token).toBeDefined();
 
     const response = await request(app.getHttpServer())
       .post(`/users`)
       .send(testData.create)
-      .expect(201);
-    expect(response.body.token).toBeDefined();
+      .expect(400);
+    expect(response.body.errs.message).toMatchObject(testData.createErrsUnique);
   });
 
   it('read', async () => {
@@ -94,12 +111,20 @@ describe('UsersController (e2e)', () => {
   });
 
   it('update', async () => {
+    const response = await request(app.getHttpServer())
+      .put('/users/3')
+      .auth(token, { type: 'bearer' })
+      .send(testData.updateIncorrect)
+      .expect(400);
+    expect(response.body.errs.message).toMatchObject(testData.updateErrsUnique);
+
+    const { email, login } = testData.update;
     const { body } = await request(app.getHttpServer())
       .put('/users/1')
       .auth(token, { type: 'bearer' })
       .send(testData.update)
       .expect(200);
-    expect(body).toMatchObject(testData.update);
+    expect(body).toMatchObject({ email, login });
   });
 
   it('delete', async () => {

@@ -59,6 +59,7 @@ export class UsersController {
 
   @Put(':id')
   @UseGuards(JwtAuthGuard)
+  @UseFilters(new HttpValidationFilter())
   update(
     @Param('id', new ParseIntPipe()) id: number,
     @Body() updateUserDto: UpdateUserDto,
