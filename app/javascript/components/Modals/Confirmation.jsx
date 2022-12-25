@@ -27,7 +27,7 @@ function Confirmation() {
       show
     >
       <Modal.Header
-        className="bg-dark text-white"
+        className="bg-dark text-white border-secondary"
         closeButton
         closeVariant="white"
       >

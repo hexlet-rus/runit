@@ -92,7 +92,7 @@ function ShareRepl() {
       <Modal.Body className="bg-dark">
         <Tabs
           defaultActiveKey={snippetData ? 'share-link' : 'save-snippet'}
-          className="mb-3"
+          className="mb-3 border-secondary"
           fill
         >
           {snippetData && (
@@ -103,7 +103,7 @@ function ShareRepl() {
                   label={t('modals.share.snippetLinkLabel')}
                 />
                 <Form.Control
-                  className="text-white bg-dark"
+                  className="text-white bg-dark border-secondary"
                   readOnly
                   name="name"
                   placeholder={t('modals.share.snippetLinkLabel')}
@@ -137,7 +137,7 @@ function ShareRepl() {
                   className="text-white"
                 />
                 <textarea
-                  className="text-white bg-dark w-100"
+                  className="text-white bg-dark w-100 border-secondary"
                   readOnly
                   name="name"
                   placeholder={t('modals.share.snippetEmbedLabel')}
@@ -167,7 +167,7 @@ function ShareRepl() {
                   className="text-white"
                 >
                   <Form.Control
-                    className="bg-dark text-white"
+                    className="bg-dark text-white border-secondary"
                     name="name"
                     onChange={formik.handleChange}
                     placeholder={t('modals.share.snippetNameLabel')}

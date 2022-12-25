@@ -78,7 +78,7 @@ function NewRepl() {
       show
     >
       <Modal.Header
-        className="bg-dark text-white"
+        className="bg-dark text-white border-secondary"
         closeButton
         closeVariant="white"
       >
@@ -94,7 +94,7 @@ function NewRepl() {
               className="text-white"
             >
               <Form.Control
-                className="text-white bg-dark"
+                className="text-white bg-dark border-secondary"
                 name="name"
                 onChange={formik.handleChange}
                 placeholder={t('modals.share.snippetNameLabel')}

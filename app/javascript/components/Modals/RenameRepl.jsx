@@ -64,7 +64,7 @@ function RenameRepl() {
     >
       <Modal.Header
         closeButton
-        className="bg-dark text-white"
+        className="bg-dark text-white border-secondary"
         closeVariant="white"
       >
         <Modal.Title>{t('modals.newSnippetName')}</Modal.Title>
