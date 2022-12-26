@@ -12,7 +12,8 @@ import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Nav, Dropdown } from 'react-bootstrap';
 
 export function buildFooter() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
   return (
     <footer className="bg-dark border-top border-secondary pt-4 pb-5">
       <Container>
@@ -224,11 +225,11 @@ export function buildFooter() {
             <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link
-                    as="a"
-                    eventKey="hexlet"
-                    className="py-1 text-muted px-0"
-                    href="https://ru.hexlet.io/my"
-                    target="_blank"
+                  as="a"
+                  eventKey="hexlet"
+                  className="py-1 text-muted px-0"
+                  href="https://ru.hexlet.io/my"
+                  target="_blank"
                 >
                   {t('footer.hexlet')}
                 </Nav.Link>
@@ -294,4 +295,4 @@ export function buildFooter() {
       </Container>
     </footer>
   );
-}
+};
