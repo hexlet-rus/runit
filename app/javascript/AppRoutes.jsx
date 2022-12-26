@@ -9,7 +9,6 @@ import { About } from './Pages/About.jsx';
 import { Landing } from './Pages/Landing/Landing.jsx';
 import { LicenseAgreement } from './Pages/LicenseAgreement.jsx';
 import { RemindPassword } from './Pages/RemindPassword.jsx';
-import { LicenseAgreement } from './Pages/LicenseAgreement.jsx';
 import { Repls } from './components/Repls';
 import { useAuth } from './hooks';
 import Layout from './components/Layout.jsx';
