@@ -6,6 +6,8 @@ import { Profile } from './Pages/Profile.jsx';
 import { SignUp } from './Pages/SignUp.jsx';
 import { SignIn } from './Pages/SignIn.jsx';
 import { About } from './Pages/About.jsx';
+import { Landing } from './Pages/Landing/Landing.jsx';
+import { LicenseAgreement } from './Pages/LicenseAgreement.jsx';
 import { RemindPassword } from './Pages/RemindPassword.jsx';
 import { LicenseAgreement } from './Pages/LicenseAgreement.jsx';
 import { Repls } from './components/Repls';
@@ -29,6 +31,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        <Route index element={<Landing />} />
         <Route path="/editor" element={<App />} />
         <Route path={routes.aboutPagePath()} element={<About />} />
         <Route element={<ProtectedRoute user={isLoggedIn} />}>
