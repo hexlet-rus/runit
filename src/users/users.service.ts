@@ -34,7 +34,7 @@ export class UsersService {
   create(createUserDto: CreateUserDto): Promise<Users> {
     const user = new Users();
     user.login = createUserDto.login;
-    user.email = createUserDto.email;
+    user.email = createUserDto.email.toLowerCase();
     user.password = createUserDto.password;
     return this.usersRepository.save(user);
   }

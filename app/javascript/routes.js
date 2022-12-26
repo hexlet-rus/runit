@@ -22,4 +22,5 @@ export default {
   signUpPagePath: () => '/signup',
   remindPassPagePath: () => '/remind_password',
   embedPagePath: () => '/embed',
+  licenseAgreementPath: () => '/licenseAgreement',
 };

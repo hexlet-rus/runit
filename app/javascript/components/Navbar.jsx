@@ -10,62 +10,64 @@ export function Navbar() {
   const { t } = useTranslation();
 
   return (
-    <>
-      <nav className="navbar navbar-expand-md navbar-dark bg-dark text-white shadow-sm border-bottom-mb-5">
-        <div className="container-fluid">
-          <div className="d-flex justify-content-start ps-4">
-            <a
-              className={`navbar-brand ${classes.navigationBrand}`}
-              aria-hidden="true"
-              href={routes.homePagePath()}
-            >
-              <img alt='mainLabel' src={ Logo } className='align-baseline me-1'/>
-              {t('navbar.mainLabel')}
-            </a>
-          </div>
-          <div className="d-flex justify-content-end">
-            {auth.isLoggedIn && (
-              <a
-                className={`nav-link px-3 ${classes.navigationLink}`}
-                href={routes.profilePagePath()}
-              >
-                {t('navbar.profile')}
-              </a>
-            )}
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark text-white shadow-sm border-bottom-mb-5">
+      <div className="container">
+        <a
+          className="d-flex navbar-brand"
+          aria-hidden="true"
+          href={routes.homePagePath()}
+        >
+          <img
+            alt="mainLabel"
+            width={100}
+            height={30}
+            src={Logo}
+            className="pb-1"
+          />
+          <span className="ms-1">{t('navbar.mainLabel')}</span>
+        </a>
+        <div className="d-flex justify-content-end">
+          {auth.isLoggedIn && (
             <a
               className={`nav-link px-3 ${classes.navigationLink}`}
-              href={routes.aboutPagePath()}
+              href={routes.profilePagePath()}
             >
-              {t('navbar.about')}
+              {t('navbar.profile')}
             </a>
-            {auth.isLoggedIn && (
-              <button
-                type="button"
-                className={`btn nav-link px-3 ${classes.navigationLink}`}
-                onClick={auth.logOut}
-              >
-                {t('navbar.logout')}
-              </button>
-            )}
-            {!auth.isLoggedIn && (
-              <a
-                className={`nav-link px-3 ${classes.navigationLink}`}
-                href={routes.loginPagePath()}
-              >
-                {t('navbar.signIn')}
-              </a>
-            )}
-            {!auth.isLoggedIn && (
-              <a
-                className={`nav-link px-3 ${classes.navigationLink}`}
-                href={routes.signUpPagePath()}
-              >
-                {t('navbar.signUp')}
-              </a>
-            )}
-          </div>
+          )}
+          <a
+            className={`nav-link px-3 ${classes.navigationLink}`}
+            href={routes.aboutPagePath()}
+          >
+            {t('navbar.about')}
+          </a>
+          {auth.isLoggedIn && (
+            <button
+              type="button"
+              className={`btn nav-link px-3 ${classes.navigationLink}`}
+              onClick={auth.logOut}
+            >
+              {t('navbar.logout')}
+            </button>
+          )}
+          {!auth.isLoggedIn && (
+            <a
+              className={`nav-link px-3 ${classes.navigationLink}`}
+              href={routes.loginPagePath()}
+            >
+              {t('navbar.signIn')}
+            </a>
+          )}
+          {!auth.isLoggedIn && (
+            <a
+              className={`nav-link px-3 ${classes.navigationLink}`}
+              href={routes.signUpPagePath()}
+            >
+              {t('navbar.signUp')}
+            </a>
+          )}
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
 }
