@@ -5,7 +5,7 @@ export const useEditor = () => {
   const dispatch = useDispatch();
 
   const onChange = (code) => {
-    dispatch(actions.updateCode(code));
+    dispatch(actions.setCode(code));
   };
 
   const onMount = (editor, monaco) => {

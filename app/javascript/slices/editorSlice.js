@@ -8,10 +8,18 @@ const slice = createSlice({
     error: false,
     isFetching: false,
     code: '// Write your code in JS\n',
+    savedCode: '// Write your code in JS\n',
   },
   reducers: {
-    updateCode(state, { payload }) {
+    setCodeAndSavedCode(state, { payload }) {
       state.code = payload;
+      state.savedCode = payload;
+    },
+    setCode(state, { payload }) {
+      state.code = payload;
+    },
+    setSavedCode(state, { payload }) {
+      state.savedCode = payload;
     },
   },
 });

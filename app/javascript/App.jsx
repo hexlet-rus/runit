@@ -15,7 +15,7 @@ export function App() {
       if (snippetApi.hasSnippetParams()) {
         const decodedId = snippetApi.getSnippetIdFromParams();
         const snippetData = await snippetApi.getSnippetData(decodedId);
-        dispatch(actions.updateCode(snippetData.code));
+        dispatch(actions.setCodeAndSavedCode(snippetData.code));
       }
     };
     loadSnippet();
@@ -23,7 +23,7 @@ export function App() {
 
   return (
     <main className="container-fluid bg-dark py-5">
-      <div className="row mb-4">
+      <div className="row mb-2">
         <div className="col-12">
           <Button />
         </div>

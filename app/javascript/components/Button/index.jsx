@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import classes from './Button.module.css';
 import React, { memo, useEffect, useState } from 'react';
 import { useButton } from './hooks';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from '../../hooks';
 import { useSnippets } from '../../hooks';
 
@@ -54,26 +54,38 @@ export const Button = memo(() => {
     }
   };
 
+  const editorCode = useSelector((state) => state.editor.code);
+  const editorSavedCode = useSelector((state) => state.editor.savedCode);
+
   return (
-    <div className={`text-center ${classes.container}`}>
-      <button
-        type="button"
-        className={`btn btn-primary btn-lg ${classes.runButton}`}
-        disabled={disabled}
-        onClick={() => {
-          onClick();
-          update(currentSnippetId);
-        }}
-      >
-        {t('editor.runButton')}
-      </button>
-      <button
-        type="button"
-        className={`btn btn-outline-primary btn-lg ${classes.shareButton}`}
-        onClick={handleShareEvent}
-      >
-        {t('editor.shareButton')}
-      </button>
+    <div>
+      <div className={`text-center ${classes.container}`}>
+        <button
+          type="button"
+          className={`btn btn-primary btn-lg ${classes.runButton}`}
+          disabled={disabled}
+          onClick={() => {
+            onClick();
+            update(currentSnippetId);
+          }}
+        >
+          {t('editor.runButton')}
+        </button>
+        <button
+          type="button"
+          className={`btn btn-outline-primary btn-lg ${classes.shareButton}`}
+          onClick={handleShareEvent}
+        >
+          {t('editor.shareButton')}
+        </button>
+      </div>
+      <div className="mt-2 text-center text-muted">
+        <small>
+          <em>
+            {editorCode !== editorSavedCode ? t('editor.unsavedChanges') : t('editor.allSaved')}
+          </em>
+        </small>
+      </div>
     </div>
   );
 });
