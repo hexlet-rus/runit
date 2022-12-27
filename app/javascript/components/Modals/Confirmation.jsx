@@ -26,7 +26,11 @@ function Confirmation() {
       onHide={() => dispatch(modalActions.closeModal())}
       show
     >
-      <Modal.Header closeButton>
+      <Modal.Header
+        className="bg-dark text-white border-secondary"
+        closeButton
+        closeVariant="white"
+      >
         <Modal.Title
           style={{
             display: 'flex',
@@ -37,7 +41,7 @@ function Confirmation() {
           {t('modals.confirmation.header')}
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="bg-dark">
         <div className="d-flex justify-content-between">
           <Button
             variant="secondary"
