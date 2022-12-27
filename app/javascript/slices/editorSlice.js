@@ -8,10 +8,22 @@ const slice = createSlice({
     error: false,
     isFetching: false,
     code: '// Write your code in JS\n',
+    savedCode: '// Write your code in JS\n',
+    isAllSaved: true,
   },
   reducers: {
+    setCodeAndSavedCode(state, { payload }) {
+      state.code = payload;
+      state.savedCode = payload;
+      state.isAllSaved = true;
+    },
     updateCode(state, { payload }) {
       state.code = payload;
+      state.isAllSaved = state.code === state.savedCode;
+    },
+    updateSavedCode(state, { payload }) {
+      state.savedCode = payload;
+      state.isAllSaved = state.code === state.savedCode;
     },
   },
 });

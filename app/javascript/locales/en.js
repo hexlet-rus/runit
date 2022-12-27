@@ -154,6 +154,8 @@ const enLocales = {
       authBanner: 'Log in to edit',
       runButton: 'Run',
       shareButton: 'Share',
+      unsavedChanges: 'There are unsaved changes in the code',
+      allSaved: 'No unsaved changes',
     },
     modals: {
       share: {

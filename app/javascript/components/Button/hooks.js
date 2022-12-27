@@ -22,6 +22,7 @@ export const useButton = () => {
       const response = await axios.put(routes.updateSnippetPath(id), {
         code: code,
       });
+      dispatch(actions.updateSavedCode(code));
       return response;
     }
   };

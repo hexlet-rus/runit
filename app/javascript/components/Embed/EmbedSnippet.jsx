@@ -21,7 +21,7 @@ const EmbedSnippet = () => {
       if (snippetApi.hasSnippetParams()) {
         const decodedId = snippetApi.getSnippetIdFromParams();
         const snippetData = await snippetApi.getSnippetData(decodedId);
-        dispatch(actions.updateCode(snippetData.code));
+        dispatch(actions.setCodeAndSavedCode(snippetData.code));
       }
     };
     loadSnippet();

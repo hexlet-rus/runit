@@ -15,7 +15,7 @@ export const Repls = () => {
   const { t } = useTranslation();
 
   const openTerminal = (code) => () => {
-    dispatch(actions.updateCode(code)); // далее роутинг на App
+    dispatch(actions.setCodeAndSavedCode(code)); // далее роутинг на App
     navigate(routes.homePagePath());
   };
 

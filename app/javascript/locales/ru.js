@@ -156,6 +156,8 @@ const ruLocales = {
       authBanner: 'Авторизуйтесь для редактирования',
       runButton: 'Запустить',
       shareButton: 'Поделиться',
+      unsavedChanges: 'В коде есть несохраненные изменения',
+      allSaved: 'Несохраненных изменений нет',
     },
     modals: {
       share: {
