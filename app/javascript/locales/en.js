@@ -168,7 +168,6 @@ const enLocales = {
         snippetLinkLabel: 'Link to Snippet',
         snippetEmbedLabel: 'Snippet code for insertion',
       },
-      },
       newSnippetName: 'Snippet Name',
       signInButton: 'Sign in',
       signUpButton: 'Создать аккаунт',
