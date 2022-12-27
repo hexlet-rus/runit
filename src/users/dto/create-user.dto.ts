@@ -11,26 +11,26 @@ import { CheckLogin } from '../validation/check-login';
 import { ComparePasswords } from '../validation/compare-passwords';
 
 export class CreateUserDto {
-  @IsString()
-  @Length(3, 20)
   @IsNotEmpty()
+  @Length(3, 20)
+  @IsString()
   @Matches(/[A-Za-z]/)
   @Validate(CheckLogin, {
-    message: 'Login уже существует!',
+    message: 'Пользователь уже существует!',
   })
   login: string;
 
+  @IsNotEmpty()
   @IsString()
   @IsEmail()
   @Validate(CheckEmail, {
-    message: 'Email уже существует!',
+    message: 'Пользователь уже существует!',
   })
-  @IsNotEmpty()
   email: string;
 
+  @IsNotEmpty()
   @IsString()
   @Length(8, 30)
-  @IsNotEmpty()
   password: string;
 
   @IsString()

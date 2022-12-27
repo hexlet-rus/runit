@@ -9,6 +9,7 @@ import { UsersService } from './users.service';
 import { UsersSubscriber } from './users.subscriber';
 import { CheckEmail } from './validation/check-email';
 import { CheckLogin } from './validation/check-login';
+import { CheckPassword } from './validation/check-password';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Users, Snippets])],
@@ -20,6 +21,7 @@ import { CheckLogin } from './validation/check-login';
     JwtService,
     CheckEmail,
     CheckLogin,
+    CheckPassword,
   ],
   exports: [UsersService, TypeOrmModule],
 })

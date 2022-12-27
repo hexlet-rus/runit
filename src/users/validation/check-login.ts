@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 /* eslint-disable no-useless-constructor */
 import { Injectable } from '@nestjs/common';
 import {
@@ -14,7 +15,11 @@ export class CheckLogin implements ValidatorConstraintInterface {
 
   async validate(text: string, validationArguments: ValidationArguments) {
     const login = validationArguments.value;
+    const { object } = validationArguments;
     const exists = await this.usersService.findByLogin(login);
+    if (object['id'] && exists) {
+      return exists.id === object['id'];
+    }
     return !exists;
   }
 }
