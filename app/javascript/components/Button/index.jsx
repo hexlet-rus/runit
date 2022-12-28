@@ -55,7 +55,7 @@ export const Button = memo(() => {
   };
 
   return (
-    <div className={`text-center ${classes.container}`}>
+    <div className={`d-flex flex-xxl-row flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column align-items-center text-center ${classes.container}`}>
       <button
         type="button"
         className={`btn btn-primary btn-lg ${classes.runButton}`}
