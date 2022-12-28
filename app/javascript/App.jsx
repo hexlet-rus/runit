@@ -29,10 +29,10 @@ export function App() {
         </div>
       </div>
       <div className="row">
-        <div className="col-6">
+        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
           <MonacoEditor />
         </div>
-        <div className="col-6">
+        <div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
           <Terminal />
         </div>
       </div>
