@@ -11,7 +11,7 @@ function AuthBanner() {
   const { t } = useTranslation();
 
   return (
-    <div className={`text-center fw-bold fs-4 ${classes.banner}`}>
+    <div className={`text-center fw-bold ${classes.banner}`}>
       {t('editor.authBanner')}
     </div>
   );
