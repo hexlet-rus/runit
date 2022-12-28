@@ -24,8 +24,8 @@ function ChangePassword() {
   const formik = useFormik({
     initialValues: {
       currPassword: '',
-      newPassword: '',
-      confirmNewPassword: '',
+      password: '',
+      confirmPassword: '',
     },
     validationSchema: yup.object().shape({
       currPassword: yup
@@ -35,33 +35,33 @@ function ChangePassword() {
         .max(30, t('signUp.validation.passwordLength'))
         .typeError()
         .required(t('signUp.validation.requiredField')),
-      newPassword: yup
+      password: yup
         .string()
         .trim()
         .min(8, t('signUp.validation.passwordLength'))
         .max(30, t('signUp.validation.passwordLength'))
         .typeError()
         .required(t('signUp.validation.requiredField')),
-      confirmNewPassword: yup
+      confirmPassword: yup
         .string()
         .test(
-          'confirmNewPassword',
+          'confirmPassword',
           t('signUp.validation.confirmPassword'),
-          (password, context) => password === context.parent.newPassword,
+          (password, context) => password === context.parent.password,
         ),
     }),
-    onSubmit: async (values) => {
+    onSubmit: async (values, target) => {
       try {
-        // await axios.put(routes.changePasswordPath(id), values);
-
-        /* TODO: add a path to change the password */
+        await axios.put(routes.updateUserPath(id), { id, ...values });
         /* TODO: Add a user notification about password change */
         dispatch(modalActions.closeModal());
       } catch (err) {
         if (err.response?.status === 400) {
-          setErrorFeedback(t('modals.changePassword.wrongPassword'));
-        }
-        if (err.isAxiosError) {
+          target.setFieldError(
+            'currPassword',
+            t('modals.changePassword.wrongPassword'),
+          );
+        } else if (err.isAxiosError) {
           console.log(t('errors.network'));
           setErrorFeedback(t('errors.network'));
         } else {
@@ -98,7 +98,7 @@ function ChangePassword() {
             <Form.Control
               ref={inputRef}
               onChange={formik.handleChange}
-              value={formik.values.password}
+              value={formik.values.currPassword}
               onBlur={formik.handleBlur}
               type="password"
               className={`form-input bg-dark text-white ${classes.signInput}`}
@@ -115,7 +115,7 @@ function ChangePassword() {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={classes.formGroup}>
-            <Form.Label htmlFor="newPassword">
+            <Form.Label htmlFor="password">
               {t('modals.changePassword.newPassword')}
             </Form.Label>
             <Form.Control
@@ -124,40 +124,40 @@ function ChangePassword() {
               onBlur={formik.handleBlur}
               type="password"
               className={`form-input bg-dark text-white ${classes.signInput}`}
-              name="newPassword"
+              name="password"
               autoComplete="new-password"
               required
               isInvalid={
-                (formik.touched.newPassword && formik.errors.newPassword) ||
+                (formik.touched.password && formik.errors.password) ||
                 changeFailed
               }
             />
             <Form.Control.Feedback type="invalid">
-              {formik.touched.newPassword && formik.errors.newPassword}
+              {formik.touched.password && formik.errors.password}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={classes.formGroup}>
-            <Form.Label htmlFor="confirmNewPassword">
+            <Form.Label htmlFor="confirmPassword">
               {t('modals.changePassword.confirmNewPassword')}
             </Form.Label>
             <Form.Control
               onChange={formik.handleChange}
-              value={formik.values.confirmNewPassword}
+              value={formik.values.confirmPassword}
               onBlur={formik.handleBlur}
               type="password"
               className={`form-input bg-dark text-white ${classes.signInput}`}
-              name="confirmNewPassword"
+              name="confirmPassword"
               autoComplete="new-password"
               required
               isInvalid={
-                (formik.touched.confirmNewPassword &&
-                  formik.errors.confirmNewPassword) ||
+                (formik.touched.confirmPassword &&
+                  formik.errors.confirmPassword) ||
                 changeFailed
               }
             />
             <Form.Control.Feedback type="invalid">
-              {(formik.touched.confirmNewPassword &&
-                formik.errors.confirmNewPassword) ||
+              {(formik.touched.confirmPassword &&
+                formik.errors.confirmPassword) ||
                 errorFeedback}
             </Form.Control.Feedback>
           </Form.Group>

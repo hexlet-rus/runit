@@ -1,0 +1,13 @@
+// custom variables
+$dark-text-color: rgba(255, 255, 255, 0.55);
+$dark-text-color-hover: rgba(255, 255, 255, 1);
+
+// bootstrap variables override
+$nav-tabs-link-active-color: $dark-text-color-hover;
+$nav-tabs-link-active-bg: var(--bs-dark);
+$nav-tabs-link-active-border-color: var(--bs-secondary) var(--bs-secondary) var(--bs-dark);
+$nav-tabs-link-hover-border-color: var(--bs-gray-700) var(--bs-gray-700) var(--bs-secondary);
+$nav-link-color: $dark-text-color;
+$nav-link-hover-color: $dark-text-color-hover;
+
+$navbar-dark-hover-color: $dark-text-color-hover;

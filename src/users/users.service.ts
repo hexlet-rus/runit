@@ -40,8 +40,11 @@ export class UsersService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<Users> {
-    await this.usersRepository.update(id, updateUserDto);
-    return this.usersRepository.findOneBy({ id });
+    const { currPassword, confirmPassword, ...data } = updateUserDto;
+    const currentUser = await this.usersRepository.findOneBy({ id });
+    const updatedUser = this.usersRepository.merge(currentUser, data);
+    await this.usersRepository.save(updatedUser);
+    return updatedUser;
   }
 
   async delete(id: number): Promise<void> {
