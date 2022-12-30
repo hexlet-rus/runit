@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal, Button } from 'react-bootstrap';
-import { actions as modalActions } from '../../slices/modalSlice.js';
 import { useTranslation } from 'react-i18next';
+import { actions as modalActions } from '../../slices/modalSlice.js';
 
 function Info() {
   const dispatch = useDispatch();

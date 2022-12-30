@@ -1,3 +1,5 @@
+/* eslint no-param-reassign:
+["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }]  */
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {

@@ -1,7 +1,8 @@
 import React from 'react';
-import { SnippetsContext } from '../contexts';
 import axios from 'axios';
+import { SnippetsContext } from '../contexts';
 import routes from '../routes';
+
 const { Buffer } = require('buffer');
 
 function SnippetsProvider({ children }) {
