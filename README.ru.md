@@ -1,6 +1,6 @@
 # Runit
 
-[![On Push](https://github.com/hexlet/hexlet-editor/workflows/On%20Push/badge.svg?branch=main)](https://github.com/hexlet/hexlet-editor/actions)
+[![On Push](https://github.com/hexlet-rus/runit/actions/workflows/push.yml/badge.svg?event=push)](https://github.com/hexlet-rus/runit/actions/workflows/push.yml)
 
 ## Описание
 
