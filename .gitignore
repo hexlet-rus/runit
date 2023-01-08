@@ -1,9 +1,10 @@
 # compiled output
 /assets
-/node_modules
+node_modules
 /dist
 /.vscode
 .env
+build
 
 # Logs
 logs
