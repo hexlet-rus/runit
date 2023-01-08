@@ -1,7 +1,7 @@
 # compiled output
 /assets
 node_modules
-/dist
+dist
 /.vscode
 .env
 build

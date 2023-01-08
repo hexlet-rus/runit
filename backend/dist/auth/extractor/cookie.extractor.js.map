@@ -1,1 +1,0 @@
-{"version":3,"file":"cookie.extractor.js","sourceRoot":"","sources":["../../../src/auth/extractor/cookie.extractor.ts"],"names":[],"mappings":";;;AAAO,MAAM,eAAe,GAAG,CAAC,GAAG,EAAE,EAAE;IACrC,IAAI,KAAK,GAAG,IAAI,CAAC;IACjB,IAAI,GAAG,IAAI,GAAG,CAAC,OAAO,EAAE;QACtB,KAAK,GAAG,GAAG,CAAC,OAAO,CAAC,YAAY,CAAC;KAClC;IACD,OAAO,KAAK,CAAC;AACf,CAAC,CAAC;AANW,QAAA,eAAe,mBAM1B"}
