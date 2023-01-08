@@ -25,7 +25,7 @@ export function Navbar() {
           />
           <span className="ms-1">{t('navbar.mainLabel')}</span>
         </a>
-        <div className="navbar-nav justify-content-end">
+        <div className="d-flex justify-content-end flex-xxl-row flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
           {auth.isLoggedIn && (
             <a className="nav-link px-3" href={routes.profilePagePath()}>
               {t('navbar.profile')}

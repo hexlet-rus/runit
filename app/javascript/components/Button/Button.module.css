@@ -38,3 +38,36 @@
   height: 40px;
   padding: 5px;
 }
+
+@media (max-width: 575px) {
+  .shareButton {
+    font-size: 1.5rem;
+    width: calc(50vw - 10px);
+  }
+
+  .runButton {
+    font-size: 1.5rem;
+    width: calc(50vw - 10px);
+    margin-bottom: 1rem;
+  }
+}
+@media (min-width: 576px) and (max-width: 767px) {
+  .shareButton {
+    width: calc(35% - 10px);
+  }
+
+  .runButton {
+    width: calc(35% - 10px);
+    margin-bottom: 1rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .shareButton {
+    width: calc(30% - 10px);
+  }
+
+  .runButton {
+    width: calc(30% - 10px);
+  }
+}
+
