@@ -9,19 +9,18 @@ import { About } from './Pages/About.jsx';
 import { Landing } from './Pages/Landing/Landing.jsx';
 import { LicenseAgreement } from './Pages/LicenseAgreement.jsx';
 import { RemindPassword } from './Pages/RemindPassword.jsx';
-import { Repls } from './components/Repls';
 import { useAuth } from './hooks';
 import Layout from './components/Layout.jsx';
 import EmbedSnippet from './components/Embed/EmbedSnippet.jsx';
 
 import routes from './routes.js';
 
-const ProtectedRoute = ({ user, children }) => {
+function ProtectedRoute({ user, children }) {
   if (!user) {
     return <Navigate to={routes.signUpPagePath()} replace />;
   }
-  return children ? children : <Outlet />;
-};
+  return children || <Outlet />;
+}
 
 function AppRoutes() {
   const { isLoggedIn } = useAuth();

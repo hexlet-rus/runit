@@ -5,7 +5,7 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useAuth } from './../hooks';
+import { useAuth } from '../hooks';
 
 import routes from '../routes.js';
 

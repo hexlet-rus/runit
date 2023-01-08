@@ -6,9 +6,9 @@ import { useFormik } from 'formik';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useAuth } from './../../hooks';
-
 import axios from 'axios';
+import { useAuth } from '../../hooks';
+
 import routes from '../../routes';
 
 import { actions as modalActions } from '../../slices/modalSlice';

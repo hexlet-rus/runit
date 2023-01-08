@@ -12,7 +12,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { rootReducer } from './slices';
 import resources from './locales/locales.js';
 import AppRoutes from './AppRoutes.jsx';
-import { Navbar } from './components/Navbar.jsx';
 import ModalWindow from './components/Modals/Modal.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
 import SnippetsProvider from './providers/SnippetsProvider.jsx';

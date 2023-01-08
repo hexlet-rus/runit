@@ -21,6 +21,9 @@ build:
 lint:
 	npm run lint
 
+lint-frontend:
+	npx eslint --ext .jsx,.js app/
+
 test:
 	npm test
 

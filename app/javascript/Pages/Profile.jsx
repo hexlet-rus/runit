@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col, Button, Card, Dropdown } from 'react-bootstrap';
 import { ThreeDots } from 'react-bootstrap-icons';
 import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
@@ -151,7 +151,9 @@ export function Profile() {
                 {snippets.map(({ id, name, code }) => (
                   <Col xs lg="3" key={id}>
                     <Card style={{ border: 0 }}>
-                      <Card.Header className={`d-flex justify-content-between ${classes.snippetHeader}`}>
+                      <Card.Header
+                        className={`d-flex justify-content-between ${classes.snippetHeader}`}
+                      >
                         <p className="m-0 p-2">{name}</p>
                         <Dropdown
                           className={`${classes.snippetTools}`}
@@ -167,9 +169,7 @@ export function Profile() {
                               {t('profile.editSnippet')}
                             </span>
                           </DropdownToggle>
-                          <Dropdown.Menu
-                            className={`${classes.dropdownMenu}`}
-                            >
+                          <Dropdown.Menu className={`${classes.dropdownMenu}`}>
                             <Dropdown.Item
                               className={`${classes.dropdownItem}`}
                               onClick={() =>

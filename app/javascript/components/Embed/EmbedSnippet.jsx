@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import { MonacoEditor } from '../Editor';
-import { EmbedRunButton } from '../Embed/EmbedRunButton.jsx';
-import { Terminal } from '../Terminal';
-import { actions } from './../../slices/index.js';
 import { useDispatch } from 'react-redux';
-import { useSnippets } from '../../hooks';
 import { useTranslation } from 'react-i18next';
+import { MonacoEditor } from '../Editor';
+import { EmbedRunButton } from './EmbedRunButton.jsx';
+import { Terminal } from '../Terminal';
+import { actions } from '../../slices/index.js';
+import { useSnippets } from '../../hooks';
 import classes from '../Button/Button.module.css';
 
-const EmbedSnippet = () => {
+function EmbedSnippet() {
   const snippetApi = useSnippets();
   const dispatch = useDispatch();
   const url = new URL(window.location);
@@ -45,6 +45,7 @@ const EmbedSnippet = () => {
             href={snippetLink}
             title="Runit-logo"
             target="_blank"
+            rel="noreferrer"
           >
             <div
               className="d-flex flex-column align-items-end"
@@ -78,6 +79,6 @@ const EmbedSnippet = () => {
       </div>
     </main>
   );
-};
+}
 
 export default EmbedSnippet;
