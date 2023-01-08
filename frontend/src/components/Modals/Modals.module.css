@@ -1,0 +1,37 @@
+.shareReplTools {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10%;
+}
+
+.button {
+  color: #fff;
+  background: #136ef6;
+  border: 1px solid #3e496b;
+  border-radius: 5px;
+}
+
+.button:hover {
+  --bs-btn-hover-bg: #7c7cf7;
+}
+
+.signInput {
+  border: 2px solid var(--color-grey);
+}
+
+.signInput:active {
+  border: 2px solid var(--color-blue);
+  box-shadow: none;
+  background-color: #212529;
+}
+
+.signInput:focus {
+  border: 2px solid var(--color-blue);
+  box-shadow: none;
+  background-color: #212529;
+}
+
+.formGroup {
+  min-height: 100px;
+}

@@ -1,0 +1,19 @@
+.signUpInput {
+  border: 2px solid var(--color-grey);
+}
+
+.signUpInput:active {
+  border: 2px solid var(--color-blue);
+  box-shadow: none;
+  background-color: #212529;
+}
+
+.signUpInput:focus {
+  border: 2px solid var(--color-blue);
+  box-shadow: none;
+  background-color: #212529;
+}
+
+.formGroup {
+  min-height: 100px;
+}
