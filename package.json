@@ -74,7 +74,7 @@
     "i18next": "^21.9.1",
     "jest-mock": "^29.0.2",
     "joi": "^17.6.0",
-    "json5": "^1.0.1",
+    "json5": "^1.0.2",
     "locate-path": "^2.0.0",
     "mini-css-extract-plugin": "^2.6.0",
     "ms": "^2.0.0",
