@@ -39,7 +39,7 @@ const ruLocales = {
       },
       validation: {
         requiredField: 'Обязательное поле',
-        correctUsername: 'Введите корректный логин',
+        correctUsername: 'Только буквы латинского алфавита в любом регистре',
         correctEmail: 'Некорректная электронная почта',
         usernameLength: 'От 3 до 20 символов',
         passwordLength: 'от 8 до 30 символов',
