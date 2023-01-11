@@ -5,18 +5,21 @@ install:
 	make -C frontend install
 
 db-migrate:
-	make -C backend migrate
+	make -C backend db-migrate
 
 db-generate:
 	make -C backend generate
 
 start:
-	make start-backend
+	make start-backend &
 	make start-frontend
 
+start-prod:
+	make -C backend start-prod
+
 build:
-	make -C frontend buld
-	make -C backend buld
+	DISABLE_ESLINT_PLUGIN=true make -C frontend build
+	make -C backend build
 
 lint:
 	make lint-frontend

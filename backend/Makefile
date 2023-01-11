@@ -12,6 +12,9 @@ db-generate:
 start:
 	npm run start
 
+start-prod:
+	npm run start:prod
+
 build:
 	npm run build
 
