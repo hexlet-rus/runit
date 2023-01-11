@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import routes from '../routes.js';
 import { useAuth } from '../hooks';
@@ -11,10 +12,10 @@ export function Navbar() {
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark text-white shadow-sm border-bottom-mb-5">
       <div className="container">
-        <a
+        <Link
           className="d-flex navbar-brand"
           aria-hidden="true"
-          href={routes.homePagePath()}
+          to={routes.homePagePath()}
         >
           <img
             alt="mainLabel"
@@ -24,16 +25,16 @@ export function Navbar() {
             className="pb-1"
           />
           <span className="ms-1">{t('navbar.mainLabel')}</span>
-        </a>
-        <div className="d-flex justify-content-end flex-xxl-row flex-xl-row flex-lg-row flex-md-row flex-sm-column flex-column">
+        </Link>
+        <div className="navbar-nav justify-content-end">
           {auth.isLoggedIn && (
-            <a className="nav-link px-3" href={routes.profilePagePath()}>
+            <Link className="nav-link px-3" to={routes.profilePagePath()}>
               {t('navbar.profile')}
-            </a>
+            </Link>
           )}
-          <a className="nav-link px-3" href={routes.aboutPagePath()}>
+          <Link className="nav-link px-3" to={routes.aboutPagePath()}>
             {t('navbar.about')}
-          </a>
+          </Link>
           {auth.isLoggedIn && (
             <button
               type="button"
@@ -44,14 +45,14 @@ export function Navbar() {
             </button>
           )}
           {!auth.isLoggedIn && (
-            <a className="nav-link px-3" href={routes.loginPagePath()}>
+            <Link className="nav-link px-3" to={routes.loginPagePath()}>
               {t('navbar.signIn')}
-            </a>
+            </Link>
           )}
           {!auth.isLoggedIn && (
-            <a className="nav-link px-3" href={routes.signUpPagePath()}>
+            <Link className="nav-link px-3" to={routes.signUpPagePath()}>
               {t('navbar.signUp')}
-            </a>
+            </Link>
           )}
         </div>
       </div>

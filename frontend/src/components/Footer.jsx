@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -112,10 +113,10 @@ export function buildFooter() {
               </li>
               <li>
                 <Nav.Link
-                  as="a"
+                  as={Link}
                   eventKey="licenseAgreement"
                   className="py-1 text-muted px-0"
-                  href="/licenseAgreement"
+                  to="/licenseAgreement"
                 >
                   {t('footer.licenseAgreement')}
                 </Nav.Link>

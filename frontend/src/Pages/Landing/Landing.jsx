@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
+import routes from '../../routes.js';
 import { Faq } from '../../components/Faq';
 import classes from './Landing.module.css';
 import Checked from '../../assets/landing/images/checked.svg';
@@ -73,12 +75,12 @@ export function Landing() {
           </section>
           <section>
             <div className="d-grid col-md-4 col-sm-5 col-6 mx-auto">
-              <a
-                href={routes.homePagePath()}
+              <Link
+                to={routes.profilePagePath()}
                 className="btn btn-primary py-3 fs-5 fw-bold mt-5 lh-5"
               >
                 Начать кодить
-              </a>
+              </Link>
             </div>
           </section>
         </section>
@@ -136,59 +138,61 @@ export function Landing() {
           <Row>
             <h2 className="text-center display-4 fw-bold mb-0">Еще больше возможностей в будущем</h2>
           </Row>
-          <Row className="row-cols-1 row-cols-sm-3 mt-55">
-            <Col className="mb-4 mb-sm-0">
-              <div className="d-flex flex-column">
-                <img
-                  src={codeImg}
-                  alt="code"
-                  className="mb-3"
-                  width="39"
-                  height="39"
-                />
-                <p className="mb-2">Все языки</p>
-                <p className="mb-0">Пока наша среда разработки запускает код только на JavaScript. В ближайшем будущем мы реализуем в редакторе поддержку других популярных языков программирования</p>
-              </div>
-            </Col>
-            <Col className="mb-4 mb-sm-0">
-              <div className="d-flex flex-column">
-                <img
-                  src={personImg}
-                  className="mb-3"
-                  alt="person"
-                  width="39"
-                  height="39"
-                />
-                <p className="mb-2">Совместная работа</p>
-                <p className="mb-0">Вы сможете делиться ссылкой на фрагменты своего кода с другими участниками. Или работать вместе прямо в Run IT!</p>
-              </div>
-            </Col>
-            <Col className="mb-4 mb-sm-0">
-              <div className="d-flex flex-column">
-                <img
-                  src={blankImg}
-                  alt="blank"
-                  className="mb-3"
-                  width="39"
-                  height="39"
-                />
-                <p className="mb-2">Готовые шаблоны с кодом</p>
-                <p className="mb-0">Больше не будет необходимости каждый раз писать код с нуля. Мы сделаем шаблоны, чтобы вы могли проверить свои идеи на практике еще быстрее</p>
-              </div>
-            </Col>
-          </Row>
+          <section className="mt-55">
+            <Row className="row-cols-1 row-cols-sm-3">
+              <Col className="mb-4 mb-sm-0">
+                <div className="d-flex flex-column">
+                  <img
+                    src={codeImg}
+                    alt="code"
+                    className="mb-3"
+                    width="39"
+                    height="39"
+                  />
+                  <p className="mb-2">Все языки</p>
+                  <p className="mb-0">Пока наша среда разработки запускает код только на JavaScript. В ближайшем будущем мы реализуем в редакторе поддержку других популярных языков программирования</p>
+                </div>
+              </Col>
+              <Col className="mb-4 mb-sm-0">
+                <div className="d-flex flex-column">
+                  <img
+                    src={personImg}
+                    className="mb-3"
+                    alt="person"
+                    width="39"
+                    height="39"
+                  />
+                  <p className="mb-2">Совместная работа</p>
+                  <p className="mb-0">Вы сможете делиться ссылкой на фрагменты своего кода с другими участниками. Или работать вместе прямо в Runit!</p>
+                </div>
+              </Col>
+              <Col className="mb-4 mb-sm-0">
+                <div className="d-flex flex-column">
+                  <img
+                    src={blankImg}
+                    alt="blank"
+                    className="mb-3"
+                    width="39"
+                    height="39"
+                  />
+                  <p className="mb-2">Готовые шаблоны с кодом</p>
+                  <p className="mb-0">Больше не будет необходимости каждый раз писать код с нуля. Мы сделаем шаблоны, чтобы вы могли проверить свои идеи на практике еще быстрее</p>
+                </div>
+              </Col>
+            </Row>
+          </section>
         </section>
         <section className="mt-90">
           <Row>
             <h3 className="text-center fs-2 mb-0 lh-2">Попробуйте написать свой код прямо сейчас!</h3>
-            <Row className="mt-40">
+            <Row className="">
               <div className="d-grid col-7 col-sm-5 col-md-4 mx-auto">
-                <a
-                  href={routes.homePagePath()}
-                  className="btn btn-primary py-3 fs-5 fw-bold lh-5"
+                <Link
+                  to={routes.homePagePath()}
+                  className="btn btn-primary py-3 fs-5 fw-bold lh-5 mt-40"
                 >
                   Начать кодить
-                </a>
+                </Link>
               </div>
             </Row>
           </Row>
