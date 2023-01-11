@@ -1,34 +1,41 @@
 setup: install db-migrate
 
 install:
-	npm install
+	make -C backend install
+	make -C frontend install
 
 db-migrate:
-	npm run typeorm -- migration:run -d src/data-source.ts
+	make -C backend db-migrate
 
 db-generate:
-	npm run typeorm -- migration:generate src/migrations/migrations -d src/data-source.ts
+	make -C backend generate
 
 start:
-	npm run start:dev
+	make start-backend &
+	make start-frontend
 
-front-dev:
-	npm run serve
+start-prod:
+	make -C backend start-prod
 
 build:
-	npm run build
+	DISABLE_ESLINT_PLUGIN=true make -C frontend build
+	make -C backend build
 
 lint:
-	npm run lint
+	make lint-frontend
+	make lint-backend
 
 lint-frontend:
-	npx eslint --ext .jsx,.js app/
+	make -C frontend lint
+
+lint-backend:
+	make -C backend lint
 
 test:
-	npm test
+	make -C backend test
 
 test-e2e:
-	npm run test:e2e
+	make -C backend test-e2e
 
 heroku-deploy:
 	git push heroku
@@ -37,7 +44,10 @@ heroku-logs:
 	heroku logs
 
 start-frontend:
-	npx webpack --watch --progress
+	make -C frontend start
+
+start-backend:
+	make -C backend start
 
 data-drop:
-	npm run typeorm -- migration:revert -d src/data-source.ts
+	make -C backend data-drop
