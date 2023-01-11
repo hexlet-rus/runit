@@ -68,7 +68,7 @@ export function Landing() {
           <section>
             <div className="d-grid col-md-4 col-sm-5 col-6 mx-auto">
               <Link
-                to={routes.profilePagePath()}
+                to={routes.loginPagePath()}
                 className="btn btn-primary py-3 fs-5 fw-bold mt-5 lh-5"
               >
                 Начать кодить
@@ -181,7 +181,7 @@ export function Landing() {
             <Row className="">
               <div className="d-grid col-7 col-sm-5 col-md-4 mx-auto">
                 <Link
-                  to={routes.homePagePath()}
+                  to={routes.loginPagePath()}
                   className="btn btn-primary py-3 fs-5 fw-bold lh-5 mt-40"
                 >
                   Начать кодить
