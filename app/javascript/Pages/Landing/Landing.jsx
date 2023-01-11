@@ -14,7 +14,7 @@ export function Landing() {
           <section>
             <Row>
               <p className="text-center mb-0 fs-5 lh-5">
-                Бесплатный проект Хекслета
+                Бесплатный* проект Хекслета
               </p>
             </Row>
             <Row className="my-3">
