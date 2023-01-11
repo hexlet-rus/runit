@@ -12,8 +12,6 @@ import codeImg from '../../assets/landing/images/code.png';
 import personImg from '../../assets/landing/images/person.png';
 import blankImg from '../../assets/landing/images/blank.png';
 
-import routes from '../../routes.js';
-
 export function Landing() {
   return (
     <div className="min-vh-100 d-flex flex-column bg-dark text-white fw-normal">
