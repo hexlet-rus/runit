@@ -39,7 +39,7 @@ const enLocales = {
       },
       validation: {
         requiredField: 'Required field',
-        correctUsername: 'Enter a valid login',
+        correctUsername: 'Only letters of the Latin alphabet in any case',
         correctEmail: 'Incorrect email',
         usernameLength: 'From 3 to 20 characters',
         passwordLength: 'from 8 to 30 characters',
