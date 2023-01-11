@@ -112,6 +112,9 @@ export function buildFooter() {
                 </Nav.Link>
               </li>
               <li>
+                <span className="d-block py-1 text-muted px-0">{t('footer.freeLicense')}</span>
+              </li>
+              <li>
                 <Nav.Link
                   as={Link}
                   eventKey="licenseAgreement"
