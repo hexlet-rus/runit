@@ -87,7 +87,9 @@ export function buildFooter() {
             </p>
           </Col>
           <Col>
-            <div className="fw-bold mt-3 mb-2 text-white">{t('footer.doc')}</div>
+            <div className="fw-bold mt-3 mb-2 text-white">
+              {t('footer.doc')}
+            </div>
             <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link
@@ -121,9 +123,21 @@ export function buildFooter() {
                   {t('footer.licenseAgreement')}
                 </Nav.Link>
               </li>
+              <li>
+                <Nav.Link
+                  as={Link}
+                  eventKey="licenseAgreementCommercial"
+                  className="py-1 text-muted px-0"
+                  to="/licenseAgreementCommercial"
+                >
+                  {t('footer.licenseAgreementCommercial')}
+                </Nav.Link>
+              </li>
             </Nav>
-            <Nav as='ul' className='flex-column align-items-start'>
-              <div className="fw-bold mt-3 mb-3 text-white">{t('footer.subscribe')}</div>
+            <Nav as="ul" className="flex-column align-items-start">
+              <div className="fw-bold mt-3 mb-3 text-white">
+                {t('footer.subscribe')}
+              </div>
               <ul className="list-unstyled h3 text-start d-flex flex-wrap">
                 <li className="me-4 mb-2">
                   <a
@@ -222,7 +236,9 @@ export function buildFooter() {
             </Dropdown> */}
           </Col>
           <Col>
-            <div className="fw-bold mt-3 mb-2 text-white">{t('footer.project')}</div>
+            <div className="fw-bold mt-3 mb-2 text-white">
+              {t('footer.project')}
+            </div>
             <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link
@@ -296,4 +312,4 @@ export function buildFooter() {
       </Container>
     </footer>
   );
-};
+}
