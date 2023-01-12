@@ -1,0 +1,48 @@
+root: true
+
+env:
+  browser: true
+  node: true
+  jest: true
+
+extends:
+  - 'airbnb'
+  - 'plugin:@typescript-eslint/recommended'
+  - 'plugin:import/typescript'
+  - 'plugin:prettier/recommended'
+
+plugins:
+  - '@typescript-eslint'
+  - 'prettier'
+
+parser: '@typescript-eslint/parser'
+
+parserOptions:
+  sourceType: 'module'
+  project: './tsconfig.json'
+
+settings:
+  import/extensions:
+    - .js
+    - .jsx
+    - .ts
+  import/parsers:
+    '@typescript-eslint/parser':
+       - .ts
+  import/resolver:
+    node:
+      extensions:
+        - .js
+        - .jsx
+        - .ts
+
+rules:
+  import/no-cycle: [2, { maxDepth: 1}]
+  import/prefer-default-export: 0
+  import/extensions: 0
+  react/prop-types: "off"
+  '@typescript-eslint/interface-name-prefix': 'off'
+  '@typescript-eslint/explicit-function-return-type': 'off'
+  '@typescript-eslint/explicit-module-boundary-types': 'off'
+  '@typescript-eslint/no-explicit-any': 'off'
+  'click-events-have-key-events': 'off' # не знал как исправить в компоненте "/FileTree/Directory.jsx"

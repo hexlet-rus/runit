@@ -1,2 +1,2 @@
-web: npm run start:prod
+web: make start-prod
 release: make db-migrate
