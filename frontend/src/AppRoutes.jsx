@@ -8,6 +8,7 @@ import { SignIn } from './Pages/SignIn.jsx';
 import { About } from './Pages/About.jsx';
 import { Landing } from './Pages/Landing/Landing.jsx';
 import { LicenseAgreement } from './Pages/LicenseAgreement.jsx';
+import { LicenseAgreementCommercial } from './Pages/LicenseAgreementCommercial';
 import { RemindPassword } from './Pages/RemindPassword.jsx';
 import { useAuth } from './hooks';
 import Layout from './components/Layout.jsx';
@@ -44,6 +45,10 @@ function AppRoutes() {
         <Route
           path={routes.licenseAgreementPath()}
           element={<LicenseAgreement />}
+        />
+        <Route
+          path={routes.licenseAgreementCommercialPath()}
+          element={<LicenseAgreementCommercial />}
         />
       </Route>
       <Route path={routes.embedPagePath()} element={<EmbedSnippet />} />

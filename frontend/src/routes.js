@@ -23,4 +23,5 @@ export default {
   remindPassPagePath: () => '/remind_password',
   embedPagePath: () => '/embed',
   licenseAgreementPath: () => '/licenseAgreement',
+  licenseAgreementCommercialPath: () => '/licenseAgreementCommercial',
 };
