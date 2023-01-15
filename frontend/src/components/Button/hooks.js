@@ -18,11 +18,9 @@ export const useButton = () => {
     [dispatch, runCode, code],
   );
   const update = async (id) => {
-    if (id) {
-      const response = await axios.put(routes.updateSnippetPath(id), { code });
-      dispatch(actions.updateSavedCode(code));
-      return response;
-    }
+    const response = await axios.put(routes.updateSnippetPath(id), { code });
+    dispatch(actions.updateSavedCode(code));
+    return response;
   };
 
   const disabled = codeExecutionState === 'executing';

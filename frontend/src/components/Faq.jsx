@@ -76,7 +76,11 @@ export function Faq() {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-      <div className="fw-bold mt-3 mb-2 py-1 text-muted px-0">{t('faq.dist0')}<br/>{t('faq.dist1')}</div>
+      <div className="fw-bold mt-3 mb-2 py-1 text-muted px-0">
+        {t('faq.dist0')}
+        <br />
+        {t('faq.dist1')}
+      </div>
     </div>
   );
 }

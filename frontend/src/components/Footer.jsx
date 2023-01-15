@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+// import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import {
   faSlack,
   faVk,
@@ -10,10 +10,10 @@ import {
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
 import { useTranslation } from 'react-i18next';
-import { Container, Row, Col, Nav, Dropdown } from 'react-bootstrap';
+import { Container, Row, Col, Nav } from 'react-bootstrap';
 
 export function buildFooter() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <footer className="bg-dark border-top border-secondary pt-4 pb-5">
@@ -87,7 +87,9 @@ export function buildFooter() {
             </p>
           </Col>
           <Col>
-            <div className="fw-bold mt-3 mb-2 text-white">{t('footer.doc')}</div>
+            <div className="fw-bold mt-3 mb-2 text-white">
+              {t('footer.doc')}
+            </div>
             <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link
@@ -122,8 +124,10 @@ export function buildFooter() {
                 </Nav.Link>
               </li>
             </Nav>
-            <Nav as='ul' className='flex-column align-items-start'>
-              <div className="fw-bold mt-3 mb-3 text-white">{t('footer.subscribe')}</div>
+            <Nav as="ul" className="flex-column align-items-start">
+              <div className="fw-bold mt-3 mb-3 text-white">
+                {t('footer.subscribe')}
+              </div>
               <ul className="list-unstyled h3 text-start d-flex flex-wrap">
                 <li className="me-4 mb-2">
                   <a
@@ -222,7 +226,9 @@ export function buildFooter() {
             </Dropdown> */}
           </Col>
           <Col>
-            <div className="fw-bold mt-3 mb-2 text-white">{t('footer.project')}</div>
+            <div className="fw-bold mt-3 mb-2 text-white">
+              {t('footer.project')}
+            </div>
             <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link
@@ -296,4 +302,4 @@ export function buildFooter() {
       </Container>
     </footer>
   );
-};
+}

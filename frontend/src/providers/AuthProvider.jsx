@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts';
@@ -36,8 +36,13 @@ function AuthProvider({ children }) {
     fetchAuthData();
   }, []);
 
+  const memoizedValue = useMemo(
+    () => ({ logOut, isLoggedIn, logIn }),
+    [logOut, isLoggedIn, logIn],
+  );
+
   return (
-    <AuthContext.Provider value={{ logOut, isLoggedIn, logIn }}>
+    <AuthContext.Provider value={memoizedValue}>
       {children}
     </AuthContext.Provider>
   );

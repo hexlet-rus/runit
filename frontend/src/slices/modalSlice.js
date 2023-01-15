@@ -15,7 +15,7 @@ const modalSlice = createSlice({
       state.type = payload.type;
       state.item = payload.item;
     },
-    closeModal: (state, { payload }) => {
+    closeModal: (state) => {
       state.type = null;
       state.item = null;
     },

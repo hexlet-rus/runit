@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/function-component-definition */
-/* eslint-disable no-console */
+
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { Button, Form, Modal } from 'react-bootstrap';

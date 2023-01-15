@@ -25,7 +25,7 @@ export function Profile() {
     try {
       return new Intl.DateTimeFormat().format(new Date(date));
     } catch {
-      return t('profile.succesfulLoading');
+      return t('profile.successfulLoading');
     }
   };
 
@@ -195,7 +195,7 @@ export function Profile() {
                             className={`btn-sm p-1 ${classes.button}`}
                             variant="primary"
                             href={snippetApi.genViewSnippetLink(
-                              userdata.login,
+                              userInfo.login,
                               slug,
                             )}
                           >

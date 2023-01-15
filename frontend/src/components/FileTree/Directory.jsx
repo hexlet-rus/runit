@@ -18,7 +18,7 @@ export function Directory({
     <div className="d-flex flex-wrap w-100 user-select-none">
       <div
         className="list-group-item list-group-item-action flex-grow-1"
-        onClick={showDocumentHandler}
+        onClick={(e) => showDocumentHandler(e)}
       >
         <DocumentImage type={type} isShow={isShow} />
         <span className="ps-2">{name}</span>
