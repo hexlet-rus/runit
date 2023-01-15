@@ -15,10 +15,13 @@ var Snippets = /** @class */ (function () {
         (0, typeorm_1.PrimaryGeneratedColumn)()
     ], Snippets.prototype, "id");
     __decorate([
-        (0, typeorm_1.Column)({ "default": 'Untitled' })
+        (0, typeorm_1.Column)("text")
+    ], Snippets.prototype, "slug");
+    __decorate([
+        (0, typeorm_1.Column)("text", { "default": 'Untitled' })
     ], Snippets.prototype, "name");
     __decorate([
-        (0, typeorm_1.Column)()
+        (0, typeorm_1.Column)("text")
     ], Snippets.prototype, "code");
     __decorate([
         (0, typeorm_1.ManyToOne)('Users', 'snippets', { onDelete: 'CASCADE' }),

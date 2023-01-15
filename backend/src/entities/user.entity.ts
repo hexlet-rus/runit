@@ -18,14 +18,14 @@ export class Users {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
+  @Column('text', { unique: true })
   login: string;
 
-  @Index({ unique: true })
+  @Index('text', { unique: true })
   @Column()
   email: string;
 
-  @Column()
+  @Column('text')
   password: string;
 
   @OneToMany('Snippets', 'user')

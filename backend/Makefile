@@ -4,10 +4,10 @@ install:
 	npm install
 
 db-migrate:
-	npm run typeorm -- migration:run -d src/data-source.ts
+	npm run typeorm -- migration:run -d src/data-source.js
 
 db-generate:
-	npm run typeorm -- migration:generate src/migrations/migrations -d src/data-source.ts
+	npm run typeorm -- migration:generate src/migrations/migrations -d src/data-source.js
 
 start:
 	npm run start

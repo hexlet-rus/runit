@@ -14,13 +14,13 @@ export class Snippets {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column('text')
   slug: string;
 
-  @Column({ default: 'Untitled' })
+  @Column('text', { default: 'Untitled' })
   name: string;
 
-  @Column()
+  @Column('text')
   code: string;
 
   @ManyToOne('Users', 'snippets', { onDelete: 'CASCADE' })

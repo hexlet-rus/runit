@@ -1,10 +1,4 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -42,72 +36,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.Users = void 0;
-var typeorm_1 = require("typeorm");
-var encrypt_1 = require("../users/secure/encrypt");
-var Users = /** @class */ (function () {
-    function Users() {
+exports.migration1670352324202 = void 0;
+var migration1670352324202 = /** @class */ (function () {
+    function migration1670352324202() {
+        this.name = 'migration1670352324202';
     }
-    Users.prototype.hashPassword = function () {
+    migration1670352324202.prototype.up = function (queryRunner) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                this.password = (0, encrypt_1.encrypt)(this.password);
-                return [2 /*return*/];
-            });
-        });
-    };
-    Users.prototype.loadTempPassword = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                this.tempPassword = this.password;
-                return [2 /*return*/];
-            });
-        });
-    };
-    Users.prototype.hashPasswordIfNew = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                if (this.tempPassword !== this.password) {
-                    this.password = (0, encrypt_1.encrypt)(this.password);
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE \"snippets\" ADD COLUMN \"slug\" varchar(30)")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
                 }
-                return [2 /*return*/];
             });
         });
     };
-    __decorate([
-        (0, typeorm_1.PrimaryGeneratedColumn)()
-    ], Users.prototype, "id");
-    __decorate([
-        (0, typeorm_1.Column)("text", { unique: true })
-    ], Users.prototype, "login");
-    __decorate([
-        (0, typeorm_1.Index)({ unique: true }),
-        (0, typeorm_1.Column)("text")
-    ], Users.prototype, "email");
-    __decorate([
-        (0, typeorm_1.Column)("text")
-    ], Users.prototype, "password");
-    __decorate([
-        (0, typeorm_1.OneToMany)('Snippets', 'user')
-    ], Users.prototype, "snippets");
-    __decorate([
-        (0, typeorm_1.CreateDateColumn)()
-    ], Users.prototype, "created_at");
-    __decorate([
-        (0, typeorm_1.UpdateDateColumn)()
-    ], Users.prototype, "updated_at");
-    __decorate([
-        (0, typeorm_1.BeforeInsert)()
-    ], Users.prototype, "hashPassword");
-    __decorate([
-        (0, typeorm_1.AfterLoad)()
-    ], Users.prototype, "loadTempPassword");
-    __decorate([
-        (0, typeorm_1.BeforeUpdate)()
-    ], Users.prototype, "hashPasswordIfNew");
-    Users = __decorate([
-        (0, typeorm_1.Entity)()
-    ], Users);
-    return Users;
+    migration1670352324202.prototype.down = function (queryRunner) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, queryRunner.query("ALTER TABLE \"snippets\" DELETE COLUMN \"slug\"")];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    return migration1670352324202;
 }());
-exports.Users = Users;
+exports.migration1670352324202 = migration1670352324202;
