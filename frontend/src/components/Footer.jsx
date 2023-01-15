@@ -53,6 +53,15 @@ export function buildFooter() {
                 >
                   {t('footer.shop')}
                 </Nav.Link>
+                <Nav.Link
+                  as="a"
+                  eventKey="support_email"
+                  className="py-1 text-muted px-0"
+                  href="mailto: runit@hexlet.io"
+                  target="_blank"
+                >
+                  {t('footer.mailSupport')}
+                </Nav.Link>
               </li>
             </Nav>
             <Nav as="ul" className="flex-column align-items-start mt-3">

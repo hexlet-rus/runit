@@ -146,6 +146,7 @@ const ruLocales = {
       language: 'Язык',
       en: 'English',
       ru: 'Русский',
+      mailSupport: 'Напишите нам',
     },
     embedFrame: {
       runButton: 'Запустить',
