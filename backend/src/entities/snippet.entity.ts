@@ -14,6 +14,9 @@ export class Snippets {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column()
+  slug: string;
+
   @Column({ default: 'Untitled' })
   name: string;
 

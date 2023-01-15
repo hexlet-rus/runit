@@ -5,7 +5,7 @@ export default {
   // get - get all users
   usersPath: () => [apiPath, 'users'].join('/'),
   userProfilePath: () => [apiPath, 'users', 'profile'].join('/'), // get user info that is logged in
-  userInfoPath: (id) => [apiPath, 'users', `${id}`].join('/'), // get user info
+  userInfoPath: (param) => [apiPath, 'users', `${param}`].join('/'), // get user info
   updateUserPath: (id) => [apiPath, 'users', `${id}`].join('/'), // put - update user info: { name, email, password }
   loginPath: () => [apiPath, 'login'].join('/'),
   logoutPath: () => [apiPath, 'logout'].join('/'), // post
@@ -23,4 +23,5 @@ export default {
   remindPassPagePath: () => '/remind_password',
   embedPagePath: () => '/embed',
   licenseAgreementPath: () => '/licenseAgreement',
+  snippetPagePath: () => '/users/:login/snippets/:slug',
 };
