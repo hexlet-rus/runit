@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useSnippets } from '../hooks';
-
 import routes from '../routes.js';
 
 import { actions as modalActions } from '../slices/modalSlice.js';
@@ -148,7 +147,7 @@ export function Profile() {
                 </div>
               </Row>
               <Row xs={1} md={2} className="g-4 my-1">
-                {snippets.map(({ id, name, code }) => (
+                {snippets.map(({ id, slug, name, code }) => (
                   <Col xs lg="3" key={id}>
                     <Card style={{ border: 0 }}>
                       <Card.Header
@@ -195,8 +194,9 @@ export function Profile() {
                           <Button
                             className={`btn-sm p-1 ${classes.button}`}
                             variant="primary"
-                            href={snippetApi.genSnippetLink(
-                              snippetApi.encodeId(id),
+                            href={snippetApi.genViewSnippetLink(
+                              userdata.login,
+                              slug,
                             )}
                           >
                             {t('profile.openReplButton')}

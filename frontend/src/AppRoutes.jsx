@@ -47,6 +47,11 @@ function AppRoutes() {
         />
       </Route>
       <Route path={routes.embedPagePath()} element={<EmbedSnippet />} />
+      <Route
+        path={routes.snippetPagePath()}
+        element={<App />}
+        loader={({ params }) => ({ login: params.login, slug: params.slug })}
+      />
       <Route path="*" element={<div>{t('appRotes.pageNotFound')}</div>} />
     </Routes>
   );

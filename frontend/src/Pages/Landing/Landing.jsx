@@ -44,7 +44,8 @@ export function Landing() {
                 />
                 <p className="fs-5 mb-0 lh-5">
                   Запускайте JavaScript код,
-                  <br />не устанавливая приложение
+                  <br />
+                  не устанавливая приложение
                 </p>
               </Col>
               <Col className="d-flex flex-sm-column align-items-center align-items-sm-start mb-3 mb-sm-0">
@@ -91,11 +92,11 @@ export function Landing() {
           <Row className="mt-5 row-cols-1 row-cols-sm-2 d-flex justify-content-between">
             <Col className="mb-5 mb-sm-0">
               <p className="fs-4 mb-0 lh-5">
-                В современной веб-разработке нужно постоянно следить за последними
+                В современной веб-разработке нужно постоянно следить за
                 последними новостями, а еще лучше — испытывать новинки в
                 реальных
-                <br /> <br /> Бесплатный онлайн-редактор кода Run IT позволит это
-                делать быстро и без лишней суеты с настройками.
+                <br /> <br /> Бесплатный онлайн-редактор кода Run IT позволит
+                это делать быстро и без лишней суеты с настройками.
               </p>
             </Col>
             <Col>
@@ -109,7 +110,9 @@ export function Landing() {
                 </li>
                 <li className="mb-3 position-relative">
                   <img className={`${classes.img}`} src={Checked} alt="" />
-                  <p className="fs-5 lh-5">Больше никаких ZIP, PKG, DMG и WTF</p>
+                  <p className="fs-5 lh-5">
+                    Больше никаких ZIP, PKG, DMG и WTF
+                  </p>
                 </li>
                 <li className="mb-3 position-relative">
                   <img className={`${classes.img}`} src={Checked} alt="" />
@@ -120,13 +123,15 @@ export function Landing() {
                 <li className="mb-3 position-relative">
                   <img className={`${classes.img}`} src={Checked} alt="" />
                   <p className="fs-5 lh-5">
-                    Используйте редактор на macOS, Windows, Linux или любой другой
-                    ОС
+                    Используйте редактор на macOS, Windows, Linux или любой
+                    другой ОС
                   </p>
                 </li>
                 <li className="mb-3 position-relative">
                   <img className={`${classes.img}`} src={Checked} alt="" />
-                  <p className="fs-5 lh-5">Не тратьте время на настройку среды</p>
+                  <p className="fs-5 lh-5">
+                    Не тратьте время на настройку среды
+                  </p>
                 </li>
               </ul>
             </Col>
@@ -134,7 +139,9 @@ export function Landing() {
         </section>
         <section className="mt-90">
           <Row>
-            <h2 className="text-center display-4 fw-bold mb-0">Еще больше возможностей в будущем</h2>
+            <h2 className="text-center display-4 fw-bold mb-0">
+              Еще больше возможностей в будущем
+            </h2>
           </Row>
           <section className="mt-55">
             <Row className="row-cols-1 row-cols-sm-3">
@@ -148,7 +155,10 @@ export function Landing() {
                     height="39"
                   />
                   <p className="mb-2">Все языки</p>
-                  <p className="mb-0">Пока наша среда разработки запускает код только на JavaScript. В ближайшем будущем мы реализуем в редакторе поддержку других популярных языков программирования</p>
+                  <p className="mb-0">
+                    Пока наша среда разработки запускает код только на JavaScript.
+                    В ближайшем будущем мы реализуем в редакторе поддержку других популярных языков программирования
+                  </p>
                 </div>
               </Col>
               <Col className="mb-4 mb-sm-0">
@@ -161,7 +171,9 @@ export function Landing() {
                     height="39"
                   />
                   <p className="mb-2">Совместная работа</p>
-                  <p className="mb-0">Вы сможете делиться ссылкой на фрагменты своего кода с другими участниками. Или работать вместе прямо в Runit!</p>
+                  <p className="mb-0">
+                    Вы сможете делиться ссылкой на фрагменты своего кода с другими участниками. Или работать вместе прямо в Runit!
+                  </p>
                 </div>
               </Col>
               <Col className="mb-4 mb-sm-0">
@@ -174,7 +186,10 @@ export function Landing() {
                     height="39"
                   />
                   <p className="mb-2">Готовые шаблоны с кодом</p>
-                  <p className="mb-0">Больше не будет необходимости каждый раз писать код с нуля. Мы сделаем шаблоны, чтобы вы могли проверить свои идеи на практике еще быстрее</p>
+                  <p className="mb-0">
+                    Больше не будет необходимости каждый раз писать код с нуля.
+                    Мы сделаем шаблоны, чтобы вы могли проверить свои идеи на практике еще быстрее
+                  </p>
                 </div>
               </Col>
             </Row>
@@ -182,7 +197,9 @@ export function Landing() {
         </section>
         <section className="mt-90">
           <Row>
-            <h3 className="text-center fs-2 mb-0 lh-2">Попробуйте написать свой код прямо сейчас!</h3>
+            <h3 className="text-center fs-2 mb-0 lh-2">
+              Попробуйте написать свой код прямо сейчас!
+            </h3>
             <Row className="">
               <div className="d-grid col-7 col-sm-5 col-md-4 mx-auto">
                 <Link

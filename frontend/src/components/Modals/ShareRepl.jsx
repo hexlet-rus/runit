@@ -45,8 +45,8 @@ function ShareRepl() {
       actions.setSubmitting(true);
       try {
         const name = `${values.name}${languages.get(currentLanguage)}`;
-        const newEncodedId = await snippetApi.saveSnippet(code, name);
-        const link = snippetApi.genSnippetLink(newEncodedId);
+        const id = await snippetApi.saveSnippet(code, name);
+        const link = snippetApi.genSnippetLink(snippetApi.encodeId(id));
         const address = new URL(link);
         navigate(address.search);
         navigate(0);
