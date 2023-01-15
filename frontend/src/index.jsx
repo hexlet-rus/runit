@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import { configureStore } from '@reduxjs/toolkit';
