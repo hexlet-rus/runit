@@ -8,7 +8,7 @@ db-migrate:
 	make -C backend db-migrate
 
 db-generate:
-	make -C backend generate
+	make -C backend db-generate
 
 start:
 	make start-backend &
