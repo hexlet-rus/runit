@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React, { useState } from 'react';
 import { DocumentImage } from './DocumentImage';
 
@@ -18,7 +21,7 @@ export function Directory({
     <div className="d-flex flex-wrap w-100 user-select-none">
       <div
         className="list-group-item list-group-item-action flex-grow-1"
-        onClick={showDocumentHandler}
+        onClick={(e) => showDocumentHandler(e)}
       >
         <DocumentImage type={type} isShow={isShow} />
         <span className="ps-2">{name}</span>

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import axios from 'axios';
+import { Buffer } from 'buffer';
 import { SnippetsContext } from '../contexts';
 import routes from '../routes';
-
-const { Buffer } = require('buffer');
+// const { Buffer } = require('buffer');
 
 function SnippetsProvider({ children }) {
   const encodeId = (id) => {
@@ -95,26 +95,29 @@ function SnippetsProvider({ children }) {
     >`;
   };
 
+  const memoizedValue = useMemo(
+    () => ({
+      encodeId,
+      decodeId,
+      saveSnippet,
+      renameSnippet,
+      deleteSnippet,
+      genEmbedFrame,
+      genSnippetLink,
+      genViewSnippetLink,
+      getSnippetData,
+      getSnippetDataByViewParams,
+      hasSnippetParams,
+      hasViewSnippetParams,
+      genEmbedSnippetLink,
+      getSnippetIdFromParams,
+      getViewSnippetParams,
+    }),
+    [],
+  );
+
   return (
-    <SnippetsContext.Provider
-      value={{
-        encodeId,
-        decodeId,
-        saveSnippet,
-        renameSnippet,
-        deleteSnippet,
-        genEmbedFrame,
-        genSnippetLink,
-        genViewSnippetLink,
-        getSnippetData,
-        getSnippetDataByViewParams,
-        hasSnippetParams,
-        hasViewSnippetParams,
-        genEmbedSnippetLink,
-        getSnippetIdFromParams,
-        getViewSnippetParams,
-      }}
-    >
+    <SnippetsContext.Provider value={memoizedValue}>
       {children}
     </SnippetsContext.Provider>
   );

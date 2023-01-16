@@ -28,7 +28,7 @@ settings:
     - .ts
   import/parsers:
     '@typescript-eslint/parser':
-       - .ts
+      - .ts
   import/resolver:
     node:
       extensions:
@@ -37,10 +37,12 @@ settings:
         - .ts
 
 rules:
-  import/no-cycle: [2, { maxDepth: 1}]
+  import/no-cycle: [2, { maxDepth: 1 }]
   import/prefer-default-export: 0
   import/extensions: 0
-  react/prop-types: "off"
+  no-console: 0
+  react/prop-types: 'off'
+  consistent-return: 0
   '@typescript-eslint/interface-name-prefix': 'off'
   '@typescript-eslint/explicit-function-return-type': 'off'
   '@typescript-eslint/explicit-module-boundary-types': 'off'

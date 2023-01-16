@@ -2,8 +2,8 @@ import React from 'react';
 
 import Editor from '@monaco-editor/react';
 
-import { useEditor } from './hooks.js';
 import { useTranslation } from 'react-i18next';
+import { useEditor } from './hooks.js';
 import { useAuth } from '../../hooks';
 import classes from './Editor.module.css';
 
@@ -18,7 +18,7 @@ function AuthBanner() {
 }
 
 export function MonacoEditor() {
-  const { code, language, onChange, editorDidMount } = useEditor();
+  const { code, language, onChange } = useEditor();
   const { isLoggedIn } = useAuth();
 
   const options = {

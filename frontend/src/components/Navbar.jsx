@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import routes from '../routes.js';
 import { useAuth } from '../hooks';
-import Logo from '!file-loader!../assets/landing/images/logo.svg';
+import Logo from '../assets/landing/images/logo.svg';
 
 export function Navbar() {
   const auth = useAuth();

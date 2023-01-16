@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-constructor */
 /* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */
+
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -40,7 +41,7 @@ export class UsersService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<Users> {
-    const { currPassword, confirmPassword, ...data } = updateUserDto;
+    const { ...data } = updateUserDto;
     const currentUser = await this.usersRepository.findOneBy({ id });
     const updatedUser = this.usersRepository.merge(currentUser, data);
     await this.usersRepository.save(updatedUser);

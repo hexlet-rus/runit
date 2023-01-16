@@ -3,10 +3,10 @@ import { useFormik } from 'formik';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { useAuth } from '../../hooks';
-
 import * as yup from 'yup';
 import axios from 'axios';
+
+import { useAuth } from '../../hooks';
 import routes from '../../routes';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
@@ -87,7 +87,8 @@ function SignUpModal() {
       <Modal.Header
         closeButton
         closeVariant="white"
-        className="text-white bg-dark border-secondary">
+        className="text-white bg-dark border-secondary"
+      >
         <Modal.Title className="display-6">
           {t('modals.signUpHeader')}
         </Modal.Title>
