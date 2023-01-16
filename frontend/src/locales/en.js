@@ -144,6 +144,7 @@ const enLocales = {
       language: 'Language',
       en: 'English',
       ru: 'Русский',
+      mailSupport: 'Mail to support',
     },
     embedFrame: {
       runButton: 'Run',
