@@ -117,7 +117,7 @@
     "@types/jest": "27.5.0",
     "@types/joi": "^17.2.3",
     "@types/node": "^16.0.0",
-    "@types/passport-jwt": "^3.0.6",
+    "@types/passport-jwt": "^3.0.8",
     "@types/passport-local": "^1.0.34",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
@@ -150,10 +150,10 @@
     "rootDir": "src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
+      "^.+\\.(t)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "**/*.(t)s"
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
