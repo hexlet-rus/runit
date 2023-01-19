@@ -8,9 +8,9 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \\\"src/**/*.ts\\\" \\\"__test__/**/*.ts\\\"",
-    "start": "PORT=5001 nest start",
+    "start": "NODE_ENV=development PORT=5001 nest start",
     "typeorm": "typeorm-ts-node-commonjs",
-    "start:debug": "nest start --debug --watch",
+    "start:debug": "NODE_ENV=development nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
