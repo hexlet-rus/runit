@@ -26,6 +26,19 @@ export class SnippetsService {
     return this.snippetsRepository.findOneBy({ id });
   }
 
+  async findByLoginSlug(login: string, slug: string): Promise<any> {
+    const user = await this.usersRepository.findOneBy({ login });
+    const snippet = await this.snippetsRepository.findOne({
+      where: {
+        user: {
+          id: user.id,
+        },
+        slug,
+      },
+    });
+    return snippet;
+  }
+
   async getSlug(name: string, login: string, id: number): Promise<string> {
     const trimmedName = name.trim();
     const extension = path.extname(trimmedName);

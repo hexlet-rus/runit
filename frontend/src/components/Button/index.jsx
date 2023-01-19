@@ -14,9 +14,14 @@ export const Button = memo(() => {
   const auth = useAuth();
   const snippetsApi = useSnippets();
   const { t } = useTranslation();
+  const params = useParams();
 
   useEffect(() => {
-    if (snippetsApi.hasViewSnippetParams()) {
+    const snippetParams = {
+      login: params.login,
+      slug: params.slug,
+    };
+    if (snippetsApi.hasViewSnippetParams(snippetParams)) {
       const decodedId = snippetsApi.getSnippetIdFromParams();
       setCurrentSnippetId(decodedId);
     } else {

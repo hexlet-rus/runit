@@ -23,8 +23,8 @@ function SnippetsProvider({ children }) {
   };
 
   const getSnippetDataByViewParams = async ({ login, slug }) => {
-    const { data } = await axios.get(routes.userInfoPath(login));
-    return data.snippets.find((snippet) => snippet.slug === slug);
+    const { data } = await axios.get(routes.getSnippetPathByLoginSlug(login, slug));
+    return data;
   };
 
   const saveSnippet = async (code, name) => {
@@ -51,7 +51,7 @@ function SnippetsProvider({ children }) {
     return url.searchParams.has('snippet');
   };
 
-  const hasViewSnippetParams = (urlData) => {
+  const hasViewSnippetParams = (urlData = {}) => {
     return urlData.login && urlData.slug;
   };
 

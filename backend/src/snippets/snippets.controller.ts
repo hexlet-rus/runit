@@ -17,6 +17,7 @@ import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
 import { Snippet } from './interfaces/snippets.interface';
 import { SnippetsService } from './snippets.service';
+import { UsersService } from '../users/users.service';
 import { HttpExceptionFilter } from './exceptions/http-exception.filter';
 import { ParseIntPipe } from './pipes/parse-int.pipe';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -26,11 +27,20 @@ import { User } from '../users/interfaces/users.interface';
 @Controller('snippets')
 @UseFilters(new HttpExceptionFilter())
 export class SnippetsController {
-  constructor(private snippetsService: SnippetsService) {}
+  constructor(
+    private snippetsService: SnippetsService,
+    private usersService: UsersService,
+  ) {}
 
   @Get()
   async findAll(): Promise<Snippet[]> {
+    console.log('check')
     return this.snippetsService.findAll();
+  }
+
+  @Get(':login/:slug')
+  async findOneByLoginSlug(@Param('login') login: string, @Param('slug') slug: string): Promise<Snippet> {
+    return this.snippetsService.findByLoginSlug(login, slug);
   }
 
   @Get(':id')

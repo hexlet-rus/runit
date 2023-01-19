@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLoaderData } from 'react-router';
+// import { useLoaderData } from 'react-router';
+import { useParams } from 'react-router-dom';
 import { MonacoEditor } from './components/Editor/index.jsx';
 import { Button } from './components/Button/index.jsx';
 import { Terminal } from './components/Terminal/index.jsx';
@@ -11,13 +12,17 @@ import { useSnippets } from './hooks';
 export function App() {
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
-  const loaderData = useLoaderData();
+  const params = useParams();
 
   useEffect(() => {
     const loadSnippet = async () => {
-      if (snippetApi.hasViewSnippetParams(loaderData)) {
+      const snippetParams = {
+        login: params.login,
+        slug: params.slug,
+      };
+      if (snippetApi.hasViewSnippetParams(snippetParams)) {
         const snippetData = await snippetApi.getSnippetDataByViewParams(
-          loaderData,
+          snippetParams,
         );
         dispatch(actions.updateCode(snippetData.code));
       }
