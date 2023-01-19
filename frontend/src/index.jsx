@@ -36,8 +36,7 @@ export default async () => {
   });
 
   // store.dispatch(setupState(gon));
-  const rootNode = document.getElementById('main');
-  ReactDOM.render(
+  return (
     <Provider store={store}>
       <BrowserRouter>
         <AuthProvider>
