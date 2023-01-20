@@ -74,6 +74,7 @@ function SnippetsProvider({ children }) {
   };
 
   const genSnippetLink = (encodedId) => {
+    // TODO: переделать на получение ссылки вида /users/${login}/snippets/${slug}
     const url = new URL(routes.homePagePath(), window.location);
     url.searchParams.set('snippet', encodedId);
     return url.toString();
