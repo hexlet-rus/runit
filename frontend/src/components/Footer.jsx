@@ -132,6 +132,17 @@ export function buildFooter() {
                   {t('footer.licenseAgreement')}
                 </Nav.Link>
               </li>
+              <li>
+                <Nav.Link
+                  as="a"
+                  eventKey="source"
+                  className="py-1 text-muted px-0 pt-0"
+                  href="https://github.com/hexlet-rus/runit"
+                  target="_blank"
+                >
+                  {t('footer.source')}
+                </Nav.Link>
+              </li>
             </Nav>
             <Nav as="ul" className="flex-column align-items-start">
               <div className="fw-bold mt-3 mb-3 text-white">
