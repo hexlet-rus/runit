@@ -33,6 +33,14 @@ export class SnippetsController {
     return this.snippetsService.findAll();
   }
 
+  @Get(':login/:slug')
+  async findOneByLoginSlug(
+    @Param('login') login: string,
+    @Param('slug') slug: string,
+  ): Promise<Snippet> {
+    return this.snippetsService.findByLoginSlug(login, slug);
+  }
+
   @Get(':id')
   async findOne(@Param('id', new ParseIntPipe()) id: number): Promise<Snippet> {
     return this.snippetsService.findOne(id);

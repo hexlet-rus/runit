@@ -26,13 +26,24 @@ export class SnippetsService {
     return this.snippetsRepository.findOneBy({ id });
   }
 
+  async findByLoginSlug(login: string, slug: string): Promise<any> {
+    const user = await this.usersRepository.findOneBy({ login });
+    const snippet = await this.snippetsRepository.findOne({
+      where: {
+        user: {
+          id: user.id,
+        },
+        slug,
+      },
+    });
+    return snippet;
+  }
+
   async getSlug(name: string, login: string, id: number): Promise<string> {
     const trimmedName = name.trim();
     const extension = path.extname(trimmedName);
     const basename = path.basename(trimmedName, extension);
-    const slug = `${basename
-      .replace(/\s/g, '-')
-      .toLowerCase()}_${extension.slice(1)}`;
+    const slug = `${basename.replace(/\s/g, '-').toLowerCase()}`;
     const snippets = await this.snippetManager
       .createQueryBuilder(Snippets, 'snippet')
       .where('snippet.userId= :id', { id })

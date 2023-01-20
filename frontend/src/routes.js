@@ -13,6 +13,8 @@ export default {
   snippetsPath: () => [apiPath, 'snippets'].join('/'), // get - shows all snippets
   createSnippetPath: () => [apiPath, 'snippets'].join('/'), // post - create snippet: { name, code }
   getSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // get snippet
+  getSnippetPathByLoginSlug: (login, slug) =>
+    [apiPath, 'snippets', login, slug].join('/'),
   updateSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // put - update snippet info: { name, code }
   deleteSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // delete snippet
   homePagePath: () => '/editor',

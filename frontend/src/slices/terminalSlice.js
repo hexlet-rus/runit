@@ -5,7 +5,7 @@ import axios from 'axios';
 export const runCode = createAsyncThunk(
   'terminal/runCode',
   async (code) => {
-    const { data, status } = await axios.get(`api/compile`, {
+    const { data, status } = await axios.get(`/api/compile`, {
       params: { code },
     });
 

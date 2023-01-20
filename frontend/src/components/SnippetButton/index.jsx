@@ -1,27 +1,36 @@
 import { useTranslation } from 'react-i18next';
 import React, { memo, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import classes from './Button.module.css';
+import { useParams } from 'react-router-dom';
+import classes from './SnippetButton.module.css';
 import { useButton } from './hooks';
 import { useAuth, useSnippets } from '../../hooks';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
 
-export const Button = memo(() => {
+export const SnippetButton = memo(() => {
   const { onClick, disabled, update } = useButton();
   const [currentSnippetId, setCurrentSnippetId] = useState();
   const dispatch = useDispatch();
   const auth = useAuth();
   const snippetsApi = useSnippets();
   const { t } = useTranslation();
+  const params = useParams();
 
   useEffect(() => {
-    if (snippetsApi.hasViewSnippetParams()) {
-      const decodedId = snippetsApi.getSnippetIdFromParams();
-      setCurrentSnippetId(decodedId);
-    } else {
-      setCurrentSnippetId(false);
-    }
+    const getSnippetData = async () => {
+      const snippetParams = {
+        login: params.login,
+        slug: params.slug,
+      };
+      if (snippetsApi.hasViewSnippetParams(snippetParams)) {
+        const snippetData = await snippetsApi.getSnippetDataByViewParams(snippetParams);
+        setCurrentSnippetId(snippetData.id);
+      } else {
+        setCurrentSnippetId(false);
+      }
+    };
+    getSnippetData();
   }, []);
 
   const getTypeOfModal = (isLoggedIn) => {
@@ -65,7 +74,7 @@ export const Button = memo(() => {
         disabled={disabled}
         onClick={() => {
           onClick();
-          update(currentSnippetId);
+          update(currentSnippetId, params.slug);
         }}
       >
         {t('editor.runButton')}
