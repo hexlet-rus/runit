@@ -23,7 +23,9 @@ function SnippetsProvider({ children }) {
   };
 
   const getSnippetDataByViewParams = async ({ login, slug }) => {
-    const { data } = await axios.get(routes.getSnippetPathByLoginSlug(login, slug));
+    const { data } = await axios.get(
+      routes.getSnippetPathByLoginSlug(login, slug),
+    );
     return data;
   };
 

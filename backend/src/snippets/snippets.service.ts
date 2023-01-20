@@ -43,9 +43,7 @@ export class SnippetsService {
     const trimmedName = name.trim();
     const extension = path.extname(trimmedName);
     const basename = path.basename(trimmedName, extension);
-    const slug = `${basename
-      .replace(/\s/g, '-')
-      .toLowerCase()}_${extension.slice(1)}`;
+    const slug = `${basename.replace(/\s/g, '-').toLowerCase()}`;
     const snippets = await this.snippetManager
       .createQueryBuilder(Snippets, 'snippet')
       .where('snippet.userId= :id', { id })

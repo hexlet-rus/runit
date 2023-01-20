@@ -6,7 +6,7 @@ import { EmbedRunButton } from './EmbedRunButton.jsx';
 import { Terminal } from '../Terminal';
 import { actions } from '../../slices/index.js';
 import { useSnippets } from '../../hooks';
-import classes from '../Button/Button.module.css';
+import classes from '../SnippetButton/SnippetButton.module.css';
 
 function EmbedSnippet() {
   const snippetApi = useSnippets();
