@@ -6,7 +6,8 @@
   "scripts": {
     "build": "npm run build --prefix frontend && npm run build --prefix backend",
     "start:prod": "npm run start:prod --prefix backend",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "npm ci --prefix frontend && npm ci --prefix backend"
   },
   "repository": {
     "type": "git",
