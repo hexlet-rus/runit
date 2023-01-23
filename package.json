@@ -1,0 +1,21 @@
+{
+  "name": "runit",
+  "version": "1.0.0",
+  "description": "[![On Push](https://github.com/hexlet-rus/runit/actions/workflows/push.yml/badge.svg?event=push)](https://github.com/hexlet-rus/runit/actions/workflows/push.yml)",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build --prefix frontend && npm run build --prefix backend",
+    "start:prod": "npm run start:prod --prefix backend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hexlet-rus/runit.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/hexlet-rus/runit/issues"
+  },
+  "homepage": "https://github.com/hexlet-rus/runit#readme"
+}
