@@ -4,14 +4,9 @@ import { ThreeDots } from 'react-bootstrap-icons';
 import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import { useSnippets } from '../hooks';
-import routes from '../routes.js';
-
 import { actions as modalActions } from '../slices/modalSlice.js';
-import { actions as snippetsActions } from '../slices/snippetsSlice.js';
-import { actions as userActions } from '../slices/userSlice.js';
-
+import { fetchData } from '../slices/userSlice.js';
 import classes from './Profile.module.css';
 
 export function Profile() {
@@ -66,12 +61,13 @@ export function Profile() {
   };
 
   useEffect(() => {
-    const fetchUserSnippets = async () => {
-      const response = await axios.get(routes.userProfilePath());
-      dispatch(userActions.setUserInfo(response.data.currentUser));
-      dispatch(snippetsActions.addSnippets(response.data.snippets));
-    };
-    fetchUserSnippets();
+    dispatch(fetchData())
+      .unwrap()
+      .catch((serializedError) => {
+        const error = new Error(serializedError.message);
+        error.name = serializedError.name;
+        throw error;
+      });
   }, []);
 
   return (

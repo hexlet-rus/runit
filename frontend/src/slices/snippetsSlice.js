@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchData } from './userSlice';
 
 const initialState = {
   snippets: [],
@@ -22,6 +23,11 @@ const snippetSlice = createSlice({
         (snippet) => snippet.id === id,
       );
       renamedSnippet.name = name;
+    },
+  },
+  extraReducers: {
+    [fetchData.fulfilled]: (state, { payload }) => {
+      state.snippets = payload.snippets;
     },
   },
 });

@@ -1,5 +1,12 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import routes from '../routes';
+
+export const fetchData = createAsyncThunk('user/fetchData', async () => {
+  const response = await axios.get(routes.userProfilePath());
+  return response.data;
+});
 
 const initialState = {
   userInfo: {},
@@ -11,6 +18,11 @@ const userSlice = createSlice({
   reducers: {
     setUserInfo: (state, { payload }) => {
       state.userInfo = payload;
+    },
+  },
+  extraReducers: {
+    [fetchData.fulfilled]: (state, { payload }) => {
+      state.userInfo = payload.currentUser;
     },
   },
 });
