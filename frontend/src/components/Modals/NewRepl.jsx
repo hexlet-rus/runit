@@ -6,12 +6,9 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import { faker } from '@faker-js/faker';
-import axios from 'axios';
 import { useSnippets } from '../../hooks';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
-import routes from '../../routes';
-import { actions as snippetsActions } from '../../slices/snippetsSlice';
 
 const generateInitialName = () => {
   const adjectiveLength = 3 + Math.round(Math.random() * 6);
@@ -21,7 +18,7 @@ const generateInitialName = () => {
 };
 
 function NewRepl() {
-  const [userData, setUserData] = useState({});
+  const [userData] = useState({});
 
   const dispatch = useDispatch();
   const inputRef = useRef();
@@ -36,15 +33,6 @@ function NewRepl() {
     .set('javascript', '.js')
     .set('python', '.py')
     .set('php', '.php');
-
-  useEffect(() => {
-    const fetchUserSnippets = async () => {
-      const response = await axios.get(routes.userProfilePath());
-      setUserData(response.data.currentUser);
-      dispatch(snippetsActions.addSnippets(response.data.snippets));
-    };
-    fetchUserSnippets();
-  }, []);
 
   useEffect(() => {
     inputRef.current.focus();
