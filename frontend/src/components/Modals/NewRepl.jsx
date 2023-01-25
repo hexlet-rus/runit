@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Modal, Form, FloatingLabel, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -18,17 +18,18 @@ const generateInitialName = () => {
 };
 
 function NewRepl() {
-  const [userData] = useState({});
-
   const dispatch = useDispatch();
   const inputRef = useRef();
   const { t } = useTranslation();
   const snippetsApi = useSnippets();
   const navigate = useNavigate();
-  const { code, currentLanguage } = useSelector(({ editor, languages }) => ({
-    code: editor.code,
-    currentLanguage: languages.currentLanguage,
-  }));
+  const { code, currentLanguage, userInfo } = useSelector(
+    ({ editor, languages, user }) => ({
+      code: editor.code,
+      currentLanguage: languages.currentLanguage,
+      userInfo: user.userInfo,
+    }),
+  );
   const languages = new Map()
     .set('javascript', '.js')
     .set('python', '.py')
@@ -54,9 +55,10 @@ function NewRepl() {
       try {
         const name = `${values.name}${languages.get(currentLanguage)}`;
         const id = await snippetsApi.saveSnippet(code, name);
-        const link = snippetsApi.genViewSnippetLink(userData.login, id);
+        const link = snippetsApi.genViewSnippetLink(userInfo.login, id);
         const url = new URL(link);
         navigate(`${url.pathname}${url.search}`);
+
         dispatch(modalActions.closeModal());
         actions.setSubmitting(false);
       } catch (err) {
