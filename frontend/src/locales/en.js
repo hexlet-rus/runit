@@ -161,7 +161,6 @@ const enLocales = {
     },
     modals: {
       share: {
-        header: 'Save to share.',
         copyLinkButton: 'Copy Link',
         linkTab: 'Link',
         copyEmbedButton: 'Copy Code',
@@ -173,6 +172,7 @@ const enLocales = {
         snippetEmbedLabel: 'Snippet code for insertion',
       },
     },
+    saveHeader: 'Save to share.',
     newSnippetName: 'Snippet Name',
     signInButton: 'Sign in',
     signUpButton: 'Создать аккаунт',

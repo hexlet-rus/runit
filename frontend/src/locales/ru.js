@@ -163,7 +163,6 @@ const ruLocales = {
     },
     modals: {
       share: {
-        header: 'Сохраните, чтобы поделиться.',
         copyLinkButton: 'Скопировать ссылку',
         linkTab: 'Ссылка',
         copyEmbedButton: 'Скопировать код',
@@ -186,6 +185,7 @@ const ruLocales = {
         confirmNewPassword: 'Подтвердите новый пароль',
         wrongPassword: 'Неверный пароль',
       },
+      saveHeader: 'Сохраните, чтобы поделиться.',
       newSnippetName: 'Название сниппета',
       signInButton: 'Войти',
       signUpButton: 'Создать аккаунт',
