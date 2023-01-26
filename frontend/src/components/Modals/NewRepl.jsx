@@ -23,11 +23,12 @@ function NewRepl() {
   const { t } = useTranslation();
   const snippetsApi = useSnippets();
   const navigate = useNavigate();
-  const { code, currentLanguage, userInfo } = useSelector(
-    ({ editor, languages, user }) => ({
+  const { code, currentLanguage, userInfo, modalItem } = useSelector(
+    ({ editor, languages, user, modal }) => ({
       code: editor.code,
       currentLanguage: languages.currentLanguage,
       userInfo: user.userInfo,
+      modalItem: modal.item,
     }),
   );
   const languages = new Map()
@@ -87,7 +88,9 @@ function NewRepl() {
         closeButton
         closeVariant="white"
       >
-        <Modal.Title>{t('modals.newSnippetName')}</Modal.Title>
+        <Modal.Title>
+          {modalItem ? modalItem.header : t('modals.newSnippetName')}
+        </Modal.Title>
       </Modal.Header>
 
       <Modal.Body className="bg-dark">

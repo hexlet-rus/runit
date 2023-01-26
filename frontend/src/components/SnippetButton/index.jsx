@@ -35,32 +35,45 @@ export const SnippetButton = memo(() => {
     getSnippetData();
   }, []);
 
-  const getTypeOfModal = (isLoggedIn) => {
-    return isLoggedIn
-      ? { type: 'sharingRepl', item: null }
-      : { type: 'gettingInfo' };
+  const handleGettingInfo = () => {
+    dispatch(
+      modalActions.openModal({
+        type: 'gettingInfo',
+      }),
+    );
+  };
+
+  const handleSnippetSave = () => {
+    dispatch(
+      modalActions.openModal({
+        type: 'genNewRepl',
+        item: {
+          header: t('modals.saveHeader'),
+        },
+      }),
+    );
+  };
+
+  const handleReplSharing = () => {
+    dispatch(
+      modalActions.openModal({
+        type: 'sharingRepl',
+        item: {
+          name: currentSnippetName,
+          id: currentSnippetId,
+          link: snippetsApi.genViewSnippetLink(
+            params.login,
+            params.slug,
+          ),
+        },
+      }),
+    );
   };
 
   const handleShareEvent = async () => {
-    if (!snippetsApi.hasViewSnippetParams(snippetParams)) {
-      dispatch(modalActions.openModal(getTypeOfModal(auth.isLoggedIn)));
-    } else if (!auth.isLoggedIn) {
-      dispatch(modalActions.openModal({ type: 'gettingInfo' }));
-    } else {
-      dispatch(
-        modalActions.openModal({
-          type: 'sharingRepl',
-          item: {
-            name: currentSnippetName,
-            id: currentSnippetId,
-            link: snippetsApi.genViewSnippetLink(
-              params.login,
-              params.slug,
-            ),
-          },
-        }),
-      );
-    }
+    if (!auth.isLoggedIn) handleGettingInfo();
+    else if (!snippetsApi.hasViewSnippetParams(snippetParams)) handleSnippetSave();
+    else handleReplSharing();
   };
 
   return (
