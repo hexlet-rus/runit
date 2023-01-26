@@ -22,6 +22,13 @@ function ProtectedRoute({ user, children }) {
   return children || <Outlet />;
 }
 
+function AuthRoute({ user, children }) {
+  if (user) {
+    return <Navigate to={routes.profilePagePath()} replace />;
+  }
+  return children || <Outlet />;
+}
+
 function AppRoutes() {
   const { isLoggedIn } = useAuth();
   const { t } = useTranslation();
@@ -36,8 +43,10 @@ function AppRoutes() {
         <Route element={<ProtectedRoute user={isLoggedIn} />}>
           <Route path={routes.profilePagePath()} element={<Profile />} />
         </Route>
-        <Route path={routes.signUpPagePath()} element={<SignUp />} />
-        <Route path={routes.loginPagePath()} element={<SignIn />} />
+        <Route element={<AuthRoute user={isLoggedIn} />}>
+          <Route path={routes.signUpPagePath()} element={<SignUp />} />
+          <Route path={routes.loginPagePath()} element={<SignIn />} />
+        </Route>
         <Route
           path={routes.remindPassPagePath()}
           element={<RemindPassword />}
