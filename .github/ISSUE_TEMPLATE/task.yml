@@ -1,6 +1,6 @@
 name: "Task"
 description: Create a new ticket for a task.
-title: "Task: "
+title: ""
 labels:
   - task
 
@@ -20,14 +20,5 @@ body:
       label: "Proposed solution"
       description: Please enter an explicit description of the proposed solution
       placeholder: Short and explicit description of the proposed solution...
-    validations:
-      required: true
-
-  - type: textarea
-    id: solution
-    attributes:
-      label: "Solution"
-      description: Please enter an explicit description of the solution
-      placeholder: Short and explicit description of the solution...
     validations:
       required: true
