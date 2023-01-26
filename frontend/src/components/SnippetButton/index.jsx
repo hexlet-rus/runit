@@ -11,21 +11,23 @@ import { actions as modalActions } from '../../slices/modalSlice.js';
 export const SnippetButton = memo(() => {
   const { onClick, disabled, update } = useButton();
   const [currentSnippetId, setCurrentSnippetId] = useState();
+  const [currentSnippetName, setCurrentSnippetName] = useState();
   const dispatch = useDispatch();
   const auth = useAuth();
   const snippetsApi = useSnippets();
   const { t } = useTranslation();
   const params = useParams();
+  const snippetParams = {
+    login: params.login,
+    slug: params.slug,
+  };
 
   useEffect(() => {
     const getSnippetData = async () => {
-      const snippetParams = {
-        login: params.login,
-        slug: params.slug,
-      };
       if (snippetsApi.hasViewSnippetParams(snippetParams)) {
         const snippetData = await snippetsApi.getSnippetDataByViewParams(snippetParams);
         setCurrentSnippetId(snippetData.id);
+        setCurrentSnippetName(snippetData.name);
       } else {
         setCurrentSnippetId(false);
       }
@@ -40,23 +42,20 @@ export const SnippetButton = memo(() => {
   };
 
   const handleShareEvent = async () => {
-    if (!snippetsApi.hasViewSnippetParams()) {
+    if (!snippetsApi.hasViewSnippetParams(snippetParams)) {
       dispatch(modalActions.openModal(getTypeOfModal(auth.isLoggedIn)));
     } else if (!auth.isLoggedIn) {
       dispatch(modalActions.openModal({ type: 'gettingInfo' }));
     } else {
-      const viewSnippetParams = snippetsApi.getViewSnippetParams();
-      const snippetData = await snippetsApi.getSnippetDataByViewParams(
-        viewSnippetParams,
-      );
-      const snippetName = snippetData.name;
       dispatch(
         modalActions.openModal({
           type: 'sharingRepl',
           item: {
-            name: snippetName,
-            link: snippetsApi.genSnippetLink(
-              snippetsApi.encodeId(snippetData.id),
+            name: currentSnippetName,
+            id: currentSnippetId,
+            link: snippetsApi.genViewSnippetLink(
+              params.login,
+              params.slug,
             ),
           },
         }),
@@ -74,7 +73,7 @@ export const SnippetButton = memo(() => {
         disabled={disabled}
         onClick={() => {
           onClick();
-          update(currentSnippetId, params.slug);
+          update(currentSnippetId, currentSnippetName);
         }}
       >
         {t('editor.runButton')}

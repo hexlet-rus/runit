@@ -55,9 +55,10 @@ function NewRepl() {
       try {
         const name = `${values.name}${languages.get(currentLanguage)}`;
         const id = await snippetsApi.saveSnippet(code, name);
-        const link = snippetsApi.genViewSnippetLink(userInfo.login, id);
+        const { slug } = await snippetsApi.getSnippetData(id);
+        const link = snippetsApi.genViewSnippetLink(userInfo.login, slug);
         const url = new URL(link);
-        navigate(`${url.pathname}${url.search}`);
+        navigate(url.pathname);
 
         dispatch(modalActions.closeModal());
         actions.setSubmitting(false);

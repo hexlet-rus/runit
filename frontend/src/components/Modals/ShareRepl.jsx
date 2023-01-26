@@ -11,11 +11,13 @@ import { useSnippets } from '../../hooks';
 import { actions as modalActions } from '../../slices/modalSlice.js';
 
 function ShareRepl() {
-  const snippetData = useSelector((state) => state.modal.item);
+  const { snippetData, userInfo } = useSelector(({ modal, user }) => ({
+    snippetData: modal.item,
+    userInfo: user.userInfo,
+  }));
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
-  const url = snippetData ? new URL(snippetData.link) : null;
-  const encodedId = url ? url.searchParams.get('snippet') : null;
+  const encodedId = snippetData ? snippetApi.encodeId(snippetData.id) : null;
   const embedLink = snippetApi.genEmbedSnippetLink(encodedId);
   const { t } = useTranslation();
 
@@ -46,9 +48,10 @@ function ShareRepl() {
       try {
         const name = `${values.name}${languages.get(currentLanguage)}`;
         const id = await snippetApi.saveSnippet(code, name);
-        const link = snippetApi.genSnippetLink(snippetApi.encodeId(id));
-        const address = new URL(link);
-        navigate(address.search);
+        const { slug } = await snippetApi.getSnippetData(id);
+        const link = snippetApi.genViewSnippetLink(userInfo.login, slug);
+        const url = new URL(link);
+        navigate(url.pathname);
         navigate(0);
         actions.setSubmitting(false);
       } catch (err) {

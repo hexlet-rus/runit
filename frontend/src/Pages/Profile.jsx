@@ -206,8 +206,10 @@ export function Profile() {
                                   type: 'sharingRepl',
                                   item: {
                                     name,
-                                    link: snippetApi.genSnippetLink(
-                                      snippetApi.encodeId(id),
+                                    id,
+                                    link: snippetApi.genViewSnippetLink(
+                                      userInfo.login,
+                                      slug,
                                     ),
                                   },
                                 }),
