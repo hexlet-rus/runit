@@ -74,20 +74,21 @@ function SnippetsProvider({ children }) {
   };
 
   const genSnippetLink = (encodedId) => {
-    // TODO: переделать на получение ссылки вида /users/${login}/snippets/${slug}
     const url = new URL(routes.homePagePath(), window.location);
     url.searchParams.set('snippet', encodedId);
     return url.toString();
   };
 
-  const genEmbedSnippetLink = (encodedId) => {
-    const url = new URL(routes.embedPagePath(), window.location);
-    url.searchParams.set('snippet', encodedId);
+  const genEmbedSnippetLink = (login, slug) => {
+    const url = new URL(
+      `/users/${login}/embed/snippets/${slug}`,
+      window.location,
+    );
     return url.toString();
   };
 
   const genEmbedFrame = (link) => {
-    return `<iframe 
+    return `<iframe
       height="300"
       scrolling="no"
       style="width: 754px"

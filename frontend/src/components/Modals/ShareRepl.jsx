@@ -11,8 +11,6 @@ function ShareRepl() {
   const snippetData = useSelector(({ modal }) => modal.item);
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
-  const encodedId = snippetApi.encodeId(snippetData.id);
-  const embedLink = snippetApi.genEmbedSnippetLink(encodedId);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -40,7 +38,7 @@ function ShareRepl() {
 
       <Modal.Body className="bg-dark">
         <Tabs
-          defaultActiveKey={snippetData ? 'share-link' : 'save-snippet'}
+          defaultActiveKey="share-link"
           className="mb-3 border-secondary"
           fill
         >
@@ -55,7 +53,7 @@ function ShareRepl() {
                 readOnly
                 name="name"
                 placeholder={t('modals.share.snippetLinkLabel')}
-                value={snippetData ? snippetData.link : ''}
+                value={snippetData.link}
                 id="link-input"
               />
             </Form.Group>
@@ -83,11 +81,12 @@ function ShareRepl() {
                 className="text-white"
               />
               <textarea
-                className="text-white bg-dark w-100 border-secondary"
+                className="text-white bg-dark w-100 border-secondary overflowX"
+                wrap="off"
                 readOnly
                 name="name"
                 placeholder={t('modals.share.snippetEmbedLabel')}
-                value={snippetApi.genEmbedFrame(embedLink)}
+                value={snippetApi.genEmbedFrame(snippetData.embedLink)}
                 id="embed-input"
               />
             </Form.Group>

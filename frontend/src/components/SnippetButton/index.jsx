@@ -65,6 +65,10 @@ export const SnippetButton = memo(() => {
             params.login,
             params.slug,
           ),
+          embedLink: snippetsApi.genEmbedSnippetLink(
+            params.login,
+            params.slug,
+          ),
         },
       }),
     );
