@@ -37,8 +37,8 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Landing />} />
-        <Route path="/editor" element={<App />} />
-        <Route path="/users/:login/snippets/:slug" element={<App />} />
+        <Route path={routes.homePagePath()} element={<App />} />
+        <Route path={routes.snippetPagePath()} element={<App />} />
         <Route path={routes.aboutPagePath()} element={<About />} />
         <Route element={<ProtectedRoute user={isLoggedIn} />}>
           <Route path={routes.profilePagePath()} element={<Profile />} />
@@ -56,12 +56,7 @@ function AppRoutes() {
           element={<LicenseAgreement />}
         />
       </Route>
-      <Route path={routes.embedPagePath()} element={<EmbedSnippet />} />
-      <Route
-        path={routes.snippetPagePath()}
-        element={<App />}
-        loader={({ params }) => ({ login: params.login, slug: params.slug })}
-      />
+      <Route path={routes.embedSnippetPagePath()} element={<EmbedSnippet />} />
       <Route path="*" element={<div>{t('appRotes.pageNotFound')}</div>} />
     </Routes>
   );
