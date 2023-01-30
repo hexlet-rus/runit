@@ -81,7 +81,7 @@ function ShareRepl() {
                 className="text-white"
               />
               <textarea
-                className="text-white bg-dark w-100 border-secondary overflowX"
+                className="text-white bg-dark w-100 border-secondary"
                 wrap="off"
                 readOnly
                 name="name"
