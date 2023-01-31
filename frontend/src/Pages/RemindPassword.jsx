@@ -23,12 +23,13 @@ export function RemindPassword() {
       email: '',
     },
     validationSchema: emailValidation,
+    validateOnChange: false,
     onSubmit: (values) => {
       console.log(values);
     },
   });
 
-  const { handleBlur, handleChange, handleSubmit, values } = formik;
+  const { handleBlur, handleChange, handleSubmit, values, errors } = formik;
   return (
     <Container className="h-100 bg-dark" fluid>
       <Row className="justify-content-center align-content-center h-100">
@@ -52,6 +53,7 @@ export function RemindPassword() {
                       autoComplete="email"
                       required
                       ref={inputRef}
+                      isInvalid={errors.email}
                     />
                   </Form.Group>
                   <Button
