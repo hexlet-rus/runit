@@ -55,6 +55,9 @@ export function RemindPassword() {
                       ref={inputRef}
                       isInvalid={errors.email}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.email}
+                    </Form.Control.Feedback>
                   </Form.Group>
                   <Button
                     type="submit"
