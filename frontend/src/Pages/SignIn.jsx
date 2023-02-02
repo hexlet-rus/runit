@@ -86,6 +86,9 @@ export function SignIn() {
                       isInvalid={authFailed || formik.errors.email}
                       ref={inputRef}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {formik.errors.email}
+                    </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group className={classes.formGroup}>
                     <Form.Label htmlFor="password">
