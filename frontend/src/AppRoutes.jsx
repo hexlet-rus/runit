@@ -9,6 +9,7 @@ import { About } from './Pages/About.jsx';
 import { Landing } from './Pages/Landing/Landing.jsx';
 import { LicenseAgreement } from './Pages/LicenseAgreement.jsx';
 import { RemindPassword } from './Pages/RemindPassword.jsx';
+import NotFound from './Pages/NotFound.jsx';
 import { useAuth } from './hooks';
 import Layout from './components/Layout.jsx';
 import EmbedSnippet from './components/Embed/EmbedSnippet.jsx';
@@ -46,6 +47,7 @@ function AppRoutes() {
           path={routes.licenseAgreementPath()}
           element={<LicenseAgreement />}
         />
+        <Route path="*" element={<NotFound />} />
       </Route>
       <Route path={routes.embedPagePath()} element={<EmbedSnippet />} />
       <Route
@@ -53,7 +55,6 @@ function AppRoutes() {
         element={<App />}
         loader={({ params }) => ({ login: params.login, slug: params.slug })}
       />
-      <Route path="*" element={<div>{t('appRotes.pageNotFound')}</div>} />
     </Routes>
   );
 }

@@ -196,10 +196,25 @@ const enLocales = {
       network: 'Network error',
     },
     pageNotFound: {
-      oops: 'Oops!',
-      notFound: 'Page not found',
-      noExist: 'The page you are looking for does not exist.',
-      returnButton: 'Return to Home',
+      title: 'Error 404',
+      whatHappened: {
+        title: 'What happened?',
+        body: 'You are on a page that does not exist',
+      },
+      whyHappened: {
+        title: 'Why did this happen?',
+        body: 'In most situations, error 404 is displayed if the connection with the server is established, but there is no information on the specified request. There may be a typo in the address — this happens when typing manually. Or the page was deleted, but remained in your browser bookmarks',
+      },
+      whatToDo: {
+        title: 'What to do?',
+        body: "Since we don't know how and from where you got to this page, we recommend that you start ",
+        returnButton: 'from the main',
+      },
+      support: {
+        writeToUs: 'And you can also write to us ',
+        link: 'in support',
+        promise: '. If the problem happened through our fault — for example, due to an incorrect redirect to a page with a changed address - we will fix everything as soon as possible',
+      },
     },
     faq: {
       faq: 'FAQ',
