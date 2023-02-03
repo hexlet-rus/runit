@@ -24,7 +24,10 @@ export function SignIn() {
   }, []);
 
   const validation = yup.object().shape({
-    email: yup.string().email(t('signIn.validation.correctEmail')),
+    email: yup
+      .string()
+      .email(t('signIn.validation.correctEmail'))
+      .required(t('signIn.validation.requiredField')),
   });
 
   const formik = useFormik({
@@ -33,7 +36,6 @@ export function SignIn() {
       password: '',
     },
     validationSchema: validation,
-    validateOnChange: false,
     onSubmit: async (values, actions) => {
       try {
         actions.setSubmitting(true);
@@ -83,7 +85,10 @@ export function SignIn() {
                       id="email"
                       autoComplete="email"
                       required
-                      isInvalid={authFailed || formik.errors.email}
+                      isInvalid={
+                        (formik.touched.email && formik.errors.email) ||
+                        authFailed
+                      }
                       ref={inputRef}
                     />
                     <Form.Control.Feedback type="invalid">
