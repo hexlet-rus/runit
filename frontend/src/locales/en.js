@@ -217,7 +217,8 @@ const enLocales = {
       support: {
         writeToUs: 'And you can also write to us ',
         link: 'in support',
-        promise: '. If the problem happened through our fault — for example, due to an incorrect redirect to a page with a changed address - we will fix everything as soon as possible',
+        promise:
+          '. If the problem happened through our fault — for example, due to an incorrect redirect to a page with a changed address - we will fix everything as soon as possible',
       },
     },
     faq: {
