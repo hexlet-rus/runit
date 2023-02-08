@@ -16,7 +16,7 @@ Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community
 
 * node >= 16
 * Heroku CLI
-* PostGreSQL
+* PostgreSQL
 
 ## Installation
 
