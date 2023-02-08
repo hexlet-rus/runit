@@ -71,6 +71,10 @@ const ruLocales = {
         signUpHeader: 'Нет аккаунта? ',
         signUp: 'Создать бесплатный аккаунт',
       },
+      validation: {
+        requiredField: 'Обязательное поле',
+        correctEmail: 'Некорректная электронная почта',
+      },
     },
     profile: {
       replsHeader: 'Сниппеты',

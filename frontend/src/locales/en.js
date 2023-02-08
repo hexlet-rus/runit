@@ -71,6 +71,10 @@ const enLocales = {
         signUpHeader: 'No account? ',
         signUp: 'Create a free account',
       },
+      validation: {
+        requiredField: 'Required field',
+        correctEmail: 'Incorrect email',
+      },
     },
     profile: {
       replsHeader: 'Snippets',

@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
+import * as yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -22,11 +23,19 @@ export function SignIn() {
     inputRef.current.focus();
   }, []);
 
+  const validation = yup.object().shape({
+    email: yup
+      .string()
+      .email(t('signIn.validation.correctEmail'))
+      .required(t('signIn.validation.requiredField')),
+  });
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
+    validationSchema: validation,
     onSubmit: async (values, actions) => {
       try {
         actions.setSubmitting(true);
@@ -76,9 +85,15 @@ export function SignIn() {
                       id="email"
                       autoComplete="email"
                       required
-                      isInvalid={authFailed}
+                      isInvalid={
+                        (formik.touched.email && formik.errors.email) ||
+                        authFailed
+                      }
                       ref={inputRef}
                     />
+                    <Form.Control.Feedback type="invalid">
+                      {formik.errors.email}
+                    </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group className={classes.formGroup}>
                     <Form.Label htmlFor="password">
