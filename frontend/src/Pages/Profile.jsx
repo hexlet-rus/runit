@@ -94,11 +94,15 @@ export function Profile() {
                     <span>{t('profile.editProfileButton')}</span>
                   </div>
                 </Button>
-                <Button className={`${classes.button}`}>
+                <Button
+                  className={`${classes.button}`}
+                  onClick={() => {
+                    navigator.clipboard.writeText(window.location.href);
+                  }}
+                >
                   <div>
                     <span>{t('profile.copyProfileButton')} </span>
                   </div>
-                  {/* TODO: add ability to copy user profile link */}
                 </Button>
               </div>
               <Button
