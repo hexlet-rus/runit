@@ -1,8 +1,7 @@
 setup: install db-migrate
 
 install:
-	make -C backend install
-	make -C frontend install
+	npm ci
 
 db-migrate:
 	make -C backend db-migrate
