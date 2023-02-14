@@ -35,7 +35,7 @@ test:
 	make -C backend test
 
 test-e2e:
-	make -C backend test-e2e
+	npm test
 
 heroku-deploy:
 	git push heroku
@@ -47,7 +47,7 @@ start-frontend:
 	make -C frontend start
 
 start-backend:
-	make -C backend start
+	npm run start-backend-development
 
 data-drop:
 	make -C backend data-drop

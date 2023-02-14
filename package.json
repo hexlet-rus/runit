@@ -6,8 +6,9 @@
   "scripts": {
     "build": "npm run build --prefix frontend && npm run build --prefix backend",
     "start:prod": "npm run start:prod --prefix backend",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "npm ci --prefix frontend && npm ci --prefix backend"
+    "preinstall": "npm ci --prefix frontend && npm ci --prefix backend",
+    "test": "playwright test",
+    "start-backend-development": "NODE_ENV=development PORT=5001 npm start --prefix backend"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,11 @@
   "bugs": {
     "url": "https://github.com/hexlet-rus/runit/issues"
   },
-  "homepage": "https://github.com/hexlet-rus/runit#readme"
+  "homepage": "https://github.com/hexlet-rus/runit#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.30.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
 }
