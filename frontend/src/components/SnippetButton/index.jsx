@@ -10,58 +10,73 @@ import { actions as modalActions } from '../../slices/modalSlice.js';
 
 export const SnippetButton = memo(() => {
   const { onClick, disabled, update } = useButton();
-  const [currentSnippetId, setCurrentSnippetId] = useState();
+  const [currentSnippetData, setCurrentSnippetData] = useState();
   const dispatch = useDispatch();
   const auth = useAuth();
   const snippetsApi = useSnippets();
   const { t } = useTranslation();
   const params = useParams();
+  const snippetParams = {
+    login: params.login,
+    slug: params.slug,
+  };
 
   useEffect(() => {
     const getSnippetData = async () => {
-      const snippetParams = {
-        login: params.login,
-        slug: params.slug,
-      };
       if (snippetsApi.hasViewSnippetParams(snippetParams)) {
         const snippetData = await snippetsApi.getSnippetDataByViewParams(snippetParams);
-        setCurrentSnippetId(snippetData.id);
+        const { id, name } = snippetData;
+        setCurrentSnippetData({ id, name });
       } else {
-        setCurrentSnippetId(false);
+        setCurrentSnippetData(false);
       }
     };
     getSnippetData();
   }, []);
 
-  const getTypeOfModal = (isLoggedIn) => {
-    return isLoggedIn
-      ? { type: 'sharingRepl', item: null }
-      : { type: 'gettingInfo' };
+  const handleGettingInfo = () => {
+    dispatch(
+      modalActions.openModal({
+        type: 'gettingInfo',
+      }),
+    );
+  };
+
+  const handleSnippetSave = () => {
+    dispatch(
+      modalActions.openModal({
+        type: 'genNewRepl',
+        item: {
+          header: t('modals.saveHeader'),
+        },
+      }),
+    );
+  };
+
+  const handleReplSharing = () => {
+    dispatch(
+      modalActions.openModal({
+        type: 'sharingRepl',
+        item: {
+          name: currentSnippetData.name,
+          id: currentSnippetData.id,
+          link: snippetsApi.genViewSnippetLink(
+            params.login,
+            params.slug,
+          ),
+          embedLink: snippetsApi.genEmbedSnippetLink(
+            params.login,
+            params.slug,
+          ),
+        },
+      }),
+    );
   };
 
   const handleShareEvent = async () => {
-    if (!snippetsApi.hasViewSnippetParams()) {
-      dispatch(modalActions.openModal(getTypeOfModal(auth.isLoggedIn)));
-    } else if (!auth.isLoggedIn) {
-      dispatch(modalActions.openModal({ type: 'gettingInfo' }));
-    } else {
-      const viewSnippetParams = snippetsApi.getViewSnippetParams();
-      const snippetData = await snippetsApi.getSnippetDataByViewParams(
-        viewSnippetParams,
-      );
-      const snippetName = snippetData.name;
-      dispatch(
-        modalActions.openModal({
-          type: 'sharingRepl',
-          item: {
-            name: snippetName,
-            link: snippetsApi.genSnippetLink(
-              snippetsApi.encodeId(snippetData.id),
-            ),
-          },
-        }),
-      );
-    }
+    if (!auth.isLoggedIn) handleGettingInfo();
+    else if (!snippetsApi.hasViewSnippetParams(snippetParams)) handleSnippetSave();
+    else handleReplSharing();
   };
 
   return (
@@ -74,7 +89,7 @@ export const SnippetButton = memo(() => {
         disabled={disabled}
         onClick={() => {
           onClick();
-          update(currentSnippetId, params.slug);
+          update(currentSnippetData.id, currentSnippetData.name);
         }}
       >
         {t('editor.runButton')}

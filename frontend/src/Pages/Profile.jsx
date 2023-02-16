@@ -60,6 +60,15 @@ export function Profile() {
     );
   };
 
+  const handleSnippetShare = (item) => {
+    dispatch(
+      modalActions.openModal({
+        type: 'sharingRepl',
+        item,
+      }),
+    );
+  };
+
   useEffect(() => {
     dispatch(fetchData())
       .unwrap()
@@ -205,17 +214,18 @@ export function Profile() {
                             className={`btn-sm p-1 ${classes.button}`}
                             variant="primary"
                             onClick={() =>
-                              dispatch(
-                                modalActions.openModal({
-                                  type: 'sharingRepl',
-                                  item: {
-                                    name,
-                                    link: snippetApi.genSnippetLink(
-                                      snippetApi.encodeId(id),
-                                    ),
-                                  },
-                                }),
-                              )
+                              handleSnippetShare({
+                                name,
+                                id,
+                                link: snippetApi.genViewSnippetLink(
+                                  userInfo.login,
+                                  slug,
+                                ),
+                                embedLink: snippetApi.genEmbedSnippetLink(
+                                  userInfo.login,
+                                  slug,
+                                ),
+                              })
                             }
                           >
                             {t('profile.shareReplButton')}
