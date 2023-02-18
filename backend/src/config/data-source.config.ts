@@ -25,7 +25,7 @@ export default (): DataSourceOptions => {
       return {
         type: 'sqlite',
         database: ':memory:',
-        synchronize: false,
+        synchronize: true,
         entities: [Users, Snippets],
         migrations: [migration1663236009774, migration1670352324202],
       };
