@@ -10,13 +10,12 @@ export default (): MailerOptions => {
           from: '"RunIT" <hexlet@runit.com>',
         },
         template: {
-          dir: `${__dirname}/users/templates`,
+          dir: `${process.cwd()}/src/users/templates`,
           adapter: new PugAdapter(),
           options: {
             strict: true,
           },
         },
-        preview: true,
       };
     default:
       return {
