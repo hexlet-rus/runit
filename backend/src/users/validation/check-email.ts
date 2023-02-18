@@ -20,6 +20,9 @@ export class CheckEmail implements ValidatorConstraintInterface {
     if (object['id'] && exists) {
       return exists.id === object['id'];
     }
+    if (validationArguments.targetName === 'RecoverUserDto') {
+      return !!exists;
+    }
     return !exists;
   }
 }

@@ -31,6 +31,9 @@ export class Users {
   @OneToMany('Snippets', 'user')
   snippets: Snippets[];
 
+  @Column({ nullable: true })
+  recover_hash: string;
+
   @CreateDateColumn()
   created_at: string;
 

@@ -1,9 +1,9 @@
 import { DataSourceOptions } from 'typeorm';
 import { config } from 'dotenv';
-import { Users } from './entities/user.entity';
-import { Snippets } from './entities/snippet.entity';
-import { migration1663236009774 } from './migrations/1663236009774-migration';
-import { migration1670352324202 } from './migrations/1670352324202-migration';
+import { Users } from '../entities/user.entity';
+import { Snippets } from '../entities/snippet.entity';
+import { migration1663236009774 } from '../migrations/1663236009774-migration';
+import { migration1670352324202 } from '../migrations/1670352324202-migration';
 
 export default (): DataSourceOptions => {
   config();

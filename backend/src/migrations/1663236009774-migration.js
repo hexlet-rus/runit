@@ -76,6 +76,11 @@ var migration1663236009774 = /** @class */ (function () {
                                     isNullable: false
                                 },
                                 {
+                                    name: 'recover_hash',
+                                    type: 'varchar(50)',
+                                    isNullable: true,
+                                },
+                                {
                                     name: 'created_at',
                                     type: 'timestamp',
                                     isNullable: false,
