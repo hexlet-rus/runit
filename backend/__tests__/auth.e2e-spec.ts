@@ -9,7 +9,7 @@ import * as cookieParser from 'cookie-parser';
 import { JwtService } from '@nestjs/jwt';
 import { Users } from '../src/entities/user.entity';
 import { AuthModule } from '../src/auth/auth.module';
-import getDataSourceConfig from '../src/data-source.config';
+import getDataSourceConfig from '../src/config/data-source.config';
 import { AppModule } from '../src/app.module';
 import { UsersModule } from '../src/users/users.module';
 

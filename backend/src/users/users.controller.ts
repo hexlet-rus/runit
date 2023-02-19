@@ -23,6 +23,7 @@ import { ParseIntPipe } from './pipes/parse-int.pipe';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { HttpValidationFilter } from './exceptions/validation-exception.filter';
 import { AuthService } from '../auth/auth.service';
+import { RecoverUserDto } from './dto/recover-user.dto';
 
 @Controller('users')
 @UseFilters(new HttpExceptionFilter())
@@ -61,6 +62,18 @@ export class UsersController {
   async create(@Body() createUserDto: CreateUserDto, @Response() res: any) {
     const user = await this.usersService.create(createUserDto);
     return this.authService.login(user, res);
+  }
+
+  @Post('recover')
+  @UseFilters(new HttpValidationFilter())
+  async recover(@Body() recoverUserDto: RecoverUserDto) {
+    return this.usersService.recover(recoverUserDto);
+  }
+
+  @Get('recover/:hash')
+  @UseFilters(new HttpValidationFilter())
+  async checkHash(@Param('hash') hash: string) {
+    return this.usersService.checkHash(hash);
   }
 
   @Put(':id')

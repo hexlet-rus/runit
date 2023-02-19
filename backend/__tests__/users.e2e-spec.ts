@@ -16,7 +16,7 @@ import { CheckEmail } from '../src/users/validation/check-email';
 import { AppModule } from '../src/app.module';
 import { Users } from '../src/entities/user.entity';
 import { Snippets } from '../src/entities/snippet.entity';
-import getDataSourceConfig from '../src/data-source.config';
+import getDataSourceConfig from '../src/config/data-source.config';
 
 describe('UsersController (e2e)', () => {
   let app: NestExpressApplication;
