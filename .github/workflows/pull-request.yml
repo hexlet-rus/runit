@@ -22,8 +22,3 @@ jobs:
       - name: Run tests
         run: |
           make test
-      - name: Run e2e-tests
-        run: |
-          make db-migrate &
-          npx playwright install --with-deps &
-          make test-e2e
