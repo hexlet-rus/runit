@@ -17,6 +17,8 @@ jobs:
       run: make setup
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Build
+      run: make build
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v3
