@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Editor from '@monaco-editor/react';
 
@@ -20,6 +20,7 @@ function AuthBanner() {
 }
 
 export function MonacoEditor() {
+  const [editorCode, setEditorCode] = useState();
   const { code, language, onChange } = useEditor();
   const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
@@ -38,7 +39,8 @@ export function MonacoEditor() {
         error.name = serializedError.name;
         throw error;
       });
-  }, []);
+      setEditorCode(code);
+  }, [code]);
 
   return (
     <div className={classes.wrapper}>
@@ -46,7 +48,7 @@ export function MonacoEditor() {
       <Editor
         defaultLanguage={language}
         theme="vs-dark"
-        defaultValue={code}
+        value={editorCode}
         options={options}
         onChange={onChange}
       />

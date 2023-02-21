@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnippets } from '../hooks';
 import { actions as modalActions } from '../slices/modalSlice.js';
+import { actions as editorActions } from '../slices/editorSlice.js';
 import { fetchData } from '../slices/userSlice.js';
 import classes from './Profile.module.css';
 
@@ -67,6 +68,11 @@ export function Profile() {
         item,
       }),
     );
+  };
+
+  const handleGenNewRepl = () => {
+    dispatch(editorActions.resetCode());
+    dispatch(modalActions.openModal({ type: 'genNewRepl' }));
   };
 
   useEffect(() => {
@@ -146,9 +152,7 @@ export function Profile() {
                   <div className={`${classes.newRepl}`}>
                     <Button
                       className={`${classes.newReplButton}`}
-                      onClick={() =>
-                        dispatch(modalActions.openModal({ type: 'genNewRepl' }))
-                      }
+                      onClick={handleGenNewRepl}
                     >
                       {t('profile.newReplButton')}
                     </Button>
