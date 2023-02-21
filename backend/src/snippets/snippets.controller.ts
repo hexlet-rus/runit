@@ -60,10 +60,9 @@ export class SnippetsController {
   @UseGuards(JwtAuthGuard)
   async update(
     @Param('id', new ParseIntPipe()) id: number,
-    @UserDecorator('user') user: User,
     @Body(new ValidationPipe()) updateSnippetDto: UpdateSnippetDto,
   ) {
-    return this.snippetsService.update(id, user, updateSnippetDto);
+    return this.snippetsService.update(id, updateSnippetDto);
   }
 
   @Delete(':id')
