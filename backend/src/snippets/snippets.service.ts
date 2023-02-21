@@ -76,11 +76,11 @@ export class SnippetsService {
     updateSnippetDto: UpdateSnippetDto,
   ): Promise<Snippets> {
     const { login } = user;
-    updateSnippetDto.slug = await this.getSlug(
-      updateSnippetDto.name,
-      login,
-      user.id,
-    );
+    // updateSnippetDto.slug = await this.getSlug(
+    //   updateSnippetDto.name,
+    //   login,
+    //   user.id,
+    // );
     await this.snippetsRepository.update(id, updateSnippetDto);
     return this.snippetsRepository.findOneBy({ id });
   }
