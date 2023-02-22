@@ -11,8 +11,7 @@ db-generate:
 	make -C backend db-generate
 
 start:
-	make start-backend &
-	make start-frontend
+	yarn run npm-run-all make start
 
 start-prod:
 	make -C backend start-prod
