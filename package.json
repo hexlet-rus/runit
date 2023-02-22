@@ -3,6 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "description": "online editor for coding",
+  "engines": {
+    "node": ">=18.13.0"
+  },
   "workspaces": [
     "backend",
     "frontend"

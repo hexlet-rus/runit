@@ -14,7 +14,7 @@ Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community
 
 ## System requirements
 
-* node >= 16
+* node >= 18
 * Heroku CLI
 * PostgreSQL
 
