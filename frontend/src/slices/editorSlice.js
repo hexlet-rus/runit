@@ -2,13 +2,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+export const DEFAULT_CODE = '// Write your code in JS\n';
+
 const slice = createSlice({
   name: 'editor',
   initialState: {
     error: false,
     isFetching: false,
-    code: '// Write your code in JS\n',
-    savedCode: '// Write your code in JS\n',
+    code: DEFAULT_CODE,
+    savedCode: DEFAULT_CODE,
     isAllSaved: true,
   },
   reducers: {
@@ -24,6 +26,10 @@ const slice = createSlice({
     updateSavedCode(state, { payload }) {
       state.savedCode = payload;
       state.isAllSaved = state.code === state.savedCode;
+    },
+    resetCode(state) {
+      state.code = DEFAULT_CODE;
+      state.savedCode = DEFAULT_CODE;
     },
   },
 });

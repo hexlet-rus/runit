@@ -25,10 +25,12 @@ export function App() {
           snippetParams,
         );
         dispatch(actions.updateCode(snippetData.code));
+      } else {
+        dispatch(actions.resetCode());
       }
     };
     loadSnippet();
-  }, []);
+  }, [params]);
 
   const isAllSaved = useSelector((state) => state.editor.isAllSaved);
   const { t } = useTranslation();
