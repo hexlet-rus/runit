@@ -1,22 +1,36 @@
 {
   "name": "runit",
+  "private": true,
   "version": "1.0.0",
-  "description": "[![On Push](https://github.com/hexlet-rus/runit/actions/workflows/push.yml/badge.svg?event=push)](https://github.com/hexlet-rus/runit/actions/workflows/push.yml)",
-  "main": "index.js",
+  "description": "online editor for coding",
+  "engines": {
+    "node": ">=18.13.0"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
   "scripts": {
-    "build": "npm run build --prefix frontend && npm run build --prefix backend",
-    "start:prod": "npm run start:prod --prefix backend",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "npm ci --prefix frontend && npm ci --prefix backend"
+    "build:backend": "yarn workspace backend run build",
+    "build:frontend": "DISABLE_ESLINT_PLUGIN=true yarn workspace frontend run build",
+    "build": "npm-run-all --parallel build:*",
+    "production": "yarn workspace backend run start:prod",
+    "start:backend": "yarn workspace backend run start",
+    "start:frontend": "yarn workspace frontend run start",
+    "start": "npm-run-all --parallel start:*"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hexlet-rus/runit.git"
   },
   "author": "",
-  "license": "UNLICENSED",
+  "license": "Affero GPL 3.0",
   "bugs": {
     "url": "https://github.com/hexlet-rus/runit/issues"
   },
-  "homepage": "https://github.com/hexlet-rus/runit#readme"
+  "homepage": "https://github.com/hexlet-rus/runit#readme",
+  "dependencies": {
+    "@nestjs/cli": "^9.2.0",
+    "npm-run-all": "^4.1.5"
+  }
 }
