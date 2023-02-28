@@ -1,3 +1,4 @@
+/* eslint class-methods-use-this: ["error", { "exceptMethods": ["up", "down"] }] */
 import { MigrationInterface, QueryRunner } from "typeorm"
 
 export class AdduserRecoverHash1677580680097 implements MigrationInterface {
@@ -13,5 +14,4 @@ export class AdduserRecoverHash1677580680097 implements MigrationInterface {
             `ALTER TABLE "users" DROP COLUMN recover_hash`,
         );
     }
-
 }

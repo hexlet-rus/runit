@@ -4,6 +4,7 @@ import { Users } from '../entities/user.entity';
 import { Snippets } from '../entities/snippet.entity';
 import { migration1663236009774 } from '../migrations/1663236009774-migration';
 import { migration1670352324202 } from '../migrations/1670352324202-migration';
+import { AdduserRecoverHash1677580680097 } from '../migrations/1677580680097-AdduserRecoverHash';
 
 export default (): DataSourceOptions => {
   config();
@@ -19,7 +20,7 @@ export default (): DataSourceOptions => {
         synchronize: false,
         ssl: { rejectUnauthorized: false },
         entities: [Users, Snippets],
-        migrations: [migration1663236009774, migration1670352324202],
+        migrations: [migration1663236009774, migration1670352324202, AdduserRecoverHash1677580680097],
       };
     case 'test':
       return {
@@ -27,7 +28,7 @@ export default (): DataSourceOptions => {
         database: ':memory:',
         synchronize: true,
         entities: [Users, Snippets],
-        migrations: [migration1663236009774, migration1670352324202],
+        migrations: [migration1663236009774, migration1670352324202, AdduserRecoverHash1677580680097],
       };
     default:
       return {
@@ -35,7 +36,7 @@ export default (): DataSourceOptions => {
         database: 'runit.sqlite',
         synchronize: false,
         entities: [Users, Snippets],
-        migrations: [migration1663236009774, migration1670352324202],
+        migrations: [migration1663236009774, migration1670352324202, AdduserRecoverHash1677580680097],
       };
   }
 };
