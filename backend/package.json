@@ -7,7 +7,7 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \\\"src/**/*.ts\\\" \\\"__test__/**/*.ts\\\"",
-    "start": "NODE_ENV=development PORT=5001 nest start",
+    "start": "nest start",
     "typeorm": "typeorm-ts-node-commonjs",
     "start:debug": "NODE_ENV=development PORT=5001 nest start --debug --watch",
     "start:prod": "node dist/main",

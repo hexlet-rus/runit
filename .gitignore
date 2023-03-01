@@ -41,3 +41,6 @@ lerna-debug.log*
 
 # database
 *.sqlite
+/test-results/
+/playwright-report/
+/playwright/.cache/
