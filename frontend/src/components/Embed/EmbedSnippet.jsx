@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { MonacoEditor } from '../Editor';
 import { EmbedRunButton } from './EmbedRunButton.jsx';
@@ -11,9 +12,8 @@ import classes from '../SnippetButton/SnippetButton.module.css';
 function EmbedSnippet() {
   const snippetApi = useSnippets();
   const dispatch = useDispatch();
-  const url = new URL(window.location);
-  const encodedId = url.searchParams.get('snippet');
-  const snippetLink = snippetApi.genSnippetLink(encodedId);
+  const params = useParams();
+  const snippetLink = snippetApi.genViewSnippetLink(params.login, params.slug);
   const { t } = useTranslation();
 
   useEffect(() => {

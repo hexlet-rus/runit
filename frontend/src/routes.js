@@ -26,4 +26,5 @@ export default {
   embedPagePath: () => '/embed',
   licenseAgreementPath: () => '/licenseAgreement',
   snippetPagePath: () => '/users/:login/snippets/:slug',
+  embedSnippetPagePath: () => '/users/:login/embed/snippets/:slug',
 };

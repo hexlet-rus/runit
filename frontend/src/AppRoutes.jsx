@@ -22,6 +22,13 @@ function ProtectedRoute({ user, children }) {
   return children || <Outlet />;
 }
 
+function AuthRoute({ user, children }) {
+  if (user) {
+    return <Navigate to={routes.profilePagePath()} replace />;
+  }
+  return children || <Outlet />;
+}
+
 function AppRoutes() {
   const { isLoggedIn } = useAuth();
 
@@ -29,14 +36,16 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Landing />} />
-        <Route path="/editor" element={<App />} />
-        <Route path="/users/:login/snippets/:slug" element={<App />} />
+        <Route path={routes.homePagePath()} element={<App />} />
+        <Route path={routes.snippetPagePath()} element={<App />} />
         <Route path={routes.aboutPagePath()} element={<About />} />
         <Route element={<ProtectedRoute user={isLoggedIn} />}>
           <Route path={routes.profilePagePath()} element={<Profile />} />
         </Route>
-        <Route path={routes.signUpPagePath()} element={<SignUp />} />
-        <Route path={routes.loginPagePath()} element={<SignIn />} />
+        <Route element={<AuthRoute user={isLoggedIn} />}>
+          <Route path={routes.signUpPagePath()} element={<SignUp />} />
+          <Route path={routes.loginPagePath()} element={<SignIn />} />
+        </Route>
         <Route
           path={routes.remindPassPagePath()}
           element={<RemindPassword />}
@@ -47,12 +56,7 @@ function AppRoutes() {
         />
         <Route path="*" element={<NotFound />} />
       </Route>
-      <Route path={routes.embedPagePath()} element={<EmbedSnippet />} />
-      <Route
-        path={routes.snippetPagePath()}
-        element={<App />}
-        loader={({ params }) => ({ login: params.login, slug: params.slug })}
-      />
+      <Route path={routes.embedSnippetPagePath()} element={<EmbedSnippet />} />
     </Routes>
   );
 }

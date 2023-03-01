@@ -117,6 +117,7 @@ function EditProfile() {
               required
               onChange={formik.handleChange}
               value={formik.values.email}
+              onBlur={formik.handleBlur}
               isInvalid={
                 (formik.touched.email && formik.errors.email) || editFailed
               }

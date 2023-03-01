@@ -4,17 +4,23 @@ import { cookieExtractor } from '../extractor/cookie.extractor';
 
 export default () => {
   switch (process.env.NODE_ENV) {
+    case 'production':
+      return {
+        jwtFromRequest: cookieExtractor,
+        ignoreExpiration: false,
+        secretOrKey: jwtConstants.secret,
+      };
     case 'test':
       return {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         ignoreExpiration: false,
-        secretOrKey: jwtConstants.secretTest,
+        secretOrKey: jwtConstants.secretDev,
       };
     default:
       return {
         jwtFromRequest: cookieExtractor,
         ignoreExpiration: false,
-        secretOrKey: jwtConstants.secret,
+        secretOrKey: jwtConstants.secretDev,
       };
   }
 };

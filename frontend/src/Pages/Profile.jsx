@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnippets } from '../hooks';
 import { actions as modalActions } from '../slices/modalSlice.js';
+import { actions as editorActions } from '../slices/editorSlice.js';
 import { fetchData } from '../slices/userSlice.js';
 import classes from './Profile.module.css';
 
@@ -58,6 +59,20 @@ export function Profile() {
         item: { id: userInfo.id },
       }),
     );
+  };
+
+  const handleSnippetShare = (item) => {
+    dispatch(
+      modalActions.openModal({
+        type: 'sharingRepl',
+        item,
+      }),
+    );
+  };
+
+  const handleGenNewRepl = () => {
+    dispatch(editorActions.resetCode());
+    dispatch(modalActions.openModal({ type: 'genNewRepl' }));
   };
 
   useEffect(() => {
@@ -137,9 +152,7 @@ export function Profile() {
                   <div className={`${classes.newRepl}`}>
                     <Button
                       className={`${classes.newReplButton}`}
-                      onClick={() =>
-                        dispatch(modalActions.openModal({ type: 'genNewRepl' }))
-                      }
+                      onClick={handleGenNewRepl}
                     >
                       {t('profile.newReplButton')}
                     </Button>
@@ -205,17 +218,18 @@ export function Profile() {
                             className={`btn-sm p-1 ${classes.button}`}
                             variant="primary"
                             onClick={() =>
-                              dispatch(
-                                modalActions.openModal({
-                                  type: 'sharingRepl',
-                                  item: {
-                                    name,
-                                    link: snippetApi.genSnippetLink(
-                                      snippetApi.encodeId(id),
-                                    ),
-                                  },
-                                }),
-                              )
+                              handleSnippetShare({
+                                name,
+                                id,
+                                link: snippetApi.genViewSnippetLink(
+                                  userInfo.login,
+                                  slug,
+                                ),
+                                embedLink: snippetApi.genEmbedSnippetLink(
+                                  userInfo.login,
+                                  slug,
+                                ),
+                              })
                             }
                           >
                             {t('profile.shareReplButton')}

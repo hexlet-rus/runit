@@ -4,34 +4,39 @@
     "code": "console.log('test')",
     "user": {
       "id": 1
-    }
+    },
+    "slug": "slug"
   },
   {
     "name": "snippet",
     "code": "const test = () => 1 + 1",
     "user": {
       "id": 1
-    }
+    },
+    "slug": "slugs"
   },
   {
     "name": "codes",
     "code": "alert('Hello!');",
     "user": {
       "id": 2
-    }
+    },
+    "slug": "sluges"
   },
   {
     "name": "snipp",
     "code": "console.table({ a: 'c', b: 'b' });",
     "user": {
       "id": 3
-    }
+    },
+    "slug": "myNewSlug"
   },
   {
     "name": "work snippet",
     "code": "console.log(3);",
     "user": {
       "id": 2
-    }
+    },
+    "slug": "sl"
   }
 ]

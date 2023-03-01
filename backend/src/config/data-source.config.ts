@@ -1,9 +1,10 @@
 import { DataSourceOptions } from 'typeorm';
 import { config } from 'dotenv';
-import { Users } from './entities/user.entity';
-import { Snippets } from './entities/snippet.entity';
-import { migration1663236009774 } from './migrations/1663236009774-migration';
-import { migration1670352324202 } from './migrations/1670352324202-migration';
+import { Users } from '../entities/user.entity';
+import { Snippets } from '../entities/snippet.entity';
+import { migration1663236009774 } from '../migrations/1663236009774-migration';
+import { migration1670352324202 } from '../migrations/1670352324202-migration';
+import { AdduserRecoverHash1677580680097 } from '../migrations/1677580680097-AdduserRecoverHash';
 
 export default (): DataSourceOptions => {
   config();
@@ -18,16 +19,16 @@ export default (): DataSourceOptions => {
         url: process.env.DATABASE_URL,
         synchronize: false,
         ssl: { rejectUnauthorized: false },
-        entities: [`${__dirname}/entities/*.entity.{ts,js}`],
-        migrations: [migration1663236009774, migration1670352324202],
+        entities: [Users, Snippets],
+        migrations: [migration1663236009774, migration1670352324202, AdduserRecoverHash1677580680097],
       };
     case 'test':
       return {
         type: 'sqlite',
         database: ':memory:',
-        synchronize: false,
+        synchronize: true,
         entities: [Users, Snippets],
-        migrations: [migration1663236009774, migration1670352324202],
+        migrations: [migration1663236009774, migration1670352324202, AdduserRecoverHash1677580680097],
       };
     default:
       return {
@@ -35,7 +36,7 @@ export default (): DataSourceOptions => {
         database: 'runit.sqlite',
         synchronize: false,
         entities: [Users, Snippets],
-        migrations: [migration1663236009774, migration1670352324202],
+        migrations: [migration1663236009774, migration1670352324202, AdduserRecoverHash1677580680097],
       };
   }
 };
