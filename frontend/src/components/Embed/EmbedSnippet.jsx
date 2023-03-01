@@ -18,10 +18,17 @@ function EmbedSnippet() {
 
   useEffect(() => {
     const loadSnippet = async () => {
-      if (snippetApi.hasSnippetParams()) {
-        const decodedId = snippetApi.getSnippetIdFromParams();
-        const snippetData = await snippetApi.getSnippetData(decodedId);
+      const snippetParams = {
+        login: params.login,
+        slug: params.slug,
+      };
+      if (snippetApi.hasViewSnippetParams(snippetParams)) {
+        const snippetData = await snippetApi.getSnippetDataByViewParams(
+          snippetParams,
+        );
         dispatch(actions.setCodeAndSavedCode(snippetData.code));
+      } else {
+        dispatch(actions.resetCode());
       }
     };
     loadSnippet();

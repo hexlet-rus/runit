@@ -20,7 +20,7 @@
     #4d58f9 76.74%,
     #4654f9 91.55%
   );
-  align-items: start;
+  align-items: flex-start;
   overflow: hidden;
 }
 

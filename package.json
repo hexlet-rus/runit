@@ -17,7 +17,8 @@
     "production": "yarn workspace backend run start:prod",
     "start:backend": "yarn workspace backend run start",
     "start:frontend": "yarn workspace frontend run start",
-    "start": "npm-run-all --parallel start:*"
+    "start": "npm-run-all --parallel start:*",
+    "test": "playwright test"
   },
   "repository": {
     "type": "git",
