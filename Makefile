@@ -44,7 +44,7 @@ start-frontend:
 	make -C frontend start
 
 start-backend:
-	npm run start-backend-development
+	npm run start:backend
 
 data-drop:
 	make -C backend data-drop

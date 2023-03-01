@@ -32,10 +32,10 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    // headless: true,
-    // launchOptions: {
-    //   slowMo: 100,
-    // },
+    headless: false,
+    launchOptions: {
+      slowMo: 100,
+    },
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
     actionTimeout: 0,
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -88,7 +88,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'make start',
+    command: 'make start-backend',
     port: 3000,
   },
 });
