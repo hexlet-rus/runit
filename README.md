@@ -10,7 +10,7 @@ Tasks:
 
 * Participation in service development
 
-Tasks can be discussed in the #hexlet-volunteers channel in the [Slack community](https://slack-ru.hexlet.io/).
+Tasks can be discussed in the [Telegram community](https://t.me/hexletcommunity/12).
 
 ## System requirements
 
