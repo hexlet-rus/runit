@@ -10,7 +10,7 @@ Runit — это среда для написания и выполнения к
 
 * Участие в развитии проекта
 
-Задачи можно обсудить в канале [Slack community](https://slack-ru.hexlet.io/).
+Задачи можно обсудить в канале [Telegram community](https://t.me/hexletcommunity/12).
 
 ## Системные требования
 
