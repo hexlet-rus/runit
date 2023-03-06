@@ -15,7 +15,7 @@
     "build:frontend": "DISABLE_ESLINT_PLUGIN=true yarn workspace frontend run build",
     "build": "npm-run-all --parallel build:*",
     "production": "yarn workspace backend run start:prod",
-    "start:backend": "yarn workspace backend run start",
+    "start:backend": "yarn workspace backend run start:debug",
     "start:frontend": "yarn workspace frontend run start",
     "start": "npm-run-all --parallel start:*",
     "test": "playwright test"
