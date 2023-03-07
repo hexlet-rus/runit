@@ -72,8 +72,6 @@ The following variables will be needed.
 
 Click on *Create Web Service* and watch the Deployment and logs. If there are problems, ask questions [here](https://github.com/hexlet-rus/runit/discussions/categories/q-a). Check first that there is no similar open topic.
 
-Translated with www.DeepL.com/Translator (free version)
-
 ## How to help
 
 Look at the list of issues, choose an interesting task, write to the issue to say you would like to work on the task.
