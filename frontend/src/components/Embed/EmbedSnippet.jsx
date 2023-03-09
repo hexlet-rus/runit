@@ -1,38 +1,17 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { MonacoEditor } from '../Editor';
 import { EmbedRunButton } from './EmbedRunButton.jsx';
 import { Terminal } from '../Terminal';
-import { actions } from '../../slices/index.js';
 import { useSnippets } from '../../hooks';
 import classes from '../SnippetButton/SnippetButton.module.css';
 
 function EmbedSnippet() {
   const snippetApi = useSnippets();
-  const dispatch = useDispatch();
   const params = useParams();
   const snippetLink = snippetApi.genViewSnippetLink(params.login, params.slug);
   const { t } = useTranslation();
-
-  useEffect(() => {
-    const loadSnippet = async () => {
-      const snippetParams = {
-        login: params.login,
-        slug: params.slug,
-      };
-      if (snippetApi.hasViewSnippetParams(snippetParams)) {
-        const snippetData = await snippetApi.getSnippetDataByViewParams(
-          snippetParams,
-        );
-        dispatch(actions.setCodeAndSavedCode(snippetData.code));
-      } else {
-        dispatch(actions.resetCode());
-      }
-    };
-    loadSnippet();
-  }, []);
 
   return (
     <main style={{ position: 'absolute', top: '0', width: '730px' }}>
