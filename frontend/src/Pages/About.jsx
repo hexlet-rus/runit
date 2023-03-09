@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 // import routes from '../routes.js';
 import { Faq } from '../components/Faq.jsx';
 
-export function About() {
+function About() {
   const { t } = useTranslation();
 
   return (
@@ -61,3 +61,5 @@ export function About() {
     </div>
   );
 }
+
+export default About;

@@ -12,7 +12,7 @@ import routes from '../routes.js';
 
 import classes from './SignIn.module.css';
 
-export function SignIn() {
+function SignIn() {
   const inputRef = useRef();
   const [authFailed, setAuthFailed] = useState(false);
   const navigate = useNavigate();
@@ -152,3 +152,5 @@ export function SignIn() {
     </Container>
   );
 }
+
+export default SignIn;

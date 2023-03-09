@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export function LicenseAgreement() {
+function LicenseAgreement() {
   const { t } = useTranslation();
 
   return (
@@ -166,3 +166,5 @@ export function LicenseAgreement() {
     </div>
   );
 }
+
+export default LicenseAgreement;

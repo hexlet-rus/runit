@@ -6,7 +6,7 @@ import { Container, Card, Col, Row, Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import routes from '../routes.js';
 
-export function RemindPassword() {
+function RemindPassword() {
   const inputRef = useRef();
   const { t } = useTranslation();
 
@@ -95,3 +95,5 @@ export function RemindPassword() {
     </Container>
   );
 }
+
+export default RemindPassword;

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable react/function-component-definition */
 /* eslint-disable no-console */
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +12,7 @@ import routes from '../routes.js';
 
 import classes from './SignUp.module.css';
 
-export const SignUp = () => {
+function SignUp() {
   const inputRef = useRef();
   const { t } = useTranslation();
   const [regFailed, setRegFailed] = useState(false);
@@ -221,4 +219,6 @@ export const SignUp = () => {
       </Row>
     </Container>
   );
-};
+}
+
+export default SignUp;
