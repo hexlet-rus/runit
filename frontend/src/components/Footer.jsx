@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import {
-  faSlack,
   faVk,
   faYoutube,
   faTelegram,
@@ -151,13 +150,13 @@ export function buildFooter() {
               <ul className="list-unstyled h3 text-start d-flex flex-wrap">
                 <li className="me-4 mb-2">
                   <a
-                    href="https://slack-ru.hexlet.io/?_gl=1*gwa8w0*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2Nzk5NTczNy4xODcuMS4xNjY3OTk3NTg4LjAuMC4w"
-                    aria-label="Slack"
+                    href="https://t.me/hexletcommunity/12"
+                    aria-label="Telegram"
                     target="_blank"
                     className="text-muted"
                     rel="noopener noreferrer nofollow"
                   >
-                    <FontAwesomeIcon icon={faSlack} className="fa-1x" />
+                    <FontAwesomeIcon icon={faTelegram} className="fa-1x" />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
