@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React, { useEffect, useRef } from 'react';
-import * as yup from 'yup';
+import { object, string } from 'yup';
 import { useFormik } from 'formik';
 import { Container, Card, Col, Row, Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -14,8 +14,8 @@ function RemindPassword() {
     inputRef.current.focus();
   }, []);
 
-  const emailValidation = yup.object().shape({
-    email: yup.string().email(t('remindPass.validation.correctEmail')),
+  const emailValidation = object().shape({
+    email: string().email(t('remindPass.validation.correctEmail')),
   });
 
   const formik = useFormik({

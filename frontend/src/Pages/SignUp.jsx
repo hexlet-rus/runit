@@ -2,7 +2,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import * as yup from 'yup';
+import { object, string } from 'yup';
+
 import { useFormik } from 'formik';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -23,33 +24,28 @@ function SignUp() {
     inputRef.current.focus();
   }, []);
 
-  const signUpValidation = yup.object().shape({
-    login: yup
-      .string()
+  const signUpValidation = object().shape({
+    login: string()
       .trim()
       .min(3, t('signUp.validation.usernameLength'))
       .max(20, t('signUp.validation.usernameLength'))
       .matches(/^[A-Za-z ]*$/, t('signUp.validation.correctUsername'))
       .typeError()
       .required(t('signUp.validation.requiredField')),
-    email: yup
-      .string()
+    email: string()
       .email(t('signUp.validation.correctEmail'))
       .required(t('signUp.validation.requiredField')),
-    password: yup
-      .string()
+    password: string()
       .trim()
       .min(8, t('signUp.validation.passwordLength'))
       .max(30, t('signUp.validation.passwordLength'))
       .typeError()
       .required(t('signUp.validation.requiredField')),
-    confirmPassword: yup
-      .string()
-      .test(
-        'confirmPassword',
-        t('signUp.validation.confirmPassword'),
-        (password, context) => password === context.parent.password,
-      ),
+    confirmPassword: string().test(
+      'confirmPassword',
+      t('signUp.validation.confirmPassword'),
+      (password, context) => password === context.parent.password,
+    ),
   });
   const formik = useFormik({
     initialValues: {

@@ -3,7 +3,8 @@ import { useFormik } from 'formik';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import * as yup from 'yup';
+import { object, string } from 'yup';
+
 import axios from 'axios';
 
 import { useAuth } from '../../hooks';
@@ -25,33 +26,28 @@ function SignUpModal() {
       password: '',
       confirmPassword: '',
     },
-    validationSchema: yup.object().shape({
-      name: yup
-        .string()
+    validationSchema: object().shape({
+      name: string()
         .trim()
         .min(3, t('signUp.validation.usernameLength'))
         .max(20, t('signUp.validation.usernameLength'))
         .matches(/^[A-Za-z ]*$/, t('signUp.validation.correctUsername'))
         .typeError()
         .required(t('signUp.validation.requiredField')),
-      email: yup
-        .string()
+      email: string()
         .email(t('signUp.validation.correctEmail'))
         .required(t('signUp.validation.requiredField')),
-      password: yup
-        .string()
+      password: string()
         .trim()
         .min(8, t('signUp.validation.passwordLength'))
         .max(30, t('signUp.validation.passwordLength'))
         .typeError()
         .required(t('signUp.validation.requiredField')),
-      confirmPassword: yup
-        .string()
-        .test(
-          'confirmPassword',
-          t('signUp.validation.confirmPassword'),
-          (password, context) => password === context.parent.password,
-        ),
+      confirmPassword: string().test(
+        'confirmPassword',
+        t('signUp.validation.confirmPassword'),
+        (password, context) => password === context.parent.password,
+      ),
     }),
     onSubmit: async (values, actions) => {
       try {
