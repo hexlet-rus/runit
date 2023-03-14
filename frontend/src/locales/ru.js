@@ -52,7 +52,7 @@ const ruLocales = {
       resetButton: 'Восстановить пароль',
       footer: {
         signUpHeader: 'Нет аккаунта? ',
-        signUp: 'Создать бесплатный аккаунт',
+        signUp: 'Создать аккаунт',
         signInHeader: 'Уже есть аккаунт? ',
         signIn: 'Войти',
       },
@@ -69,7 +69,7 @@ const ruLocales = {
       signInFailed: 'Неверный пароль или электронная почта',
       footer: {
         signUpHeader: 'Нет аккаунта? ',
-        signUp: 'Создать бесплатный аккаунт',
+        signUp: 'Создать аккаунт',
       },
       validation: {
         requiredField: 'Обязательное поле',
