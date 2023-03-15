@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useEditor } from './hooks.js';
+import { useEditor, useDebounce } from './hooks.js';
 import { useAuth, useSnippets } from '../../hooks';
 import classes from './Editor.module.css';
 import { actions } from '../../slices/index.js';
@@ -76,21 +76,13 @@ export function MonacoEditor() {
     }
   }, [params]);
 
-  const debounce = (func, timeout = 1000) => {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, args);
-      }, timeout);
-    };
-  };
+  const debouncedRequest = useDebounce(() => {
+    dispatch(actions.updateSavedCode(snippetData.code));
+  });
 
-  const processSaveCode = debounce((code) => dispatch(actions.updateSavedCode(code)));
-
-  const onChangeHandler = (code) => {
-    onChange(code);
-    ifHasViewSnippetParams && processSaveCode(code);
+  const onChangeHandler = (e) => {
+    onChange(e);
+    ifHasViewSnippetParams && debouncedRequest();
   };
 
   return (
