@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
-import * as yup from 'yup';
+import { object, string } from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +12,7 @@ import routes from '../routes.js';
 
 import classes from './SignIn.module.css';
 
-export function SignIn() {
+function SignIn() {
   const inputRef = useRef();
   const [authFailed, setAuthFailed] = useState(false);
   const navigate = useNavigate();
@@ -23,9 +23,8 @@ export function SignIn() {
     inputRef.current.focus();
   }, []);
 
-  const validation = yup.object().shape({
-    email: yup
-      .string()
+  const validation = object().shape({
+    email: string()
       .email(t('signIn.validation.correctEmail'))
       .required(t('signIn.validation.requiredField')),
   });
@@ -152,3 +151,5 @@ export function SignIn() {
     </Container>
   );
 }
+
+export default SignIn;

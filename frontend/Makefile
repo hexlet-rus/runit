@@ -1,11 +1,11 @@
 install:
-	npm ci
+	yarn install
 
 build:
-	npm run build
+	yarn build
 
 lint:
 	npx eslint --ext .jsx,.js ./
 
 start:
-	npm start
+	yarn start

@@ -10,7 +10,7 @@ import { actions as editorActions } from '../slices/editorSlice.js';
 import { fetchData } from '../slices/userSlice.js';
 import classes from './Profile.module.css';
 
-export function Profile() {
+function Profile() {
   const { t } = useTranslation();
   const snippetApi = useSnippets();
   const dispatch = useDispatch();
@@ -247,3 +247,5 @@ export function Profile() {
     </div>
   );
 }
+
+export default Profile;

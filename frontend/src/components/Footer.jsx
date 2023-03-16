@@ -1,15 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faGlobe } from '@fortawesome/free-solid-svg-icons';
-import {
-  faVk,
-  faYoutube,
-  faTelegram,
-  faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
+import { Youtube, Telegram, Twitter } from 'react-bootstrap-icons';
+import { ReactComponent as Vk } from '../assets/images/vk.svg';
 
 export function buildFooter() {
   const { t } = useTranslation();
@@ -156,7 +150,7 @@ export function buildFooter() {
                     className="text-muted"
                     rel="noopener noreferrer nofollow"
                   >
-                    <FontAwesomeIcon icon={faTelegram} className="fa-1x" />
+                    <Telegram />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
@@ -167,7 +161,7 @@ export function buildFooter() {
                     className="text-muted"
                     rel="noopener noreferrer nofollow"
                   >
-                    <FontAwesomeIcon icon={faYoutube} className="fa-1x" />
+                    <Youtube />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
@@ -178,7 +172,7 @@ export function buildFooter() {
                     className="text-muted"
                     rel="noopener noreferrer nofollow"
                   >
-                    <FontAwesomeIcon icon={faTelegram} className="fa-1x" />
+                    <Telegram />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
@@ -189,7 +183,7 @@ export function buildFooter() {
                     className="text-muted"
                     rel="noopener noreferrer nofollow"
                   >
-                    <FontAwesomeIcon icon={faVk} className="fa-1x" />
+                    <Vk />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
@@ -200,7 +194,7 @@ export function buildFooter() {
                     className="text-muted"
                     rel="noopener noreferrer nofollow"
                   >
-                    <FontAwesomeIcon icon={faTwitter} className="fa-1x" />
+                    <Twitter />
                   </a>
                 </li>
               </ul>
@@ -212,7 +206,7 @@ export function buildFooter() {
                 split
                 variant="none"
               >
-                <FontAwesomeIcon icon={faGlobe} className="me-2" />
+                <Globe /> // from react-bootstrap-icons
                 <span className="fw-bold me-2">{t('footer.language')}</span>
               </Dropdown.Toggle>
 

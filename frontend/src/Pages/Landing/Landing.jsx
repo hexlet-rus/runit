@@ -13,7 +13,7 @@ import codeImg from '../../assets/landing/images/code.png';
 import personImg from '../../assets/landing/images/person.png';
 import blankImg from '../../assets/landing/images/blank.png';
 
-export function Landing() {
+function Landing() {
   const { t } = useTranslation();
 
   return (
@@ -200,3 +200,5 @@ export function Landing() {
     </div>
   );
 }
+
+export default Landing;

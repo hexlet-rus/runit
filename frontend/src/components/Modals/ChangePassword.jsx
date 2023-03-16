@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import * as yup from 'yup';
+import { object, string } from 'yup';
 import { useFormik } from 'formik';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -27,28 +27,24 @@ function ChangePassword() {
       password: '',
       confirmPassword: '',
     },
-    validationSchema: yup.object().shape({
-      currPassword: yup
-        .string()
+    validationSchema: object().shape({
+      currPassword: string()
         .trim()
         .min(8, t('signUp.validation.passwordLength'))
         .max(30, t('signUp.validation.passwordLength'))
         .typeError()
         .required(t('signUp.validation.requiredField')),
-      password: yup
-        .string()
+      password: string()
         .trim()
         .min(8, t('signUp.validation.passwordLength'))
         .max(30, t('signUp.validation.passwordLength'))
         .typeError()
         .required(t('signUp.validation.requiredField')),
-      confirmPassword: yup
-        .string()
-        .test(
-          'confirmPassword',
-          t('signUp.validation.confirmPassword'),
-          (password, context) => password === context.parent.password,
-        ),
+      confirmPassword: string().test(
+        'confirmPassword',
+        t('signUp.validation.confirmPassword'),
+        (password, context) => password === context.parent.password,
+      ),
     }),
     onSubmit: async (values, target) => {
       try {

@@ -1,15 +1,14 @@
 /* eslint-disable no-useless-constructor */
-/* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */
 import { Injectable } from '@nestjs/common';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, Repository } from 'typeorm';
+import { faker } from '@faker-js/faker/locale/en';
 import { Users } from '../entities/user.entity';
 import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
 import { Snippets } from '../entities/snippet.entity';
 import { User } from '../users/interfaces/users.interface';
-import { faker } from '@faker-js/faker';
 
 @Injectable()
 export class SnippetsService {
@@ -79,5 +78,12 @@ export class SnippetsService {
 
   findAll(): Promise<Snippets[]> {
     return this.snippetsRepository.find();
+  }
+
+  generateName(): string {
+    const adjectiveLength = 3 + Math.round(Math.random() * 6);
+    const adjective = faker.word.adjective(adjectiveLength);
+    const animal = faker.animal.type();
+    return `${adjective}-${animal}`;
   }
 }

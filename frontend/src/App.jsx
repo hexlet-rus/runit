@@ -9,7 +9,7 @@ import { Terminal } from './components/Terminal/index.jsx';
 import { actions } from './slices/index.js';
 import { useSnippets } from './hooks';
 
-export function App() {
+function App() {
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
   const params = useParams();
@@ -58,3 +58,5 @@ export function App() {
     </main>
   );
 }
+
+export default App;

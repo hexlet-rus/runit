@@ -1,22 +1,9 @@
 import React, { useMemo } from 'react';
 import axios from 'axios';
-import { Buffer } from 'buffer';
 import { SnippetsContext } from '../contexts';
 import routes from '../routes';
-// const { Buffer } = require('buffer');
 
 function SnippetsProvider({ children }) {
-  const encodeId = (id) => {
-    const idString = id.toString();
-    const encodedId = Buffer.from(idString).toString('base64');
-    return encodedId;
-  };
-
-  const decodeId = (encodedId) => {
-    const decodedId = Buffer.from(encodedId, 'base64').toString('utf-8');
-    return decodedId;
-  };
-
   const getSnippetData = async (id) => {
     const response = await axios.get(routes.getSnippetPath(id));
     return response.data;
@@ -48,34 +35,12 @@ function SnippetsProvider({ children }) {
     return renamedSnippet;
   };
 
-  const hasSnippetParams = () => {
-    const url = new URL(window.location);
-    return url.searchParams.has('snippet');
-  };
-
   const hasViewSnippetParams = (urlData = {}) => {
     return urlData.login && urlData.slug;
   };
 
-  const getSnippetIdFromParams = () => {
-    const url = new URL(window.location);
-    const encodedId = url.searchParams.get('snippet');
-    const decodedId = decodeId(encodedId);
-    return decodedId;
-  };
-
-  const getViewSnippetParams = (loaderData) => {
-    return loaderData;
-  };
-
   const genViewSnippetLink = (login, slug) => {
     const url = new URL(`/users/${login}/snippets/${slug}`, window.location);
-    return url.toString();
-  };
-
-  const genSnippetLink = (encodedId) => {
-    const url = new URL(routes.homePagePath(), window.location);
-    url.searchParams.set('snippet', encodedId);
     return url.toString();
   };
 
@@ -99,23 +64,23 @@ function SnippetsProvider({ children }) {
     >`;
   };
 
+  const getDefaultSnippetName = async () => {
+    const response = await axios.get(routes.getDefaultSnippetName());
+    return response.data;
+  };
+
   const memoizedValue = useMemo(
     () => ({
-      encodeId,
-      decodeId,
       saveSnippet,
       renameSnippet,
       deleteSnippet,
       genEmbedFrame,
-      genSnippetLink,
       genViewSnippetLink,
       getSnippetData,
       getSnippetDataByViewParams,
-      hasSnippetParams,
       hasViewSnippetParams,
       genEmbedSnippetLink,
-      getSnippetIdFromParams,
-      getViewSnippetParams,
+      getDefaultSnippetName,
     }),
     [],
   );
