@@ -1,4 +1,3 @@
-import { useRef, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../slices';
 
@@ -33,32 +32,4 @@ export const useEditor = () => {
     onChange,
     editorDidMount: onMount,
   };
-};
-
-const debounce = (func, wait = 1000) => {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      func.apply(this, args);
-    }, wait);
-  };
-};
-
-export const useDebounce = (callback) => {
-  const ref = useRef();
-
-  useEffect(() => {
-    ref.current = callback;
-  }, [callback]);
-
-  const debouncedCallback = useMemo(() => {
-    const func = () => {
-      ref.current?.();
-    };
-
-    return debounce(func);
-  }, []);
-
-  return debouncedCallback;
 };

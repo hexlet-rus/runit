@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useDeferredValue } from 'react';
 import Editor from '@monaco-editor/react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useEditor, useDebounce } from './hooks.js';
+import { useEditor } from './hooks.js';
 import { useAuth, useSnippets } from '../../hooks';
 import classes from './Editor.module.css';
 import { actions } from '../../slices/index.js';
@@ -27,6 +27,8 @@ export function MonacoEditor() {
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
   const params = useParams();
+  const snippetDataRef = useRef();
+  const deferredValue = useDeferredValue(code);
   const snippetParams = {
     login: params.login,
     slug: params.slug,
@@ -38,7 +40,13 @@ export function MonacoEditor() {
     readOnly: !isLoggedIn,
   };
 
-  const snippetDataRef = useRef();
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(actions.updateSavedCode(deferredValue));
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [deferredValue]);
 
   useEffect(() => {
     snippetDataRef.current = snippetData;
@@ -76,15 +84,6 @@ export function MonacoEditor() {
     }
   }, [params]);
 
-  const debouncedRequest = useDebounce(() => {
-    dispatch(actions.updateSavedCode(snippetData.code));
-  });
-
-  const onChangeHandler = (e) => {
-    onChange(e);
-    ifHasViewSnippetParams && debouncedRequest();
-  };
-
   return (
     <div className={classes.wrapper}>
       {!isLoggedIn ? <AuthBanner /> : ''}
@@ -93,7 +92,7 @@ export function MonacoEditor() {
         theme="vs-dark"
         value={snippetData.code}
         options={options}
-        onChange={onChangeHandler}
+        onChange={onChange}
       />
     </div>
   );
