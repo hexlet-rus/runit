@@ -5,7 +5,7 @@ import { MonacoEditor } from './components/Editor/index.jsx';
 import { SnippetButton } from './components/SnippetButton/index.jsx';
 import { Terminal } from './components/Terminal/index.jsx';
 
-export function App() {
+function App() {
   const isAllSaved = useSelector((state) => state.editor.isAllSaved);
   const { t } = useTranslation();
 
@@ -32,3 +32,5 @@ export function App() {
     </main>
   );
 }
+
+export default App;

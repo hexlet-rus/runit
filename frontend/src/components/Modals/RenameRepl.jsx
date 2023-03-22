@@ -3,7 +3,7 @@ import { Modal, Form, FloatingLabel, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
-import * as yup from 'yup';
+import { object, string } from 'yup';
 import { useSnippets } from '../../hooks';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
@@ -25,9 +25,8 @@ function RenameRepl() {
     initialValues: {
       name: previousName,
     },
-    validationSchema: yup.object({
-      name: yup
-        .string()
+    validationSchema: object({
+      name: string()
         .required(t('modals.validation.required'))
         .max(20, t('modals.validation.snippetNameMaxLength'))
         .matches(/^[a-zA-Z0-9_-]*$/, t('modals.validation.singleWord')),

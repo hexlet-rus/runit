@@ -5,6 +5,7 @@ import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
+import * as yup from 'yup';
 
 import { BrowserRouter } from 'react-router-dom';
 import { rootReducer } from './slices';
@@ -29,6 +30,13 @@ export default async () => {
     dsn: process.env.SENTRY_DSN,
     integrations: [new BrowserTracing()],
     tracesSampleRate: 1.0,
+  });
+
+  yup.addMethod(yup.string, 'email', function validateEmail(message) {
+    return this.matches(
+      /^([0-9a-zA-Z’_-]+\.)*[0-9a-zA-Z’_-]+(\+[0-9a-zA-Z.’_-]*)*@([0-9a-zA-Z-]+\.)+[a-zA-Z]{2,}$/,
+      { message, name: 'email', excludeEmptyString: true },
+    );
   });
 
   return (

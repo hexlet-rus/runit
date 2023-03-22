@@ -33,6 +33,11 @@ export class SnippetsController {
     return this.snippetsService.findAll();
   }
 
+  @Get('name')
+  async generateName(): Promise<string> {
+    return this.snippetsService.generateName();
+  }
+
   @Get(':login/:slug')
   async findOneByLoginSlug(
     @Param('login') login: string,

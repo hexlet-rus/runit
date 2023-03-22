@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { App } from './App.jsx';
-import { Profile } from './Pages/Profile.jsx';
-import { SignUp } from './Pages/SignUp.jsx';
-import { SignIn } from './Pages/SignIn.jsx';
-import { About } from './Pages/About.jsx';
-import { Landing } from './Pages/Landing/Landing.jsx';
-import { LicenseAgreement } from './Pages/LicenseAgreement.jsx';
-import { RemindPassword } from './Pages/RemindPassword.jsx';
-import NotFound from './Pages/NotFound.jsx';
 import { useAuth } from './hooks';
 import Layout from './components/Layout.jsx';
-import EmbedSnippet from './components/Embed/EmbedSnippet.jsx';
 
 import routes from './routes.js';
+
+const Profile = lazy(() => import('./Pages/Profile.jsx'));
+const App = lazy(() => import('./App.jsx'));
+const About = lazy(() => import('./Pages/About.jsx'));
+const SignUp = lazy(() => import('./Pages/SignUp.jsx'));
+const SignIn = lazy(() => import('./Pages/SignIn.jsx'));
+const Landing = lazy(() => import('./Pages/Landing/Landing.jsx'));
+const LicenseAgreement = lazy(() => import('./Pages/LicenseAgreement.jsx'));
+const RemindPassword = lazy(() => import('./Pages/RemindPassword.jsx'));
+const NotFound = lazy(() => import('./Pages/NotFound.jsx'));
+const EmbedSnippet = lazy(() => import('./components/Embed/EmbedSnippet.jsx'));
 
 function ProtectedRoute({ user, children }) {
   if (!user) {
@@ -33,31 +34,36 @@ function AppRoutes() {
   const { isLoggedIn } = useAuth();
 
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Landing />} />
-        <Route path={routes.homePagePath()} element={<App />} />
-        <Route path={routes.snippetPagePath()} element={<App />} />
-        <Route path={routes.aboutPagePath()} element={<About />} />
-        <Route element={<ProtectedRoute user={isLoggedIn} />}>
-          <Route path={routes.profilePagePath()} element={<Profile />} />
-        </Route>
-        <Route element={<AuthRoute user={isLoggedIn} />}>
-          <Route path={routes.signUpPagePath()} element={<SignUp />} />
-          <Route path={routes.loginPagePath()} element={<SignIn />} />
+    <Suspense fallback={<div>Loading...</div>}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Landing />} />
+          <Route path={routes.homePagePath()} element={<App />} />
+          <Route path={routes.snippetPagePath()} element={<App />} />
+          <Route path={routes.aboutPagePath()} element={<About />} />
+          <Route element={<ProtectedRoute user={isLoggedIn} />}>
+            <Route path={routes.profilePagePath()} element={<Profile />} />
+          </Route>
+          <Route element={<AuthRoute user={isLoggedIn} />}>
+            <Route path={routes.signUpPagePath()} element={<SignUp />} />
+            <Route path={routes.loginPagePath()} element={<SignIn />} />
+          </Route>
+          <Route
+            path={routes.remindPassPagePath()}
+            element={<RemindPassword />}
+          />
+          <Route
+            path={routes.licenseAgreementPath()}
+            element={<LicenseAgreement />}
+          />
+          <Route path="*" element={<NotFound />} />
         </Route>
         <Route
-          path={routes.remindPassPagePath()}
-          element={<RemindPassword />}
+          path={routes.embedSnippetPagePath()}
+          element={<EmbedSnippet />}
         />
-        <Route
-          path={routes.licenseAgreementPath()}
-          element={<LicenseAgreement />}
-        />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-      <Route path={routes.embedSnippetPagePath()} element={<EmbedSnippet />} />
-    </Routes>
+      </Routes>
+    </Suspense>
   );
 }
 
