@@ -28,6 +28,11 @@ export function Navbar() {
         </Link>
         <div className="navbar-nav justify-content-end">
           {auth.isLoggedIn && (
+            <Link className="nav-link px-3" to={routes.homePagePath()}>
+              {t('navbar.editor')}
+            </Link>
+          )}
+          {auth.isLoggedIn && (
             <Link className="nav-link px-3" to={routes.profilePagePath()}>
               {t('navbar.profile')}
             </Link>
