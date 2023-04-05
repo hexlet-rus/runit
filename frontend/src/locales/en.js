@@ -100,6 +100,7 @@ const enLocales = {
       logout: 'Log out',
       signIn: 'Sign in',
       signUp: 'Sign up',
+      editor: 'Editor',
     },
     footer: {
       hexlet: 'Hexlet',

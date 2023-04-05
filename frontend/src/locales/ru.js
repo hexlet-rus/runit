@@ -100,6 +100,7 @@ const ruLocales = {
       logout: 'Выйти',
       signIn: 'Войти',
       signUp: 'Зарегистрироваться',
+      editor: 'Редактор',
     },
     footer: {
       hexlet: 'Хекслет',
