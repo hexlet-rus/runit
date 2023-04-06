@@ -115,14 +115,15 @@ function SignIn() {
                       {t('signIn.signInFailed')}
                     </Form.Control.Feedback>
                   </Form.Group>
-                  <div className="text-end my-3">
+                  {/* TODO: https://github.com/hexlet-rus/runit/issues/94 */}
+                  {/* <div className="text-end my-3">
                     <a
                       className="text-decoration-none small"
                       href={routes.remindPassPagePath()}
                     >
                       {t('signIn.remindPass')}
                     </a>
-                  </div>
+                  </div> */}
                   <Button
                     type="submit"
                     variant="primary"
