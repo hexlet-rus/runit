@@ -63,12 +63,13 @@ export class UsersService {
       await this.usersRepository.update(currentUser.id, { recover_hash: null });
     }, 900000);
 
+    // FIXME: use env var BASE_URL
     const url = `${frontendUrl}/recovery/${recoverHash}`;
 
     this.mailerService.sendMail({
       to: email,
-      from: 'noreply@runit.com',
-      subject: 'Ссылка для изменения пароля на сайте RunIT.ru',
+      // FIXME: use i18n
+      subject: 'Ссылка для изменения пароля на runit.hexlet.ru',
       template: 'recover',
       context: {
         url,
