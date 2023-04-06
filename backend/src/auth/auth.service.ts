@@ -1,7 +1,9 @@
 /* eslint-disable no-useless-constructor, @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import axios from 'axios';
 import * as bcrypt from 'bcrypt';
+import { generate } from 'generate-password';
 import { UsersService } from '../users/users.service';
 
 @Injectable()
@@ -25,5 +27,42 @@ export class AuthService {
     const token = this.jwtService.sign(payload);
     response.cookie('access_token', token);
     response.send({ token });
+  }
+
+  async oAuthGithub(code: string, response: any) {
+    const oAuthUrl = process.env.OAUTH_ACCESS_TOKEN_URL;
+    const clientId = process.env.OAUTH_CLIENT_ID;
+    const clientSecret = process.env.OAUTH_CLIENT_SECRET;
+    const url = new URL(oAuthUrl);
+    url.searchParams.set('client_id', clientId);
+    url.searchParams.set('client_secret', clientSecret);
+    url.searchParams.set('code', code);
+    const preparedUrl = url.toString();
+
+    const { data } = await axios.get(preparedUrl);
+    const parsedData = data.split('&').reduce((acc, str) => {
+      const [key, value] = str.split('=');
+      return { ...acc, [key]: value };
+    }, {});
+
+    const githubUserDataUrl = process.env.GITHUB_USER_URL;
+    const { data: githubUserData } = await axios.get(githubUserDataUrl, {
+      headers: { Authorization: `Bearer ${parsedData.access_token}` },
+    });
+
+    let user = await this.usersService.findByEmail(githubUserData.email);
+
+    if (!user) {
+      const password = generate();
+      const userDto = {
+        login: githubUserData.login,
+        email: githubUserData.email,
+        password,
+        confirmPassword: password,
+      };
+      user = await this.usersService.create(userDto);
+    }
+
+    return this.login(user, response);
   }
 }

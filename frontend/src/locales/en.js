@@ -75,6 +75,7 @@ const enLocales = {
         requiredField: 'Required field',
         correctEmail: 'Incorrect email',
       },
+      withGithub: 'Sign in with Github',
     },
     profile: {
       replsHeader: 'Snippets',
