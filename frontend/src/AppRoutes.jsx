@@ -18,7 +18,7 @@ const EmbedSnippet = lazy(() => import('./components/Embed/EmbedSnippet.jsx'));
 
 function ProtectedRoute({ user, children }) {
   if (!user) {
-    return <Navigate to={routes.signUpPagePath()} replace />;
+    return <Navigate to={routes.loginPagePath()} replace />;
   }
   return children || <Outlet />;
 }

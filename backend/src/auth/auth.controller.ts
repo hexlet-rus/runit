@@ -22,4 +22,9 @@ export class AuthController {
     response.clearCookie('access_token');
     response.send();
   }
+
+  @Post('oauth')
+  async oAuth(@Req() req, @Res() response: Response) {
+    return this.authService.oAuthGithub(req.body.code, response);
+  }
 }

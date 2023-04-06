@@ -67,6 +67,7 @@
     "find-up": "^6.3.0",
     "font-awesome": "^4.7.0",
     "formik": "^2.2.9",
+    "generate-password": "^1.7.0",
     "i": "^0.3.7",
     "i18next": "^22.4.10",
     "jest-mock": "^29.4.3",

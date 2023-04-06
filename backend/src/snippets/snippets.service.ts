@@ -41,8 +41,10 @@ export class SnippetsService {
   async getSlug(id: number): Promise<string> {
     const generateUniqSlug = (snippets: Snippets[]): string => {
       const slug = faker.random.alpha({ count: 7, casing: 'mixed' });
-      return !snippets.find((snippet) => snippet.slug === slug) ? slug : generateUniqSlug(snippets);
-    }
+      return !snippets.find((snippet) => snippet.slug === slug)
+        ? slug
+        : generateUniqSlug(snippets);
+    };
     const snippets = await this.snippetManager
       .createQueryBuilder(Snippets, 'snippet')
       .where('snippet.userId= :id', { id })
