@@ -55,6 +55,11 @@ export class UsersService {
   async recover({ email, frontendUrl }: RecoverUserDto): Promise<void> {
     const recoverHash = await cipher(email);
     const currentUser = await this.find(email);
+
+    if (!currentUser) {
+      return;
+    }
+
     await this.usersRepository.update(currentUser.id, {
       recover_hash: recoverHash,
     });
