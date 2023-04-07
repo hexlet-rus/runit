@@ -1,4 +1,5 @@
 /* eslint-disable class-methods-use-this */
+import { RequestMethod } from '@nestjs/common';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
@@ -19,6 +20,11 @@ import getDataSourceConfig from './config/data-source.config';
 import { HttpsRedirectMiddleware } from './common/https.middleware';
 import { EventsModule } from './events/events.module';
 import getMailerConfig from './config/mailer.config';
+import getSentryConfig from './config/sentry.config';
+
+import { SentryModule } from './sentry/sentry.module';
+import * as Sentry from '@sentry/node';
+import '@sentry/tracing';
 
 @Module({
   imports: [
@@ -31,6 +37,7 @@ import getMailerConfig from './config/mailer.config';
     AuthModule,
     EventsModule,
     TypeOrmModule.forRoot(getDataSourceConfig()),
+    SentryModule.forRoot(getSentryConfig()),
   ],
   controllers: [
     AppController,
@@ -45,6 +52,10 @@ export class AppModule implements NestModule {
   constructor(private dataSource: DataSource) {}
 
   configure(consumer: MiddlewareConsumer) {
+    consumer.apply(Sentry.Handlers.requestHandler()).forRoutes({
+      path: '*',
+      method: RequestMethod.ALL,
+    });
     consumer.apply(HttpsRedirectMiddleware).forRoutes('*');
   }
 }

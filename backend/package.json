@@ -43,6 +43,7 @@
     "@nestjs/websockets": "^9.3.9",
     "@popperjs/core": "^2.11.6",
     "@reduxjs/toolkit": "^1.9.3",
+    "@sentry/node": "^7.47.0",
     "@sentry/react": "^7.38.0",
     "@sentry/tracing": "^7.38.0",
     "@types/bcrypt": "^5.0.0",
