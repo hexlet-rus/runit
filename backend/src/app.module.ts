@@ -1,11 +1,16 @@
 /* eslint-disable class-methods-use-this */
-import { RequestMethod } from '@nestjs/common';
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { MailerModule } from '@nestjs-modules/mailer';
+import * as Sentry from '@sentry/node';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SnippetsController } from './snippets/snippets.controller';
@@ -23,7 +28,6 @@ import getMailerConfig from './config/mailer.config';
 import getSentryConfig from './config/sentry.config';
 
 import { SentryModule } from './sentry/sentry.module';
-import * as Sentry from '@sentry/node';
 import '@sentry/tracing';
 
 @Module({

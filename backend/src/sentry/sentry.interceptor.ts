@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-constructor */
 import {
   CallHandler,
   ExecutionContext,
@@ -6,8 +7,8 @@ import {
   Scope,
 } from '@nestjs/common';
 import { catchError, finalize, Observable, throwError } from 'rxjs';
-import { SentryService } from './sentry.service';
 import * as Sentry from '@sentry/node';
+import { SentryService } from './sentry.service';
 
 /**
  * We must be in Request scope as we inject SentryService
