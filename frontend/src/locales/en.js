@@ -39,9 +39,9 @@ const enLocales = {
       },
       validation: {
         requiredField: 'Required field',
-        correctUsername: 'Only letters of the Latin alphabet in any case',
+        correctUsername: 'There must be no spaces in the username',
         correctEmail: 'Incorrect email',
-        usernameLength: 'From 3 to 20 characters',
+        usernameLength: 'From 3 to 16 characters',
         passwordLength: 'from 8 to 30 characters',
         confirmPassword: 'Passwords must be the same',
       },
