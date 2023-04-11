@@ -50,7 +50,7 @@ export class AuthService {
       headers: { Authorization: `Bearer ${parsedData.access_token}` },
     });
 
-    let user = await this.usersService.findByEmail(githubUserData.email);
+    let user = githubUserData.email ? await this.usersService.findByEmail(githubUserData.email) : null;
 
     if (!user) {
       const password = generate();
