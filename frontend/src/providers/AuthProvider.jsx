@@ -24,7 +24,6 @@ function AuthProvider({ children }) {
   };
 
   const getOAuthCodeUrl = () => {
-    console.log('app name', process.env.REACT_APP_NAME);
     const url = new URL(process.env.REACT_APP_OAUTH_AUTHORIZE_URL);
     url.searchParams.set('client_id', process.env.REACT_APP_OAUTH_CLIENT_ID);
 

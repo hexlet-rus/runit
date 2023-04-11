@@ -21,7 +21,7 @@ export default (): MailerOptions => {
       return options;
     default:
       // FIXME: use some test transport
-      options.transport = "smtp://test:test@imap.ethereal.email:587"
+      options.transport = 'smtp://test:test@imap.ethereal.email:587';
       options.preview = true;
       return options;
   }

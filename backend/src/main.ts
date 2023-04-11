@@ -4,8 +4,8 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import * as cookieParser from 'cookie-parser';
 import { useContainer } from 'class-validator';
 import { ValidationPipe } from '@nestjs/common';
-import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { AppModule } from './app.module';
 
 declare const module: any;
 
@@ -17,10 +17,10 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()
-  .setTitle('Run IT API')
-  .setDescription('')
-  .setVersion('1.0')
-  .build();
+    .setTitle('Run IT API')
+    .setDescription('')
+    .setVersion('1.0')
+    .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
