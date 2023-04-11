@@ -41,6 +41,7 @@
     "@nestjs/testing": "^9.3.9",
     "@nestjs/typeorm": "^9.0.1",
     "@nestjs/websockets": "^9.3.9",
+    "@ntegral/nestjs-sentry": "^4.0.0",
     "@popperjs/core": "^2.11.6",
     "@reduxjs/toolkit": "^1.9.3",
     "@sentry/node": "^7.47.0",

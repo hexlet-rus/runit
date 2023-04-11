@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
 import { object, string } from 'yup';
 import { useFormik } from 'formik';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks';
 
@@ -18,7 +18,6 @@ function SignIn() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const auth = useAuth();
-  const [searchParams] = useSearchParams();
 
   const validation = object().shape({
     email: string()
@@ -60,24 +59,7 @@ function SignIn() {
   });
 
   useEffect(() => {
-    const code = searchParams.get('code');
-    if (!code) {
-      inputRef?.current?.focus();
-      return;
-    }
-
-    formik.setSubmitting(true);
-
-    const oAuth = async () => {
-      try {
-        await auth.oAuth(code);
-        auth.logIn();
-        navigate(routes.profilePagePath());
-      } catch (e) {
-        formik.setSubmitting(false);
-      }
-    };
-    oAuth();
+    inputRef?.current?.focus();
   }, []);
 
   return (

@@ -1,5 +1,13 @@
 /* eslint-disable class-methods-use-this */
-import { Controller, Post, UseGuards, Res, Req } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  UseGuards,
+  Res,
+  Req,
+  Query,
+} from '@nestjs/common';
 import { Response } from 'express';
 import { LocalAuthGuard } from './local-auth.guard';
 import { AuthService } from './auth.service';
@@ -23,8 +31,15 @@ export class AuthController {
     response.send();
   }
 
-  @Post('oauth')
-  async oAuth(@Req() req, @Res() response: Response) {
-    return this.authService.oAuthGithub(req.body.code, response);
+  @Get('oauth')
+  async oAuth(@Query('code') code, @Req() req, @Res() response: Response) {
+    if (!code) {
+      const url = new URL(process.env.OAUTH_AUTHORIZE_URL);
+      url.searchParams.set('client_id', process.env.OAUTH_CLIENT_ID);
+
+      return response.redirect(url.toString());
+    }
+
+    return this.authService.oAuthGithub(code, response);
   }
 }

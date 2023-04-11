@@ -4,13 +4,16 @@ import { JwtService } from '@nestjs/jwt';
 import axios from 'axios';
 import * as bcrypt from 'bcrypt';
 import { generate } from 'generate-password';
+import { InjectSentry, SentryService } from '@ntegral/nestjs-sentry';
 import { UsersService } from '../users/users.service';
+// import { SentryService } from '../sentry/sentry.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
+    @InjectSentry() private readonly sentryService: SentryService,
   ) {}
 
   async validateUser(email: string, pass: string): Promise<any> {
@@ -50,6 +53,8 @@ export class AuthService {
       headers: { Authorization: `Bearer ${parsedData.access_token}` },
     });
 
+    this.sentryService.debug(`github user email: ${githubUserData.email}`);
+
     let user = githubUserData.email
       ? await this.usersService.findByEmail(githubUserData.email)
       : null;
@@ -65,6 +70,11 @@ export class AuthService {
       user = await this.usersService.create(userDto);
     }
 
-    return this.login(user, response);
+    this.sentryService.debug(`current user email: ${user.email}`);
+
+    const payload = { email: user.email, sub: user.id };
+    const token = this.jwtService.sign(payload);
+    response.cookie('access_token', token);
+    return response.redirect('/profile');
   }
 }

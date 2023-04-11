@@ -27,7 +27,7 @@ export default async () => {
   });
 
   Sentry.init({
-    dsn: process.env.SENTRY_DSN,
+    dsn: process.env.REACT_APP_SENTRY_DSN,
     integrations: [new BrowserTracing()],
     tracesSampleRate: 1.0,
   });

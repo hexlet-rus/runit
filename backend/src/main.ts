@@ -5,12 +5,16 @@ import * as cookieParser from 'cookie-parser';
 import { useContainer } from 'class-validator';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { SentryService } from '@ntegral/nestjs-sentry';
 import { AppModule } from './app.module';
 
 declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  app.useLogger(SentryService.SentryServiceInstance());
+
   app.setGlobalPrefix('api');
   app.enable('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
   app.use(cookieParser());

@@ -11,6 +11,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { MailerModule } from '@nestjs-modules/mailer';
 import * as Sentry from '@sentry/node';
+import { SentryModule } from '@ntegral/nestjs-sentry';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SnippetsController } from './snippets/snippets.controller';
@@ -27,7 +28,6 @@ import { EventsModule } from './events/events.module';
 import getMailerConfig from './config/mailer.config';
 import getSentryConfig from './config/sentry.config';
 
-import { SentryModule } from './sentry/sentry.module';
 import '@sentry/tracing';
 
 @Module({

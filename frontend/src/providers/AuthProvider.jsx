@@ -23,18 +23,6 @@ function AuthProvider({ children }) {
     setLoggedIn(true);
   };
 
-  const getOAuthCodeUrl = () => {
-    const url = new URL(process.env.REACT_APP_OAUTH_AUTHORIZE_URL);
-    url.searchParams.set('client_id', process.env.REACT_APP_OAUTH_CLIENT_ID);
-
-    return url.toString();
-  };
-
-  const oAuth = async (code) => {
-    const response = await axios.post(routes.oAuthPath(), { code });
-    console.log('data: ', response);
-  };
-
   useEffect(() => {
     const fetchAuthData = async () => {
       try {
@@ -49,7 +37,7 @@ function AuthProvider({ children }) {
   }, []);
 
   const memoizedValue = useMemo(
-    () => ({ logOut, isLoggedIn, logIn, oAuth, getOAuthCodeUrl }),
+    () => ({ logOut, isLoggedIn, logIn }),
     [logOut, isLoggedIn, logIn],
   );
 
