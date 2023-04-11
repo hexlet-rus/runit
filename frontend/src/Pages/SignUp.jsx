@@ -26,10 +26,9 @@ function SignUp() {
 
   const signUpValidation = object().shape({
     login: string()
-      .trim()
       .min(3, t('signUp.validation.usernameLength'))
-      .max(20, t('signUp.validation.usernameLength'))
-      .matches(/^[A-Za-z ]*$/, t('signUp.validation.correctUsername'))
+      .max(16, t('signUp.validation.usernameLength'))
+      .matches(/^[\w\S]*$/, t('signUp.validation.correctUsername'))
       .typeError()
       .required(t('signUp.validation.requiredField')),
     email: string()
