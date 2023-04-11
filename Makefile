@@ -53,4 +53,4 @@ tag:
 	git tag $(TAG) && git push upstream $(TAG) --no-verify
 
 release:
-	make tag TAG=$(shell bin/generate_next_tag)
+	make tag TAG=$(shell bin/generate-next-tag)
