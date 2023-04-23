@@ -1,12 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { NavigationBar } from './Navbar.jsx';
+import { Navbar } from './Navbar.jsx';
 import { buildFooter as Footer } from './Footer.jsx';
 
 function Layout() {
   return (
     <>
-      <NavigationBar />
+      <Navbar />
       <Outlet />
       <Footer />
     </>

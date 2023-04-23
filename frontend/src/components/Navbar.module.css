@@ -1,0 +1,10 @@
+.navbarLogo {
+  position: relative;
+  bottom: -0.3rem;
+}
+
+.navbarText {
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.3;
+}

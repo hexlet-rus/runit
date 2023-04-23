@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import NavigationBar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
@@ -9,89 +9,85 @@ import { useTranslation } from 'react-i18next';
 import routes from '../routes.js';
 import { useAuth } from '../hooks';
 import Logo from '../assets/landing/images/logo.svg';
+import classes from './Navbar.module.css';
 
-export function NavigationBar() {
+export function Navbar() {
   const auth = useAuth();
   const { t } = useTranslation();
 
   return (
-    <Navbar
+    <NavigationBar
       variant="dark"
       bg="dark"
-      expand="lg"
-      className="shadow-sm border-bottom-mb-5"
+      expand="md"
+      className="border-bottom-mb-5"
     >
       <Container>
-        <Navbar.Brand
+        <NavigationBar.Brand
           as={Link}
-          className="d-flex"
-          aria-hidden="true"
-          href={routes.homePagePath()}
+          className="d-flex align-items-baseline"
+          to={routes.homePagePath()}
         >
           <Image
-            alt="mainLabel"
+            alt={t('navbar.mainLabel')}
             width={100}
             height={30}
             src={Logo}
-            className="pb-1"
-          />
-          <Navbar.Text className="ms-1">{t('navbar.mainLabel')}</Navbar.Text>
-        </Navbar.Brand>
-        <Navbar.Toggle as="button" aria-controls="navbar-toggler" />
-        <Navbar.Collapse id="navbar-toggler">
-          <Nav as="ul" className="d-flex justify-content-end">
+            aria-hidden="true"
+            className={`${classes.navbarLogo}`}
+          />{' '}
+          <NavigationBar.Text
+            className={`${classes.navbarText} ms-3 text-white`}
+          >
+            {t('navbar.mainLabel')}
+          </NavigationBar.Text>
+        </NavigationBar.Brand>
+        <NavigationBar.Toggle as="button" aria-controls="navbar-toggler" />
+        <NavigationBar.Collapse
+          id="navbar-toggler"
+          className="justify-content-end"
+        >
+          <Nav as="ul">
             {auth.isLoggedIn && (
-              <Nav.Item as="li">
-                <Nav.Link
-                  as={Link}
-                  className="nav-link px-3"
-                  to={routes.profilePagePath()}
-                >
+              <Nav.Item as="li" className="d-flex align-items-center px-2">
+                <Nav.Link as={Link} to={routes.profilePagePath()}>
                   {t('navbar.profile')}
                 </Nav.Link>
               </Nav.Item>
             )}
-            <Nav.Item as="li">
-              <Nav.Link
-                as={Link}
-                className="nav-link px-3"
-                to={routes.aboutPagePath()}
-              >
+            <Nav.Item as="li" className="d-flex align-items-center px-2">
+              <Nav.Link as={Link} to={routes.aboutPagePath()}>
                 {t('navbar.about')}
               </Nav.Link>
             </Nav.Item>
             {auth.isLoggedIn && (
-              <Nav.Item as="li">
-                <Button type="button" className="px-3" onClick={auth.logOut}>
+              <Nav.Item as="li" className="py-2 px-2">
+                <Button variant="primary" as={Button} onClick={auth.logOut}>
                   {t('navbar.logout')}
                 </Button>
               </Nav.Item>
             )}
             {!auth.isLoggedIn && (
-              <Nav.Item as="li">
-                <Nav.Link
-                  as={Link}
-                  className="px-3"
-                  to={routes.loginPagePath()}
-                >
+              <Nav.Item as="li" className="py-2 px-2">
+                <Button variant="light" as={Link} to={routes.loginPagePath()}>
                   {t('navbar.signIn')}
-                </Nav.Link>
+                </Button>
               </Nav.Item>
             )}
             {!auth.isLoggedIn && (
-              <Nav.Item as="li">
-                <Nav.Link
+              <Nav.Item as="li" className="py-2 px-2">
+                <Button
+                  variant="primary"
                   as={Link}
-                  className="px-3"
                   to={routes.signUpPagePath()}
                 >
                   {t('navbar.signUp')}
-                </Nav.Link>
+                </Button>
               </Nav.Item>
             )}
           </Nav>
-        </Navbar.Collapse>
+        </NavigationBar.Collapse>
       </Container>
-    </Navbar>
+    </NavigationBar>
   );
 }

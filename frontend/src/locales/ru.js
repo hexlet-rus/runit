@@ -99,7 +99,7 @@ const ruLocales = {
       about: 'О проекте',
       logout: 'Выйти',
       signIn: 'Войти',
-      signUp: 'Зарегистрироваться',
+      signUp: 'Регистрация',
     },
     footer: {
       hexlet: 'Хекслет',
