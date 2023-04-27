@@ -12,9 +12,9 @@ import { ComparePasswords } from '../validation/compare-passwords';
 
 export class CreateUserDto {
   @IsNotEmpty()
-  @Length(3, 20)
+  @Length(3, 16)
   @IsString()
-  @Matches(/[A-Za-z]/)
+  @Matches(/^[\w\S]*$/)
   @Validate(CheckLogin, {
     message: 'Пользователь уже существует!',
   })

@@ -15,9 +15,9 @@ import { ComparePasswords } from '../validation/compare-passwords';
 export class UpdateUserDto {
   @IsOptional()
   @IsNotEmpty()
-  @Length(3, 20)
+  @Length(3, 16)
   @IsString()
-  @Matches(/[A-Za-z]/)
+  @Matches(/^[\w\S]*$/)
   @Validate(CheckLogin, {
     message: 'Уже существует!',
   })

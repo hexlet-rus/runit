@@ -21,17 +21,16 @@ function SignUpModal() {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      login: '',
       email: '',
       password: '',
       confirmPassword: '',
     },
     validationSchema: object().shape({
-      name: string()
-        .trim()
+      login: string()
         .min(3, t('signUp.validation.usernameLength'))
-        .max(20, t('signUp.validation.usernameLength'))
-        .matches(/^[A-Za-z ]*$/, t('signUp.validation.correctUsername'))
+        .max(16, t('signUp.validation.usernameLength'))
+        .matches(/^[\w\S]*$/, t('signUp.validation.correctUsername'))
         .typeError()
         .required(t('signUp.validation.requiredField')),
       email: string()
@@ -62,7 +61,7 @@ function SignUpModal() {
           console.log(t('errors.unknown'));
           throw err;
         }
-        if (err.response?.status === 409) {
+        if (err.response?.status === 400) {
           setRegFailed(true);
         } else {
           console.log(t('errors.network'));
@@ -113,23 +112,22 @@ function SignUpModal() {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={classes.formGroup}>
-            <Form.Label htmlFor="name" controlId="name" label="Name">
-              {t('signUp.usernameLabel')}
-            </Form.Label>
+            <Form.Label htmlFor="login">{t('signUp.usernameLabel')}</Form.Label>
             <Form.Control
-              name="name"
-              type="name"
-              autoComplete="username"
-              className={`form-input bg-dark text-white ${classes.signInput}`}
-              required
               onChange={formik.handleChange}
-              value={formik.values.name}
+              value={formik.values.login}
+              onBlur={formik.handleBlur}
+              className={`form-input bg-dark text-white ${classes.signUpInput}`}
+              name="login"
+              id="login"
+              autoComplete="username"
+              required
               isInvalid={
-                (formik.touched.name && formik.errors.name) || regFailed
+                (formik.touched.login && formik.errors.login) || regFailed
               }
             />
             <Form.Control.Feedback type="invalid">
-              {formik.errors.name ? formik.errors.name : regFailed}
+              {formik.errors.login ? formik.errors.login : regFailed}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={classes.formGroup}>
