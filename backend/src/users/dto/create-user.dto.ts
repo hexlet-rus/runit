@@ -9,10 +9,17 @@ import {
 import { CheckEmail } from '../validation/check-email';
 import { CheckLogin } from '../validation/check-login';
 import { ComparePasswords } from '../validation/compare-passwords';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUserDto {
-  @IsNotEmpty()
-  @Length(3, 16)
+  @ApiProperty({ 
+    minLength: 3,
+    maxLength: 20, 
+    description: 'Must be unique!',
+    example: 'JohnDoe',
+    pattern: '/[A-Za-z]/',
+  })
+  @Length(3, 20)
   @IsString()
   @Matches(/^[\w\S]*$/)
   @Validate(CheckLogin, {
@@ -20,7 +27,10 @@ export class CreateUserDto {
   })
   login: string;
 
-  @IsNotEmpty()
+  @ApiProperty({ 
+    description: 'Must be unique!',
+    example: 'jane-doe@mail.ru',
+  })
   @IsString()
   @IsEmail()
   @Validate(CheckEmail, {
@@ -28,11 +38,19 @@ export class CreateUserDto {
   })
   email: string;
 
-  @IsNotEmpty()
+  @ApiProperty({ 
+    example: 'haew6wae56a45ewgd',
+    minLength: 8,
+    maxLength: 30,
+  })
   @IsString()
   @Length(8, 30)
   password: string;
 
+  @ApiProperty({ 
+    example: 'haew6wae56a45ewgd',
+    description: 'Must be equal with password field!'
+  })
   @IsString()
   @Validate(ComparePasswords, {
     message: 'Пароли не совпадают!',

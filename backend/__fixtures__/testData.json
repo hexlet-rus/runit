@@ -34,11 +34,8 @@
     "errs": [
       "login must match /[A-Za-z]/ regular expression",
       "login must be longer than or equal to 3 characters",
-      "login should not be empty",
       "email must be an email",
-      "email should not be empty",
       "password must be longer than or equal to 8 characters",
-      "password should not be empty",
       "Пароли не совпадают!"
     ],
     "updateErrsUnique": [

@@ -22,23 +22,38 @@ import { ParseIntPipe } from './pipes/parse-int.pipe';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ValidationPipe } from './validation/validation.pipe';
 import { User } from '../users/interfaces/users.interface';
+import { 
+  ApiBadRequestResponse,
+  ApiCookieAuth, 
+  ApiCreatedResponse, 
+  ApiOkResponse, 
+  ApiParam, 
+  ApiTags, 
+  ApiUnauthorizedResponse 
+} from '@nestjs/swagger';
 
+@ApiTags('snippets')
 @Controller('snippets')
 @UseFilters(new HttpExceptionFilter())
 export class SnippetsController {
   constructor(private snippetsService: SnippetsService) {}
 
   @Get()
+  @ApiOkResponse({ description: 'Successfully returned all snippets' })
   async findAll(): Promise<Snippet[]> {
     return this.snippetsService.findAll();
   }
 
   @Get('name')
+  @ApiOkResponse({ description: 'Successfully generated name for snippet'})
   async generateName(): Promise<string> {
     return this.snippetsService.generateName();
   }
 
   @Get(':login/:slug')
+  @ApiParam({ name: 'login', description: 'User login' })
+  @ApiParam({ name: 'slug', description: 'Snippet slug' })
+  @ApiOkResponse({ description: 'Successfully returned snippet' })
   async findOneByLoginSlug(
     @Param('login') login: string,
     @Param('slug') slug: string,
@@ -47,12 +62,17 @@ export class SnippetsController {
   }
 
   @Get(':id')
+  @ApiOkResponse({ description: 'Successfully returned snippet by id' })
   async findOne(@Param('id', new ParseIntPipe()) id: number): Promise<Snippet> {
     return this.snippetsService.findOne(id);
   }
 
   @Post()
   @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth('access_token')
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiBadRequestResponse({ description: 'Validation failed!' })
+  @ApiCreatedResponse({ description: 'Snippet successfully created!' })
   async create(
     @UserDecorator('user') user: User,
     @Body(new ValidationPipe())
@@ -63,6 +83,10 @@ export class SnippetsController {
 
   @Put(':id')
   @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth('access_token')
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiBadRequestResponse({ description: 'Validation failed!' })
+  @ApiOkResponse({ description: 'Snippet successfully updated!' })
   async update(
     @Param('id', new ParseIntPipe()) id: number,
     @Body(new ValidationPipe()) updateSnippetDto: UpdateSnippetDto,
@@ -72,6 +96,9 @@ export class SnippetsController {
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth('access_token')
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiOkResponse({ description: 'Snippet successfully deleted!' })
   async delete(@Param('id', new ParseIntPipe()) id: number) {
     return this.snippetsService.delete(id);
   }
