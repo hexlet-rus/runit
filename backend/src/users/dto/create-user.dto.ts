@@ -21,7 +21,7 @@ export class CreateUserDto {
   })
   @Length(3, 20)
   @IsString()
-  @Matches(/[A-Za-z]/)
+  @Matches(/^[\w\S]*$/)
   @Validate(CheckLogin, {
     message: 'Пользователь уже существует!',
   })

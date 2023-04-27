@@ -25,7 +25,7 @@ export class UpdateUserDto {
   @IsOptional()
   @Length(3, 20)
   @IsString()
-  @Matches(/[A-Za-z]/)
+  @Matches(/^[\w\S]*$/)
   @Validate(CheckLogin, {
     message: 'Уже существует!',
   })
