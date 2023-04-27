@@ -2,8 +2,9 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Output } from './console/interfaces/output.interface';
-import { ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('common')
 @Controller()
 export class AppController {
   // eslint-disable-next-line no-useless-constructor

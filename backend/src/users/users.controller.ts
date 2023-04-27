@@ -30,9 +30,11 @@ import {
   ApiCreatedResponse, 
   ApiOkResponse, 
   ApiParam, 
+  ApiTags, 
   ApiUnauthorizedResponse 
 } from '@nestjs/swagger';
 
+@ApiTags('users')
 @Controller('users')
 @UseFilters(new HttpExceptionFilter())
 export class UsersController {
@@ -79,7 +81,7 @@ export class UsersController {
 
   @Post()
   @UseFilters(new HttpValidationFilter())
-  @ApiCreatedResponse({ description: 'Successfully created user' })
+  @ApiCreatedResponse({ description: 'Successfully created user and logged in! Token lasts 60 minutes!' })
   @ApiBadRequestResponse({ description: 'Validation failed!' })
   async create(@Body() createUserDto: CreateUserDto, @Response() res: any) {
     const user = await this.usersService.create(createUserDto);

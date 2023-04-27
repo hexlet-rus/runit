@@ -24,6 +24,10 @@ async function bootstrap() {
     .setTitle('Run IT API')
     .setDescription('')
     .setVersion('1.0')
+    .addTag('users')
+    .addTag('snippets')
+    .addTag('auth')
+    .addTag('common')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

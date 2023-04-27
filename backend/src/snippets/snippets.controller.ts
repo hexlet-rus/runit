@@ -28,9 +28,11 @@ import {
   ApiCreatedResponse, 
   ApiOkResponse, 
   ApiParam, 
+  ApiTags, 
   ApiUnauthorizedResponse 
 } from '@nestjs/swagger';
 
+@ApiTags('snippets')
 @Controller('snippets')
 @UseFilters(new HttpExceptionFilter())
 export class SnippetsController {
