@@ -24,6 +24,14 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { HttpValidationFilter } from './exceptions/validation-exception.filter';
 import { AuthService } from '../auth/auth.service';
 import { RecoverUserDto } from './dto/recover-user.dto';
+import { 
+  ApiBadRequestResponse, 
+  ApiCookieAuth, 
+  ApiCreatedResponse, 
+  ApiOkResponse, 
+  ApiParam, 
+  ApiUnauthorizedResponse 
+} from '@nestjs/swagger';
 
 @Controller('users')
 @UseFilters(new HttpExceptionFilter())
@@ -35,30 +43,44 @@ export class UsersController {
 
   @UseGuards(JwtAuthGuard)
   @Get()
+  @ApiCookieAuth('access_token')
+  @ApiOkResponse({ description: 'Successfully returned all users' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   async findAll(): Promise<User[]> {
     return this.usersService.findAll();
   }
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
+  @ApiCookieAuth('access_token')
+  @ApiOkResponse({ description: 'Successfully returned user profile' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   async getProfile(@UserDecorator('user') user: User) {
     return this.usersService.getData(user);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get(':id')
+  @ApiCookieAuth('access_token')
+  @ApiOkResponse({ description: 'Successfully returned user' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   async findOne(@Param('id', new ParseIntPipe()) id: number): Promise<User> {
     return this.usersService.findOne(id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Get(':login')
+  @ApiCookieAuth('access_token')
+  @ApiOkResponse({ description: 'Successfully returned user by login' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   async findByLogin(@Param('login') login: string): Promise<User> {
     return this.usersService.findByLogin(login);
   }
 
   @Post()
   @UseFilters(new HttpValidationFilter())
+  @ApiCreatedResponse({ description: 'Successfully created user' })
+  @ApiBadRequestResponse({ description: 'Validation failed!' })
   async create(@Body() createUserDto: CreateUserDto, @Response() res: any) {
     const user = await this.usersService.create(createUserDto);
     return this.authService.login(user, res);
@@ -66,12 +88,16 @@ export class UsersController {
 
   @Post('recover')
   @UseFilters(new HttpValidationFilter())
+  @ApiCreatedResponse({ description: 'Successfully returned recovery hash key' })
+  @ApiBadRequestResponse({ description: 'Validation failed!' })
   async recover(@Body() recoverUserDto: RecoverUserDto) {
     return this.usersService.recover(recoverUserDto);
   }
 
   @Get('recover/:hash')
   @UseFilters(new HttpValidationFilter())
+  @ApiParam({ name: 'hash', description: 'Hash key for user recovery!' })
+  @ApiOkResponse({ description: 'Successfully checked recovery hash key' })
   async checkHash(@Param('hash') hash: string) {
     return this.usersService.checkHash(hash);
   }
@@ -79,6 +105,9 @@ export class UsersController {
   @Put(':id')
   @UseGuards(JwtAuthGuard)
   @UseFilters(new HttpValidationFilter())
+  @ApiCookieAuth('access_token')
+  @ApiOkResponse({ description: 'Successfully updated user' })
+  @ApiBadRequestResponse({ description: 'Validation failed!' })
   update(
     @Param('id', new ParseIntPipe()) id: number,
     @Body() updateUserDto: UpdateUserDto,
@@ -88,7 +117,10 @@ export class UsersController {
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth('access_token')
+  @ApiOkResponse({ description: 'Successfully deleted user' })
   async delete(@Param('id', new ParseIntPipe()) id: number) {
     return this.usersService.delete(id);
   }
 }
+

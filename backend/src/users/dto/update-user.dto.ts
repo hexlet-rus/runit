@@ -11,10 +11,18 @@ import { CheckEmail } from '../validation/check-email';
 import { CheckLogin } from '../validation/check-login';
 import { CheckPassword } from '../validation/check-password';
 import { ComparePasswords } from '../validation/compare-passwords';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateUserDto {
+  @ApiProperty({ 
+    minLength: 3,
+    maxLength: 20, 
+    description: 'Must be unique!',
+    example: 'UpdatedJohnDoe',
+    pattern: '/[A-Za-z]/',
+    required: false,
+  })
   @IsOptional()
-  @IsNotEmpty()
   @Length(3, 20)
   @IsString()
   @Matches(/[A-Za-z]/)
@@ -23,8 +31,12 @@ export class UpdateUserDto {
   })
   login?: string;
 
+  @ApiProperty({ 
+    description: 'Must be unique!',
+    example: 'updated-jane-doe@mail.ru',
+    required: false,
+  })
   @IsOptional()
-  @IsNotEmpty()
   @IsString()
   @IsEmail()
   @Validate(CheckEmail, {
@@ -32,6 +44,11 @@ export class UpdateUserDto {
   })
   email?: string;
 
+  @ApiProperty({ 
+    description: 'Current account password',
+    example: 'haew6wae56a45ewgd',
+    required: false,
+  })
   @IsOptional()
   @IsNotEmpty()
   @IsString()
@@ -40,12 +57,23 @@ export class UpdateUserDto {
   })
   currPassword?: string;
 
+  @ApiProperty({
+    minLength: 8,
+    maxLength: 30,
+    description: 'New password',
+    example: 'ha6ew6ewa5gea',
+    required: false,
+  })
   @IsOptional()
-  @IsNotEmpty()
   @IsString()
   @Length(8, 30)
   password?: string;
 
+  @ApiProperty({ 
+    example: 'ha6ew6ewa5gea',
+    description: 'Must be equal with password field!',
+    required: false,
+  })
   @IsOptional()
   @IsNotEmpty()
   @IsString()
