@@ -9,6 +9,7 @@ import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
 import { Snippets } from '../entities/snippet.entity';
 import { User } from '../users/interfaces/users.interface';
+import { generateUniqSlug } from './utils/generate-uniq-slug';
 
 @Injectable()
 export class SnippetsService {
@@ -39,12 +40,6 @@ export class SnippetsService {
   }
 
   async getSlug(id: number): Promise<string> {
-    const generateUniqSlug = (snippets: Snippets[]): string => {
-      const slug = faker.random.alpha({ count: 7, casing: 'mixed' });
-      return !snippets.find((snippet) => snippet.slug === slug)
-        ? slug
-        : generateUniqSlug(snippets);
-    };
     const snippets = await this.snippetManager
       .createQueryBuilder(Snippets, 'snippet')
       .where('snippet.userId= :id', { id })
