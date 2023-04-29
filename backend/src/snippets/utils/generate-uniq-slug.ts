@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Snippets } from "src/entities/snippet.entity";
+import { Snippets } from "../../entities/snippet.entity";
 
 export const generateUniqSlug = (snippets: Snippets[]): string => {
   const slug = faker.random.alpha({ count: 7, casing: 'mixed' });
