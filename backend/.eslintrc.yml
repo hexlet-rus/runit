@@ -19,7 +19,7 @@ parser: '@typescript-eslint/parser'
 
 parserOptions:
   sourceType: 'module'
-  project: 'backend/tsconfig.json'
+  project: 'tsconfig.json'
 
 settings:
   import/extensions:
