@@ -4,11 +4,13 @@
   --bs-accordion-btn-color: white;
   --bs-accordion-icon-color: #fff;
   --bs-accordion-border-width: 0px;
+  margin-left: -1.3rem;
 }
 
 :global(.accordion-collapse) {
   margin-left: 35px;
 }
+
 :global(.accordion-button:focus) {
   box-shadow: none;
   border-color: rgba(0, 0, 0, 0);

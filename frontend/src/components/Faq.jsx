@@ -1,15 +1,13 @@
 import React from 'react';
-import { Accordion } from 'react-bootstrap';
+import { Accordion, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import './Faq.module.css';
 
 export function Faq() {
   const { t } = useTranslation();
   return (
-    <div className="mt-5">
-      <div className="row">
-        <h2 className="text-center h2 fw-bold mb-0">{t('faq.faq')}</h2>
-      </div>
+    <Row className="row mt-5">
+      <h2 className="text-center h2 fw-bold mb-0 text-white">{t('faq.faq')}</h2>
       <Accordion className="mt-40" flush>
         <Accordion.Item eventKey="0">
           <Accordion.Header>{t('faq.q0')}</Accordion.Header>
@@ -76,11 +74,11 @@ export function Faq() {
           </Accordion.Body>
         </Accordion.Item>
       </Accordion>
-      <div className="fw-bold mt-3 mb-2 py-1 text-muted px-0">
+      <div className="fw-bold mt-3 mb-2 py-1 text-muted">
         {t('faq.dist0')}
         <br />
         {t('faq.dist1')}
       </div>
-    </div>
+    </Row>
   );
 }
