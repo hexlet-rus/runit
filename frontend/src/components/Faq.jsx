@@ -6,7 +6,7 @@ import './Faq.module.css';
 export function Faq() {
   const { t } = useTranslation();
   return (
-    <Row className="row mt-5">
+    <Row>
       <h2 className="text-center h2 fw-bold mb-0 text-white">{t('faq.faq')}</h2>
       <Accordion className="mt-40" flush>
         <Accordion.Item eventKey="0">
