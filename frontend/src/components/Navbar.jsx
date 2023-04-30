@@ -30,17 +30,15 @@ export function Navbar() {
         >
           <Image
             alt={t('navbar.mainLabel')}
-            width={100}
-            height={30}
+            width={113}
+            height={24}
             src={Logo}
             aria-hidden="true"
             className={`${classes.navbarLogo}`}
           />{' '}
-          <NavigationBar.Text
-            className={`${classes.navbarText} ms-3 text-white`}
-          >
+          <span className={`${classes.navbarText} d-block ms-2 text-white`}>
             {t('navbar.mainLabel')}
-          </NavigationBar.Text>
+          </span>
         </NavigationBar.Brand>
         <NavigationBar.Toggle as="button" aria-controls="navbar-toggler" />
         <NavigationBar.Collapse
@@ -50,36 +48,50 @@ export function Navbar() {
           <Nav as="ul">
             {auth.isLoggedIn && (
               <Nav.Item as="li" className="d-flex align-items-center px-2">
-                <Nav.Link as={Link} to={routes.profilePagePath()}>
+                <Nav.Link
+                  as={Link}
+                  to={routes.profilePagePath()}
+                  className={`${classes.navLink} ${classes.lh6}`}
+                >
                   {t('navbar.profile')}
                 </Nav.Link>
               </Nav.Item>
             )}
             <Nav.Item as="li" className="d-flex align-items-center px-2">
-              <Nav.Link as={Link} to={routes.aboutPagePath()}>
+              <Nav.Link
+                as={Link}
+                to={routes.aboutPagePath()}
+                className={`${classes.navLink} ${classes.lh6}`}
+              >
                 {t('navbar.about')}
               </Nav.Link>
             </Nav.Item>
             {auth.isLoggedIn && (
-              <Nav.Item as="li" className="py-2 px-2">
-                <Button variant="primary" as={Button} onClick={auth.logOut}>
+              <Nav.Item as="li" className="py-2 px-2 d-flex align-items-center">
+                <Button variant="primary" onClick={auth.logOut}>
                   {t('navbar.logout')}
                 </Button>
               </Nav.Item>
             )}
             {!auth.isLoggedIn && (
-              <Nav.Item as="li" className="py-2 px-2">
-                <Button variant="light" as={Link} to={routes.loginPagePath()}>
+              <Nav.Item as="li" className="py-2 px-2 d-flex align-items-center">
+                <Button
+                  variant="light"
+                  as={Link}
+                  to={routes.loginPagePath()}
+                  className={`${classes.btnLight}`}
+                >
                   {t('navbar.signIn')}
                 </Button>
               </Nav.Item>
             )}
             {!auth.isLoggedIn && (
-              <Nav.Item as="li" className="py-2 px-2">
+              <Nav.Item as="li" className="py-2 px-2 d-flex align-items-center">
                 <Button
                   variant="primary"
                   as={Link}
                   to={routes.signUpPagePath()}
+                  className={`${classes.btnPrimary}`}
                 >
                   {t('navbar.signUp')}
                 </Button>

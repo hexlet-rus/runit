@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import routes from '../../routes.js';
 import { Faq } from '../../components/Faq';
 import classes from './Landing.module.css';
@@ -22,17 +22,21 @@ export function Landing() {
         <section className="d-flex flex-column flex-grow h-100 py-3 py-md-4 py-lg-5 justify-content-evenly">
           <section>
             <Row>
-              <p className="text-center mb-0 fs-5 lh-5">
+              <p className={`text-center mb-0 ${classes.fs5} ${classes.lh5}`}>
                 {t('landing.freeProject')}
               </p>
             </Row>
             <Row className="my-3">
-              <h1 className="text-center fw-bold mb-0 mt-sm-5 display-1">
+              <h1
+                className={`${classes.colorPrimary} text-center fw-bold mb-0 mt-sm-5 display-1`}
+              >
                 {t('landing.fastIDE')}
               </h1>
             </Row>
             <Row>
-              <p className="text-center mb-0 fw-bolder mb-5 mt-sm-4 fs-3 lh-3">
+              <p
+                className={`text-center mb-0 mb-5 mt-sm-4 ${classes.fw500} ${classes.fs3} ${classes.lh3}`}
+              >
                 {t('landing.writeInBrowser')}
               </p>
             </Row>
@@ -45,7 +49,7 @@ export function Landing() {
                   src={tagImg}
                   alt="tag"
                 />
-                <p className="fs-5 mb-0 lh-5">
+                <p className={`${classes.fs5} mb-0 ${classes.lh5}`}>
                   {t('landing.easyStart.first')}
                   <br />
                   {t('landing.easyStart.second')}
@@ -57,7 +61,7 @@ export function Landing() {
                   src={osImg}
                   alt="os"
                 />
-                <p className="fs-5 mb-0 lh-5">
+                <p className={`${classes.fs5} mb-0 ${classes.lh5}`}>
                   {t('landing.allDevices.first')}
                   <br />
                   {t('landing.allDevices.second')}
@@ -69,7 +73,7 @@ export function Landing() {
                   src={shareImg}
                   alt="share"
                 />
-                <p className="fs-5 mb-0 lh-5">
+                <p className={`${classes.fs5} mb-0 ${classes.lh5}`}>
                   {t('landing.shareCode.first')}
                   <br />
                   {t('landing.shareCode.second')}
@@ -78,14 +82,16 @@ export function Landing() {
             </Row>
           </section>
           <section>
-            <div className="d-grid col-md-4 col-sm-5 col-6 mx-auto">
-              <Link
+            <Row className="justify-content-center">
+              <Button
+                size="lg"
+                as={Link}
                 to={routes.loginPagePath()}
-                className="btn btn-primary py-3 fs-5 fw-bold mt-5 lh-5"
+                className={`btn ${classes.btnPrimary} ${classes.btnAttention} py-3 ${classes.fs5} fw-bold ${classes.mt65} ${classes.lh5}"`}
               >
                 {t('landing.startCoding')}
-              </Link>
-            </div>
+              </Button>
+            </Row>
           </section>
         </section>
         <section className="mt-5">
@@ -96,45 +102,55 @@ export function Landing() {
           </Row>
           <Row className="mt-5 row-cols-1 row-cols-sm-2 d-flex justify-content-between">
             <Col className="mb-5 mb-sm-0">
-              <p className="fs-4 mb-0 lh-5 me-4">
+              <p className={`${classes.fs4} mb-0 ${classes.lh4} me-4`}>
                 {t('landing.modern')}
                 <br /> <br />
                 {t('landing.fast')}
               </p>
             </Col>
             <Col>
-              <ul className="mb-0 custom-list mx-2 mx-sm-0">
-                <li className="mb-3 position-relative d-flex">
-                  <img className={`${classes.img}`} src={Checked} alt="" />
-                  <p className="fs-5 lh-5">{t('landing.inBrowser')}</p>
+              <ul className={`mb-0 ${classes.customList} mx-2 mx-sm-0`}>
+                <li className="mb-3 d-flex">
+                  <img className={`${classes.listIcon}`} src={Checked} alt="" />
+                  <p className={`${classes.fs5} ${classes.lh5}`}>
+                    {t('landing.inBrowser')}
+                  </p>
                 </li>
-                <li className="mb-3 position-relative">
-                  <img className={`${classes.img}`} src={Checked} alt="" />
-                  <p className="fs-5 lh-5">{t('landing.noZIP')}</p>
+                <li className="mb-3 d-flex">
+                  <img className={`${classes.listIcon}`} src={Checked} alt="" />
+                  <p className={`${classes.fs5} ${classes.lh5}`}>
+                    {t('landing.noZIP')}
+                  </p>
                 </li>
-                <li className="mb-3 position-relative">
-                  <img className={`${classes.img}`} src={Checked} alt="" />
-                  <p className="fs-5 lh-5">{t('landing.allComputers')}</p>
+                <li className="mb-3 d-flex">
+                  <img className={`${classes.listIcon}`} src={Checked} alt="" />
+                  <p className={`${classes.fs5} ${classes.lh5}`}>
+                    {t('landing.allComputers')}
+                  </p>
                 </li>
-                <li className="mb-3 position-relative">
-                  <img className={`${classes.img}`} src={Checked} alt="" />
-                  <p className="fs-5 lh-5">{t('landing.allOS')}</p>
+                <li className="mb-3 d-flex">
+                  <img className={`${classes.listIcon}`} src={Checked} alt="" />
+                  <p className={`${classes.fs5} ${classes.lh5}`}>
+                    {t('landing.allOS')}
+                  </p>
                 </li>
-                <li className="mb-3 position-relative">
-                  <img className={`${classes.img}`} src={Checked} alt="" />
-                  <p className="fs-5 lh-5">{t('landing.noSettings')}</p>
+                <li className="mb-3 d-flex">
+                  <img className={`${classes.listIcon}`} src={Checked} alt="" />
+                  <p className={`${classes.fs5} ${classes.lh5}`}>
+                    {t('landing.noSettings')}
+                  </p>
                 </li>
               </ul>
             </Col>
           </Row>
         </section>
-        <section className="mt-90">
+        <section className={`${classes.mt90}`}>
           <Row>
             <h2 className="text-center display-4 fw-bold mb-0">
               {t('landing.moreOpportunity')}
             </h2>
           </Row>
-          <section className="mt-55">
+          <section className={`${classes.mt55}`}>
             <Row className="row-cols-1 row-cols-sm-3">
               <Col className="mb-4 mb-sm-0">
                 <div className="d-flex flex-column">
@@ -145,8 +161,12 @@ export function Landing() {
                     width="39"
                     height="39"
                   />
-                  <p className="mb-2">{t('landing.allLanguages.title')}</p>
-                  <p className="mb-0">{t('landing.allLanguages.text')}</p>
+                  <h5 className={`${classes.lh4} ${classes.fs4} mb-2`}>
+                    {t('landing.allLanguages.title')}
+                  </h5>
+                  <p className={`${classes.lh6} mb-0`}>
+                    {t('landing.allLanguages.text')}
+                  </p>
                 </div>
               </Col>
               <Col className="mb-4 mb-sm-0">
@@ -158,8 +178,12 @@ export function Landing() {
                     width="39"
                     height="39"
                   />
-                  <p className="mb-2">{t('landing.teamWork.title')}</p>
-                  <p className="mb-0">{t('landing.teamWork.text')}</p>
+                  <h5 className={`${classes.lh4} ${classes.fs4} mb-2`}>
+                    {t('landing.teamWork.title')}
+                  </h5>
+                  <p className={`${classes.lh6} mb-0`}>
+                    {t('landing.teamWork.text')}
+                  </p>
                 </div>
               </Col>
               <Col className="mb-4 mb-sm-0">
@@ -171,31 +195,37 @@ export function Landing() {
                     width="39"
                     height="39"
                   />
-                  <p className="mb-2">{t('landing.readyBoilerplates.title')}</p>
-                  <p className="mb-0">{t('landing.readyBoilerplates.text')}</p>
+                  <h5 className={`${classes.lh4} ${classes.fs4} mb-2`}>
+                    {t('landing.readyBoilerplates.title')}
+                  </h5>
+                  <p className={`${classes.lh6} mb-0`}>
+                    {t('landing.readyBoilerplates.text')}
+                  </p>
                 </div>
               </Col>
             </Row>
           </section>
         </section>
-        <section className="mt-90">
+        <section className={`${classes.mt45}`}>
           <Row>
-            <h3 className="text-center fs-2 mb-0 lh-2">
+            <h3 className={`text-center ${classes.fs2} mb-0 ${classes.lh2}`}>
               {t('landing.nowCoding')}
             </h3>
-            <Row className="">
-              <div className="d-grid col-7 col-sm-5 col-md-4 mx-auto">
-                <Link
-                  to={routes.loginPagePath()}
-                  className="btn btn-primary py-3 fs-5 fw-bold lh-5 mt-40"
-                >
-                  {t('landing.startCoding')}
-                </Link>
-              </div>
+            <Row className="justify-content-center">
+              <Button
+                size="lg"
+                as={Link}
+                to={routes.loginPagePath()}
+                className={`btn ${classes.btnPrimary} ${classes.btnAttention} py-3 ${classes.fs5} fw-bold ${classes.mt40} ${classes.lh5}"`}
+              >
+                {t('landing.startCoding')}
+              </Button>
             </Row>
           </Row>
         </section>
-        <Faq />
+        <section>
+          <Faq />
+        </section>
       </main>
     </div>
   );
