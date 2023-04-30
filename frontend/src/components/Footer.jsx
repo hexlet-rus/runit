@@ -11,6 +11,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
+import classes from './Footer.module.css';
 
 export function buildFooter() {
   const { t } = useTranslation();
@@ -25,7 +26,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="about"
-                  className="py-1 text-muted px-0 pt-0"
+                  className={`${classes.footerNavLink} py-1 px-0 pt-0`}
                   href="https://ru.hexlet.io/pages/about"
                   target="_blank"
                 >
@@ -36,7 +37,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="career"
-                  className="py-1 text-muted px-0"
+                  className={`${classes.footerNavLink} py-1 px-0`}
                   href="https://www.notion.so/c6406ed8890747e690d32b050faf42c2"
                   target="_blank"
                 >
@@ -47,7 +48,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="shop"
-                  className="py-1 text-muted px-0"
+                  className={`${classes.footerNavLink} py-1 px-0`}
                   href="https://hexlet.printdirect.ru/?partner_id=615497"
                   target="_blank"
                 >
@@ -56,7 +57,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="support_email"
-                  className="py-1 text-muted px-0"
+                  className={`${classes.footerNavLink} py-1 px-0`}
                   href="mailto: runit@hexlet.io"
                   target="_blank"
                 >
@@ -69,7 +70,7 @@ export function buildFooter() {
                 <span className="lead fw-normal">
                   <a
                     href={t('footer.tel1Href')}
-                    className="text-muted text-decoration-none"
+                    className={`${classes.footerLink} text-decoration-none`}
                   >
                     {t('footer.tel1')}
                   </a>
@@ -80,7 +81,7 @@ export function buildFooter() {
                 <span className="lead fw-normal">
                   <a
                     href={t('footer.tel2Href')}
-                    className="text-muted text-decoration-none"
+                    className={`${classes.footerLink} text-decoration-none`}
                   >
                     {t('footer.tel2')}
                   </a>
@@ -104,7 +105,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="conditions"
-                  className="py-1 text-muted px-0 pt-0"
+                  className={`${classes.footerNavLink} py-1 px-0 pt-0`}
                   href="https://ru.hexlet.io/pages/tos"
                   target="_blank"
                 >
@@ -115,7 +116,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="agreement"
-                  className="py-1 text-muted px-0"
+                  className={`${classes.footerNavLink} py-1 px-0`}
                   href="https://ru.hexlet.io/pages/personal_data"
                   target="_blank"
                 >
@@ -126,7 +127,7 @@ export function buildFooter() {
                 <Nav.Link
                   as={Link}
                   eventKey="licenseAgreement"
-                  className="py-1 text-muted px-0"
+                  className={`${classes.footerNavLink} py-1 px-0`}
                   to="/licenseAgreement"
                 >
                   {t('footer.licenseAgreement')}
@@ -136,7 +137,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="source"
-                  className="py-1 text-muted px-0 pt-0"
+                  className={`${classes.footerNavLink} py-1 px-0`}
                   href="https://github.com/hexlet-rus/runit"
                   target="_blank"
                 >
@@ -154,7 +155,7 @@ export function buildFooter() {
                     href="https://slack-ru.hexlet.io/?_gl=1*gwa8w0*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2Nzk5NTczNy4xODcuMS4xNjY3OTk3NTg4LjAuMC4w"
                     aria-label="Slack"
                     target="_blank"
-                    className="text-muted"
+                    className={`${classes.footerLink}`}
                     rel="noopener noreferrer nofollow"
                   >
                     <FontAwesomeIcon icon={faSlack} className="fa-1x" />
@@ -165,7 +166,7 @@ export function buildFooter() {
                     href="https://www.youtube.com/user/HexletUniversity"
                     aria-label="Youtube"
                     target="_blank"
-                    className="text-muted"
+                    className={`${classes.footerLink}`}
                     rel="noopener noreferrer nofollow"
                   >
                     <FontAwesomeIcon icon={faYoutube} className="fa-1x" />
@@ -176,7 +177,7 @@ export function buildFooter() {
                     href="https://t.me/hexlet_ru"
                     aria-label="Telegram"
                     target="_blank"
-                    className="text-muted"
+                    className={`${classes.footerLink}`}
                     rel="noopener noreferrer nofollow"
                   >
                     <FontAwesomeIcon icon={faTelegram} className="fa-1x" />
@@ -187,7 +188,7 @@ export function buildFooter() {
                     href="https://vk.com/hexlet"
                     aria-label="Vk"
                     target="_blank"
-                    className="text-muted"
+                    className={`${classes.footerLink}`}
                     rel="noopener noreferrer nofollow"
                   >
                     <FontAwesomeIcon icon={faVk} className="fa-1x" />
@@ -198,7 +199,7 @@ export function buildFooter() {
                     href="https://twitter.com/HexletHQ"
                     aria-label="Twitter"
                     target="_blank"
-                    className="text-muted"
+                    className={`${classes.footerLink}`}
                     rel="noopener noreferrer nofollow"
                   >
                     <FontAwesomeIcon icon={faTwitter} className="fa-1x" />
@@ -254,7 +255,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="hexlet"
-                  className="py-1 text-muted px-0"
+                  className={`${classes.footerNavLink} py-1 px-0 pt-0`}
                   href="https://ru.hexlet.io/my"
                   target="_blank"
                 >
@@ -265,7 +266,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="college"
-                  className="py-1 text-muted px-0"
+                  className={`${classes.footerNavLink} py-1 px-0`}
                   href="https://hexly.ru/"
                   target="_blank"
                 >
@@ -276,7 +277,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="codeBasics"
-                  className="py-1 text-muted px-0"
+                  className={`${classes.footerNavLink} py-1 px-0`}
                   href="https://code-basics.com/ru?roistat_visit=4835603"
                   target="_blank"
                 >
@@ -287,7 +288,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="codeBattle"
-                  className="py-1 text-muted px-0"
+                  className={`${classes.footerNavLink} py-1 px-0`}
                   href="https://codebattle.hexlet.io/?_gl=1*1borq0u*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2ODA5OTEzOS4xOTEuMS4xNjY4MDk5NjIwLjAuMC4w#lobby"
                   target="_blank"
                 >
@@ -298,7 +299,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="guides"
-                  className="py-1 text-muted px-0"
+                  className={`${classes.footerNavLink} py-1 px-0`}
                   href="https://guides.hexlet.io/ru/?roistat_visit=4835603&_gl=1*1borq0u*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2ODA5OTEzOS4xOTEuMS4xNjY4MDk5NjIwLjAuMC4w"
                   target="_blank"
                 >
@@ -309,7 +310,7 @@ export function buildFooter() {
                 <Nav.Link
                   as="a"
                   eventKey="cv"
-                  className="py-1 text-muted px-0"
+                  className={`${classes.footerNavLink} py-1 px-0`}
                   href="https://cv.hexlet.io/?_gl=1*1borq0u*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2ODA5OTEzOS4xOTEuMS4xNjY4MDk5NjIwLjAuMC4w"
                   target="_blank"
                 >
