@@ -23,6 +23,7 @@
   --color-purple: #7c7cf7;
   --color-light-grey: #f0f0f0;
 }
+
 * {
   font-family: 'Onest', sans-serif;
 }
@@ -31,23 +32,14 @@
   line-height: 1.625rem;
 }
 
-.lh6 {
-  line-height: 1.3125rem;
-}
-
-.navbarLogo {
-  position: relative;
-  bottom: -1px;
-}
-
 .navbarText {
-  font-size: var(--text-size-20);
-  font-weight: 500;
+  font-size: var(--text-size-22);
+  font-weight: 600;
 }
 
 .navLink {
   font-size: var(--text-size-16);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .btnLight {
