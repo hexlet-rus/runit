@@ -17,6 +17,7 @@ export default {
     [apiPath, 'snippets', login, slug].join('/'),
   updateSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // put - update snippet info: { name, code }
   deleteSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // delete snippet
+  getDefaultSnippetName: () => [apiPath, 'snippets', 'name'].join('/'), // get random initial snippet name
   homePagePath: () => '/editor',
   aboutPagePath: () => '/about',
   profilePagePath: () => '/profile',
@@ -27,4 +28,5 @@ export default {
   licenseAgreementPath: () => '/licenseAgreement',
   snippetPagePath: () => '/users/:login/snippets/:slug',
   embedSnippetPagePath: () => '/users/:login/embed/snippets/:slug',
+  oAuthPath: () => [apiPath, 'oauth'].join('/'), // OAuth
 };

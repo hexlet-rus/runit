@@ -3,7 +3,8 @@ import { useFormik } from 'formik';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import * as yup from 'yup';
+import { object, string } from 'yup';
+
 import axios from 'axios';
 
 import { useAuth } from '../../hooks';
@@ -20,38 +21,32 @@ function SignUpModal() {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      login: '',
       email: '',
       password: '',
       confirmPassword: '',
     },
-    validationSchema: yup.object().shape({
-      name: yup
-        .string()
-        .trim()
+    validationSchema: object().shape({
+      login: string()
         .min(3, t('signUp.validation.usernameLength'))
-        .max(20, t('signUp.validation.usernameLength'))
-        .matches(/^[A-Za-z ]*$/, t('signUp.validation.correctUsername'))
+        .max(16, t('signUp.validation.usernameLength'))
+        .matches(/^[\w\S]*$/, t('signUp.validation.correctUsername'))
         .typeError()
         .required(t('signUp.validation.requiredField')),
-      email: yup
-        .string()
+      email: string()
         .email(t('signUp.validation.correctEmail'))
         .required(t('signUp.validation.requiredField')),
-      password: yup
-        .string()
+      password: string()
         .trim()
         .min(8, t('signUp.validation.passwordLength'))
         .max(30, t('signUp.validation.passwordLength'))
         .typeError()
         .required(t('signUp.validation.requiredField')),
-      confirmPassword: yup
-        .string()
-        .test(
-          'confirmPassword',
-          t('signUp.validation.confirmPassword'),
-          (password, context) => password === context.parent.password,
-        ),
+      confirmPassword: string().test(
+        'confirmPassword',
+        t('signUp.validation.confirmPassword'),
+        (password, context) => password === context.parent.password,
+      ),
     }),
     onSubmit: async (values, actions) => {
       try {
@@ -66,7 +61,7 @@ function SignUpModal() {
           console.log(t('errors.unknown'));
           throw err;
         }
-        if (err.response?.status === 409) {
+        if (err.response?.status === 400) {
           setRegFailed(true);
         } else {
           console.log(t('errors.network'));
@@ -117,23 +112,22 @@ function SignUpModal() {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={classes.formGroup}>
-            <Form.Label htmlFor="name" controlId="name" label="Name">
-              {t('signUp.usernameLabel')}
-            </Form.Label>
+            <Form.Label htmlFor="login">{t('signUp.usernameLabel')}</Form.Label>
             <Form.Control
-              name="name"
-              type="name"
-              autoComplete="username"
-              className={`form-input bg-dark text-white ${classes.signInput}`}
-              required
               onChange={formik.handleChange}
-              value={formik.values.name}
+              value={formik.values.login}
+              onBlur={formik.handleBlur}
+              className={`form-input bg-dark text-white ${classes.signUpInput}`}
+              name="login"
+              id="login"
+              autoComplete="username"
+              required
               isInvalid={
-                (formik.touched.name && formik.errors.name) || regFailed
+                (formik.touched.login && formik.errors.login) || regFailed
               }
             />
             <Form.Control.Feedback type="invalid">
-              {formik.errors.name ? formik.errors.name : regFailed}
+              {formik.errors.login ? formik.errors.login : regFailed}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={classes.formGroup}>

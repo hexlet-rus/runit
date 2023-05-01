@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
-import * as yup from 'yup';
+import { object, string } from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -12,20 +12,15 @@ import routes from '../routes.js';
 
 import classes from './SignIn.module.css';
 
-export function SignIn() {
+function SignIn() {
   const inputRef = useRef();
   const [authFailed, setAuthFailed] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
   const auth = useAuth();
 
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
-
-  const validation = yup.object().shape({
-    email: yup
-      .string()
+  const validation = object().shape({
+    email: string()
       .email(t('signIn.validation.correctEmail'))
       .required(t('signIn.validation.requiredField')),
   });
@@ -62,6 +57,10 @@ export function SignIn() {
       }
     },
   });
+
+  useEffect(() => {
+    inputRef?.current?.focus();
+  }, []);
 
   return (
     <Container className="h-100 bg-dark" fluid>
@@ -116,14 +115,15 @@ export function SignIn() {
                       {t('signIn.signInFailed')}
                     </Form.Control.Feedback>
                   </Form.Group>
-                  <div className="text-end my-3">
+                  {/* TODO: https://github.com/hexlet-rus/runit/issues/94 */}
+                  {/* <div className="text-end my-3">
                     <a
                       className="text-decoration-none small"
                       href={routes.remindPassPagePath()}
                     >
                       {t('signIn.remindPass')}
                     </a>
-                  </div>
+                  </div> */}
                   <Button
                     type="submit"
                     variant="primary"
@@ -135,6 +135,13 @@ export function SignIn() {
                   </Button>
                 </Form>
               </div>
+              {/* <a
+                id="github-button"
+                className="btn btn-block btn-social btn-github text-light pl-0"
+                href={auth.getOAuthCodeUrl()}
+              >
+                {t('signIn.withGithub')}
+              </a> */}
             </Card.Body>
             <Card.Footer className="border-top-0 text-center py-3">
               <div className="py-lg-2">
@@ -152,3 +159,5 @@ export function SignIn() {
     </Container>
   );
 }
+
+export default SignIn;

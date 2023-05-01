@@ -1,21 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Modal, Form, FloatingLabel, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import * as yup from 'yup';
-import { faker } from '@faker-js/faker';
+import { object, string } from 'yup';
+
 import { useSnippets } from '../../hooks';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
-
-const generateInitialName = () => {
-  const adjectiveLength = 3 + Math.round(Math.random() * 6);
-  const adjective = faker.word.adjective(adjectiveLength);
-  const animal = faker.animal.type();
-  return `${adjective}-${animal}`;
-};
 
 function NewRepl() {
   const dispatch = useDispatch();
@@ -31,6 +24,7 @@ function NewRepl() {
       modalItem: modal.item,
     }),
   );
+  const [suggestedSnippetname, setSuggestedSnippetname] = useState('');
   const languages = new Map()
     .set('javascript', '.js')
     .set('python', '.py')
@@ -42,11 +36,10 @@ function NewRepl() {
 
   const formik = useFormik({
     initialValues: {
-      name: generateInitialName(),
+      name: '',
     },
-    validationSchema: yup.object({
-      name: yup
-        .string()
+    validationSchema: object({
+      name: string()
         .required(t('modals.validation.required'))
         .max(20, t('modals.validation.snippetNameMaxLength'))
         .matches(/^[a-zA-Z0-9_-]*$/, t('modals.validation.singleWord')),
@@ -75,6 +68,26 @@ function NewRepl() {
       }
     },
   });
+
+  useEffect(() => {
+    const setSnippetName = async () => {
+      try {
+        const snippetName = await snippetsApi.getDefaultSnippetName();
+        setSuggestedSnippetname(snippetName);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    setSnippetName();
+  }, []);
+
+  useEffect(() => {
+    // user hasn't type any name yet
+    if (!formik.values.name) {
+      formik.setFieldValue('name', suggestedSnippetname);
+    }
+  }, [suggestedSnippetname]);
 
   return (
     <Modal

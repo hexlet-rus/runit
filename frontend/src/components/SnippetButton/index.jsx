@@ -10,7 +10,7 @@ import { actions as modalActions } from '../../slices/modalSlice.js';
 
 export const SnippetButton = memo(() => {
   const { onClick, disabled, update } = useButton();
-  const [currentSnippetData, setCurrentSnippetData] = useState();
+  const [snippetData, setSnippetData] = useState({});
   const dispatch = useDispatch();
   const auth = useAuth();
   const snippetsApi = useSnippets();
@@ -20,15 +20,14 @@ export const SnippetButton = memo(() => {
     login: params.login,
     slug: params.slug,
   };
+  const hasViewSnippetParams = snippetsApi.hasViewSnippetParams(snippetParams);
 
   useEffect(() => {
     const getSnippetData = async () => {
-      if (snippetsApi.hasViewSnippetParams(snippetParams)) {
-        const snippetData = await snippetsApi.getSnippetDataByViewParams(snippetParams);
-        const { id, name } = snippetData;
-        setCurrentSnippetData({ id, name });
-      } else {
-        setCurrentSnippetData(false);
+      if (hasViewSnippetParams) {
+        const response = await snippetsApi.getSnippetDataByViewParams(snippetParams);
+        const { id, name } = response;
+        setSnippetData((state) => ({ ...state, id, name }));
       }
     };
     getSnippetData();
@@ -58,8 +57,8 @@ export const SnippetButton = memo(() => {
       modalActions.openModal({
         type: 'sharingRepl',
         item: {
-          name: currentSnippetData.name,
-          id: currentSnippetData.id,
+          name: snippetData?.name,
+          id: snippetData?.id,
           link: snippetsApi.genViewSnippetLink(
             params.login,
             params.slug,
@@ -75,7 +74,7 @@ export const SnippetButton = memo(() => {
 
   const handleShareEvent = async () => {
     if (!auth.isLoggedIn) handleGettingInfo();
-    else if (!snippetsApi.hasViewSnippetParams(snippetParams)) handleSnippetSave();
+    else if (!hasViewSnippetParams) handleSnippetSave();
     else handleReplSharing();
   };
 
@@ -89,7 +88,7 @@ export const SnippetButton = memo(() => {
         disabled={disabled}
         onClick={() => {
           onClick();
-          update(currentSnippetData.id, currentSnippetData.name);
+          hasViewSnippetParams && update(snippetData?.id, snippetData?.name);
         }}
       >
         {t('editor.runButton')}

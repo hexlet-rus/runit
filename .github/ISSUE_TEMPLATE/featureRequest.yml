@@ -3,7 +3,7 @@ description: Create a new ticket for a feature request.
 title: "Feature request: "
 labels:
   - feature request
-assignees: "acidmaksim"
+assignees: "fey"
 
 body:
   - type: textarea

@@ -1,14 +1,17 @@
-import { IsString, Validate, IsEmail } from 'class-validator';
-import { CheckEmail } from '../validation/check-email';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString, IsEmail } from 'class-validator';
 
 export class RecoverUserDto {
+  @ApiProperty({ 
+    example: 'jane-doe@mail.ru',
+  })
   @IsString()
   @IsEmail()
-  @Validate(CheckEmail, {
-    message: 'Email не найден!',
-  })
   email: string;
 
+  @ApiProperty({ 
+    example: 'localhost:5001',
+  })
   @IsString()
   frontendUrl: string;
 }

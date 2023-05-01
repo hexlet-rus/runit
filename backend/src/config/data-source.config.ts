@@ -20,7 +20,11 @@ export default (): DataSourceOptions => {
         synchronize: false,
         ssl: { rejectUnauthorized: false },
         entities: [Users, Snippets],
-        migrations: [migration1663236009774, migration1670352324202, AdduserRecoverHash1677580680097],
+        migrations: [
+          migration1663236009774,
+          migration1670352324202,
+          AdduserRecoverHash1677580680097,
+        ],
       };
     case 'test':
       return {
@@ -28,7 +32,11 @@ export default (): DataSourceOptions => {
         database: ':memory:',
         synchronize: true,
         entities: [Users, Snippets],
-        migrations: [migration1663236009774, migration1670352324202, AdduserRecoverHash1677580680097],
+        migrations: [
+          migration1663236009774,
+          migration1670352324202,
+          AdduserRecoverHash1677580680097,
+        ],
       };
     default:
       return {
@@ -36,7 +44,11 @@ export default (): DataSourceOptions => {
         database: 'runit.sqlite',
         synchronize: false,
         entities: [Users, Snippets],
-        migrations: [migration1663236009774, migration1670352324202, AdduserRecoverHash1677580680097],
+        migrations: [
+          migration1663236009774,
+          migration1670352324202,
+          AdduserRecoverHash1677580680097,
+        ],
       };
   }
 };

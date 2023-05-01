@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import * as yup from 'yup';
+import { object, string } from 'yup';
 import axios from 'axios';
 
 import routes from '../../routes';
@@ -28,17 +28,14 @@ function EditProfile() {
       login,
       email,
     },
-    validationSchema: yup.object().shape({
-      login: yup
-        .string()
-        .trim()
+    validationSchema: object().shape({
+      login: string()
         .min(3, t('signUp.validation.usernameLength'))
-        .max(20, t('signUp.validation.usernameLength'))
-        .matches(/^[A-Za-z ]*$/, t('signUp.validation.correctUsername'))
+        .max(16, t('signUp.validation.usernameLength'))
+        .matches(/^[\w\S]*$/, t('signUp.validation.correctUsername'))
         .typeError()
         .required(t('signUp.validation.requiredField')),
-      email: yup
-        .string()
+      email: string()
         .email(t('signUp.validation.correctEmail'))
         .required(t('signUp.validation.requiredField')),
     }),

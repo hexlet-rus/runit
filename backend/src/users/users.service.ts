@@ -36,6 +36,10 @@ export class UsersService {
     return this.usersRepository.findOneBy({ login });
   }
 
+  async findByEmail(email: string): Promise<Users> {
+    return this.usersRepository.findOneBy({ email });
+  }
+
   create(createUserDto: CreateUserDto): Promise<Users> {
     const user = new Users();
     user.login = createUserDto.login;
@@ -55,6 +59,11 @@ export class UsersService {
   async recover({ email, frontendUrl }: RecoverUserDto): Promise<void> {
     const recoverHash = await cipher(email);
     const currentUser = await this.find(email);
+
+    if (!currentUser) {
+      return;
+    }
+
     await this.usersRepository.update(currentUser.id, {
       recover_hash: recoverHash,
     });
@@ -63,12 +72,13 @@ export class UsersService {
       await this.usersRepository.update(currentUser.id, { recover_hash: null });
     }, 900000);
 
+    // FIXME: use env var BASE_URL
     const url = `${frontendUrl}/recovery/${recoverHash}`;
 
     this.mailerService.sendMail({
       to: email,
-      from: 'noreply@runit.com',
-      subject: 'Ссылка для изменения пароля на сайте RunIT.ru',
+      // FIXME: use i18n
+      subject: 'Ссылка для изменения пароля на runit.hexlet.ru',
       template: 'recover',
       context: {
         url,

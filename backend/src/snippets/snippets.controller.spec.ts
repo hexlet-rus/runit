@@ -23,6 +23,7 @@ describe('SnippetController', () => {
             create: jest.fn(() => []),
             update: jest.fn(() => []),
             delete: jest.fn(() => []),
+            generateName: jest.fn(() => ''),
           };
         }
         if (typeof token === 'function') {
@@ -72,15 +73,21 @@ describe('SnippetController', () => {
       expect(snippetsService.delete).toHaveBeenCalledWith(3);
     });
 
-    // TODO: fix test
-    // it('should update snippet', async () => {
-    //   const updateData = {
-    //     name: 'changedName',
-    //     code: "console.log('hello!')",
-    //   };
-    //   jest.spyOn(snippetsController, 'update');
-    //   await snippetsController.update(3, updateData);
-    //   expect(snippetsService.update).toHaveBeenCalledWith(3, updateData);
-    // });
+    it('should update snippet', async () => {
+      const updateData = {
+        name: 'changedName',
+        slug: 'Qawsedrf',
+        code: "console.log('hello!')",
+      };
+      jest.spyOn(snippetsController, 'update');
+      await snippetsController.update(3, updateData);
+      expect(snippetsService.update).toHaveBeenCalledWith(3, updateData);
+    });
+
+    it('should suggest snippet name', async () => {
+      jest.spyOn(snippetsController, 'generateName');
+      await snippetsController.generateName();
+      expect(snippetsService.generateName).toHaveBeenCalled();
+    });
   });
 });

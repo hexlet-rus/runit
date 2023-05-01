@@ -39,9 +39,9 @@ const ruLocales = {
       },
       validation: {
         requiredField: 'Обязательное поле',
-        correctUsername: 'Только буквы латинского алфавита в любом регистре',
+        correctUsername: 'В логине не должно быть пробелов',
         correctEmail: 'Некорректная электронная почта',
-        usernameLength: 'От 3 до 20 символов',
+        usernameLength: 'От 3 до 16 символов',
         passwordLength: 'от 8 до 30 символов',
         confirmPassword: 'Пароли должны совпадать',
       },
@@ -52,7 +52,7 @@ const ruLocales = {
       resetButton: 'Восстановить пароль',
       footer: {
         signUpHeader: 'Нет аккаунта? ',
-        signUp: 'Создать бесплатный аккаунт',
+        signUp: 'Создать аккаунт',
         signInHeader: 'Уже есть аккаунт? ',
         signIn: 'Войти',
       },
@@ -69,12 +69,13 @@ const ruLocales = {
       signInFailed: 'Неверный пароль или электронная почта',
       footer: {
         signUpHeader: 'Нет аккаунта? ',
-        signUp: 'Создать бесплатный аккаунт',
+        signUp: 'Создать аккаунт',
       },
       validation: {
         requiredField: 'Обязательное поле',
         correctEmail: 'Некорректная электронная почта',
       },
+      withGithub: 'Войти с помощью Github',
     },
     profile: {
       replsHeader: 'Сниппеты',
@@ -100,6 +101,7 @@ const ruLocales = {
       logout: 'Выйти',
       signIn: 'Войти',
       signUp: 'Регистрация',
+      editor: 'Редактор',
     },
     footer: {
       hexlet: 'Хекслет',

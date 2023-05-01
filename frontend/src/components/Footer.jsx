@@ -1,16 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faGlobe } from '@fortawesome/free-solid-svg-icons';
-import {
-  faSlack,
-  faVk,
-  faYoutube,
-  faTelegram,
-  faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
+import { Youtube, Telegram, Twitter } from 'react-bootstrap-icons';
+import { ReactComponent as Vk } from '../assets/images/vk.svg';
 import classes from './Footer.module.css';
 
 export function buildFooter() {
@@ -152,13 +145,13 @@ export function buildFooter() {
               <ul className="list-unstyled h3 text-start d-flex flex-wrap">
                 <li className="me-4 mb-2">
                   <a
-                    href="https://slack-ru.hexlet.io/?_gl=1*gwa8w0*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2Nzk5NTczNy4xODcuMS4xNjY3OTk3NTg4LjAuMC4w"
-                    aria-label="Slack"
+                    href="https://t.me/hexletcommunity/12"
+                    aria-label="Telegram"
                     target="_blank"
                     className={`${classes.footerLink}`}
                     rel="noopener noreferrer nofollow"
                   >
-                    <FontAwesomeIcon icon={faSlack} className="fa-1x" />
+                    <Telegram />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
@@ -169,7 +162,7 @@ export function buildFooter() {
                     className={`${classes.footerLink}`}
                     rel="noopener noreferrer nofollow"
                   >
-                    <FontAwesomeIcon icon={faYoutube} className="fa-1x" />
+                    <Youtube />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
@@ -180,7 +173,7 @@ export function buildFooter() {
                     className={`${classes.footerLink}`}
                     rel="noopener noreferrer nofollow"
                   >
-                    <FontAwesomeIcon icon={faTelegram} className="fa-1x" />
+                    <Telegram />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
@@ -191,7 +184,7 @@ export function buildFooter() {
                     className={`${classes.footerLink}`}
                     rel="noopener noreferrer nofollow"
                   >
-                    <FontAwesomeIcon icon={faVk} className="fa-1x" />
+                    <Vk />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
@@ -202,7 +195,7 @@ export function buildFooter() {
                     className={`${classes.footerLink}`}
                     rel="noopener noreferrer nofollow"
                   >
-                    <FontAwesomeIcon icon={faTwitter} className="fa-1x" />
+                    <Twitter />
                   </a>
                 </li>
               </ul>
@@ -214,7 +207,7 @@ export function buildFooter() {
                 split
                 variant="none"
               >
-                <FontAwesomeIcon icon={faGlobe} className="me-2" />
+                <Globe /> // from react-bootstrap-icons
                 <span className="fw-bold me-2">{t('footer.language')}</span>
               </Dropdown.Toggle>
 

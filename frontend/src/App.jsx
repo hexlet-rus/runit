@@ -1,37 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-// import { useLoaderData } from 'react-router';
-import { useParams } from 'react-router-dom';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { MonacoEditor } from './components/Editor/index.jsx';
 import { SnippetButton } from './components/SnippetButton/index.jsx';
 import { Terminal } from './components/Terminal/index.jsx';
-import { actions } from './slices/index.js';
-import { useSnippets } from './hooks';
 
-export function App() {
-  const dispatch = useDispatch();
-  const snippetApi = useSnippets();
-  const params = useParams();
-
-  useEffect(() => {
-    const loadSnippet = async () => {
-      const snippetParams = {
-        login: params.login,
-        slug: params.slug,
-      };
-      if (snippetApi.hasViewSnippetParams(snippetParams)) {
-        const snippetData = await snippetApi.getSnippetDataByViewParams(
-          snippetParams,
-        );
-        dispatch(actions.updateCode(snippetData.code));
-      } else {
-        dispatch(actions.resetCode());
-      }
-    };
-    loadSnippet();
-  }, [params]);
-
+function App() {
   const isAllSaved = useSelector((state) => state.editor.isAllSaved);
   const { t } = useTranslation();
 
@@ -58,3 +32,5 @@ export function App() {
     </main>
   );
 }
+
+export default App;
