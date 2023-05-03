@@ -135,13 +135,13 @@ function SignIn() {
                   </Button>
                 </Form>
               </div>
-              {/* <a
+              <a
                 id="github-button"
-                className="btn btn-block btn-social btn-github text-light pl-0"
-                href={auth.getOAuthCodeUrl()}
+                className="btn btn-block btn-social btn-github text-light ps-0"
+                href={routes.oAuthPath()}
               >
                 {t('signIn.withGithub')}
-              </a> */}
+              </a>
             </Card.Body>
             <Card.Footer className="border-top-0 text-center py-3">
               <div className="py-lg-2">
