@@ -11,7 +11,7 @@ test('get started link', async ({ page }) => {
   await page.goto('http://localhost:5001');
 
   // Click the get started link.
-  await page.getByRole('link', { name: 'Начать кодить' }).first().click();
+  await page.getByRole('button', { name: 'Начать кодить' }).first().click();
 
   // Expects the URL to contain intro.
   await expect(page).toHaveURL(/.*login/);

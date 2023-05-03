@@ -100,7 +100,7 @@ const ruLocales = {
       about: 'О проекте',
       logout: 'Выйти',
       signIn: 'Войти',
-      signUp: 'Зарегистрироваться',
+      signUp: 'Регистрация',
       editor: 'Редактор',
     },
     footer: {
