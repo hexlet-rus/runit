@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import * as Sentry from '@sentry/react';
-import { BrowserTracing } from '@sentry/tracing';
 import * as yup from 'yup';
 
 import { BrowserRouter } from 'react-router-dom';
@@ -28,7 +27,7 @@ export default async () => {
 
   Sentry.init({
     dsn: process.env.REACT_APP_SENTRY_DSN,
-    integrations: [new BrowserTracing()],
+    integrations: [new Sentry.BrowserTracing()],
     tracesSampleRate: 1.0,
   });
 
