@@ -94,7 +94,6 @@ function Profile() {
                 className={`${classes.button}`}
                 onClick={handleChangePassword}
               >
-                <Button onClick={() => methodDoesNotExist()}>Break the world</Button>;
                 <div>
                   <span>{t('modals.changePassword.header')}</span>
                 </div>
