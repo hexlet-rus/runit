@@ -47,6 +47,10 @@ make test
 make test-e2e
 ```
 
+## API Documentation
+
+Structure of project's APIs is [here](https://runit.hexlet.ru/api)
+
 ## Deploy to Render.com
 
 To deploy to [Render.com](https://dashboard.render.com/) do the following
