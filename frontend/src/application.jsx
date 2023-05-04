@@ -30,8 +30,6 @@ export default async () => {
     integrations: [new Sentry.BrowserTracing()],
     tracesSampleRate: 1.0,
   });
-  <button onClick={() => methodDoesNotExist()}>Break the world</button>;
-
 
   yup.addMethod(yup.string, 'email', function validateEmail(message) {
     return this.matches(
