@@ -84,7 +84,6 @@ const enLocales = {
       userId: 'User id:',
       email: 'Email:',
       editProfileButton: 'Edit',
-      copyProfileButton: 'Copy link',
       openReplButton: 'Open',
       shareReplButton: 'Share',
       renameReplButton: 'Rename',
