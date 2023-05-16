@@ -79,16 +79,6 @@ function Profile() {
                     <span>{t('profile.editProfileButton')}</span>
                   </div>
                 </Button>
-                <Button
-                  className={`${classes.button}`}
-                  onClick={() => {
-                    navigator.clipboard.writeText(window.location.href);
-                  }}
-                >
-                  <div>
-                    <span>{t('profile.copyProfileButton')} </span>
-                  </div>
-                </Button>
               </div>
               <Button
                 className={`${classes.button}`}
