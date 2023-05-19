@@ -84,7 +84,6 @@ const ruLocales = {
       userId: 'Идентификатор пользователя:',
       email: 'Эл. почта:',
       editProfileButton: 'Редактировать',
-      copyProfileButton: 'Скопировать ссылку',
       openReplButton: 'Открыть',
       shareReplButton: 'Поделиться',
       renameReplButton: 'Переименовать',
