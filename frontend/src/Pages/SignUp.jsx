@@ -54,6 +54,7 @@ function SignUp() {
       confirmPassword: '',
     },
     validationSchema: signUpValidation,
+    validateOnBlur: false,
     onSubmit: async (values, actions) => {
       try {
         actions.setSubmitting(true);
