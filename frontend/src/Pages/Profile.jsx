@@ -1,49 +1,18 @@
 import React, { useEffect } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { actions as modalActions } from '../slices/modalSlice.js';
-import { actions as editorActions } from '../slices/editorSlice.js';
+import { useDispatch } from 'react-redux';
 import { fetchData } from '../slices/userSlice.js';
 import classes from './Profile.module.css';
-import Snippet from '../components/Snippet/Snippet.jsx';
+import Snippets from './Snippets.jsx';
+import { Link, useLocation } from 'react-router-dom';
+import routes from '../routes.js';
+import AccountSettings from './AccountSettings.jsx';
 
-function Profile() {
+const Profile = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const userInfo = useSelector((state) => state.user.userInfo);
-  const snippets = useSelector((state) => state.snippets.snippets);
-
-  const parseDate = (date) => {
-    try {
-      return new Intl.DateTimeFormat().format(new Date(date));
-    } catch {
-      return t('profile.successfulLoading');
-    }
-  };
-
-  const handleEditProfile = () => {
-    dispatch(
-      modalActions.openModal({
-        type: 'editProfile',
-        item: userInfo,
-      }),
-    );
-  };
-
-  const handleChangePassword = () => {
-    dispatch(
-      modalActions.openModal({
-        type: 'changePassword',
-        item: { id: userInfo.id },
-      }),
-    );
-  };
-
-  const handleGenNewRepl = () => {
-    dispatch(editorActions.resetCode());
-    dispatch(modalActions.openModal({ type: 'genNewRepl' }));
-  };
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(fetchData())
@@ -63,79 +32,55 @@ function Profile() {
           <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
             <div className={`w-100 ${classes.profile}`}>
               <div>
-                <h1 className="my-2">{userInfo.login}</h1>
-                <div>
-                  {`${t('profile.email')} `}
-                  <span className="text-muted">{userInfo.email}</span>
-                </div>
+                <h1 className="my-2">{`${t('profile.settingsHeader')}`}</h1>
+                {/* <div>
+                  Текст: 
+                  <span className="text-muted">описание</span>
+                </div> */}
                 {/* "userdata.created_at", "userdata.id" are also available. Add if needed. */}
               </div>
               <div className={`${classes.profileButtons}`}>
-                <Button
-                  className={`${classes.button}`}
-                  onClick={handleEditProfile}
-                >
-                  <div>
-                    <span>{t('profile.editProfileButton')}</span>
-                  </div>
-                </Button>
-              </div>
-              <Button
-                className={`${classes.button}`}
-                onClick={handleChangePassword}
-              >
                 <div>
-                  <span>{t('modals.changePassword.header')}</span>
+                  <Link as={Link} to={routes.profileSettingsPagePath()}>
+                    <Button className={`${classes.button}`}>
+                      <div>
+                        <span>{`${t('profile.accountHeader')}`}</span>
+                      </div>
+                    </Button>
+                  </Link>
                 </div>
-              </Button>
+                <div>
+                  <Link as={Link} to={routes.defaultProfilePagePath()}>
+                    <Button
+                      className={`${classes.button}`}
+                      onClick={() => {
+                        navigator.clipboard.writeText(window.location.href);
+                      }}
+                    >
+                      <div>
+                        <span>{`${t('profile.replsHeader')}`}</span>
+                      </div>
+                    </Button>
+                  </Link>
+                </div>
+              </div>
               <div className="gap" style={{ marginBottom: 'auto' }} />
               <div
                 className="d-flex flex-md-column w-100"
                 style={{ alignItems: 'center' }}
-              >
-                <span>{t('profile.createdAt')}</span>
-                <span>{parseDate(userInfo.created_at)}</span>
-              </div>
+              ></div>
             </div>
           </Col>
-          <Col className={`rounded w-100 ${classes.replsCol}`}>
-            <div
-              className={`w-100 h-100 d-flex flex-column ${classes.repls}`}
-              style={{ paddingTop: '30px' }}
-            >
-              <Row
-                className="my-2 flex-md-row"
-                style={{ borderBottom: '1px solid #293746' }}
-              >
-                <div className="d-flex justify-content-between align-items-center flex-md-row w-100">
-                  <h2>{t('profile.replsHeader')}</h2>
-                  <div className={`${classes.newRepl}`}>
-                    <Button
-                      className={`${classes.newReplButton}`}
-                      onClick={handleGenNewRepl}
-                    >
-                      {t('profile.newReplButton')}
-                    </Button>
-                  </div>
-                </div>
-              </Row>
-              <Row xs={1} md={2} className="g-4 my-1">
-                {snippets.map(({ id, slug, name, code }) => (
-                  <Snippet
-                    key={id}
-                    id={id}
-                    slug={slug}
-                    name={name}
-                    code={code}
-                  />
-                ))}
-              </Row>
-            </div>
-          </Col>
+          {location.pathname === routes.defaultProfilePagePath() && (
+            <Snippets />
+          )}
+          {location.pathname === routes.profileSettingsPagePath() && (
+            <AccountSettings />
+          )}
         </Row>
       </div>
     </div>
   );
-}
+};
 
 export default Profile;
