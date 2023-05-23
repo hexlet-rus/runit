@@ -20,7 +20,8 @@ export default {
   getDefaultSnippetName: () => [apiPath, 'snippets', 'name'].join('/'), // get random initial snippet name
   homePagePath: () => '/editor',
   aboutPagePath: () => '/about',
-  profilePagePath: () => '/profile',
+  defaultProfilePagePath: () => '/profile/snippets',
+  profileSettingsPagePath: () => '/profile/settings',
   loginPagePath: () => '/login',
   signUpPagePath: () => '/signup',
   remindPassPagePath: () => '/remind_password',
