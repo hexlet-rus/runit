@@ -31,6 +31,7 @@ function SignIn() {
       password: '',
     },
     validationSchema: validation,
+    validateOnBlur: false,
     onSubmit: async (values, actions) => {
       try {
         actions.setSubmitting(true);
