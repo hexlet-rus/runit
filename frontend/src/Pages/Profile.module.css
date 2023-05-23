@@ -38,10 +38,11 @@
 
 .profileContainer {
   position: relative;
-  bottom: 50px;
   flex-direction: row;
   width: 100%;
   gap: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .profileColumn {
@@ -51,6 +52,7 @@
   box-sizing: border-box;
   background: #0e1a31fc;
   box-shadow: -1px -1px 3px #1f2430;
+  width: fit-content;
 }
 
 .profile {
@@ -73,6 +75,7 @@
   box-sizing: border-box;
   background: #0e1a31fc;
   box-shadow: 1px -1px 3px #1f2430;
+  height: 100%;
 }
 
 .newRepl {
@@ -107,11 +110,11 @@
 
 .repls {
   position: relative;
-  bottom: 40px;
+  bottom: 42px;
 }
 
 .profileButtons {
-  display: flex;
+  display: grid;
   flex-direction: row;
   align-items: stretch;
   border-width: 0;
@@ -123,6 +126,8 @@
   background: #136ef6;
   border: 1px solid #3e496b;
   border-radius: 5px;
+  text-align: center;
+  min-width: 13.5rem;
 }
 
 .button:hover {
