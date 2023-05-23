@@ -66,7 +66,7 @@ const AccountSettings = () => {
               <span>{t('profile.editProfileButton')}</span>
             </div>
           </Button>
-          <Button
+          {/* <Button
             className={`${classes.button}`}
             onClick={() => {
               navigator.clipboard.writeText(window.location.href);
@@ -75,7 +75,7 @@ const AccountSettings = () => {
             <div>
               <span>{t('profile.copyProfileButton')} </span>
             </div>
-          </Button>
+          </Button> */}
           <Button
             className={`${classes.button}`}
             onClick={handleChangePassword}
