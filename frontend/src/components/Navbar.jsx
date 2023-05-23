@@ -29,7 +29,7 @@ export function Navbar() {
             className="d-flex align-items-baseline"
             to={
               localStorage.getItem('loginStatus')
-                ? routes.lendingPath() // Затем вставим редирект на страницу со снипетами
+                ? routes.profilePagePath() // Затем вставим редирект на страницу со снипетами
                 : routes.lendingPath()
             }
           >
