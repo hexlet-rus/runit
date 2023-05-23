@@ -21,6 +21,8 @@ export default {
   homePagePath: () => '/editor',
   aboutPagePath: () => '/about',
   profilePagePath: () => '/profile',
+  defaultProfilePagePath: () => '/profile/snippets',
+  profileSettingsPagePath: () => '/profile/settings',
   loginPagePath: () => '/login',
   signUpPagePath: () => '/signup',
   remindPassPagePath: () => '/remind_password',
