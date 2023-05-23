@@ -26,6 +26,7 @@ function ProtectedRoute({ user, children }) {
 function AuthRoute({ user, children }) {
   if (user) {
     return <Navigate to={routes.defaultProfilePagePath()} replace />;
+    return <Navigate to={routes.defaultProfilePagePath()} replace />;
   }
   return children || <Outlet />;
 }
@@ -42,18 +43,6 @@ function AppRoutes() {
           <Route path={routes.snippetPagePath()} element={<App />} />
           <Route path={routes.aboutPagePath()} element={<About />} />
           <Route element={<ProtectedRoute user={isLoggedIn} />}>
-          <Route
-              path={routes.profilePagePath()}
-              element={<Profile />}
-            />
-            <Route
-              path={routes.defaultProfilePagePath()}
-              element={<Profile />}
-            />
-            <Route
-              path={routes.profileSettingsPagePath()}
-              element={<Profile />}
-            />
           <Route
               path={routes.profilePagePath()}
               element={<Profile />}
