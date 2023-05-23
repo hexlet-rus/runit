@@ -83,8 +83,6 @@ const ruLocales = {
       username: 'Имя пользователя:',
       createdAt: 'Создан:',
       userId: 'Идентификатор пользователя:',
-      email: 'Эл. почта:',
-      editProfileButton: 'Редактировать',
       email: 'Почта:',
       settingsHeader: 'Настройки',
       editProfileButton: 'Редактировать профиль',
