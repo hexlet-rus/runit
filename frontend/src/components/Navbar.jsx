@@ -27,7 +27,11 @@ export function Navbar() {
           <NavigationBar.Brand
             as={Link}
             className="d-flex align-items-baseline"
-            to={routes.homePagePath()}
+            to={
+              localStorage.getItem('loginStatus')
+                ? routes.lendingPath() // Затем вставим редирект на страницу со снипетами
+                : routes.lendingPath()
+            }
           >
             <Image
               alt={t('navbar.mainLabel')}
