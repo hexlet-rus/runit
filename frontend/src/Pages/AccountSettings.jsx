@@ -40,7 +40,7 @@ const AccountSettings = () => {
     <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
       <div className={`w-100 ${classes.profile}`}>
         <div>
-          <h1 className="my-2" style={{ textAlign: 'center' }}>{userInfo.login}</h1>
+          <h1 className="my-2">{userInfo.login}</h1>
           <div style={{ paddingTop: '10px' }}>
             <h5 className="my-2">
               {t('profile.email')}
@@ -66,8 +66,7 @@ const AccountSettings = () => {
               <span>{t('profile.editProfileButton')}</span>
             </div>
           </Button>
-          {/* Кнопка скопировать ниже закомментирована*/}
-          {/* <Button
+          <Button
             className={`${classes.button}`}
             onClick={() => {
               navigator.clipboard.writeText(window.location.href);
@@ -76,7 +75,7 @@ const AccountSettings = () => {
             <div>
               <span>{t('profile.copyProfileButton')} </span>
             </div>
-          </Button> */}
+          </Button>
           <Button
             className={`${classes.button}`}
             onClick={handleChangePassword}
