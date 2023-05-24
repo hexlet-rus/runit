@@ -63,7 +63,7 @@
   flex-direction: column;
   row-gap: 20px;
   position: sticky;
-  align-items: flex-start;
+  align-items: center;
   width: inherit;
   padding: 20px;
 }
