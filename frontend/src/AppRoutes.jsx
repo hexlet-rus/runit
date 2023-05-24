@@ -26,7 +26,6 @@ function ProtectedRoute({ user, children }) {
 function AuthRoute({ user, children }) {
   if (user) {
     return <Navigate to={routes.defaultProfilePagePath()} replace />;
-    return <Navigate to={routes.defaultProfilePagePath()} replace />;
   }
   return children || <Outlet />;
 }
