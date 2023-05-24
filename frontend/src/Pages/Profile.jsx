@@ -32,7 +32,7 @@ const Profile = () => {
           <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
             <div className={`w-100 ${classes.profile}`}>
               <div>
-                <h1 className="my-2">{`${t('profile.settingsHeader')}`}</h1>
+                <h1 className="my-2" style={{ textAlign: 'center' }}>{`${t('navbar.profile')}`}</h1>
                 {/* <div>
                   Текст: 
                   <span className="text-muted">описание</span>
@@ -44,7 +44,7 @@ const Profile = () => {
                   <Link as={Link} to={routes.profileSettingsPagePath()}>
                     <Button className={`${classes.button}`}>
                       <div>
-                        <span>{`${t('profile.accountHeader')}`}</span>
+                        <span>{`${t('profile.settingsHeader')}`}</span>
                       </div>
                     </Button>
                   </Link>
