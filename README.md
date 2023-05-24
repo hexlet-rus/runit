@@ -10,13 +10,21 @@ Tasks:
 
 * Participation in service development
 
+Features (current and future):
+
+* Edit code online
+* Share code via link
+* Embed snippets in pages
+* Collaborative editing
+
 Tasks can be discussed in [Telegram](https://t.me/hexletcommunity/12).
 
 ## System requirements
 
 * node >= 18
+* Yarn
 * Heroku CLI
-* PostgreSQL
+* PostgreSQL for use in production environments or SQLite for use in local development environments
 
 ## Installation
 
@@ -31,11 +39,9 @@ make start
 ```
 http://localhost:3000
 
-
 ## Run tests
 
-
-### Unit tests
+### unit tests
 
 ```bash
 make test
@@ -49,34 +55,34 @@ make test-e2e
 
 ## API Documentation
 
-Structure of project's APIs is [here](https://runit.hexlet.ru/api)
+Structure of project's APIs is [here](https://runit.hexlet.ru/api).
 
-## Deploy to Render.com
+## Deploy to render.com
 
-To deploy to [Render.com](https://dashboard.render.com/) do the following
+To deploy to [render.com](https://dashboard.render.com/) do the following:
 
-1. Create a Postgres database. After preparing it, copy *Internal Database URL*
+1. Create a Postgres database. After preparing it, copy *Internal Database URL*.
 2. Create Web Service, select your fork.
-3. Name - it is better to use a prefix with your nickname. For example *fey-runit*.
-4. Region - any, you can use *Frankfurt (EU Central)*
-5. Branch - from which the application will be deployed. You can use `main` for starters. In the future, use the branch in which you want to demonstrate the changes
-6. Root Directory - leave blank
-7. Runtime - *Node*
-8. Build Command - `make install build`.
-9. Start Command - `make db-migrate start-prod`.
+3. Name — it is better to use a prefix with your nickname. For example *fey-runit*.
+4. Region — any, you can use *Frankfurt (EU Central)*.
+5. Branch — from which the application will be deployed. You can use `main` for starters. In the future, use the branch in which you want to demonstrate the changes.
+6. Root Directory — leave blank.
+7. Runtime — *Node*.
+8. Build Command — `make install build`.
+9. Start Command — `make db-migrate start-prod`.
 10. You can choose any plan, free is enough.
-11. Set environment variables. Click on *Advanced* and *Add Environment Variable
+11. Set environment variables. Click on *Advanced* and *Add Environment Variable*.
 
-The following variables will be needed.
+The following variables will be needed:
 
-* `DATABASE_URL` - this is the URL you copied earlier - *Internal Database URL*
-* `NODE_ENV` - `production`
-* `SECRET_KEY_JWT` - any string, you can generate a random string or insert `simpleDevKey` for simplicity
-* `TRANSPORT_MAILER_URL` This should be the URL of the connection string of the mail sender. You can use the [Mailtrap](https://mailtrap.io/) service for tests. An example url would be `smtp://login:password@sandbox.smtp.mailtrap.io:2525`.
+* `DATABASE_URL` — this is the URL you copied earlier — *Internal Database URL*
+* `NODE_ENV` — `production`
+* `SECRET_KEY_JWT` — any string, you can generate a random string or insert `simpleDevKey` for simplicity
+* `TRANSPORT_MAILER_URL` — this should be the URL of the connection string of the mail sender. You can use the [Mailtrap](https://mailtrap.io/) service for tests. An example url would be `smtp://login:password@sandbox.smtp.mailtrap.io:2525`.
 
-Click on *Create Web Service* and watch the Deployment and logs. If there are problems, ask questions [here](https://github.com/hexlet-rus/runit/discussions/categories/q-a). Check first that there is no similar open topic.
+Click on *Create Web Service* and watch the Deployment and Logs. If there are problems, ask questions [here](https://github.com/hexlet-rus/runit/discussions/categories/q-a). Check first that there is no similar open topic.
 
-## How to help
+## How you can help the project
 
 Look at the list of issues, choose an interesting task, write to the issue to say you would like to work on the task.
 
