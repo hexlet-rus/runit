@@ -40,7 +40,9 @@ const AccountSettings = () => {
     <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
       <div className={`w-100 ${classes.profile}`}>
         <div>
-          <h1 className="my-2" style={{ textAlign: 'center' }}>{userInfo.login}</h1>
+          <h1 className="my-2" style={{ textAlign: 'center' }}>
+            {userInfo.login}
+          </h1>
           <div style={{ paddingTop: '10px' }}>
             <h5 className="my-2">
               {t('profile.email')}

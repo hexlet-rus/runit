@@ -30,33 +30,33 @@ const Snippets = () => {
 
   return (
     <Col className={`rounded w-100 ${classes.replsCol}`}>
-    <div
-      className={`w-100 h-100 d-flex flex-column ${classes.repls}`}
-      style={{ paddingTop: '50px' }}
-    >
-      <Row
-        className="my-2 flex-md-row"
-        style={{ borderBottom: '1px solid #293746', paddingBottom: '20px' }}
+      <div
+        className={`w-100 h-100 d-flex flex-column ${classes.repls}`}
+        style={{ paddingTop: '50px' }}
       >
-        <div className="d-flex justify-content-between align-items-center flex-md-row w-100">
-          <h1>{t('profile.replsHeader')}</h1>
-          <div className={`${classes.newRepl}`}>
-            <Button
-              className={`${classes.newReplButton}`}
-              onClick={handleGenNewRepl}
-            >
-              {t('profile.newReplButton')}
-            </Button>
+        <Row
+          className="my-2 flex-md-row"
+          style={{ borderBottom: '1px solid #293746', paddingBottom: '20px' }}
+        >
+          <div className="d-flex justify-content-between align-items-center flex-md-row w-100">
+            <h1>{t('profile.replsHeader')}</h1>
+            <div className={`${classes.newRepl}`}>
+              <Button
+                className={`${classes.newReplButton}`}
+                onClick={handleGenNewRepl}
+              >
+                {t('profile.newReplButton')}
+              </Button>
+            </div>
           </div>
-        </div>
-      </Row>
-      <Row xs={1} md={2} className="g-4 my-1">
-        {snippets.map(({ id, slug, name, code }) => (
-          <Snippet key={id} id={id} slug={slug} name={name} code={code} />
-        ))}
-      </Row>
-    </div>
-  </Col>
+        </Row>
+        <Row xs={1} md={2} className="g-4 my-1">
+          {snippets.map(({ id, slug, name, code }) => (
+            <Snippet key={id} id={id} slug={slug} name={name} code={code} />
+          ))}
+        </Row>
+      </div>
+    </Col>
   );
 };
 
