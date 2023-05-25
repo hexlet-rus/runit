@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { Row, Col, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 import { fetchData } from '../slices/userSlice.js';
 import classes from './Profile.module.css';
 import Snippets from './Snippets.jsx';
-import { Link, useLocation } from 'react-router-dom';
 import routes from '../routes.js';
 import AccountSettings from './AccountSettings.jsx';
 

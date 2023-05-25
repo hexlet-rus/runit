@@ -57,7 +57,7 @@ const Snippets = () => {
       </Row>
     </div>
   </Col>
-  )
+  );
 };
 
 export default Snippets;
