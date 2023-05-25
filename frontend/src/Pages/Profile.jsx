@@ -9,7 +9,7 @@ import Snippets from './Snippets.jsx';
 import routes from '../routes.js';
 import AccountSettings from './AccountSettings.jsx';
 
-const Profile = () => {
+function Profile() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -68,7 +68,7 @@ const Profile = () => {
               <div
                 className="d-flex flex-md-column w-100"
                 style={{ alignItems: 'center' }}
-              ></div>
+              />
             </div>
           </Col>
           {location.pathname === routes.defaultProfilePagePath() && (
@@ -81,6 +81,6 @@ const Profile = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Profile;

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actions as modalActions } from '../slices/modalSlice.js';
 import classes from './Profile.module.css';
 
-const AccountSettings = () => {
+function AccountSettings() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -98,6 +98,6 @@ const AccountSettings = () => {
       </div>
     </Col>
   );
-};
+}
 
 export default AccountSettings;

@@ -8,7 +8,7 @@ import { fetchData } from '../slices/userSlice.js';
 import classes from './Profile.module.css';
 import Snippet from '../components/Snippet/Snippet.jsx';
 
-const Snippets = () => {
+function Snippets() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const snippets = useSelector((state) => state.snippets.snippets);
@@ -58,6 +58,6 @@ const Snippets = () => {
       </div>
     </Col>
   );
-};
+}
 
 export default Snippets;
