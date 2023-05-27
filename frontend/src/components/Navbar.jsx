@@ -28,7 +28,7 @@ export function Navbar() {
             as={Link}
             className="d-flex align-items-baseline"
             to={
-              localStorage.getItem('loginStatus')
+              auth.isLoggedIn
                 ? routes.profilePagePath() // Затем вставим редирект на страницу со снипетами
                 : routes.lendingPath()
             }
