@@ -55,7 +55,7 @@ export function Navbar() {
                 <Nav.Item as="li" className="d-flex align-items-center px-2">
                   <Nav.Link
                     as={Link}
-                    to={routes.profilePagePath()}
+                    to={routes.defaultProfilePagePath()}
                     className={`${classes.navLink}`}
                   >
                     {t('navbar.profile')}

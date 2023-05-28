@@ -39,7 +39,7 @@ function SignIn() {
         setAuthFailed(false);
         auth.logIn();
         actions.setSubmitting(false);
-        navigate(routes.profilePagePath());
+        navigate(routes.defaultProfilePagePath());
         return response.data;
       } catch (err) {
         if (!err.isAxiosError) {
