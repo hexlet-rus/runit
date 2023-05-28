@@ -29,4 +29,5 @@ export default {
   snippetPagePath: () => '/users/:login/snippets/:slug',
   embedSnippetPagePath: () => '/users/:login/embed/snippets/:slug',
   oAuthPath: () => [apiPath, 'oauth'].join('/'), // OAuth
+  lendingPath: () => '/',
 };
