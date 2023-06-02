@@ -57,6 +57,10 @@
       "email": "undefined@mail.ru",
       "password": "NotFound404"
     },
+    "loginUpperCase" :   {
+      "email": "NULL@YANDEX.RU",
+      "password": "Deleted410"
+    },
     "profile": {
       "currentUser": {
         "id": 1,
