@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-/* TODO: Тесты каждый раз создают пользователя...? */
+/* TODO: Тесты каждый раз создают пользователя в приложении,
+все должно происходит в тестовом окружении */
 test('work', async ({ page }) => {
   const randomNum = Math.round(Math.random() * 1000 + Math.random() * 100);
   await page.goto('http://localhost:3000');

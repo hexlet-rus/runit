@@ -22,7 +22,8 @@ describe('AuthController (e2e)', () => {
   let usersData: Users[];
   let jwtService: JwtService;
 
-  // все тесты проходят если beforeEach
+  // FIXME: все тесты проходят если beforeEach
+  // заново полный setup -> надо перенести в хуки сброс аппа между тестами
   // beforeEach(async () => { 
   beforeAll(async () => {
     moduleFixture = await Test.createTestingModule({
@@ -68,7 +69,6 @@ describe('AuthController (e2e)', () => {
     const { body } = await request(app.getHttpServer())
       .post(`/login`)
       .send(testData.loginUpperCase)
-      // .send({ email: 'UNDEFINED@MAIL.RU', password: 'NotFound404' })
       .expect(201);
     expect(body.token).toBeDefined();
   });
