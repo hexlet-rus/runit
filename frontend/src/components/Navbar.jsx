@@ -29,7 +29,7 @@ export function Navbar() {
             className="d-flex align-items-baseline"
             to={
               auth.isLoggedIn
-                ? routes.profilePagePath() // Затем вставим редирект на страницу со снипетами
+                ? routes.defaultProfilePagePath() // Затем вставим редирект на страницу со снипетами
                 : routes.lendingPath()
             }
           >

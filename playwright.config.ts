@@ -88,7 +88,8 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'make start-backend',
-    port: 5001,
+    command: 'npm run start',
+    port: 3000,
+    reuseExistingServer: !process.env.CI,
   },
 });
