@@ -54,3 +54,15 @@ tag:
 
 release:
 	make tag TAG=$(shell bin/generate-next-tag)
+
+compose-setup: compose-build compose-app-setup
+
+compose-build:
+	docker-compose build
+
+compose-app-setup:
+	docker-compose run backend make setup build
+	docker-compose run frontend make install build
+
+compose:
+	docker-compose up
