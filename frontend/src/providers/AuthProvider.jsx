@@ -15,7 +15,7 @@ function AuthProvider({ children }) {
     await axios.post(routes.logoutPath());
     localStorage.removeItem('loginStatus');
     setLoggedIn(false);
-    navigate(routes.homePagePath());
+    navigate(routes.lendingPath());
   };
 
   const logIn = () => {
