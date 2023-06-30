@@ -1,19 +1,13 @@
-import {
-  IsEmail,
-  IsString,
-  Length,
-  Matches,
-  Validate,
-} from 'class-validator';
+import { IsEmail, IsString, Length, Matches, Validate } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 import { CheckEmail } from '../validation/check-email';
 import { CheckLogin } from '../validation/check-login';
 import { ComparePasswords } from '../validation/compare-passwords';
-import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUserDto {
-  @ApiProperty({ 
+  @ApiProperty({
     minLength: 3,
-    maxLength: 20, 
+    maxLength: 20,
     description: 'Must be unique!',
     example: 'JohnDoe',
     pattern: '/[A-Za-z]/',
@@ -22,22 +16,22 @@ export class CreateUserDto {
   @IsString()
   @Matches(/^[\w\S]*$/)
   @Validate(CheckLogin, {
-    message: 'Пользователь уже существует!',
+    message: 'loginIsUsed',
   })
   login: string;
 
-  @ApiProperty({ 
+  @ApiProperty({
     description: 'Must be unique!',
     example: 'jane-doe@mail.ru',
   })
   @IsString()
   @IsEmail()
   @Validate(CheckEmail, {
-    message: 'Пользователь уже существует!',
+    message: 'emailIsUsed',
   })
   email: string;
 
-  @ApiProperty({ 
+  @ApiProperty({
     example: 'haew6wae56a45ewgd',
     minLength: 8,
     maxLength: 30,
@@ -46,9 +40,9 @@ export class CreateUserDto {
   @Length(8, 30)
   password: string;
 
-  @ApiProperty({ 
+  @ApiProperty({
     example: 'haew6wae56a45ewgd',
-    description: 'Must be equal with password field!'
+    description: 'Must be equal with password field!',
   })
   @IsString()
   @Validate(ComparePasswords, {

@@ -32,7 +32,7 @@ const enLocales = {
       passwordLabel: 'Password',
       confirmPasswordLabel: 'Confirm password',
       registerButton: 'Sign up',
-      signUpFailed: 'This user already exists',
+      signUpFailed: 'Sign Up is failed',
       footer: {
         signInHeader: 'Already have an account? ',
         signIn: 'Sign in',
@@ -44,6 +44,8 @@ const enLocales = {
         usernameLength: 'From 3 to 16 characters',
         passwordLength: 'from 8 to 30 characters',
         confirmPassword: 'Passwords must be the same',
+        loginIsUsed: 'This username is already taken',
+        emailIsUsed: 'This email address is already being used',
       },
     },
     remindPass: {
