@@ -9,6 +9,7 @@ import RenameRepl from './RenameRepl.jsx';
 import ConfirmationModal from './Confirmation.jsx';
 import EditProfile from './EditProfile.jsx';
 import ChangePassword from './ChangePassword.jsx';
+import AlertGithub from './AlertGithub.jsx';
 
 const modals = {
   gettingInfo: InfoModal,
@@ -20,6 +21,7 @@ const modals = {
   confirmDelete: ConfirmationModal,
   editProfile: EditProfile,
   changePassword: ChangePassword,
+  alertGithub: AlertGithub,
 };
 
 function ModalWindow() {

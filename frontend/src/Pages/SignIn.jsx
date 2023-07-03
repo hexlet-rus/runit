@@ -140,9 +140,17 @@ function SignIn() {
                 id="github-button"
                 className="btn btn-block btn-social btn-github text-light ps-0"
                 href={routes.oAuthPath()}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const result = window.confirm(t('signIn.attentionGithub'));
+                  if (result) {
+                    window.location.href = e.target.href;
+                  }
+                }}
               >
                 {t('signIn.withGithub')}
               </a>
+              <p className="text-muted">{t('signIn.attentionGithub')}</p>
             </Card.Body>
             <Card.Footer className="border-top-0 text-center py-3">
               <div className="py-lg-2">

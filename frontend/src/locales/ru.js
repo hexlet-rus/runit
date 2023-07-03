@@ -76,6 +76,7 @@ const ruLocales = {
         correctEmail: 'Некорректная электронная почта',
       },
       withGithub: 'Войти с помощью Github',
+      attentionGithub: 'Для регистрации через Github требуется публичный email',
     },
     profile: {
       replsHeader: 'Сниппеты',

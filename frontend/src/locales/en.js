@@ -76,6 +76,7 @@ const enLocales = {
         correctEmail: 'Incorrect email',
       },
       withGithub: 'Sign in with Github',
+      attentionGithub: 'A public email is required to register via Github',
     },
     profile: {
       replsHeader: 'Snippets',
