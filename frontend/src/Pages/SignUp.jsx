@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { object, string } from 'yup';
@@ -14,32 +14,32 @@ import routes from '../routes.js';
 import classes from './SignUp.module.css';
 
 function SignUp() {
-  const inputRef = useRef();
+  const emailRef = useRef();
+  const loginRef = useRef();
   const { t } = useTranslation();
-  const [regFailed, setRegFailed] = useState(false);
   const navigate = useNavigate();
   const auth = useAuth();
 
   useEffect(() => {
-    inputRef.current.focus();
+    emailRef.current.focus();
   }, []);
 
   const signUpValidation = object().shape({
     login: string()
-      .min(3, t('signUp.validation.usernameLength'))
-      .max(16, t('signUp.validation.usernameLength'))
-      .matches(/^[\w\S]*$/, t('signUp.validation.correctUsername'))
+      .min(3, 'signUp.validation.usernameLength')
+      .max(16, 'signUp.validation.usernameLength')
+      .matches(/^[\w\S]*$/, 'signUp.validation.correctUsername')
       .typeError()
-      .required(t('signUp.validation.requiredField')),
+      .required('signUp.validation.requiredField'),
     email: string()
-      .email(t('signUp.validation.correctEmail'))
-      .required(t('signUp.validation.requiredField')),
+      .email('signUp.validation.correctEmail')
+      .required('signUp.validation.requiredField'),
     password: string()
       .trim()
-      .min(8, t('signUp.validation.passwordLength'))
-      .max(30, t('signUp.validation.passwordLength'))
+      .min(8, 'signUp.validation.passwordLength')
+      .max(30, 'signUp.validation.passwordLength')
       .typeError()
-      .required(t('signUp.validation.requiredField')),
+      .required('signUp.validation.requiredField'),
     confirmPassword: string().test(
       'confirmPassword',
       t('signUp.validation.confirmPassword'),
@@ -67,9 +67,25 @@ function SignUp() {
           console.log(t('errors.unknown'));
           throw err;
         }
-        if (err.response?.status === 400) {
-          setRegFailed(true);
-          inputRef.current.select();
+        if (
+          err.response?.status === 400 &&
+          Array.isArray(err.response?.data?.errs?.message)
+        ) {
+          err.response.data.errs.message.forEach((e) => {
+            switch (e) {
+              case 'loginIsUsed':
+                formik.errors.login = 'signUp.validation.loginIsUsed';
+                loginRef.current.select();
+                break;
+              case 'emailIsUsed':
+                formik.errors.email = 'signUp.validation.emailIsUsed';
+                emailRef.current.select();
+                break;
+              default:
+                console.log(t('signUp.signUpFailed'));
+                throw err;
+            }
+          });
         } else {
           console.log(t('errors.network'));
           throw err;
@@ -92,23 +108,19 @@ function SignUp() {
                       {t('signUp.emailLabel')}
                     </Form.Label>
                     <Form.Control
-                      onChange={formik.handleChange}
                       value={formik.values.email}
+                      onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="email"
-                      isInvalid={
-                        (formik.touched.email && formik.errors.email) ||
-                        regFailed
-                      }
                       id="email"
                       autoComplete="email"
                       required
-                      ref={inputRef}
+                      isInvalid={formik.touched.email && formik.errors.email}
+                      ref={emailRef}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {(formik.touched.email && formik.errors.email) ||
-                        regFailed}
+                      {formik.touched.email && t(formik.errors.email)}
                     </Form.Control.Feedback>
                   </Form.Group>
 
@@ -117,21 +129,19 @@ function SignUp() {
                       {t('signUp.usernameLabel')}
                     </Form.Label>
                     <Form.Control
-                      onChange={formik.handleChange}
                       value={formik.values.login}
+                      onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="login"
                       id="login"
                       autoComplete="username"
                       required
-                      isInvalid={
-                        (formik.touched.login && formik.errors.login) ||
-                        regFailed
-                      }
+                      isInvalid={formik.touched.login && formik.errors.login}
+                      ref={loginRef}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {formik.errors.login ? formik.errors.login : regFailed}
+                      {formik.touched.login && t(formik.errors.login)}
                     </Form.Control.Feedback>
                   </Form.Group>
 
@@ -150,14 +160,11 @@ function SignUp() {
                       autoComplete="new-password"
                       required
                       isInvalid={
-                        (formik.touched.password && formik.errors.password) ||
-                        regFailed
+                        formik.touched.password && formik.errors.password
                       }
                     />
                     <Form.Control.Feedback type="invalid">
-                      {formik.errors.password
-                        ? formik.errors.password
-                        : regFailed}
+                      {formik.errors.password && t(formik.errors.password)}
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group className={classes.formGroup}>
@@ -175,15 +182,13 @@ function SignUp() {
                       autoComplete="new-password"
                       required
                       isInvalid={
-                        (formik.touched.confirmPassword &&
-                          formik.errors.confirmPassword) ||
-                        regFailed
+                        formik.touched.confirmPassword &&
+                        formik.errors.confirmPassword
                       }
                     />
                     <Form.Control.Feedback type="invalid">
-                      {formik.errors.confirmPassword
-                        ? formik.errors.confirmPassword
-                        : t('signUp.signUpFailed')}
+                      {formik.errors.confirmPassword &&
+                        t(formik.errors.confirmPassword)}
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Button
