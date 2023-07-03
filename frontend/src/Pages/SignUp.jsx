@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { object, string } from 'yup';
+import { object } from 'yup';
 
 import { useFormik } from 'formik';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
@@ -12,6 +12,12 @@ import { useAuth } from '../hooks';
 import routes from '../routes.js';
 
 import classes from './SignUp.module.css';
+import {
+  confirmPassword,
+  email,
+  login,
+  password,
+} from '../utils/validationSchemas';
 
 function SignUp() {
   const inputRef = useRef();
@@ -24,27 +30,11 @@ function SignUp() {
     inputRef.current.focus();
   }, []);
 
-  const signUpValidation = object().shape({
-    login: string()
-      .min(3, t('signUp.validation.usernameLength'))
-      .max(16, t('signUp.validation.usernameLength'))
-      .matches(/^[\w\S]*$/, t('signUp.validation.correctUsername'))
-      .typeError()
-      .required(t('signUp.validation.requiredField')),
-    email: string()
-      .email(t('signUp.validation.correctEmail'))
-      .required(t('signUp.validation.requiredField')),
-    password: string()
-      .trim()
-      .min(8, t('signUp.validation.passwordLength'))
-      .max(30, t('signUp.validation.passwordLength'))
-      .typeError()
-      .required(t('signUp.validation.requiredField')),
-    confirmPassword: string().test(
-      'confirmPassword',
-      t('signUp.validation.confirmPassword'),
-      (password, context) => password === context.parent.password,
-    ),
+  const validationSchema = object().shape({
+    login: login(),
+    email: email(),
+    password: password(),
+    confirmPassword: confirmPassword(),
   });
   const formik = useFormik({
     initialValues: {
@@ -53,7 +43,7 @@ function SignUp() {
       password: '',
       confirmPassword: '',
     },
-    validationSchema: signUpValidation,
+    validationSchema,
     validateOnBlur: false,
     onSubmit: async (values, actions) => {
       try {
@@ -98,7 +88,7 @@ function SignUp() {
                       className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="email"
                       isInvalid={
-                        (formik.touched.email && formik.errors.email) ||
+                        (formik.touched.email && t(formik.errors.email)) ||
                         regFailed
                       }
                       id="email"
@@ -107,7 +97,7 @@ function SignUp() {
                       ref={inputRef}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {(formik.touched.email && formik.errors.email) ||
+                      {(formik.touched.email && t(formik.errors.email)) ||
                         regFailed}
                     </Form.Control.Feedback>
                   </Form.Group>
@@ -126,12 +116,12 @@ function SignUp() {
                       autoComplete="username"
                       required
                       isInvalid={
-                        (formik.touched.login && formik.errors.login) ||
+                        (formik.touched.login && t(formik.errors.login)) ||
                         regFailed
                       }
                     />
                     <Form.Control.Feedback type="invalid">
-                      {formik.errors.login ? formik.errors.login : regFailed}
+                      {formik.errors.login ? t(formik.errors.login) : regFailed}
                     </Form.Control.Feedback>
                   </Form.Group>
 
@@ -150,13 +140,14 @@ function SignUp() {
                       autoComplete="new-password"
                       required
                       isInvalid={
-                        (formik.touched.password && formik.errors.password) ||
+                        (formik.touched.password &&
+                          t(formik.errors.password)) ||
                         regFailed
                       }
                     />
                     <Form.Control.Feedback type="invalid">
                       {formik.errors.password
-                        ? formik.errors.password
+                        ? t(formik.errors.password)
                         : regFailed}
                     </Form.Control.Feedback>
                   </Form.Group>
@@ -176,13 +167,13 @@ function SignUp() {
                       required
                       isInvalid={
                         (formik.touched.confirmPassword &&
-                          formik.errors.confirmPassword) ||
+                          t(formik.errors.confirmPassword)) ||
                         regFailed
                       }
                     />
                     <Form.Control.Feedback type="invalid">
                       {formik.errors.confirmPassword
-                        ? formik.errors.confirmPassword
+                        ? t(formik.errors.confirmPassword)
                         : t('signUp.signUpFailed')}
                     </Form.Control.Feedback>
                   </Form.Group>

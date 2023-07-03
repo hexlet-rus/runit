@@ -42,7 +42,7 @@ const ruLocales = {
         correctUsername: 'В логине не должно быть пробелов',
         correctEmail: 'Некорректная электронная почта',
         usernameLength: 'От 3 до 16 символов',
-        passwordLength: 'от 8 до 30 символов',
+        passwordLength: 'От 8 до 30 символов',
         confirmPassword: 'Пароли должны совпадать',
       },
     },
@@ -216,6 +216,17 @@ const ruLocales = {
     errors: {
       unknown: 'Неизвестная ошибка',
       network: 'Ошибка сети',
+      validation: {
+        requiredField: 'Обязательное поле',
+        correctEmail: 'Некорректная электронная почта',
+        correctUsername: 'В логине не должно быть пробелов',
+        usernameLength: 'От 3 до 16 символов',
+        passwordLength: 'От 8 до 30 символов',
+        confirmPassword: 'Пароли должны совпадать',
+        snippetNameMaxLength: 'Не больше 20 символов',
+        required: 'Не может быть пустым',
+        singleWord: 'Допустимы буквы латинского алфавита, цифры и символы "-_"',
+      },
     },
     pageNotFound: {
       title: 'Ошибка 404',
