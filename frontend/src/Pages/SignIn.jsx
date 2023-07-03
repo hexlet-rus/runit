@@ -1,7 +1,15 @@
 /* eslint-disable no-console */
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
+import {
+  Alert,
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  Row,
+} from 'react-bootstrap';
 import { object, string } from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
@@ -21,8 +29,8 @@ function SignIn() {
 
   const validation = object().shape({
     email: string()
-      .email(t('signIn.validation.correctEmail'))
-      .required(t('signIn.validation.requiredField')),
+      .email('signIn.validation.correctEmail')
+      .required('signIn.validation.requiredField'),
   });
 
   const formik = useFormik({
@@ -85,14 +93,11 @@ function SignIn() {
                       id="email"
                       autoComplete="email"
                       required
-                      isInvalid={
-                        (formik.touched.email && formik.errors.email) ||
-                        authFailed
-                      }
+                      isInvalid={formik.touched.email && formik.errors.email}
                       ref={inputRef}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {formik.errors.email}
+                      {t(formik.errors.email)}
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group className={classes.formGroup}>
@@ -109,13 +114,17 @@ function SignIn() {
                       id="password"
                       autoComplete="password"
                       required
-                      isInvalid={authFailed}
                     />
-
-                    <Form.Control.Feedback type="invalid">
-                      {t('signIn.signInFailed')}
-                    </Form.Control.Feedback>
                   </Form.Group>
+                  {authFailed ? (
+                    <Alert
+                      variant="danger"
+                      dismissible
+                      onClose={() => setAuthFailed(false)}
+                    >
+                      {t('signIn.signInFailed')}
+                    </Alert>
+                  ) : null}
                   {/* TODO: https://github.com/hexlet-rus/runit/issues/94 */}
                   {/* <div className="text-end my-3">
                     <a
