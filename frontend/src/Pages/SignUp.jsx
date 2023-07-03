@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { object, string } from 'yup';
+import { object } from 'yup';
 
 import { useFormik } from 'formik';
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
@@ -12,6 +12,12 @@ import { useAuth } from '../hooks';
 import routes from '../routes.js';
 
 import classes from './SignUp.module.css';
+import {
+  confirmPassword,
+  email,
+  login,
+  password,
+} from '../utils/validationSchemas';
 
 function SignUp() {
   const emailRef = useRef();
@@ -24,27 +30,11 @@ function SignUp() {
     emailRef.current.focus();
   }, []);
 
-  const signUpValidation = object().shape({
-    login: string()
-      .min(3, 'signUp.validation.usernameLength')
-      .max(16, 'signUp.validation.usernameLength')
-      .matches(/^[\w\S]*$/, 'signUp.validation.correctUsername')
-      .typeError()
-      .required('signUp.validation.requiredField'),
-    email: string()
-      .email('signUp.validation.correctEmail')
-      .required('signUp.validation.requiredField'),
-    password: string()
-      .trim()
-      .min(8, 'signUp.validation.passwordLength')
-      .max(30, 'signUp.validation.passwordLength')
-      .typeError()
-      .required('signUp.validation.requiredField'),
-    confirmPassword: string().test(
-      'confirmPassword',
-      t('signUp.validation.confirmPassword'),
-      (password, context) => password === context.parent.password,
-    ),
+  const validationSchema = object().shape({
+    login: login(),
+    email: email(),
+    password: password(),
+    confirmPassword: confirmPassword(),
   });
   const formik = useFormik({
     initialValues: {
@@ -53,7 +43,7 @@ function SignUp() {
       password: '',
       confirmPassword: '',
     },
-    validationSchema: signUpValidation,
+    validationSchema,
     validateOnBlur: false,
     onSubmit: async (values, actions) => {
       try {

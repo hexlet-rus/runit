@@ -3,11 +3,12 @@ import { Modal, Form, FloatingLabel, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
-import { object, string } from 'yup';
+import { object } from 'yup';
 import { useSnippets } from '../../hooks';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
 import { actions as snippetsAction } from '../../slices/snippetsSlice.js';
+import { replName } from '../../utils/validationSchemas';
 
 function RenameRepl() {
   const dispatch = useDispatch();
@@ -21,16 +22,15 @@ function RenameRepl() {
     inputRef.current.select();
   }, []);
 
+  const validationSchema = object({
+    name: replName(),
+  });
+
   const formik = useFormik({
     initialValues: {
       name: previousName,
     },
-    validationSchema: object({
-      name: string()
-        .required(t('modals.validation.required'))
-        .max(20, t('modals.validation.snippetNameMaxLength'))
-        .matches(/^[a-zA-Z0-9_-]*$/, t('modals.validation.singleWord')),
-    }),
+    validationSchema,
     onSubmit: async (values, actions) => {
       actions.setSubmitting(true);
       try {
@@ -84,11 +84,11 @@ function RenameRepl() {
                 placeholder={t('modals.share.snippetNameLabel')}
                 ref={inputRef}
                 value={formik.values.name}
-                isInvalid={formik.touched.name && formik.errors.name}
+                isInvalid={formik.touched.name && t(formik.errors.name)}
               />
 
               <Form.Control.Feedback type="invalid">
-                {formik.touched.name && formik.errors.name}
+                {formik.touched.name && t(formik.errors.name)}
               </Form.Control.Feedback>
             </FloatingLabel>
           </Form.Group>

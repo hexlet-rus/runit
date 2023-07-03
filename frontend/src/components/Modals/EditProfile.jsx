@@ -3,13 +3,18 @@ import { useFormik } from 'formik';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { object, string } from 'yup';
+import { object } from 'yup';
 import axios from 'axios';
 
 import routes from '../../routes';
 import { actions as modalActions } from '../../slices/modalSlice.js';
 import { actions as userActions } from '../../slices/userSlice.js';
 import classes from './Modals.module.css';
+
+import {
+  login as loginSchema,
+  email as emailSchema,
+} from '../../utils/validationSchemas';
 
 function EditProfile() {
   const dispatch = useDispatch();
@@ -23,22 +28,17 @@ function EditProfile() {
     loginInputRef.current.select();
   }, []);
 
+  const validationSchema = object().shape({
+    login: loginSchema(),
+    email: emailSchema(),
+  });
+
   const formik = useFormik({
     initialValues: {
       login,
       email,
     },
-    validationSchema: object().shape({
-      login: string()
-        .min(3, t('signUp.validation.usernameLength'))
-        .max(16, t('signUp.validation.usernameLength'))
-        .matches(/^[\w\S]*$/, t('signUp.validation.correctUsername'))
-        .typeError()
-        .required(t('signUp.validation.requiredField')),
-      email: string()
-        .email(t('signUp.validation.correctEmail'))
-        .required(t('signUp.validation.requiredField')),
-    }),
+    validationSchema,
     onSubmit: async (values) => {
       try {
         const response = await axios.put(routes.updateUserPath(id), {
@@ -95,11 +95,11 @@ function EditProfile() {
               value={formik.values.login}
               onBlur={formik.handleBlur}
               isInvalid={
-                (formik.touched.login && formik.errors.login) || editFailed
+                (formik.touched.login && t(formik.errors.login)) || editFailed
               }
             />
             <Form.Control.Feedback type="invalid">
-              {formik.errors.login}
+              {t(formik.errors.login)}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={classes.formGroup}>
@@ -116,11 +116,12 @@ function EditProfile() {
               value={formik.values.email}
               onBlur={formik.handleBlur}
               isInvalid={
-                (formik.touched.email && formik.errors.email) || editFailed
+                (formik.touched.email && t(formik.errors.email)) || editFailed
               }
             />
             <Form.Control.Feedback type="invalid">
-              {(formik.touched.email && formik.errors.email) || errorFeedback}
+              {(formik.touched.email && t(formik.errors.email)) ||
+                errorFeedback}
             </Form.Control.Feedback>
           </Form.Group>
         </Form>
