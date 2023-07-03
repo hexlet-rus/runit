@@ -32,7 +32,7 @@ const ruLocales = {
       passwordLabel: 'Пароль',
       confirmPasswordLabel: 'Подтвердить пароль',
       registerButton: 'Зарегистрироваться',
-      signUpFailed: 'Такой пользователь уже существует',
+      signUpFailed: 'Невозможно зарегистрировать пользователя',
       footer: {
         signInHeader: 'Уже есть аккаунт? ',
         signIn: 'Войти',
@@ -44,6 +44,8 @@ const ruLocales = {
         usernameLength: 'От 3 до 16 символов',
         passwordLength: 'от 8 до 30 символов',
         confirmPassword: 'Пароли должны совпадать',
+        loginIsUsed: 'Это имя уже занято',
+        emailIsUsed: 'Этот адрес уже зарегистрирован',
       },
     },
     remindPass: {
