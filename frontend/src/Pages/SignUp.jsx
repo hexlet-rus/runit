@@ -64,11 +64,11 @@ function SignUp() {
           err.response.data.errs.message.forEach((e) => {
             switch (e) {
               case 'loginIsUsed':
-                formik.errors.login = 'signUp.validation.loginIsUsed';
+                formik.errors.login = 'errors.validation.loginIsUsed';
                 loginRef.current.select();
                 break;
               case 'emailIsUsed':
-                formik.errors.email = 'signUp.validation.emailIsUsed';
+                formik.errors.email = 'errors.validation.emailIsUsed';
                 emailRef.current.select();
                 break;
               default:

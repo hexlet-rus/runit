@@ -176,11 +176,6 @@ const enLocales = {
     infoBody: 'Log in to save and share.',
     cancelButton: 'Cancel',
     goToReplButton: 'Go to this replay',
-    validation: {
-      snippetNameMaxLength: 'No more than 20 characters',
-      required: `Can't be empty`,
-      singleWord: 'Allowed latin letters, numbers and symbols"-_"',
-    },
 
     appRotes: {
       pageNotFound: 'Page not found',
@@ -190,13 +185,14 @@ const enLocales = {
       network: 'Network error',
       validation: {
         requiredField: 'Required field',
-        correctEmail: 'Incorrect email',
-        correctUsername: 'There must be no spaces in the username',
+        incorrectEmail: 'Incorrect email',
+        emailIsUsed: 'Этот адрес уже зарегистрирован',
+        incorrectUsername: 'There must be no spaces in the username',
+        loginIsUsed: 'Это имя уже занято',
         usernameLength: 'From 3 to 16 characters',
         passwordLength: 'from 8 to 30 characters',
         confirmPassword: 'Passwords must be the same',
         snippetNameMaxLength: 'No more than 20 characters',
-        required: `Can't be empty`,
         singleWord: 'Allowed latin letters, numbers and symbols"-_"',
       },
     },

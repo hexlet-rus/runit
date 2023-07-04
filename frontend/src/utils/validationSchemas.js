@@ -6,18 +6,18 @@ export const login = () =>
     .required('errors.validation.requiredField')
     .min(3, 'errors.validation.usernameLength')
     .max(16, 'errors.validation.usernameLength')
-    .matches(/^[\w\S]*$/, 'errors.validation.correctUsername');
+    .matches(/^[\w\S]*$/, 'errors.validation.incorrectUsername');
 
 export const email = () =>
   string()
     .trim()
     .required('errors.validation.requiredField')
-    .email('errors.validation.correctEmail');
+    .email('errors.validation.incorrectEmail');
 
 export const password = () =>
   string()
     .trim()
-    .required('errors.validation.correctEmail')
+    .required('errors.validation.requiredField')
     .min(8, 'errors.validation.passwordLength')
     .max(30, 'errors.validation.passwordLength');
 
