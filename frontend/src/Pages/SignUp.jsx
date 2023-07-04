@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { object } from 'yup';
@@ -25,6 +25,7 @@ function SignUp() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const auth = useAuth();
+  const [regFailed, setRegFailed] = useState(false);
 
   useEffect(() => {
     emailRef.current.focus();
@@ -61,6 +62,7 @@ function SignUp() {
           err.response?.status === 400 &&
           Array.isArray(err.response?.data?.errs?.message)
         ) {
+          setRegFailed(true);
           err.response.data.errs.message.forEach((e) => {
             switch (e) {
               case 'loginIsUsed':
@@ -106,7 +108,6 @@ function SignUp() {
                       id="email"
                       autoComplete="email"
                       required
-                      isInvalid={formik.touched.email && formik.errors.email}
                       ref={emailRef}
                     />
                     <Form.Control.Feedback type="invalid">
