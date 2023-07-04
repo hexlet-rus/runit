@@ -2,16 +2,15 @@
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import {
+  Alert,
   Button,
   Card,
   Col,
   Container,
   Form,
   Row,
-  Alert,
 } from 'react-bootstrap';
 import { object } from 'yup';
-
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -93,10 +92,7 @@ function SignIn() {
                       id="email"
                       autoComplete="email"
                       required
-                      isInvalid={
-                        (formik.touched.email && t(formik.errors.email)) ||
-                        authFailed
-                      }
+                      isInvalid={formik.touched.email && formik.errors.email}
                       ref={inputRef}
                     />
                     <Form.Control.Feedback type="invalid">
