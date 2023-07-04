@@ -22,8 +22,7 @@ Tasks can be discussed in [Telegram](https://t.me/hexletcommunity/12).
 ## System requirements
 
 * node >= 18
-* Yarn
-* Heroku CLI
+* [Yarn 1 (Classic)](https://classic.yarnpkg.com/)
 * PostgreSQL for use in production environments or SQLite for use in local development environments
 
 ## Installation
@@ -37,7 +36,8 @@ make setup
 ```bash
 make start
 ```
-http://localhost:3000
+
+<http://localhost:3000>
 
 ## Run tests
 

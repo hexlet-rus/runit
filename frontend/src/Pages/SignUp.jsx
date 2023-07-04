@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { object } from 'yup';
@@ -20,14 +20,14 @@ import {
 } from '../utils/validationSchemas';
 
 function SignUp() {
-  const inputRef = useRef();
+  const emailRef = useRef();
+  const loginRef = useRef();
   const { t } = useTranslation();
-  const [regFailed, setRegFailed] = useState(false);
   const navigate = useNavigate();
   const auth = useAuth();
 
   useEffect(() => {
-    inputRef.current.focus();
+    emailRef.current.focus();
   }, []);
 
   const validationSchema = object().shape({
@@ -57,9 +57,25 @@ function SignUp() {
           console.log(t('errors.unknown'));
           throw err;
         }
-        if (err.response?.status === 400) {
-          setRegFailed(true);
-          inputRef.current.select();
+        if (
+          err.response?.status === 400 &&
+          Array.isArray(err.response?.data?.errs?.message)
+        ) {
+          err.response.data.errs.message.forEach((e) => {
+            switch (e) {
+              case 'loginIsUsed':
+                formik.errors.login = 'signUp.validation.loginIsUsed';
+                loginRef.current.select();
+                break;
+              case 'emailIsUsed':
+                formik.errors.email = 'signUp.validation.emailIsUsed';
+                emailRef.current.select();
+                break;
+              default:
+                console.log(t('signUp.signUpFailed'));
+                throw err;
+            }
+          });
         } else {
           console.log(t('errors.network'));
           throw err;
@@ -82,8 +98,8 @@ function SignUp() {
                       {t('signUp.emailLabel')}
                     </Form.Label>
                     <Form.Control
-                      onChange={formik.handleChange}
                       value={formik.values.email}
+                      onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="email"
@@ -94,7 +110,8 @@ function SignUp() {
                       id="email"
                       autoComplete="email"
                       required
-                      ref={inputRef}
+                      isInvalid={formik.touched.email && formik.errors.email}
+                      ref={emailRef}
                     />
                     <Form.Control.Feedback type="invalid">
                       {(formik.touched.email && t(formik.errors.email)) ||
@@ -107,8 +124,8 @@ function SignUp() {
                       {t('signUp.usernameLabel')}
                     </Form.Label>
                     <Form.Control
-                      onChange={formik.handleChange}
                       value={formik.values.login}
+                      onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="login"

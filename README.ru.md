@@ -22,8 +22,7 @@ Runit — это среда для написания и выполнения к
 ## Системные требования
 
 * node >= 18
-* Yarn
-* Heroku CLI (только для деплоя)
+* [Yarn 1 (Classic)](https://classic.yarnpkg.com/)
 * PostgreSQL для продакшена, либо SQLite для локальной разработки
 
 ## Установка
@@ -37,7 +36,8 @@ make setup
 ```bash
 make start
 ```
-http://localhost:3000
+
+<http://localhost:3000>
 
 ## Запуск тестов
 
@@ -88,8 +88,8 @@ make test-e2e
 
 ---
 
-[![© ООО “Хекслет Рус” logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=hexlet-editor)
+[![© ООО «Хекслет Рус» logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=hexlet-editor)
 
-Этот репозиторий создается и поддерживается командой и сообществом © ООО “Хекслет Рус”, образовательный проект. [Подробнее о © ООО “Хекслет Рус”](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=hexlet-editor).
+Этот репозиторий создается и поддерживается командой и сообществом © ООО «Хекслет Рус», образовательный проект. [Подробнее о © ООО «Хекслет Рус»](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=hexlet-editor).
 
 См. самых активных участников на [hexlet-friends](https://friends.hexlet.io/).

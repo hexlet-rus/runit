@@ -32,7 +32,7 @@ const enLocales = {
       passwordLabel: 'Password',
       confirmPasswordLabel: 'Confirm password',
       registerButton: 'Sign up',
-      signUpFailed: 'This user already exists',
+      signUpFailed: 'Sign Up is failed',
       footer: {
         signInHeader: 'Already have an account? ',
         signIn: 'Sign in',
