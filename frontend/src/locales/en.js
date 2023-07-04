@@ -37,16 +37,6 @@ const enLocales = {
         signInHeader: 'Already have an account? ',
         signIn: 'Sign in',
       },
-      validation: {
-        requiredField: 'Required field',
-        correctUsername: 'There must be no spaces in the username',
-        correctEmail: 'Incorrect email',
-        usernameLength: 'From 3 to 16 characters',
-        passwordLength: 'from 8 to 30 characters',
-        confirmPassword: 'Passwords must be the same',
-        loginIsUsed: 'This username is already taken',
-        emailIsUsed: 'This email address is already being used',
-      },
     },
     remindPass: {
       pageHeader: 'Forgot password?',
@@ -57,9 +47,6 @@ const enLocales = {
         signUp: 'Create a free account',
         signInHeader: 'Already have an account? ',
         signIn: 'Sign in',
-      },
-      validation: {
-        correctEmail: 'Incorrect email',
       },
     },
     signIn: {
@@ -72,10 +59,6 @@ const enLocales = {
       footer: {
         signUpHeader: 'No account? ',
         signUp: 'Create a free account',
-      },
-      validation: {
-        requiredField: 'Required field',
-        correctEmail: 'Incorrect email',
       },
       withGithub: 'Sign in with Github',
     },
@@ -196,14 +179,26 @@ const enLocales = {
     validation: {
       snippetNameMaxLength: 'No more than 20 characters',
       required: `Can't be empty`,
-      singleWord: 'Allowed latin letters, numders and sybmols"-_"',
+      singleWord: 'Allowed latin letters, numbers and symbols"-_"',
     },
+
     appRotes: {
       pageNotFound: 'Page not found',
     },
     errors: {
       unknown: 'Unknown error',
       network: 'Network error',
+      validation: {
+        requiredField: 'Required field',
+        correctEmail: 'Incorrect email',
+        correctUsername: 'There must be no spaces in the username',
+        usernameLength: 'From 3 to 16 characters',
+        passwordLength: 'from 8 to 30 characters',
+        confirmPassword: 'Passwords must be the same',
+        snippetNameMaxLength: 'No more than 20 characters',
+        required: `Can't be empty`,
+        singleWord: 'Allowed latin letters, numbers and symbols"-_"',
+      },
     },
     pageNotFound: {
       title: 'Error 404',

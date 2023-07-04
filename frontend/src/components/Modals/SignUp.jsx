@@ -3,7 +3,7 @@ import { useFormik } from 'formik';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { object, string } from 'yup';
+import { object } from 'yup';
 
 import axios from 'axios';
 
@@ -12,6 +12,12 @@ import routes from '../../routes';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
 import classes from './Modals.module.css';
+import {
+  confirmPassword,
+  email,
+  login,
+  password,
+} from '../../utils/validationSchemas';
 
 function SignUpModal() {
   const dispatch = useDispatch();
@@ -27,27 +33,12 @@ function SignUpModal() {
       confirmPassword: '',
     },
     validationSchema: object().shape({
-      login: string()
-        .min(3, t('signUp.validation.usernameLength'))
-        .max(16, t('signUp.validation.usernameLength'))
-        .matches(/^[\w\S]*$/, t('signUp.validation.correctUsername'))
-        .typeError()
-        .required(t('signUp.validation.requiredField')),
-      email: string()
-        .email(t('signUp.validation.correctEmail'))
-        .required(t('signUp.validation.requiredField')),
-      password: string()
-        .trim()
-        .min(8, t('signUp.validation.passwordLength'))
-        .max(30, t('signUp.validation.passwordLength'))
-        .typeError()
-        .required(t('signUp.validation.requiredField')),
-      confirmPassword: string().test(
-        'confirmPassword',
-        t('signUp.validation.confirmPassword'),
-        (password, context) => password === context.parent.password,
-      ),
+      login: login(),
+      email: email(),
+      password: password(),
+      confirmPassword: confirmPassword(),
     }),
+    validateOnBlur: false,
     onSubmit: async (values, actions) => {
       try {
         actions.setSubmitting(true);
@@ -104,11 +95,11 @@ function SignUpModal() {
               onChange={formik.handleChange}
               value={formik.values.email}
               isInvalid={
-                (formik.touched.email && formik.errors.email) || regFailed
+                (formik.touched.email && t(formik.errors.email)) || regFailed
               }
             />
             <Form.Control.Feedback type="invalid">
-              {(formik.touched.email && formik.errors.email) || regFailed}
+              {(formik.touched.email && t(formik.errors.email)) || regFailed}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={classes.formGroup}>
@@ -123,11 +114,11 @@ function SignUpModal() {
               autoComplete="username"
               required
               isInvalid={
-                (formik.touched.login && formik.errors.login) || regFailed
+                (formik.touched.login && t(formik.errors.login)) || regFailed
               }
             />
             <Form.Control.Feedback type="invalid">
-              {formik.errors.login ? formik.errors.login : regFailed}
+              {formik.errors.login ? t(formik.errors.login) : regFailed}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={classes.formGroup}>
@@ -147,11 +138,12 @@ function SignUpModal() {
               onChange={formik.handleChange}
               value={formik.values.password}
               isInvalid={
-                (formik.touched.password && formik.errors.password) || regFailed
+                (formik.touched.password && t(formik.errors.password)) ||
+                regFailed
               }
             />
             <Form.Control.Feedback type="invalid">
-              {formik.errors.password ? formik.errors.password : regFailed}
+              {formik.errors.password ? t(formik.errors.password) : regFailed}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={classes.formGroup}>
@@ -172,13 +164,13 @@ function SignUpModal() {
               value={formik.values.confirmPassword}
               isInvalid={
                 (formik.touched.confirmPassword &&
-                  formik.errors.confirmPassword) ||
+                  t(formik.errors.confirmPassword)) ||
                 regFailed
               }
             />
             <Form.Control.Feedback type="invalid">
               {formik.errors.confirmPassword
-                ? formik.errors.confirmPassword
+                ? t(formik.errors.confirmPassword)
                 : regFailed}
             </Form.Control.Feedback>
           </Form.Group>

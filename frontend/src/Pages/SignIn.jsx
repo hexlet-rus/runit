@@ -1,16 +1,9 @@
 /* eslint-disable no-console */
 import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
-import {
-  Alert,
-  Button,
-  Card,
-  Col,
-  Container,
-  Form,
-  Row,
-} from 'react-bootstrap';
-import { object, string } from 'yup';
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap';
+import { object } from 'yup';
+
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +12,7 @@ import { useAuth } from '../hooks';
 import routes from '../routes.js';
 
 import classes from './SignIn.module.css';
+import { email } from '../utils/validationSchemas';
 
 function SignIn() {
   const inputRef = useRef();
@@ -27,10 +21,8 @@ function SignIn() {
   const { t } = useTranslation();
   const auth = useAuth();
 
-  const validation = object().shape({
-    email: string()
-      .email('signIn.validation.correctEmail')
-      .required('signIn.validation.requiredField'),
+  const validationSchema = object().shape({
+    email: email(),
   });
 
   const formik = useFormik({
@@ -38,7 +30,7 @@ function SignIn() {
       email: '',
       password: '',
     },
-    validationSchema: validation,
+    validationSchema,
     validateOnBlur: false,
     onSubmit: async (values, actions) => {
       try {
@@ -93,7 +85,10 @@ function SignIn() {
                       id="email"
                       autoComplete="email"
                       required
-                      isInvalid={formik.touched.email && formik.errors.email}
+                      isInvalid={
+                        (formik.touched.email && t(formik.errors.email)) ||
+                        authFailed
+                      }
                       ref={inputRef}
                     />
                     <Form.Control.Feedback type="invalid">

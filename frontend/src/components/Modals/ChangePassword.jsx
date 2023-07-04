@@ -1,13 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { object, string } from 'yup';
+import { object } from 'yup';
 import { useFormik } from 'formik';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import routes from '../../routes.js';
 import classes from './Modals.module.css';
 import { actions as modalActions } from '../../slices/modalSlice.js';
+import {
+  confirmPassword as confirmPasswordSchema,
+  password as passwordSchema,
+} from '../../utils/validationSchemas.js';
 
 function ChangePassword() {
   const inputRef = useRef(null);
@@ -21,31 +25,19 @@ function ChangePassword() {
     inputRef.current.focus();
   }, []);
 
+  const validationSchema = object().shape({
+    currPassword: passwordSchema(),
+    password: passwordSchema(),
+    confirmPassword: confirmPasswordSchema(),
+  });
+
   const formik = useFormik({
     initialValues: {
       currPassword: '',
       password: '',
       confirmPassword: '',
     },
-    validationSchema: object().shape({
-      currPassword: string()
-        .trim()
-        .min(8, t('signUp.validation.passwordLength'))
-        .max(30, t('signUp.validation.passwordLength'))
-        .typeError()
-        .required(t('signUp.validation.requiredField')),
-      password: string()
-        .trim()
-        .min(8, t('signUp.validation.passwordLength'))
-        .max(30, t('signUp.validation.passwordLength'))
-        .typeError()
-        .required(t('signUp.validation.requiredField')),
-      confirmPassword: string().test(
-        'confirmPassword',
-        t('signUp.validation.confirmPassword'),
-        (password, context) => password === context.parent.password,
-      ),
-    }),
+    validationSchema,
     onSubmit: async (values, target) => {
       try {
         await axios.put(routes.updateUserPath(id), { id, ...values });
@@ -102,12 +94,13 @@ function ChangePassword() {
               autoComplete="new-password"
               required
               isInvalid={
-                (formik.touched.currPassword && formik.errors.currPassword) ||
+                (formik.touched.currPassword &&
+                  t(formik.errors.currPassword)) ||
                 changeFailed
               }
             />
             <Form.Control.Feedback type="invalid">
-              {formik.touched.currPassword && formik.errors.currPassword}
+              {formik.touched.currPassword && t(formik.errors.currPassword)}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={classes.formGroup}>
@@ -124,12 +117,12 @@ function ChangePassword() {
               autoComplete="new-password"
               required
               isInvalid={
-                (formik.touched.password && formik.errors.password) ||
+                (formik.touched.password && t(formik.errors.password)) ||
                 changeFailed
               }
             />
             <Form.Control.Feedback type="invalid">
-              {formik.touched.password && formik.errors.password}
+              {formik.touched.password && t(formik.errors.password)}
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className={classes.formGroup}>
@@ -147,13 +140,13 @@ function ChangePassword() {
               required
               isInvalid={
                 (formik.touched.confirmPassword &&
-                  formik.errors.confirmPassword) ||
+                  t(formik.errors.confirmPassword)) ||
                 changeFailed
               }
             />
             <Form.Control.Feedback type="invalid">
               {(formik.touched.confirmPassword &&
-                formik.errors.confirmPassword) ||
+                t(formik.errors.confirmPassword)) ||
                 errorFeedback}
             </Form.Control.Feedback>
           </Form.Group>
