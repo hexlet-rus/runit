@@ -12,17 +12,21 @@ import {
 } from 'react-bootstrap';
 import { object, string } from 'yup';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';;
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks';
 
 import routes from '../routes.js';
 
 import classes from './SignIn.module.css';
+import {actions as modalActions} from "../slices/modalSlice";
+import AlertGithub from "../components/Modals/AlertGithub";
 
 function SignIn() {
   const inputRef = useRef();
   const [authFailed, setAuthFailed] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const auth = useAuth();
@@ -55,8 +59,13 @@ function SignIn() {
           throw err;
         }
         if (err.response?.status === 401) {
+          console.log('401');
           setAuthFailed(true);
           inputRef.current.select();
+        }
+        if (err.response?.status === 500) {
+          console.log('500');
+          dispatch(modalActions.openModal({ type: 'AlertGithub' }));
         } else {
           console.log(t('errors.network'));
           throw err;
@@ -72,6 +81,7 @@ function SignIn() {
   }, []);
 
   return (
+    <>
     <Container className="h-100 bg-dark" fluid>
       <Row className="justify-content-center align-content-center h-100">
         <Col xs={12} md={6} xxl={5} className="mt-5 mb-5">
@@ -175,6 +185,8 @@ function SignIn() {
         </Col>
       </Row>
     </Container>
+    <AlertGithub />
+  </>
   );
 }
 

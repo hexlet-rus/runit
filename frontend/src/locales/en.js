@@ -182,6 +182,8 @@ const enLocales = {
         snippetLinkLabel: 'Link to Snippet',
         snippetEmbedLabel: 'Snippet code for insertion',
       },
+      alertGithubHeader: 'Login error',
+      redirectButton: 'Login page'
     },
     saveHeader: 'Save to share.',
     newSnippetName: 'Snippet Name',
@@ -205,6 +207,7 @@ const enLocales = {
     errors: {
       unknown: 'Unknown error',
       network: 'Network error',
+      githubPublicEmail: 'Login error on github. A public email is required =('
     },
     pageNotFound: {
       title: 'Error 404',

@@ -199,10 +199,12 @@ const ruLocales = {
       saveHeader: 'Сохраните, чтобы поделиться.',
       newSnippetName: 'Название сниппета',
       signInButton: 'Войти',
+      redirectButton: 'Перейти к странице входа',
       signUpButton: 'Создать аккаунт',
       signInHeader: 'Авторизация',
       signUpHeader: 'Регистрация',
       editUserHeader: 'Редактирование',
+      alertGithubHeader: 'Ошибка входа',
       sendButton: 'Отправить',
       infoBody: 'Авторизуйтесь, чтобы сохранять и делиться.',
       cancelButton: 'Отмена',
@@ -219,6 +221,7 @@ const ruLocales = {
     errors: {
       unknown: 'Неизвестная ошибка',
       network: 'Ошибка сети',
+      githubPublicEmail: 'Ошибка входа в github. Требуется публичный email =('
     },
     pageNotFound: {
       title: 'Ошибка 404',
