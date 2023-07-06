@@ -50,7 +50,7 @@ function AppRoutes() {
               path={routes.profileSettingsPagePath()}
               element={<Profile />}
             />
-            <Route path={routes.profilePagePath()} element={<Profile />} />
+            <Route path={routes.pageProfilePath()} element={<Profile />} />
           </Route>
           <Route element={<AuthRoute user={isLoggedIn} />}>
             <Route path={routes.signUpPagePath()} element={<SignUp />} />
