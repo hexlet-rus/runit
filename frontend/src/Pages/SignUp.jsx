@@ -206,15 +206,6 @@ function SignUp() {
                 id="github-button"
                 className="btn btn-block btn-social btn-github text-light ps-0"
                 href={routes.oAuthPath()}
-                onClick={(e) => {
-                  e.preventDefault();
-
-                  const result = window.confirm(t('signIn.attentionGithub'));
-
-                  if (result) {
-                    window.location.href = e.target.href;
-                  }
-                }}
               >
                 {t('signIn.withGithub')}
               </a>

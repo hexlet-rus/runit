@@ -12,16 +12,15 @@ import {
 } from 'react-bootstrap';
 import { object, string } from 'yup';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';;
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks';
 
 import routes from '../routes.js';
 
 import classes from './SignIn.module.css';
-import {actions as modalActions} from "../slices/modalSlice";
-import AlertGithub from "../components/Modals/AlertGithub";
+import { actions as modalActions } from '../slices/modalSlice';
 
 function SignIn() {
   const inputRef = useRef();
@@ -36,6 +35,14 @@ function SignIn() {
       .email('signIn.validation.correctEmail')
       .required('signIn.validation.requiredField'),
   });
+  const handleAlertModal = () => {
+    dispatch(
+      modalActions.openModal({
+        type: 'alertGithub',
+        item: null,
+      }),
+    );
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -60,12 +67,9 @@ function SignIn() {
         }
         if (err.response?.status === 401) {
           console.log('401');
+          dispatch(modalActions.openModal({ type: 'alertGithub' }));
           setAuthFailed(true);
           inputRef.current.select();
-        }
-        if (err.response?.status === 500) {
-          console.log('500');
-          dispatch(modalActions.openModal({ type: 'AlertGithub' }));
         } else {
           console.log(t('errors.network'));
           throw err;
@@ -80,8 +84,21 @@ function SignIn() {
     inputRef?.current?.focus();
   }, []);
 
+  const gitHubRedirect = async () => {
+    try {
+      const response = await axios.get(routes.oAuthPath());
+      console.log(response);
+    } catch (err) {
+      if (!err.isAxiosError) {
+        console.log('unknown err in githubRedirect');
+        console.log(t('errors.unknown'));
+        throw err;
+      }
+      console.log('err', err);
+    }
+  };
+
   return (
-    <>
     <Container className="h-100 bg-dark" fluid>
       <Row className="justify-content-center align-content-center h-100">
         <Col xs={12} md={6} xxl={5} className="mt-5 mb-5">
@@ -159,13 +176,7 @@ function SignIn() {
                 id="github-button"
                 className="btn btn-block btn-social btn-github text-light ps-0"
                 href={routes.oAuthPath()}
-                onClick={(e) => {
-                  e.preventDefault();
-                  const result = window.confirm(t('signIn.attentionGithub'));
-                  if (result) {
-                    window.location.href = e.target.href;
-                  }
-                }}
+                onClick={gitHubRedirect}
               >
                 {t('signIn.withGithub')}
               </a>
@@ -176,6 +187,8 @@ function SignIn() {
                 <span className="text-muted">
                   {t('signIn.footer.signUpHeader')}
                 </span>
+                {/* тестовая кнопка на вывод модалки */}
+                <button onClick={handleAlertModal}>modals</button>
                 <a className="link-light" href={routes.signUpPagePath()}>
                   {t('signIn.footer.signUp')}
                 </a>
@@ -185,8 +198,6 @@ function SignIn() {
         </Col>
       </Row>
     </Container>
-    <AlertGithub />
-  </>
   );
 }
 
