@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { object } from 'yup';
@@ -25,7 +25,6 @@ function SignUp() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const auth = useAuth();
-  const [regFailed, setRegFailed] = useState(false);
 
   useEffect(() => {
     emailRef.current.focus();
@@ -62,15 +61,14 @@ function SignUp() {
           err.response?.status === 400 &&
           Array.isArray(err.response?.data?.errs?.message)
         ) {
-          setRegFailed(true);
           err.response.data.errs.message.forEach((e) => {
             switch (e) {
               case 'loginIsUsed':
-                formik.errors.login = 'signUp.validation.loginIsUsed';
+                formik.errors.login = 'errors.validation.loginIsUsed';
                 loginRef.current.select();
                 break;
               case 'emailIsUsed':
-                formik.errors.email = 'signUp.validation.emailIsUsed';
+                formik.errors.email = 'errors.validation.emailIsUsed';
                 emailRef.current.select();
                 break;
               default:
@@ -105,18 +103,14 @@ function SignUp() {
                       onBlur={formik.handleBlur}
                       className={`form-input bg-dark text-white ${classes.signUpInput}`}
                       name="email"
-                      isInvalid={
-                        (formik.touched.email && t(formik.errors.email)) ||
-                        regFailed
-                      }
                       id="email"
                       autoComplete="email"
                       required
+                      isInvalid={formik.touched.email && formik.errors.email}
                       ref={emailRef}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {(formik.touched.email && t(formik.errors.email)) ||
-                        regFailed}
+                      {t(formik.errors.email)}
                     </Form.Control.Feedback>
                   </Form.Group>
 
@@ -133,13 +127,11 @@ function SignUp() {
                       id="login"
                       autoComplete="username"
                       required
-                      isInvalid={
-                        (formik.touched.login && t(formik.errors.login)) ||
-                        regFailed
-                      }
+                      isInvalid={formik.touched.login && formik.errors.login}
+                      ref={loginRef}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {formik.errors.login ? t(formik.errors.login) : regFailed}
+                      {t(formik.errors.login)}
                     </Form.Control.Feedback>
                   </Form.Group>
 
@@ -158,15 +150,11 @@ function SignUp() {
                       autoComplete="new-password"
                       required
                       isInvalid={
-                        (formik.touched.password &&
-                          t(formik.errors.password)) ||
-                        regFailed
+                        formik.touched.password && formik.errors.password
                       }
                     />
                     <Form.Control.Feedback type="invalid">
-                      {formik.errors.password
-                        ? t(formik.errors.password)
-                        : regFailed}
+                      {t(formik.errors.password)}
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group className={classes.formGroup}>
@@ -184,15 +172,12 @@ function SignUp() {
                       autoComplete="new-password"
                       required
                       isInvalid={
-                        (formik.touched.confirmPassword &&
-                          t(formik.errors.confirmPassword)) ||
-                        regFailed
+                        formik.touched.confirmPassword &&
+                        formik.errors.confirmPassword
                       }
                     />
                     <Form.Control.Feedback type="invalid">
-                      {formik.errors.confirmPassword
-                        ? t(formik.errors.confirmPassword)
-                        : t('signUp.signUpFailed')}
+                      {t(formik.errors.confirmPassword)}
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Button
