@@ -5,7 +5,7 @@ build:
 	yarn build
 
 lint:
-	npx eslint --ext .jsx,.js ./
+	npx eslint --ext .jsx,.js ./ --fix
 
 start:
 	yarn start
