@@ -13,6 +13,15 @@ import {
   UseGuards,
   Response,
 } from '@nestjs/common';
+import {
+  ApiBadRequestResponse,
+  ApiCookieAuth,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiParam,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User as UserDecorator } from './users.decorator';
@@ -24,15 +33,6 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { HttpValidationFilter } from './exceptions/validation-exception.filter';
 import { AuthService } from '../auth/auth.service';
 import { RecoverUserDto } from './dto/recover-user.dto';
-import { 
-  ApiBadRequestResponse, 
-  ApiCookieAuth, 
-  ApiCreatedResponse, 
-  ApiOkResponse, 
-  ApiParam, 
-  ApiTags, 
-  ApiUnauthorizedResponse 
-} from '@nestjs/swagger';
 
 @ApiTags('users')
 @Controller('users')
@@ -81,7 +81,10 @@ export class UsersController {
 
   @Post()
   @UseFilters(new HttpValidationFilter())
-  @ApiCreatedResponse({ description: 'Successfully created user and logged in! Token lasts 60 minutes!' })
+  @ApiCreatedResponse({
+    description:
+      'Successfully created user and logged in! Token lasts 60 minutes!',
+  })
   @ApiBadRequestResponse({ description: 'Validation failed!' })
   async create(@Body() createUserDto: CreateUserDto, @Response() res: any) {
     const user = await this.usersService.create(createUserDto);
@@ -90,7 +93,9 @@ export class UsersController {
 
   @Post('recover')
   @UseFilters(new HttpValidationFilter())
-  @ApiCreatedResponse({ description: 'Successfully returned recovery hash key' })
+  @ApiCreatedResponse({
+    description: 'Successfully returned recovery hash key',
+  })
   @ApiBadRequestResponse({ description: 'Validation failed!' })
   async recover(@Body() recoverUserDto: RecoverUserDto) {
     return this.usersService.recover(recoverUserDto);
@@ -125,4 +130,3 @@ export class UsersController {
     return this.usersService.delete(id);
   }
 }
-
