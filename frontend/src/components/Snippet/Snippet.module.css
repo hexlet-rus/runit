@@ -12,7 +12,7 @@
 .snippetTools {
   display: flex;
   flex-direction: row;
-  mag-height: 38px;
+  max-height: 38px;
   gap: 15%;
 }
 
