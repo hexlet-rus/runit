@@ -42,28 +42,38 @@ export class AuthService {
     url.searchParams.set('code', code);
     const preparedUrl = url.toString();
 
-    const { data } = await axios.get(preparedUrl);
-    const parsedData = data.split('&').reduce((acc, str) => {
-      const [key, value] = str.split('=');
-      return { ...acc, [key]: value };
-    }, {});
-
-    const githubUserDataUrl = process.env.GITHUB_USER_URL;
-    const { data: githubUserData } = await axios.get(githubUserDataUrl, {
-      headers: { Authorization: `Bearer ${parsedData.access_token}` },
+    const { data } = await axios.get(preparedUrl, {
+      headers: { Accept: 'application/json' },
     });
 
-    this.sentryService.debug(`github user email: ${githubUserData.email}`);
+    const githubUserDataUrl = process.env.GITHUB_USER_URL;
 
-    let user = githubUserData.email
-      ? await this.usersService.findByEmail(githubUserData.email)
-      : null;
+    const { data: githubUserData } = await axios.get(githubUserDataUrl, {
+      headers: { Authorization: `Bearer ${data.access_token}` },
+    });
+    const fetchEmail = async () => {
+      const { data: githubUserEmail } = await axios.get(
+        `${githubUserDataUrl}/emails`,
+        {
+          headers: { Authorization: `Bearer ${data.access_token}` },
+        },
+      );
+      const { email } = githubUserEmail[0];
+      return email;
+    };
+
+    const userEmail = githubUserData.email ?? (await fetchEmail());
+
+    this.sentryService.debug(`github user email: ${userEmail}`);
+
+    const curUser = await this.usersService.findByEmail(userEmail);
+    let user = curUser ?? null;
 
     if (!user) {
       const password = generate();
       const userDto = {
         login: githubUserData.login,
-        email: githubUserData.email,
+        email: userEmail,
         password,
         confirmPassword: password,
       };
