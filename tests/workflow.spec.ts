@@ -20,3 +20,59 @@ test('work', async ({ page }) => {
 
   await expect(page.locator(':text("hello")')).toBeVisible();
 });
+
+test('Unable to register by invalid email ', async ({page}) => {
+  const randomNum = Math.round(Math.random() * 1000 + Math.random() * 100);
+  await page.goto('http://localhost:3000');
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test222@.t`);
+  await page.getByLabel('Логин').fill(`test${randomNum}`);
+  await page.getByLabel('Пароль', { exact: true }).fill('12345678');
+  await page.getByLabel('Подтвердить пароль').fill('12345678');
+  await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  await expect(page.getByText('Некорректная электронная почта')).toBeVisible();
+})
+
+test('Unable to register by invalid password ', async ({page}) => {
+  const randomNum = Math.round(Math.random() * 1000 + Math.random() * 100);
+  await page.goto('http://localhost:3000');
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test${randomNum}@test.test`);
+  await page.getByLabel('Логин').fill(`test${randomNum}`);
+  await page.getByLabel('Пароль', { exact: true }).fill('1234567');
+  await page.getByLabel('Подтвердить пароль').fill('1234567');
+  await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  await expect(page.getByText('От 8 до 30 символов')).toBeVisible();
+})
+
+test('Unable to re-register with an already registered email', async ({ page }) => {
+  const randomNum = Math.round(Math.random() * 1000 + Math.random() * 100);
+  await page.goto('http://localhost:3000');
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test${randomNum}@test.test`);
+  await page.getByLabel('Логин').fill(`test${randomNum}`);
+  await page.getByLabel('Пароль', { exact: true }).fill('12345678');
+  await page.getByLabel('Подтвердить пароль').fill('12345678');
+  await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  
+  await page.getByRole('button', { name: 'Выйти' }).click();
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test${randomNum}@test.test`);
+  await page.getByLabel('Логин').fill(`test${randomNum}`);
+  await page.getByLabel('Пароль', { exact: true }).fill('12345678');
+  await page.getByLabel('Подтвердить пароль').fill('12345678');
+  await expect(page.getByText('Этот адрес уже зарегистрирован')).toBeVisible();
+});
+
+// test('Тест загрузки кнопки выйти', async ({ page }) => {
+//   const randomNum = Math.round(Math.random() * 1000 + Math.random() * 100);
+//   await page.goto('http://localhost:3000');
+//   await page.getByRole('button', { name: 'Регистрация' }).click();
+//   await page.getByLabel('Электронная почта').fill(`test${randomNum}@test.test`);
+//   await page.getByLabel('Логин').fill(`test${randomNum}`);
+//   await page.getByLabel('Пароль', { exact: true }).fill('12345678');
+//   await page.getByLabel('Подтвердить пароль').fill('12345678');
+//   await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  
+//   await expect(page.getByRole('button', { name: 'Выйти' })).toBeVisible();
+// });
