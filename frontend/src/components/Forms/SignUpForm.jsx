@@ -13,7 +13,7 @@ import {
   password,
 } from '../../utils/validationSchemas';
 import { useAuth } from '../../hooks';
-import classes from '../../Pages/SignUp.module.css';
+import classes from './Form.module.css';
 
 function SignupForm({ onSuccess = () => null }) {
   const { t } = useTranslation();
