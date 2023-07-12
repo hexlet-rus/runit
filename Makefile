@@ -28,6 +28,16 @@ lint-frontend:
 lint-backend:
 	make -C backend lint
 
+lint-fix:
+	make lint-frontend-fix
+	make lint-backend-fix
+
+lint-frontend-fix:
+	make -C frontend lint-fix
+
+lint-backend-fix:
+	make -C backend lint-fix
+
 test:
 	make -C backend test
 

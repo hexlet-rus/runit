@@ -12,6 +12,15 @@ import {
   UseFilters,
   UseGuards,
 } from '@nestjs/common';
+import {
+  ApiBadRequestResponse,
+  ApiCookieAuth,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiParam,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { User as UserDecorator } from '../users/users.decorator';
 import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
@@ -22,15 +31,6 @@ import { ParseIntPipe } from './pipes/parse-int.pipe';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ValidationPipe } from './validation/validation.pipe';
 import { User } from '../users/interfaces/users.interface';
-import { 
-  ApiBadRequestResponse,
-  ApiCookieAuth, 
-  ApiCreatedResponse, 
-  ApiOkResponse, 
-  ApiParam, 
-  ApiTags, 
-  ApiUnauthorizedResponse 
-} from '@nestjs/swagger';
 
 @ApiTags('snippets')
 @Controller('snippets')
@@ -45,7 +45,7 @@ export class SnippetsController {
   }
 
   @Get('name')
-  @ApiOkResponse({ description: 'Successfully generated name for snippet'})
+  @ApiOkResponse({ description: 'Successfully generated name for snippet' })
   async generateName(): Promise<string> {
     return this.snippetsService.generateName();
   }
