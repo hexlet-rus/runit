@@ -16,7 +16,7 @@ export class CheckEmail implements ValidatorConstraintInterface {
   async validate(text: string, validationArguments: ValidationArguments) {
     const email = validationArguments.value;
     const { object } = validationArguments;
-    const exists = await this.usersService.find(email);
+    const exists = await this.usersService.find(email.toLowerCase());
     if (object['id'] && exists) {
       return exists.id === object['id'];
     }
