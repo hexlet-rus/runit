@@ -85,6 +85,7 @@ export class AuthService {
     const payload = { email: user.email, sub: user.id };
     const token = this.jwtService.sign(payload);
     response.cookie('access_token', token);
-    return response.redirect('/profile');
+
+    return response.redirect('/profile/snippets');
   }
 }
