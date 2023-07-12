@@ -32,8 +32,8 @@ const enLocales = {
       passwordLabel: 'Password',
       confirmPasswordLabel: 'Confirm password',
       registerButton: 'Sign up',
-      signUpFailed: 'Sign Up is failed',
       footer: {
+        signUpFailed: 'Sign Up is failed',
         signInHeader: 'Already have an account? ',
         signIn: 'Sign in',
       },
@@ -165,6 +165,7 @@ const enLocales = {
         snippetEmbedLabel: 'Snippet code for insertion',
       },
     },
+    snippetUnavailable: 'Snippet is unavailable or has been deleted by user',
     saveHeader: 'Save to share.',
     newSnippetName: 'Snippet Name',
     signInButton: 'Sign in',
