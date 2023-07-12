@@ -66,14 +66,16 @@ export class AuthService {
 
     this.sentryService.debug(`github user email: ${userEmail}`);
 
-    const curUser = await this.usersService.findByEmail(userEmail);
+    const curUser = await this.usersService.findByEmail(
+      userEmail.toLowerCase(),
+    );
     let user = curUser ?? null;
 
     if (!user) {
       const password = generate();
       const userDto = {
         login: githubUserData.login,
-        email: userEmail,
+        email: userEmail.toLowerCase(),
         password,
         confirmPassword: password,
       };
