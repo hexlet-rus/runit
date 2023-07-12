@@ -7,16 +7,16 @@ import {
   Matches,
   Validate,
 } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 import { CheckEmail } from '../validation/check-email';
 import { CheckLogin } from '../validation/check-login';
 import { CheckPassword } from '../validation/check-password';
 import { ComparePasswords } from '../validation/compare-passwords';
-import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateUserDto {
-  @ApiProperty({ 
+  @ApiProperty({
     minLength: 3,
-    maxLength: 20, 
+    maxLength: 20,
     description: 'Must be unique!',
     example: 'UpdatedJohnDoe',
     pattern: '/[A-Za-z]/',
@@ -31,7 +31,7 @@ export class UpdateUserDto {
   })
   login?: string;
 
-  @ApiProperty({ 
+  @ApiProperty({
     description: 'Must be unique!',
     example: 'updated-jane-doe@mail.ru',
     required: false,
@@ -44,7 +44,7 @@ export class UpdateUserDto {
   })
   email?: string;
 
-  @ApiProperty({ 
+  @ApiProperty({
     description: 'Current account password',
     example: 'haew6wae56a45ewgd',
     required: false,
@@ -69,7 +69,7 @@ export class UpdateUserDto {
   @Length(8, 30)
   password?: string;
 
-  @ApiProperty({ 
+  @ApiProperty({
     example: 'ha6ew6ewa5gea',
     description: 'Must be equal with password field!',
     required: false,
