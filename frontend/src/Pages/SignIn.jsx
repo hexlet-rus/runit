@@ -13,19 +13,16 @@ import {
 import { object, string } from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../hooks';
 
 import routes from '../routes.js';
 
 import classes from './SignIn.module.css';
-import { actions as modalActions } from '../slices/modalSlice';
 
 function SignIn() {
   const inputRef = useRef();
   const [authFailed, setAuthFailed] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const auth = useAuth();
@@ -35,14 +32,6 @@ function SignIn() {
       .email('signIn.validation.correctEmail')
       .required('signIn.validation.requiredField'),
   });
-  const handleAlertModal = () => {
-    dispatch(
-      modalActions.openModal({
-        type: 'alertGithub',
-        item: null,
-      }),
-    );
-  };
 
   const formik = useFormik({
     initialValues: {
@@ -66,8 +55,6 @@ function SignIn() {
           throw err;
         }
         if (err.response?.status === 401) {
-          console.log('401');
-          dispatch(modalActions.openModal({ type: 'alertGithub' }));
           setAuthFailed(true);
           inputRef.current.select();
         } else {
@@ -83,20 +70,6 @@ function SignIn() {
   useEffect(() => {
     inputRef?.current?.focus();
   }, []);
-
-  const gitHubRedirect = async () => {
-    try {
-      const response = await axios.get(routes.oAuthPath());
-      console.log(response);
-    } catch (err) {
-      if (!err.isAxiosError) {
-        console.log('unknown err in githubRedirect');
-        console.log(t('errors.unknown'));
-        throw err;
-      }
-      console.log('err', err);
-    }
-  };
 
   return (
     <Container className="h-100 bg-dark" fluid>
@@ -176,19 +149,15 @@ function SignIn() {
                 id="github-button"
                 className="btn btn-block btn-social btn-github text-light ps-0"
                 href={routes.oAuthPath()}
-                onClick={gitHubRedirect}
               >
                 {t('signIn.withGithub')}
               </a>
-              <p className="text-muted">{t('signIn.attentionGithub')}</p>
             </Card.Body>
             <Card.Footer className="border-top-0 text-center py-3">
               <div className="py-lg-2">
                 <span className="text-muted">
                   {t('signIn.footer.signUpHeader')}
                 </span>
-                {/* тестовая кнопка на вывод модалки */}
-                <button onClick={handleAlertModal}>modals</button>
                 <a className="link-light" href={routes.signUpPagePath()}>
                   {t('signIn.footer.signUp')}
                 </a>

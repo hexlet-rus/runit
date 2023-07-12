@@ -209,7 +209,6 @@ function SignUp() {
               >
                 {t('signIn.withGithub')}
               </a>
-              <p className="text-muted">{t('signIn.attentionGithub')}</p>
             </Card.Body>
             <Card.Footer className="border-top-0 text-center py-3">
               <div className="py-lg-2">
