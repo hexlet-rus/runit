@@ -1,76 +1,14 @@
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
-import { Modal, Button, Form } from 'react-bootstrap';
+import React from 'react';
+import { Button, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { object, string } from 'yup';
-
-import axios from 'axios';
-
-import { useAuth } from '../../hooks';
-import routes from '../../routes';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
-import classes from './Modals.module.css';
+import SignupForm from '../Forms/SignUpForm';
 
 function SignUpModal() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const [regFailed, setRegFailed] = useState(false);
-  const auth = useAuth();
-
-  const formik = useFormik({
-    initialValues: {
-      login: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-    },
-    validationSchema: object().shape({
-      login: string()
-        .min(3, t('signUp.validation.usernameLength'))
-        .max(16, t('signUp.validation.usernameLength'))
-        .matches(/^[\w\S]*$/, t('signUp.validation.correctUsername'))
-        .typeError()
-        .required(t('signUp.validation.requiredField')),
-      email: string()
-        .email(t('signUp.validation.correctEmail'))
-        .required(t('signUp.validation.requiredField')),
-      password: string()
-        .trim()
-        .min(8, t('signUp.validation.passwordLength'))
-        .max(30, t('signUp.validation.passwordLength'))
-        .typeError()
-        .required(t('signUp.validation.requiredField')),
-      confirmPassword: string().test(
-        'confirmPassword',
-        t('signUp.validation.confirmPassword'),
-        (password, context) => password === context.parent.password,
-      ),
-    }),
-    onSubmit: async (values, actions) => {
-      try {
-        actions.setSubmitting(true);
-        const response = await axios.post(routes.usersPath(), values);
-        auth.logIn();
-        dispatch(modalActions.closeModal());
-        actions.setSubmitting(false);
-        return response.data;
-      } catch (err) {
-        if (!err.isAxiosError) {
-          console.log(t('errors.unknown'));
-          throw err;
-        }
-        if (err.response?.status === 400) {
-          setRegFailed(true);
-        } else {
-          console.log(t('errors.network'));
-          throw err;
-        }
-        actions.setSubmitting(false);
-      }
-    },
-  });
 
   return (
     <Modal
@@ -89,109 +27,11 @@ function SignUpModal() {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="bg-dark text-white">
-        <Form noValidate onSubmit={formik.handleSubmit}>
-          <Form.Group className={classes.formGroup}>
-            <Form.Label htmlFor="email" controlId="email" label="Email">
-              {t('signUp.emailLabel')}
-            </Form.Label>
-            <Form.Control
-              name="email"
-              type="email"
-              autoComplete="email"
-              className={`form-input bg-dark text-white ${classes.signInput}`}
-              required
-              autoFocus
-              onChange={formik.handleChange}
-              value={formik.values.email}
-              isInvalid={
-                (formik.touched.email && formik.errors.email) || regFailed
-              }
-            />
-            <Form.Control.Feedback type="invalid">
-              {(formik.touched.email && formik.errors.email) || regFailed}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group className={classes.formGroup}>
-            <Form.Label htmlFor="login">{t('signUp.usernameLabel')}</Form.Label>
-            <Form.Control
-              onChange={formik.handleChange}
-              value={formik.values.login}
-              onBlur={formik.handleBlur}
-              className={`form-input bg-dark text-white ${classes.signUpInput}`}
-              name="login"
-              id="login"
-              autoComplete="username"
-              required
-              isInvalid={
-                (formik.touched.login && formik.errors.login) || regFailed
-              }
-            />
-            <Form.Control.Feedback type="invalid">
-              {formik.errors.login ? formik.errors.login : regFailed}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group className={classes.formGroup}>
-            <Form.Label
-              htmlFor="password"
-              controlId="password"
-              label="Password"
-            >
-              {t('signUp.passwordLabel')}
-            </Form.Label>
-            <Form.Control
-              name="password"
-              type="password"
-              autoComplete="new-password"
-              className={`form-input bg-dark text-white ${classes.signInput}`}
-              required
-              onChange={formik.handleChange}
-              value={formik.values.password}
-              isInvalid={
-                (formik.touched.password && formik.errors.password) || regFailed
-              }
-            />
-            <Form.Control.Feedback type="invalid">
-              {formik.errors.password ? formik.errors.password : regFailed}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group className={classes.formGroup}>
-            <Form.Label
-              htmlFor="confirmPassword"
-              controlId="confirmPassword"
-              label="Confirm password"
-            >
-              {t('signUp.confirmPasswordLabel')}
-            </Form.Label>
-            <Form.Control
-              name="confirmPassword"
-              type="password"
-              autoComplete="new-password"
-              className={`form-input bg-dark text-white ${classes.signInput}`}
-              required
-              onChange={formik.handleChange}
-              value={formik.values.confirmPassword}
-              isInvalid={
-                (formik.touched.confirmPassword &&
-                  formik.errors.confirmPassword) ||
-                regFailed
-              }
-            />
-            <Form.Control.Feedback type="invalid">
-              {formik.errors.confirmPassword
-                ? formik.errors.confirmPassword
-                : regFailed}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Button
-            type="submit"
-            variant="primary"
-            className="w-100 mt-3 pt-2 pb-2"
-            data-disable-with="Войти"
-            disabled={formik.isSubmitting}
-          >
-            {t('signUp.registerButton')}
-          </Button>
-        </Form>
+        <SignupForm
+          onSuccess={() => {
+            dispatch(modalActions.closeModal());
+          }}
+        />
       </Modal.Body>
       <Modal.Footer
         className="d-flex bg-dark border-secondary"

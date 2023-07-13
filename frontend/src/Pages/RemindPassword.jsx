@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 import React, { useEffect, useRef } from 'react';
-import { object, string } from 'yup';
+import { object } from 'yup';
 import { useFormik } from 'formik';
 import { Container, Card, Col, Row, Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import routes from '../routes.js';
+import { email } from '../utils/validationSchemas.js';
 
 function RemindPassword() {
   const inputRef = useRef();
@@ -14,15 +15,15 @@ function RemindPassword() {
     inputRef.current.focus();
   }, []);
 
-  const emailValidation = object().shape({
-    email: string().email(t('remindPass.validation.correctEmail')),
+  const validationSchema = object().shape({
+    email,
   });
 
   const formik = useFormik({
     initialValues: {
       email: '',
     },
-    validationSchema: emailValidation,
+    validationSchema,
     validateOnChange: false,
     onSubmit: (values) => {
       console.log(values);
@@ -53,10 +54,10 @@ function RemindPassword() {
                       autoComplete="email"
                       required
                       ref={inputRef}
-                      isInvalid={errors.email}
+                      isInvalid={t(errors.email)}
                     />
                     <Form.Control.Feedback type="invalid">
-                      {errors.email}
+                      {t(errors.email)}
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Button

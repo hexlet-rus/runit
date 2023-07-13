@@ -37,16 +37,6 @@ const ruLocales = {
         signInHeader: 'Уже есть аккаунт? ',
         signIn: 'Войти',
       },
-      validation: {
-        requiredField: 'Обязательное поле',
-        correctUsername: 'В логине не должно быть пробелов',
-        correctEmail: 'Некорректная электронная почта',
-        usernameLength: 'От 3 до 16 символов',
-        passwordLength: 'от 8 до 30 символов',
-        confirmPassword: 'Пароли должны совпадать',
-        loginIsUsed: 'Это имя уже занято',
-        emailIsUsed: 'Этот адрес уже зарегистрирован',
-      },
     },
     remindPass: {
       pageHeader: 'Забыли пароль?',
@@ -57,9 +47,6 @@ const ruLocales = {
         signUp: 'Создать аккаунт',
         signInHeader: 'Уже есть аккаунт? ',
         signIn: 'Войти',
-      },
-      validation: {
-        correctEmail: 'Некорректный email',
       },
     },
     signIn: {
@@ -72,10 +59,6 @@ const ruLocales = {
       footer: {
         signUpHeader: 'Нет аккаунта? ',
         signUp: 'Создать аккаунт',
-      },
-      validation: {
-        requiredField: 'Обязательное поле',
-        correctEmail: 'Некорректная электронная почта',
       },
       withGithub: 'Войти с помощью Github',
       attentionGithub: 'Для регистрации через Github требуется публичный email',
@@ -209,11 +192,6 @@ const ruLocales = {
       infoBody: 'Авторизуйтесь, чтобы сохранять и делиться.',
       cancelButton: 'Отмена',
       goToReplButton: 'Перейти к этому реплу',
-      validation: {
-        snippetNameMaxLength: 'Не больше 20 символов',
-        required: 'Не может быть пустым',
-        singleWord: 'Допустимы буквы латинского алфавита, цифры и символы "-_"',
-      },
     },
     appRotes: {
       pageNotFound: 'Страница не найдена',
@@ -221,7 +199,19 @@ const ruLocales = {
     errors: {
       unknown: 'Неизвестная ошибка',
       network: 'Ошибка сети',
-      githubPublicEmail: 'Ошибка входа в github. Требуется публичный email =('
+      githubPublicEmail: 'Ошибка входа в github. Требуется публичный email =(',
+      validation: {
+        requiredField: 'Обязательное поле',
+        incorrectEmail: 'Некорректная электронная почта',
+        emailIsUsed: 'Этот адрес уже зарегистрирован',
+        incorrectUsername: 'В логине не должно быть пробелов',
+        loginIsUsed: 'Это имя уже занято',
+        usernameLength: 'От 3 до 16 символов',
+        passwordLength: 'От 8 до 30 символов',
+        confirmPassword: 'Пароли должны совпадать',
+        snippetNameMaxLength: 'Не больше 20 символов',
+        singleWord: 'Допустимы буквы латинского алфавита, цифры и символы "-_"',
+      },
     },
     pageNotFound: {
       title: 'Ошибка 404',
