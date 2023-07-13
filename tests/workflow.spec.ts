@@ -22,11 +22,10 @@ test('work', async ({ page }) => {
 });
 
 test('Unable to register by invalid email ', async ({page}) => {
-  const randomNum = Math.round(Math.random() * 1000 + Math.random() * 100);
   await page.goto('http://localhost:3000');
   await page.getByRole('button', { name: 'Регистрация' }).click();
   await page.getByLabel('Электронная почта').fill(`test222@.t`);
-  await page.getByLabel('Логин').fill(`test${randomNum}`);
+  await page.getByLabel('Логин').fill(`testLogin`);
   await page.getByLabel('Пароль', { exact: true }).fill('12345678');
   await page.getByLabel('Подтвердить пароль').fill('12345678');
   await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
