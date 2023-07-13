@@ -34,7 +34,7 @@ function Profile() {
               <div>
                 <h1 className="my-2">{`${t('navbar.profile')}`}</h1>
                 {/* <div>
-                  Текст: 
+                  Текст:
                   <span className="text-muted">описание</span>
                 </div> */}
                 {/* "userdata.created_at", "userdata.id" are also available. Add if needed. */}

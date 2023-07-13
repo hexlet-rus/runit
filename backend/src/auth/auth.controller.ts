@@ -55,9 +55,12 @@ export class AuthController {
     description: 'Successfully logged with github! Token lasts 60 minutes!',
   })
   async oAuth(@Query('code') code, @Req() req, @Res() response: Response) {
+    const scope = 'user:email';
+
     if (!code) {
       const url = new URL(process.env.OAUTH_AUTHORIZE_URL);
       url.searchParams.set('client_id', process.env.OAUTH_CLIENT_ID);
+      url.searchParams.set('scope', scope);
 
       return response.redirect(url.toString());
     }

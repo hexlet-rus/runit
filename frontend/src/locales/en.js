@@ -61,6 +61,7 @@ const enLocales = {
         signUp: 'Create a free account',
       },
       withGithub: 'Sign in with Github',
+      attentionGithub: 'A public email is required to register via Github',
     },
     profile: {
       replsHeader: 'Snippets',
@@ -164,6 +165,8 @@ const enLocales = {
         snippetLinkLabel: 'Link to Snippet',
         snippetEmbedLabel: 'Snippet code for insertion',
       },
+      alertGithubHeader: 'Login error',
+      redirectButton: 'Login page'
     },
     saveHeader: 'Save to share.',
     newSnippetName: 'Snippet Name',
@@ -183,6 +186,7 @@ const enLocales = {
     errors: {
       unknown: 'Unknown error',
       network: 'Network error',
+      githubPublicEmail: 'Login error on github. A public email is required =(',
       validation: {
         requiredField: 'Required field',
         incorrectEmail: 'Incorrect email',
