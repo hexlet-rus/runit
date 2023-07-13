@@ -31,7 +31,7 @@ export function buildFooter() {
                   as="a"
                   eventKey="career"
                   className={`${classes.footerNavLink} py-1 px-0`}
-                  href="https://www.notion.so/c6406ed8890747e690d32b050faf42c2"
+                  href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
                   target="_blank"
                 >
                   {t('footer.career')}
