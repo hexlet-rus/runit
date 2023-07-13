@@ -88,7 +88,7 @@ function SignupForm({ onSuccess = () => null }) {
           value={formik.values.email}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          className={`form-input bg-dark text-white ${classes.signUpInput}`}
+          className={`form-input bg-dark text-white ${classes.formControl}`}
           name="email"
           id="email"
           autoComplete="email"
@@ -107,7 +107,7 @@ function SignupForm({ onSuccess = () => null }) {
           value={formik.values.login}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          className={`form-input bg-dark text-white ${classes.signUpInput}`}
+          className={`form-input bg-dark text-white ${classes.formControl}`}
           name="login"
           id="login"
           autoComplete="username"
@@ -127,7 +127,7 @@ function SignupForm({ onSuccess = () => null }) {
           value={formik.values.password}
           onBlur={formik.handleBlur}
           type="password"
-          className={`form-input bg-dark text-white ${classes.signUpInput}`}
+          className={`form-input bg-dark text-white ${classes.formControl}`}
           name="password"
           id="password"
           autoComplete="new-password"
@@ -147,7 +147,7 @@ function SignupForm({ onSuccess = () => null }) {
           value={formik.values.confirmPassword}
           onBlur={formik.handleBlur}
           type="password"
-          className={`form-input bg-dark text-white ${classes.signUpInput}`}
+          className={`form-input bg-dark text-white ${classes.formControl}`}
           name="confirmPassword"
           id="confirmPassword"
           autoComplete="new-password"
