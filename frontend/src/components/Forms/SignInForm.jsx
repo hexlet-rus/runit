@@ -101,14 +101,7 @@ function SignInForm({ onSuccess = () => null }) {
         </Alert>
       ) : null}
       {/* TODO: https://github.com/hexlet-rus/runit/issues/94 */}
-      {/* <div className="text-end my-3">
-        <a
-          className="text-decoration-none small"
-          href={routes.remindPassPagePath()}
-        >
-          {t('signIn.remindPass')}
-        </a>
-      </div> */}
+
       <Button
         type="submit"
         variant="primary"
@@ -118,6 +111,14 @@ function SignInForm({ onSuccess = () => null }) {
       >
         {t('signIn.loginButton')}
       </Button>
+      <div className="text-end my-3">
+        <a
+          className="text-decoration-none small"
+          href={routes.remindPassPagePath()}
+        >
+          {t('signIn.remindPass')}
+        </a>
+      </div>
     </Form>
   );
 }

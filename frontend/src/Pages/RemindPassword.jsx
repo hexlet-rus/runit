@@ -30,6 +30,11 @@ function RemindPassword() {
     },
   });
 
+  const handleSendReset = () => {
+    // TODO: нужен обработчик для оправки емейля для восстановления пароля
+    console.log('test');
+  };
+
   const { handleBlur, handleChange, handleSubmit, values, errors } = formik;
   return (
     <Container className="h-100 bg-dark" fluid>
@@ -64,6 +69,7 @@ function RemindPassword() {
                     type="submit"
                     variant="primary"
                     className="w-100 pb-2 pt-2"
+                    onClick={handleSendReset}
                   >
                     {t('remindPass.resetButton')}
                   </Button>
