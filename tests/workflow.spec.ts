@@ -63,3 +63,49 @@ test('Unable to re-register with an already registered email', async ({ page }) 
   await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
   await expect(page.getByText('Этот адрес уже зарегистрирован')).toBeVisible();
 });
+
+test('Unable to register with login less 2 symbols ', async ({page}) => {
+  await page.goto('http://localhost:3000');
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test222@.test.test`);
+  await page.getByLabel('Логин').fill(`te`);
+  await page.getByLabel('Пароль', { exact: true }).fill('12345678');
+  await page.getByLabel('Подтвердить пароль').fill('12345678');
+  await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  await expect(page.getByText('От 3 до 16 символов')).toBeVisible();
+})
+
+test('Unable to register with login more 17 symbols ', async ({page}) => {
+  await page.goto('http://localhost:3000');
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test222@.test.test`);
+  await page.getByLabel('Логин').fill(`testLogintestLogintestLogin`);
+  await page.getByLabel('Пароль', { exact: true }).fill('12345678');
+  await page.getByLabel('Подтвердить пароль').fill('12345678');
+  await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  await expect(page.getByText('От 3 до 16 символов')).toBeVisible();
+})
+
+test('Successful registration with password more 8-character ', async ({page}) => {
+  await page.goto('http://localhost:3000');
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test42@test.test`);
+  await page.getByLabel('Логин').fill(`test42`);
+  await page.getByLabel('Пароль', { exact: true }).fill('123456789');
+  await page.getByLabel('Подтвердить пароль').fill('123456789');
+  await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  await expect(page.getByText('Выйти')).toBeVisible();
+})
+
+test('Unable registration with incorrect duplicated password ', async ({page}) => {
+  await page.goto('http://localhost:3000');
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test222@.test.test`);
+  await page.getByLabel('Логин').fill(`testLogin`);
+  await page.getByLabel('Пароль', { exact: true }).fill('12345678');
+  await page.getByLabel('Подтвердить пароль').fill('123456789');
+  await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  await expect(page.getByText('Пароли должны совпадать')).toBeVisible();
+})
+
+
