@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import axios from 'axios';
 import { Alert, Button, Form } from 'react-bootstrap';
 import { useAuth } from '../../hooks';
-import { email } from '../../utils/validationSchemas';
+import { email, signinPassword } from '../../utils/validationSchemas';
 import routes from '../../routes';
 import classes from './Form.module.css';
 
@@ -17,6 +17,7 @@ function SignInForm({ onSuccess = () => null }) {
 
   const validationSchema = object().shape({
     email: email(),
+    password: signinPassword(),
   });
 
   const formik = useFormik({
@@ -88,8 +89,12 @@ function SignInForm({ onSuccess = () => null }) {
           name="password"
           id="password"
           autoComplete="password"
+          isInvalid={formik.touched.password && formik.errors.password}
           required
         />
+        <Form.Control.Feedback type="invalid">
+          {t(formik.errors.password)}
+        </Form.Control.Feedback>
       </Form.Group>
       {authFailed ? (
         <Alert
