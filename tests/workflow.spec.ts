@@ -108,4 +108,53 @@ test('Unable registration with incorrect duplicated password ', async ({page}) =
   await expect(page.getByText('Пароли должны совпадать')).toBeVisible();
 })
 
+test('Successful authorization with email and password', async ({ page }) => {
+  await page.goto('http://localhost:3000');
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test42@test.test`);
+  await page.getByLabel('Логин').fill(`test42`);
+  await page.getByLabel('Пароль', { exact: true }).fill('123456789');
+  await page.getByLabel('Подтвердить пароль').fill('123456789');
+  await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  await page.getByRole('button', { name: 'Выйти' }).click();
 
+  await page.getByRole('button', { name: 'Войти' }).click();
+  await page.getByLabel('Электронная почта').fill(`test42@test.test`);
+  await page.getByLabel('Пароль', { exact: true }).fill('123456789');
+  await page.getByTestId('btn').click();
+  await expect(page.getByText('Выйти')).toBeVisible();
+});
+
+test('Unable authorization by invalid email address', async ({ page }) => {
+  await page.goto('http://localhost:3000');
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test42@test.test`);
+  await page.getByLabel('Логин').fill(`test42`);
+  await page.getByLabel('Пароль', { exact: true }).fill('123456789');
+  await page.getByLabel('Подтвердить пароль').fill('123456789');
+  await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  await page.getByRole('button', { name: 'Выйти' }).click();
+
+  await page.getByRole('button', { name: 'Войти' }).click();
+  await page.getByLabel('Электронная почта').fill(`test42@test`);
+  await page.getByLabel('Пароль', { exact: true }).fill('123456789');
+  await page.getByTestId('btn').click();
+  await expect(page.getByText('Некорректная электронная почта')).toBeVisible();
+});
+
+test('Unable authorization by invalid password', async ({ page }) => {
+  await page.goto('http://localhost:3000');
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test42@test.test`);
+  await page.getByLabel('Логин').fill(`test42`);
+  await page.getByLabel('Пароль', { exact: true }).fill('123456789');
+  await page.getByLabel('Подтвердить пароль').fill('123456789');
+  await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  await page.getByRole('button', { name: 'Выйти' }).click();
+
+  await page.getByRole('button', { name: 'Войти' }).click();
+  await page.getByLabel('Электронная почта').fill(`test42@test.test`);
+  await page.getByLabel('Пароль', { exact: true }).fill('1234567');
+  await page.getByTestId('btn').click();
+  await expect(page.getByText('Неверный пароль или электронная почта')).toBeVisible();
+});

@@ -115,6 +115,7 @@ function SignInForm({ onSuccess = () => null }) {
         className="w-100 pb-2 pt-2"
         data-disable-with="Войти"
         disabled={formik.isSubmitting}
+        data-testid="btn"
       >
         {t('signIn.loginButton')}
       </Button>
