@@ -166,7 +166,7 @@ const enLocales = {
         snippetEmbedLabel: 'Snippet code for insertion',
       },
       alertGithubHeader: 'Login error',
-      redirectButton: 'Login page'
+      redirectButton: 'Login page',
     },
     saveHeader: 'Save to share.',
     newSnippetName: 'Snippet Name',
