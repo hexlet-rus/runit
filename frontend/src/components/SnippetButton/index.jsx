@@ -28,6 +28,7 @@ export const SnippetButton = memo(() => {
         const response = await snippetsApi.getSnippetDataByViewParams(
           snippetParams,
         );
+        // #TODO: remove check once redirect to 404 is configured
         if (response.length === 0) {
           dispatch(modalActions.openModal({ type: 'snippetUnavailable' }));
         }

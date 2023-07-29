@@ -1,3 +1,4 @@
+// #TODO: remove this file when redirect to 404 added
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';

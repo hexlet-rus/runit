@@ -21,7 +21,7 @@ const modals = {
   confirmDelete: ConfirmationModal,
   editProfile: EditProfile,
   changePassword: ChangePassword,
-  snippetUnavailable: SnippetUnavailable,
+  snippetUnavailable: SnippetUnavailable, // #TODO: Remove this modal once proper re-direct is configured on the backend
 };
 
 function ModalWindow() {
