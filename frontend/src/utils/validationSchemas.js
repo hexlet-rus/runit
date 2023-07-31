@@ -21,6 +21,9 @@ export const password = () =>
     .min(8, 'errors.validation.passwordLength')
     .max(30, 'errors.validation.passwordLength');
 
+export const signinPassword = () =>
+  string().trim().required('errors.validation.requiredField');
+
 export const confirmPassword = () =>
   string()
     .trim()

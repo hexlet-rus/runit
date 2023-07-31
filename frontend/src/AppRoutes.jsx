@@ -34,7 +34,16 @@ function AppRoutes() {
   const { isLoggedIn } = useAuth();
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense
+      fallback={
+        <div className="min-vh-100 d-flex flex-column justify-content-center align-items-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="fw-bold p-3">Loading...</p>
+        </div>
+      }
+    >
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Landing />} />
