@@ -121,7 +121,7 @@ test('Successful authorization with email and password', async ({ page }) => {
   await page.getByRole('button', { name: 'Войти' }).click();
   await page.getByLabel('Электронная почта').fill(`test33@test.test`);
   await page.getByLabel('Пароль', { exact: true }).fill('123456789');
-  await page.getByTestId('btn').click();
+  await page.getByTestId('signin-button').click();
   await expect(page.getByText('Выйти')).toBeVisible();
 });
 
@@ -138,7 +138,7 @@ test('Unable authorization by invalid email address', async ({ page }) => {
   await page.getByRole('button', { name: 'Войти' }).click();
   await page.getByLabel('Электронная почта').fill(`test34@test`);
   await page.getByLabel('Пароль', { exact: true }).fill('123456789');
-  await page.getByTestId('btn').click();
+  await page.getByTestId('signin-button').click();
   await expect(page.getByText('Некорректная электронная почта')).toBeVisible();
 });
 
@@ -155,6 +155,6 @@ test('Unable authorization by invalid password', async ({ page }) => {
   await page.getByRole('button', { name: 'Войти' }).click();
   await page.getByLabel('Электронная почта').fill(`test35@test.test`);
   await page.getByLabel('Пароль', { exact: true }).fill('1234567');
-  await page.getByTestId('btn').click();
+  await page.getByTestId('signin-button').click();
   await expect(page.getByText('Неверный пароль или электронная почта')).toBeVisible();
 });
