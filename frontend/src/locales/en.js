@@ -180,8 +180,9 @@ const enLocales = {
     cancelButton: 'Cancel',
     goToReplButton: 'Go to this replay',
 
-    appRotes: {
+    appRoutes: {
       pageNotFound: 'Page not found',
+      loadingSpinner: 'Loading...',
     },
     errors: {
       unknown: 'Unknown error',
