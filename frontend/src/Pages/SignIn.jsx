@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import routes from '../routes.js';
 import SignInForm from '../components/Forms/SignInForm';
 
@@ -38,9 +38,9 @@ function SignIn() {
                 <span className="text-muted">
                   {t('signIn.footer.signUpHeader')}
                 </span>
-                <a className="link-light" href={routes.signUpPagePath()}>
+                <Link className="link-light" to={routes.signUpPagePath()}>
                   {t('signIn.footer.signUp')}
-                </a>
+                </Link>
               </div>
             </Card.Footer>
           </Card>

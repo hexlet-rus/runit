@@ -4,7 +4,7 @@ import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import routes from '../routes.js';
 import SignUpForm from '../components/Forms/SignUpForm';
@@ -41,9 +41,9 @@ function SignUp() {
                   <span className="text-muted">
                     {t('signUp.footer.signInHeader')}
                   </span>
-                  <a className="link-light" href={routes.loginPagePath()}>
+                  <Link className="link-light" to={routes.loginPagePath()}>
                     {t('signUp.footer.signIn')}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </Card.Footer>
