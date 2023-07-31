@@ -1,0 +1,23 @@
+.width-enter {
+  opacity: 0;
+  width: 0;
+}
+
+.width-enter-active {
+  opacity: 1;
+  transition:
+    #{$transition-collapse-width},
+    #{$transition-fade};
+}
+
+.width-exit {
+  opacity: 1;
+}
+
+.width-exit-active {
+  opacity: 0;
+  width: 0;
+  transition:
+    #{$transition-collapse-width},
+    #{$transition-fade};
+}

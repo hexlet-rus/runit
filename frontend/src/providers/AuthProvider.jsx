@@ -1,44 +1,55 @@
-import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
+import { useEffect, useMemo, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
 import { AuthContext } from '../contexts';
 import routes from '../routes.js';
+import { fetchUserData } from '../slices/userSlice.js';
 
 function AuthProvider({ children }) {
+  const dispatch = useDispatch();
   const loginStatus = JSON.parse(localStorage.getItem('loginStatus'));
   const [isLoggedIn, setLoggedIn] = useState(
     loginStatus ? loginStatus.status : false,
   );
   const navigate = useNavigate();
 
-  const logOut = async () => {
-    await axios.post(routes.logoutPath());
-    localStorage.removeItem('loginStatus');
-    setLoggedIn(false);
-    navigate(routes.lendingPath());
-  };
-
-  const logIn = () => {
-    localStorage.setItem('loginStatus', JSON.stringify({ status: true }));
-    setLoggedIn(true);
-  };
-
   useEffect(() => {
-    const fetchAuthData = async () => {
-      try {
-        await axios.get(routes.userProfilePath());
+    dispatch(fetchUserData())
+      .unwrap()
+      .then(() => {
         setLoggedIn(true);
-      } catch (err) {
+      })
+      .catch(() => {
         localStorage.removeItem('loginStatus');
         setLoggedIn(false);
-      }
-    };
-    fetchAuthData();
-  }, []);
+      });
+  }, [dispatch]);
 
   const memoizedValue = useMemo(
-    () => ({ logOut, isLoggedIn, logIn }),
-    [logOut, isLoggedIn, logIn],
+    () => ({
+      logOut: async () => {
+        await axios.post(routes.logoutPath());
+        localStorage.removeItem('loginStatus');
+        setLoggedIn(false);
+        navigate(routes.landingPath());
+      },
+
+      logIn: () => {
+        dispatch(fetchUserData())
+          .unwrap()
+          .catch((serializedError) => {
+            const error = new Error(serializedError.message);
+            error.name = serializedError.name;
+            throw error;
+          });
+        localStorage.setItem('loginStatus', JSON.stringify({ status: true }));
+        setLoggedIn(true);
+      },
+      isLoggedIn,
+    }),
+    [dispatch, isLoggedIn, navigate],
   );
 
   return (

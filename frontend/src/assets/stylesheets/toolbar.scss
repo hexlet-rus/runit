@@ -1,0 +1,12 @@
+.toolbar {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: $spacer * 0.25;
+  align-items: center;
+
+  .toolbar-indicator {
+    padding: $spacer * 0.25;
+    line-height: 1;
+    font-size: calc(#{$font-size-base} * 1.25);
+  }
+}

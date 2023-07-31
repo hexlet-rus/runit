@@ -37,38 +37,38 @@ function RemindPassword() {
 
   const { handleBlur, handleChange, handleSubmit, values, errors } = formik;
   return (
-    <Container className="h-100 bg-dark" fluid>
+    <Container fluid className="h-100 bg-dark">
       <Row className="justify-content-center align-content-center h-100">
-        <Col xs={12} md={6} xxl={5} className="mt-5 mb-5">
+        <Col className="mt-5 mb-5" md={6} xs={12} xxl={5}>
           <Card className="shadow-sm bg-dark text-white">
             <Card.Body className="p-lg-4 p-xl-5">
               <h1 className="mb-4 fw-light">{t('remindPass.pageHeader')}</h1>
               <div className="pt-lg-3">
-                <Form onSubmit={handleSubmit} noValidate>
+                <Form noValidate onSubmit={handleSubmit}>
                   <Form.Group className="mb-4">
                     <Form.Label htmlFor="email">
                       {t('remindPass.emailLabel')}
                     </Form.Label>
                     <Form.Control
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.email}
-                      className="form-input bg-dark text-white"
-                      name="email"
-                      id="email"
-                      autoComplete="email"
                       required
-                      ref={inputRef}
+                      autoComplete="email"
+                      className="form-input bg-dark text-white"
+                      id="email"
                       isInvalid={t(errors.email)}
+                      name="email"
+                      ref={inputRef}
+                      value={values.email}
+                      onBlur={handleBlur}
+                      onChange={handleChange}
                     />
                     <Form.Control.Feedback type="invalid">
                       {t(errors.email)}
                     </Form.Control.Feedback>
                   </Form.Group>
                   <Button
+                    className="w-100 pb-2 pt-2"
                     type="submit"
                     variant="primary"
-                    className="w-100 pb-2 pt-2"
                     onClick={handleSendReset}
                   >
                     {t('remindPass.resetButton')}
@@ -90,7 +90,7 @@ function RemindPassword() {
                   <span className="text-muted">
                     {t('remindPass.footer.signInHeader')}
                   </span>
-                  <a className="link-light" href={routes.loginPagePath()}>
+                  <a className="link-light" href={routes.signInPagePath()}>
                     {t('remindPass.footer.signIn')}
                   </a>
                 </div>

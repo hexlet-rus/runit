@@ -1,55 +1,71 @@
-import React, { useEffect, useRef } from 'react';
-
+import axios from 'axios';
+import { useFormik } from 'formik';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { object } from 'yup';
-import { useFormik } from 'formik';
-import axios from 'axios';
-import { Button, Form } from 'react-bootstrap';
-import routes from '../../routes';
-import {
-  confirmPassword,
-  email,
-  login,
-  password,
-} from '../../utils/validationSchemas';
+
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 import { useAuth } from '../../hooks';
-import classes from './Form.module.css';
+import routes from '../../routes';
+import { email, password, username } from '../../utils/validationSchemas';
+
+import GithubSignInButton from './GithubSignInButton.jsx';
+import PasswordVisibilityButton from './PasswordVisibilityButton.jsx';
+import FormAlert from './FormAlert.jsx';
 
 function SignupForm({ onSuccess = () => null }) {
   const { t } = useTranslation();
   const emailRef = useRef();
-  const loginRef = useRef();
+  const usernameRef = useRef();
   const auth = useAuth();
 
+  const initialFormState = { state: 'initial', message: '' };
+  const [formState, setFormState] = useState(initialFormState);
+
+  const [isPasswordVisible, setPasswordVisibility] = useState(false);
+  const handlePasswordVisibility = () => {
+    setPasswordVisibility(!isPasswordVisible);
+  };
+
   useEffect(() => {
-    emailRef.current.focus();
+    usernameRef.current.focus();
   }, []);
 
   const validationSchema = object().shape({
-    login: login(),
+    username: username(),
     email: email(),
     password: password(),
-    confirmPassword: confirmPassword(),
   });
+
   const formik = useFormik({
     initialValues: {
-      login: '',
+      username: '',
       email: '',
       password: '',
-      confirmPassword: '',
     },
     validationSchema,
     validateOnBlur: false,
     onSubmit: async (values, actions) => {
+      setFormState(initialFormState);
       try {
         actions.setSubmitting(true);
-        await axios.post(routes.usersPath(), values);
+        await axios.post(routes.usersPath(), {
+          login: values.username,
+          email: values.email,
+          password: values.password,
+          confirmPassword: values.password,
+        });
         auth.logIn();
         actions.setSubmitting(false);
-        if (onSuccess) onSuccess();
+        onSuccess();
       } catch (err) {
         if (!err.isAxiosError) {
-          console.log(t('errors.unknown'));
+          setFormState({
+            state: 'failed',
+            message: 'errors.unknown',
+          });
           throw err;
         }
         if (
@@ -59,117 +75,121 @@ function SignupForm({ onSuccess = () => null }) {
           err.response.data.errs.message.forEach((e) => {
             switch (e) {
               case 'loginIsUsed':
-                formik.errors.login = 'errors.validation.loginIsUsed';
-                loginRef.current.select();
+                actions.setFieldError(
+                  'username',
+                  'errors.validation.usernameIsUsed',
+                );
+                usernameRef.current.select();
                 break;
               case 'emailIsUsed':
-                formik.errors.email = 'errors.validation.emailIsUsed';
+                actions.setFieldError('email', 'errors.validation.emailIsUsed');
                 emailRef.current.select();
                 break;
               default:
-                console.log(t('signUp.signUpFailed'));
+                setFormState({
+                  state: 'failed',
+                  message: 'profileSettings.updateFailed',
+                });
                 throw err;
             }
           });
         } else {
-          console.log(t('errors.network'));
+          setFormState({
+            state: 'failed',
+            message: 'errors.network',
+          });
           throw err;
         }
-        actions.setSubmitting(false);
       }
     },
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit} noValidate>
-      <Form.Group className={classes.formGroup}>
-        <Form.Label htmlFor="email">{t('signUp.emailLabel')}</Form.Label>
-        <Form.Control
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          className={`form-input bg-dark text-white ${classes.formControl}`}
-          name="email"
-          id="email"
-          autoComplete="email"
-          required
-          isInvalid={formik.touched.email && formik.errors.email}
-          ref={emailRef}
-        />
-        <Form.Control.Feedback type="invalid">
-          {t(formik.errors.email)}
-        </Form.Control.Feedback>
-      </Form.Group>
-
-      <Form.Group className={classes.formGroup}>
-        <Form.Label htmlFor="login">{t('signUp.usernameLabel')}</Form.Label>
-        <Form.Control
-          value={formik.values.login}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          className={`form-input bg-dark text-white ${classes.formControl}`}
-          name="login"
-          id="login"
-          autoComplete="username"
-          required
-          isInvalid={formik.touched.login && formik.errors.login}
-          ref={loginRef}
-        />
-        <Form.Control.Feedback type="invalid">
-          {t(formik.errors.login)}
-        </Form.Control.Feedback>
-      </Form.Group>
-
-      <Form.Group className={classes.formGroup}>
-        <Form.Label htmlFor="password">{t('signUp.passwordLabel')}</Form.Label>
-        <Form.Control
-          onChange={formik.handleChange}
-          value={formik.values.password}
-          onBlur={formik.handleBlur}
-          type="password"
-          className={`form-input bg-dark text-white ${classes.formControl}`}
-          name="password"
-          id="password"
-          autoComplete="new-password"
-          required
-          isInvalid={formik.touched.password && formik.errors.password}
-        />
-        <Form.Control.Feedback type="invalid">
-          {t(formik.errors.password)}
-        </Form.Control.Feedback>
-      </Form.Group>
-      <Form.Group className={classes.formGroup}>
-        <Form.Label htmlFor="confirmPassword">
-          {t('signUp.confirmPasswordLabel')}
-        </Form.Label>
-        <Form.Control
-          onChange={formik.handleChange}
-          value={formik.values.confirmPassword}
-          onBlur={formik.handleBlur}
-          type="password"
-          className={`form-input bg-dark text-white ${classes.formControl}`}
-          name="confirmPassword"
-          id="confirmPassword"
-          autoComplete="new-password"
-          required
-          isInvalid={
-            formik.touched.confirmPassword && formik.errors.confirmPassword
-          }
-        />
-        <Form.Control.Feedback type="invalid">
-          {t(formik.errors.confirmPassword)}
-        </Form.Control.Feedback>
-      </Form.Group>
-      <Button
-        type="submit"
-        variant="primary"
-        className="w-100 mt-3 pt-2 pb-2"
-        data-disable-with="Войти"
-        disabled={formik.isSubmitting}
+    <div className="d-flex flex-column gap-4">
+      <FormAlert
+        onClose={() => setFormState(initialFormState)}
+        state={formState.state}
       >
-        {t('signUp.registerButton')}
-      </Button>
-    </Form>
+        {t(formState.message)}
+      </FormAlert>
+      <Form
+        className="d-flex flex-column gap-1 gap-sm-3"
+        noValidate
+        onSubmit={formik.handleSubmit}
+      >
+        <div className="d-flex flex-column">
+          <Form.Group className="form-group" controlId="username">
+            <Form.Label>{t('profileSettings.usernameLabel')}</Form.Label>
+            <Form.Control
+              ref={usernameRef}
+              autoComplete="username"
+              isInvalid={!!formik.touched.username && !!formik.errors.username}
+              name="username"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              required
+              type="text"
+              value={formik.values.username}
+            />
+            <Form.Control.Feedback type="invalid">
+              {t(formik.errors.username)}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group className="form-group" controlId="email">
+            <Form.Label>{t('profileSettings.emailLabel')}</Form.Label>
+            <Form.Control
+              ref={emailRef}
+              autoComplete="email"
+              isInvalid={!!formik.touched.email && !!formik.errors.email}
+              name="email"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              required
+              type="email"
+              value={formik.values.email}
+            />
+            <Form.Control.Feedback type="invalid">
+              {t(formik.errors.email)}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group className="form-group" controlId="password">
+            <Form.Label>{t('profileSettings.passwordLabel')}</Form.Label>
+            <div className="input-group-inline-button">
+              <Form.Control
+                autoComplete="new-password"
+                isInvalid={
+                  !!formik.touched.password && !!formik.errors.password
+                }
+                name="password"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                required
+                type={isPasswordVisible ? 'text' : 'password'}
+                value={formik.values.password}
+              />
+              <PasswordVisibilityButton
+                enabled={isPasswordVisible}
+                onClick={handlePasswordVisibility}
+              />
+              <Form.Control.Feedback type="invalid">
+                {t(formik.errors.password)}
+              </Form.Control.Feedback>
+            </div>
+          </Form.Group>
+        </div>
+        <Button
+          className="mb-2"
+          disabled={formik.isSubmitting}
+          type="submit"
+          variant="primary"
+        >
+          {t('signUp.registerButton')}
+        </Button>
+      </Form>
+      <GithubSignInButton />
+    </div>
   );
 }
 

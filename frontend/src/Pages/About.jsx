@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 // import routes from '../routes.js';
 import { Faq } from '../components/Faq.jsx';
@@ -19,8 +18,8 @@ function About() {
           <a
             className="text-secondary text-decoration-none"
             href="https://replit.com/~"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             {t('about.analogueName')}
           </a>
@@ -31,8 +30,8 @@ function About() {
           <a
             className="text-secondary text-decoration-none"
             href="https://ru.hexlet.io/blog/posts/gid-po-nest-js?ysclid=l7ew5lpeiw134812170"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             {t('about.firstBackendDevTool')}
           </a>
@@ -40,8 +39,8 @@ function About() {
           <a
             className="text-secondary text-decoration-none"
             href="https://ru.hexlet.io/blog/posts/vse-chto-nuzhno-znat-novichku-o-typescript-ischerpyvayuschiy-gayd?ysclid=l7ewa0mrdp61534639"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             {t('about.secondBackendDevTool')}
           </a>
@@ -49,8 +48,8 @@ function About() {
           <a
             className="text-secondary text-decoration-none"
             href="https://ru.hexlet.io/blog/posts/biblioteka-react-review-article?ysclid=l7eweuntdr505174264"
-            target="_blank"
             rel="noopener noreferrer"
+            target="_blank"
           >
             {t('about.frontendDevTool')}
           </a>

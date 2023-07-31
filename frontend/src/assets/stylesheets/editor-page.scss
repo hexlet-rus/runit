@@ -1,0 +1,35 @@
+$panel-handler-padding: $spacer * 0.25;
+
+.editor-page {
+  height: calc(100vh - $navbar-height);
+}
+
+.panel-handler {
+  flex: 0 0 $spacer + $panel-handler-padding * 2;
+  position: relative;
+  outline: none;
+
+  --background-color: transparent;
+
+  &[data-resize-handle-active] {
+    --background-color: var(--#{$prefix}secondary-bg);
+  }
+  .panel-handler-inner {
+    position: absolute;
+    top: $panel-handler-padding;
+    bottom: $panel-handler-padding;
+    left: $panel-handler-padding;
+    right: $panel-handler-padding;
+    border-radius: $border-radius-sm;
+    background-color: var(--background-color);
+    transition: background-color 0.15s ease-in-out;
+  }
+
+  .panel-handler-icon {
+    width: $spacer;
+    height: $spacer;
+    position: absolute;
+    left: calc(50% - $panel-handler-padding * 2);
+    top: calc(50% - $panel-handler-padding * 2);
+  }
+}
