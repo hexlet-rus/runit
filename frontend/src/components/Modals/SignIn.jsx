@@ -1,61 +1,34 @@
-import React from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
-import { actions as modalActions } from '../../slices/modalSlice';
+import { actions } from '../../slices';
 import SignInForm from '../Forms/SignInForm';
 
-function SignInModal() {
+function SignInModal({ handleClose, isOpen }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
   return (
-    <Modal
-      animation
-      centered
-      show
-      onHide={() => dispatch(modalActions.closeModal())}
-    >
-      <Modal.Header
-        closeButton
-        closeVariant="white"
-        className="text-white bg-dark border-secondary"
-      >
+    <Modal animation centered onHide={handleClose} show={isOpen}>
+      <Modal.Header className="py-3" closeButton>
         <Modal.Title className="display-6">
-          {t('modals.signInHeader')}
+          {t('signIn.pageHeader')}
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body className="bg-dark text-white">
-        <SignInForm
-          onSuccess={() => {
-            dispatch(modalActions.closeModal());
-          }}
-        />
+      <Modal.Body>
+        <SignInForm onSuccess={handleClose} />
+        <div className="d-flex justify-content-center align-items-baseline mt-5">
+          <span className="text-muted">{t('signIn.footer.signUpHeader')}</span>{' '}
+          <Button
+            onClick={() => dispatch(actions.openModal({ type: 'signingUp' }))}
+            variant="link"
+          >
+            {t('signIn.footer.signUpAction')}
+          </Button>
+        </div>
       </Modal.Body>
-      <Modal.Footer
-        className="d-flex bg-dark border-secondary"
-        style={{ justifyContent: 'flex-end' }}
-      >
-        <Button
-          variant="danger"
-          className="bt-lg"
-          onClick={() => dispatch(modalActions.closeModal())}
-          style={{ width: 'calc(20% - 10px)' }}
-        >
-          {t('modals.cancelButton')}
-        </Button>
-        <div className="gap" style={{ marginLeft: 'auto' }} />
-        <Button
-          variant="outline-primary"
-          className="bt-lg"
-          onClick={() =>
-            dispatch(modalActions.openModal({ type: 'signingUp' }))
-          }
-        >
-          {t('modals.signUpButton')}
-        </Button>
-      </Modal.Footer>
     </Modal>
   );
 }

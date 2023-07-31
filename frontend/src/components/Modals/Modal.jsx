@@ -1,34 +1,29 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import InfoModal from './Info.jsx';
+import { useDispatch, useSelector } from 'react-redux';
 import SignUpModal from './SignUp.jsx';
 import SignInModal from './SignIn.jsx';
-import ShareRepl from './ShareRepl.jsx';
-import NewRepl from './NewRepl.jsx';
-import RenameRepl from './RenameRepl.jsx';
-import ConfirmationModal from './Confirmation.jsx';
-import EditProfile from './EditProfile.jsx';
-import ChangePassword from './ChangePassword.jsx';
+import ShareSnippet from './ShareSnippet.jsx';
+import InDevelopment from './InDevelopment.jsx';
+
+import { actions as modalActions } from '../../slices/modalSlice.js';
 
 const modals = {
-  gettingInfo: InfoModal,
   signingUp: SignUpModal,
   signingIn: SignInModal,
-  sharingRepl: ShareRepl,
-  genNewRepl: NewRepl,
-  renameRepl: RenameRepl,
-  confirmDelete: ConfirmationModal,
-  editProfile: EditProfile,
-  changePassword: ChangePassword,
+  sharingSnippet: ShareSnippet,
+  inDevelopment: InDevelopment,
 };
 
 function ModalWindow() {
-  const modalType = useSelector((state) => state.modal.type);
-  const Modal = modals[modalType];
+  const dispatch = useDispatch();
+  const { isOpen, type } = useSelector((state) => state.modal);
+
+  const handleClose = () => dispatch(modalActions.closeModal());
+
+  const Modal = modals[type];
   if (!Modal) {
     return null;
   }
-  return <Modal />;
+  return <Modal handleClose={handleClose} isOpen={isOpen} />;
 }
 
 export default ModalWindow;

@@ -1,23 +1,35 @@
-import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
+import { useFormik } from 'formik';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { object } from 'yup';
-import { useFormik } from 'formik';
-import axios from 'axios';
-import { Alert, Button, Form } from 'react-bootstrap';
+
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 import { useAuth } from '../../hooks';
-import { email, signinPassword } from '../../utils/validationSchemas';
 import routes from '../../routes';
-import classes from './Form.module.css';
+import { email, required } from '../../utils/validationSchemas';
+
+import GithubSignInButton from './GithubSignInButton.jsx';
+import PasswordVisibilityButton from './PasswordVisibilityButton.jsx';
+import FormAlert from './FormAlert.jsx';
 
 function SignInForm({ onSuccess = () => null }) {
-  const inputRef = useRef();
-  const [authFailed, setAuthFailed] = useState(false);
   const { t } = useTranslation();
+  const emailRef = useRef();
   const auth = useAuth();
 
+  const initialFormState = { state: 'initial', message: '' };
+  const [formState, setFormState] = useState(initialFormState);
+
+  const [isPasswordVisible, setPasswordVisibility] = useState(false);
+  const handlePasswordVisibility = () => {
+    setPasswordVisibility(!isPasswordVisible);
+  };
   const validationSchema = object().shape({
     email: email(),
-    password: signinPassword(),
+    password: required(),
   });
 
   const formik = useFormik({
@@ -28,103 +40,128 @@ function SignInForm({ onSuccess = () => null }) {
     validationSchema,
     validateOnBlur: false,
     onSubmit: async (values, actions) => {
+      setFormState(initialFormState);
       try {
         actions.setSubmitting(true);
-        const response = await axios.post(routes.loginPath(), values);
-        setAuthFailed(false);
+        await axios.post(routes.loginPath(), values);
         auth.logIn();
         actions.setSubmitting(false);
-        if (onSuccess) onSuccess();
-        return response.data;
+        onSuccess();
       } catch (err) {
         if (!err.isAxiosError) {
-          console.log(t('errors.unknown'));
+          setFormState({
+            state: 'failed',
+            message: 'errors.unknown',
+          });
           throw err;
         }
         if (err.response?.status === 401) {
-          setAuthFailed(true);
-          inputRef.current.select();
+          setFormState({
+            state: 'failed',
+            message: 'errors.signInFailed',
+          });
+          emailRef.current.select();
         } else {
-          console.log(t('errors.network'));
+          setFormState({
+            state: 'failed',
+            message: 'errors.network',
+          });
           throw err;
         }
         actions.setSubmitting(false);
-        return values;
       }
     },
   });
 
   useEffect(() => {
-    inputRef?.current?.focus();
+    emailRef.current.focus();
   }, []);
 
   return (
-    <Form onSubmit={formik.handleSubmit} noValidate>
-      <Form.Group className={classes.formGroup}>
-        <Form.Label htmlFor="email">{t('signIn.emailLabel')}</Form.Label>
-        <Form.Control
-          onChange={formik.handleChange}
-          value={formik.values.email}
-          onBlur={formik.handleBlur}
-          className={`form-input bg-dark text-white ${classes.formControl}`}
-          name="email"
-          id="email"
-          autoComplete="email"
-          required
-          isInvalid={formik.touched.email && formik.errors.email}
-          ref={inputRef}
-        />
-        <Form.Control.Feedback type="invalid">
-          {t(formik.errors.email)}
-        </Form.Control.Feedback>
-      </Form.Group>
-      <Form.Group className={classes.formGroup}>
-        <Form.Label htmlFor="password">{t('signIn.passwordLabel')}</Form.Label>
-        <Form.Control
-          onChange={formik.handleChange}
-          value={formik.values.password}
-          onBlur={formik.handleBlur}
-          type="password"
-          className={`form-input bg-dark text-white ${classes.formControl}`}
-          name="password"
-          id="password"
-          autoComplete="password"
-          isInvalid={formik.touched.password && formik.errors.password}
-          required
-        />
-        <Form.Control.Feedback type="invalid">
-          {t(formik.errors.password)}
-        </Form.Control.Feedback>
-      </Form.Group>
-      {authFailed ? (
-        <Alert
-          variant="danger"
-          dismissible
-          onClose={() => setAuthFailed(false)}
-        >
-          {t('signIn.signInFailed')}
-        </Alert>
-      ) : null}
-      {/* TODO: https://github.com/hexlet-rus/runit/issues/94 */}
-
-      <Button
-        type="submit"
-        variant="primary"
-        className="w-100 pb-2 pt-2"
-        data-disable-with="Войти"
-        disabled={formik.isSubmitting}
+    <div className="d-flex flex-column gap-4">
+      <FormAlert
+        onClose={() => setFormState(initialFormState)}
+        state={formState.state}
       >
-        {t('signIn.loginButton')}
-      </Button>
-      <div className="text-end my-3">
-        <a
-          className="text-decoration-none small"
-          href={routes.remindPassPagePath()}
-        >
-          {t('signIn.remindPass')}
-        </a>
-      </div>
-    </Form>
+        {t(formState.message)}
+      </FormAlert>
+      <Form
+        className="d-flex flex-column gap-3"
+        noValidate
+        onSubmit={formik.handleSubmit}
+      >
+        <div className="d-flex flex-column gap-3">
+          <Form.Group controlId="email">
+            <Form.Label className="visually-hidden">
+              {t('profileSettings.emailLabel')}
+            </Form.Label>
+            <Form.Control
+              ref={emailRef}
+              autoComplete="email"
+              isInvalid={!!formik.touched.email && !!formik.errors.email}
+              name="email"
+              onBlur={formik.handleBlur}
+              onChange={formik.handleChange}
+              placeholder={t('profileSettings.emailLabel')}
+              required
+              type="email"
+              value={formik.values.email}
+            />
+            <Form.Control.Feedback type="invalid">
+              {t(formik.errors.email)}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group controlId="current-passowrd">
+            <Form.Label className="visually-hidden">
+              {t('profileSettings.passwordLabel')}
+            </Form.Label>
+            <div className="input-group-inline-button input-group-inline-button">
+              <Form.Control
+                autoComplete="password"
+                isInvalid={
+                  !!formik.touched.password && !!formik.errors.password
+                }
+                name="password"
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
+                placeholder={t('profileSettings.passwordLabel')}
+                required
+                type={isPasswordVisible ? 'text' : 'password'}
+                value={formik.values.password}
+              />
+              <PasswordVisibilityButton
+                enabled={isPasswordVisible}
+                onClick={handlePasswordVisibility}
+              />
+              <Form.Control.Feedback type="invalid">
+                {t(formik.errors.password)}
+              </Form.Control.Feedback>
+            </div>
+          </Form.Group>
+        </div>
+        <div className="d-flex flex-row gap-5">
+          {formState.message === 'errors.signInFailed' ? (
+            <a
+              className="icon-link link-secondary d-block align-self-center"
+              href={routes.remindPassPagePath()}
+            >
+              {t('signIn.remindPass')}
+            </a>
+          ) : null}
+          <Button
+            data-disable-with={t('signIn.signInButton')}
+            disabled={formik.isSubmitting}
+            className="flex-fill"
+            type="submit"
+            variant="primary"
+          >
+            {t('signIn.signInButton')}
+          </Button>
+        </div>
+      </Form>
+      <GithubSignInButton />
+    </div>
   );
 }
 

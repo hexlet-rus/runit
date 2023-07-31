@@ -1,19 +1,35 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 
 export const DEFAULT_CODE = '// Write your code in JS\n';
 
-const slice = createSlice({
-  name: 'editor',
-  initialState: {
-    error: false,
-    isFetching: false,
-    code: DEFAULT_CODE,
-    savedCode: DEFAULT_CODE,
-    isAllSaved: true,
+const initialState = {
+  snippetData: {
+    id: null,
+    name: null,
+    ownerUsername: null,
+    slug: null,
   },
+  error: false,
+  isReady: false,
+  hasSnippetData: false,
+  code: DEFAULT_CODE,
+  savedCode: DEFAULT_CODE,
+  isAllSaved: true,
+};
+
+const editorSlice = createSlice({
+  name: 'editor',
+  initialState,
   reducers: {
+    setActiveSnippetData(state, { payload }) {
+      state.snippetData = payload;
+      state.hasSnippetData = true;
+      state.isReady = true;
+    },
+    updateActiveSnippetName: (state, { payload }) => {
+      state.snippetData.name = payload;
+    },
     setCodeAndSavedCode(state, { payload }) {
       state.code = payload;
       state.savedCode = payload;
@@ -27,26 +43,14 @@ const slice = createSlice({
       state.savedCode = payload;
       state.isAllSaved = state.code === state.savedCode;
     },
-    resetCode(state) {
-      state.code = DEFAULT_CODE;
-      state.savedCode = DEFAULT_CODE;
+    resetEditor(state, { payload }) {
+      state = initialState;
+      state.code = payload ?? DEFAULT_CODE;
+      state.savedCode = payload ?? DEFAULT_CODE;
     },
   },
 });
-const isAuthenticated = async () => {
-  const response = await axios.get('api/users/profile');
-  return response.user;
-};
 
-export const getData = async () => {
-  const isAuth = await isAuthenticated();
-  if (!isAuth) {
-    return null;
-  }
-  const data = await axios.post('api/snippets', { code: '' });
-  return data.data.id;
-};
+export const { actions } = editorSlice;
 
-export const { actions } = slice;
-
-export default slice.reducer;
+export default editorSlice.reducer;

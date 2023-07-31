@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import axios from 'axios';
 import { SnippetsContext } from '../contexts';
 import routes from '../routes';
@@ -9,9 +9,9 @@ function SnippetsProvider({ children }) {
     return response.data;
   };
 
-  const getSnippetDataByViewParams = async ({ login, slug }) => {
+  const getSnippetDataByViewParams = async ({ username, slug }) => {
     const { data } = await axios.get(
-      routes.getSnippetPathByLoginSlug(login, slug),
+      routes.getSnippetPathByParams(username, slug),
     );
     return data;
   };
@@ -35,34 +35,40 @@ function SnippetsProvider({ children }) {
     return renamedSnippet;
   };
 
-  const hasViewSnippetParams = (urlData = {}) => {
-    return urlData.login && urlData.slug;
+  const updateSnippet = async (id, data) => {
+    const response = await axios.put(routes.updateSnippetPath(id), data);
+    const updatedSnippet = response.data;
+    return updatedSnippet;
   };
 
-  const genViewSnippetLink = (login, slug) => {
-    const url = new URL(`/users/${login}/snippets/${slug}`, window.location);
-    return url.toString();
-  };
+  const hasViewSnippetParams = (urlData = {}) =>
+    urlData.username && urlData.slug;
 
-  const genEmbedSnippetLink = (login, slug) => {
+  const genViewSnippetLink = (username, slug) => {
     const url = new URL(
-      `/users/${login}/embed/snippets/${slug}`,
-      window.location,
+      routes.snippetPagePath(username, slug),
+      window.location.origin,
     );
     return url.toString();
   };
 
-  const genEmbedFrame = (link) => {
-    return `<iframe 
-      height="300"
-      scrolling="no"
-      style="width: 754px"
-      src="${link}"
-      loading="lazy"
-      allowTransparency
-      allowFullScreen
-    >`;
+  const genEmbedSnippetLink = (username, slug) => {
+    const url = new URL(
+      routes.embedSnippetPagePath(username, slug),
+      window.location.origin,
+    );
+    return url.toString();
   };
+
+  const genEmbedFrame = (link) => `<iframe 
+  height="300"
+  scrolling="no"
+  style="width: 754px"
+  src="${link}"
+  loading="lazy"
+  allowTransparency
+  allowFullScreen
+>`;
 
   const getDefaultSnippetName = async () => {
     const response = await axios.get(routes.getDefaultSnippetName());
@@ -73,6 +79,7 @@ function SnippetsProvider({ children }) {
     () => ({
       saveSnippet,
       renameSnippet,
+      updateSnippet,
       deleteSnippet,
       genEmbedFrame,
       genViewSnippetLink,

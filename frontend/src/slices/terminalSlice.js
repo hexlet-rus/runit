@@ -42,7 +42,7 @@ const slice = createSlice({
       state.output = payload;
       state.codeExecutionState = 'idle';
     },
-    [editorActions.resetCode]: (state) => {
+    [editorActions.resetEditor]: (state) => {
       state.output = { terminal: [], alertLogs: [] };
       state.codeExecutionState = 'idle';
     },

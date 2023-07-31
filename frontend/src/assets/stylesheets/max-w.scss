@@ -1,0 +1,10 @@
+$utilities: map-merge(
+  $utilities,
+  (
+    "cursor": (
+      property: max-width,
+      class: max-w,
+      values: $container-max-widths,
+    ),
+  )
+);

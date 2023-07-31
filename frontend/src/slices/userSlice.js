@@ -3,12 +3,16 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import routes from '../routes';
 
-export const fetchData = createAsyncThunk('user/fetchData', async () => {
-  const response = await axios.get(routes.userProfilePath());
-  return response.data;
-});
+export const fetchUserData = createAsyncThunk(
+  'user/fetchUserData',
+  async () => {
+    const response = await axios.get(routes.userProfilePath());
+    return response.data;
+  },
+);
 
 const initialState = {
+  status: 'empty',
   userInfo: {},
 };
 
@@ -20,10 +24,15 @@ const userSlice = createSlice({
       state.userInfo = payload;
     },
   },
-  extraReducers: {
-    [fetchData.fulfilled]: (state, { payload }) => {
-      state.userInfo = payload.currentUser;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUserData.pending, (state) => {
+        state.status = 'pending';
+      })
+      .addCase(fetchUserData.fulfilled, (state, { payload }) => {
+        state.userInfo = payload.currentUser;
+        state.status = 'fullfilled';
+      });
   },
 });
 
