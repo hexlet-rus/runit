@@ -25,7 +25,13 @@ export const SnippetButton = memo(() => {
   useEffect(() => {
     const getSnippetData = async () => {
       if (hasViewSnippetParams) {
-        const response = await snippetsApi.getSnippetDataByViewParams(snippetParams);
+        const response = await snippetsApi.getSnippetDataByViewParams(
+          snippetParams,
+        );
+        // #TODO: remove check once redirect to 404 is configured
+        if (response.length === 0) {
+          dispatch(modalActions.openModal({ type: 'snippetUnavailable' }));
+        }
         const { id, name } = response;
         setSnippetData((state) => ({ ...state, id, name }));
       }
@@ -59,14 +65,8 @@ export const SnippetButton = memo(() => {
         item: {
           name: snippetData?.name,
           id: snippetData?.id,
-          link: snippetsApi.genViewSnippetLink(
-            params.login,
-            params.slug,
-          ),
-          embedLink: snippetsApi.genEmbedSnippetLink(
-            params.login,
-            params.slug,
-          ),
+          link: snippetsApi.genViewSnippetLink(params.login, params.slug),
+          embedLink: snippetsApi.genEmbedSnippetLink(params.login, params.slug),
         },
       }),
     );

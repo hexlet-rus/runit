@@ -32,8 +32,8 @@ const enLocales = {
       passwordLabel: 'Password',
       confirmPasswordLabel: 'Confirm password',
       registerButton: 'Sign up',
-      signUpFailed: 'Sign Up is failed',
       footer: {
+        signUpFailed: 'Sign Up is failed', // #TODO: remove after 404 is configured
         signInHeader: 'Already have an account? ',
         signIn: 'Sign in',
       },
@@ -168,6 +168,7 @@ const enLocales = {
       alertGithubHeader: 'Login error',
       redirectButton: 'Login page',
     },
+    snippetUnavailable: 'Snippet is unavailable or has been deleted by user', // #TODO: remove after 404 is configured
     saveHeader: 'Save to share.',
     newSnippetName: 'Snippet Name',
     signInButton: 'Sign in',

@@ -179,6 +179,7 @@ const ruLocales = {
         confirmNewPassword: 'Подтвердите новый пароль',
         wrongPassword: 'Неверный пароль',
       },
+      snippetUnavailable: 'Сниппет недоступен, или был удалён пользователем', // #TODO: remove after 404 is configured
       saveHeader: 'Сохраните, чтобы поделиться.',
       newSnippetName: 'Название сниппета',
       signInButton: 'Войти',
