@@ -37,7 +37,6 @@ function ProtectedRoute({ redirectTo = routes.homePagePath(), isAllowed }) {
 
 function AppRoutes() {
   const { isLoggedIn } = useAuth();
-  const { t } = useTranslation();
 
   return (
     <Suspense fallback={<DefaultLoader />}>
