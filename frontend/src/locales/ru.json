@@ -364,6 +364,10 @@
     "updateSuccessful": "Данные аккаунта были обновлены",
     "usernameLabel": "Имя пользователя"
   },
+  "remindPass": {
+    "pageHeader": "Забыли пароль?",
+    "resetButton": "Восстановить пароль"
+  },
   "settings": {
     "languages": {
       "header": "Изменить язык"
