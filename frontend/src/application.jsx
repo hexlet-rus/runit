@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import * as Sentry from '@sentry/react';
 import i18next from 'i18next';
-import { StrictMode } from 'react';
 import { initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -12,6 +11,7 @@ import ModalWindow from './components/Modals/Modal.jsx';
 import resources from './locales';
 import AuthProvider from './providers/AuthProvider.jsx';
 import SnippetsProvider from './providers/SnippetsProvider.jsx';
+import ThemeProvider from './providers/ThemeProvider.jsx';
 import { rootReducer } from './slices';
 
 export default async () => {
@@ -39,17 +39,17 @@ export default async () => {
   });
 
   return (
-    // <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <AuthProvider>
-          <SnippetsProvider>
-            <AppRoutes />
-            <ModalWindow />
-          </SnippetsProvider>
-        </AuthProvider>
-      </BrowserRouter>
+      <ThemeProvider>
+        <BrowserRouter>
+          <AuthProvider>
+            <SnippetsProvider>
+              <AppRoutes />
+              <ModalWindow />
+            </SnippetsProvider>
+          </AuthProvider>
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>
-    // </StrictMode>
   );
 };
