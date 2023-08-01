@@ -1,0 +1,15 @@
+$utilities: map-merge(
+  $utilities,
+  (
+    "max-width-as-breakpoint": (
+      property: max-width,
+      class: max-w,
+      values: $container-max-widths,
+    ),
+    "width-as-breakpoint": (
+      property: width,
+      class: w,
+      values: $container-max-widths,
+    ),
+  )
+);

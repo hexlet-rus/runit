@@ -2,21 +2,18 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import axios from 'axios';
-import { actions } from '../../slices/index.js';
-import routes from '../../routes.js';
+import { actions } from '../slices/index.js';
+import routes from '../routes.js';
 
 const { runCode } = actions;
 
-export const useButton = () => {
+const useRunButton = () => {
   const dispatch = useDispatch();
   const { codeExecutionState, code } = useSelector(({ terminal, editor }) => ({
     codeExecutionState: terminal.codeExecutionState,
     code: editor.code,
   }));
-  const onClick = useCallback(
-    () => dispatch(runCode(code)),
-    [dispatch, runCode, code],
-  );
+  const onClick = useCallback(() => dispatch(runCode(code)), [dispatch, code]);
   const update = async (id, name) => {
     const response = await axios.put(routes.updateSnippetPath(id), {
       code,
@@ -35,3 +32,5 @@ export const useButton = () => {
     code,
   };
 };
+
+export default useRunButton;

@@ -1,12 +1,11 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
 import { Youtube, Telegram, Twitter } from 'react-bootstrap-icons';
-import { ReactComponent as Vk } from '../assets/images/vk.svg';
-import classes from './Footer.module.css';
+import { ReactComponent as Vk } from '../../assets/images/icons/vk.svg';
+import classes from './index.module.css';
 
-export function buildFooter() {
+const Footer = () => {
   const { t } = useTranslation();
 
   return (
@@ -201,43 +200,43 @@ export function buildFooter() {
               </ul>
             </Nav>
             {/* Add it when english version will be available
-            <Dropdown role="group" className="mt-3">
-              <Dropdown.Toggle
-                className="btn-link text-body text-decoration-none p-0 x-btn-focus-visible"
-                split
-                variant="none"
-              >
-                <Globe /> // from react-bootstrap-icons
-                <span className="fw-bold me-2">{t('footer.language')}</span>
-              </Dropdown.Toggle>
-
-              <Dropdown.Menu as="ul">
-                <li>
-                  <Dropdown.Item as="a" className="dropdown-item" href="/#">
-                    <img
-                      width="22"
-                      alt="Переключить язык на en"
-                      className="my-auto me-2"
-                      loading="lazy"
-                      src="https://cdn2.hexlet.io/assets/flag-en-f0b48c6562bb27879fbd685ece0133271ea043384dd9793843c246f862ac7cc1.svg"
-                    />
-                    <span className="my-auto text-muted">{t('footer.en')}</span>
-                  </Dropdown.Item>
-                </li>
-                <li>
-                  <Dropdown.Item as="a" className="dropdown-item" href="/#">
-                    <img
-                      width="22"
-                      alt="Переключить язык на ru"
-                      className="my-auto me-2"
-                      loading="lazy"
-                      src="https://cdn2.hexlet.io/assets/flag-ru-593864ce87ae202b2c2e9393b2a6cf9384ac9cbb1c70632f4c6eeca34341483e.svg"
-                    />
-                    <span className="my-auto text-muted">{t('footer.ru')}</span>
-                  </Dropdown.Item>
-                </li>
-              </Dropdown.Menu>
-            </Dropdown> */}
+              <Dropdown role="group" className="mt-3">
+                <Dropdown.Toggle
+                  className="btn-link text-body text-decoration-none p-0 x-btn-focus-visible"
+                  split
+                  variant="none"
+                >
+                  <Globe /> // from react-bootstrap-icons
+                  <span className="fw-bold me-2">{t('footer.language')}</span>
+                </Dropdown.Toggle>
+  
+                <Dropdown.Menu as="ul">
+                  <li>
+                    <Dropdown.Item as="a" className="dropdown-item" href="/#">
+                      <img
+                        width="22"
+                        alt="Переключить язык на en"
+                        className="my-auto me-2"
+                        loading="lazy"
+                        src="https://cdn2.hexlet.io/assets/flag-en-f0b48c6562bb27879fbd685ece0133271ea043384dd9793843c246f862ac7cc1.svg"
+                      />
+                      <span className="my-auto text-muted">{t('footer.en')}</span>
+                    </Dropdown.Item>
+                  </li>
+                  <li>
+                    <Dropdown.Item as="a" className="dropdown-item" href="/#">
+                      <img
+                        width="22"
+                        alt="Переключить язык на ru"
+                        className="my-auto me-2"
+                        loading="lazy"
+                        src="https://cdn2.hexlet.io/assets/flag-ru-593864ce87ae202b2c2e9393b2a6cf9384ac9cbb1c70632f4c6eeca34341483e.svg"
+                      />
+                      <span className="my-auto text-muted">{t('footer.ru')}</span>
+                    </Dropdown.Item>
+                  </li>
+                </Dropdown.Menu>
+              </Dropdown> */}
           </Col>
           <Col>
             <div className="fw-bold mt-3 mb-2 text-white">
@@ -316,4 +315,6 @@ export function buildFooter() {
       </Container>
     </footer>
   );
-}
+};
+
+export default Footer;

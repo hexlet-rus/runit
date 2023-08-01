@@ -1,8 +1,19 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchData } from './userSlice';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+import routes from '../routes';
+
+export const fetchUserSnippets = createAsyncThunk(
+  'user/fetchUserSnippets',
+  async () => {
+    const response = await axios.get(routes.userProfilePath());
+    return response.data;
+  },
+);
 
 const initialState = {
+  status: 'empty',
   snippets: [],
 };
 
@@ -25,10 +36,15 @@ const snippetSlice = createSlice({
       renamedSnippet.name = name;
     },
   },
-  extraReducers: {
-    [fetchData.fulfilled]: (state, { payload }) => {
-      state.snippets = payload.snippets;
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUserSnippets.pending, (state) => {
+        state.status = 'pending';
+      })
+      .addCase(fetchUserSnippets.fulfilled, (state, { payload }) => {
+        state.snippets = payload.snippets;
+        state.status = 'fullfilled';
+      });
   },
 });
 

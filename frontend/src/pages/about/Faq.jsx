@@ -1,4 +1,3 @@
-import React from 'react';
 import { Accordion, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import './Faq.module.css';

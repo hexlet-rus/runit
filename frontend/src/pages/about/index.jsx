@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 // import routes from '../routes.js';
-import { Faq } from '../components/Faq.jsx';
+import { Faq } from './Faq.jsx';
 
-function About() {
+function AboutPage() {
   const { t } = useTranslation();
 
   return (
@@ -62,4 +62,4 @@ function About() {
   );
 }
 
-export default About;
+export default AboutPage;

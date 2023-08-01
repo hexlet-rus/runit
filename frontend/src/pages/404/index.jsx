@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-function NotFound() {
+const NotFound = () => {
   const { t } = useTranslation();
 
   return (
@@ -10,10 +10,10 @@ function NotFound() {
       <div className="row row-cols-1 row-cols-lg-2 align-items-lg-center">
         <div className="col">
           <img
-            className="img-fluid"
             alt="404 error"
-            src="/notFound.svg"
+            className="img-fluid"
             loading="lazy"
+            src="/notFound.svg"
           />
         </div>
         <div className="col">
@@ -44,6 +44,6 @@ function NotFound() {
       </div>
     </div>
   );
-}
+};
 
 export default NotFound;

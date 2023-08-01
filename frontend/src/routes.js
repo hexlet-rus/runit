@@ -4,32 +4,60 @@ export default {
   // post - create user: { name, email, password, confirmPassword }
   // get - get all users
   usersPath: () => [apiPath, 'users'].join('/'),
-  userProfilePath: () => [apiPath, 'users', 'profile'].join('/'), // get user info that is logged in
-  userInfoPath: (param) => [apiPath, 'users', `${param}`].join('/'), // get user info
-  updateUserPath: (id) => [apiPath, 'users', `${id}`].join('/'), // put - update user info: { name, email, password }
-  loginPath: () => [apiPath, 'login'].join('/'),
-  logoutPath: () => [apiPath, 'logout'].join('/'), // post
-  deleteUserPath: (id) => [apiPath, 'users', `:${id}`].join('/'), // delete user
-  snippetsPath: () => [apiPath, 'snippets'].join('/'), // get - shows all snippets
-  createSnippetPath: () => [apiPath, 'snippets'].join('/'), // post - create snippet: { name, code }
-  getSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // get snippet
-  getSnippetPathByLoginSlug: (login, slug) =>
-    [apiPath, 'snippets', login, slug].join('/'),
-  updateSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // put - update snippet info: { name, code }
-  deleteSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'), // delete snippet
-  getDefaultSnippetName: () => [apiPath, 'snippets', 'name'].join('/'), // get random initial snippet name
+
+  // get user info that is logged in
+  userProfilePath: () => [apiPath, 'users', 'profile'].join('/'),
+
+  // get user info
+  userInfoPath: (param) => [apiPath, 'users', `${param}`].join('/'),
+
+  // put - update user info: { name, email, password }
+  updateUserPath: (id) => [apiPath, 'users', `${id}`].join('/'),
+
+  signinPath: () => [apiPath, 'login'].join('/'),
+
+  // post
+  logoutPath: () => [apiPath, 'logout'].join('/'),
+
+  // delete user
+  deleteUserPath: (id) => [apiPath, 'users', `:${id}`].join('/'),
+
+  // get - shows all snippets
+  snippetsPath: () => [apiPath, 'snippets'].join('/'),
+
+  // post - create snippet: { name, code }
+  createSnippetPath: () => [apiPath, 'snippets'].join('/'),
+
+  // get snippet
+  getSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'),
+
+  getSnippetPathByParams: (username, slug) =>
+    [apiPath, 'snippets', username, slug].join('/'),
+
+  // put - update snippet info: { name, code }
+  updateSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'),
+
+  // delete snippet
+  deleteSnippetPath: (id) => [apiPath, 'snippets', `${id}`].join('/'),
+
+  // get random initial snippet name
+  getDefaultSnippetName: () => [apiPath, 'snippets', 'name'].join('/'),
+
+  // OAuth
+  oAuthPath: () => [apiPath, 'oauth'].join('/'),
+
   homePagePath: () => '/editor',
   aboutPagePath: () => '/about',
-  pageProfilePath: () => '/profile',
-  defaultProfilePagePath: () => '/profile/snippets',
-  profileSettingsPagePath: () => '/profile/settings',
-  loginPagePath: () => '/login',
+  profilePagePath: (username = ':username') => `/u/${username}`,
+  myProfilePagePath: () => '/profile',
+  settingsPagePath: () => '/settings',
+  signInPagePath: () => '/signin',
   signUpPagePath: () => '/signup',
   remindPassPagePath: () => '/remind_password',
-  embedPagePath: () => '/embed',
   licenseAgreementPath: () => '/licenseAgreement',
-  snippetPagePath: () => '/users/:login/snippets/:slug',
-  embedSnippetPagePath: () => '/users/:login/embed/snippets/:slug',
-  oAuthPath: () => [apiPath, 'oauth'].join('/'), // OAuth
-  lendingPath: () => '/',
+  snippetPagePath: (username = ':username', slug = ':slug') =>
+    `u/${username}/snippets/${slug}`,
+  embedSnippetPagePath: (username = ':username', slug = ':slug') =>
+    `/embed/u/${username}/snippets/${slug}`,
+  landingPath: () => '/',
 };

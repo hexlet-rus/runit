@@ -1,5 +1,7 @@
-import ru from './ru.js';
-import en from './en.js';
+import ru from './ru.json';
+import en from './en.json';
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default { ru, en };
+export default {
+  ru: { translation: ru },
+  en: { translation: en },
+};

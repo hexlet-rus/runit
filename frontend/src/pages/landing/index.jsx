@@ -2,9 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Row, Col, Button } from 'react-bootstrap';
+
 import routes from '../../routes.js';
-import { Faq } from '../../components/Faq';
-import classes from './Landing.module.css';
+
+import { Faq } from '../about/Faq.jsx';
+import classes from './index.module.css';
 import Checked from '../../assets/landing/images/checked.svg';
 import tagImg from '../../assets/landing/images/tag.png';
 import osImg from '../../assets/landing/images/os.png';
@@ -17,7 +19,7 @@ function Landing() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-vh-100 d-flex flex-column bg-dark text-white fw-normal">
+    <div className="bg-dark text-white fw-normal w-100">
       <main className="container pb-5">
         <section className="d-flex flex-column flex-grow h-100 py-3 py-md-4 py-lg-5 justify-content-evenly">
           <Row>
@@ -77,7 +79,7 @@ function Landing() {
             <Button
               size="lg"
               as={Link}
-              to={routes.loginPagePath()}
+              to={routes.signInPagePath()}
               className={`btn ${classes.btnPrimary} ${classes.btnAttention} py-3 ${classes.fs5} fw-bold ${classes.mt65} ${classes.lh5}"`}
             >
               {t('landing.startCoding')}
@@ -198,7 +200,7 @@ function Landing() {
             <Button
               size="lg"
               as={Link}
-              to={routes.loginPagePath()}
+              to={routes.signInPagePath()}
               className={`btn ${classes.btnPrimary} ${classes.btnAttention} py-3 ${classes.fs5} fw-bold ${classes.mt40} ${classes.lh5}"`}
             >
               {t('landing.startCoding')}

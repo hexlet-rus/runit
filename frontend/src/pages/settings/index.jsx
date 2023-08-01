@@ -1,103 +1,65 @@
-import React from 'react';
-import { Col, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import { actions as modalActions } from '../slices/modalSlice.js';
-import classes from './Profile.module.css';
+import { useDispatch } from 'react-redux';
 
-function AccountSettings() {
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Container';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Stack from 'react-bootstrap/Stack';
+import { XCircle } from 'react-bootstrap-icons';
+
+import { actions as modalActions } from '../../slices/modalSlice.js';
+
+import UpdateAccountForm from 'src/components/Forms/UpdateAccountForm.jsx';
+import ChangePasswordForm from 'src/components/Forms/ChangePasswordForm.jsx';
+import AvatarChangeForm from 'src/components/Forms/AvatarChangeForm.jsx';
+
+const SettingsPage = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const userInfo = useSelector((state) => state.user.userInfo);
 
-  const parseDate = (date) => {
-    try {
-      return new Intl.DateTimeFormat().format(new Date(date));
-    } catch {
-      return t('profile.successfulLoading');
-    }
-  };
-
-  const handleEditProfile = () => {
-    dispatch(
-      modalActions.openModal({
-        type: 'editProfile',
-        item: userInfo,
-      }),
-    );
-  };
-
-  const handleChangePassword = () => {
-    dispatch(
-      modalActions.openModal({
-        type: 'changePassword',
-        item: { id: userInfo.id },
-      }),
-    );
+  const handleRemoveAccount = () => {
+    dispatch(modalActions.openModal({ type: 'inDevelopment' }));
   };
 
   return (
-    <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
-      <div className={`w-100 ${classes.profile}`}>
-        <div>
-          <h1 className="my-2" style={{ textAlign: 'center' }}>
-            {userInfo.login}
-          </h1>
-          <div style={{ paddingTop: '10px' }}>
-            <h5 className="my-2">
-              {t('profile.email')}
-              <span className="text-muted"> {userInfo.email}</span>
-            </h5>
-            <h5 className="my-2">
-              {t('profile.createdAt')}
-              <span className="text-muted">
-                {' '}
-                {parseDate(userInfo.created_at)}
-              </span>
-            </h5>
-          </div>
-          {/* <div>
-            {`${t('profile.email')} `}
-            <span className="text-muted">{userInfo.email}</span>
-          </div> */}
-          {/* "userdata.created_at", "userdata.id" are also available. Add if needed. */}
-        </div>
-        <div className={`${classes.profileButtons}`}>
-          <Button className={`${classes.button}`} onClick={handleEditProfile}>
-            <div>
-              <span>{t('profile.editProfileButton')}</span>
+    <div className="page-bg-image">
+      <Container fluid="lg" className="h-100">
+        <Row className="justify-content-center align-items-center h-100 py-5 m-auto py-5 h-100">
+          <Col className="max-w-lg">
+            <div className="d-flex flex-column gap-2 bg-body rounded-4 p-4 p-sm-5">
+              <h1 className="display-6 mb-5">
+                {t('profileSettings.pageHeader')}
+              </h1>
+              <div className="d-flex flex-column flex-md-row gap-5">
+                <div className="flex-shrink-1">
+                  <AvatarChangeForm />
+                </div>
+                <div className="w-100">
+                  <Stack className="gap-2">
+                    <UpdateAccountForm />
+                    <hr className="border-secondary-subtle" />
+                    <ChangePasswordForm />
+                  </Stack>
+                </div>
+              </div>
+              <div className="d-flex flex-column">
+                <hr className="border-secondary-subtle" />
+                <Button
+                  variant="nofill-secondary"
+                  size="sm"
+                  className="ms-auto"
+                  onClick={handleRemoveAccount}
+                >
+                  <XCircle className="bi" /> {t('profileActions.removeAccount')}
+                </Button>
+              </div>
             </div>
-          </Button>
-          <Button
-            className={`${classes.button}`}
-            onClick={() => {
-              navigator.clipboard.writeText(window.location.href);
-            }}
-          >
-            <div>
-              <span>{t('profile.copyProfileButton')} </span>
-            </div>
-          </Button>
-          <Button
-            className={`${classes.button}`}
-            onClick={handleChangePassword}
-          >
-            <div>
-              <span>{t('modals.changePassword.header')}</span>
-            </div>
-          </Button>
-        </div>
-        <div className="gap" style={{ marginBottom: 'auto' }} />
-        <div
-          className="d-flex flex-md-column w-100"
-          style={{ alignItems: 'center' }}
-        >
-          {/* <span>{t('profile.createdAt')}</span>
-          <span>{parseDate(userInfo.created_at)}</span> */}
-        </div>
-      </div>
-    </Col>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
-}
+};
 
-export default AccountSettings;
+export default SettingsPage;

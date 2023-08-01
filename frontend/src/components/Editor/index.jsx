@@ -1,99 +1,32 @@
-import React, { useEffect, useState, useRef, useDeferredValue } from 'react';
 import Editor from '@monaco-editor/react';
-import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+
 import { useEditor } from './hooks.js';
-import { useAuth, useSnippets } from '../../hooks';
-import classes from './Editor.module.css';
-import { actions } from '../../slices/index.js';
-import routes from '../../routes.js';
+import { useTheme } from '../../hooks';
 
-function AuthBanner() {
-  const { t } = useTranslation();
+function CodeEditor({ readOnly = false }) {
+  const { resolvedTheme } = useTheme();
 
-  return (
-    <div className={`text-center fw-bold ${classes.banner}`}>
-      {t('editor.authBanner')}
-    </div>
-  );
-}
-
-export function MonacoEditor() {
-  const [snippetData, setSnippetData] = useState({});
   const { code, language, onChange } = useEditor();
-  const { isLoggedIn } = useAuth();
-  const dispatch = useDispatch();
-  const snippetApi = useSnippets();
-  const params = useParams();
-  const snippetDataRef = useRef();
-  const deferredValue = useDeferredValue(code);
-  const snippetParams = {
-    login: params.login,
-    slug: params.slug,
-  };
-  const ifHasViewSnippetParams = snippetApi.hasViewSnippetParams(snippetParams);
+
+  const monacoEditorTheme = resolvedTheme === 'light' ? 'vs' : 'vs-dark';
+
   const options = {
     selectOnLineNumbers: true,
     wordWrap: true,
-    readOnly: !isLoggedIn,
+    readOnly,
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      dispatch(actions.updateSavedCode(deferredValue));
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, [deferredValue]);
-
-  useEffect(() => {
-    snippetDataRef.current = snippetData;
-  }, [snippetData]);
-
-  useEffect(() => {
-    setSnippetData((state) => ({ ...state, code }));
-  }, [code]);
-
-  useEffect(() => {
-    const loadSnippet = async () => {
-      if (ifHasViewSnippetParams) {
-        const response = await snippetApi.getSnippetDataByViewParams(snippetParams);
-        const { id, name, code: snippetCode } = response;
-        setSnippetData((state) => ({
-          ...state,
-          id,
-          name,
-        }));
-        dispatch(actions.setCodeAndSavedCode(snippetCode));
-      } else {
-        dispatch(actions.resetCode());
-      }
-    };
-    loadSnippet();
-
-    return async () => {
-      if (ifHasViewSnippetParams) {
-        const response = await axios.put(routes.updateSnippetPath(snippetDataRef.current.id), {
-          code: snippetDataRef.current.code,
-          name: snippetDataRef.current.name,
-        });
-        return response;
-      }
-    }
-  }, [params]);
-
   return (
-    <div className={classes.wrapper}>
-      {!isLoggedIn ? <AuthBanner /> : ''}
+    <div className="h-100 w-100">
       <Editor
         defaultLanguage={language}
-        theme="vs-dark"
-        value={snippetData.code}
+        theme={monacoEditorTheme}
+        value={code}
         options={options}
         onChange={onChange}
       />
     </div>
   );
 }
+
+export default CodeEditor;

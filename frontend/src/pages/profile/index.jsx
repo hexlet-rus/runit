@@ -1,21 +1,75 @@
-import React, { useEffect } from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
-import { fetchData } from '../slices/userSlice.js';
-import classes from './Profile.module.css';
-import Snippets from './Snippets.jsx';
-import routes from '../routes.js';
-import AccountSettings from './AccountSettings.jsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-function Profile() {
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import { Link45deg } from 'react-bootstrap-icons';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
+import NotFoundPage from '../404';
+import SnippetCard from './SnippetCard.jsx';
+import NewSnippetForm from './NewSnippetForm.jsx';
+import { fetchUserSnippets } from 'src/slices/snippetsSlice.js';
+import { actions } from '../../slices/modalSlice.js';
+import { useEffect } from 'react';
+
+const ProfileLayout = ({ data, isEditable }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const location = useLocation();
+  const { user, snippets } = data;
+
+  const handleInDevelopment = () => {
+    dispatch(actions.openModal({ type: 'inDevelopment' }));
+  };
+
+  return (
+    <div className="page-bg-image">
+      <Container className="py-5">
+        <div className="d-flex align-items-start">
+          <h1 className="display-5">{user.login}</h1>
+          <Button
+            variant="nofill-secondary"
+            size="sm"
+            className="btn-icon-only"
+            onClick={handleInDevelopment}
+          >
+            <Link45deg />
+            <span className="visually-hidden">{t('profileActions.share')}</span>
+          </Button>
+        </div>
+
+        <Row
+          as={TransitionGroup}
+          xs={1}
+          sm={2}
+          lg={3}
+          xxl={4}
+          className="g-4 py-3"
+        >
+          {isEditable ? <NewSnippetForm /> : null}
+          {snippets.map((snippet) => (
+            <CSSTransition key={snippet.id} timeout={250} classNames="width">
+              <SnippetCard data={snippet} isEditable={isEditable} />
+            </CSSTransition>
+          ))}
+        </Row>
+      </Container>
+    </div>
+  );
+};
+
+const ProfilePage = () => {
+  const dispatch = useDispatch();
+  const { username } = useParams();
+  const user = useSelector((state) => state.user.userInfo);
+  const snippetsSlice = useSelector((state) => state.snippets);
+
+  const isMyProfile = username === user.login;
 
   useEffect(() => {
-    dispatch(fetchData())
+    dispatch(fetchUserSnippets())
       .unwrap()
       .catch((serializedError) => {
         const error = new Error(serializedError.message);
@@ -24,63 +78,15 @@ function Profile() {
       });
   }, []);
 
-  return (
-    <div className="main-content">
-      <div className={`${classes.upperLine}`} />
-      <div className={`h-100 w-100 px-3 bg-dark ${classes.container}`}>
-        <Row className={`${classes.profileContainer}`}>
-          <Col className={`col-md-3 px-2 rounded ${classes.profileColumn}`}>
-            <div className={`w-100 ${classes.profile}`}>
-              <div>
-                <h1 className="my-2">{`${t('navbar.profile')}`}</h1>
-                {/* <div>
-                  Текст:
-                  <span className="text-muted">описание</span>
-                </div> */}
-                {/* "userdata.created_at", "userdata.id" are also available. Add if needed. */}
-              </div>
-              <div className={`${classes.profileButtons}`}>
-                <div>
-                  <Link as={Link} to={routes.profileSettingsPagePath()}>
-                    <Button className={`${classes.button}`}>
-                      <div>
-                        <span>{`${t('profile.settingsHeader')}`}</span>
-                      </div>
-                    </Button>
-                  </Link>
-                </div>
-                <div>
-                  <Link as={Link} to={routes.defaultProfilePagePath()}>
-                    <Button
-                      className={`${classes.button}`}
-                      onClick={() => {
-                        navigator.clipboard.writeText(window.location.href);
-                      }}
-                    >
-                      <div>
-                        <span>{`${t('profile.replsHeader')}`}</span>
-                      </div>
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-              <div className="gap" style={{ marginBottom: 'auto' }} />
-              <div
-                className="d-flex flex-md-column w-100"
-                style={{ alignItems: 'center' }}
-              />
-            </div>
-          </Col>
-          {location.pathname === routes.defaultProfilePagePath() && (
-            <Snippets />
-          )}
-          {location.pathname === routes.profileSettingsPagePath() && (
-            <AccountSettings />
-          )}
-        </Row>
-      </div>
-    </div>
+  // TODO: добавить возможность получать сниппеты другого пользователя, когда появится возможность делится профилем
+  return isMyProfile ? (
+    <ProfileLayout
+      data={{ user, snippets: snippetsSlice.snippets }}
+      isEditable={isMyProfile}
+    />
+  ) : (
+    <NotFoundPage />
   );
-}
+};
 
-export default Profile;
+export default ProfilePage;
