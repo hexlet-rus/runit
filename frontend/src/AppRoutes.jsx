@@ -17,7 +17,7 @@ const SignUpPage = lazy(() => import('./Pages/signup'));
 const SignInPage = lazy(() => import('./Pages/signin'));
 const Landing = lazy(() => import('./Pages/Landing'));
 const LicenseAgreement = lazy(() => import('./Pages/LicenseAgreement.jsx'));
-const RemindPassword = lazy(() => import('./Pages/RemindPassword.jsx'));
+const RemindPasswordPage = lazy(() => import('./Pages/remind_password'));
 const NotFoundPage = lazy(() => import('./Pages/404'));
 const EmbeddedPage = lazy(() => import('./Pages/embed'));
 
@@ -81,7 +81,7 @@ function AppRoutes() {
 
           <Route
             path={routes.remindPassPagePath()}
-            element={<RemindPassword />}
+            element={<RemindPasswordPage />}
           />
           <Route
             path={routes.licenseAgreementPath()}

@@ -255,6 +255,10 @@
     "updateSuccessful": "Profile has been updated successfully",
     "usernameLabel": "Username"
   },
+  "remindPass": {
+    "pageHeader": "Forgot password?",
+    "resetButton": "Recover password"
+  },
   "settings": {
     "languages": {
       "header": "Change language"
