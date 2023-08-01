@@ -31,6 +31,7 @@ function UserMenu() {
         <div className="navbar-avatar">
           <Avatar username={username} />
         </div>
+        <span className="visually-hidden">{t('profileActions.header')}</span>
       </Dropdown.Toggle>
       <Dropdown.Menu as="ul">
         <Dropdown.Header as="li">{username}</Dropdown.Header>

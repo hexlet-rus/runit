@@ -71,6 +71,11 @@ function NewSnippetForm() {
                 alt={t(`languages.${language}`)}
                 src={icons.get(language)}
               />
+              <span className="visually-hidden">
+                {t('snippetActions.createOnLanguage', {
+                  language: t(`languages.${language}`),
+                })}
+              </span>
             </Button>
           ))}
         </div>

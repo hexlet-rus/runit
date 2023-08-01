@@ -43,7 +43,7 @@ function SignInForm({ onSuccess = () => null }) {
       setFormState(initialFormState);
       try {
         actions.setSubmitting(true);
-        await axios.post(routes.loginPath(), values);
+        await axios.post(routes.signinPath(), values);
         auth.logIn();
         actions.setSubmitting(false);
         onSuccess();

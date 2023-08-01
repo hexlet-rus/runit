@@ -232,6 +232,7 @@
     }
   },
   "profileActions": {
+    "header": "Profile",
     "logout": "Log out",
     "removeAccount": "Delete your account",
     "settings": "Settings",
@@ -285,6 +286,7 @@
   "snippetActions": {
     "additionalHeader": "Additional Actions",
     "cancelButton": "Cancel",
+    "createOnLanguage": "Create snippet on {{language}}",
     "delete": "Delete",
     "deleteConfirmation": "Are you sure?",
     "duplicate": "Create copy",
