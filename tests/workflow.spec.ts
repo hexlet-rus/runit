@@ -21,7 +21,7 @@ test('work', async ({ page }) => {
     .fill("// Write your code in JS\nconsole.log('Hello');");
   await page.getByRole('button', { name: 'Запустить' }).click();
 
-  await expect(page.locator(':text("hello")')).toBeVisible();
+  await expect(page.getByText('Hello', { exact: true })).toBeVisible();
 });
 
 test('Unable to register by invalid email ', async ({ page }) => {
