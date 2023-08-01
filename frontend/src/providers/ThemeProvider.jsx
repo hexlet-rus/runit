@@ -1,4 +1,6 @@
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useMemo, useState } from 'react';
+
+import { ThemeContext } from '../contexts/index.js';
 
 const themeAttribute = 'data-bs-theme';
 
@@ -9,17 +11,10 @@ const getSystemTheme = () => {
   return isDarkTheme ? 'dark' : 'light';
 };
 
-const useTheme = () => {
+function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(
     localStorage.getItem('theme') || getSystemTheme(),
   );
-
-  // const getResolvedTheme = useCallback(() => {
-  //   if (theme === 'system') {
-  //     return getSystemTheme();
-  //   }
-  //   return theme;
-  // }, [theme]);
 
   const resolvedTheme = theme === 'system' ? getSystemTheme() : theme;
 
@@ -28,11 +23,20 @@ const useTheme = () => {
     localStorage.setItem('theme', theme);
   }, [theme, resolvedTheme]);
 
-  return {
-    theme,
-    resolvedTheme,
-    setTheme,
-  };
-};
+  const memoizedValue = useMemo(
+    () => ({
+      theme,
+      resolvedTheme,
+      setTheme,
+    }),
+    [theme, resolvedTheme, setTheme],
+  );
 
-export default useTheme;
+  return (
+    <ThemeContext.Provider value={memoizedValue}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export default ThemeProvider;

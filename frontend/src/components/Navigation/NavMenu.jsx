@@ -20,7 +20,7 @@ function MySnippetsLink() {
         eventKey={routes.profilePagePath(username)}
         to={routes.profilePagePath(username)}
       >
-        <GridFill />
+        <GridFill className="bi" />
         {t('navbar.mySnippets')}
       </Nav.Link>
     </Nav.Item>
