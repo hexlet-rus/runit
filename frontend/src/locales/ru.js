@@ -194,8 +194,9 @@ const ruLocales = {
       cancelButton: 'Отмена',
       goToReplButton: 'Перейти к этому реплу',
     },
-    appRotes: {
+    appRoutes: {
       pageNotFound: 'Страница не найдена',
+      loadingSpinner: 'Загрузка...',
     },
     errors: {
       unknown: 'Неизвестная ошибка',

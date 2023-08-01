@@ -1,4 +1,5 @@
 import React, { Suspense, lazy } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from './hooks';
 import Layout from './components/Layout.jsx';
@@ -32,15 +33,20 @@ function AuthRoute({ user, children }) {
 
 function AppRoutes() {
   const { isLoggedIn } = useAuth();
+  const { t } = useTranslation();
 
   return (
     <Suspense
       fallback={
-        <div className="min-vh-100 d-flex flex-column justify-content-center align-items-center">
-          <div className="spinner-border" role="status">
-            <span className="visually-hidden">Loading...</span>
+        <div className="min-vh-100 bg-dark d-flex flex-column justify-content-center align-items-center">
+          <div className="spinner-border text-light" role="status">
+            <span className="visually-hidden">
+              {t('appRoute.loadingSpinner')}
+            </span>
           </div>
-          <p className="fw-bold p-3">Loading...</p>
+          <p className="fw-bold p-3 text-light">
+            {t('appRoutes.loadingSpinner')}
+          </p>
         </div>
       }
     >
