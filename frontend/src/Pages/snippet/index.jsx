@@ -9,7 +9,12 @@ import Row from 'react-bootstrap/Row';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
 import { actions } from '../../slices/index.js';
-import { useAuth, useDebounce, useSnippets } from '../../hooks/index.js';
+import {
+  useAuth,
+  useDebounce,
+  useSnippets,
+  useWindowSize,
+} from '../../hooks/index.js';
 
 import CodeEditor from 'src/components/Editor/index.jsx';
 import Terminal from 'src/components/Terminal/index.jsx';
@@ -60,6 +65,10 @@ function SnippetPage() {
     });
     dispatch(actions.setCodeAndSavedCode(editorData.code));
   };
+
+  const { width } = useWindowSize();
+
+  const isMoreThanMd = width > 768;
 
   useDebounce(
     () => {
@@ -165,7 +174,7 @@ function SnippetPage() {
           />
         </Col>
       </Row>
-      <PanelGroup direction="horizontal">
+      <PanelGroup direction={isMoreThanMd ? 'horizontal' : 'vertical'}>
         <Panel
           defaultSize={50}
           minSize={10}

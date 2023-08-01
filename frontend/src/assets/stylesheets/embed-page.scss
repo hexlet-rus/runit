@@ -1,6 +1,6 @@
 .embed-page-wrapper {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   height: calc(100vh - $navbar-height);
   max-height: calc(100vh - $navbar-height);
 
@@ -12,6 +12,6 @@
 
 @include media-breakpoint-up(md) {
   .embed-page-wrapper {
-    flex-direction: column;
+    flex-direction: row;
   }
 }

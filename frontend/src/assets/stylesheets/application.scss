@@ -121,34 +121,10 @@ $navbar-height: $navbar-avatar-height + $nav-link-padding-y * 2 + $navbar-paddin
   height: $navbar-avatar-height;
 }
 
-.transition-padding {
-  @include transition(padding 0.25s ease);
-}
-
 .embed-code {
   font-family: var(--#{$prefix}font-monospace);
   line-height: #{$line-height-sm};
   font-size: #{$font-size-sm};
-}
-
-.btn-run {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  &.running {
-    mask-image: linear-gradient(120deg, $black 40%, rgba(0, 0, 0, 0.8) 75%, $black 95%);
-    mask-size: 200% 100%;
-    animation: btn-run 2s linear infinite;
-  }
-  .bi {
-    font-size: 1.5rem;
-  }
-}
-
-@keyframes btn-run {
-  100% {
-    mask-position: -200% 0%;
-  }
 }
 
 @import "./page-wrapper";
@@ -162,6 +138,7 @@ $navbar-height: $navbar-avatar-height + $nav-link-padding-y * 2 + $navbar-paddin
 @import "./xterm";
 @import "./editor-page";
 @import "./embed-page";
+@import "./btn-run.scss";
 
 @include media-breakpoint-down(sm) {
   .btn-lg {
