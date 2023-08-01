@@ -341,6 +341,7 @@
     }
   },
   "profileActions": {
+    "header": "Профиль",
     "logout": "Выйти",
     "removeAccount": "Удалить учетную запись",
     "settings": "Настройки",
@@ -394,6 +395,7 @@
   "snippetActions": {
     "additionalHeader": "Дополнительные действия",
     "cancelButton": "Отмена",
+    "createOnLanguage": "Создать сниппет на {{language}}",
     "delete": "Удалить",
     "deleteConfirmation": "Вы точно хотите удалить сниппет?",
     "duplicate": "Дублировать",

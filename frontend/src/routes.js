@@ -14,7 +14,7 @@ export default {
   // put - update user info: { name, email, password }
   updateUserPath: (id) => [apiPath, 'users', `${id}`].join('/'),
 
-  loginPath: () => [apiPath, 'login'].join('/'),
+  signinPath: () => [apiPath, 'login'].join('/'),
 
   // post
   logoutPath: () => [apiPath, 'logout'].join('/'),
@@ -51,7 +51,7 @@ export default {
   profilePagePath: (username = ':username') => `/u/${username}`,
   myProfilePagePath: () => '/profile',
   settingsPagePath: () => '/settings',
-  signInPagePath: () => '/singin',
+  signInPagePath: () => '/signin',
   signUpPagePath: () => '/signup',
   remindPassPagePath: () => '/remind_password',
   licenseAgreementPath: () => '/licenseAgreement',
