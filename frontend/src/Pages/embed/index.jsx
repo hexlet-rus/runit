@@ -57,48 +57,44 @@ const EmbeddedPage = () => {
 
   return (
     <>
-      <Navbar expand="md" bg="dark-subtle" data-bs-theme="dark">
-        <Container fluid className="px-1 px-sm-2 px-md-3">
-          <Navbar.Brand as={Link} to={routes.landingPath()} className="me-0">
-            <Image
-              src={Logo}
-              className="d-inline-block align-top"
-              alt={t('navbar.mainLabel')}
-            />
-          </Navbar.Brand>
-          <Nav
-            as="ul"
-            className="flex-row flex-nowrap align-items-center gap-1"
-          >
-            <Nav.Item as="li">
-              <Button
-                as="a"
-                href={snippetLink}
-                target="_blank"
-                rel="noreferrer"
-                variant="outline-primary"
-              >
-                <Pencil className="bi" />{' '}
-                <span className="d-none d-sm-inline small">
-                  {t('snippetActions.openOnRunIT')}
-                </span>
-              </Button>
-            </Nav.Item>
-            <Nav.Item as="li">
-              <Button
-                variant="primary"
-                className={`ms-auto px-1 px-sm-2 btn-run${
-                  disabled ? ' running' : ''
-                }`}
-                disabled={disabled}
-                onClick={onClick}
-              >
-                <PlayFill className="bi" />
+      <Navbar
+        expand="md"
+        bg="dark-subtle"
+        data-bs-theme="dark"
+        className="flex-row flex-nowrap px-1 px-sm-2 px-md-3"
+      >
+        <Navbar.Brand as={Link} to={routes.landingPath()}>
+          <Image src={Logo} alt={t('navbar.mainLabel')} />
+        </Navbar.Brand>
+        <Nav as="ul" className="flex-row flex-nowrap align-items-center">
+          <Nav.Item as="li">
+            <Button
+              as="a"
+              href={snippetLink}
+              target="_blank"
+              rel="noreferrer"
+              variant="outline-primary"
+            >
+              <Pencil className="bi" />{' '}
+              <span className="d-none d-sm-inline small">
+                {t('snippetActions.openOnRunIT')}
+              </span>
+            </Button>
+          </Nav.Item>
+          <Nav.Item as="li">
+            <Button
+              variant="primary"
+              className={`btn-run ms-1 ms-sm-3${disabled ? ' running' : ''}`}
+              disabled={disabled}
+              onClick={onClick}
+            >
+              <PlayFill className="bi" />
+              <span className="flex-shrink-1 text-truncate">
                 {t('snippetActions.run')}
-              </Button>
-            </Nav.Item>
-          </Nav>
-        </Container>
+              </span>
+            </Button>
+          </Nav.Item>
+        </Nav>
       </Navbar>
       <div className="embed-page-wrapper">
         <div className="embed-page-panel">

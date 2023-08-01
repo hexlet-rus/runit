@@ -21,3 +21,7 @@
     #{$transition-collapse-width},
     #{$transition-fade};
 }
+
+.transition-padding {
+  @include transition(padding 0.25s ease);
+}

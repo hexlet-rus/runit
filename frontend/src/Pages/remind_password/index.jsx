@@ -18,9 +18,9 @@ const RemindPasswordPage = () => {
   return (
     <div className="page-bg-image">
       <Container fluid="sm" className="h-100">
-        <Row className="justify-content-center align-items-center m-auto py-5 h-100">
-          <Col className="max-w-sm">
-            <div className="d-flex flex-column gap-3 bg-body rounded-4 p-4 p-sm-5">
+        <Row className="justify-content-center align-items-center m-auto py-3 py-sm-5 h-100">
+          <Col className="max-w-sm p-0">
+            <div className="d-flex flex-column gap-sm-3 gap-4 bg-body rounded-4 p-4 p-sm-5">
               <h1 className="display-6">{t('remindPass.pageHeader')}</h1>
               <RemindPasswordForm
                 onSuccess={() => {
@@ -28,7 +28,7 @@ const RemindPasswordPage = () => {
                 }}
               />
               <hr />
-              <div className="text-center">
+              <div className="small">
                 <span className="text-muted">
                   {t('signIn.footer.signUpHeader')}
                 </span>{' '}
