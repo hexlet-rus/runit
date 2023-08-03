@@ -35,9 +35,9 @@ export class AuthController {
   @ApiCreatedResponse({
     description: 'Successfully logged in! Token lasts 60 minutes!',
   })
-  @ApiUnauthorizedResponse({ description: 'Invalid login data!' })
-  async login(@Req() req, @Res({ passthrough: true }) response: Response) {
-    return this.authService.login(req.user, response);
+  @ApiUnauthorizedResponse({ description: 'Invalid signin data!' })
+  async signin(@Req() req, @Res({ passthrough: true }) response: Response) {
+    return this.authService.signin(req.user, response);
   }
 
   @UseGuards(JwtAuthGuard)

@@ -48,7 +48,7 @@ describe('SnippetController', () => {
 
     it('should create user', async () => {
       const createData = {
-        login: 'user',
+        username: 'user',
         email: 'user@mail.ru',
         password: '#43T#!^',
         confirmPassword: '#43T#!^',
@@ -66,7 +66,7 @@ describe('SnippetController', () => {
 
     it('should update user', async () => {
       const updateData = {
-        login: 'changedName',
+        username: 'changedName',
         email: 'changedEmail',
         password: '%#!%&!#%!#%!#',
       };

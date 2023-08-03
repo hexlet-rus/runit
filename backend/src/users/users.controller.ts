@@ -71,12 +71,12 @@ export class UsersController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get(':login')
+  @Get(':username')
   @ApiCookieAuth('access_token')
-  @ApiOkResponse({ description: 'Successfully returned user by login' })
+  @ApiOkResponse({ description: 'Successfully returned user by username' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  async findByLogin(@Param('login') login: string): Promise<User> {
-    return this.usersService.findByLogin(login);
+  async findByUsername(@Param('username') username: string): Promise<User> {
+    return this.usersService.findByUsername(username);
   }
 
   @Post()
@@ -88,7 +88,7 @@ export class UsersController {
   @ApiBadRequestResponse({ description: 'Validation failed!' })
   async create(@Body() createUserDto: CreateUserDto, @Response() res: any) {
     const user = await this.usersService.create(createUserDto);
-    return this.authService.login(user, res);
+    return this.authService.signin(user, res);
   }
 
   @Post('recover')

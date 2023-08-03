@@ -19,7 +19,7 @@ export class Users {
   id: number;
 
   @Column('text', { unique: true })
-  login: string;
+  username: string;
 
   @Index('text', { unique: true })
   @Column()

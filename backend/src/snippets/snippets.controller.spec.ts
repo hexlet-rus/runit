@@ -59,7 +59,7 @@ describe('SnippetController', () => {
       const userData = {
         id: 3,
         email: 'test@mail.ru',
-        login: 'test',
+        username: 'test',
       };
       const createData = { code: 'test', name: 'test' };
       jest.spyOn(snippetsController, 'create');

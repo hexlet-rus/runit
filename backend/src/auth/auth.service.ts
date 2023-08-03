@@ -25,7 +25,7 @@ export class AuthService {
     return null;
   }
 
-  async login(user: any, response: any) {
+  async signin(user: any, response: any) {
     const payload = { email: user.email, sub: user.id };
     const token = this.jwtService.sign(payload);
     response.cookie('access_token', token);
@@ -74,7 +74,7 @@ export class AuthService {
     if (!user) {
       const password = generate();
       const userDto = {
-        login: githubUserData.login,
+        username: githubUserData.username,
         email: userEmail.toLowerCase(),
         password,
         confirmPassword: password,

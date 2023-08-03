@@ -50,15 +50,15 @@ export class SnippetsController {
     return this.snippetsService.generateName();
   }
 
-  @Get(':login/:slug')
-  @ApiParam({ name: 'login', description: 'User login' })
+  @Get(':username/:slug')
+  @ApiParam({ name: 'username', description: 'Username' })
   @ApiParam({ name: 'slug', description: 'Snippet slug' })
   @ApiOkResponse({ description: 'Successfully returned snippet' })
-  async findOneByLoginSlug(
-    @Param('login') login: string,
+  async findOneByUsernameSlug(
+    @Param('username') username: string,
     @Param('slug') slug: string,
   ): Promise<Snippet> {
-    return this.snippetsService.findByLoginSlug(login, slug);
+    return this.snippetsService.findByUsernameSlug(username, slug);
   }
 
   @Get(':id')
