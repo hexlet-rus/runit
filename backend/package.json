@@ -10,6 +10,7 @@
     "start": "PORT=5001 nest start",
     "typeorm": "typeorm-ts-node-commonjs",
     "start:debug": "NODE_ENV=development PORT=5001 nest start --debug --watch",
+    "start:test": "NODE_ENV=test PORT=5001 nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "lint-fix": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",

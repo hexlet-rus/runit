@@ -10,7 +10,7 @@ db-generate:
 	make -C backend db-generate
 
 start:
-	yarn run npm-run-all start
+	yarn run start:dev
 
 start-prod:
 	make -C backend start-prod
