@@ -1,7 +1,7 @@
 import { IsEmail, IsString, Length, Matches, Validate } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { CheckEmail } from '../validation/check-email';
-import { CheckUsername } from '../validation/check-login';
+import { CheckUsername } from '../validation/check-username';
 import { ComparePasswords } from '../validation/compare-passwords';
 
 export class CreateUserDto {

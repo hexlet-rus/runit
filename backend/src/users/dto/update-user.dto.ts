@@ -9,7 +9,7 @@ import {
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { CheckEmail } from '../validation/check-email';
-import { CheckUsername } from '../validation/check-login';
+import { CheckUsername } from '../validation/check-username';
 import { CheckPassword } from '../validation/check-password';
 import { ComparePasswords } from '../validation/compare-passwords';
 

@@ -8,15 +8,15 @@ import {
 } from 'class-validator';
 import { UsersService } from '../users.service';
 
-@ValidatorConstraint({ name: 'login', async: true })
+@ValidatorConstraint({ name: 'username', async: true })
 @Injectable()
-export class CheckLogin implements ValidatorConstraintInterface {
+export class CheckUsername implements ValidatorConstraintInterface {
   constructor(private usersService: UsersService) {}
 
   async validate(text: string, validationArguments: ValidationArguments) {
-    const login = validationArguments.value;
+    const username = validationArguments.value;
     const { object } = validationArguments;
-    const exists = await this.usersService.findByLogin(login);
+    const exists = await this.usersService.findByUsername(username);
     if (object['id'] && exists) {
       return exists.id === object['id'];
     }

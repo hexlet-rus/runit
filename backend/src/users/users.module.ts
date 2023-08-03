@@ -8,7 +8,7 @@ import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { UsersSubscriber } from './users.subscriber';
 import { CheckEmail } from './validation/check-email';
-import { CheckUsername } from './validation/check-login';
+import { CheckUsername } from './validation/check-username';
 import { CheckPassword } from './validation/check-password';
 
 @Module({
