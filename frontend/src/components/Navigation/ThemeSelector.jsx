@@ -4,7 +4,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 
 import { CircleHalf, MoonFill, SunFill } from 'react-bootstrap-icons';
-import { useTheme } from '../../hooks';
+
+import { useTernaryDarkMode } from 'usehooks-ts';
 
 const themeIcons = {
   dark: MoonFill,
@@ -28,9 +29,9 @@ function ThemeOption({ themeName, handleSelect, active = false }) {
 function ThemeSelector() {
   const { t } = useTranslation();
 
-  const { theme, setTheme } = useTheme();
+  const { ternaryDarkMode, setTernaryDarkMode } = useTernaryDarkMode();
 
-  const CurrentThemeIcon = themeIcons[theme];
+  const CurrentThemeIcon = themeIcons[ternaryDarkMode];
   return (
     <Dropdown align="end" as="li" className="nav-item">
       <Dropdown.Toggle
@@ -45,8 +46,8 @@ function ThemeSelector() {
         {Object.keys(themeIcons).map((themeName) => (
           <ThemeOption
             key={themeName}
-            active={themeName === theme}
-            handleSelect={() => setTheme(themeName)}
+            active={themeName === ternaryDarkMode}
+            handleSelect={() => setTernaryDarkMode(themeName)}
             themeName={themeName}
           />
         ))}

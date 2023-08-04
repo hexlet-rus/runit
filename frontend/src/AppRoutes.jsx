@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-sort-props */
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { useTernaryDarkMode } from 'usehooks-ts';
 
 import { useAuth } from './hooks';
 import Layout from './pages/Layout.jsx';
@@ -37,6 +38,14 @@ function ProtectedRoute({ redirectTo = routes.homePagePath(), isAllowed }) {
 
 function AppRoutes() {
   const { isLoggedIn } = useAuth();
+  const { isDarkMode } = useTernaryDarkMode();
+
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      'data-bs-theme',
+      isDarkMode ? 'dark' : 'light',
+    );
+  }, [isDarkMode]);
 
   return (
     <Suspense fallback={<DefaultLoader />}>

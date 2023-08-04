@@ -6,12 +6,6 @@ export const AuthContext = createContext({
   isLoggedIn: false,
 });
 
-export const ThemeContext = createContext({
-  theme: 'light',
-  resolvedTheme: 'light',
-  setTheme: (_theme) => null,
-});
-
 export const SnippetsContext = createContext({
   saveSnippet: () => null,
   renameSnippet: () => null,

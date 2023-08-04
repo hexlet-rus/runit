@@ -11,7 +11,6 @@ import ModalWindow from './components/Modals';
 import resources from './locales';
 import AuthProvider from './providers/AuthProvider.jsx';
 import SnippetsProvider from './providers/SnippetsProvider.jsx';
-import ThemeProvider from './providers/ThemeProvider.jsx';
 import { rootReducer } from './slices';
 
 export default async () => {
@@ -40,16 +39,14 @@ export default async () => {
 
   return (
     <Provider store={store}>
-      <ThemeProvider>
-        <BrowserRouter>
-          <AuthProvider>
-            <SnippetsProvider>
-              <AppRoutes />
-              <ModalWindow />
-            </SnippetsProvider>
-          </AuthProvider>
-        </BrowserRouter>
-      </ThemeProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <SnippetsProvider>
+            <AppRoutes />
+            <ModalWindow />
+          </SnippetsProvider>
+        </AuthProvider>
+      </BrowserRouter>
     </Provider>
   );
 };

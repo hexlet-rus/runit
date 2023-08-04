@@ -1,20 +1,16 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { useDebounce, useMediaQuery } from 'usehooks-ts';
 
-import { GripVertical } from 'react-bootstrap-icons';
+import { GripHorizontal, GripVertical } from 'react-bootstrap-icons';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
 import { actions } from '../../slices/index.js';
-import {
-  useAuth,
-  useDebounce,
-  useSnippets,
-  useWindowSize,
-} from '../../hooks/index.js';
+import { useAuth, useSnippets } from '../../hooks/index.js';
 
 import CodeEditor from 'src/components/Editor/index.jsx';
 import Terminal from 'src/components/Terminal/index.jsx';
@@ -23,13 +19,14 @@ import DefaultLoader from 'src/components/Loaders/DefaultLoader.jsx';
 import FileToolbar from './FileToolbar.jsx';
 import ActionsToolbar from './ActionsToolbar.jsx';
 
-const AUTOSAVE_TIMEOUT = 5000;
+const AUTOSAVE_TIMEOUT = 1000;
 
-function ResizeHandler() {
+function ResizeHandler({ direction = 'horizontal' }) {
+  const Grip = direction === 'horizontal' ? GripVertical : GripHorizontal;
   return (
     <PanelResizeHandle className="panel-handler">
       <div className="panel-handler-inner">
-        <GripVertical className="panel-handler-icon" />
+        <Grip className="panel-handler-icon" />
       </div>
     </PanelResizeHandle>
   );
@@ -66,25 +63,23 @@ function SnippetPage() {
     dispatch(actions.setCodeAndSavedCode(editorData.code));
   };
 
-  const { width } = useWindowSize();
+  const debouncedValue = useDebounce(code, AUTOSAVE_TIMEOUT);
 
-  const isMoreThanMd = width > 768;
+  const direction = useMediaQuery('(min-width: 768px)')
+    ? 'horizontal'
+    : 'vertical';
 
-  useDebounce(
-    () => {
-      const editorData = editorDataRef.current;
-      if (
-        editorData.isLoggedIn &&
-        editorData.hasSnippetData &&
-        editorData.isReady &&
-        !editorData.isAllSaved
-      ) {
-        saveSnippet(editorData);
-      }
-    },
-    AUTOSAVE_TIMEOUT,
-    [isAllSaved],
-  );
+  useEffect(() => {
+    const editorData = editorDataRef.current;
+    if (
+      editorData.isLoggedIn &&
+      editorData.hasSnippetData &&
+      editorData.isReady &&
+      !editorData.isAllSaved
+    ) {
+      saveSnippet(editorData);
+    }
+  }, [debouncedValue]);
 
   const hasViewSnippetParams = snippetApi.hasViewSnippetParams(snippetParams);
 
@@ -157,7 +152,7 @@ function SnippetPage() {
           />
         </Col>
       </Row>
-      <PanelGroup direction={isMoreThanMd ? 'horizontal' : 'vertical'}>
+      <PanelGroup direction={direction}>
         <Panel
           defaultSize={50}
           minSize={10}
@@ -165,7 +160,7 @@ function SnippetPage() {
         >
           <CodeEditor readOnly={!isLoggedIn} />
         </Panel>
-        <ResizeHandler />
+        <ResizeHandler direction={direction} />
         <Panel
           minSize={20}
           className="bg-body-secondary rounded-3 overflow-hidden"

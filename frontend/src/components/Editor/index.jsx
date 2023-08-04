@@ -1,14 +1,14 @@
 import Editor from '@monaco-editor/react';
+import { useTernaryDarkMode } from 'usehooks-ts';
 
 import { useEditor } from './hooks.js';
-import { useTheme } from '../../hooks';
 
 function CodeEditor({ readOnly = false }) {
-  const { resolvedTheme } = useTheme();
+  const { isDarkMode } = useTernaryDarkMode();
 
   const { code, language, onChange } = useEditor();
 
-  const monacoEditorTheme = resolvedTheme === 'light' ? 'vs' : 'vs-dark';
+  const monacoEditorTheme = isDarkMode ? 'vs-dark' : 'vs';
 
   const options = {
     selectOnLineNumbers: true,
