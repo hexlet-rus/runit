@@ -57,7 +57,7 @@ function SignupForm({ onSuccess = () => null }) {
           password: values.password,
           confirmPassword: values.password,
         });
-        auth.logIn();
+        auth.signIn();
         actions.setSubmitting(false);
         onSuccess();
       } catch (err) {

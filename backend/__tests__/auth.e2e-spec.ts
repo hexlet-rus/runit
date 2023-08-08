@@ -73,10 +73,10 @@ describe('AuthController (e2e)', () => {
     expect(body.token).toBeDefined();
   });
 
-  it('/logout', async () => {
+  it('/signout', async () => {
     const token = jwtService.sign(testData.sign);
     return request(app.getHttpServer())
-      .post('/logout')
+      .post('/signout')
       .auth(token, { type: 'bearer' })
       .expect(201);
   });

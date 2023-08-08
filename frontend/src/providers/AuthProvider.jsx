@@ -29,14 +29,14 @@ function AuthProvider({ children }) {
 
   const memoizedValue = useMemo(
     () => ({
-      logOut: async () => {
-        await axios.post(routes.logoutPath());
+      signOut: async () => {
+        await axios.post(routes.signOutPath());
         localStorage.removeItem('loginStatus');
         setLoggedIn(false);
         navigate(routes.landingPath());
       },
 
-      logIn: () => {
+      signIn: () => {
         dispatch(fetchUserData())
           .unwrap()
           .catch((serializedError) => {

@@ -30,7 +30,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @UseGuards(LocalAuthGuard)
-  @Post('login')
+  @Post('signin')
   @ApiBody({ type: SignUpUserDto })
   @ApiCreatedResponse({
     description: 'Successfully logged in! Token lasts 60 minutes!',
@@ -41,10 +41,10 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Post('logout')
+  @Post('signout')
   @ApiCookieAuth('access_token')
   @ApiCreatedResponse({ description: 'Successfully logged out!' })
-  async logout(@Res({ passthrough: true }) response: Response) {
+  async signout(@Res({ passthrough: true }) response: Response) {
     response.clearCookie('access_token');
     response.send();
   }
