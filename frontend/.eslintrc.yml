@@ -6,14 +6,18 @@ env:
   jest: true
 
 extends:
-  - 'airbnb'
-  - 'plugin:@typescript-eslint/recommended'
-  - 'plugin:import/typescript'
-  - 'plugin:prettier/recommended'
+  - airbnb
+  - plugin:react/recommended
+  - plugin:react-hooks/recommended
+  - plugin:react/jsx-runtime
+  - plugin:@typescript-eslint/recommended
+  - plugin:import/typescript
+  - prettier
 
 plugins:
   - '@typescript-eslint'
   - 'prettier'
+  - jsx-a11y
 
 parser: '@typescript-eslint/parser'
 
@@ -43,6 +47,7 @@ rules:
   no-console: 0
   react/prop-types: 'off'
   consistent-return: 0
+  react/jsx-sort-props: 1
   '@typescript-eslint/interface-name-prefix': 'off'
   '@typescript-eslint/explicit-function-return-type': 'off'
   '@typescript-eslint/explicit-module-boundary-types': 'off'

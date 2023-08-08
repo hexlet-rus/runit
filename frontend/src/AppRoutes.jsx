@@ -1,89 +1,106 @@
-import React, { Suspense, lazy } from 'react';
-import { useTranslation } from 'react-i18next';
+/* eslint-disable react/jsx-sort-props */
+import { Suspense, lazy, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from './hooks';
-import Layout from './components/Layout.jsx';
+import { useTernaryDarkMode } from 'usehooks-ts';
 
+import { useAuth } from './hooks';
+import Layout from './pages/Layout.jsx';
 import routes from './routes.js';
 
-const Profile = lazy(() => import('./Pages/Profile.jsx'));
-const App = lazy(() => import('./App.jsx'));
-const About = lazy(() => import('./Pages/About.jsx'));
-const SignUp = lazy(() => import('./Pages/SignUp.jsx'));
-const SignIn = lazy(() => import('./Pages/SignIn.jsx'));
-const Landing = lazy(() => import('./Pages/Landing/Landing.jsx'));
-const LicenseAgreement = lazy(() => import('./Pages/LicenseAgreement.jsx'));
-const RemindPassword = lazy(() => import('./Pages/RemindPassword.jsx'));
-const NotFound = lazy(() => import('./Pages/NotFound.jsx'));
-const EmbedSnippet = lazy(() => import('./components/Embed/EmbedSnippet.jsx'));
+import DefaultLoader from './components/Loaders/DefaultLoader.jsx';
 
-function ProtectedRoute({ user, children }) {
-  if (!user) {
-    return <Navigate to={routes.loginPagePath()} replace />;
-  }
-  return children || <Outlet />;
+const ProfilePage = lazy(() => import('./pages/profile'));
+const SettingsPage = lazy(() => import('./pages/settings'));
+const SnippetPage = lazy(() => import('./pages/snippet'));
+const AboutPage = lazy(() => import('./pages/about'));
+const SignUpPage = lazy(() => import('./pages/signup'));
+const SignInPage = lazy(() => import('./pages/signin'));
+const Landing = lazy(() => import('./pages/landing'));
+const LicenseAgreement = lazy(() => import('./pages/license-agreement'));
+const RemindPasswordPage = lazy(() => import('./pages/remind-password'));
+const NotFoundPage = lazy(() => import('./pages/404'));
+const EmbeddedPage = lazy(() => import('./pages/embed'));
+
+function MyProfileRoute() {
+  const username = useSelector((state) => state.user.userInfo.login);
+
+  return <Navigate to={routes.profilePagePath(username)} replace />;
 }
 
-function AuthRoute({ user, children }) {
-  if (user) {
-    return <Navigate to={routes.defaultProfilePagePath()} replace />;
+function ProtectedRoute({ redirectTo = routes.homePagePath(), isAllowed }) {
+  if (isAllowed) {
+    return <Outlet />;
   }
-  return children || <Outlet />;
+
+  return <Navigate to={redirectTo} replace />;
 }
 
 function AppRoutes() {
   const { isLoggedIn } = useAuth();
-  const { t } = useTranslation();
+  const { isDarkMode } = useTernaryDarkMode();
+
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      'data-bs-theme',
+      isDarkMode ? 'dark' : 'light',
+    );
+  }, [isDarkMode]);
 
   return (
-    <Suspense
-      fallback={
-        <div className="min-vh-100 bg-dark d-flex flex-column justify-content-center align-items-center">
-          <div className="spinner-border text-light" role="status">
-            <span className="visually-hidden">
-              {t('appRoute.loadingSpinner')}
-            </span>
-          </div>
-          <p className="fw-bold p-3 text-light">
-            {t('appRoutes.loadingSpinner')}
-          </p>
-        </div>
-      }
-    >
+    <Suspense fallback={<DefaultLoader />}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Landing />} />
-          <Route path={routes.homePagePath()} element={<App />} />
-          <Route path={routes.snippetPagePath()} element={<App />} />
-          <Route path={routes.aboutPagePath()} element={<About />} />
-          <Route element={<ProtectedRoute user={isLoggedIn} />}>
+          <Route path={routes.homePagePath()} element={<SnippetPage />} />
+          <Route path={routes.snippetPagePath()} element={<SnippetPage />} />
+          <Route path={routes.aboutPagePath()} element={<AboutPage />} />
+          <Route path={routes.profilePagePath()} element={<ProfilePage />} />
+
+          <Route
+            element={
+              <ProtectedRoute
+                isAllowed={isLoggedIn}
+                redirectTo={routes.signInPagePath()}
+              />
+            }
+          >
             <Route
-              path={routes.defaultProfilePagePath()}
-              element={<Profile />}
+              path={routes.myProfilePagePath()}
+              element={<MyProfileRoute />}
             />
             <Route
-              path={routes.profileSettingsPagePath()}
-              element={<Profile />}
+              path={routes.settingsPagePath()}
+              element={<SettingsPage />}
             />
-            <Route path={routes.pageProfilePath()} element={<Profile />} />
           </Route>
-          <Route element={<AuthRoute user={isLoggedIn} />}>
-            <Route path={routes.signUpPagePath()} element={<SignUp />} />
-            <Route path={routes.loginPagePath()} element={<SignIn />} />
+
+          <Route
+            element={
+              <ProtectedRoute
+                isAllowed={!isLoggedIn}
+                redirectTo={routes.myProfilePagePath()}
+              />
+            }
+          >
+            <Route path={routes.signUpPagePath()} element={<SignUpPage />} />
+            <Route path={routes.signInPagePath()} element={<SignInPage />} />
           </Route>
+
           <Route
             path={routes.remindPassPagePath()}
-            element={<RemindPassword />}
+            element={<RemindPasswordPage />}
           />
           <Route
             path={routes.licenseAgreementPath()}
             element={<LicenseAgreement />}
           />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
+
         <Route
           path={routes.embedSnippetPagePath()}
-          element={<EmbedSnippet />}
+          element={<EmbeddedPage />}
         />
       </Routes>
     </Suspense>

@@ -1,11 +1,19 @@
 import { string } from 'yup';
 
-export const login = () =>
+const USERNAME_MIN_LENGHT = 3;
+const USERNAME_MAX_LENGHT = 16;
+
+const PASSWORD_MIN_LENGHT = 8;
+const PASSWORD_MAX_LENGHT = 30;
+
+const SNIPPET_NAME_MAX_LENGHT = 30;
+
+export const username = () =>
   string()
     .trim()
     .required('errors.validation.requiredField')
-    .min(3, 'errors.validation.usernameLength')
-    .max(16, 'errors.validation.usernameLength')
+    .min(USERNAME_MIN_LENGHT, 'errors.validation.usernameLength')
+    .max(USERNAME_MAX_LENGHT, 'errors.validation.usernameLength')
     .matches(/^[\w\S]*$/, 'errors.validation.incorrectUsername');
 
 export const email = () =>
@@ -18,10 +26,10 @@ export const password = () =>
   string()
     .trim()
     .required('errors.validation.requiredField')
-    .min(8, 'errors.validation.passwordLength')
-    .max(30, 'errors.validation.passwordLength');
+    .min(PASSWORD_MIN_LENGHT, 'errors.validation.passwordLength')
+    .max(PASSWORD_MAX_LENGHT, 'errors.validation.passwordLength');
 
-export const signinPassword = () =>
+export const required = () =>
   string().trim().required('errors.validation.requiredField');
 
 export const confirmPassword = () =>
@@ -33,8 +41,8 @@ export const confirmPassword = () =>
       (value, context) => value === context.parent.password,
     );
 
-export const replName = () =>
+export const snippetName = () =>
   string()
     .required('errors.validation.requiredField')
-    .max(20, 'errors.validation.snippetNameMaxLength')
-    .matches(/^[a-zA-Z0-9_-]*$/, 'errors.validation.singleWord');
+    .max(SNIPPET_NAME_MAX_LENGHT, 'errors.validation.snippetNameMaxLength')
+    .matches(/^[a-zA-Z0-9._-]*$/, 'errors.validation.singleWord');

@@ -1,18 +1,17 @@
-import React from 'react';
 import { configureStore } from '@reduxjs/toolkit';
-import { Provider } from 'react-redux';
+import * as Sentry from '@sentry/react';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import * as Sentry from '@sentry/react';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import * as yup from 'yup';
 
-import { BrowserRouter } from 'react-router-dom';
-import { rootReducer } from './slices';
-import resources from './locales/locales.js';
 import AppRoutes from './AppRoutes.jsx';
-import ModalWindow from './components/Modals/Modal.jsx';
+import ModalWindow from './components/Modals';
+import resources from './locales';
 import AuthProvider from './providers/AuthProvider.jsx';
 import SnippetsProvider from './providers/SnippetsProvider.jsx';
+import { rootReducer } from './slices';
 
 export default async () => {
   const defaultLanguage = 'ru';

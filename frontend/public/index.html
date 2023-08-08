@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Run IT</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Run IT</title>
-</head>
-
-<body>
-  <div id="main"></div>
-  <script src="./index.js"></script>
-  <script>
-    handleTypoReporter({ authorizationToken: 'MTgyOjNkNmY4MDg5LThjZjUtNDM1NS1iZDdiLWZhOWFkYzY4YmZhNw==',
-    workSpaceUrl: 'https://hexlet-correction.herokuapp.com', workSpaceId: '182'})
-  </script>
-</body>
-
+  <body>
+    <div class="d-flex flex-column flex-nowrap" id="main"></div>
+    <script src="./index.js"></script>
+    <script>
+      handleTypoReporter({
+        authorizationToken:
+          'MTgyOjNkNmY4MDg5LThjZjUtNDM1NS1iZDdiLWZhOWFkYzY4YmZhNw==',
+        workSpaceUrl: 'https://hexlet-correction.herokuapp.com',
+        workSpaceId: '182',
+      });
+    </script>
+  </body>
 </html>
-

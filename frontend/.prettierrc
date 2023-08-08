@@ -1,4 +1,22 @@
 {
   "singleQuote": true,
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "overrides": [
+    {
+      "files": ["*.css"],
+      "options": {
+        "parser": "css",
+        "singleQuote": false,
+        "printWidth": 150
+      }
+    },
+    {
+      "files": ["*.scss"],
+      "options": {
+        "parser": "scss",
+        "singleQuote": false,
+        "printWidth": 150
+      }
+    }
+  ]
 }
