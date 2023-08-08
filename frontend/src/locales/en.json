@@ -47,7 +47,7 @@
       "emailIsUsed": "This email address is already being used",
       "incorrectEmail": "Incorrect email",
       "incorrectUsername": "There must be no spaces in the username",
-      "loginIsUsed": "This username is already taken",
+      "usernameIsUsed": "This username is already taken",
       "passwordLength": "From 8 to 30 characters",
       "requiredField": "Required field",
       "singleWord": "Allowed latin letters, numbers and symbols - _ .",

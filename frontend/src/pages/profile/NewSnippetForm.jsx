@@ -29,7 +29,7 @@ function NewSnippetForm() {
   const snippetApi = useSnippets();
   const navigate = useNavigate();
   const { supportedLanguages } = useSelector((state) => state.languages);
-  const username = useSelector((state) => state.user.userInfo.login);
+  const username = useSelector((state) => state.user.userInfo.username);
 
   const handleNewSnippet = (language) => async () => {
     const code = t(`codeTemplates.${language}`);

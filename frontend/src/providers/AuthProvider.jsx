@@ -9,9 +9,9 @@ import { fetchUserData } from '../slices/userSlice.js';
 
 function AuthProvider({ children }) {
   const dispatch = useDispatch();
-  const loginStatus = JSON.parse(localStorage.getItem('loginStatus'));
+  const signInStatus = JSON.parse(localStorage.getItem('signInStatus'));
   const [isLoggedIn, setLoggedIn] = useState(
-    loginStatus ? loginStatus.status : false,
+    signInStatus ? signInStatus.status : false,
   );
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function AuthProvider({ children }) {
         setLoggedIn(true);
       })
       .catch(() => {
-        localStorage.removeItem('loginStatus');
+        localStorage.removeItem('signInStatus');
         setLoggedIn(false);
       });
   }, [dispatch]);
@@ -31,7 +31,7 @@ function AuthProvider({ children }) {
     () => ({
       signOut: async () => {
         await axios.post(routes.signOutPath());
-        localStorage.removeItem('loginStatus');
+        localStorage.removeItem('signInStatus');
         setLoggedIn(false);
         navigate(routes.landingPath());
       },
@@ -44,7 +44,7 @@ function AuthProvider({ children }) {
             error.name = serializedError.name;
             throw error;
           });
-        localStorage.setItem('loginStatus', JSON.stringify({ status: true }));
+        localStorage.setItem('signInStatus', JSON.stringify({ status: true }));
         setLoggedIn(true);
       },
       isLoggedIn,

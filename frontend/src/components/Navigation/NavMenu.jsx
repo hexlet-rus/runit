@@ -10,7 +10,7 @@ import routes from '../../routes.js';
 
 function MySnippetsLink() {
   const { t } = useTranslation();
-  const username = useSelector((state) => state.user.userInfo.login);
+  const username = useSelector((state) => state.user.userInfo.username);
 
   return (
     <Nav.Item as="li">
