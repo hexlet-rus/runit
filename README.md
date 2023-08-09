@@ -82,6 +82,19 @@ The following variables will be needed:
 
 Click on *Create Web Service* and watch the Deployment and Logs. If there are problems, ask questions [here](https://github.com/hexlet-rus/runit/discussions/categories/q-a). Check first that there is no similar open topic.
 
+### Configuring authorization via GitHub
+
+To set up authorization with OAuth 2.0, you need to [create and configure a GitHub App](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps).
+
+In your GitHub App settings, specify `{appURL}/api/oauth` for *Authorization callback URL*, where *{appURL}* is the web address of your deploy.
+
+Define the following environment variables for the deploy:
+
+* `OAUTH_CLIENT_ID` *Client ID* from your GitHub App.
+* `OAUTH_CLIENT_SECRET` Generate a new *Client secret* in the GitHub App settings and specify it here.
+
+*Note. You may decide to use [OAuth App](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps) instead of GitHub App. GitHub does not recommend this type of app, but it could be easier to set up for testing purposes.*
+
 ## How you can help the project
 
 Look at the list of issues, choose an interesting task, write to the issue to say you would like to work on the task.

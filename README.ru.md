@@ -82,6 +82,19 @@ make test-e2e
 
 Жмите *Create Web Service* и следите за деплоем и логами. Если будут проблемы, задавайте вопросы [здесь](https://github.com/hexlet-rus/runit/discussions/categories/q-a). Сперва проверьте, что нет похожего открытого топика.
 
+### Использование авторизации через GitHub
+
+Для настройки авторизации через механизм OAuth 2.0 необходимо предварительно [создать и настроить GitHub App](https://docs.github.com/ru/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps).
+
+В настройках в качестве *Authorization callback URL* укажите `{appURL}/api/oauth`, где *{appURL}* – это адрес, по которому будет доступен деплой.
+
+Определите для деплоя следующие переменные окружения:
+
+* `OAUTH_CLIENT_ID` — это *Client ID*, который доступен после создания GitHub App.
+* `OAUTH_CLIENT_SECRET` — это *Client secret*, который необходимо сгенерировать в настройках GitHub App.
+
+*Примечание. Для нужд тестирования вместо GitHub App вы можете воспользоваться [OAuth App](https://docs.github.com/ru/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps). GitHub не рекомендует этот тип приложений, но он немного проще в настройке.*
+
 ## Как помочь проекту
 
 Посмотрите список issue, выберите интересную задачу, напишите в issue, что хотите работать над этой задачей.
