@@ -40,6 +40,7 @@ export default (): DataSourceOptions => {
           migration1663236009774,
           migration1670352324202,
           AdduserRecoverHash1677580680097,
+          RenameLoginToUsername1691073864288,
         ],
       };
     default:
@@ -52,6 +53,7 @@ export default (): DataSourceOptions => {
           migration1663236009774,
           migration1670352324202,
           AdduserRecoverHash1677580680097,
+          RenameLoginToUsername1691073864288,
         ],
       };
   }
