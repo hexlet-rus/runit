@@ -67,6 +67,7 @@ export class UpdateUserDto {
   @IsOptional()
   @IsString()
   @Length(8, 30)
+  @Matches(/^[a-zA-Z0-9!'#%&'()*+,-./:;<=>?@[/\]^_{|}~]*$/)
   password?: string;
 
   @ApiProperty({
