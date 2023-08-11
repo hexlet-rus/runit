@@ -88,6 +88,6 @@ export class AuthService {
     const token = this.jwtService.sign(payload);
     response.cookie('access_token', token);
 
-    return response.redirect('/profile/snippets');
+    return response.redirect('/profile');
   }
 }
