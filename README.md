@@ -92,6 +92,9 @@ Define the following environment variables for the deploy:
 
 * `OAUTH_CLIENT_ID` *Client ID* from your GitHub App.
 * `OAUTH_CLIENT_SECRET` Generate a new *Client secret* in the GitHub App settings and specify it here.
+* `OAUTH_ACCESS_TOKEN_URL=https://github.com/login/oauth/access_token`
+* `OAUTH_AUTHORIZE_URL=https://github.com/login/oauth/authorize`
+* `GITHUB_USER_URL=https://api.github.com/user`
 
 *Note. You may decide to use [OAuth App](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps) instead of GitHub App. GitHub does not recommend this type of app, but it could be easier to set up for testing purposes.*
 
