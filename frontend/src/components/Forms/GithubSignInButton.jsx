@@ -1,16 +1,25 @@
-import Button from 'react-bootstrap/Button';
-import { Github } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
 
-function GithubButton() {
+import { Github } from 'react-bootstrap-icons';
+import Button from 'react-bootstrap/Button';
+
+import routes from '../../routes.js';
+
+const OAUTH_LINK = new URL(routes.oAuthPath(), window.location.origin);
+
+if (process.env.NODE_ENV !== 'production') {
+  OAUTH_LINK.port = '5001';
+}
+
+function GithubSignInButton() {
   const { t } = useTranslation();
 
   return (
-    <Button variant="outline-secondary">
+    <Button as="a" href={OAUTH_LINK.toString()} variant="outline-secondary">
       <Github className="bi me-1" />
       {t('formActions.withGithub')}
     </Button>
   );
 }
 
-export default GithubButton;
+export default GithubSignInButton;
