@@ -4,7 +4,7 @@
 
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { MailerService } from '@nestjs-modules/mailer';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -33,7 +33,7 @@ export class UsersService {
   }
 
   async findByLogin(login: string): Promise<Users> {
-    return this.usersRepository.findOneBy({ login });
+    return this.usersRepository.findOneBy({ login: ILike(login) });
   }
 
   async findByEmail(email: string): Promise<Users> {
