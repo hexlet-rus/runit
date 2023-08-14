@@ -16,7 +16,7 @@ const SnippetPage = lazy(() => import('./pages/snippet'));
 const AboutPage = lazy(() => import('./pages/about'));
 const SignUpPage = lazy(() => import('./pages/signup'));
 const SignInPage = lazy(() => import('./pages/signin'));
-const Landing = lazy(() => import('./pages/landing'));
+const Landing = lazy(() => import('./landing/Landing'));
 const LicenseAgreement = lazy(() => import('./pages/license-agreement'));
 const RemindPasswordPage = lazy(() => import('./pages/remind-password'));
 const NotFoundPage = lazy(() => import('./pages/404'));
@@ -50,8 +50,8 @@ function AppRoutes() {
   return (
     <Suspense fallback={<DefaultLoader />}>
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Landing />} />
+        <Route path="/" element={<Landing />} />
+        <Route element={<Layout />}>
           <Route path={routes.homePagePath()} element={<SnippetPage />} />
           <Route path={routes.snippetPagePath()} element={<SnippetPage />} />
           <Route path={routes.aboutPagePath()} element={<AboutPage />} />
