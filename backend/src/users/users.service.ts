@@ -32,7 +32,7 @@ export class UsersService {
     return this.usersRepository.findOneBy({ email });
   }
 
-  async findByLogin(login: string): Promise<Users> {
+  async findByLogin(username: string): Promise<Users> {
     return this.usersRepository.findOneBy({ username: ILike(username) });
   }
 
