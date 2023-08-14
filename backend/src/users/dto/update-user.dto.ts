@@ -9,7 +9,7 @@ import {
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { CheckEmail } from '../validation/check-email';
-import { CheckLogin } from '../validation/check-login';
+import { CheckUsername } from '../validation/check-username';
 import { CheckPassword } from '../validation/check-password';
 import { ComparePasswords } from '../validation/compare-passwords';
 
@@ -26,10 +26,10 @@ export class UpdateUserDto {
   @Length(3, 20)
   @IsString()
   @Matches(/^[\w\S]*$/)
-  @Validate(CheckLogin, {
+  @Validate(CheckUsername, {
     message: 'Уже существует!',
   })
-  login?: string;
+  username?: string;
 
   @ApiProperty({
     description: 'Must be unique!',
@@ -67,6 +67,7 @@ export class UpdateUserDto {
   @IsOptional()
   @IsString()
   @Length(8, 30)
+  @Matches(/^[a-zA-Z0-9!'#%&'()*+,-./:;<=>?@[/\]^_{|}~]*$/)
   password?: string;
 
   @ApiProperty({

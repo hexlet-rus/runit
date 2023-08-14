@@ -52,12 +52,12 @@ function SignupForm({ onSuccess = () => null }) {
       try {
         actions.setSubmitting(true);
         await axios.post(routes.usersPath(), {
-          login: values.username,
+          username: values.username,
           email: values.email,
           password: values.password,
           confirmPassword: values.password,
         });
-        auth.logIn();
+        auth.signIn();
         actions.setSubmitting(false);
         onSuccess();
       } catch (err) {
@@ -74,7 +74,7 @@ function SignupForm({ onSuccess = () => null }) {
         ) {
           err.response.data.errs.message.forEach((e) => {
             switch (e) {
-              case 'loginIsUsed':
+              case 'usernameIsUsed':
                 actions.setFieldError(
                   'username',
                   'errors.validation.usernameIsUsed',

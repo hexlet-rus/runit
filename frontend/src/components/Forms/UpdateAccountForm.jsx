@@ -28,7 +28,7 @@ function UpdateAccountForm() {
   });
 
   const initialValues = {
-    username: userInfo.login,
+    username: userInfo.username,
     email: userInfo.email,
   };
   const formik = useFormik({
@@ -39,7 +39,7 @@ function UpdateAccountForm() {
       try {
         const response = await axios.put(routes.updateUserPath(userInfo.id), {
           id: userInfo.id,
-          login: values.username,
+          username: values.username,
           email: values.email,
         });
         dispatch(userActions.setUserInfo(response.data));
@@ -62,7 +62,7 @@ function UpdateAccountForm() {
         ) {
           err.response.data.errs.message.forEach((e) => {
             switch (e) {
-              case 'loginIsUsed':
+              case 'usernameIsUsed':
                 actions.setFieldError(
                   'username',
                   'errors.validation.usernameIsUsed',

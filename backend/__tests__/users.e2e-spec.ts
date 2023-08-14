@@ -118,13 +118,13 @@ describe('UsersController (e2e)', () => {
       .expect(400);
     expect(response.body.errs.message).toMatchObject(testData.updateErrsUnique);
 
-    const { email, login } = testData.update;
+    const { email, username } = testData.update;
     const { body } = await request(app.getHttpServer())
       .put('/users/1')
       .auth(token, { type: 'bearer' })
       .send(testData.update)
       .expect(200);
-    expect(body).toMatchObject({ email, login });
+    expect(body).toMatchObject({ email, username });
   });
 
   it('delete', async () => {

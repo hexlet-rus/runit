@@ -2,50 +2,53 @@
   "code": {
     "input": "console.log('Hello console!');\nalert('Hello alert!');",
     "output": {
-        "terminal": ["Hello console!", ""], 
-        "alertLogs": ["Hello alert!"]
+      "terminal": ["Hello console!", ""],
+      "alertLogs": ["Hello alert!"]
     }
   },
   "users": {
     "read": {
       "id": 1,
-      "login": "JohnDoe",
+      "username": "JohnDoe",
       "email": "undefined@mail.ru"
     },
     "create": {
-      "login": "Nick",
+      "username": "Nick",
       "email": "myemail@mail.ru",
       "password": "MyTestPass123",
       "confirmPassword": "MyTestPass123"
     },
     "empty": {
-      "login": "",
+      "username": "",
       "email": "",
       "password": "",
       "confirmPassword": "confirmed"
     },
     "updateIncorrect": {
-      "login": "JohnDoe",
+      "username": "JohnDoe",
       "currPassword": "NotThisPassword",
       "email": "undefined@mail.ru",
       "password": "NewPassword",
       "confirmPassword": "NewPassword"
     },
     "errs": [
-      "login must match /[A-Za-z]/ regular expression",
-      "login must be longer than or equal to 3 characters",
+      "username must match /[A-Za-z]/ regular expression",
+      "username must be longer than or equal to 3 characters",
       "email must be an email",
       "password must be longer than or equal to 8 characters",
       "Пароли не совпадают!"
     ],
     "updateErrsUnique": [
-      "Уже существует!", "Уже существует!", "Неверный пароль!"
+      "Уже существует!",
+      "Уже существует!",
+      "Неверный пароль!"
     ],
     "createErrsUnique": [
-      "Пользователь уже существует!", "Пользователь уже существует!"
+      "Пользователь уже существует!",
+      "Пользователь уже существует!"
     ],
     "update": {
-      "login": "redactedNick",
+      "username": "redactedNick",
       "email": "myNewEmail@mail.ru",
       "password": "MyNewTestPass123"
     },
@@ -53,18 +56,18 @@
       "sub": 1,
       "email": "undefined@mail.ru"
     },
-    "login": {
+    "signin": {
       "email": "undefined@mail.ru",
       "password": "NotFound404"
     },
-    "loginUpperCase" :   {
+    "signinUpperCase": {
       "email": "NULL@YANDEX.RU",
       "password": "Deleted410"
     },
     "profile": {
       "currentUser": {
         "id": 1,
-        "login": "JohnDoe",
+        "username": "JohnDoe",
         "email": "undefined@mail.ru"
       },
       "snippets": [

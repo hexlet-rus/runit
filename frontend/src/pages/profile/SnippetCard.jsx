@@ -121,7 +121,7 @@ function CardCode({ data, noLink = false }) {
   const { t } = useTranslation();
   const snippetApi = useSnippets();
   const { code, slug } = data;
-  const snippetCreatorUsername = data.user.login;
+  const snippetCreatorUsername = data.user.username;
 
   return (
     <div className="snippet-card-body">
@@ -254,7 +254,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
 
 function SnippetCard({ data }) {
   const { id, name, slug } = data;
-  const ownerUsername = data.user.login;
+  const ownerUsername = data.user.username;
   const dispatch = useDispatch();
   const [mode, setMode] = useState('viewing');
 

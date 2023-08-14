@@ -33,7 +33,7 @@ export class UsersService {
   }
 
   async findByLogin(login: string): Promise<Users> {
-    return this.usersRepository.findOneBy({ login: ILike(login) });
+    return this.usersRepository.findOneBy({ username: ILike(username) });
   }
 
   async findByEmail(email: string): Promise<Users> {
@@ -42,7 +42,7 @@ export class UsersService {
 
   create(createUserDto: CreateUserDto): Promise<Users> {
     const user = new Users();
-    user.login = createUserDto.login;
+    user.username = createUserDto.username;
     user.email = createUserDto.email.toLowerCase();
     user.password = createUserDto.password;
     return this.usersRepository.save(user);

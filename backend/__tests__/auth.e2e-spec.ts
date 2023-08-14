@@ -24,7 +24,7 @@ describe('AuthController (e2e)', () => {
 
   // FIXME: все тесты проходят если beforeEach
   // заново полный setup -> надо перенести в хуки сброс аппа между тестами
-  // beforeEach(async () => { 
+  // beforeEach(async () => {
   beforeAll(async () => {
     moduleFixture = await Test.createTestingModule({
       imports: [
@@ -56,27 +56,27 @@ describe('AuthController (e2e)', () => {
     await usersRepo.insert(usersData);
   });
 
-  it('/login', async () => {
-    await request(app.getHttpServer()).post('/login').send({}).expect(401);
+  it('/signin', async () => {
+    await request(app.getHttpServer()).post('/signin').send({}).expect(401);
     const { body } = await request(app.getHttpServer())
-      .post(`/login`)
-      .send(testData.login)
+      .post(`/signin`)
+      .send(testData.signin)
       .expect(201);
     expect(body.token).toBeDefined();
   });
 
-  it('/login upperCase', async () => {
+  it('/signin upperCase', async () => {
     const { body } = await request(app.getHttpServer())
-      .post(`/login`)
-      .send(testData.loginUpperCase)
+      .post(`/signin`)
+      .send(testData.signinUpperCase)
       .expect(201);
     expect(body.token).toBeDefined();
   });
 
-  it('/logout', async () => {
+  it('/signout', async () => {
     const token = jwtService.sign(testData.sign);
     return request(app.getHttpServer())
-      .post('/logout')
+      .post('/signout')
       .auth(token, { type: 'bearer' })
       .expect(201);
   });

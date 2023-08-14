@@ -12,10 +12,10 @@ import routes from '../../routes.js';
 import Avatar from '../Avatar/index.jsx';
 
 function UserMenu() {
-  const { logOut } = useAuth();
+  const { signOut } = useAuth();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const username = useSelector((state) => state.user.userInfo.login);
+  const username = useSelector((state) => state.user.userInfo.username);
 
   const handleInDevelopment = () => {
     dispatch(actions.openModal({ type: 'inDevelopment' }));
@@ -53,7 +53,7 @@ function UserMenu() {
         </li>
         <Dropdown.Divider />
         <li>
-          <Dropdown.Item as={Button} onClick={logOut}>
+          <Dropdown.Item as={Button} onClick={signOut}>
             {t('profileActions.logout')}
           </Dropdown.Item>
         </li>

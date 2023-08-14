@@ -47,7 +47,7 @@
       "emailIsUsed": "This email address is already being used",
       "incorrectEmail": "Incorrect email",
       "incorrectUsername": "There must be no spaces in the username",
-      "loginIsUsed": "This username is already taken",
+      "usernameIsUsed": "This username is already taken",
       "passwordLength": "From 8 to 30 characters",
       "requiredField": "Required field",
       "singleWord": "Allowed latin letters, numbers and symbols - _ .",
@@ -57,6 +57,7 @@
       "wrongPassword": "Wrong password"
     }
   },
+  "errors.validation.incorrectPassword": "Only Latin letters, numbers and punctuation are allowed",
   "faq": {
     "a0": "An integrated development environment (IDE) is a software application that allows developers to write, debug, and test code using one of several programming languages. Integrated development environments are popular among developers because they speed up and simplify the work of writing code. Just as writers use word processors and accountants use spreadsheets, software developers use IDEs to increase productivity.",
     "a11": "Most IDEs include features beyond the usual code editor. It combines many different tools in a single application so that developers can quickly start programming new applications rather than having to manually integrate and configure different software. Here are a few important features of the IDE.",
