@@ -1,7 +1,7 @@
 import { IsEmail, IsString, Length, Matches, Validate } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { CheckEmail } from '../validation/check-email';
-import { CheckLogin } from '../validation/check-login';
+import { CheckUsername } from '../validation/check-username';
 import { ComparePasswords } from '../validation/compare-passwords';
 
 export class CreateUserDto {
@@ -15,10 +15,10 @@ export class CreateUserDto {
   @Length(3, 20)
   @IsString()
   @Matches(/^[\w\S]*$/)
-  @Validate(CheckLogin, {
-    message: 'loginIsUsed',
+  @Validate(CheckUsername, {
+    message: 'usernameIsUsed',
   })
-  login: string;
+  username: string;
 
   @ApiProperty({
     description: 'Must be unique!',

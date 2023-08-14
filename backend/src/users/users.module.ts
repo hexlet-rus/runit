@@ -8,7 +8,7 @@ import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { UsersSubscriber } from './users.subscriber';
 import { CheckEmail } from './validation/check-email';
-import { CheckLogin } from './validation/check-login';
+import { CheckUsername } from './validation/check-username';
 import { CheckPassword } from './validation/check-password';
 
 @Module({
@@ -20,7 +20,7 @@ import { CheckPassword } from './validation/check-password';
     AuthService,
     JwtService,
     CheckEmail,
-    CheckLogin,
+    CheckUsername,
     CheckPassword,
   ],
   exports: [UsersService, TypeOrmModule],
