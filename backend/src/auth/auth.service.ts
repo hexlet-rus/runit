@@ -74,7 +74,7 @@ export class AuthService {
     if (!user) {
       const password = generate();
       const userDto = {
-        username: githubUserData.username,
+        username: githubUserData.login,
         email: userEmail.toLowerCase(),
         password,
         confirmPassword: password,

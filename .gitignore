@@ -40,7 +40,7 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # database
-*.sqlite
+*.sqlite*
 /test-results/
 /playwright-report/
 /playwright/.cache/
