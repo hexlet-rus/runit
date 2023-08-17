@@ -12,6 +12,9 @@ function CodeEditor({ readOnly = false }) {
   const monacoEditorTheme = isDarkMode ? 'dark' : 'light';
 
   const options = {
+    minimap: {
+      enabled: false,
+    },
     selectOnLineNumbers: true,
     wordWrap: true,
     readOnly,
