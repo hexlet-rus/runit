@@ -29,8 +29,9 @@ function RemindPasswordForm({ onSuccess = () => null }) {
     validateOnBlur: false,
     onSubmit: async (values) => {
       setFormState(initialFormState);
+      const preparedValues = validationSchema.cast(values);
       try {
-        console.log(values);
+        console.log(preparedValues);
         onSuccess();
       } catch (err) {
         if (!err.isAxiosError) {
@@ -57,7 +58,6 @@ function RemindPasswordForm({ onSuccess = () => null }) {
   return (
     <>
       <FormAlert
-        className="mb-4"
         onClose={() => setFormState(initialFormState)}
         state={formState.state}
       >

@@ -4,7 +4,6 @@ import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import * as yup from 'yup';
 
 import AppRoutes from './AppRoutes.jsx';
 import ModalWindow from './components/Modals';
@@ -28,13 +27,6 @@ export default async () => {
     dsn: process.env.REACT_APP_SENTRY_DSN,
     integrations: [new Sentry.BrowserTracing()],
     tracesSampleRate: 1.0,
-  });
-
-  yup.addMethod(yup.string, 'email', function validateEmail(message) {
-    return this.matches(
-      /^([0-9a-zA-Z’_-]+\.)*[0-9a-zA-Z’_-]+(\+[0-9a-zA-Z.’_-]*)*@([0-9a-zA-Z-]+\.)+[a-zA-Z]{2,}$/,
-      { message, name: 'email', excludeEmptyString: true },
-    );
   });
 
   return (

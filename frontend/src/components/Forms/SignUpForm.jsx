@@ -49,11 +49,12 @@ function SignupForm({ onSuccess = () => null }) {
     validateOnBlur: false,
     onSubmit: async (values, actions) => {
       setFormState(initialFormState);
+      const preparedValues = validationSchema.cast(values);
       try {
         actions.setSubmitting(true);
         await axios.post(routes.usersPath(), {
           username: values.username,
-          email: values.email,
+          email: preparedValues.email,
           password: values.password,
           confirmPassword: values.password,
         });
@@ -88,7 +89,7 @@ function SignupForm({ onSuccess = () => null }) {
               default:
                 setFormState({
                   state: 'failed',
-                  message: 'profileSettings.updateFailed',
+                  message: 'errors.network',
                 });
                 throw err;
             }
