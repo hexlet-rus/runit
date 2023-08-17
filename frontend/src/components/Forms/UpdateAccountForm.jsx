@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
+import { toUnicode } from 'punycode/';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,24 +30,26 @@ function UpdateAccountForm() {
 
   const initialValues = {
     username: userInfo.username,
-    email: userInfo.email,
+    email: toUnicode(userInfo.email),
   };
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values, actions) => {
       setFormState(initialFormState);
+      const preparedValues = validationSchema.cast(values);
       try {
         const response = await axios.put(routes.updateUserPath(userInfo.id), {
           id: userInfo.id,
-          username: values.username,
-          email: values.email,
+          username: preparedValues.username,
+          email: preparedValues.email,
         });
         dispatch(userActions.setUserInfo(response.data));
         setFormState({
           state: 'success',
           message: 'profileSettings.updateSuccessful',
         });
+        actions.resetForm({ values });
       } catch (err) {
         formik.resetForm();
         if (!err.isAxiosError) {

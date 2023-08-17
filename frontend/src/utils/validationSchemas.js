@@ -1,3 +1,5 @@
+import { toASCII } from 'punycode/';
+import isEmail from 'validator/es/lib/isEmail';
 import { string } from 'yup';
 
 const USERNAME_MIN_LENGHT = 3;
@@ -21,11 +23,11 @@ export const email = () =>
   string()
     .trim()
     .required('errors.validation.requiredField')
-    .email('errors.validation.incorrectEmail');
+    .test('is-email', 'errors.validation.incorrectEmail', (v) => isEmail(v))
+    .transform(toASCII);
 
 export const password = () =>
   string()
-    .trim()
     .required('errors.validation.requiredField')
     .matches(PASSWORD_REGEX, 'errors.validation.incorrectPassword')
     .min(PASSWORD_MIN_LENGHT, 'errors.validation.passwordLength')
