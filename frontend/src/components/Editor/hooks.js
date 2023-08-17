@@ -37,13 +37,8 @@ const darkTheme = {
 export const useEditor = () => {
   const dispatch = useDispatch();
 
-  const { code, language } = useSelector((state) => ({
-    code: state.editor.code,
-    language: state.languages.currentLanguage,
-    hasSnippetData: state.editor.hasSnippetData,
-    snippetData: state.editor.snippetData,
-    isAllSaved: state.editor.hasSnippetData,
-  }));
+  const code = useSelector((state) => state.editor.code);
+  const language = useSelector((state) => state.languages.currentLanguage);
 
   const beforeMount = (monaco) => {
     monaco.editor.defineTheme('light', lightTheme);
