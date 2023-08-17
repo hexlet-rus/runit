@@ -28,7 +28,6 @@ export const email = () =>
 
 export const password = () =>
   string()
-    .trim()
     .required('errors.validation.requiredField')
     .matches(PASSWORD_REGEX, 'errors.validation.incorrectPassword')
     .min(PASSWORD_MIN_LENGHT, 'errors.validation.passwordLength')
