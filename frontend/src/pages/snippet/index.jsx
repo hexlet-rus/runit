@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { useDebounce, useMediaQuery } from 'usehooks-ts';
 
-import { GripHorizontal, GripVertical } from 'react-bootstrap-icons';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -22,13 +21,8 @@ import ActionsToolbar from './ActionsToolbar.jsx';
 const AUTOSAVE_TIMEOUT = 1000;
 
 function ResizeHandler({ direction = 'horizontal' }) {
-  const Grip = direction === 'horizontal' ? GripVertical : GripHorizontal;
   return (
-    <PanelResizeHandle className="panel-handler">
-      <div className="panel-handler-inner">
-        <Grip className="panel-handler-icon" />
-      </div>
-    </PanelResizeHandle>
+    <PanelResizeHandle className={`panel-handler panel-handler-${direction}`} />
   );
 }
 
@@ -130,7 +124,7 @@ function SnippetPage() {
         fluid="xxl"
         className="py-3 editor-page d-flex flex-column gap-3"
       >
-        <DefaultLoader />;
+        <DefaultLoader />
       </Container>
     );
   }
@@ -138,7 +132,7 @@ function SnippetPage() {
   return (
     <Container
       fluid
-      className="py-3 editor-page d-flex flex-column gap-3 px-xl-5"
+      className="py-3 editor-page d-flex flex-column gap-3 px-xl-3 bg-body-secondary"
     >
       <Row className="align-items-center">
         <Col className="toolbar gap-3">
@@ -155,15 +149,15 @@ function SnippetPage() {
       <PanelGroup direction={direction}>
         <Panel
           defaultSize={50}
-          minSize={10}
-          className="border rounded-3 overflow-hidden"
+          minSize={20}
+          className="bg-body-secondary rounded-3 overflow-hidden"
         >
           <CodeEditor readOnly={!isLoggedIn} />
         </Panel>
         <ResizeHandler direction={direction} />
         <Panel
-          minSize={20}
-          className="bg-body-secondary rounded-3 overflow-hidden"
+          minSize={10}
+          className="bg-body rounded-3 overflow-hidden"
           collapsible
         >
           <Terminal />

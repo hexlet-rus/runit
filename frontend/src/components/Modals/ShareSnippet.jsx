@@ -49,7 +49,7 @@ function ShareSnippet({ isOpen, handleClose }) {
               className="button-copy"
               data-clipboard-action="copy"
               data-clipboard-target="#link-input"
-              variant="nofill-secondary"
+              variant="nofill-body"
             >
               <Clipboard className="bi" />
               <span className="visually-hidden">
@@ -75,7 +75,7 @@ function ShareSnippet({ isOpen, handleClose }) {
               className="button-copy"
               data-clipboard-action="copy"
               data-clipboard-target="#embed-input"
-              variant="nofill-secondary"
+              variant="nofill-body"
             >
               <Clipboard className="bi" />
               <span className="visually-hidden">

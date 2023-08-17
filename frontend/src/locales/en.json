@@ -34,7 +34,7 @@
   },
   "editor": {
     "authBanner": "Sign in to edit",
-    "saved": "No unsaved changes",
+    "saved": "All changes saved",
     "saving": "Saving...",
     "unsaved": "There are unsaved changes in the code"
   },
@@ -298,7 +298,7 @@
     "header": "Snippet Actions",
     "new": "New snippet",
     "open": "Open",
-    "openOnRunIT": "Open on RunIT",
+    "openOnRunIT": "Edit on RunIT",
     "rename": "Renane",
     "run": "Run",
     "share": "Share"

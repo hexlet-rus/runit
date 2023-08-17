@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 
-import { Translate } from 'react-bootstrap-icons';
 import { useLanguage } from '../../hooks';
 
 function LanguageSelector() {
@@ -18,7 +17,7 @@ function LanguageSelector() {
         className="d-flex py-2 px-0 px-lg-2 align-items-center nav-link"
         variant="link"
       >
-        <Translate />
+        <span className="text-uppercase">{language}</span>
         <span className="visually-hidden">
           {t('settings.languages.header')}
         </span>

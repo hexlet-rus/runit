@@ -26,7 +26,7 @@ const SignUp = () => {
               />
               <hr />
               <div className="small">
-                <span className="text-muted">
+                <span className="text-body-secondary">
                   {t('signUp.footer.signInHeader')}
                 </span>{' '}
                 <Link to={routes.signInPagePath()}>

@@ -30,7 +30,7 @@ const ProfileLayout = ({ data, isEditable }) => {
         <div className="d-flex align-items-start">
           <h1 className="display-5">{user.username}</h1>
           <Button
-            variant="nofill-secondary"
+            variant="nofill-body"
             size="sm"
             className="btn-icon-only"
             onClick={handleInDevelopment}

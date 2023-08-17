@@ -25,3 +25,14 @@
 .transition-padding {
   @include transition(padding 0.25s ease);
 }
+
+.glow {
+  opacity: 0.75;
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  50% {
+    opacity: 0.33;
+  }
+}

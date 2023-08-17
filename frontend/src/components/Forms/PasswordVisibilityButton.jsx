@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Eye, EyeSlash } from 'react-bootstrap-icons';
 
 function PasswordVisibilityButton({
-  variant = 'nofill-secondary',
+  variant = 'nofill-body',
   onClick = () => null,
   enabled = false,
 }) {

@@ -4,19 +4,14 @@
 @import "bootstrap/scss/variables";
 
 //Colors
-$body-color: rgb(5 9 20);
-$primary: rgb(19 110 246);
-$body-color-dark: $gray-400;
-$body-bg-dark: mix($gray-800, $gray-900, 50%);
-$body-secondary-bg-dark: $gray-900;
+$primary: #136ef6;
+$body-secondary-bg: #ebf1f9;
+$body-tertiary-bg: #f5f8fc;
+$body-bg-dark: $gray-900;
+$body-secondary-bg-dark: #16191c;
 $body-tertiary-bg-dark: mix($body-bg-dark, $body-secondary-bg-dark, 50%);
 
-// $border-color-dark: $gray-600;
-
 // Options
-$grid-gutter-width: 3rem;
-$container-padding-x: $grid-gutter-width;
-
 $focus-ring-width: 0.125rem;
 
 $btn-box-shadow: none;
@@ -113,12 +108,11 @@ body,
   min-height: #{$spacer * 6};
 }
 
-$navbar-avatar-height: 2rem;
-$navbar-height: $navbar-avatar-height + $nav-link-padding-y * 2 + $navbar-padding-y * 2;
+$logo-height: 2rem;
+$navbar-height: $logo-height + $navbar-brand-padding-y * 2 + $navbar-padding-y * 2;
 
-.navbar-avatar {
-  width: auto;
-  height: $navbar-avatar-height;
+.logo-height {
+  height: #{$logo-height};
 }
 
 .embed-code {
