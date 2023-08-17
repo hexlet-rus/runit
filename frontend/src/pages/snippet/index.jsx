@@ -64,6 +64,7 @@ function SnippetPage() {
     : 'vertical';
 
   useEffect(() => {
+    console.log('try');
     const editorData = editorDataRef.current;
     if (
       editorData.isLoggedIn &&
@@ -85,7 +86,6 @@ function SnippetPage() {
         );
         // #TODO: remove check once redirect to 404 is configured
         if (response.length === 0) {
-          dispatch(actions.resetEditor());
           dispatch(actions.openModal({ type: 'snippetUnavailable' }));
         } else {
           dispatch(
@@ -98,8 +98,6 @@ function SnippetPage() {
           );
           dispatch(actions.setCodeAndSavedCode(response.code));
         }
-      } else {
-        dispatch(actions.resetEditor());
       }
     };
 
@@ -115,6 +113,8 @@ function SnippetPage() {
       ) {
         saveSnippet(editorData);
       }
+
+      dispatch(actions.resetEditor());
     };
   }, []);
 
