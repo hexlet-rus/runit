@@ -49,10 +49,13 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
     enableReinitialize: true,
     onSubmit: async (values, actions) => {
       actions.setSubmitting(true);
+      const preparedValues = validationSchema.cast(values);
       try {
-        await snippetApi.renameSnippet(id, { code, name: values.name });
-        dispatch(snippetsActions.updateSnippet({ id, name: values.name }));
-        formik.resetForm({ values });
+        await snippetApi.renameSnippet(id, { code, name: preparedValues.name });
+        dispatch(
+          snippetsActions.updateSnippet({ id, name: preparedValues.name }),
+        );
+        formik.resetForm({ values: preparedValues });
       } catch (error) {
         formik.resetForm();
         if (!error.isAxiosError) {

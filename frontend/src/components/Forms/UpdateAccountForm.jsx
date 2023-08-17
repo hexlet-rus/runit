@@ -41,7 +41,7 @@ function UpdateAccountForm() {
       try {
         const response = await axios.put(routes.updateUserPath(userInfo.id), {
           id: userInfo.id,
-          username: values.username,
+          username: preparedValues.username,
           email: preparedValues.email,
         });
         dispatch(userActions.setUserInfo(response.data));

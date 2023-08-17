@@ -47,10 +47,11 @@ function SnippetName({ snippet }) {
     validationSchema,
     enableReinitialize: true,
     onSubmit: async (values) => {
+      const preparedValues = validationSchema.cast(values);
       try {
-        await snippetApi.renameSnippet(id, { code, name: values.name });
-        dispatch(actions.updateActiveSnippetName(values.name));
-        formik.resetForm({ values });
+        await snippetApi.renameSnippet(id, { code, name: preparedValues.name });
+        dispatch(actions.updateActiveSnippetName(preparedValues.name));
+        formik.resetForm({ values: preparedValues });
       } catch (error) {
         formik.resetForm();
         if (!error.isAxiosError) {

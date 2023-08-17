@@ -53,7 +53,7 @@ function SignupForm({ onSuccess = () => null }) {
       try {
         actions.setSubmitting(true);
         await axios.post(routes.usersPath(), {
-          username: values.username,
+          username: preparedValues.username,
           email: preparedValues.email,
           password: values.password,
           confirmPassword: values.password,
