@@ -3,7 +3,7 @@
   $hover-background: $color,
   $hover-color: color-contrast($hover-background),
   $active-background:
-  if($hover-color == $color-contrast-light, shade-color($color, $btn-active-bg-shade-amount), tint-color($color, $btn-active-bg-tint-amount)),
+    if($hover-color == $color-contrast-light, shade-color($color, $btn-active-bg-shade-amount), tint-color($color, $btn-active-bg-tint-amount)),
   $active-color: color-contrast($active-background),
   $disabled-color: $color
 ) {
@@ -27,19 +27,20 @@
   }
 }
 
-$nofill-body: body;
-
 .btn-nofill-body {
-  --#{$prefix}btn-color: var(--#{$prefix}#{$nofill-body}-color);
+  --#{$prefix}btn-color: var(--#{$prefix}secondary-color);
   --#{$prefix}btn-border-color: transparent;
-  --#{$prefix}btn-hover-color: var(--#{$prefix}#{$nofill-body}-bg);
-  --#{$prefix}btn-hover-bg: var(--#{$prefix}#{$nofill-body}-color);
+  --#{$prefix}btn-hover-color: var(--#{$prefix}body-color);
+  --#{$prefix}btn-hover-bg: rgba(var(--#{$prefix}body-color-rgb), 0.075);
   --#{$prefix}btn-hover-border-color: transparent;
-  --#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}#{$nofill-body}color-rgb);
-  --#{$prefix}btn-active-color: var(--#{$prefix}#{$nofill-body}-bg);
-  --#{$prefix}btn-active-bg: var(--#{$prefix}emphasis-color);
+
+  --#{$prefix}btn-focus-shadow-rgb: var(--#{$prefix}tertiary-color-rgb);
+
+  --#{$prefix}btn-active-color: var(--#{$prefix}body-color);
+  --#{$prefix}btn-active-bg: rgba(var(--#{$prefix}body-color-rgb), 0.15);
   --#{$prefix}btn-active-border-color: transparent;
   --#{$prefix}btn-active-shadow: #{$btn-active-box-shadow};
-  --#{$prefix}btn-disabled-color: var(--#{$prefix}#{$nofill-body}color-rgb);
+
+  --#{$prefix}btn-disabled-color: var(--#{$prefix}#secondary-color-rgb);
   --#{$prefix}btn-disabled-border-color: transparent;
 }

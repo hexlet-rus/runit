@@ -9,8 +9,7 @@ import { AutowidthInput } from 'react-autowidth-input';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
-import Spinner from 'react-bootstrap/Spinner';
-import { CloudCheck, PencilFill } from 'react-bootstrap-icons';
+import { CloudArrowUp, CloudCheck, PencilFill } from 'react-bootstrap-icons';
 
 import { useAuth, useSnippets } from '../../hooks';
 import { snippetName } from '../../utils/validationSchemas';
@@ -81,6 +80,12 @@ function SnippetName({ snippet }) {
       className="d-flex flex-row align-items-center"
       onSubmit={handleSubmit}
     >
+      <Image
+        alt="JavaScript"
+        className="me-1"
+        height={32}
+        src={JavaScriptIcon}
+      />
       {formik.isSubmitting ? null : (
         <Form.Control
           ref={inputRef}
@@ -105,7 +110,7 @@ function SnippetName({ snippet }) {
           disabled={isRenaming}
           onClick={() => setRenaming(true)}
           size="sm"
-          variant="nofill-secondary"
+          variant="nofill-body"
         >
           <PencilFill />
           <span className="visually-hidden">{t('snippetActions.rename')}</span>
@@ -120,18 +125,21 @@ function SavingIndicator({ isAllSaved = false }) {
 
   if (isAllSaved) {
     return (
-      <div className="toolbar-indicator text-secondary">
-        <CloudCheck className="bi" />
-        <span className="visually-hidden">{t('editor.saved')}</span>
+      <div className="d-flex flex-row align-items-center text-body-secondary">
+        <div className="toolbar-indicator">
+          <CloudCheck className="bi" />
+        </div>
+        <div className="small">{t('editor.saved')}</div>
       </div>
     );
   }
   return (
-    <div className="d-flex flex-row align-items-center text-secondary">
-      <Spinner animation="border" className="me-1" role="status" size="sm">
+    <div className="d-flex flex-row align-items-center text-body-secondary glow">
+      <div className="toolbar-indicator">
+        <CloudArrowUp className="bi" />
         <span className="visually-hidden">{t('editor.unsaved')}</span>
-      </Spinner>
-      <div>{t('editor.saving')}</div>
+      </div>
+      <div className="small">{t('editor.saving')}</div>
     </div>
   );
 }
@@ -161,7 +169,6 @@ function FileToolbar({ snippet }) {
 
   return (
     <>
-      <Image alt="JavaScript" height={32} src={JavaScriptIcon} />
       <SnippetName snippet={snippet} />
       {isLoggedIn ? (
         <SavingIndicator isAllSaved={isAllSaved} />

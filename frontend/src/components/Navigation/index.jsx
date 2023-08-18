@@ -23,11 +23,11 @@ const Navigation = () => {
   return (
     <Navbar
       expand="sm"
-      bg="dark-subtle"
+      bg="body-tertiary"
       data-bs-theme="dark"
       className="navigation-container"
     >
-      <Container fluid className="px-xl-5">
+      <Container fluid className="px-xl-3">
         <Navbar.Brand
           as={Link}
           to={isLoggedIn ? routes.myProfilePagePath() : routes.landingPath()}
@@ -35,7 +35,7 @@ const Navigation = () => {
           <Image
             alt={t('navbar.mainLabel')}
             src={Logo}
-            className="d-inline-block align-top"
+            className="logo-height"
           />
         </Navbar.Brand>
         <Navbar.Toggle
@@ -46,7 +46,7 @@ const Navigation = () => {
           <NavMenu />
           <Nav
             as="ul"
-            className="flex-row flex-wrap ms-md-auto align-items-center gap-2"
+            className="flex-row flex-wrap ms-sm-auto align-items-center gap-2"
           >
             <LanguageSelector />
             <ThemeSelector />

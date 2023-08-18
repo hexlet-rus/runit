@@ -5,25 +5,46 @@ import { FitAddon } from 'xterm-addon-fit';
 import useResizeObserver from 'use-resize-observer';
 
 import { useTerminal } from './hooks.js';
+import theme from '../../utils/theme.js';
 
 import 'xterm/css/xterm.css';
+import { useTernaryDarkMode } from 'usehooks-ts';
+
+const xTermThemes = {
+  dark: {
+    foreground: `#${theme.colors.dark.color}`,
+    background: `#${theme.colors.dark.bg}00`,
+    selectionBackground: `#${theme.colors.primary}60`,
+  },
+  light: {
+    foreground: `#${theme.colors.light.color}`,
+    background: `#${theme.colors.light.bg}00`,
+    selectionBackground: `#${theme.colors.primary}60`,
+  },
+};
 
 const runTerminal = (xTerm, { terminal, alertLogs }) => {
   xTerm.reset();
-  terminal.forEach((part) => xTerm.write(`\r\n ${part}`));
+  xTerm.write(terminal.join('\n'));
   // eslint-disable-next-line no-alert
   alertLogs.forEach((alertLog) => window.alert(alertLog));
 };
 
 function Terminal() {
   const containerRef = useRef();
+  const { isDarkMode } = useTernaryDarkMode();
   const { width, height } = useResizeObserver({ ref: containerRef });
+
+  const xTermTheme = isDarkMode ? xTermThemes.dark : xTermThemes.light;
 
   const xTermRef = useRef(
     new XTerm({
       convertEol: true,
-      cursorBlink: true,
-      cursorStyle: 'block',
+      allowTransparency: true,
+      fontFamily: theme.monospaceFontFamily,
+      fontSize: 12,
+      lineHeight: 1.286,
+      theme: xTermTheme,
     }),
   );
   const xTerm = xTermRef.current;
@@ -39,15 +60,24 @@ function Terminal() {
   }, [xTerm, fitAddon]);
 
   useEffect(() => {
+    xTerm.options.theme = xTermTheme;
+  }, [isDarkMode]);
+
+  useEffect(() => {
     runTerminal(xTerm, output);
-    // return () => xTermRef.current?.componentWillUnmount();
   }, [output]);
 
   useEffect(() => {
     fitAddon.fit();
   }, [fitAddon, width, height]);
 
-  return <div className="w-100 h-100 overflow-hidden" ref={containerRef} />;
+  return (
+    <div
+      className="h-100 overflow-hidden"
+      style={{ width: 'calc(100% + 1px)' }}
+      ref={containerRef}
+    />
+  );
 }
 
 export default Terminal;

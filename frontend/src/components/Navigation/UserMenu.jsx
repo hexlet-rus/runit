@@ -25,10 +25,10 @@ function UserMenu() {
     <Dropdown align="end" as="li">
       <Dropdown.Toggle
         as={Button}
-        className="d-flex py-2 px-0 px-lg-2 align-items-center nav-link"
+        className="d-flex p-0 px-lg-2 align-items-center nav-link"
         variant="link"
       >
-        <div className="navbar-avatar">
+        <div className="logo-height">
           <Avatar username={username} />
         </div>
         <span className="visually-hidden">{t('profileActions.header')}</span>

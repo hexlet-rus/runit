@@ -31,7 +31,7 @@ function ActionsToolbar({ snippet }) {
       <Button
         className="btn-icon-only-full-height"
         onClick={handleInDevelopment}
-        variant="nofill-secondary"
+        variant="nofill-body"
       >
         <Share />{' '}
         <span className="visually-hidden">{t('snippetActions.duplicate')}</span>
@@ -39,13 +39,13 @@ function ActionsToolbar({ snippet }) {
       <Button
         className="btn-icon-only-full-height"
         onClick={handleShare}
-        variant="nofill-secondary"
+        variant="nofill-body"
       >
         <BoxArrowUp />{' '}
         <span className="visually-hidden">{t('snippetActions.share')}</span>
       </Button>
       <Button
-        className={`btn-run${disabled ? ' running' : ''}`}
+        className={`ms-3 btn-run${disabled ? ' running' : ''}`}
         disabled={disabled}
         onClick={onClick}
         variant="primary"

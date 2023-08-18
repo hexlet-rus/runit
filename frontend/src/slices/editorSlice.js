@@ -43,9 +43,9 @@ const editorSlice = createSlice({
       state.savedCode = payload;
       state.isAllSaved = state.code === state.savedCode;
     },
-    resetEditor(state, { payload }) {
+    resetEditor(_state, { payload }) {
       const code = payload ?? DEFAULT_CODE;
-      state = { ...initialState, code };
+      return { ...initialState, code };
     },
   },
 });

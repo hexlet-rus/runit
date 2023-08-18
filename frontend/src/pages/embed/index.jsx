@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 
-import { Pencil, PlayFill } from 'react-bootstrap-icons';
+import { PencilSquare, PlayFill } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -58,13 +57,16 @@ const EmbeddedPage = () => {
   return (
     <>
       <Navbar
-        expand="md"
         bg="dark-subtle"
         data-bs-theme="dark"
-        className="flex-row flex-nowrap px-1 px-sm-2 px-md-3"
+        className="flex-row flex-nowrap px-2 px-md-3"
       >
-        <Navbar.Brand as={Link} to={routes.landingPath()}>
-          <Image src={Logo} alt={t('navbar.mainLabel')} />
+        <Navbar.Brand as={Link} to={routes.landingPath()} className="me-auto">
+          <Image
+            src={Logo}
+            alt={t('navbar.mainLabel')}
+            className="logo-height"
+          />
         </Navbar.Brand>
         <Nav as="ul" className="flex-row flex-nowrap align-items-center">
           <Nav.Item as="li">
@@ -73,9 +75,9 @@ const EmbeddedPage = () => {
               href={snippetLink}
               target="_blank"
               rel="noreferrer"
-              variant="outline-primary"
+              variant="outline-secondary"
             >
-              <Pencil className="bi" />{' '}
+              <PencilSquare className="bi" />{' '}
               <span className="d-none d-sm-inline small">
                 {t('snippetActions.openOnRunIT')}
               </span>

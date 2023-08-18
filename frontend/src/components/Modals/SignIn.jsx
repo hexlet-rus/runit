@@ -20,7 +20,9 @@ function SignInModal({ handleClose, isOpen }) {
       <Modal.Body>
         <SignInForm onSuccess={handleClose} />
         <div className="d-flex justify-content-center align-items-baseline mt-5">
-          <span className="text-muted">{t('signIn.footer.signUpHeader')}</span>{' '}
+          <span className="text-body-secondary">
+            {t('signIn.footer.signUpHeader')}
+          </span>{' '}
           <Button
             onClick={() => dispatch(actions.openModal({ type: 'signingUp' }))}
             variant="link"

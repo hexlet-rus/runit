@@ -110,7 +110,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
           className="btn-icon-only z-2"
           onClick={handleRename}
           size="sm"
-          variant="nofill-secondary"
+          variant="nofill-body"
         >
           <PencilFill className="bi" />
           <span className="visually-hidden">{t('snippetActions.rename')}</span>
@@ -220,7 +220,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
           <Button
             className="btn-icon-only ms-auto"
             onClick={handleDuplicate}
-            variant="nofill-secondary"
+            variant="nofill-body"
           >
             <div className="text-nowrap">
               <Share className="bi me-1" />
@@ -234,7 +234,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
           className="btn-icon-only align-self-center"
           onClick={() => setOpened(!isOpened)}
           size="sm"
-          variant="nofill-secondary"
+          variant="nofill-body"
         >
           <ThreeDotsVertical className="bi" />
           <span className="visually-hidden">
@@ -245,7 +245,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
         <Button
           className="btn-icon-only"
           onClick={handleShare}
-          variant="nofill-secondary"
+          variant="nofill-body"
         >
           <BoxArrowUp className="bi" />
           <span className="visually-hidden">{t('snippetActions.share')}</span>
