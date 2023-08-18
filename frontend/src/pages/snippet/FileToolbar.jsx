@@ -5,15 +5,15 @@ import { useDispatch } from 'react-redux';
 import { object } from 'yup';
 
 // eslint-disable-next-line import/no-unresolved
-import { AutowidthInput } from 'react-autowidth-input';
+import AutowidthInput from 'react-autowidth-input';
+import { CloudArrowUp, CloudCheck, PencilFill } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
-import { CloudArrowUp, CloudCheck, PencilFill } from 'react-bootstrap-icons';
 
 import { useAuth, useSnippets } from '../../hooks';
-import { snippetName } from '../../utils/validationSchemas';
 import { actions } from '../../slices/index.js';
+import { snippetName } from '../../utils/validationSchemas';
 
 import JavaScriptIcon from '../../assets/images/icons/javascript.svg';
 

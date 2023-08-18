@@ -1,21 +1,22 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { Link45deg } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import { Link45deg } from 'react-bootstrap-icons';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import NotFoundPage from '../404';
-import SnippetCard from './SnippetCard.jsx';
-import NewSnippetForm from './NewSnippetForm.jsx';
-import { fetchUserSnippets } from 'src/slices/snippetsSlice.js';
 import { actions } from '../../slices/modalSlice.js';
-import { useEffect } from 'react';
+import { fetchUserSnippets } from '../../slices/snippetsSlice.js';
 
-const ProfileLayout = ({ data, isEditable }) => {
+import NotFoundPage from '../404';
+import NewSnippetForm from './NewSnippetForm.jsx';
+import SnippetCard from './SnippetCard.jsx';
+
+function ProfileLayout({ data, isEditable }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { user, snippets } = data;
@@ -30,10 +31,10 @@ const ProfileLayout = ({ data, isEditable }) => {
         <div className="d-flex align-items-start">
           <h1 className="display-5">{user.username}</h1>
           <Button
-            variant="nofill-body"
-            size="sm"
             className="btn-icon-only"
             onClick={handleInDevelopment}
+            size="sm"
+            variant="nofill-body"
           >
             <Link45deg />
             <span className="visually-hidden">{t('profileActions.share')}</span>
@@ -42,15 +43,15 @@ const ProfileLayout = ({ data, isEditable }) => {
 
         <Row
           as={TransitionGroup}
-          xs={1}
-          sm={2}
-          lg={3}
-          xxl={4}
           className="g-4 py-3"
+          lg={3}
+          sm={2}
+          xs={1}
+          xxl={4}
         >
           {isEditable ? <NewSnippetForm /> : null}
           {snippets.map((snippet) => (
-            <CSSTransition key={snippet.id} timeout={250} classNames="width">
+            <CSSTransition key={snippet.id} classNames="width" timeout={250}>
               <SnippetCard data={snippet} isEditable={isEditable} />
             </CSSTransition>
           ))}
@@ -58,9 +59,9 @@ const ProfileLayout = ({ data, isEditable }) => {
       </Container>
     </div>
   );
-};
+}
 
-const ProfilePage = () => {
+function ProfilePage() {
   const dispatch = useDispatch();
   const { username } = useParams();
   const user = useSelector((state) => state.user.userInfo);
@@ -76,7 +77,7 @@ const ProfilePage = () => {
         error.name = serializedError.name;
         throw error;
       });
-  }, []);
+  }, [dispatch]);
 
   // TODO: добавить возможность получать сниппеты другого пользователя, когда появится возможность делится профилем
   return isMyProfile ? (
@@ -87,6 +88,6 @@ const ProfilePage = () => {
   ) : (
     <NotFoundPage />
   );
-};
+}
 
 export default ProfilePage;

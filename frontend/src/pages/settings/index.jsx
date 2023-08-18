@@ -1,20 +1,20 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
+import { XCircle } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Stack from 'react-bootstrap/Stack';
-import { XCircle } from 'react-bootstrap-icons';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
 
-import UpdateAccountForm from 'src/components/Forms/UpdateAccountForm.jsx';
-import ChangePasswordForm from 'src/components/Forms/ChangePasswordForm.jsx';
-import AvatarChangeForm from 'src/components/Forms/AvatarChangeForm.jsx';
+import AvatarChangeForm from '../../components/Forms/AvatarChangeForm.jsx';
+import ChangePasswordForm from '../../components/Forms/ChangePasswordForm.jsx';
+import UpdateAccountForm from '../../components/Forms/UpdateAccountForm.jsx';
 
-const SettingsPage = () => {
+function SettingsPage() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -24,7 +24,7 @@ const SettingsPage = () => {
 
   return (
     <div className="page-bg-image">
-      <Container fluid="lg" className="h-100">
+      <Container className="h-100" fluid="lg">
         <Row className="justify-content-center align-items-center h-100 py-5 m-auto py-5 h-100">
           <Col className="max-w-lg">
             <div className="d-flex flex-column gap-2 bg-body rounded-4 p-4 p-sm-5">
@@ -46,10 +46,10 @@ const SettingsPage = () => {
               <div className="d-flex flex-column">
                 <hr className="border-secondary-subtle" />
                 <Button
-                  variant="nofill-secondary"
-                  size="sm"
                   className="ms-auto"
                   onClick={handleRemoveAccount}
+                  size="sm"
+                  variant="nofill-secondary"
                 >
                   <XCircle className="bi" /> {t('profileActions.removeAccount')}
                 </Button>
@@ -60,6 +60,6 @@ const SettingsPage = () => {
       </Container>
     </div>
   );
-};
+}
 
 export default SettingsPage;

@@ -1,4 +1,3 @@
-import React from 'react';
 import fileImage from '../../assets/images/FileTree/file.svg';
 import closeImageDirectory from '../../assets/images/FileTree/closeDirectory.svg';
 import openImageDirectory from '../../assets/images/FileTree/openDirectory.svg';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { DocumentImage } from './DocumentImage';
 
 export function File({ type, name }) {
