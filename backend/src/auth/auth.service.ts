@@ -6,7 +6,6 @@ import * as bcrypt from 'bcrypt';
 import { generate } from 'generate-password';
 import { InjectSentry, SentryService } from '@ntegral/nestjs-sentry';
 import { UsersService } from '../users/users.service';
-// import { SentryService } from '../sentry/sentry.service';
 
 @Injectable()
 export class AuthService {
