@@ -5,8 +5,8 @@ import * as cookieParser from 'cookie-parser';
 import { useContainer } from 'class-validator';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { AppModule } from './app.module';
 import * as Sentry from '@sentry/node';
+import { AppModule } from './app.module';
 import { SentryFilter } from './filters/sentry.filter';
 
 declare const module: any;
