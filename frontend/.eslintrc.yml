@@ -2,7 +2,6 @@ root: true
 
 env:
   browser: true
-  node: true
   jest: true
 
 extends:
@@ -10,14 +9,14 @@ extends:
   - plugin:react/recommended
   - plugin:react-hooks/recommended
   - plugin:react/jsx-runtime
+  - plugin:jsx-a11y/recommended
+  - plugin:import/recommended
   - plugin:@typescript-eslint/recommended
   - plugin:import/typescript
-  - prettier
+  - plugin:prettier/recommended
 
 plugins:
   - '@typescript-eslint'
-  - 'prettier'
-  - jsx-a11y
 
 parser: '@typescript-eslint/parser'
 
