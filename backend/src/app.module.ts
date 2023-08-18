@@ -25,7 +25,7 @@ import { AuthController } from './auth/auth.controller';
 import getDataSourceConfig from './config/data-source.config';
 import { HttpsRedirectMiddleware } from './common/https.middleware';
 import { EventsModule } from './events/events.module';
-import getMailerConfig from './config/mailer.config';
+import { MailerConfig } from './config/mailer.config';
 import getSentryConfig from './config/sentry.config';
 
 import '@sentry/tracing';
@@ -35,11 +35,13 @@ import '@sentry/tracing';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', '..', 'frontend/build'),
     }),
-    MailerModule.forRoot(getMailerConfig()),
     SnippetsModule,
     UsersModule,
     AuthModule,
     EventsModule,
+    MailerModule.forRootAsync({
+      useClass: MailerConfig,
+    }),
     TypeOrmModule.forRoot(getDataSourceConfig()),
     SentryModule.forRoot(getSentryConfig()),
   ],
