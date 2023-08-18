@@ -19,7 +19,7 @@ export default async () => {
     .use(LanguageDetector)
     .use(initReactI18next)
     .init({
-      ...(process.env.NODE_ENV === 'production' && {
+      ...(process.env.NODE_ENV !== 'development' && {
         fallbackLng: defaultLanguage,
       }),
       debug: false,
