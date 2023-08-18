@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import * as Sentry from '@sentry/react';
 import i18next from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -14,11 +15,16 @@ import { rootReducer } from './slices';
 
 export default async () => {
   const defaultLanguage = 'ru';
-  await i18next.use(initReactI18next).init({
-    lng: defaultLanguage,
-    debug: false,
-    resources,
-  });
+  await i18next
+    .use(LanguageDetector)
+    .use(initReactI18next)
+    .init({
+      ...(process.env.NODE_ENV === 'production' && {
+        fallbackLng: defaultLanguage,
+      }),
+      debug: false,
+      resources,
+    });
   const store = configureStore({
     reducer: rootReducer,
   });
