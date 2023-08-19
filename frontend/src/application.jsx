@@ -15,16 +15,31 @@ import { rootReducer } from './slices';
 
 export default async () => {
   const defaultLanguage = 'ru';
-  await i18next
-    .use(LanguageDetector)
-    .use(initReactI18next)
-    .init({
-      ...(process.env.NODE_ENV !== 'development' && {
-        fallbackLng: defaultLanguage,
-      }),
-      debug: false,
-      resources,
-    });
+  const baseI18NextConfig = { debug: false, resources };
+
+  if (process.env.NODE_ENV === 'production') {
+    await i18next
+      .use(LanguageDetector)
+      .use(initReactI18next)
+      .init({ ...baseI18NextConfig, fallbackLng: defaultLanguage });
+  }
+
+  if (
+    process.env.NODE_ENV === 'development' &&
+    !process.env.REACT_APP_NODE_ENV
+  ) {
+    await i18next
+      .use(LanguageDetector)
+      .use(initReactI18next)
+      .init(baseI18NextConfig);
+  }
+
+  if (process.env.REACT_APP_NODE_ENV === 'test') {
+    await i18next
+      .use(initReactI18next)
+      .init({ ...baseI18NextConfig, lng: defaultLanguage });
+  }
+
   const store = configureStore({
     reducer: rootReducer,
   });
