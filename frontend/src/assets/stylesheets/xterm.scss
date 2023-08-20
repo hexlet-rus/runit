@@ -2,12 +2,6 @@
   padding: $spacer;
 }
 
-.xterm-viewport {
-  background-color: transparent !important;
-}
-
-.xterm-rows {
-  font-family: $font-family-monospace !important;
-  font-size: $code-font-size !important;
-  color: var(--#{$prefix}body-color) !important;
+.xterm-rows * {
+  font-family: $font-family-monospace;
 }

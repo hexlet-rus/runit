@@ -41,10 +41,14 @@ function SignInForm({ onSuccess = () => null }) {
     validateOnBlur: false,
     onSubmit: async (values, actions) => {
       setFormState(initialFormState);
+      const preparedValues = validationSchema.cast(values);
       try {
         actions.setSubmitting(true);
-        await axios.post(routes.signinPath(), values);
-        auth.logIn();
+        await axios.post(routes.signInPath(), {
+          email: preparedValues.email,
+          password: values.password,
+        });
+        auth.signIn();
         actions.setSubmitting(false);
         onSuccess();
       } catch (err) {

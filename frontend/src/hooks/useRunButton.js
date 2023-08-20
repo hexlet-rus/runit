@@ -9,10 +9,10 @@ const { runCode } = actions;
 
 const useRunButton = () => {
   const dispatch = useDispatch();
-  const { codeExecutionState, code } = useSelector(({ terminal, editor }) => ({
-    codeExecutionState: terminal.codeExecutionState,
-    code: editor.code,
-  }));
+  const codeExecutionState = useSelector(
+    (state) => state.terminal.codeExecutionState,
+  );
+  const code = useSelector((state) => state.editor.code);
   const onClick = useCallback(() => dispatch(runCode(code)), [dispatch, code]);
   const update = async (id, name) => {
     const response = await axios.put(routes.updateSnippetPath(id), {

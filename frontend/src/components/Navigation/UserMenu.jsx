@@ -12,10 +12,10 @@ import routes from '../../routes.js';
 import Avatar from '../Avatar/index.jsx';
 
 function UserMenu() {
-  const { logOut } = useAuth();
+  const { signOut } = useAuth();
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const username = useSelector((state) => state.user.userInfo.login);
+  const username = useSelector((state) => state.user.userInfo.username);
 
   const handleInDevelopment = () => {
     dispatch(actions.openModal({ type: 'inDevelopment' }));
@@ -25,10 +25,10 @@ function UserMenu() {
     <Dropdown align="end" as="li">
       <Dropdown.Toggle
         as={Button}
-        className="d-flex py-2 px-0 px-lg-2 align-items-center nav-link"
+        className="d-flex p-0 px-lg-2 align-items-center nav-link"
         variant="link"
       >
-        <div className="navbar-avatar">
+        <div className="logo-height">
           <Avatar username={username} />
         </div>
         <span className="visually-hidden">{t('profileActions.header')}</span>
@@ -53,7 +53,7 @@ function UserMenu() {
         </li>
         <Dropdown.Divider />
         <li>
-          <Dropdown.Item as={Button} onClick={logOut}>
+          <Dropdown.Item as={Button} onClick={signOut}>
             {t('profileActions.logout')}
           </Dropdown.Item>
         </li>

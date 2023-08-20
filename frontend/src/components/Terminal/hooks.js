@@ -1,9 +1,8 @@
 import { useSelector } from 'react-redux';
 
 export const useTerminal = () => {
-  const { output } = useSelector(({ terminal }) => ({
-    output: terminal.output,
-  }));
+  const output = useSelector((state) => state.terminal.output);
+
   return {
     output,
   };

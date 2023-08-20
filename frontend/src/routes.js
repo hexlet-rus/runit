@@ -14,10 +14,10 @@ export default {
   // put - update user info: { name, email, password }
   updateUserPath: (id) => [apiPath, 'users', `${id}`].join('/'),
 
-  signinPath: () => [apiPath, 'login'].join('/'),
+  signInPath: () => [apiPath, 'signin'].join('/'),
 
   // post
-  logoutPath: () => [apiPath, 'logout'].join('/'),
+  signOutPath: () => [apiPath, 'signout'].join('/'),
 
   // delete user
   deleteUserPath: (id) => [apiPath, 'users', `:${id}`].join('/'),

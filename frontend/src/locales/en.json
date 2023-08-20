@@ -34,7 +34,7 @@
   },
   "editor": {
     "authBanner": "Sign in to edit",
-    "saved": "No unsaved changes",
+    "saved": "All changes saved",
     "saving": "Saving...",
     "unsaved": "There are unsaved changes in the code"
   },
@@ -46,8 +46,8 @@
     "validation": {
       "emailIsUsed": "This email address is already being used",
       "incorrectEmail": "Incorrect email",
+      "incorrectPassword": "Only Latin letters, numbers and punctuation are allowed",
       "incorrectUsername": "There must be no spaces in the username",
-      "loginIsUsed": "This username is already taken",
       "passwordLength": "From 8 to 30 characters",
       "requiredField": "Required field",
       "singleWord": "Allowed latin letters, numbers and symbols - _ .",
@@ -298,7 +298,7 @@
     "header": "Snippet Actions",
     "new": "New snippet",
     "open": "Open",
-    "openOnRunIT": "Open on RunIT",
+    "openOnRunIT": "Edit on RunIT",
     "rename": "Renane",
     "run": "Run",
     "share": "Share"

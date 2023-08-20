@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useFormik } from 'formik';
+import { toUnicode } from 'punycode/';
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,25 +29,27 @@ function UpdateAccountForm() {
   });
 
   const initialValues = {
-    username: userInfo.login,
-    email: userInfo.email,
+    username: userInfo.username,
+    email: toUnicode(userInfo.email),
   };
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values, actions) => {
       setFormState(initialFormState);
+      const preparedValues = validationSchema.cast(values);
       try {
         const response = await axios.put(routes.updateUserPath(userInfo.id), {
           id: userInfo.id,
-          login: values.username,
-          email: values.email,
+          username: preparedValues.username,
+          email: preparedValues.email,
         });
         dispatch(userActions.setUserInfo(response.data));
         setFormState({
           state: 'success',
           message: 'profileSettings.updateSuccessful',
         });
+        actions.resetForm({ values });
       } catch (err) {
         formik.resetForm();
         if (!err.isAxiosError) {
@@ -62,7 +65,7 @@ function UpdateAccountForm() {
         ) {
           err.response.data.errs.message.forEach((e) => {
             switch (e) {
-              case 'loginIsUsed':
+              case 'usernameIsUsed':
                 actions.setFieldError(
                   'username',
                   'errors.validation.usernameIsUsed',

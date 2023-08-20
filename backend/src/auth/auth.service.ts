@@ -6,7 +6,6 @@ import * as bcrypt from 'bcrypt';
 import { generate } from 'generate-password';
 import { InjectSentry, SentryService } from '@ntegral/nestjs-sentry';
 import { UsersService } from '../users/users.service';
-// import { SentryService } from '../sentry/sentry.service';
 
 @Injectable()
 export class AuthService {
@@ -25,7 +24,7 @@ export class AuthService {
     return null;
   }
 
-  async login(user: any, response: any) {
+  async signin(user: any, response: any) {
     const payload = { email: user.email, sub: user.id };
     const token = this.jwtService.sign(payload);
     response.cookie('access_token', token);
@@ -74,7 +73,7 @@ export class AuthService {
     if (!user) {
       const password = generate();
       const userDto = {
-        login: githubUserData.login,
+        username: githubUserData.login,
         email: userEmail.toLowerCase(),
         password,
         confirmPassword: password,
@@ -88,6 +87,6 @@ export class AuthService {
     const token = this.jwtService.sign(payload);
     response.cookie('access_token', token);
 
-    return response.redirect('/profile/snippets');
+    return response.redirect('/profile');
   }
 }

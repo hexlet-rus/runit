@@ -49,10 +49,13 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
     enableReinitialize: true,
     onSubmit: async (values, actions) => {
       actions.setSubmitting(true);
+      const preparedValues = validationSchema.cast(values);
       try {
-        await snippetApi.renameSnippet(id, { code, name: values.name });
-        dispatch(snippetsActions.updateSnippet({ id, name: values.name }));
-        formik.resetForm({ values });
+        await snippetApi.renameSnippet(id, { code, name: preparedValues.name });
+        dispatch(
+          snippetsActions.updateSnippet({ id, name: preparedValues.name }),
+        );
+        formik.resetForm({ values: preparedValues });
       } catch (error) {
         formik.resetForm();
         if (!error.isAxiosError) {
@@ -107,7 +110,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
           className="btn-icon-only z-2"
           onClick={handleRename}
           size="sm"
-          variant="nofill-secondary"
+          variant="nofill-body"
         >
           <PencilFill className="bi" />
           <span className="visually-hidden">{t('snippetActions.rename')}</span>
@@ -121,7 +124,7 @@ function CardCode({ data, noLink = false }) {
   const { t } = useTranslation();
   const snippetApi = useSnippets();
   const { code, slug } = data;
-  const snippetCreatorUsername = data.user.login;
+  const snippetCreatorUsername = data.user.username;
 
   return (
     <div className="snippet-card-body">
@@ -217,7 +220,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
           <Button
             className="btn-icon-only ms-auto"
             onClick={handleDuplicate}
-            variant="nofill-secondary"
+            variant="nofill-body"
           >
             <div className="text-nowrap">
               <Share className="bi me-1" />
@@ -231,7 +234,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
           className="btn-icon-only align-self-center"
           onClick={() => setOpened(!isOpened)}
           size="sm"
-          variant="nofill-secondary"
+          variant="nofill-body"
         >
           <ThreeDotsVertical className="bi" />
           <span className="visually-hidden">
@@ -242,7 +245,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
         <Button
           className="btn-icon-only"
           onClick={handleShare}
-          variant="nofill-secondary"
+          variant="nofill-body"
         >
           <BoxArrowUp className="bi" />
           <span className="visually-hidden">{t('snippetActions.share')}</span>
@@ -254,7 +257,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
 
 function SnippetCard({ data }) {
   const { id, name, slug } = data;
-  const ownerUsername = data.user.login;
+  const ownerUsername = data.user.username;
   const dispatch = useDispatch();
   const [mode, setMode] = useState('viewing');
 

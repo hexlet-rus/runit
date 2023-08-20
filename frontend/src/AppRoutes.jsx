@@ -23,7 +23,7 @@ const NotFoundPage = lazy(() => import('./pages/404'));
 const EmbeddedPage = lazy(() => import('./pages/embed'));
 
 function MyProfileRoute() {
-  const username = useSelector((state) => state.user.userInfo.login);
+  const username = useSelector((state) => state.user.userInfo.username);
 
   return <Navigate to={routes.profilePagePath(username)} replace />;
 }

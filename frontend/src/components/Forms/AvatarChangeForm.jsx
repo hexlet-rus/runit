@@ -11,7 +11,7 @@ import Avatar from '../Avatar/index.jsx';
 function AvatarChangeForm() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const username = useSelector((state) => state.user.userInfo.login);
+  const username = useSelector((state) => state.user.userInfo.username);
 
   const handleInDevelopment = () => {
     dispatch(modalActions.openModal({ type: 'inDevelopment' }));

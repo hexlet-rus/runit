@@ -1,3 +1,5 @@
+import { toASCII } from 'punycode/';
+import isEmail from 'validator/es/lib/isEmail';
 import { string } from 'yup';
 
 const USERNAME_MIN_LENGHT = 3;
@@ -5,6 +7,7 @@ const USERNAME_MAX_LENGHT = 16;
 
 const PASSWORD_MIN_LENGHT = 8;
 const PASSWORD_MAX_LENGHT = 30;
+const PASSWORD_REGEX = /^[a-zA-Z0-9!'#%&'()*+,-./:;<=>?@[/\]^_{|}~]*$/;
 
 const SNIPPET_NAME_MAX_LENGHT = 30;
 
@@ -20,12 +23,13 @@ export const email = () =>
   string()
     .trim()
     .required('errors.validation.requiredField')
-    .email('errors.validation.incorrectEmail');
+    .test('is-email', 'errors.validation.incorrectEmail', (v) => isEmail(v))
+    .transform(toASCII);
 
 export const password = () =>
   string()
-    .trim()
     .required('errors.validation.requiredField')
+    .matches(PASSWORD_REGEX, 'errors.validation.incorrectPassword')
     .min(PASSWORD_MIN_LENGHT, 'errors.validation.passwordLength')
     .max(PASSWORD_MAX_LENGHT, 'errors.validation.passwordLength');
 

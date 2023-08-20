@@ -30,21 +30,21 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @UseGuards(LocalAuthGuard)
-  @Post('login')
+  @Post('signin')
   @ApiBody({ type: SignUpUserDto })
   @ApiCreatedResponse({
     description: 'Successfully logged in! Token lasts 60 minutes!',
   })
-  @ApiUnauthorizedResponse({ description: 'Invalid login data!' })
-  async login(@Req() req, @Res({ passthrough: true }) response: Response) {
-    return this.authService.login(req.user, response);
+  @ApiUnauthorizedResponse({ description: 'Invalid signin data!' })
+  async signin(@Req() req, @Res({ passthrough: true }) response: Response) {
+    return this.authService.signin(req.user, response);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Post('logout')
+  @Post('signout')
   @ApiCookieAuth('access_token')
   @ApiCreatedResponse({ description: 'Successfully logged out!' })
-  async logout(@Res({ passthrough: true }) response: Response) {
+  async signout(@Res({ passthrough: true }) response: Response) {
     response.clearCookie('access_token');
     response.send();
   }

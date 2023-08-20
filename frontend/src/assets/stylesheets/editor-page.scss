@@ -1,35 +1,48 @@
-$panel-handler-padding: $spacer * 0.25;
+$panel-handler-padding: 4px;
 
 .editor-page {
   height: calc(100vh - $navbar-height);
 }
 
 .panel-handler {
-  flex: 0 0 $spacer + $panel-handler-padding * 2;
-  position: relative;
+  flex: 0 0 0.675rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   outline: none;
 
-  --background-color: transparent;
+  --handler-color: var(--#{$prefix}tertiary-color);
+  --handler-size: 3rem;
 
   &[data-resize-handle-active] {
-    --background-color: var(--#{$prefix}secondary-bg);
-  }
-  .panel-handler-inner {
-    position: absolute;
-    top: $panel-handler-padding;
-    bottom: $panel-handler-padding;
-    left: $panel-handler-padding;
-    right: $panel-handler-padding;
-    border-radius: $border-radius-sm;
-    background-color: var(--background-color);
-    transition: background-color 0.15s ease-in-out;
+    --handler-color: var(--#{$prefix}secondary-color);
+    --handler-size: 9rem;
   }
 
-  .panel-handler-icon {
-    width: $spacer;
-    height: $spacer;
-    position: absolute;
-    left: calc(50% - $panel-handler-padding * 2);
-    top: calc(50% - $panel-handler-padding * 2);
+  &-horizontal {
+    --handler-width: 0.125rem;
+    --handler-height: var(--handler-size);
+    --handler-transition: height 0.15s ease-in-out;
   }
+
+  &-vertical {
+    --handler-width: var(--handler-size);
+    --handler-height: 0.125rem;
+    --handler-transition: width 0.15s ease-in-out;
+  }
+
+  &::after {
+    width: var(--handler-width);
+    height: var(--handler-height);
+    background-color: var(--handler-color);
+    border-radius: $border-radius-sm;
+    transition:
+      background-color 0.15s ease-in-out,
+      var(--handler-transition);
+    content: "";
+  }
+}
+
+.monaco-editor .view-line * {
+  font-family: var(--monaco-monospace-font);
 }

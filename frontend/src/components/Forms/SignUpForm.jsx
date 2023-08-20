@@ -49,15 +49,16 @@ function SignupForm({ onSuccess = () => null }) {
     validateOnBlur: false,
     onSubmit: async (values, actions) => {
       setFormState(initialFormState);
+      const preparedValues = validationSchema.cast(values);
       try {
         actions.setSubmitting(true);
         await axios.post(routes.usersPath(), {
-          login: values.username,
-          email: values.email,
+          username: preparedValues.username,
+          email: preparedValues.email,
           password: values.password,
           confirmPassword: values.password,
         });
-        auth.logIn();
+        auth.signIn();
         actions.setSubmitting(false);
         onSuccess();
       } catch (err) {
@@ -74,7 +75,7 @@ function SignupForm({ onSuccess = () => null }) {
         ) {
           err.response.data.errs.message.forEach((e) => {
             switch (e) {
-              case 'loginIsUsed':
+              case 'usernameIsUsed':
                 actions.setFieldError(
                   'username',
                   'errors.validation.usernameIsUsed',
@@ -88,7 +89,7 @@ function SignupForm({ onSuccess = () => null }) {
               default:
                 setFormState({
                   state: 'failed',
-                  message: 'profileSettings.updateFailed',
+                  message: 'errors.network',
                 });
                 throw err;
             }

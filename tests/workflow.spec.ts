@@ -34,7 +34,9 @@ test('Unable to register by invalid email ', async ({ page }) => {
   await expect(page.getByText('Некорректная электронная почта')).toBeVisible();
 });
 
-test('Unable to register by invalid password ', async ({ page }) => {
+test('Unable to register with a password of less than 8 characters', async ({
+  page,
+}) => {
   const randomNum = Math.round(Math.random() * 1000 + Math.random() * 100);
   await page.goto('http://localhost:3000');
   await page.getByRole('button', { name: 'Регистрация' }).click();
@@ -43,6 +45,21 @@ test('Unable to register by invalid password ', async ({ page }) => {
   await page.getByLabel('Пароль', { exact: true }).fill('1234567');
   await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
   await expect(page.getByText('От 8 до 30 символов')).toBeVisible();
+});
+
+test('Unable to register with a password containing unsupported characters', async ({
+  page,
+}) => {
+  const randomNum = Math.round(Math.random() * 1000 + Math.random() * 100);
+  await page.goto('http://localhost:3000');
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test${randomNum}@test.test`);
+  await page.getByLabel('Имя пользователя').fill(`test${randomNum}`);
+  await page.getByLabel('Пароль', { exact: true }).fill('Проверка');
+  await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  await expect(
+    page.getByText('Допустимы только латинские буквы, цифры и знаки препинания')
+  ).toBeVisible();
 });
 
 test('Unable to re-register with an already registered email', async ({
