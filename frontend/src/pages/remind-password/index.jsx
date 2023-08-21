@@ -6,18 +6,18 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-import { actions } from '../../slices';
 import routes from '../../routes.js';
+import { actions } from '../../slices';
 
-import RemindPasswordForm from 'src/components/Forms/RemindPasswordForm.jsx';
+import RemindPasswordForm from '../../components/Forms/RemindPasswordForm';
 
-const RemindPasswordPage = () => {
+function RemindPasswordPage() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
   return (
     <div className="page-bg-image">
-      <Container fluid="sm" className="h-100">
+      <Container className="h-100" fluid="sm">
         <Row className="justify-content-center align-items-center m-auto py-3 py-sm-5 h-100">
           <Col className="max-w-sm p-0">
             <div className="d-flex flex-column gap-sm-3 gap-4 bg-body rounded-4 p-4 p-sm-5">
@@ -42,6 +42,6 @@ const RemindPasswordPage = () => {
       </Container>
     </div>
   );
-};
+}
 
 export default RemindPasswordPage;

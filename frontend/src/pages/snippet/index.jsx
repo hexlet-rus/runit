@@ -1,22 +1,21 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import { useParams } from 'react-router';
 import { useDebounce, useMediaQuery } from 'usehooks-ts';
 
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
-import { actions } from '../../slices/index.js';
 import { useAuth, useSnippets } from '../../hooks/index.js';
+import { actions } from '../../slices/index.js';
 
-import CodeEditor from 'src/components/Editor/index.jsx';
-import Terminal from 'src/components/Terminal/index.jsx';
-
-import DefaultLoader from 'src/components/Loaders/DefaultLoader.jsx';
-import FileToolbar from './FileToolbar.jsx';
+import CodeEditor from '../../components/Editor/index.jsx';
+import DefaultLoader from '../../components/Loaders/DefaultLoader.jsx';
+import Terminal from '../../components/Terminal/index.jsx';
 import ActionsToolbar from './ActionsToolbar.jsx';
+import FileToolbar from './FileToolbar.jsx';
 
 const AUTOSAVE_TIMEOUT = 1000;
 
@@ -34,10 +33,13 @@ function SnippetPage() {
   const params = useParams();
   const dispatch = useDispatch();
 
-  const snippetParams = {
-    username: params.username,
-    slug: params.slug,
-  };
+  const snippetParams = useMemo(
+    () => ({
+      username: params.username,
+      slug: params.slug,
+    }),
+    [params.slug, params.username],
+  );
 
   const editorDataRef = useRef(null);
   editorDataRef.current = {
@@ -49,13 +51,16 @@ function SnippetPage() {
     isLoggedIn,
   };
 
-  const saveSnippet = async (editorData) => {
-    await snippetApi.updateSnippet(editorData.snippetData.id, {
-      code: editorData.code,
-      name: editorData.snippetData.name,
-    });
-    dispatch(actions.setCodeAndSavedCode(editorData.code));
-  };
+  const saveSnippet = useCallback(
+    async (editorData) => {
+      await snippetApi.updateSnippet(editorData.snippetData.id, {
+        code: editorData.code,
+        name: editorData.snippetData.name,
+      });
+      dispatch(actions.setCodeAndSavedCode(editorData.code));
+    },
+    [dispatch, snippetApi],
+  );
 
   const debouncedValue = useDebounce(code, AUTOSAVE_TIMEOUT);
 
@@ -64,7 +69,6 @@ function SnippetPage() {
     : 'vertical';
 
   useEffect(() => {
-    console.log('try');
     const editorData = editorDataRef.current;
     if (
       editorData.isLoggedIn &&
@@ -74,16 +78,15 @@ function SnippetPage() {
     ) {
       saveSnippet(editorData);
     }
-  }, [debouncedValue]);
+  }, [debouncedValue, saveSnippet]);
 
   const hasViewSnippetParams = snippetApi.hasViewSnippetParams(snippetParams);
 
   useEffect(() => {
     const initEditor = async () => {
       if (hasViewSnippetParams) {
-        const response = await snippetApi.getSnippetDataByViewParams(
-          snippetParams,
-        );
+        const response =
+          await snippetApi.getSnippetDataByViewParams(snippetParams);
         // #TODO: remove check once redirect to 404 is configured
         if (response.length === 0) {
           dispatch(actions.openModal({ type: 'snippetUnavailable' }));
@@ -116,14 +119,11 @@ function SnippetPage() {
 
       dispatch(actions.resetEditor());
     };
-  }, []);
+  }, [dispatch, hasViewSnippetParams, saveSnippet, snippetApi, snippetParams]);
 
   if (!isReady) {
     return (
-      <Container
-        fluid="xxl"
-        className="py-3 editor-page d-flex flex-column gap-3"
-      >
+      <Container className="py-3 editor-page d-flex flex-column gap-3">
         <DefaultLoader />
       </Container>
     );
@@ -131,8 +131,8 @@ function SnippetPage() {
 
   return (
     <Container
-      fluid
       className="py-3 editor-page d-flex flex-column gap-3 px-xl-3 bg-body-secondary"
+      fluid
     >
       <Row className="align-items-center">
         <Col className="toolbar gap-3">
@@ -140,7 +140,7 @@ function SnippetPage() {
             snippet={{ isAllSaved, isReady, code, hasSnippetData, snippetData }}
           />
         </Col>
-        <Col xs="auto" className="toolbar">
+        <Col className="toolbar" xs="auto">
           <ActionsToolbar
             snippet={{ isAllSaved, isReady, code, hasSnippetData, snippetData }}
           />
@@ -148,17 +148,17 @@ function SnippetPage() {
       </Row>
       <PanelGroup direction={direction}>
         <Panel
+          className="bg-body-secondary rounded-3 overflow-hidden"
           defaultSize={50}
           minSize={20}
-          className="bg-body-secondary rounded-3 overflow-hidden"
         >
           <CodeEditor readOnly={!isLoggedIn} />
         </Panel>
         <ResizeHandler direction={direction} />
         <Panel
-          minSize={10}
           className="bg-body rounded-3 overflow-hidden"
           collapsible
+          minSize={10}
         >
           <Terminal />
         </Panel>

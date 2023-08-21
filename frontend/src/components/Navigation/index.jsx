@@ -16,31 +16,31 @@ import NavMenu from './NavMenu.jsx';
 import ThemeSelector from './ThemeSelector.jsx';
 import UserMenu from './UserMenu.jsx';
 
-const Navigation = () => {
+function Navigation() {
   const { isLoggedIn } = useAuth();
   const { t } = useTranslation();
 
   return (
     <Navbar
-      expand="sm"
       bg="body-tertiary"
-      data-bs-theme="dark"
       className="navigation-container"
+      data-bs-theme="dark"
+      expand="sm"
     >
-      <Container fluid className="px-xl-3">
+      <Container className="px-xl-3" fluid>
         <Navbar.Brand
           as={Link}
           to={isLoggedIn ? routes.myProfilePagePath() : routes.landingPath()}
         >
           <Image
             alt={t('navbar.mainLabel')}
-            src={Logo}
             className="logo-height"
+            src={Logo}
           />
         </Navbar.Brand>
         <Navbar.Toggle
-          className="border-0"
           aria-controls="responsive-navbar-nav"
+          className="border-0"
         />
         <Navbar.Collapse id="responsive-navbar-nav">
           <NavMenu />
@@ -56,6 +56,6 @@ const Navigation = () => {
       </Container>
     </Navbar>
   );
-};
+}
 
 export default Navigation;

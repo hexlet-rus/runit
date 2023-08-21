@@ -1,4 +1,5 @@
 /* eslint-disable class-methods-use-this */
+import { join } from 'path';
 import {
   MiddlewareConsumer,
   Module,
@@ -8,7 +9,6 @@ import {
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
 import { MailerModule } from '@nestjs-modules/mailer';
 import * as Sentry from '@sentry/node';
 import { SentryModule } from '@ntegral/nestjs-sentry';
