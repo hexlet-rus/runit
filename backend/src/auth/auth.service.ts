@@ -76,7 +76,6 @@ export class AuthService {
         username: githubUserData.login,
         email: userEmail.toLowerCase(),
         password,
-        confirmPassword: password,
       };
       user = await this.usersService.create(userDto);
     }

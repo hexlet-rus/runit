@@ -51,7 +51,6 @@ describe('SnippetController', () => {
         username: 'user',
         email: 'user@mail.ru',
         password: '#43T#!^',
-        confirmPassword: '#43T#!^',
       };
       jest.spyOn(usersController, 'create');
       await usersController.create(createData, {});

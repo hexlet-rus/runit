@@ -2,7 +2,6 @@ import { IsEmail, IsString, Length, Matches, Validate } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { CheckEmail } from '../validation/check-email';
 import { CheckUsername } from '../validation/check-username';
-import { ComparePasswords } from '../validation/compare-passwords';
 
 export class CreateUserDto {
   @ApiProperty({
@@ -40,14 +39,4 @@ export class CreateUserDto {
   @Length(8, 30)
   @Matches(/^[a-zA-Z0-9!'#%&'()*+,-./:;<=>?@[/\]^_{|}~]*$/)
   password: string;
-
-  @ApiProperty({
-    example: 'haew6wae56a45ewgd',
-    description: 'Must be equal with password field!',
-  })
-  @IsString()
-  @Validate(ComparePasswords, {
-    message: 'Пароли не совпадают!',
-  })
-  confirmPassword: string;
 }

@@ -56,7 +56,6 @@ function SignupForm({ onSuccess = () => null }) {
           username: preparedValues.username,
           email: preparedValues.email,
           password: values.password,
-          confirmPassword: values.password,
         });
         auth.signIn();
         actions.setSubmitting(false);

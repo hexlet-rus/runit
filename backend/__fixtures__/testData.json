@@ -15,21 +15,18 @@
     "create": {
       "username": "Nick",
       "email": "myemail@mail.ru",
-      "password": "MyTestPass123",
-      "confirmPassword": "MyTestPass123"
+      "password": "MyTestPass123"
     },
     "empty": {
       "username": "",
       "email": "",
-      "password": "",
-      "confirmPassword": "confirmed"
+      "password": ""
     },
     "updateIncorrect": {
       "username": "JohnDoe",
       "currPassword": "NotThisPassword",
       "email": "undefined@mail.ru",
-      "password": "NewPassword",
-      "confirmPassword": "NewPassword"
+      "password": "NewPassword"
     },
     "errs": [
       "username must match /[A-Za-z]/ regular expression",

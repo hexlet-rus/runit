@@ -1,7 +1,7 @@
 const apiPath = '/api';
 
 export default {
-  // post - create user: { name, email, password, confirmPassword }
+  // post - create user: { name, email, password }
   // get - get all users
   usersPath: () => [apiPath, 'users'].join('/'),
 
