@@ -1,5 +1,6 @@
 /* eslint-disable no-useless-constructor, @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import axios from 'axios';
 import * as bcrypt from 'bcrypt';
@@ -13,6 +14,7 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
     @InjectSentry() private readonly sentryService: SentryService,
+    private readonly configService: ConfigService,
   ) {}
 
   async validateUser(email: string, pass: string): Promise<any> {
@@ -86,6 +88,8 @@ export class AuthService {
     const token = this.jwtService.sign(payload);
     response.cookie('access_token', token);
 
-    return response.redirect('/profile');
+    const frontendUrl = this.configService.get<string>('app.frontendUrl');
+
+    return response.redirect(`${frontendUrl}/profile`);
   }
 }
