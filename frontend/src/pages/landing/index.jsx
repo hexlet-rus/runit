@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Row, Col, Button } from 'react-bootstrap';
@@ -44,9 +43,9 @@ function Landing() {
           <Row className="row-cols-1 row-cols-sm-3">
             <Col className="d-flex flex-sm-column align-items-center align-items-sm-start mb-3 mb-sm-0">
               <img
+                alt="tag"
                 className="mb-sm-3 mb-1 me-3 me-sm-0"
                 src={tagImg}
-                alt="tag"
               />
               <p className={`${classes.fs5} mb-0 ${classes.lh5}`}>
                 {t('landing.easyStart.first')}
@@ -55,7 +54,7 @@ function Landing() {
               </p>
             </Col>
             <Col className="d-flex flex-sm-column align-items-center align-items-sm-start mb-3 mb-sm-0">
-              <img className="mb-sm-3 mb-1 me-3 me-sm-0" src={osImg} alt="os" />
+              <img alt="os" className="mb-sm-3 mb-1 me-3 me-sm-0" src={osImg} />
               <p className={`${classes.fs5} mb-0 ${classes.lh5}`}>
                 {t('landing.allDevices.first')}
                 <br />
@@ -64,9 +63,9 @@ function Landing() {
             </Col>
             <Col className="d-flex flex-sm-column align-items-center align-items-sm-start mb-3 mb-sm-0">
               <img
+                alt="share"
                 className="mb-sm-3 mb-1 me-3 me-sm-0"
                 src={shareImg}
-                alt="share"
               />
               <p className={`${classes.fs5} mb-0 ${classes.lh5}`}>
                 {t('landing.shareCode.first')}
@@ -77,10 +76,10 @@ function Landing() {
           </Row>
           <Row className="justify-content-center">
             <Button
-              size="lg"
               as={Link}
-              to={routes.signInPagePath()}
               className={`btn ${classes.btnPrimary} ${classes.btnAttention} py-3 ${classes.fs5} fw-bold ${classes.mt65} ${classes.lh5}"`}
+              size="lg"
+              to={routes.signInPagePath()}
             >
               {t('landing.startCoding')}
             </Button>
@@ -101,31 +100,31 @@ function Landing() {
             <Col>
               <ul className={`mb-0 ${classes.customList} mx-2 mx-sm-0`}>
                 <li className="mb-3 d-flex">
-                  <img className={`${classes.listIcon}`} src={Checked} alt="" />
+                  <img alt="" className={`${classes.listIcon}`} src={Checked} />
                   <p className={`${classes.fs5} ${classes.lh5}`}>
                     {t('landing.inBrowser')}
                   </p>
                 </li>
                 <li className="mb-3 d-flex">
-                  <img className={`${classes.listIcon}`} src={Checked} alt="" />
+                  <img alt="" className={`${classes.listIcon}`} src={Checked} />
                   <p className={`${classes.fs5} ${classes.lh5}`}>
                     {t('landing.noZIP')}
                   </p>
                 </li>
                 <li className="mb-3 d-flex">
-                  <img className={`${classes.listIcon}`} src={Checked} alt="" />
+                  <img alt="" className={`${classes.listIcon}`} src={Checked} />
                   <p className={`${classes.fs5} ${classes.lh5}`}>
                     {t('landing.allComputers')}
                   </p>
                 </li>
                 <li className="mb-3 d-flex">
-                  <img className={`${classes.listIcon}`} src={Checked} alt="" />
+                  <img alt="" className={`${classes.listIcon}`} src={Checked} />
                   <p className={`${classes.fs5} ${classes.lh5}`}>
                     {t('landing.allOS')}
                   </p>
                 </li>
                 <li className="mb-3 d-flex">
-                  <img className={`${classes.listIcon}`} src={Checked} alt="" />
+                  <img alt="" className={`${classes.listIcon}`} src={Checked} />
                   <p className={`${classes.fs5} ${classes.lh5}`}>
                     {t('landing.noSettings')}
                   </p>
@@ -142,11 +141,11 @@ function Landing() {
             <Col className="d-flex flex-column mb-4 mb-sm-0">
               <div className="d-flex flex-sm-column align-items-center align-items-sm-start">
                 <img
-                  src={codeImg}
                   alt="code"
                   className="mb-3 me-3 me-sm-0"
-                  width="39"
                   height="39"
+                  src={codeImg}
+                  width="39"
                 />
                 <h5 className={`${classes.lh4} ${classes.fs4} mb-2`}>
                   {t('landing.allLanguages.title')}
@@ -159,11 +158,11 @@ function Landing() {
             <Col className="d-flex flex-column mb-4 mb-sm-0">
               <div className="d-flex flex-sm-column align-items-center align-items-sm-start">
                 <img
-                  src={personImg}
-                  className="mb-3 me-3 me-sm-0"
                   alt="person"
-                  width="39"
+                  className="mb-3 me-3 me-sm-0"
                   height="39"
+                  src={personImg}
+                  width="39"
                 />
                 <h5 className={`${classes.lh4} ${classes.fs4} mb-2`}>
                   {t('landing.teamWork.title')}
@@ -176,11 +175,11 @@ function Landing() {
             <Col className="d-flex flex-column mb-4 mb-sm-0">
               <div className="d-flex flex-sm-column align-items-center align-items-sm-start">
                 <img
-                  src={blankImg}
                   alt="blank"
                   className="mb-3 me-3 me-sm-0"
-                  width="39"
                   height="39"
+                  src={blankImg}
+                  width="39"
                 />
                 <h5 className={`${classes.lh4} ${classes.fs4} mb-2`}>
                   {t('landing.readyBoilerplates.title')}
@@ -198,10 +197,10 @@ function Landing() {
           </h3>
           <Row className="justify-content-center">
             <Button
-              size="lg"
               as={Link}
-              to={routes.signInPagePath()}
               className={`btn ${classes.btnPrimary} ${classes.btnAttention} py-3 ${classes.fs5} fw-bold ${classes.mt40} ${classes.lh5}"`}
+              size="lg"
+              to={routes.signInPagePath()}
             >
               {t('landing.startCoding')}
             </Button>

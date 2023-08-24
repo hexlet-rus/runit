@@ -5,16 +5,17 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-import SignInForm from '../../components/Forms/SignInForm.jsx';
 import routes from '../../routes.js';
 
-const SignUp = () => {
+import SignInForm from '../../components/Forms/SignInForm.jsx';
+
+function SignIn() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
     <div className="page-bg-image">
-      <Container fluid="sm" className="h-100">
+      <Container className="h-100" fluid="sm">
         <Row className="justify-content-center align-items-center m-auto py-3 py-sm-5 h-100">
           <Col className="max-w-sm p-0">
             <div className="d-flex flex-column gap-sm-3 gap-4 bg-body rounded-4 p-4 p-sm-5">
@@ -39,6 +40,6 @@ const SignUp = () => {
       </Container>
     </div>
   );
-};
+}
 
-export default SignUp;
+export default SignIn;

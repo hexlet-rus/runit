@@ -1,4 +1,4 @@
-import Editor, { useMonaco } from '@monaco-editor/react';
+import Editor from '@monaco-editor/react';
 import { useTernaryDarkMode } from 'usehooks-ts';
 
 import { useEditor } from './hooks.js';
@@ -26,13 +26,13 @@ function CodeEditor({ readOnly = false }) {
   return (
     <div className="h-100 w-100">
       <Editor
-        defaultLanguage={language}
-        theme={monacoEditorTheme}
-        defaultValue={code}
-        options={options}
-        onChange={onChange}
         beforeMount={beforeMount}
+        defaultLanguage={language}
+        defaultValue={code}
+        onChange={onChange}
         onMount={onMount}
+        options={options}
+        theme={monacoEditorTheme}
       />
     </div>
   );
