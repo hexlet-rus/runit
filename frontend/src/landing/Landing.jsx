@@ -1,8 +1,9 @@
 import { Button, Col, Container, Image, Row } from 'react-bootstrap';
-import { Faq } from '../pages/about/Faq.jsx';
 
+import Faq from './Faq.jsx';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
+
 import Code from './assets/Icons=Code.svg';
 import Devices from './assets/Icons=Devices.svg';
 import Share from './assets/Icons=Share.svg';
@@ -27,127 +28,128 @@ function Landing() {
           backgroundPosition: 'top',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
-          
         }}
-        fluid
-        className="fs-5 p-5 gap-5 m-0"
       >
-        <Row className="mb-5">
-          <Col>
-            <span>Бесплатный проект Хекслета</span>
-            <h1>Мгновенный IDE</h1>
-            <span className="fs-2">Пишите код прямо в браузере</span>
+        <Row className="my-5 pt-5">
+          <Col className='pt-5'>
+            <div className='pt-5'>
+              <p>Бесплатный проект Хекслета</p>
+            </div>
+            <h1 style={{fontSize: '3.4rem'}}>Мгновенный</h1>
+            <div className='d-flex align-items-center pb-5 mb-5'>
+              <h1 className="m-0 pe-3" style={{fontSize: '3.4rem'}}>IDE</h1>
+              <p className="m-0 ps-3">Пишите код прямо в браузере</p>
+            </div>
           </Col>
         </Row>
-        <Row className="mb-5">
-          <Col className="text-center">
-            <Button className="rounded-5 px-5" size="lg">
-              <span>Начать кодить</span>
+        <Row className="my-5 pt-5">
+          <Col className="text-center d-grid">
+            <Button className="rounded-5 px-auto" size="lg">
+              Начать кодить
             </Button>
           </Col>
         </Row>
-        <Row className="mb-5">
-          <Col className="col-12 p-3">
-            <Image fluid src={Code} />
-            <span className="px-5">
+        <Row>
+          <Col
+            as="figure"
+            className="col-12 d-flex flex-row gap-4 align-items-center pt-4" 
+          >
+            <Image className="bg-primary rounded-circle" fluid src={Code} />
+            <figcaption>
               Запускайте JavaScript код, не устанавливая приложения
-            </span>
+            </figcaption>
           </Col>
-          <Col className="col-12 px-3">
-            <Image fluid src={Devices} />
-            <span className="px-5">
+          <Col
+            as="figure"
+            className="col-12 d-flex flex-row gap-4 align-items-center"
+          >
+            <Image className="bg-primary rounded-circle" fluid src={Devices} />
+            <figcaption>
               Работайте на любом устройстве, c любой операционной системой
-            </span>
+            </figcaption>
           </Col>
-          <Col className="col-12 p-3">
-            <Image fluid src={Share} />
-            <span className="px-5">
-              Делитесь своим кодом c другими участниками
-            </span>
+          <Col
+            as="figure"
+            className="col-12 d-flex flex-row gap-4 align-items-center pb-5 mb-4"
+          >
+            <Image className="bg-primary rounded-circle" fluid src={Share} />
+            <figcaption>Делитесь своим кодом c другими участниками</figcaption>
           </Col>
         </Row>
       </Container>
-      <Container fluid className='m-0'>
+      <Container>
         <Row>
-          <Col>
-            <h2>Без загрузок, конфигураций и настроек</h2>
+          <Col className="col-12">
+            <h2 className='mt-5 mb-4'>Без загрузок, конфигураций и настроек</h2>
           </Col>
-          <Col>
-            <p>
+          <Col className="col-12">
+            <p className='mt-2 mb-3'>
               B современной веб-разработке нужно постоянно следить за последними
               новостями, a еще лучше — испытывать новинки в реальных условиях.
             </p>
           </Col>
-          <Col>
-            <p className="mb-5">
+          <Col className="col-12">
+            <p className="mb-3">
               Бесплатный онлайн-редактор кода Run IT позволит это делать быстро
               и без лишней суеты c настройками.
             </p>
           </Col>
         </Row>
         <Row>
-          <Col>
-            <p>
-              Редактор полностью запускается в браузере, поэтому вы можете
-              начать кодить за считанные секунды
-              <Image
-                className="rounded-5 pt-3 pb-5"
-                fluid
-                src={ImageCarousel1}
-              />
-            </p>
-
-            <p>
-              Больше никаких ZIP, PKG, DMG и WTF
-              <Image
-                className="rounded-5 pt-3 pb-5"
-                fluid
-                src={ImageCarousel2}
-              />
-            </p>
-            <p>
-              Работайте c любого компьютера, имеющего доступ в интернет
-              <Image
-                className="rounded-5 pt-3 pb-5"
-                fluid
-                src={ImageCarousel3}
-              />
-            </p>
-            <p>
-              Используйте редактор на macOS, Windows, Linux или любой другой OC
-              <Image
-                className="rounded-5 pt-3 pb-5"
-                fluid
-                src={ImageCarousel4}
-              />
-            </p>
-            <p>
-              He тратьте время на настройку среды
-              <Image
-                className="rounded-5 pt-3 pb-5"
-                fluid
-                src={ImageCarousel5}
-              />
-            </p>
+          <Col className='my-3'>
+            <figure>
+              <figcaption className="mb-3">
+                Редактор полностью запускается в браузере, поэтому вы можете
+                начать кодить за считанные секунды
+              </figcaption>
+              <Image className="rounded-5 mb-4" fluid src={ImageCarousel1} />
+            </figure>
+            <figure>
+              <figcaption className="mb-3 mt-3">
+                Больше никаких ZIP, PKG, DMG и WTF
+              </figcaption>
+              <Image className="rounded-5 mb-4" fluid src={ImageCarousel2} />
+            </figure>
+            <figure>
+              <figcaption className="mb-3 mt-3">
+                Работайте c любого компьютера, имеющего доступ в интернет
+              </figcaption>
+              <Image className="rounded-5 mb-4" fluid src={ImageCarousel3} />
+            </figure>
+            <figure>
+              <figcaption className="mb-3 mt-3">
+                Используйте редактор на macOS, Windows, Linux или любой другой
+                OC
+              </figcaption>
+              <Image className="rounded-5 mb-4" fluid src={ImageCarousel4} />
+            </figure>
+            <figure>
+              <figcaption className="mb-3 mt-3">
+                He тратьте время на настройку среды
+              </figcaption>
+              <Image className="rounded-5 mb-4" fluid src={ImageCarousel5} />
+            </figure>
           </Col>
         </Row>
-        <Row className='py-5' style={{
-          backgroundImage: `url(${SmallBGElement})`,
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-          backgroundClip: 'border-box'
-        }}>
+        <Row
+          style={{
+            backgroundImage: `url(${SmallBGElement})`,
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundClip: 'content-box',
+          }}
+        >
           <Col>
-            <h2>Ещё больше возможностей в будущем</h2>
+            <h2 className='my-5'>Ещё больше возможностей в будущем</h2>
           </Col>
         </Row>
         <Row>
           <Col className="gap-2">
-            <div className="d-flex flex-column gap-1">
+            <div className="d-flex flex-column gap-3">
               <div className="d-flex align-items-center">
-                <Image src={Languages} />
-                <h3 className="fs-2 ps-5">Все языки</h3>
+                <Image className='pe-3' src={Languages} />
+                <h3 className="fs-2 ps-3">Все языки</h3>
               </div>
               <p>
                 Пока наша среда разработки запускает код только на JavaScript. В
@@ -155,10 +157,10 @@ function Landing() {
                 популярных языков программирования.
               </p>
             </div>
-            <div className="d-flex flex-column gap-1">
+            <div className="d-flex flex-column gap-3 pt-3">
               <div className="d-flex align-items-center">
-                <Image src={TeamWork} />
-                <h3 className="fs-2 ps-5">Совместная работа</h3>
+                <Image className='pe-3' src={TeamWork} />
+                <h3 className="fs-2 ps-3">Совместная работа</h3>
               </div>
               <p>
                 Пока наша среда разработки запускает код только на JavaScript. В
@@ -166,10 +168,10 @@ function Landing() {
                 популярных языков программирования
               </p>
             </div>
-            <div className="d-flex flex-column gap-1">
+            <div className="d-flex flex-column gap-3 pt-3">
               <div className="d-flex align-items-center">
-                <Image src={Template} />
-                <h3 className="fs-2 ps-5">Готовые шаблоны с кодом</h3>
+                <Image className='pe-3' src={Template} />
+                <h3 className="fs-2 ps-3">Готовые шаблоны с кодом</h3>
               </div>
               <p>
                 Больше не будет необходимости каждый раз писать код с нуля. Мы
@@ -180,9 +182,11 @@ function Landing() {
           </Col>
         </Row>
         <Row>
-          <Col className="text-center">
-            <p>Попробуйте написать свой код прямо сейчас!</p>
-            <Button className="rounded-5 px-5" size="lg">
+          <Col className="text-center d-grid pb-3 mb-5">
+            <p className="pt-3 mb-4 px-auto">
+              Попробуйте написать свой код прямо сейчас!
+            </p>
+            <Button className="rounded-5 px-auto mb-3" size="lg">
               <span>Начать кодить</span>
             </Button>
           </Col>
