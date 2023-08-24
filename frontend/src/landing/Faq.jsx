@@ -15,7 +15,11 @@ function CustomToggle({ children, eventKey }) {
   const isCurrentEventKey = activeEventKey === eventKey;
 
   return (
-    <div className={isCurrentEventKey ? "d-grid" : 'd-grid border-bottom'}>
+    <div
+      className={
+        isCurrentEventKey ? 'd-grid' : 'd-grid border-bottom border-white'
+      }
+    >
       <button
         className="btn ps-3 py-4 d-flex px-auto justify-content-between align-items-center text-start"
         onClick={decoratedOnClick}
@@ -65,7 +69,7 @@ function CustomToggle({ children, eventKey }) {
 function Faq() {
   return (
     <Row>
-      <Col className='my-5 pb-3'>
+      <Col className="my-5 pb-3">
         <h2 className="text-white pb-3 mb-4">FAQ</h2>
         <Accordion defaultActiveKey="0" flush>
           <div>
