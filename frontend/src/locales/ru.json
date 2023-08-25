@@ -374,6 +374,10 @@
     "pageHeader": "Забыли пароль?",
     "resetButton": "Восстановить пароль"
   },
+  "resetPass": {
+    "pageHeader": "Введите новый пароль",
+    "resetButton": "Обновить пароль"
+  },
   "settings": {
     "languages": {
       "header": "Изменить язык"

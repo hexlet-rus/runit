@@ -13,6 +13,7 @@ import { Snippets } from '../entities/snippet.entity';
 import { User } from './interfaces/users.interface';
 import { RecoverUserDto } from './dto/recover-user.dto';
 import { cipher, decipher } from './secure/cipher';
+import { log } from 'node:console';
 
 @Injectable()
 export class UsersService {
@@ -75,7 +76,7 @@ export class UsersService {
     // FIXME: use env var BASE_URL
     const url = `${frontendUrl}/recovery/${recoverHash}`;
 
-    this.mailerService.sendMail({
+    await this.mailerService.sendMail({
       to: email,
       // FIXME: use i18n
       subject: 'Ссылка для изменения пароля на runit.hexlet.ru',
@@ -83,6 +84,13 @@ export class UsersService {
       context: {
         url,
       },
+    })
+    .then((success) => {
+      console.log(success)
+      console.log('success')
+    })
+    .catch((err) => {
+      console.log(err)
     });
   }
 

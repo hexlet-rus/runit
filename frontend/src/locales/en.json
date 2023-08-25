@@ -259,6 +259,10 @@
     "pageHeader": "Forgot password?",
     "resetButton": "Recover password"
   },
+  "resetPass": {
+    "pageHeader": "Enter new password",
+    "resetButton": "Update password"
+  },
   "settings": {
     "languages": {
       "header": "Change language"
