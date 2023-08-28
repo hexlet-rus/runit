@@ -13,7 +13,7 @@ import { actions } from '../../slices';
 import { snippetName } from '../../utils/validationSchemas';
 
 function DuplicateSnippet({ isOpen, handleClose }) {
-  const { name, id } = useSelector(({ modal }) => modal.item);
+  const { name, code } = useSelector(({ modal }) => modal.item);
   const username = useSelector((state) => state.user.userInfo.username);
   const { isLoggedIn } = useAuth();
 
@@ -50,7 +50,6 @@ function DuplicateSnippet({ isOpen, handleClose }) {
     enableReinitialize: true,
     onSubmit: async (values) => {
       try {
-        const { code } = await getSnippetData(id);
         const newID = await saveSnippet(code, values.name);
         const { slug } = await getSnippetData(newID);
         const url = new URL(genViewSnippetLink(username, slug));

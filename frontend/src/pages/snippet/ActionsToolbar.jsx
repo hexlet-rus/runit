@@ -10,7 +10,8 @@ function ActionsToolbar({ snippet }) {
   const { t } = useTranslation();
   const { onClick, disabled } = useRunButton();
   const dispatch = useDispatch();
-  const { snippetData } = snippet;
+  const { snippetData, code } = snippet;
+  const { name } = snippetData;
 
   const handleShare = () => {
     dispatch(
@@ -25,7 +26,7 @@ function ActionsToolbar({ snippet }) {
     dispatch(
       actions.openModal({
         type: 'duplicateSnippet',
-        item: snippetData,
+        item: { name, code },
       }),
     );
   };

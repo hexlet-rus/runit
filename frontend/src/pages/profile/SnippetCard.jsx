@@ -256,7 +256,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
 }
 
 function SnippetCard({ data }) {
-  const { id, name, slug } = data;
+  const { id, name, slug, code } = data;
   const ownerUsername = data.user.username;
   const dispatch = useDispatch();
   const [mode, setMode] = useState('viewing');
@@ -269,7 +269,10 @@ function SnippetCard({ data }) {
 
   const handleDuplicate = () => {
     dispatch(
-      modalActions.openModal({ type: 'duplicateSnippet', item: { name, id } }),
+      modalActions.openModal({
+        type: 'duplicateSnippet',
+        item: { name, code },
+      }),
     );
   };
 
