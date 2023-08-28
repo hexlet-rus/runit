@@ -268,7 +268,9 @@ function SnippetCard({ data }) {
   const handleView = () => setMode('viewing');
 
   const handleDuplicate = () => {
-    dispatch(modalActions.openModal({ type: 'inDevelopment' }));
+    dispatch(
+      modalActions.openModal({ type: 'duplicateSnippet', item: { name, id } }),
+    );
   };
 
   const cardModes = new Map()

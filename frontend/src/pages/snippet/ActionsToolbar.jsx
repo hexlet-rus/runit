@@ -2,9 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';
-import { BoxArrowUp, PlayFill, Share } from 'react-bootstrap-icons';
-
-import { actions } from '../../slices/index.js';
+import { BoxArrowUp, Collection, PlayFill, Share } from 'react-bootstrap-icons';
+import { actions } from '../../slices';
 import { useRunButton } from '../../hooks';
 
 function ActionsToolbar({ snippet }) {
@@ -22,6 +21,15 @@ function ActionsToolbar({ snippet }) {
     );
   };
 
+  const handleDuplicate = () => {
+    dispatch(
+      actions.openModal({
+        type: 'duplicateSnippet',
+        item: snippetData,
+      }),
+    );
+  };
+
   const handleInDevelopment = () => {
     dispatch(actions.openModal({ type: 'inDevelopment' }));
   };
@@ -33,15 +41,24 @@ function ActionsToolbar({ snippet }) {
         onClick={handleInDevelopment}
         variant="nofill-body"
       >
-        <Share />{' '}
+        <Share />
         <span className="visually-hidden">{t('snippetActions.duplicate')}</span>
       </Button>
+
+      <Button
+        className="btn-icon-only-full-height"
+        onClick={handleDuplicate}
+        variant="nofill-body"
+      >
+        <Collection />
+      </Button>
+
       <Button
         className="btn-icon-only-full-height"
         onClick={handleShare}
         variant="nofill-body"
       >
-        <BoxArrowUp />{' '}
+        <BoxArrowUp />
         <span className="visually-hidden">{t('snippetActions.share')}</span>
       </Button>
       <Button

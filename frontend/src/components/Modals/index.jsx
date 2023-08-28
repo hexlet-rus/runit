@@ -7,13 +7,15 @@ import SignInModal from './SignIn.jsx';
 import ShareSnippet from './ShareSnippet.jsx';
 import InDevelopment from './InDevelopment.jsx';
 import SnippetUnavailable from './SnippetUnavailable.jsx';
+import DuplicateSnippet from './DuplicateSnippet';
 
 const modals = {
   signingUp: SignUpModal,
   signingIn: SignInModal,
   sharingSnippet: ShareSnippet,
   inDevelopment: InDevelopment,
-  snippetUnavailable: SnippetUnavailable, // #TODO: Remove this modal once proper re-direct is configured on the backend
+  snippetUnavailable: SnippetUnavailable, // #TODO: Remove this modal once proper re-direct is configured on the backend,
+  duplicateSnippet: DuplicateSnippet,
 };
 
 function ModalWindow() {
