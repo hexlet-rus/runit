@@ -248,7 +248,7 @@ function Footer() {
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0 pt-0`}
                   eventKey="hexlet"
-                  href="https://ru.hexlet.io/my"
+                  href="https://ru.hexlet.io"
                   target="_blank"
                 >
                   {t('footer.hexlet')}
