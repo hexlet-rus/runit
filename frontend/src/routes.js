@@ -55,7 +55,7 @@ export default {
   settingsPagePath: () => '/settings',
   signInPagePath: () => '/signin',
   signUpPagePath: () => '/signup',
-  remindPassPagePath: () => '/remind_password',
+  forgotPassPagePath: () => '/forgot_password',
   resetPassPagePath: (hash = ':hash') => `/recovery/${hash}`,
   licenseAgreementPath: () => '/licenseAgreement',
   snippetPagePath: (username = ':username', slug = ':slug') =>

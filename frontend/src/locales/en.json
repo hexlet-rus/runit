@@ -255,13 +255,15 @@
     "updateSuccessful": "Profile has been updated successfully",
     "usernameLabel": "Username"
   },
-  "remindPass": {
+  "forgotPass": {
     "pageHeader": "Forgot password?",
-    "resetButton": "Recover password"
+    "resetButton": "Reset password",
+    "successAlert": "An email with a password reset link has been sent to your email"
   },
   "resetPass": {
     "pageHeader": "Enter new password",
-    "resetButton": "Update password"
+    "resetButton": "Update password",
+    "successAlert": "Password successfully updated. Redirecting you to login page..."
   },
   "settings": {
     "languages": {

@@ -1,19 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-import routes from '../../routes.js';
-import { actions } from '../../slices';
-
-import ResetPasswordForm from '../../components/Forms/ResetPassordForm.jsx';
+import ResetPasswordForm from '../../components/Forms/ResetPasswordForm';
 
 function ResetPasswordPage() {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="page-bg-image">
@@ -24,7 +20,7 @@ function ResetPasswordPage() {
               <h1 className="display-6">{t('resetPass.pageHeader')}</h1>
               <ResetPasswordForm
                 onSuccess={() => {
-                  console.log('wow');
+                  return setTimeout(() => navigate('/signin'), 5000);
                 }}
               />
             </div>

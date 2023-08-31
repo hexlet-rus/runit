@@ -39,15 +39,13 @@ function ResetPasswordForm({ onSuccess = () => null }) {
     validateOnBlur: false,
     onSubmit: async (values) => {
       setFormState(initialFormState);
-      const preparedValues = validationSchema.cast(values);
+      const preparedValues = { ...validationSchema.cast(values), hash };
       try {
-        console.log(preparedValues);
-        console.log(hash);
-        const response = await axios.post(
-          routes.resetPassPath(hash),
-          preparedValues,
-        );
-        console.log(response);
+        await axios.post(`${routes.resetPassPath()}/${hash}`, preparedValues);
+        setFormState({
+          state: 'success',
+          message: 'resetPass.successAlert',
+        });
         onSuccess();
       } catch (err) {
         if (!err.isAxiosError) {

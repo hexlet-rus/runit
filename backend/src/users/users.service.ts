@@ -13,7 +13,6 @@ import { Snippets } from '../entities/snippet.entity';
 import { User } from './interfaces/users.interface';
 import { RecoverUserDto } from './dto/recover-user.dto';
 import { cipher, decipher } from './secure/cipher';
-import { log } from 'node:console';
 
 @Injectable()
 export class UsersService {
@@ -60,47 +59,43 @@ export class UsersService {
   async recover({ email, frontendUrl }: RecoverUserDto): Promise<void> {
     const recoverHash = await cipher(email);
     const currentUser = await this.find(email);
-
     if (!currentUser) {
       return;
     }
-
+    
     await this.usersRepository.update(currentUser.id, {
       recover_hash: recoverHash,
     });
-
+    
     setTimeout(async () => {
       await this.usersRepository.update(currentUser.id, { recover_hash: null });
     }, 900000);
-
+    
     // FIXME: use env var BASE_URL
     const url = `${frontendUrl}/recovery/${recoverHash}`;
-
-    await this.mailerService.sendMail({
-      to: email,
-      // FIXME: use i18n
-      subject: 'Ссылка для изменения пароля на runit.hexlet.ru',
-      template: 'recover',
-      context: {
-        url,
-      },
-    })
-    .then((success) => {
-      console.log(success)
-      console.log('success')
-    })
-    .catch((err) => {
-      console.log(err)
-    });
+    
+    try {
+      this.mailerService.sendMail({
+        to: email,
+        // FIXME: use i18n
+        subject: 'Ссылка для изменения пароля на runit.hexlet.ru',
+        template: 'recover',
+        context: {
+          url,
+        },
+      });
+    } catch (e) {
+      throw new Error(e);
+    }
   }
 
-  async checkHash(hash: string): Promise<{ id: number | null }> {
+  async checkHash({ password }: UpdateUserDto, hash): Promise<{ id: number | null }> {
     const email = await decipher(Buffer.from(hash, 'hex'));
     const currentUser = await this.find(email);
 
     if (currentUser && currentUser.recover_hash === hash) {
       await this.usersRepository.update(currentUser.id, { recover_hash: null });
-      return { id: currentUser.id };
+      return await this.update(currentUser.id, { password });
     }
     return { id: null };
   }

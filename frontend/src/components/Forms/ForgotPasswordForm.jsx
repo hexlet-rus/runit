@@ -12,7 +12,7 @@ import { email } from '../../utils/validationSchemas';
 
 import FormAlert from './FormAlert.jsx';
 
-function RemindPasswordForm({ onSuccess = () => null }) {
+function ForgotPasswordForm() {
   const { t } = useTranslation();
   const emailRef = useRef();
   const location = window.location.origin;
@@ -34,14 +34,14 @@ function RemindPasswordForm({ onSuccess = () => null }) {
       setFormState(initialFormState);
       const preparedValues = {
         ...validationSchema.cast(values),
-        frontendUrl: 'localhost:3000',
+        frontendUrl: location,
       };
       try {
-        console.log(preparedValues);
-        console.log(location);
         await axios.post(routes.resetPassPath(), preparedValues);
-        // console.log(response);
-        onSuccess();
+        setFormState({
+          state: 'success',
+          message: 'forgotPass.successAlert',
+        });
       } catch (err) {
         if (!err.isAxiosError) {
           setFormState({
@@ -99,16 +99,16 @@ function RemindPasswordForm({ onSuccess = () => null }) {
         </Form.Group>
 
         <Button
-          data-disable-with={t('remindPass.resetButton')}
+          data-disable-with={t('forgotPass.resetButton')}
           disabled={formik.isSubmitting}
           type="submit"
           variant="primary"
         >
-          {t('remindPass.resetButton')}
+          {t('forgotPass.resetButton')}
         </Button>
       </Form>
     </>
   );
 }
 
-export default RemindPasswordForm;
+export default ForgotPasswordForm;
