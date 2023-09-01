@@ -1,14 +1,13 @@
-/* eslint-disable react/function-component-definition */
 import { useEffect, useRef } from 'react';
 import { Terminal as XTerm } from 'xterm';
 import { FitAddon } from 'xterm-addon-fit';
 import useResizeObserver from 'use-resize-observer';
+import { useTernaryDarkMode } from 'usehooks-ts';
 
 import { useTerminal } from './hooks.js';
 import theme from '../../utils/theme.js';
 
 import 'xterm/css/xterm.css';
-import { useTernaryDarkMode } from 'usehooks-ts';
 
 const xTermThemes = {
   dark: {
@@ -61,11 +60,11 @@ function Terminal() {
 
   useEffect(() => {
     xTerm.options.theme = xTermTheme;
-  }, [isDarkMode]);
+  }, [xTerm.options, xTermTheme]);
 
   useEffect(() => {
     runTerminal(xTerm, output);
-  }, [output]);
+  }, [output, xTerm]);
 
   useEffect(() => {
     fitAddon.fit();
@@ -73,9 +72,9 @@ function Terminal() {
 
   return (
     <div
+      ref={containerRef}
       className="h-100 overflow-hidden"
       style={{ width: 'calc(100% + 1px)' }}
-      ref={containerRef}
     />
   );
 }

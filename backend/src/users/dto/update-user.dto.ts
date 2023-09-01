@@ -11,7 +11,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { CheckEmail } from '../validation/check-email';
 import { CheckUsername } from '../validation/check-username';
 import { CheckPassword } from '../validation/check-password';
-import { ComparePasswords } from '../validation/compare-passwords';
 
 export class UpdateUserDto {
   @ApiProperty({
@@ -69,17 +68,4 @@ export class UpdateUserDto {
   @Length(8, 30)
   @Matches(/^[a-zA-Z0-9!'#%&'()*+,-./:;<=>?@[/\]^_{|}~]*$/)
   password?: string;
-
-  @ApiProperty({
-    example: 'ha6ew6ewa5gea',
-    description: 'Must be equal with password field!',
-    required: false,
-  })
-  @IsOptional()
-  @IsNotEmpty()
-  @IsString()
-  @Validate(ComparePasswords, {
-    message: 'Пароли не совпадают!',
-  })
-  confirmPassword?: string;
 }

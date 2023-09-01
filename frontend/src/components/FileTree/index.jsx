@@ -1,4 +1,3 @@
-import React from 'react';
 import { File } from './File';
 import { Directory } from './Directory';
 
@@ -9,17 +8,17 @@ const Documents = ({ fileTreeData }) => {
 
   return normalizedData.map((file) => {
     if (file.type === 'file') {
-      return <File key={file.name} type={file.type} name={file.name} />;
+      return <File key={file.name} name={file.name} type={file.type} />;
     }
     return (
       <Directory
         key={file.name}
-        type={file.type}
-        name={file.name}
         documentChildren={file.children}
+        name={file.name}
         renderDocumentChildren={(child) => (
           <Documents key={child.name} fileTreeData={child} />
         )}
+        type={file.type}
       />
     );
   });

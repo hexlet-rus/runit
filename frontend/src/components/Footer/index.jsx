@@ -5,7 +5,7 @@ import { Youtube, Telegram, Twitter } from 'react-bootstrap-icons';
 import { ReactComponent as Vk } from '../../assets/images/icons/vk.svg';
 import classes from './index.module.css';
 
-const Footer = () => {
+function Footer() {
   const { t } = useTranslation();
 
   return (
@@ -17,8 +17,8 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="about"
                   className={`${classes.footerNavLink} py-1 px-0 pt-0`}
+                  eventKey="about"
                   href="https://ru.hexlet.io/pages/about"
                   target="_blank"
                 >
@@ -28,8 +28,8 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="career"
                   className={`${classes.footerNavLink} py-1 px-0`}
+                  eventKey="career"
                   href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
                   target="_blank"
                 >
@@ -39,8 +39,8 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="shop"
                   className={`${classes.footerNavLink} py-1 px-0`}
+                  eventKey="shop"
                   href="https://hexlet.printdirect.ru/?partner_id=615497"
                   target="_blank"
                 >
@@ -48,8 +48,8 @@ const Footer = () => {
                 </Nav.Link>
                 <Nav.Link
                   as="a"
-                  eventKey="support_email"
                   className={`${classes.footerNavLink} py-1 px-0`}
+                  eventKey="support_email"
                   href="mailto: runit@hexlet.io"
                   target="_blank"
                 >
@@ -61,8 +61,8 @@ const Footer = () => {
               <li>
                 <span className="lead fw-normal">
                   <a
-                    href={t('footer.tel1Href')}
                     className={`${classes.footerLink} text-decoration-none`}
+                    href={t('footer.tel1Href')}
                   >
                     {t('footer.tel1')}
                   </a>
@@ -72,8 +72,8 @@ const Footer = () => {
               <li>
                 <span className="lead fw-normal">
                   <a
-                    href={t('footer.tel2Href')}
                     className={`${classes.footerLink} text-decoration-none`}
+                    href={t('footer.tel2Href')}
                   >
                     {t('footer.tel2')}
                   </a>
@@ -96,8 +96,8 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="conditions"
                   className={`${classes.footerNavLink} py-1 px-0 pt-0`}
+                  eventKey="conditions"
                   href="https://ru.hexlet.io/pages/tos"
                   target="_blank"
                 >
@@ -107,8 +107,8 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="agreement"
                   className={`${classes.footerNavLink} py-1 px-0`}
+                  eventKey="agreement"
                   href="https://ru.hexlet.io/pages/personal_data"
                   target="_blank"
                 >
@@ -118,8 +118,8 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as={Link}
-                  eventKey="licenseAgreement"
                   className={`${classes.footerNavLink} py-1 px-0`}
+                  eventKey="licenseAgreement"
                   to="/licenseAgreement"
                 >
                   {t('footer.licenseAgreement')}
@@ -128,8 +128,8 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="source"
                   className={`${classes.footerNavLink} py-1 px-0`}
+                  eventKey="source"
                   href="https://github.com/hexlet-rus/runit"
                   target="_blank"
                 >
@@ -144,55 +144,55 @@ const Footer = () => {
               <ul className="list-unstyled h3 text-start d-flex flex-wrap">
                 <li className="me-4 mb-2">
                   <a
-                    href="https://t.me/hexletcommunity/12"
                     aria-label="Telegram"
-                    target="_blank"
                     className={`${classes.footerLink}`}
+                    href="https://t.me/hexletcommunity/12"
                     rel="noopener noreferrer nofollow"
+                    target="_blank"
                   >
                     <Telegram />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
                   <a
-                    href="https://www.youtube.com/user/HexletUniversity"
                     aria-label="Youtube"
-                    target="_blank"
                     className={`${classes.footerLink}`}
+                    href="https://www.youtube.com/user/HexletUniversity"
                     rel="noopener noreferrer nofollow"
+                    target="_blank"
                   >
                     <Youtube />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
                   <a
-                    href="https://t.me/hexlet_ru"
                     aria-label="Telegram"
-                    target="_blank"
                     className={`${classes.footerLink}`}
+                    href="https://t.me/hexlet_ru"
                     rel="noopener noreferrer nofollow"
+                    target="_blank"
                   >
                     <Telegram />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
                   <a
-                    href="https://vk.com/hexlet"
                     aria-label="Vk"
-                    target="_blank"
                     className={`${classes.footerLink}`}
+                    href="https://vk.com/hexlet"
                     rel="noopener noreferrer nofollow"
+                    target="_blank"
                   >
                     <Vk />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
                   <a
-                    href="https://twitter.com/HexletHQ"
                     aria-label="Twitter"
-                    target="_blank"
                     className={`${classes.footerLink}`}
+                    href="https://twitter.com/HexletHQ"
                     rel="noopener noreferrer nofollow"
+                    target="_blank"
                   >
                     <Twitter />
                   </a>
@@ -246,9 +246,9 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="hexlet"
                   className={`${classes.footerNavLink} py-1 px-0 pt-0`}
-                  href="https://ru.hexlet.io/my"
+                  eventKey="hexlet"
+                  href="https://ru.hexlet.io"
                   target="_blank"
                 >
                   {t('footer.hexlet')}
@@ -257,8 +257,8 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="college"
                   className={`${classes.footerNavLink} py-1 px-0`}
+                  eventKey="college"
                   href="https://hexly.ru/"
                   target="_blank"
                 >
@@ -268,9 +268,9 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="codeBasics"
                   className={`${classes.footerNavLink} py-1 px-0`}
-                  href="https://code-basics.com/ru?roistat_visit=4835603"
+                  eventKey="codeBasics"
+                  href="https://code-basics.com/ru"
                   target="_blank"
                 >
                   {t('footer.codeBasics')}
@@ -279,9 +279,9 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="codeBattle"
                   className={`${classes.footerNavLink} py-1 px-0`}
-                  href="https://codebattle.hexlet.io/?_gl=1*1borq0u*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2ODA5OTEzOS4xOTEuMS4xNjY4MDk5NjIwLjAuMC4w#lobby"
+                  eventKey="codeBattle"
+                  href="https://codebattle.hexlet.io"
                   target="_blank"
                 >
                   {t('footer.codeBattle')}
@@ -290,9 +290,9 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="guides"
                   className={`${classes.footerNavLink} py-1 px-0`}
-                  href="https://guides.hexlet.io/ru/?roistat_visit=4835603&_gl=1*1borq0u*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2ODA5OTEzOS4xOTEuMS4xNjY4MDk5NjIwLjAuMC4w"
+                  eventKey="guides"
+                  href="https://guides.hexlet.io/ru"
                   target="_blank"
                 >
                   {t('footer.guides')}
@@ -301,9 +301,9 @@ const Footer = () => {
               <li>
                 <Nav.Link
                   as="a"
-                  eventKey="cv"
                   className={`${classes.footerNavLink} py-1 px-0`}
-                  href="https://cv.hexlet.io/?_gl=1*1borq0u*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2ODA5OTEzOS4xOTEuMS4xNjY4MDk5NjIwLjAuMC4w"
+                  eventKey="cv"
+                  href="https://cv.hexlet.io"
                   target="_blank"
                 >
                   {t('footer.cv')}
@@ -315,6 +315,6 @@ const Footer = () => {
       </Container>
     </footer>
   );
-};
+}
 
 export default Footer;

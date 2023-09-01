@@ -1,14 +1,15 @@
 /* eslint-disable class-methods-use-this */
+import { join } from 'path';
 import {
   MiddlewareConsumer,
   Module,
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { join } from 'path';
 import { MailerModule } from '@nestjs-modules/mailer';
 import * as Sentry from '@sentry/node';
 import { SentryModule } from '@ntegral/nestjs-sentry';
@@ -25,21 +26,25 @@ import { AuthController } from './auth/auth.controller';
 import getDataSourceConfig from './config/data-source.config';
 import { HttpsRedirectMiddleware } from './common/https.middleware';
 import { EventsModule } from './events/events.module';
-import getMailerConfig from './config/mailer.config';
+import { MailerConfig } from './config/mailer.config';
 import getSentryConfig from './config/sentry.config';
+import appConfig from './config/app.config';
 
 import '@sentry/tracing';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ load: [appConfig], isGlobal: true }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', '..', 'frontend/build'),
     }),
-    MailerModule.forRoot(getMailerConfig()),
     SnippetsModule,
     UsersModule,
     AuthModule,
     EventsModule,
+    MailerModule.forRootAsync({
+      useClass: MailerConfig,
+    }),
     TypeOrmModule.forRoot(getDataSourceConfig()),
     SentryModule.forRoot(getSentryConfig()),
   ],

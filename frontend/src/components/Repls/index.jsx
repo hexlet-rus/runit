@@ -1,5 +1,4 @@
 /* eslint-disable react/function-component-definition */
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Container, Row, Col, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -20,14 +19,14 @@ export const Repls = () => {
 
   return (
     <Container className="m-5">
-      <Row xs={1} md={2} className="g-4">
+      <Row className="g-4" md={2} xs={1}>
         {db.map(({ id, title, img, code }) => (
-          <Col xs lg="3">
-            <Card border="primary" key={id}>
+          <Col key={id} lg="3" xs>
+            <Card border="primary">
               <Card.Header>{title}</Card.Header>
               <Card.Body>
                 <Card.Text>{img}</Card.Text>
-                <Button variant="primary" onClick={openTerminal(code)}>
+                <Button onClick={openTerminal(code)} variant="primary">
                   {t('profile.openReplButton')}
                 </Button>
               </Card.Body>

@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
 import * as vm from 'node:vm';
 import { Console } from 'node:console';
 import { Transform } from 'node:stream';
+import { Injectable } from '@nestjs/common';
 import { createContext } from './console/console.config';
 import { Output } from './console/interfaces/output.interface';
 

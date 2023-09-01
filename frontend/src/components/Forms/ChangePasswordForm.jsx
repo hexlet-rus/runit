@@ -51,7 +51,6 @@ function ChangePasswordForm() {
           id: userInfo.id,
           currPassword: values.currentPassword,
           password: values.newPassword,
-          confirmPassword: values.newPassword,
         });
         /* TODO: Add a user notification about password change */
         setFormState({
