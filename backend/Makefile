@@ -1,4 +1,4 @@
-setup: install db-migrate
+setup: prepare-env install db-migrate
 
 install:
 	npm install
@@ -32,3 +32,6 @@ test-e2e:
 
 data-drop:
 	npm run typeorm -- migration:revert -d src/data-source.ts
+
+prepare-env:
+	cp -n .env.example .env

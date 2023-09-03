@@ -1,5 +1,4 @@
 import { DataSourceOptions } from 'typeorm';
-import { config } from 'dotenv';
 import { Users } from '../entities/user.entity';
 import { Snippets } from '../entities/snippet.entity';
 import { migration1663236009774 } from '../migrations/1663236009774-migration';
@@ -9,8 +8,6 @@ import { FillNullSlugsSnippets1682678760453 } from '../migrations/1682678760453-
 import { RenameLoginToUsername1691073864288 } from '../migrations/1691073864288-RenameLoginToUsername';
 
 export default (): DataSourceOptions => {
-  config();
-
   switch (process.env.NODE_ENV) {
     case 'production':
       return {

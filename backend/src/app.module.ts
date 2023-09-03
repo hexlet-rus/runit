@@ -6,6 +6,7 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
@@ -27,11 +28,13 @@ import { HttpsRedirectMiddleware } from './common/https.middleware';
 import { EventsModule } from './events/events.module';
 import { MailerConfig } from './config/mailer.config';
 import getSentryConfig from './config/sentry.config';
+import appConfig from './config/app.config';
 
 import '@sentry/tracing';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ load: [appConfig], isGlobal: true }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', '..', 'frontend/build'),
     }),
