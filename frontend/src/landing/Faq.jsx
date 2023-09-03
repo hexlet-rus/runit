@@ -21,45 +21,47 @@ function CustomToggle({ children, eventKey }) {
       }
     >
       <button
-        className="btn ps-3 py-4 d-flex px-auto justify-content-between align-items-center text-start"
+        className="btn py-4 d-flex justify-content-between align-items-center text-start"
         onClick={decoratedOnClick}
         type="button"
       >
-        <h3 className="h2 m-0 text-white">{children}</h3>
+        <h3 className="m-0 text-white me-3">{children}</h3>
         {isCurrentEventKey ? (
-          <svg
-            className="mx-3"
-            fill="none"
-            height="48"
-            viewBox="0 0 48 48"
-            width="48"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M36 30L24 18L12 30"
-              stroke="white"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="4"
-            />
-          </svg>
+          <div className="ms-3">
+            <svg
+              fill="none"
+              height="48"
+              viewBox="0 0 48 48"
+              width="48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M36 30L24 18L12 30"
+                stroke="white"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="4"
+              />
+            </svg>
+          </div>
         ) : (
-          <svg
-            className="mx-3"
-            fill="none"
-            height="48"
-            viewBox="0 0 48 48"
-            width="48"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M12 18L24 30L36 18"
-              stroke="white"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="4"
-            />
-          </svg>
+          <div className="ms-3">
+            <svg
+              fill="none"
+              height="48"
+              viewBox="0 0 48 48"
+              width="48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 18L24 30L36 18"
+                stroke="white"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="4"
+              />
+            </svg>
+          </div>
         )}
       </button>
     </div>

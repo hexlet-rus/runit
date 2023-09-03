@@ -1,4 +1,4 @@
-import { Button, Col, Container, Image, Row } from 'react-bootstrap';
+import { Button, Carousel, Col, Container, Image, Row } from 'react-bootstrap';
 
 import Faq from './Faq.jsx';
 import Header from './Header.jsx';
@@ -15,44 +15,38 @@ import ImageCarousel5 from './assets/DisplayWithCode5.jpeg';
 import Languages from './assets/Icons=Languages.svg';
 import TeamWork from './assets/Icons=TeamWork.svg';
 import Template from './assets/Icons=Template.svg';
-import BGElement from './assets/BGElement.svg';
-import SmallBGElement from './assets/SmallBGElement.svg';
+import ImageUnderCarousel from './assets/ReadyAssets.jpeg';
 
 function Landing() {
   return (
     <>
       <Header />
-      <Container
-        style={{
-          backgroundImage: `url(${BGElement})`,
-          backgroundPosition: 'top',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
-        }}
-      >
+      <Container className="landing-body">
         <Row className="my-5 pt-5">
-          <Col className='pt-5'>
-            <div className='pt-5'>
+          <Col className="pt-5" xl={{ offset: 1 }}>
+            <div className="pt-5">
               <p>Бесплатный проект Хекслета</p>
             </div>
-            <h1 style={{fontSize: '3.4rem'}}>Мгновенный</h1>
-            <div className='d-flex align-items-center pb-5 mb-5'>
-              <h1 className="m-0 pe-3" style={{fontSize: '3.4rem'}}>IDE</h1>
+            <h1 style={{ fontSize: '3.4rem' }}>Мгновенный</h1>
+            <div className="d-flex align-items-center pb-5 mb-5">
+              <h1 className="m-0 pe-3" style={{ fontSize: '3.4rem' }}>
+                IDE
+              </h1>
               <p className="m-0 ps-3">Пишите код прямо в браузере</p>
             </div>
           </Col>
         </Row>
         <Row className="my-5 pt-5">
-          <Col className="text-center d-grid">
+          <Col className="text-center d-grid" xl={{ span: 3, offset: 1 }}>
             <Button className="rounded-5 px-auto" size="lg">
               Начать кодить
             </Button>
           </Col>
         </Row>
-        <Row>
+        <Row className=" pb-5 mb-4 d-lg-none">
           <Col
             as="figure"
-            className="col-12 d-flex flex-row gap-4 align-items-center pt-4" 
+            className="col-12 d-flex flex-row gap-4 align-items-center pt-4 col-md-4"
           >
             <Image className="bg-primary rounded-circle" fluid src={Code} />
             <figcaption>
@@ -61,7 +55,7 @@ function Landing() {
           </Col>
           <Col
             as="figure"
-            className="col-12 d-flex flex-row gap-4 align-items-center"
+            className="col-12 d-flex flex-row gap-4 align-items-center col-md-4"
           >
             <Image className="bg-primary rounded-circle" fluid src={Devices} />
             <figcaption>
@@ -70,25 +64,21 @@ function Landing() {
           </Col>
           <Col
             as="figure"
-            className="col-12 d-flex flex-row gap-4 align-items-center pb-5 mb-4"
+            className="col-12 d-flex flex-row gap-4 align-items-center col-md-4"
           >
             <Image className="bg-primary rounded-circle" fluid src={Share} />
             <figcaption>Делитесь своим кодом c другими участниками</figcaption>
           </Col>
         </Row>
-      </Container>
-      <Container>
-        <Row>
-          <Col className="col-12">
-            <h2 className='mt-5 mb-4'>Без загрузок, конфигураций и настроек</h2>
+        <Row className="mb-lg-5 pb-lg-5 gap-lg-3">
+          <Col className="col-12" lg={{ span: 5, offset: 1 }}>
+            <h2 className="mt-5 mb-4">Без загрузок, конфигураций и настроек</h2>
           </Col>
-          <Col className="col-12">
-            <p className='mt-2 mb-3'>
+          <Col className="col-12 mb-xl-5 pe-lg-3" lg={{ span: 5 }}>
+            <p className="mt-2 mb-3 mt-xl-5">
               B современной веб-разработке нужно постоянно следить за последними
               новостями, a еще лучше — испытывать новинки в реальных условиях.
             </p>
-          </Col>
-          <Col className="col-12">
             <p className="mb-3">
               Бесплатный онлайн-редактор кода Run IT позволит это делать быстро
               и без лишней суеты c настройками.
@@ -96,7 +86,7 @@ function Landing() {
           </Col>
         </Row>
         <Row>
-          <Col className='my-3'>
+          <Col className="my-3 d-lg-none">
             <figure>
               <figcaption className="mb-3">
                 Редактор полностью запускается в браузере, поэтому вы можете
@@ -130,26 +120,83 @@ function Landing() {
               <Image className="rounded-5 mb-4" fluid src={ImageCarousel5} />
             </figure>
           </Col>
-        </Row>
-        <Row
-          style={{
-            backgroundImage: `url(${SmallBGElement})`,
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundSize: 'cover',
-            backgroundClip: 'content-box',
-          }}
-        >
-          <Col>
-            <h2 className='my-5'>Ещё больше возможностей в будущем</h2>
+          <Col
+            className="d-none d-lg-block mb-5 pb-5"
+            lg={{ offset: 1, span: 10 }}
+          >
+            <Carousel className="mb-5" indicators={false}>
+              <Carousel.Item>
+                <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
+                  <Col>
+                    <Image className="rounded-5" fluid src={ImageCarousel1} />
+                  </Col>
+                  <Col>
+                    <figcaption>
+                      Редактор полностью запускается в браузере, поэтому вы
+                      можете начать кодить за считанные секунды
+                    </figcaption>
+                  </Col>
+                </figure>
+              </Carousel.Item>
+              <Carousel.Item>
+                <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
+                  <Col>
+                    <Image className="rounded-5" fluid src={ImageCarousel2} />
+                  </Col>
+                  <Col>
+                    <figcaption>Больше никаких ZIP, PKG, DMG и WTF</figcaption>
+                  </Col>
+                </figure>
+              </Carousel.Item>
+              <Carousel.Item>
+                <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
+                  <Col>
+                    <Image className="rounded-5" fluid src={ImageCarousel3} />
+                  </Col>
+                  <Col>
+                    <figcaption>
+                      Работайте c любого компьютера, имеющего доступ в интернет
+                    </figcaption>
+                  </Col>
+                </figure>
+              </Carousel.Item>
+              <Carousel.Item>
+                <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
+                  <Col>
+                    <Image className="rounded-5" fluid src={ImageCarousel4} />
+                  </Col>
+                  <Col>
+                    <figcaption>
+                      Используйте редактор на macOS, Windows, Linux или любой
+                      другой OC
+                    </figcaption>
+                  </Col>
+                </figure>
+              </Carousel.Item>
+              <Carousel.Item>
+                <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
+                  <Col>
+                    <Image className="rounded-5" fluid src={ImageCarousel5} />
+                  </Col>
+                  <Col>
+                    <figcaption>He тратьте время на настройку среды</figcaption>
+                  </Col>
+                </figure>
+              </Carousel.Item>
+            </Carousel>
           </Col>
         </Row>
         <Row>
-          <Col className="gap-2">
-            <div className="d-flex flex-column gap-3">
+          <Col className="my-lg-5" lg={{ offset: 1 }}>
+            <h2 className="my-5">Ещё больше возможностей в будущем</h2>
+          </Col>
+        </Row>
+        <Row className="mb-lg-5">
+          <Col className="gap-2 mb-lg-5" lg={5}>
+            <div className="d-flex flex-column gap-3 mb-lg-5">
               <div className="d-flex align-items-center">
-                <Image className='pe-3' src={Languages} />
-                <h3 className="fs-2 ps-3">Все языки</h3>
+                <Image fluid className="pe-3" src={Languages} />
+                <h3 className="ps-3">Все языки</h3>
               </div>
               <p>
                 Пока наша среда разработки запускает код только на JavaScript. В
@@ -157,10 +204,10 @@ function Landing() {
                 популярных языков программирования.
               </p>
             </div>
-            <div className="d-flex flex-column gap-3 pt-3">
+            <div className="d-flex flex-column gap-3 pt-3 mb-lg-5">
               <div className="d-flex align-items-center">
-                <Image className='pe-3' src={TeamWork} />
-                <h3 className="fs-2 ps-3">Совместная работа</h3>
+                <Image fluid className="pe-3" src={TeamWork} />
+                <h3 className="ps-3">Совместная работа</h3>
               </div>
               <p>
                 Пока наша среда разработки запускает код только на JavaScript. В
@@ -170,8 +217,8 @@ function Landing() {
             </div>
             <div className="d-flex flex-column gap-3 pt-3">
               <div className="d-flex align-items-center">
-                <Image className='pe-3' src={Template} />
-                <h3 className="fs-2 ps-3">Готовые шаблоны с кодом</h3>
+                <Image fluid className="pe-3" src={Template} />
+                <h3 className="ps-3">Готовые шаблоны с кодом</h3>
               </div>
               <p>
                 Больше не будет необходимости каждый раз писать код с нуля. Мы
@@ -180,18 +227,30 @@ function Landing() {
               </p>
             </div>
           </Col>
+          <Col className="col-12 mb-lg-5 d-flex" lg={7}>
+            <Image className="rounded-5" fluid src={ImageUnderCarousel} />
+          </Col>
         </Row>
-        <Row>
-          <Col className="text-center d-grid pb-3 mb-5">
-            <p className="pt-3 mb-4 px-auto">
+        <Row className="pb-3 mb-5">
+          <Col className="text-center col-12">
+            <p className="pt-3 mb-4 d-lg-none">
               Попробуйте написать свой код прямо сейчас!
             </p>
-            <Button className="rounded-5 px-auto mb-3" size="lg">
-              <span>Начать кодить</span>
+            <p className=" fs-2 pt-3 mb-4 d-none d-lg-block">
+              Попробуйте написать свой код прямо сейчас!
+            </p>
+          </Col>
+          <Col className="mx-auto d-grid mb-lg-5" xl={{ span: 3 }}>
+            <Button className="rounded-5 px-auto" size="lg">
+              Начать кодить
             </Button>
           </Col>
         </Row>
-        <Faq />
+        <Row>
+          <Col lg={{ offset: 1, span: 10 }}>
+            <Faq />
+          </Col>
+        </Row>
       </Container>
       <Footer />
     </>
