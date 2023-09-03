@@ -11,7 +11,7 @@ import { rootReducer } from './slices';
 import { initI18next } from './initI18next.js';
 
 export default async () => {
-  initI18next();
+  await initI18next();
 
   const store = configureStore({
     reducer: rootReducer,
