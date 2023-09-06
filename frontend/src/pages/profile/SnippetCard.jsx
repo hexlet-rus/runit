@@ -7,8 +7,8 @@ import { object } from 'yup';
 
 import {
   BoxArrowUp,
+  Files,
   PencilFill,
-  Share,
   ThreeDotsVertical,
   Trash3,
 } from 'react-bootstrap-icons';
@@ -23,6 +23,7 @@ import { snippetName } from '../../utils/validationSchemas';
 
 import JavaScriptIcon from '../../assets/images/icons/javascript.svg';
 import SnippetCardWrapper from './SnippetCardWrapper.jsx';
+import useDuplicateSnippet from '../../hooks/useDuplicateSnippet';
 
 function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   const dispatch = useDispatch();
@@ -223,8 +224,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
             variant="nofill-body"
           >
             <div className="text-nowrap">
-              <Share className="bi me-1" />
-              <small>{t('snippetActions.duplicate')}</small>
+              <Files className="bi me-1" />
             </div>
           </Button>
         </div>
@@ -260,6 +260,7 @@ function SnippetCard({ data }) {
   const ownerUsername = data.user.username;
   const dispatch = useDispatch();
   const [mode, setMode] = useState('viewing');
+  const { duplicate } = useDuplicateSnippet();
 
   const handleRename = () => setMode('renaming');
 
@@ -267,13 +268,8 @@ function SnippetCard({ data }) {
 
   const handleView = () => setMode('viewing');
 
-  const handleDuplicate = () => {
-    dispatch(
-      modalActions.openModal({
-        type: 'duplicateSnippet',
-        item: { name, code },
-      }),
-    );
+  const handleDuplicate = async () => {
+    await duplicate({ code, name, ownerUsername });
   };
 
   const cardModes = new Map()

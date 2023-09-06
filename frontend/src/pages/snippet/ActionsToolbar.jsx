@@ -2,16 +2,18 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';
-import { BoxArrowUp, Collection, PlayFill, Share } from 'react-bootstrap-icons';
+import { BoxArrowUp, Files, PlayFill } from 'react-bootstrap-icons';
 import { actions } from '../../slices';
 import { useRunButton } from '../../hooks';
+import useDuplicateSnippet from '../../hooks/useDuplicateSnippet';
 
 function ActionsToolbar({ snippet }) {
   const { t } = useTranslation();
   const { onClick, disabled } = useRunButton();
   const dispatch = useDispatch();
   const { snippetData, code } = snippet;
-  const { name } = snippetData;
+  const { name, ownerUsername } = snippetData;
+  const { duplicate } = useDuplicateSnippet();
 
   const handleShare = () => {
     dispatch(
@@ -22,36 +24,18 @@ function ActionsToolbar({ snippet }) {
     );
   };
 
-  const handleDuplicate = () => {
-    dispatch(
-      actions.openModal({
-        type: 'duplicateSnippet',
-        item: { name, code },
-      }),
-    );
-  };
-
-  const handleInDevelopment = () => {
-    dispatch(actions.openModal({ type: 'inDevelopment' }));
+  const handleDuplicate = async () => {
+    await duplicate({ code, name, ownerUsername }, true);
   };
 
   return (
     <>
       <Button
         className="btn-icon-only-full-height"
-        onClick={handleInDevelopment}
-        variant="nofill-body"
-      >
-        <Share />
-        <span className="visually-hidden">{t('snippetActions.duplicate')}</span>
-      </Button>
-
-      <Button
-        className="btn-icon-only-full-height"
         onClick={handleDuplicate}
         variant="nofill-body"
       >
-        <Collection />
+        <Files />
       </Button>
 
       <Button
