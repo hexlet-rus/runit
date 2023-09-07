@@ -262,8 +262,7 @@
   },
   "resetPass": {
     "pageHeader": "Enter new password",
-    "resetButton": "Update password",
-    "successAlert": "Password successfully updated. Redirecting you to login page..."
+    "resetButton": "Update password"
   },
   "settings": {
     "languages": {

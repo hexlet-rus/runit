@@ -21,7 +21,7 @@ export class MailerConfig implements MailerOptionsFactory {
     switch (process.env.NODE_ENV) {
       case 'production':
         return options;
-        default:
+      default:
         // FIXME: use some test transport
         options.transport =
           process.env.TRANSPORT_MAILER_URL ??

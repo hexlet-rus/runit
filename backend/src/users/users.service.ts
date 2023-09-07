@@ -89,13 +89,14 @@ export class UsersService {
     }
   }
 
-  async checkHash({ password }: UpdateUserDto, hash): Promise<{ id: number | null }> {
+  async resetPassword({ password }: UpdateUserDto, hash): Promise<{ id: number | null }> {
     const email = await decipher(Buffer.from(hash, 'hex'));
     const currentUser = await this.find(email);
 
     if (currentUser && currentUser.recover_hash === hash) {
       await this.usersRepository.update(currentUser.id, { recover_hash: null });
-      return await this.update(currentUser.id, { password });
+      await this.update(currentUser.id, { password });
+      return currentUser;
     }
     return { id: null };
   }

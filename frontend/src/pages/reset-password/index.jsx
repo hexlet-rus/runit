@@ -5,6 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
+import routes from '../../routes.js';
+
 import ResetPasswordForm from '../../components/Forms/ResetPasswordForm';
 
 function ResetPasswordPage() {
@@ -20,7 +22,7 @@ function ResetPasswordPage() {
               <h1 className="display-6">{t('resetPass.pageHeader')}</h1>
               <ResetPasswordForm
                 onSuccess={() => {
-                  return setTimeout(() => navigate('/signin'), 5000);
+                  navigate(routes.myProfilePagePath());
                 }}
               />
             </div>

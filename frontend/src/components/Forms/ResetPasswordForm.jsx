@@ -9,6 +9,7 @@ import { object } from 'yup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import { useAuth } from '../../hooks';
 import routes from '../../routes';
 import { password } from '../../utils/validationSchemas';
 
@@ -19,6 +20,7 @@ function ResetPasswordForm({ onSuccess = () => null }) {
   const { t } = useTranslation();
   const { hash } = useParams();
   const passwordRef = useRef();
+  const auth = useAuth();
 
   const initialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
@@ -41,11 +43,15 @@ function ResetPasswordForm({ onSuccess = () => null }) {
       setFormState(initialFormState);
       const preparedValues = { ...validationSchema.cast(values), hash };
       try {
-        await axios.post(`${routes.resetPassPath()}/${hash}`, preparedValues);
-        setFormState({
-          state: 'success',
-          message: 'resetPass.successAlert',
+        const { data } = await axios.post(
+          `${routes.resetPassPath()}/${hash}`,
+          preparedValues,
+        );
+        await axios.post(routes.signInPath(), {
+          email: data.email,
+          password: values.password,
         });
+        auth.signIn();
         onSuccess();
       } catch (err) {
         if (!err.isAxiosError) {
