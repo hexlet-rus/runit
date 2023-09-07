@@ -105,7 +105,10 @@ export class UsersController {
   @UseFilters(new HttpValidationFilter())
   @ApiParam({ name: 'hash', description: 'Hash key for user password reset!' })
   @ApiOkResponse({ description: 'Successfully updated user password' })
-  async resetPassword(@Body() updateUserDto: UpdateUserDto, @Param('hash') hash: string) {
+  async resetPassword(
+    @Body() updateUserDto: UpdateUserDto,
+    @Param('hash') hash: string,
+  ) {
     return this.usersService.resetPassword(updateUserDto, hash);
   }
 

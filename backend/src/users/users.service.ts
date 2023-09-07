@@ -62,18 +62,18 @@ export class UsersService {
     if (!currentUser) {
       return;
     }
-    
+
     await this.usersRepository.update(currentUser.id, {
       recover_hash: recoverHash,
     });
-    
+
     setTimeout(async () => {
       await this.usersRepository.update(currentUser.id, { recover_hash: null });
     }, 900000);
-    
+
     // FIXME: use env var BASE_URL
     const url = `${frontendUrl}/recovery/${recoverHash}`;
-    
+
     try {
       this.mailerService.sendMail({
         to: email,
@@ -89,7 +89,10 @@ export class UsersService {
     }
   }
 
-  async resetPassword({ password }: UpdateUserDto, hash): Promise<{ id: number | null }> {
+  async resetPassword(
+    { password }: UpdateUserDto,
+    hash,
+  ): Promise<{ id: number | null }> {
     const email = await decipher(Buffer.from(hash, 'hex'));
     const currentUser = await this.find(email);
 
