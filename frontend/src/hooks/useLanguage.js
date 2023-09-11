@@ -1,10 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useLayoutEffect, useState } from 'react';
 
-const AVAILABLE_LANGUAGES = ['en', 'ru'];
-if (process.env.NODE_ENV !== 'production') {
-  AVAILABLE_LANGUAGES.push('dev');
-}
+import { AVAILABLE_LANGUAGES } from '../initI18next';
 
 const useLanguage = () => {
   const { i18n } = useTranslation();
