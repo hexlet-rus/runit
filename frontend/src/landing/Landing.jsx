@@ -23,7 +23,7 @@ function Landing() {
       <Header />
       <Container className="landing-body">
         <Row className="my-5 pt-5">
-          <Col className="pt-5" xl={{ offset: 1 }}>
+          <Col className="pt-5 d-lg-none" xl={{ offset: 1 }}>
             <div className="pt-5">
               <p>Бесплатный проект Хекслета</p>
             </div>
@@ -33,6 +33,21 @@ function Landing() {
                 IDE
               </h1>
               <p className="m-0 ps-3">Пишите код прямо в браузере</p>
+            </div>
+          </Col>
+          <Col className="pt-5 d-none d-lg-flex flex-column" xl={{ offset: 1 }}>
+            <div className="pt-5">
+              <h4 className="m-0" style={{ fontSize: '1.5rem' }}>
+                Бесплатный проект Хекслета
+              </h4>
+            </div>
+            <h1 className="m-0" style={{ fontSize: '6rem' }}>
+              Мгновенный IDE
+            </h1>
+            <div className="align-items-center pb-5 mb-5">
+              <h2 className="m-0" style={{ fontSize: '2.5rem' }}>
+                Пишите код прямо в браузере
+              </h2>
             </div>
           </Col>
         </Row>
@@ -195,7 +210,7 @@ function Landing() {
           <Col className="gap-2 mb-lg-5" lg={5}>
             <div className="d-flex flex-column gap-3 mb-lg-5">
               <div className="d-flex align-items-center">
-                <Image fluid className="pe-3" src={Languages} />
+                <Image className="pe-3" fluid src={Languages} />
                 <h3 className="ps-3">Все языки</h3>
               </div>
               <p>
@@ -206,7 +221,7 @@ function Landing() {
             </div>
             <div className="d-flex flex-column gap-3 pt-3 mb-lg-5">
               <div className="d-flex align-items-center">
-                <Image fluid className="pe-3" src={TeamWork} />
+                <Image className="pe-3" fluid src={TeamWork} />
                 <h3 className="ps-3">Совместная работа</h3>
               </div>
               <p>
@@ -217,7 +232,7 @@ function Landing() {
             </div>
             <div className="d-flex flex-column gap-3 pt-3">
               <div className="d-flex align-items-center">
-                <Image fluid className="pe-3" src={Template} />
+                <Image className="pe-3" fluid src={Template} />
                 <h3 className="ps-3">Готовые шаблоны с кодом</h3>
               </div>
               <p>

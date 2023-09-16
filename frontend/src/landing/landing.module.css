@@ -1,5 +1,5 @@
 .landing-body::before{
-    content: "";
+    content: " ";
     background-image: url('./assets/BGElement.svg');
     background-repeat: no-repeat;
     background-size: 100% 100%;

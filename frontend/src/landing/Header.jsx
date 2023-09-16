@@ -9,39 +9,35 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Header() {
   return (
     <Navbar expand="lg">
-      <Container className="justify-content-between flex-nowrap">
-        <Navbar.Brand>
+      <Container className="justify-content-between">
+        <Navbar.Brand className="pb-lg-4">
           <Image fluid src={RunItLogo} width="80%" />
+          <Navbar.Toggle
+            aria-controls="navbar-responsive"
+            className="border-0"
+            data-bs-toogle="collapse"
+          >
+            <Image src={Burger} />
+          </Navbar.Toggle>
         </Navbar.Brand>
-        <Navbar.Toggle
-          aria-controls="navbar-responsive"
-          className="border-0"
-          data-bs-toogle="collapse"
-        >
-          <Image src={Burger} />
-        </Navbar.Toggle>
-        <Navbar.Collapse id="navbar-responsive">
-          <Nav className="gap-2 text-center mb-3">
-            <Nav.Link>
-              <Link to={routes.landingPath()} />
+        <Navbar.Collapse className="mb-3 mb-lg-0" id="navbar-responsive">
+          <Nav className="gap-2 text-center">
+            <Nav.Link as={Link} to={routes.landingPath()}>
               <span>О проекте</span>
             </Nav.Link>
-            <Nav.Link>
-              <Link to={routes.landingPath()} />
+            <Nav.Link as={Link} to={routes.landingPath()}>
               <span>Преимущества</span>
             </Nav.Link>
-            <Nav.Link>
-              <Link to={routes.landingPath()} />
-              Возможности
+            <Nav.Link as={Link} to={routes.landingPath()}>
+              <span>Возможности</span>
             </Nav.Link>
-            <Nav.Link>
-              <Link to={routes.landingPath()} />
-              FAQ
+            <Nav.Link as={Link} to={routes.landingPath()}>
+              <span>FAQ</span>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <Navbar.Collapse id="navbar-responsive">
-          <Nav className="gap-2 mb-3 ms-auto">
+        <Navbar.Collapse className="mb-3 mb-lg-0" id="navbar-responsive">
+          <Nav className="gap-2 ms-auto">
             <Button className="rounded-5 d-flex px-5" variant="primary">
               <span>Войти</span>
             </Button>

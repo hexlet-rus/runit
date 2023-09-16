@@ -1,19 +1,30 @@
-import { Row, Col, Container, Image } from 'react-bootstrap';
+import {
+  Row,
+  Col,
+  Container,
+  Image,
+  Form,
+  FloatingLabel,
+} from 'react-bootstrap';
 import RunItLogo from './assets/LogoDark.svg';
 import Twitter from './assets/Twitter_black.svg';
 import Telegram from './assets/Telegram_black.svg';
 import VK from './assets/VK_black.svg';
 import YouTube from './assets/YouTube_black.svg';
+import TwitterLg from './assets/Twitter_black 1.svg';
+import TelegramLg from './assets/Telegram_black 1.svg';
+import VKLg from './assets/VK_black 1.svg';
+import YouTubeLg from './assets/YouTube_black 1.svg';
 
 function Footer() {
   return (
-    <footer className="bg-primary">
-      <Container fluid>
-        <Row className="pt-4">
+    <footer>
+      <Container>
+        <Row className="pt-4 d-lg-none">
           <Col className="col-6 mb-4">
-            <Image fluid src={RunItLogo} />
+            <Image className="pb-2" fluid src={RunItLogo} />
           </Col>
-          <Col class="col-6 d-flex gap-2 mb-4 justify-content-between">
+          <Col className="col-6 d-flex gap-2 mb-4 justify-content-between">
             <Image fluid src={VK} />
             <Image fluid src={Telegram} />
             <Image fluid src={YouTube} />
@@ -51,6 +62,71 @@ function Footer() {
             <p className="m-0">
               432071, г. Ульяновск, пр-т Нариманова, дом 1Г, оф. 23
             </p>
+          </Col>
+        </Row>
+        <Row className="d-flex mx-5 mb-3 align-items-center d-none d-lg-flex">
+          <Col>
+            <Image className="pb-3" fluid src={RunItLogo} />
+          </Col>
+          <Col>
+            <Row>
+              <Col>
+                <p className="m-0">
+                  <b>8 800 100 22 47</b>
+                </p>
+                <p className="m-0">бесплатно по РФ</p>
+              </Col>
+              <Col>
+                <p className="m-0">
+                  <b>+7 495 085 28 38</b>
+                </p>
+                <p className="m-0">бесплатно по Москве</p>
+              </Col>
+            </Row>
+          </Col>
+          <Col className="d-flex gap-4">
+            <Image fluid src={VKLg} />
+            <Image fluid src={TelegramLg} />
+            <Image fluid src={YouTubeLg} />
+            <Image fluid src={TwitterLg} />
+          </Col>
+        </Row>
+        <Row className="d-flex mx-5 mb-5 align-items-center d-none d-lg-flex">
+          <Col>
+            <Row>
+              <Col>
+                <p className="mb-2">О проекте</p>
+                <p className="mb-2">Преимущества</p>
+                <p className="mb-2">Возможности</p>
+                <p className="mb-0">FAQ</p>
+              </Col>
+              <Col>
+                <p className="mb-2">О нас</p>
+                <p className="mb-2">Карьера в Хекслете</p>
+                <p className="mb-2">Магазин мерча</p>
+                <p className="mb-0">Напишите нам</p>
+              </Col>
+            </Row>
+          </Col>
+          <Col>
+            <Form.Group>
+              <FloatingLabel controlId="floatingTextarea" label="Напишите нам">
+                <Form.Control
+                  as="textarea"
+                  placeholder="Напишите нам"
+                  style={{ height: '8rem' }}
+                />
+              </FloatingLabel>
+            </Form.Group>
+          </Col>
+          <Col>
+            <div className="ms-auto">
+              <p className="m-0">ООО «Хекслет Рус»</p>
+              <p className="m-0">
+                432071, г. Ульяновск, пр-т Нариманова, дом 1Г, оф. 23
+              </p>
+              <p className="m-0">ОГРН 1217300010476</p>
+            </div>
           </Col>
         </Row>
       </Container>
