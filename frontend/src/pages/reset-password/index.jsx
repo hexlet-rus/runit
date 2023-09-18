@@ -17,17 +17,17 @@ function ResetPasswordPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { hash } = useParams();
-  const [hasHash, setHashState] = useState(false);
+  const [userId, setUserId] = useState(false);
 
   useEffect(() => {
     const checkHash = async () => {
       const { data } = await axios.get(`${routes.resetPassPath()}/${hash}`);
-      data.id ? setHashState(true) : setHashState(false);
+      setUserId(!!data.id);
     };
     checkHash();
-  }, [hasHash, hash]);
+  }, [userId, hash]);
 
-  return hasHash ? (
+  return userId ? (
     <div className="page-bg-image">
       <Container className="h-100" fluid="sm">
         <Row className="justify-content-center align-items-center m-auto py-3 py-sm-5 h-100">
