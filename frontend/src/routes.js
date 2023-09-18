@@ -14,6 +14,8 @@ export default {
   // put - update user info: { name, email, password }
   updateUserPath: (id) => [apiPath, 'users', `${id}`].join('/'),
 
+  resetPassPath: () => [apiPath, 'users', 'recover'].join('/'),
+
   signInPath: () => [apiPath, 'signin'].join('/'),
 
   // post
@@ -53,7 +55,8 @@ export default {
   settingsPagePath: () => '/settings',
   signInPagePath: () => '/signin',
   signUpPagePath: () => '/signup',
-  remindPassPagePath: () => '/remind_password',
+  forgotPassPagePath: () => '/forgot_password',
+  resetPassPagePath: (hash = ':hash') => `/recovery/${hash}`,
   licenseAgreementPath: () => '/licenseAgreement',
   snippetPagePath: (username = ':username', slug = ':slug') =>
     `u/${username}/snippets/${slug}`,

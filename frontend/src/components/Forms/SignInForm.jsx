@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { object } from 'yup';
 
+import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -146,12 +147,12 @@ function SignInForm({ onSuccess = () => null }) {
         </div>
         <div className="d-flex flex-row gap-5">
           {formState.message === 'errors.signInFailed' ? (
-            <a
+            <Link
+              to={routes.forgotPassPagePath()}
               className="icon-link link-secondary d-block align-self-center"
-              href={routes.remindPassPagePath()}
             >
               {t('signIn.remindPass')}
-            </a>
+            </Link>
           ) : null}
           <Button
             className="flex-fill"

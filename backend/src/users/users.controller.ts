@@ -101,12 +101,15 @@ export class UsersController {
     return this.usersService.recover(recoverUserDto);
   }
 
-  @Get('recover/:hash')
+  @Post('recover/:hash')
   @UseFilters(new HttpValidationFilter())
-  @ApiParam({ name: 'hash', description: 'Hash key for user recovery!' })
-  @ApiOkResponse({ description: 'Successfully checked recovery hash key' })
-  async checkHash(@Param('hash') hash: string) {
-    return this.usersService.checkHash(hash);
+  @ApiParam({ name: 'hash', description: 'Hash key for user password reset!' })
+  @ApiOkResponse({ description: 'Successfully updated user password' })
+  async resetPassword(
+    @Body() updateUserDto: UpdateUserDto,
+    @Param('hash') hash: string,
+  ) {
+    return this.usersService.resetPassword(updateUserDto, hash);
   }
 
   @Put(':id')
