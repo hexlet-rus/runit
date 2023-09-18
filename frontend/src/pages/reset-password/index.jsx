@@ -22,7 +22,7 @@ function ResetPasswordPage() {
   useEffect(() => {
     const checkHash = async () => {
       const { data } = await axios.get(`${routes.resetPassPath()}/${hash}`);
-      return data.id ? setHashState(true) : setHashState(false);
+      data.id ? setHashState(true) : setHashState(false);
     };
     checkHash();
   }, [hasHash, hash]);
