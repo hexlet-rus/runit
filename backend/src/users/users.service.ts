@@ -89,6 +89,16 @@ export class UsersService {
     }
   }
 
+  async checkHash(hash: string): Promise<{ id: number | null }> {
+    const email = await decipher(Buffer.from(hash, 'hex'));
+    const currentUser = await this.find(email);
+    
+    if (currentUser && currentUser.recover_hash === hash) {
+      return { id: currentUser.id };
+    }
+    return { id: null };
+  }
+
   async resetPassword(
     { password }: UpdateUserDto,
     hash,
