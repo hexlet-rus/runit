@@ -64,7 +64,7 @@ To deploy to [render.com](https://dashboard.render.com/) do the following:
 1. Create a Postgres database. After preparing it, copy *Internal Database URL*.
 2. Create Web Service, select your fork.
 3. Name — it is better to use a prefix with your nickname. For example *fey-runit*.
-4. Region — any, you can use *Frankfurt (EU Central)*.
+4. Region — any, you can use *Frankfurt (EU Central)* but make sure that Web Service and database are using the same region.
 5. Branch — from which the application will be deployed. You can use `main` for starters. In the future, use the branch in which you want to demonstrate the changes.
 6. Root Directory — leave blank.
 7. Runtime — *Node*.
