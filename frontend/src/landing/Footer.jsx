@@ -6,6 +6,7 @@ import {
   Form,
   FloatingLabel,
 } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import RunItLogo from './assets/LogoDark.svg';
 import Twitter from './assets/Twitter_black.svg';
 import Telegram from './assets/Telegram_black.svg';
@@ -17,6 +18,7 @@ import VKLg from './assets/VK_black 1.svg';
 import YouTubeLg from './assets/YouTube_black 1.svg';
 
 function Footer() {
+  const { t } = useTranslation();
   return (
     <footer>
       <Container>
@@ -72,15 +74,15 @@ function Footer() {
             <Row>
               <Col>
                 <p className="m-0">
-                  <b>8 800 100 22 47</b>
+                  <b>{t('footer.tel1')}</b>
                 </p>
-                <p className="m-0">бесплатно по РФ</p>
+                <p className="m-0">{t('footer.rf')}</p>
               </Col>
               <Col>
                 <p className="m-0">
-                  <b>+7 495 085 28 38</b>
+                  <b>{t('footer.tel2')}</b>
                 </p>
-                <p className="m-0">бесплатно по Москве</p>
+                <p className="m-0">{t('footer.moscow')}</p>
               </Col>
             </Row>
           </Col>
@@ -95,25 +97,28 @@ function Footer() {
           <Col>
             <Row>
               <Col>
-                <p className="mb-2">О проекте</p>
-                <p className="mb-2">Преимущества</p>
-                <p className="mb-2">Возможности</p>
-                <p className="mb-0">FAQ</p>
+                <p className="mb-2">{t('landing.header.about')}</p>
+                <p className="mb-2">{t('landing.header.advantages')}</p>
+                <p className="mb-2">{t('landing.header.opportunities')}</p>
+                <p className="mb-0">{t('faq.faq')}</p>
               </Col>
               <Col>
-                <p className="mb-2">О нас</p>
-                <p className="mb-2">Карьера в Хекслете</p>
-                <p className="mb-2">Магазин мерча</p>
-                <p className="mb-0">Напишите нам</p>
+                <p className="mb-2">{t('footer.about')}</p>
+                <p className="mb-2">{t('footer.career')}</p>
+                <p className="mb-2">{t('footer.shop')}</p>
+                <p className="mb-0">{t('footer.mailSupport')}</p>
               </Col>
             </Row>
           </Col>
           <Col>
             <Form.Group>
-              <FloatingLabel controlId="floatingTextarea" label="Напишите нам">
+              <FloatingLabel
+                controlId="floatingTextarea"
+                label={t('footer.mailSupport')}
+              >
                 <Form.Control
                   as="textarea"
-                  placeholder="Напишите нам"
+                  placeholder={t('footer.mailSupport')}
                   style={{ height: '8rem' }}
                 />
               </FloatingLabel>
@@ -121,11 +126,11 @@ function Footer() {
           </Col>
           <Col>
             <div className="ms-auto">
-              <p className="m-0">ООО «Хекслет Рус»</p>
+              <p className="m-0">{t('footer.name')}</p>
               <p className="m-0">
-                432071, г. Ульяновск, пр-т Нариманова, дом 1Г, оф. 23
+                {t('footer.city')} {t('footer.street')}
               </p>
-              <p className="m-0">ОГРН 1217300010476</p>
+              <p className="m-0">{t('footer.ogrn')}</p>
             </div>
           </Col>
         </Row>
