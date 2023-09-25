@@ -87,21 +87,30 @@ function SnippetName({ snippet }) {
         src={JavaScriptIcon}
       />
       {formik.isSubmitting ? null : (
-        <Form.Control
-          ref={inputRef}
-          as={AutowidthInput}
-          autoComplete="off"
-          className="transition-padding"
-          id="name"
-          isInvalid={!!formik.errors.name}
-          maxLength={30}
-          name="name"
-          onBlur={handleSubmit}
-          onChange={formik.handleChange}
-          plaintext={!isRenaming}
-          readOnly={!isRenaming}
-          value={formik.values.name}
-        />
+        <Form.Group className="form-floating">
+          <Form.Control
+            ref={inputRef}
+            as={AutowidthInput}
+            autoComplete="off"
+            className="transition-padding"
+            id="name"
+            isInvalid={!!formik.errors.name}
+            maxLength={30}
+            name="name"
+            onBlur={handleSubmit}
+            onChange={formik.handleChange}
+            plaintext={!isRenaming}
+            readOnly={!isRenaming}
+            value={formik.values.name}
+          />
+          <Form.Control.Feedback
+            className={formik.errors.name && 'd-block'}
+            tooltip
+            type="invalid"
+          >
+            {t(formik.errors.name)}
+          </Form.Control.Feedback>
+        </Form.Group>
       )}
 
       {isRenaming || !isLoggedIn ? null : (

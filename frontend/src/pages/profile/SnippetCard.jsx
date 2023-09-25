@@ -89,20 +89,25 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
       />
       <Form className="flex-fill" onSubmit={handleSubmit}>
         {formik.isSubmitting ? null : (
-          <Form.Control
-            ref={inputRef}
-            autoComplete="off"
-            className="transition-padding"
-            id="name"
-            isInvalid={!!formik.errors.name}
-            maxLength={30}
-            name="name"
-            onBlur={handleSubmit}
-            onChange={formik.handleChange}
-            plaintext={!isRenaming}
-            readOnly={!isRenaming}
-            value={formik.values.name}
-          />
+          <Form.Group className="position-relative">
+            <Form.Control
+              ref={inputRef}
+              autoComplete="off"
+              className="transition-padding"
+              id="name"
+              isInvalid={!!formik.errors.name}
+              maxLength={30}
+              name="name"
+              onBlur={handleSubmit}
+              onChange={formik.handleChange}
+              plaintext={!isRenaming}
+              readOnly={!isRenaming}
+              value={formik.values.name}
+            />
+            <Form.Control.Feedback tooltip type="invalid">
+              {t(formik.errors.name)}
+            </Form.Control.Feedback>
+          </Form.Group>
         )}
       </Form>
       {isRenaming ? null : (
