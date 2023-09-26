@@ -10,7 +10,7 @@ import { email } from '../../utils/validationSchemas';
 
 import FormAlert from './FormAlert.jsx';
 
-function RemindPasswordForm({ onSuccess = () => null }) {
+function ForgotPasswordForm({ onSuccess = () => null }) {
   const { t } = useTranslation();
   const emailRef = useRef();
 
@@ -102,4 +102,4 @@ function RemindPasswordForm({ onSuccess = () => null }) {
   );
 }
 
-export default RemindPasswordForm;
+export default ForgotPasswordForm;

@@ -53,7 +53,7 @@ export default {
   settingsPagePath: () => '/settings',
   signInPagePath: () => '/signin',
   signUpPagePath: () => '/signup',
-  remindPassPagePath: () => '/remind_password',
+  forgotPassPagePath: () => '/forgot_password',
   licenseAgreementPath: () => '/licenseAgreement',
   snippetPagePath: (username = ':username', slug = ':slug') =>
     `u/${username}/snippets/${slug}`,

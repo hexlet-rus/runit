@@ -7,11 +7,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
 import routes from '../../routes.js';
-import { actions } from '../../slices';
+import { actions } from '../../slices/index.js';
 
-import RemindPasswordForm from '../../components/Forms/RemindPasswordForm';
+import ForgotPasswordForm from '../../components/Forms/ForgotPasswordForm.jsx';
 
-function RemindPasswordPage() {
+function ForgotPasswordPage() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ function RemindPasswordPage() {
           <Col className="max-w-sm p-0">
             <div className="d-flex flex-column gap-sm-3 gap-4 bg-body rounded-4 p-4 p-sm-5">
               <h1 className="display-6">{t('remindPass.pageHeader')}</h1>
-              <RemindPasswordForm
+              <ForgotPasswordForm
                 onSuccess={() => {
                   dispatch(actions.openModal({ type: 'inDevelopment' }));
                 }}
@@ -44,4 +44,4 @@ function RemindPasswordPage() {
   );
 }
 
-export default RemindPasswordPage;
+export default ForgotPasswordPage;
