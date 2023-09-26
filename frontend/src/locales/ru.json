@@ -372,7 +372,7 @@
   },
   "forgotPass": {
     "pageHeader": "Забыли пароль?",
-    "resetButton": "Cбросить пароль",
+    "resetButton": "Сбросить пароль",
     "successAlert": "Мы отправили вам письмо с инструкциями по восстановлению пароля"
   },
   "resetPass": {
