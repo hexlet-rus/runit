@@ -93,6 +93,10 @@ function AppRoutes() {
             element={<ForgotPasswordPage />}
           />
           <Route
+            path={routes.resetPassPagePath()}
+            element={<ResetPasswordPage />}
+          />
+          <Route
             path={routes.licenseAgreementPath()}
             element={<LicenseAgreement />}
           />

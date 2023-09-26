@@ -54,7 +54,7 @@ export default {
   signInPagePath: () => '/signin',
   signUpPagePath: () => '/signup',
   forgotPassPagePath: () => '/forgot_password',
-  resetPassPagePath: (hash = ':hash') => `/revovery/${hash}`,
+  resetPassPagePath: (hash = ':hash') => `/recovery/${hash}`,
   licenseAgreementPath: () => '/licenseAgreement',
   snippetPagePath: (username = ':username', slug = ':slug') =>
     `u/${username}/snippets/${slug}`,

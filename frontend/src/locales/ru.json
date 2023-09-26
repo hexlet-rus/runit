@@ -372,12 +372,12 @@
   },
   "forgotPass": {
     "pageHeader": "Забыли пароль?",
-    "resetButton": "Восстановить пароль",
-    "successAlert": "Мы отправили вам письмо с инструкцией по восстановлению пароля"
+    "resetButton": "Cбросить пароль",
+    "successAlert": "Мы отправили вам письмо с инструкциями по восстановлению пароля"
   },
   "resetPass": {
     "pageHeader": "Введите новый пароль",
-    "resetButton": "Обновите пароль"
+    "resetButton": "Обновить пароль"
   },
   "settings": {
     "languages": {
