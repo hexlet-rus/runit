@@ -19,6 +19,7 @@ const SignInPage = lazy(() => import('./pages/signin'));
 const Landing = lazy(() => import('./pages/landing'));
 const LicenseAgreement = lazy(() => import('./pages/license-agreement'));
 const ForgotPasswordPage = lazy(() => import('./pages/forgot-password'));
+const ResetPasswordPage = lazy(() => import('./pages/reset-password'));
 const NotFoundPage = lazy(() => import('./pages/404'));
 const EmbeddedPage = lazy(() => import('./pages/embed'));
 
