@@ -59,7 +59,6 @@ export class UsersService {
   async recover({ email, frontendUrl }: RecoverUserDto): Promise<void> {
     const recoverHash = await cipher(email);
     const currentUser = await this.find(email);
-
     if (!currentUser) {
       return;
     }
@@ -75,15 +74,19 @@ export class UsersService {
     // FIXME: use env var BASE_URL
     const url = `${frontendUrl}/recovery/${recoverHash}`;
 
-    this.mailerService.sendMail({
-      to: email,
-      // FIXME: use i18n
-      subject: 'Ссылка для изменения пароля на runit.hexlet.ru',
-      template: 'recover',
-      context: {
-        url,
-      },
-    });
+    try {
+      this.mailerService.sendMail({
+        to: email,
+        // FIXME: use i18n
+        subject: 'Ссылка для изменения пароля на runit.hexlet.ru',
+        template: 'recover',
+        context: {
+          url,
+        },
+      });
+    } catch (e) {
+      throw new Error(e);
+    }
   }
 
   async checkHash(hash: string): Promise<{ id: number | null }> {
@@ -91,8 +94,22 @@ export class UsersService {
     const currentUser = await this.find(email);
 
     if (currentUser && currentUser.recover_hash === hash) {
-      await this.usersRepository.update(currentUser.id, { recover_hash: null });
       return { id: currentUser.id };
+    }
+    return { id: null };
+  }
+
+  async resetPassword(
+    { password }: UpdateUserDto,
+    hash,
+  ): Promise<{ id: number | null }> {
+    const email = await decipher(Buffer.from(hash, 'hex'));
+    const currentUser = await this.find(email);
+
+    if (currentUser && currentUser.recover_hash === hash) {
+      await this.usersRepository.update(currentUser.id, { recover_hash: null });
+      await this.update(currentUser.id, { password });
+      return currentUser;
     }
     return { id: null };
   }

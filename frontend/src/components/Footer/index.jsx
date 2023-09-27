@@ -248,7 +248,7 @@ function Footer() {
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0 pt-0`}
                   eventKey="hexlet"
-                  href="https://ru.hexlet.io/my"
+                  href="https://ru.hexlet.io"
                   target="_blank"
                 >
                   {t('footer.hexlet')}
@@ -270,7 +270,7 @@ function Footer() {
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0`}
                   eventKey="codeBasics"
-                  href="https://code-basics.com/ru?roistat_visit=4835603"
+                  href="https://code-basics.com/ru"
                   target="_blank"
                 >
                   {t('footer.codeBasics')}
@@ -281,7 +281,7 @@ function Footer() {
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0`}
                   eventKey="codeBattle"
-                  href="https://codebattle.hexlet.io/?_gl=1*1borq0u*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2ODA5OTEzOS4xOTEuMS4xNjY4MDk5NjIwLjAuMC4w#lobby"
+                  href="https://codebattle.hexlet.io"
                   target="_blank"
                 >
                   {t('footer.codeBattle')}
@@ -292,7 +292,7 @@ function Footer() {
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0`}
                   eventKey="guides"
-                  href="https://guides.hexlet.io/ru/?roistat_visit=4835603&_gl=1*1borq0u*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2ODA5OTEzOS4xOTEuMS4xNjY4MDk5NjIwLjAuMC4w"
+                  href="https://guides.hexlet.io/ru"
                   target="_blank"
                 >
                   {t('footer.guides')}
@@ -303,7 +303,7 @@ function Footer() {
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0`}
                   eventKey="cv"
-                  href="https://cv.hexlet.io/?_gl=1*1borq0u*_ga*NjQ3OTI4OTc2Mi4xNjU5MDk4NTgy*_ga_PM3R85EKHN*MTY2ODA5OTEzOS4xOTEuMS4xNjY4MDk5NjIwLjAuMC4w"
+                  href="https://cv.hexlet.io"
                   target="_blank"
                 >
                   {t('footer.cv')}

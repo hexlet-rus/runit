@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useFormik } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -6,13 +7,15 @@ import { object } from 'yup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import routes from '../../routes';
 import { email } from '../../utils/validationSchemas';
 
 import FormAlert from './FormAlert.jsx';
 
-function RemindPasswordForm({ onSuccess = () => null }) {
+function ForgotPasswordForm() {
   const { t } = useTranslation();
   const emailRef = useRef();
+  const location = window.location.origin;
 
   const initialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
@@ -29,10 +32,16 @@ function RemindPasswordForm({ onSuccess = () => null }) {
     validateOnBlur: false,
     onSubmit: async (values) => {
       setFormState(initialFormState);
-      const preparedValues = validationSchema.cast(values);
+      const preparedValues = {
+        ...validationSchema.cast(values),
+        frontendUrl: location,
+      };
       try {
-        console.log(preparedValues);
-        onSuccess();
+        await axios.post(routes.resetPassPath(), preparedValues);
+        setFormState({
+          state: 'success',
+          message: 'forgotPass.successAlert',
+        });
       } catch (err) {
         if (!err.isAxiosError) {
           setFormState({
@@ -90,16 +99,16 @@ function RemindPasswordForm({ onSuccess = () => null }) {
         </Form.Group>
 
         <Button
-          data-disable-with={t('remindPass.resetButton')}
+          data-disable-with={t('forgotPass.resetButton')}
           disabled={formik.isSubmitting}
           type="submit"
           variant="primary"
         >
-          {t('remindPass.resetButton')}
+          {t('forgotPass.resetButton')}
         </Button>
       </Form>
     </>
   );
 }
 
-export default RemindPasswordForm;
+export default ForgotPasswordForm;

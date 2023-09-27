@@ -109,6 +109,17 @@ export class UsersController {
     return this.usersService.checkHash(hash);
   }
 
+  @Post('recover/:hash')
+  @UseFilters(new HttpValidationFilter())
+  @ApiParam({ name: 'hash', description: 'Hash key for user password reset!' })
+  @ApiOkResponse({ description: 'Successfully updated user password' })
+  async resetPassword(
+    @Body() updateUserDto: UpdateUserDto,
+    @Param('hash') hash: string,
+  ) {
+    return this.usersService.resetPassword(updateUserDto, hash);
+  }
+
   @Put(':id')
   @UseGuards(JwtAuthGuard)
   @UseFilters(new HttpValidationFilter())
