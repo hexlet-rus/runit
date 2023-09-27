@@ -23,7 +23,6 @@ import { snippetName } from '../../utils/validationSchemas';
 
 import JavaScriptIcon from '../../assets/images/icons/javascript.svg';
 import SnippetCardWrapper from './SnippetCardWrapper.jsx';
-import useDuplicateSnippet from '../../hooks/useDuplicateSnippet';
 
 function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   const dispatch = useDispatch();
@@ -260,7 +259,6 @@ function SnippetCard({ data }) {
   const ownerUsername = data.user.username;
   const dispatch = useDispatch();
   const [mode, setMode] = useState('viewing');
-  const { duplicate } = useDuplicateSnippet();
 
   const handleRename = () => setMode('renaming');
 
@@ -269,7 +267,16 @@ function SnippetCard({ data }) {
   const handleView = () => setMode('viewing');
 
   const handleDuplicate = async () => {
-    await duplicate({ code, name, ownerUsername });
+    dispatch(
+      modalActions.openModal({
+        type: 'duplicateSnippet',
+        item: {
+          currSnippetName: name,
+          ownerUsername,
+          code,
+        },
+      }),
+    );
   };
 
   const cardModes = new Map()

@@ -208,7 +208,7 @@
       "title": "Duplicate snippet",
       "name": "Snippet name",
       "message": "To copy snippet you need to be authorized",
-      "save": "Save"
+      "cancel": "Cancel"
     }
   },
   "navbar": {

@@ -4,16 +4,15 @@ import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import { BoxArrowUp, Files, PlayFill } from 'react-bootstrap-icons';
 import { actions } from '../../slices';
-import { useRunButton } from '../../hooks';
-import useDuplicateSnippet from '../../hooks/useDuplicateSnippet';
+import { useAuth, useRunButton } from '../../hooks';
 
 function ActionsToolbar({ snippet }) {
   const { t } = useTranslation();
   const { onClick, disabled } = useRunButton();
   const dispatch = useDispatch();
   const { snippetData, code } = snippet;
-  const { name, ownerUsername } = snippetData;
-  const { duplicate } = useDuplicateSnippet();
+  const { name: snippetName, ownerUsername } = snippetData;
+  const { isLoggedIn } = useAuth();
 
   const handleShare = () => {
     dispatch(
@@ -24,8 +23,26 @@ function ActionsToolbar({ snippet }) {
     );
   };
 
-  const handleDuplicate = async () => {
-    await duplicate({ code, name, ownerUsername }, true);
+  const handleDuplicate = () => {
+    if (isLoggedIn) {
+      dispatch(
+        actions.openModal({
+          type: 'duplicateSnippet',
+          item: {
+            currSnippetName: snippetName,
+            ownerUsername,
+            code,
+            shouldOpen: true,
+          },
+        }),
+      );
+    } else {
+      dispatch(
+        actions.openModal({
+          type: 'signingIn',
+        }),
+      );
+    }
   };
 
   return (
