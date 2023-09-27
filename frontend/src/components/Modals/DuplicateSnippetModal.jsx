@@ -89,7 +89,7 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
   return (
     <Modal centered onHide={handleClose} show={isOpen}>
       <Modal.Header className="py-3" closeButton>
-        <Modal.Title className="display-6">
+        <Modal.Title className="display-7">
           {t('modals.duplicateSnippet.title')}
         </Modal.Title>
       </Modal.Header>

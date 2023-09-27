@@ -206,7 +206,7 @@
     },
     "duplicateSnippet": {
       "title": "Duplicate snippet",
-      "name": "Snippet name",
+      "snippetName": "Snippet name",
       "message": "To copy snippet you need to be authorized",
       "cancel": "Cancel"
     }
