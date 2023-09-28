@@ -7,8 +7,8 @@ import { object } from 'yup';
 
 import {
   BoxArrowUp,
+  Files,
   PencilFill,
-  Share,
   ThreeDotsVertical,
   Trash3,
 } from 'react-bootstrap-icons';
@@ -223,8 +223,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
             variant="nofill-body"
           >
             <div className="text-nowrap">
-              <Share className="bi me-1" />
-              <small>{t('snippetActions.duplicate')}</small>
+              <Files className="bi me-1" />
             </div>
           </Button>
         </div>
@@ -256,7 +255,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
 }
 
 function SnippetCard({ data }) {
-  const { id, name, slug } = data;
+  const { id, name, slug, code } = data;
   const ownerUsername = data.user.username;
   const dispatch = useDispatch();
   const [mode, setMode] = useState('viewing');
@@ -267,8 +266,17 @@ function SnippetCard({ data }) {
 
   const handleView = () => setMode('viewing');
 
-  const handleDuplicate = () => {
-    dispatch(modalActions.openModal({ type: 'inDevelopment' }));
+  const handleDuplicate = async () => {
+    dispatch(
+      modalActions.openModal({
+        type: 'duplicateSnippet',
+        item: {
+          currSnippetName: name,
+          ownerUsername,
+          code,
+        },
+      }),
+    );
   };
 
   const cardModes = new Map()
