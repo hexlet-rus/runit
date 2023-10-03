@@ -16,6 +16,7 @@ import DefaultLoader from '../../components/Loaders/DefaultLoader.jsx';
 import Terminal from '../../components/Terminal/index.jsx';
 import ActionsToolbar from './ActionsToolbar.jsx';
 import FileToolbar from './FileToolbar.jsx';
+import HTMLPreview from '../../components/HTMLPreview/HTMLPreview.jsx';
 
 const AUTOSAVE_TIMEOUT = 1000;
 
@@ -32,6 +33,8 @@ function SnippetPage() {
   const snippetApi = useSnippets();
   const params = useParams();
   const dispatch = useDispatch();
+
+  const { currentLanguage } = useSelector((state) => state.languages);
 
   const snippetParams = useMemo(
     () => ({
@@ -97,8 +100,10 @@ function SnippetPage() {
               name: response.name,
               ownerUsername: snippetParams.username,
               slug: response.slug,
+              language: response.language,
             }),
           );
+          dispatch(actions.changeLanguage(response.language));
           dispatch(actions.setCodeAndSavedCode(response.code));
         }
       }
@@ -160,7 +165,7 @@ function SnippetPage() {
           collapsible
           minSize={10}
         >
-          <Terminal />
+          {currentLanguage === 'html' ? <HTMLPreview /> : <Terminal />}
         </Panel>
       </PanelGroup>
     </Container>

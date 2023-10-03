@@ -21,7 +21,7 @@ import { actions as modalActions } from '../../slices/modalSlice.js';
 import { actions as snippetsActions } from '../../slices/snippetsSlice.js';
 import { snippetName } from '../../utils/validationSchemas';
 
-import JavaScriptIcon from '../../assets/images/icons/javascript.svg';
+import getIcon from '../../assets/images/icons/getIcon.js';
 import SnippetCardWrapper from './SnippetCardWrapper.jsx';
 
 function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
@@ -29,7 +29,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   const inputRef = useRef();
   const { t } = useTranslation();
   const snippetApi = useSnippets();
-  const { name, id, code } = data;
+  const { name, id, code, language } = data;
 
   useEffect(() => {
     const filenameInput = inputRef.current;
@@ -85,7 +85,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
       <Image
         alt="JavaScript"
         className="snippet-card-header-icon"
-        src={JavaScriptIcon}
+        src={getIcon(language)}
       />
       <Form className="flex-fill" onSubmit={handleSubmit}>
         {formik.isSubmitting ? null : (

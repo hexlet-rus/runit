@@ -12,16 +12,19 @@ import SnippetCardWrapper from './SnippetCardWrapper';
 import JavaScriptIcon from '../../assets/images/icons/javascript.svg';
 import PhpIcon from '../../assets/images/icons/php.svg';
 import PythonIcon from '../../assets/images/icons/python.svg';
+import HTMLIcon from '../../assets/images/icons/html.svg';
 
 const icons = new Map()
   .set('javascript', JavaScriptIcon)
   .set('python', PythonIcon)
-  .set('php', PhpIcon);
+  .set('php', PhpIcon)
+  .set('html', HTMLIcon);
 
 const extensions = new Map()
   .set('javascript', 'js')
   .set('python', 'py')
-  .set('php', 'php');
+  .set('php', 'php')
+  .set('html', 'html');
 
 function NewSnippetForm() {
   const { t } = useTranslation();
@@ -33,11 +36,11 @@ function NewSnippetForm() {
 
   const handleNewSnippet = (language) => async () => {
     const code = t(`codeTemplates.${language}`);
-    if (language === 'javascript') {
+    if (supportedLanguages.includes(language)) {
       try {
         const generatedName = await snippetApi.getDefaultSnippetName();
         const snippetName = `${generatedName}.${extensions.get(language)}`;
-        const id = await snippetApi.saveSnippet(code, snippetName);
+        const id = await snippetApi.saveSnippet(code, snippetName, language);
         const { slug } = await snippetApi.getSnippetData(id);
         const url = new URL(snippetApi.genViewSnippetLink(username, slug));
         console.log(id, slug, url.pathname);
@@ -60,7 +63,7 @@ function NewSnippetForm() {
     <SnippetCardWrapper>
       <div className="new-snippet h-100">
         <div>{t('snippetActions.new')}</div>
-        <div className="new-snippet-links">
+        <div className="new-snippet-links flex-wrap">
           {supportedLanguages.map((language) => (
             <Button
               key={language}
