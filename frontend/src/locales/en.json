@@ -203,6 +203,12 @@
     },
     "snippetUnavailable": {
       "message": "Snippet is unavailable or has been deleted by user"
+    },
+    "duplicateSnippet": {
+      "title": "Duplicate snippet",
+      "snippetName": "Snippet name",
+      "message": "To copy snippet you need to be authorized",
+      "cancel": "Cancel"
     }
   },
   "navbar": {

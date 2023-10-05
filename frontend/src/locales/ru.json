@@ -327,6 +327,12 @@
     },
     "snippetUnavailable": {
       "message": "Сниппет недоступен или был удален пользователем"
+    },
+    "duplicateSnippet": {
+      "title": "Скопировать сниппет",
+      "snippetName": "Название сниппета",
+      "save": "Подтвердить",
+      "cancel": "Отмена"
     }
   },
   "navbar": {

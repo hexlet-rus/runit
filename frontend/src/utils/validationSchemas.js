@@ -2,21 +2,21 @@ import { toASCII } from 'punycode/';
 import isEmail from 'validator/es/lib/isEmail';
 import { string } from 'yup';
 
-const USERNAME_MIN_LENGHT = 3;
-const USERNAME_MAX_LENGHT = 16;
+const USERNAME_MIN_LENGTH = 3;
+const USERNAME_MAX_LENGTH = 16;
 
-const PASSWORD_MIN_LENGHT = 8;
-const PASSWORD_MAX_LENGHT = 30;
+const PASSWORD_MIN_LENGTH = 8;
+const PASSWORD_MAX_LENGTH = 30;
 const PASSWORD_REGEX = /^[a-zA-Z0-9!'#%&'()*+,-./:;<=>?@[/\]^_{|}~]*$/;
 
-const SNIPPET_NAME_MAX_LENGHT = 30;
+export const SNIPPET_NAME_MAX_LENGTH = 30;
 
 export const username = () =>
   string()
     .trim()
     .required('errors.validation.requiredField')
-    .min(USERNAME_MIN_LENGHT, 'errors.validation.usernameLength')
-    .max(USERNAME_MAX_LENGHT, 'errors.validation.usernameLength')
+    .min(USERNAME_MIN_LENGTH, 'errors.validation.usernameLength')
+    .max(USERNAME_MAX_LENGTH, 'errors.validation.usernameLength')
     .matches(/^[\w\S]*$/, 'errors.validation.incorrectUsername');
 
 export const email = () =>
@@ -30,8 +30,8 @@ export const password = () =>
   string()
     .required('errors.validation.requiredField')
     .matches(PASSWORD_REGEX, 'errors.validation.incorrectPassword')
-    .min(PASSWORD_MIN_LENGHT, 'errors.validation.passwordLength')
-    .max(PASSWORD_MAX_LENGHT, 'errors.validation.passwordLength');
+    .min(PASSWORD_MIN_LENGTH, 'errors.validation.passwordLength')
+    .max(PASSWORD_MAX_LENGTH, 'errors.validation.passwordLength');
 
 export const required = () =>
   string().trim().required('errors.validation.requiredField');
@@ -48,5 +48,5 @@ export const confirmPassword = () =>
 export const snippetName = () =>
   string()
     .required('errors.validation.requiredField')
-    .max(SNIPPET_NAME_MAX_LENGHT, 'errors.validation.snippetNameMaxLength')
+    .max(SNIPPET_NAME_MAX_LENGTH, 'errors.validation.snippetNameMaxLength')
     .matches(/^[a-zA-Z0-9._-]*$/, 'errors.validation.singleWord');

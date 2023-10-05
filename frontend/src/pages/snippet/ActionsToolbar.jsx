@@ -2,16 +2,17 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';
-import { BoxArrowUp, PlayFill, Share } from 'react-bootstrap-icons';
-
-import { actions } from '../../slices/index.js';
-import { useRunButton } from '../../hooks';
+import { BoxArrowUp, Files, PlayFill } from 'react-bootstrap-icons';
+import { actions } from '../../slices';
+import { useAuth, useRunButton } from '../../hooks';
 
 function ActionsToolbar({ snippet }) {
   const { t } = useTranslation();
   const { onClick, disabled } = useRunButton();
   const dispatch = useDispatch();
-  const { snippetData } = snippet;
+  const { snippetData, code } = snippet;
+  const { name: snippetName, ownerUsername } = snippetData;
+  const { isLoggedIn } = useAuth();
 
   const handleShare = () => {
     dispatch(
@@ -22,26 +23,44 @@ function ActionsToolbar({ snippet }) {
     );
   };
 
-  const handleInDevelopment = () => {
-    dispatch(actions.openModal({ type: 'inDevelopment' }));
+  const handleDuplicate = () => {
+    if (isLoggedIn) {
+      dispatch(
+        actions.openModal({
+          type: 'duplicateSnippet',
+          item: {
+            currSnippetName: snippetName,
+            ownerUsername,
+            code,
+            shouldOpen: true,
+          },
+        }),
+      );
+    } else {
+      dispatch(
+        actions.openModal({
+          type: 'signingIn',
+        }),
+      );
+    }
   };
 
   return (
     <>
       <Button
         className="btn-icon-only-full-height"
-        onClick={handleInDevelopment}
+        onClick={handleDuplicate}
         variant="nofill-body"
       >
-        <Share />{' '}
-        <span className="visually-hidden">{t('snippetActions.duplicate')}</span>
+        <Files />
       </Button>
+
       <Button
         className="btn-icon-only-full-height"
         onClick={handleShare}
         variant="nofill-body"
       >
-        <BoxArrowUp />{' '}
+        <BoxArrowUp />
         <span className="visually-hidden">{t('snippetActions.share')}</span>
       </Button>
       <Button

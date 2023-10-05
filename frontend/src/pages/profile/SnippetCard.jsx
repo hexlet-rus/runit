@@ -7,8 +7,8 @@ import { object } from 'yup';
 
 import {
   BoxArrowUp,
+  Files,
   PencilFill,
-  Share,
   ThreeDotsVertical,
   Trash3,
 } from 'react-bootstrap-icons';
@@ -89,20 +89,25 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
       />
       <Form className="flex-fill" onSubmit={handleSubmit}>
         {formik.isSubmitting ? null : (
-          <Form.Control
-            ref={inputRef}
-            autoComplete="off"
-            className="transition-padding"
-            id="name"
-            isInvalid={!!formik.errors.name}
-            maxLength={30}
-            name="name"
-            onBlur={handleSubmit}
-            onChange={formik.handleChange}
-            plaintext={!isRenaming}
-            readOnly={!isRenaming}
-            value={formik.values.name}
-          />
+          <Form.Group className="position-relative">
+            <Form.Control
+              ref={inputRef}
+              autoComplete="off"
+              className="transition-padding"
+              id="name"
+              isInvalid={!!formik.errors.name}
+              maxLength={30}
+              name="name"
+              onBlur={handleSubmit}
+              onChange={formik.handleChange}
+              plaintext={!isRenaming}
+              readOnly={!isRenaming}
+              value={formik.values.name}
+            />
+            <Form.Control.Feedback tooltip type="invalid">
+              {t(formik.errors.name)}
+            </Form.Control.Feedback>
+          </Form.Group>
         )}
       </Form>
       {isRenaming ? null : (
@@ -223,8 +228,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
             variant="nofill-body"
           >
             <div className="text-nowrap">
-              <Share className="bi me-1" />
-              <small>{t('snippetActions.duplicate')}</small>
+              <Files className="bi me-1" />
             </div>
           </Button>
         </div>
@@ -256,7 +260,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
 }
 
 function SnippetCard({ data }) {
-  const { id, name, slug } = data;
+  const { id, name, slug, code } = data;
   const ownerUsername = data.user.username;
   const dispatch = useDispatch();
   const [mode, setMode] = useState('viewing');
@@ -267,8 +271,17 @@ function SnippetCard({ data }) {
 
   const handleView = () => setMode('viewing');
 
-  const handleDuplicate = () => {
-    dispatch(modalActions.openModal({ type: 'inDevelopment' }));
+  const handleDuplicate = async () => {
+    dispatch(
+      modalActions.openModal({
+        type: 'duplicateSnippet',
+        item: {
+          currSnippetName: name,
+          ownerUsername,
+          code,
+        },
+      }),
+    );
   };
 
   const cardModes = new Map()

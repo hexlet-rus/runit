@@ -146,14 +146,12 @@ function SignInForm({ onSuccess = () => null }) {
           </Form.Group>
         </div>
         <div className="d-flex flex-row gap-5">
-          {formState.message === 'errors.signInFailed' ? (
-            <Link
-              to={routes.forgotPassPagePath()}
-              className="icon-link link-secondary d-block align-self-center"
-            >
-              {t('signIn.remindPass')}
-            </Link>
-          ) : null}
+          <Link
+            className="icon-link link-secondary d-block align-self-center"
+            to={routes.forgotPassPagePath()}
+          >
+            {t('signIn.remindPass')}
+          </Link>
           <Button
             className="flex-fill"
             data-disable-with={t('signIn.signInButton')}
