@@ -14,8 +14,7 @@ import Image from 'react-bootstrap/Image';
 import { useAuth, useSnippets } from '../../hooks';
 import { actions } from '../../slices/index.js';
 import { snippetName } from '../../utils/validationSchemas';
-
-import getIcon from '../../assets/images/icons/getIcon.js';
+import icons from '../../utils/icons';
 
 function SnippetName({ snippet }) {
   const { isLoggedIn } = useAuth();
@@ -84,7 +83,7 @@ function SnippetName({ snippet }) {
         alt="JavaScript"
         className="me-1"
         height={32}
-        src={getIcon(language)}
+        src={icons.get(language)}
       />
       {formik.isSubmitting ? null : (
         <Form.Group className="form-floating">

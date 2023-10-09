@@ -20,8 +20,8 @@ import { useSnippets } from '../../hooks';
 import { actions as modalActions } from '../../slices/modalSlice.js';
 import { actions as snippetsActions } from '../../slices/snippetsSlice.js';
 import { snippetName } from '../../utils/validationSchemas';
+import icons from '../../utils/icons';
 
-import getIcon from '../../assets/images/icons/getIcon.js';
 import SnippetCardWrapper from './SnippetCardWrapper.jsx';
 
 function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
@@ -85,7 +85,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
       <Image
         alt="JavaScript"
         className="snippet-card-header-icon"
-        src={getIcon(language)}
+        src={icons.get(language)}
       />
       <Form className="flex-fill" onSubmit={handleSubmit}>
         {formik.isSubmitting ? null : (
