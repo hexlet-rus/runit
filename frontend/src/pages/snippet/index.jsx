@@ -165,7 +165,11 @@ function SnippetPage() {
           collapsible
           minSize={10}
         >
-          {currentLanguage === 'html' ? <HTMLPreview /> : <Terminal />}
+          {currentLanguage === 'html' ? (
+            <HTMLPreview code={code} />
+          ) : (
+            <Terminal />
+          )}
         </Panel>
       </PanelGroup>
     </Container>
