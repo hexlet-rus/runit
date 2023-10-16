@@ -49,4 +49,4 @@ export const snippetName = () =>
   string()
     .required('errors.validation.requiredField')
     .max(SNIPPET_NAME_MAX_LENGTH, 'errors.validation.snippetNameMaxLength')
-    .matches(/^[a-zA-Z0-9._-]*$/, 'errors.validation.singleWord');
+    .matches(/^[a-zA-Z 0-9._-]*$/, 'errors.validation.singleWord');
