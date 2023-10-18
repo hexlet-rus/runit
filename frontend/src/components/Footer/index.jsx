@@ -116,8 +116,8 @@ function Footer() {
                   {t('footer.agreement')}
                 </Nav.Link>
               </li>
+              { language === 'ru' ? (
               <li>
-              { language === 'en' ? null : (
                 <Nav.Link
                   as={Link}
                   className={`${classes.footerNavLink} py-1 px-0`}
@@ -126,8 +126,10 @@ function Footer() {
                 >
                   {t('footer.licenseAgreement')}
                 </Nav.Link>
-              )}
               </li>
+              ) 
+              : null
+              }
               <li>
                 <Nav.Link
                   as="a"
