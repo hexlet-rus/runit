@@ -7,7 +7,7 @@ import classes from './index.module.css';
 
 function Footer() {
   const { t, i18n } = useTranslation();
-  const language = i18n.language
+  const { language } = i18n;
 
   return (
     <footer className="bg-dark border-top border-secondary pt-4 pb-5">
@@ -116,20 +116,18 @@ function Footer() {
                   {t('footer.agreement')}
                 </Nav.Link>
               </li>
-              { language === 'ru' ? (
-              <li>
-                <Nav.Link
-                  as={Link}
-                  className={`${classes.footerNavLink} py-1 px-0`}
-                  eventKey="licenseAgreement"
-                  to="/licenseAgreement"
-                >
-                  {t('footer.licenseAgreement')}
-                </Nav.Link>
-              </li>
-              ) 
-              : null
-              }
+              {language === 'ru' ? (
+                <li>
+                  <Nav.Link
+                    as={Link}
+                    className={`${classes.footerNavLink} py-1 px-0`}
+                    eventKey="licenseAgreement"
+                    to="/licenseAgreement"
+                  >
+                    {t('footer.licenseAgreement')}
+                  </Nav.Link>
+                </li>
+              ) : null}
               <li>
                 <Nav.Link
                   as="a"
