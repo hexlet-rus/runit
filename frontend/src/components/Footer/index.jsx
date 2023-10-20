@@ -116,7 +116,7 @@ function Footer() {
                   {t('footer.agreement')}
                 </Nav.Link>
               </li>
-              {language === 'ru' ? (
+              {language === 'ru' && (
                 <li>
                   <Nav.Link
                     as={Link}
@@ -127,7 +127,7 @@ function Footer() {
                     {t('footer.licenseAgreement')}
                   </Nav.Link>
                 </li>
-              ) : null}
+              )}
               <li>
                 <Nav.Link
                   as="a"
