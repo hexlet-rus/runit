@@ -8,10 +8,7 @@ export const fetchUserSnippets = createAsyncThunk(
   'user/fetchUserSnippets',
   async () => {
     const response = await axios.get(routes.userProfilePath());
-    // #FIXME: тестовый вариант; удалить, когда с сервера будет приходить язык сниппета
-    response.data.snippets.forEach((snippet) => {
-      snippet.language = 'html';
-    });
+    // #TODO: ответ должен содержать данные о языке сниппета (response.data.snippets[snippet].language)
     return response.data;
   },
 );

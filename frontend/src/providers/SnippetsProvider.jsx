@@ -13,8 +13,7 @@ function SnippetsProvider({ children }) {
     const response = await axios.get(
       routes.getSnippetPathByParams(username, slug),
     );
-    // #FIXME: тестовый вариант; удалить, когда с сервера будет приходить язык сниппета
-    response.data.language = 'html';
+    // #TODO: ответ должен содержать данные о языке сниппета (response.data.language)
     return response.data;
   };
 
