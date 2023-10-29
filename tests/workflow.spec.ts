@@ -166,3 +166,19 @@ test('Unable authorization by invalid password', async ({ page }) => {
     page.getByText('Неверная электронная почта или пароль')
   ).toBeVisible();
 });
+
+test('Successful create new snippet from profile', async ({ page }) => {
+  const randomNum = Math.round(Math.random() * 1000 + Math.random() * 100);
+  await page.goto('http://localhost:3000/');
+  await page.getByRole('button', { name: 'Регистрация' }).click();
+  await page.getByLabel('Электронная почта').fill(`test${randomNum}@test.test`);
+  await page.getByLabel('Имя пользователя').fill(`test${randomNum}`);
+  await page.getByLabel('Пароль', { exact: true }).fill('12345678');
+  await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+  await page.getByRole('button', { name: 'Профиль' }).click();
+  await page.getByRole('button', { name: 'Новый сниппет' }).click();
+  await page.locator('input[type="text"]').fill('java');
+  await page.getByLabel('javascript').click();
+  await page.getByRole('button', { name: 'Создать', exact: true }).click();
+  await expect(page).toHaveURL(/.*snippets/);
+});
