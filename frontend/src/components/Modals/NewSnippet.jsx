@@ -35,7 +35,7 @@ function NewSnippet({ handleClose, isOpen }) {
   const navigate = useNavigate();
   const inputRefTemplate = useRef(null);
   const inputRefName = useRef(null);
-  const { supportedLanguages } = useSelector((state) => state.languages);
+  const supportedLanguages = ['javascript']; // #TODO: later change it to a selector with data on support languages
   const username = useSelector((state) => state.user.userInfo.username);
   const [selectedLng, setSelectedLng] = useState([]);
   const [once, setOnce] = useState(false);
