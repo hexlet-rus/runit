@@ -209,6 +209,12 @@
       "snippetName": "Snippet name",
       "message": "To copy snippet you need to be authorized",
       "cancel": "Cancel"
+    },
+    "newSnippet": {
+      "title": "Create snippet",
+      "snippetName": "Title",
+      "template": "Template",
+      "create": "Create"
     }
   },
   "navbar": {
