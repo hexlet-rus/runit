@@ -68,7 +68,7 @@ function Footer() {
                     {t('footer.tel1')}
                   </a>
                 </span>
-                <span className="text-muted">{t('footer.rf')}</span>
+                <span className="text-secondary">{t('footer.rf')}</span>
               </li>
               <li>
                 <span className="lead fw-normal">
@@ -79,10 +79,10 @@ function Footer() {
                     {t('footer.tel2')}
                   </a>
                 </span>
-                <span className="text-muted">{t('footer.moscow')}</span>
+                <span className="text-secondary">{t('footer.moscow')}</span>
               </li>
             </Nav>
-            <p className="mt-3 text-muted">
+            <p className="mt-3 text-secondary">
               <span className="d-block">{t('footer.name')}</span>
               <span className="d-block">{t('footer.city')}</span>
               <span className="d-block">{t('footer.street')}</span>
