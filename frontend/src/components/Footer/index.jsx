@@ -6,7 +6,8 @@ import { ReactComponent as Vk } from '../../assets/images/icons/vk.svg';
 import classes from './index.module.css';
 
 function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { language } = i18n;
 
   return (
     <footer className="bg-dark border-top border-secondary pt-4 pb-5">
@@ -67,7 +68,7 @@ function Footer() {
                     {t('footer.tel1')}
                   </a>
                 </span>
-                <span className="text-muted">{t('footer.rf')}</span>
+                <span className="text-secondary">{t('footer.rf')}</span>
               </li>
               <li>
                 <span className="lead fw-normal">
@@ -78,10 +79,10 @@ function Footer() {
                     {t('footer.tel2')}
                   </a>
                 </span>
-                <span className="text-muted">{t('footer.moscow')}</span>
+                <span className="text-secondary">{t('footer.moscow')}</span>
               </li>
             </Nav>
-            <p className="mt-3 text-muted">
+            <p className="mt-3 text-secondary">
               <span className="d-block">{t('footer.name')}</span>
               <span className="d-block">{t('footer.city')}</span>
               <span className="d-block">{t('footer.street')}</span>
@@ -115,16 +116,18 @@ function Footer() {
                   {t('footer.agreement')}
                 </Nav.Link>
               </li>
-              <li>
-                <Nav.Link
-                  as={Link}
-                  className={`${classes.footerNavLink} py-1 px-0`}
-                  eventKey="licenseAgreement"
-                  to="/licenseAgreement"
-                >
-                  {t('footer.licenseAgreement')}
-                </Nav.Link>
-              </li>
+              {language === 'ru' && (
+                <li>
+                  <Nav.Link
+                    as={Link}
+                    className={`${classes.footerNavLink} py-1 px-0`}
+                    eventKey="licenseAgreement"
+                    to="/licenseAgreement"
+                  >
+                    {t('footer.licenseAgreement')}
+                  </Nav.Link>
+                </li>
+              )}
               <li>
                 <Nav.Link
                   as="a"

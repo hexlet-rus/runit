@@ -333,6 +333,12 @@
       "snippetName": "Название сниппета",
       "save": "Подтвердить",
       "cancel": "Отмена"
+    },
+    "newSnippet": {
+      "title": "Создать сниппет",
+      "snippetName": "Название",
+      "template": "Шаблон",
+      "create": "Создать"
     }
   },
   "navbar": {

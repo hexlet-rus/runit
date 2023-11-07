@@ -20,6 +20,9 @@ function UserMenu() {
   const handleInDevelopment = () => {
     dispatch(actions.openModal({ type: 'inDevelopment' }));
   };
+  const handleNewSnippet = () => {
+    dispatch(actions.openModal({ type: 'newSnippet' }));
+  };
 
   return (
     <Dropdown align="end" as="li">
@@ -36,7 +39,7 @@ function UserMenu() {
       <Dropdown.Menu as="ul">
         <Dropdown.Header as="li">{username}</Dropdown.Header>
         <li>
-          <Dropdown.Item as={Button} onClick={handleInDevelopment}>
+          <Dropdown.Item as={Button} onClick={handleNewSnippet}>
             {t('snippetActions.new')}
           </Dropdown.Item>
         </li>
