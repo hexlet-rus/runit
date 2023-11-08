@@ -17,10 +17,11 @@ function SnippetsProvider({ children }) {
     return response.data;
   };
 
-  const saveSnippet = async (code, name) => {
+  const saveSnippet = async (code, name, language) => {
     const { data } = await axios.post(routes.createSnippetPath(), {
       name,
       code,
+      language,
     });
     return data.id;
   };

@@ -21,7 +21,8 @@ export class AppController {
     status: 200,
     description: 'Code successfully executed',
   })
-  async getLogs(@Query('code') code: any): Promise<Output> {
-    return this.appService.run(code);
+  async getLogs(@Query('snippet') snippet: any): Promise<Output> {
+    const { language, code } = snippet;
+    return this.appService.run(code, language);
   }
 }

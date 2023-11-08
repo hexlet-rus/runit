@@ -6,6 +6,7 @@ import { migration1670352324202 } from '../migrations/1670352324202-migration';
 import { AdduserRecoverHash1677580680097 } from '../migrations/1677580680097-AdduserRecoverHash';
 import { FillNullSlugsSnippets1682678760453 } from '../migrations/1682678760453-fill-null-slugs-snippets';
 import { RenameLoginToUsername1691073864288 } from '../migrations/1691073864288-RenameLoginToUsername';
+import { Migrations1699462100238 } from '../migrations/1699462100238-migrations';
 
 export default (): DataSourceOptions => {
   switch (process.env.NODE_ENV) {
@@ -25,6 +26,7 @@ export default (): DataSourceOptions => {
           AdduserRecoverHash1677580680097,
           FillNullSlugsSnippets1682678760453,
           RenameLoginToUsername1691073864288,
+          Migrations1699462100238,
         ],
       };
     case 'test':
@@ -38,6 +40,7 @@ export default (): DataSourceOptions => {
           migration1670352324202,
           AdduserRecoverHash1677580680097,
           RenameLoginToUsername1691073864288,
+          Migrations1699462100238,
         ],
       };
     default:
@@ -51,6 +54,7 @@ export default (): DataSourceOptions => {
           migration1670352324202,
           AdduserRecoverHash1677580680097,
           RenameLoginToUsername1691073864288,
+          Migrations1699462100238,
         ],
       };
   }

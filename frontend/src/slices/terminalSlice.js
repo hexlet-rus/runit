@@ -5,9 +5,9 @@ import { actions as editorActions } from './editorSlice';
 
 export const runCode = createAsyncThunk(
   'terminal/runCode',
-  async (code) => {
+  async (code, snippet) => {
     const { data, status } = await axios.get(`/api/compile`, {
-      params: { code },
+      params: { code, snippet },
     });
 
     if (status === 200) return data;
