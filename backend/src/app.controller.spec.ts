@@ -38,9 +38,15 @@ describe('AppController', () => {
   describe('app', () => {
     it('should run code', async () => {
       jest.spyOn(appController, 'getLogs');
-      await appController.getLogs({ code: 'console.log("hello");', language: 'javascript' });
+      await appController.getLogs({
+        code: 'console.log("hello");',
+        language: 'javascript',
+      });
 
-      expect(appService.run).toHaveBeenCalledWith('console.log("hello");', 'javascript');
+      expect(appService.run).toHaveBeenCalledWith(
+        'console.log("hello");',
+        'javascript',
+      );
     });
   });
 });
