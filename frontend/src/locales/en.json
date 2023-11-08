@@ -114,13 +114,14 @@
     "individually": "Individual training",
     "info": "Info",
     "language": "Language",
+    "licenseAgreement": "Non-Commercial license agreement",
     "mail": "support@hexlet.io",
     "mailHref": "mailto:support@hexlet.io",
     "mailSupport": "Mail to support",
     "moscow": " free in Moscow",
     "name": "Hexlet Rus Ltd.",
     "offer": "Public offer",
-    "ogrn": "ИНН 7325174845 ",
+    "ogrn": "PSRN 1217300010476",
     "programs": "Professions from scratch",
     "project": "Projects",
     "promo": "Promo",
@@ -211,6 +212,12 @@
       "snippetName": "Snippet name",
       "message": "To copy snippet you need to be authorized",
       "cancel": "Cancel"
+    },
+    "newSnippet": {
+      "title": "Create snippet",
+      "snippetName": "Title",
+      "template": "Template",
+      "create": "Create"
     }
   },
   "navbar": {
@@ -290,7 +297,7 @@
     },
     "pageHeader": "Signing In",
     "remindPass": "I can't remember the password",
-    "signInButton": "Sing In"
+    "signInButton": "Sign In"
   },
   "signUp": {
     "footer": {

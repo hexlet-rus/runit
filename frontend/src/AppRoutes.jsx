@@ -7,6 +7,7 @@ import { useTernaryDarkMode } from 'usehooks-ts';
 import { useAuth } from './hooks';
 import Layout from './pages/Layout.jsx';
 import routes from './routes.js';
+import ScrollToTop from './utils/scrollToTop.js';
 
 import DefaultLoader from './components/Loaders/DefaultLoader.jsx';
 
@@ -50,6 +51,7 @@ function AppRoutes() {
 
   return (
     <Suspense fallback={<DefaultLoader />}>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Landing />} />
