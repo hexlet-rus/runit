@@ -10,16 +10,18 @@ function SnippetsProvider({ children }) {
   };
 
   const getSnippetDataByViewParams = async ({ username, slug }) => {
-    const { data } = await axios.get(
+    const response = await axios.get(
       routes.getSnippetPathByParams(username, slug),
     );
-    return data;
+    // #TODO: ответ должен содержать данные о языке сниппета (response.data.language)
+    return response.data;
   };
 
-  const saveSnippet = async (code, name) => {
+  const saveSnippet = async (code, name, language) => {
     const { data } = await axios.post(routes.createSnippetPath(), {
       name,
       code,
+      language,
     });
     return data.id;
   };

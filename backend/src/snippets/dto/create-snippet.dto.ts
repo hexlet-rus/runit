@@ -14,4 +14,7 @@ export class CreateSnippetDto {
   @Length(1, 30)
   @IsString()
   name: string;
+
+  @IsString()
+  language: string;
 }

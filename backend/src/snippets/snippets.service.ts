@@ -52,12 +52,13 @@ export class SnippetsService {
     { id }: User,
   ): Promise<Snippets> {
     const snippet = new Snippets();
-    const { name, code } = createSnippetDto;
+    const { name, code, language } = createSnippetDto;
     const user = await this.usersRepository.findOneBy({ id });
     snippet.slug = await this.getSlug(id);
     snippet.name = name;
     snippet.user = user;
     snippet.code = code;
+    snippet.language = language;
     return this.snippetsRepository.save(snippet);
   }
 

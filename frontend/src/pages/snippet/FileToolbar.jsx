@@ -14,15 +14,14 @@ import Image from 'react-bootstrap/Image';
 import { useAuth, useSnippets } from '../../hooks';
 import { actions } from '../../slices/index.js';
 import { snippetName } from '../../utils/validationSchemas';
-
-import JavaScriptIcon from '../../assets/images/icons/javascript.svg';
+import icons from '../../utils/icons';
 
 function SnippetName({ snippet }) {
   const { isLoggedIn } = useAuth();
   const [isRenaming, setRenaming] = useState(false);
   const {
     code,
-    snippetData: { id, name },
+    snippetData: { id, name, language },
   } = snippet;
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -84,7 +83,7 @@ function SnippetName({ snippet }) {
         alt="JavaScript"
         className="me-1"
         height={32}
-        src={JavaScriptIcon}
+        src={icons.get(language)}
       />
       {formik.isSubmitting ? null : (
         <Form.Group className="form-floating">
