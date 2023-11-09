@@ -30,7 +30,8 @@
   "codeTemplates": {
     "javascript": "// Write your code in JavaScript\n",
     "php": "// Write your code in PHP\n",
-    "python": "// Write your code in Pyhton\n"
+    "python": "# Write your code in Pyhton\n",
+    "html": "<!--Write your code in HTML-->\n"
   },
   "editor": {
     "authBanner": "Sign in to edit",
@@ -191,7 +192,8 @@
   "languages": {
     "javascript": "JavaScript",
     "php": "PHP",
-    "python": "Python"
+    "python": "Python",
+    "html": "HTML"
   },
   "modals": {
     "inDevelopment": {

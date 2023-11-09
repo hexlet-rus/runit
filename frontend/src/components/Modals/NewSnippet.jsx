@@ -60,10 +60,11 @@ function NewSnippet({ handleClose, isOpen }) {
       setSubmitting(true);
       const [language] = selectedLng;
       const code = t(`codeTemplates.${language}`);
+      // TODO: Тут не должно быть проверок, нужно создать абстракцию сервиса, который будет работать с любыми языками
       if (language === 'javascript') {
         try {
           const snipName = `${values.name}.${extensions.get(language)}`;
-          const id = await snippetApi.saveSnippet(code, snipName);
+          const id = await snippetApi.saveSnippet(code, snipName, language);
           const { slug } = await snippetApi.getSnippetData(id);
           const url = new URL(snippetApi.genViewSnippetLink(username, slug));
           console.log(id, slug, url.pathname);

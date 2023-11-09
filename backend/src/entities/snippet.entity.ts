@@ -23,6 +23,9 @@ export class Snippets {
   @Column('text')
   code: string;
 
+  @Column('text')
+  language: string;
+
   @ManyToOne('Users', 'snippets', { onDelete: 'CASCADE' })
   @JoinColumn()
   user: Users;

@@ -5,8 +5,9 @@ const useDuplicateSnippet = () => {
   const { saveSnippet, getSnippetData } = useSnippets();
 
   const duplicateSnippet = useCallback(
-    async ({ code, snippetName }) => {
-      const newId = await saveSnippet(code, snippetName);
+    async ({ code, snippetName, language }) => {
+      // TODO: дублирование и создание нового снипета - это разные операции. Нужно заменить функцию saveSnippet
+      const newId = await saveSnippet(code, snippetName, language);
       const { slug } = await getSnippetData(newId);
       return { slug };
     },

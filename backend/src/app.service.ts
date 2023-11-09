@@ -8,7 +8,10 @@ import { Output } from './console/interfaces/output.interface';
 @Injectable()
 export class AppService {
   // eslint-disable-next-line class-methods-use-this
-  async run(code: string): Promise<Output> {
+  async run(code: string, language: string): Promise<Output> {
+    if (language === 'html') {
+      return { terminal: [code], alertLogs: [] };
+    }
     const alertLogs = [];
     const stdout = new Transform({
       transform(chunk, enc, cb) {

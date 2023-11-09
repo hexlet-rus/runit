@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
+// TODO: добавить изменение надписи в завимимости от языка сниппета
 export const DEFAULT_CODE = '// Write your code in JS\n';
 
 const initialState = {
@@ -9,6 +10,7 @@ const initialState = {
     name: null,
     ownerUsername: null,
     slug: null,
+    language: null,
   },
   error: false,
   isReady: false,

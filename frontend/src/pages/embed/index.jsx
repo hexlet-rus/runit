@@ -23,6 +23,7 @@ function EmbeddedPage() {
   const params = useParams();
   const dispatch = useDispatch();
   const { isReady } = useSelector((state) => state.editor);
+  // TODO: перебрать все useMemo и useCallback. Вряд ли они требуются и нужно все перекомпоновать
   const snippetParams = useMemo(
     () => ({
       username: params.username,

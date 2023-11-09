@@ -37,8 +37,10 @@ const darkTheme = {
 export const useEditor = () => {
   const dispatch = useDispatch();
 
-  const code = useSelector((state) => state.editor.code);
+  // TODO: нужно уходить от передачи кода в запросе на компиляцию и передавать только данные снипета, который нужно запустить
+  const { code, snippetData } = useSelector((state) => state.editor);
   const language = useSelector((state) => state.languages.currentLanguage);
+  const snippet = { ...snippetData, language };
 
   const beforeMount = (monaco) => {
     monaco.editor.defineTheme('light', lightTheme);
@@ -54,7 +56,7 @@ export const useEditor = () => {
     // eslint-disable-next-line no-bitwise
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
       const currentCode = editor.getValue();
-      dispatch(actions.runCode(currentCode));
+      dispatch(actions.runCode({ ...snippet, code: currentCode }));
     });
   };
 
