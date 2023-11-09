@@ -75,7 +75,7 @@ function Faq() {
   return (
     <Row>
       <Col className="my-5 pb-3">
-        <h2 className="text-white pb-3 mb-4">FAQ{t('faq.faq')}</h2>
+        <h2 className="text-white pb-3 mb-4">{t('faq.faq')}</h2>
         <Accordion defaultActiveKey="0" flush>
           <div>
             <CustomToggle eventKey="0">{t('faq.q0')}</CustomToggle>
