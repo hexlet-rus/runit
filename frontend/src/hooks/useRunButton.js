@@ -12,8 +12,12 @@ const useRunButton = () => {
   const codeExecutionState = useSelector(
     (state) => state.terminal.codeExecutionState,
   );
+  const snippet = useSelector((state) => state.editor.snippetData);
   const code = useSelector((state) => state.editor.code);
-  const onClick = useCallback(() => dispatch(runCode(code)), [dispatch, code]);
+  const onClick = useCallback(
+    () => dispatch(runCode({ ...snippet, code })),
+    [dispatch, code, snippet],
+  );
   const update = async (id, name) => {
     const response = await axios.put(routes.updateSnippetPath(id), {
       code,

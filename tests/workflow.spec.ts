@@ -16,6 +16,8 @@ test('Add and check JavaScript snippet', async ({ page }) => {
     .getByRole('button', { name: 'Создать сниппет на JavaScript' })
     .click();
 
+  await page.waitForURL(/.*snippets/);
+
   await page
     .getByRole('textbox', {
       name: 'Editor content;Press Alt+F1 for Accessibility Options.',
@@ -34,6 +36,9 @@ test('Add and check HTML snippet', async ({ page }) => {
   await page.getByLabel('Имя пользователя').fill(`test${randomNum}`);
   await page.getByLabel('Пароль', { exact: true }).fill('12345678');
   await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
+
+  await page.waitForURL(`http://localhost:3000/u/test${randomNum}`);
+
   await page
     .getByRole('button', { name: 'Создать сниппет на HTML' })
     .click();
@@ -104,7 +109,10 @@ test('Unable to re-register with an already registered email', async ({
   await page.getByLabel('Имя пользователя').fill(`test${randomNum}`);
   await page.getByLabel('Пароль', { exact: true }).fill('12345678');
   await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
-  await page.getByRole('button', { name: 'Профиль' }).click();
+  await page.waitForURL(`http://localhost:3000/u/test${randomNum}`);
+
+  await page.getByTitle('User Menu').click();
+
   await page.getByRole('button', { name: 'Выйти' }).click();
   await page.getByRole('button', { name: 'Регистрация' }).click();
   await page.getByLabel('Электронная почта').fill(`test${randomNum}@test.test`);
@@ -149,7 +157,7 @@ test('Successful registration with password more 8-character ', async ({
   await page.getByLabel('Имя пользователя').fill(`test42`);
   await page.getByLabel('Пароль', { exact: true }).fill('123456789');
   await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
-  await expect(page.getByRole('button', { name: 'Профиль' })).toBeVisible();
+  await page.waitForURL(`http://localhost:3000/u/test42`);
 });
 
 test('Successful authorization with email and password', async ({ page }) => {
@@ -161,13 +169,16 @@ test('Successful authorization with email and password', async ({ page }) => {
   await page.getByLabel('Имя пользователя').fill(`test33`);
   await page.getByLabel('Пароль', { exact: true }).fill('123456789');
   await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
-  await page.getByRole('button', { name: 'Профиль' }).click();
+
+  await page.waitForURL(`http://localhost:3000/u/test33`);
+  await page.getByTitle('User Menu').click();
   await page.getByRole('button', { name: 'Выйти' }).click();
 
   await page.getByRole('button', { name: 'Войти' }).click();
   await page.getByLabel('Электронная почта').fill(`test33@test.test`);
   await page.getByLabel('Пароль', { exact: true }).fill('123456789');
   await page.getByTestId('signin-button').click();
+  await page.waitForURL(`http://localhost:3000/u/test33`);
   await expect(page.getByRole('button', { name: 'Профиль' })).toBeVisible();
 });
 
@@ -180,7 +191,10 @@ test('Unable authorization by invalid email address', async ({ page }) => {
   await page.getByLabel('Имя пользователя').fill(`test34`);
   await page.getByLabel('Пароль', { exact: true }).fill('123456789');
   await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
-  await page.getByRole('button', { name: 'Профиль' }).click();
+
+  // TODO: вынести общую логику (создание пользователя) в beforeEach или функцию
+  await page.waitForURL(`http://localhost:3000/u/test34`);
+  await page.getByTitle('User Menu').click();
   await page.getByRole('button', { name: 'Выйти' }).click();
 
   await page.getByRole('button', { name: 'Войти' }).click();
@@ -199,7 +213,9 @@ test('Unable authorization by invalid password', async ({ page }) => {
   await page.getByLabel('Имя пользователя').fill(`test35`);
   await page.getByLabel('Пароль', { exact: true }).fill('123456789');
   await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
-  await page.getByRole('button', { name: 'Профиль' }).click();
+
+  await page.waitForURL(`http://localhost:3000/u/test35`);
+  await page.getByTitle('User Menu').click();
   await page.getByRole('button', { name: 'Выйти' }).click();
 
   await page.getByRole('button', { name: 'Войти' }).click();
@@ -213,16 +229,20 @@ test('Unable authorization by invalid password', async ({ page }) => {
 
 test('Successful create new snippet from profile', async ({ page }) => {
   const randomNum = Math.round(Math.random() * 1000 + Math.random() * 100);
-  await page.goto('http://localhost:3000/');
+  await page.goto('http://localhost:3000', {
+    waitUntil: 'domcontentloaded',
+  });
   await page.getByRole('button', { name: 'Регистрация' }).click();
   await page.getByLabel('Электронная почта').fill(`test${randomNum}@test.test`);
   await page.getByLabel('Имя пользователя').fill(`test${randomNum}`);
   await page.getByLabel('Пароль', { exact: true }).fill('12345678');
   await page.getByRole('button', { name: 'Зарегистрироваться' }).click();
-  await page.getByRole('button', { name: 'Профиль' }).click();
+  await page.waitForURL(`http://localhost:3000/u/test${randomNum}`);
+  
+  await page.getByTitle('User Menu').click();
   await page.getByRole('button', { name: 'Новый сниппет' }).click();
   await page.locator('input[type="text"]').fill('java');
   await page.getByLabel('javascript').click();
   await page.getByRole('button', { name: 'Создать', exact: true }).click();
-  await expect(page).toHaveURL(/.*snippets/);
+  await page.waitForURL(/.*snippets/);
 });

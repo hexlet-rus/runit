@@ -56,7 +56,7 @@ export const useEditor = () => {
     // eslint-disable-next-line no-bitwise
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
       const currentCode = editor.getValue();
-      dispatch(actions.runCode(currentCode, snippet));
+      dispatch(actions.runCode({ ...snippet, code: currentCode }));
     });
   };
 
