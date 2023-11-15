@@ -10,6 +10,8 @@ import { CloudArrowUp, CloudCheck, PencilFill } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import { useAuth, useSnippets } from '../../hooks';
 import { actions } from '../../slices/index.js';
@@ -91,7 +93,7 @@ function SnippetName({ snippet }) {
             ref={inputRef}
             as={AutowidthInput}
             autoComplete="off"
-            className="transition-padding"
+            className="transition-padding w-auto"
             id="name"
             isInvalid={!!formik.errors.name}
             maxLength={30}
