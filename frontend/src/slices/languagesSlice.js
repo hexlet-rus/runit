@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const slice = createSlice({
   name: 'languages',
   initialState: {
-    supportedLanguages: ['javascript', 'php', 'python', 'html'],
+    supportedLanguages: ['javascript', 'html'],
     currentLanguage: 'javascript',
   },
   reducers: {
