@@ -91,7 +91,7 @@ function SnippetName({ snippet }) {
             ref={inputRef}
             as={AutowidthInput}
             autoComplete="off"
-            className="transition-padding w-auto"
+            className="transition-padding"
             id="name"
             isInvalid={!!formik.errors.name}
             maxLength={30}
@@ -103,7 +103,7 @@ function SnippetName({ snippet }) {
             value={formik.values.name}
           />
           <Form.Control.Feedback
-            className={formik.errors.name && 'd-block'}
+            className={formik.errors.name && 'toolbar-feedback'}
             tooltip
             type="invalid"
           >

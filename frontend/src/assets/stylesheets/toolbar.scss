@@ -9,4 +9,8 @@
     line-height: 1;
     font-size: calc(#{$font-size-base} * 1.25);
   }
+  .toolbar-feedback {
+    display: block;
+    min-width: 150px;
+  }
 }
