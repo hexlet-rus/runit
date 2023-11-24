@@ -56,15 +56,15 @@ function Landing() {
         </Row>
         <Row className="my-5 pt-5">
           <Col className="text-center d-grid" xl={{ span: 3, offset: 1 }}>
-            <Button className="rounded-5 px-auto" size="lg">
+            <Button className="button-start rounded-5 px-auto" size="lg">
               {t('landing.startCoding')}
             </Button>
           </Col>
         </Row>
-        <Row className=" pb-5 mb-4 d-lg-none">
+        <Row className="d-lg-inline-flex mb-4 pt-4 pb-5 my-lg-5">
           <Col
             as="figure"
-            className="col-12 d-flex flex-row gap-4 align-items-center pt-4 col-md-4"
+            className="col-12 d-flex flex-row gap-4 align-items-center col-md-4"
           >
             <Image className="bg-primary rounded-circle" fluid src={Code} />
             <figcaption>
@@ -131,14 +131,27 @@ function Landing() {
             </figure>
           </Col>
           <Col
-            className="d-none d-lg-block mb-5 pb-5"
+            className="d-none d-lg-inline-flex mb-5 pb-5"
             lg={{ offset: 1, span: 10 }}
           >
-            <Carousel className="mb-5" indicators={false}>
+            <Carousel
+              className="mb-5"
+              indicators={false}
+              style={{ maxHeight: '350px' }}
+            >
               <Carousel.Item>
                 <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
                   <Col>
-                    <Image className="rounded-5" fluid src={ImageCarousel1} />
+                    <Image
+                      className="rounded-5"
+                      fluid
+                      src={ImageCarousel1}
+                      style={{
+                        width: '600px',
+                        height: '400px',
+                        objectFit: 'cover',
+                      }}
+                    />
                   </Col>
                   <Col>
                     <figcaption>{t('landing.inBrowser')}</figcaption>
@@ -148,7 +161,16 @@ function Landing() {
               <Carousel.Item>
                 <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
                   <Col>
-                    <Image className="rounded-5" fluid src={ImageCarousel2} />
+                    <Image
+                      className="rounded-5"
+                      fluid
+                      src={ImageCarousel2}
+                      style={{
+                        width: '600px',
+                        height: '400px',
+                        objectFit: 'cover',
+                      }}
+                    />
                   </Col>
                   <Col>
                     <figcaption>{t('landing.noZIP')}</figcaption>
@@ -158,7 +180,16 @@ function Landing() {
               <Carousel.Item>
                 <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
                   <Col>
-                    <Image className="rounded-5" fluid src={ImageCarousel3} />
+                    <Image
+                      className="rounded-5"
+                      fluid
+                      src={ImageCarousel3}
+                      style={{
+                        width: '600px',
+                        height: '400px',
+                        objectFit: 'cover',
+                      }}
+                    />
                   </Col>
                   <Col>
                     <figcaption>{t('landing.allComputers')}</figcaption>
@@ -168,7 +199,16 @@ function Landing() {
               <Carousel.Item>
                 <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
                   <Col>
-                    <Image className="rounded-5" fluid src={ImageCarousel4} />
+                    <Image
+                      className="rounded-5"
+                      fluid
+                      src={ImageCarousel4}
+                      style={{
+                        width: '600px',
+                        height: '400px',
+                        objectFit: 'cover',
+                      }}
+                    />
                   </Col>
                   <Col>
                     <figcaption>{t('landing.allOS')}</figcaption>
@@ -178,7 +218,16 @@ function Landing() {
               <Carousel.Item>
                 <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
                   <Col>
-                    <Image className="rounded-5" fluid src={ImageCarousel5} />
+                    <Image
+                      className="rounded-5"
+                      fluid
+                      src={ImageCarousel5}
+                      style={{
+                        width: '600px',
+                        height: '400px',
+                        objectFit: 'cover',
+                      }}
+                    />
                   </Col>
                   <Col>
                     <figcaption>{t('landing.noSettings')}</figcaption>
@@ -229,7 +278,7 @@ function Landing() {
             </p>
           </Col>
           <Col className="mx-auto d-grid mb-lg-5" xl={{ span: 3 }}>
-            <Button className="rounded-5 px-auto" size="lg">
+            <Button className="button-start rounded-5 px-auto" size="lg">
               {t('landing.startCoding')}
             </Button>
           </Col>

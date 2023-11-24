@@ -3,6 +3,8 @@ import { Container, Navbar, Image, Nav, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import routes from '../routes';
 
+import './landing.scss';
+
 import RunItLogo from './assets/LogoLight.svg';
 import Burger from './assets/Burger.svg';
 
