@@ -63,4 +63,9 @@ tag:
 	git tag $(TAG) && git push upstream $(TAG) --no-verify
 
 release:
+	make git-update
 	make tag TAG=$(shell bin/generate-next-tag)
+
+git-update:
+	git switch main
+	git pull upstream main --tags --rebase
