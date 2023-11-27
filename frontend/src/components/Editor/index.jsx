@@ -21,6 +21,7 @@ function CodeEditor({ readOnly = false }) {
     useTabStops: false,
     tabSize: 2,
     fontFamily: theme.monospaceFontFamily,
+    fixedOverflowWidgets: true,
   };
 
   return (
