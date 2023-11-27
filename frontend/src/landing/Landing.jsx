@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import { Button, Carousel, Col, Container, Image, Row } from 'react-bootstrap';
-
 import { useTranslation } from 'react-i18next';
+import routes from '../routes';
 import Faq from './Faq.jsx';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
@@ -25,7 +26,7 @@ function Landing() {
     <>
       <Header />
       <Container className="landing-body">
-        <Row className="my-5 pt-5">
+        <Row className="my-5 pt-5" id="aboutProject">
           <Col className="pt-5 d-lg-none" xl={{ offset: 1 }}>
             <div className="pt-5">
               <p>{t('landing.freeProject')}</p>
@@ -56,7 +57,12 @@ function Landing() {
         </Row>
         <Row className="my-5 pt-5">
           <Col className="text-center d-grid" xl={{ span: 3, offset: 1 }}>
-            <Button className="button-start rounded-5 px-auto" size="lg">
+            <Button
+              as={Link}
+              className="button-start rounded-5 px-auto"
+              size="lg"
+              to={routes.signInPagePath()}
+            >
               {t('landing.startCoding')}
             </Button>
           </Col>
@@ -90,7 +96,7 @@ function Landing() {
             </figcaption>
           </Col>
         </Row>
-        <Row className="mb-lg-5 pb-lg-5 gap-lg-3">
+        <Row className="mb-lg-5 pb-lg-5 gap-lg-3" id="advantages">
           <Col className="col-12" lg={{ span: 5, offset: 1 }}>
             <h2 className="mt-5 mb-4">{t('landing.noConfig')}</h2>
           </Col>
@@ -238,7 +244,7 @@ function Landing() {
           </Col>
         </Row>
         <Row>
-          <Col className="my-lg-5" lg={{ offset: 1 }}>
+          <Col className="my-lg-5" id="possibilities" lg={{ offset: 1 }}>
             <h2 className="my-5">{t('landing.moreOpportunity')}</h2>
           </Col>
         </Row>
@@ -278,7 +284,12 @@ function Landing() {
             </p>
           </Col>
           <Col className="mx-auto d-grid mb-lg-5" xl={{ span: 3 }}>
-            <Button className="button-start rounded-5 px-auto" size="lg">
+            <Button
+              as={Link}
+              className="button-start rounded-5 px-auto"
+              size="lg"
+              to={routes.signInPagePath()}
+            >
               {t('landing.startCoding')}
             </Button>
           </Col>

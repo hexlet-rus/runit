@@ -74,7 +74,7 @@ function Faq() {
 
   return (
     <Row>
-      <Col className="my-5 pb-3">
+      <Col className="my-5 pb-3" id="faq">
         <h2 className="text-white pb-3 mb-4">{t('faq.faq')}</h2>
         <Accordion defaultActiveKey="0" flush>
           <div>

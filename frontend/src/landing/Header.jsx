@@ -14,55 +14,71 @@ function Header() {
   const { t } = useTranslation();
 
   return (
-    <Navbar expand="lg">
-      <Container className="justify-content-between">
-        <div className="d-flex justify-content-between">
-          <Navbar.Brand className="d-flex pb-lg-4">
-            <Image fluid src={RunItLogo} width="80%" />
-          </Navbar.Brand>
-          <Navbar.Toggle
-            aria-controls="navbar-responsive"
-            className="border-0"
-            data-bs-toogle="collapse"
-          >
-            <Image src={Burger} />
-          </Navbar.Toggle>
-        </div>
+    <header>
+      <Navbar expand="lg">
+        <Container className="justify-content-between">
+          <div className="d-flex justify-content-between">
+            <Navbar.Brand className="d-flex pb-lg-4">
+              <Image fluid src={RunItLogo} width="80%" />
+            </Navbar.Brand>
+            <Navbar.Toggle
+              aria-controls="navbar-responsive"
+              className="border-0"
+              data-bs-toogle="collapse"
+            >
+              <Image src={Burger} />
+            </Navbar.Toggle>
+          </div>
 
-        <Navbar.Collapse className="mb-3 mb-lg-0" id="navbar-responsive">
-          <Nav className="gap-2 text-center">
-            <Nav.Link as={Link} to={routes.landingPath()}>
-              <span>{t('landing.header.about')}</span>
-            </Nav.Link>
-            <Nav.Link as={Link} to={routes.landingPath()}>
-              <span>{t('landing.header.advantages')}</span>
-            </Nav.Link>
-            <Nav.Link as={Link} to={routes.landingPath()}>
-              <span>{t('landing.header.opportunities')}</span>
-            </Nav.Link>
-            <Nav.Link as={Link} to={routes.landingPath()}>
-              <span>{t('faq.faq')}</span>
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-        <Navbar.Collapse className="mb-3 mb-lg-0" id="navbar-responsive">
-          <Nav className="gap-2 ms-auto">
-            <Button
-              className="rounded-5 d-flex px-5 justify-content-center"
-              variant="primary"
-            >
-              <span>{t('signIn.signInButton')}</span>
-            </Button>
-            <Button
-              className="rounded-5 d-flex px-5 justify-content-center"
-              variant="light"
-            >
-              <span className="text-primary">{t('signUp.registerButton')}</span>
-            </Button>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          <Navbar.Collapse className="mb-3 mb-lg-0" id="navbar-responsive">
+            <Nav as="ul" className="gap-2 text-center">
+              <li>
+                <Nav.Link className="header-link" href="#aboutProject">
+                  <span>{t('landing.header.about')}</span>
+                </Nav.Link>
+              </li>
+              <li>
+                <Nav.Link className="header-link" href="#advantages">
+                  <span>{t('landing.header.advantages')}</span>
+                </Nav.Link>
+              </li>
+              <li>
+                <Nav.Link className="header-link" href="#possibilities">
+                  <span>{t('landing.header.opportunities')}</span>
+                </Nav.Link>
+              </li>
+              <li>
+                <Nav.Link className="header-link" href="#faq">
+                  <span>{t('faq.faq')}</span>
+                </Nav.Link>
+              </li>
+            </Nav>
+          </Navbar.Collapse>
+          <Navbar.Collapse className="mb-3 mb-lg-0" id="navbar-responsive">
+            <Nav className="gap-2 ms-auto">
+              <Button
+                as={Link}
+                className="rounded-5 d-flex px-5 justify-content-center"
+                to={routes.signInPagePath()}
+                variant="primary"
+              >
+                <span>{t('signIn.signInButton')}</span>
+              </Button>
+              <Button
+                as={Link}
+                className="rounded-5 d-flex px-5 justify-content-center"
+                to={routes.signUpPagePath()}
+                variant="light"
+              >
+                <span className="text-primary">
+                  {t('signUp.registerButton')}
+                </span>
+              </Button>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </header>
   );
 }
 

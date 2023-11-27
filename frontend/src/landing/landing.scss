@@ -1,7 +1,12 @@
-.nav-link:hover {
+.header-link:hover,
+.header-link:focus {
     border-bottom: 1px solid var(--Aent, #136EF6);
 }
-.button-start:hover {
+.button-start:hover,
+.button-start:focus {
     background-color: #EBF1F9 !important;
     color: #136EF6 !important;
+}
+.footer {
+    background-color: #136EF6;
 }
