@@ -30,11 +30,16 @@ function Footer() {
               <Image className="pb-2" fluid src={RunItLogo} />
             </Nav.Link>
           </Col>
-          <Col className="col-6 d-flex gap-2 mb-4 justify-content-between">
-            <Nav as="ul">
+          <Col className="col-6 d-flex gap-2 mb-4">
+            <Nav
+              as="ul"
+              className="d-flex justify-content-between px-3"
+              style={{ width: '100%' }}
+            >
               <li>
                 <Nav.Link
                   aria-label="Vk"
+                  className="px-0"
                   href="https://vk.com/hexlet"
                   rel="noopener noreferrer nofollow"
                   target="_blank"
@@ -45,6 +50,7 @@ function Footer() {
               <li>
                 <Nav.Link
                   aria-label="Telegram"
+                  className="px-0"
                   href="https://t.me/hexletcommunity/12"
                   rel="noopener noreferrer nofollow"
                   target="_blank"
@@ -55,6 +61,7 @@ function Footer() {
               <li>
                 <Nav.Link
                   aria-label="Youtube"
+                  className="px-0"
                   href="https://www.youtube.com/user/HexletUniversity"
                   rel="noopener noreferrer nofollow"
                   target="_blank"
@@ -65,6 +72,7 @@ function Footer() {
               <li>
                 <Nav.Link
                   aria-label="X"
+                  className="px-0"
                   href="https://x.com/HexletHQ"
                   rel="noopener noreferrer nofollow"
                   target="_blank"
