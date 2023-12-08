@@ -2,6 +2,7 @@
   --bs-accordion-bg: none;
   --bs-accordion-color: white;
   --bs-accordion-btn-color: white;
+  --bs-accordion-active-color: white;
   --bs-accordion-icon-color: #fff;
   --bs-accordion-border-width: 0px;
   margin-left: -1.3rem;
@@ -21,11 +22,10 @@
 }
 :global(.accordion-button:not(.collapsed)::before) {
   transform: var(--bs-accordion-btn-icon-transform);
-  background-image: var(--bs-accordion-btn-active-icon);
 }
 
 :global(.accordion-button::before) {
-  content: '';
+  content: "";
   flex-shrink: 0;
   width: var(--bs-accordion-btn-icon-width);
   height: var(--bs-accordion-btn-icon-width);
