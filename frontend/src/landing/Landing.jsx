@@ -93,34 +93,40 @@ function Landing() {
             </Button>
           </Col>
         </Row>
-        <Row className="d-lg-inline-flex mb-4 pt-4 pb-5 my-lg-5">
-          <Col
-            as="figure"
-            className="col-12 d-flex flex-row gap-4 align-items-center col-md-4"
-          >
-            <Image className="bg-primary rounded-circle" fluid src={Code} />
-            <figcaption>
-              {t('landing.easyStart.first')} {t('landing.easyStart.second')}
-            </figcaption>
-          </Col>
-          <Col
-            as="figure"
-            className="col-12 d-flex flex-row gap-4 align-items-center col-md-4"
-          >
-            <Image className="bg-primary rounded-circle" fluid src={Devices} />
-            <figcaption>
-              {t('landing.allDevices.first')} {t('landing.allDevices.second')}
-            </figcaption>
-          </Col>
-          <Col
-            as="figure"
-            className="col-12 d-flex flex-row gap-4 align-items-center col-md-4"
-          >
-            <Image className="bg-primary rounded-circle" fluid src={Share} />
-            <figcaption>
-              {t('landing.shareCode.first')} {t('landing.shareCode.second')}
-            </figcaption>
-          </Col>
+        <Row className="d-lg-inline-flex mb-4 my-lg-5 background-dark">
+          <div className="d-lg-flex py-5  justify-content-between">
+            <Col
+              as="figure"
+              className="col-12 d-flex flex-row gap-4 align-items-center col-lg-3 mb-4 mb-lg-0"
+            >
+              <Image className="bg-primary rounded-circle" fluid src={Code} />
+              <figcaption>
+                {t('landing.easyStart.first')} {t('landing.easyStart.second')}
+              </figcaption>
+            </Col>
+            <Col
+              as="figure"
+              className="col-12 d-flex flex-row gap-4 align-items-center col-lg-3  mb-4 mb-lg-0"
+            >
+              <Image
+                className="bg-primary rounded-circle"
+                fluid
+                src={Devices}
+              />
+              <figcaption>
+                {t('landing.allDevices.first')} {t('landing.allDevices.second')}
+              </figcaption>
+            </Col>
+            <Col
+              as="figure"
+              className="col-12 d-flex flex-row gap-4 align-items-center col-lg-3 mb-lg-0"
+            >
+              <Image className="bg-primary rounded-circle" fluid src={Share} />
+              <figcaption>
+                {t('landing.shareCode.first')} {t('landing.shareCode.second')}
+              </figcaption>
+            </Col>
+          </div>
         </Row>
         <Row className="mb-lg-5 pb-lg-5 gap-lg-3" id="advantages">
           <Col className="col-12" lg={{ span: 5, offset: 1 }}>
@@ -135,7 +141,7 @@ function Landing() {
           ref={advantagesRef}
           className="d-none d-lg-inline-flex my-5 overflow-auto flex-nowrap advantages-horizontal-scroll"
         >
-          <Col clssaName="col-12" lg={{ offset: 1, span: 10 }}>
+          <Col clssaName="col-12" lg={{ offset: 1, span: 11 }}>
             <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center me-5">
               <Col>
                 <Image
@@ -154,7 +160,7 @@ function Landing() {
               </Col>
             </figure>
           </Col>
-          <Col clssaName="col-12" lg={{ offset: 1, span: 10 }}>
+          <Col clssaName="col-12" lg={{ offset: 1, span: 11 }}>
             <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center mx-5">
               <Col>
                 <Image
@@ -173,7 +179,7 @@ function Landing() {
               </Col>
             </figure>
           </Col>
-          <Col clssaName="col-12" lg={{ offset: 1, span: 10 }}>
+          <Col clssaName="col-12" lg={{ offset: 1, span: 11 }}>
             <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center mx-5">
               <Col>
                 <Image
@@ -192,7 +198,7 @@ function Landing() {
               </Col>
             </figure>
           </Col>
-          <Col clssaName="col-12" lg={{ offset: 1, span: 10 }}>
+          <Col clssaName="col-12" lg={{ offset: 1, span: 11 }}>
             <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center mx-5">
               <Col>
                 <Image

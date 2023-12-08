@@ -10,3 +10,14 @@
 .footer {
     background-color: #136EF6;
 }
+@media (min-width: 992px) {
+    .background-dark::before {
+        content: "";
+        position: absolute;
+        left: 0px;
+        width: 100vw;
+        height: 11rem;
+        background-color: #050914;
+        z-index: -1;
+}
+}
