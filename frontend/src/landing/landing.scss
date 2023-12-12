@@ -11,6 +11,25 @@
     background-color: #136EF6;
 }
 @media (min-width: 992px) {
+    .first-bg-image{
+        position: relative;
+        max-width: 2000px;
+        overflow: hidden;
+        &::before {
+            position: absolute;
+            top: -3%;
+            right: -30%;
+            width: 120rem;
+            height: 80rem;
+            content: "";
+            background-image: url("./assets/BGElement.svg");
+            background-repeat: no-repeat;
+            background-position: top;
+            background-size: 100% 100%;
+            z-index: -1;
+        }
+    }
+    
     .background-dark::before {
         content: "";
         position: absolute;
@@ -19,5 +38,42 @@
         height: 11rem;
         background-color: #050914;
         z-index: -1;
+    }
 }
+
+@media (max-width: 992px) {
+    .first-bg-image{
+        position: relative;
+        overflow: hidden;
+        &::before {
+            position: absolute;
+            top: 3%;
+            right: -70%;
+            width: 64rem;
+            height: 55rem;
+            content: "";
+            background-image: url("./assets/BGElement.svg");
+            background-repeat: no-repeat;
+            background-position: top;
+            background-size: 100% 100%;
+            z-index: -1;
+        }
+    }
+    
+    .possibilities-background {
+        position: relative;
+        &::before {
+            position: absolute;
+            width: 76rem;
+            height: 6rem;
+            left: -26rem;
+            top: -0.7rem;
+            content: "";
+            background-image: url("./assets/SmallBGElement.svg");
+            background-repeat: no-repeat;
+            background-position: top;
+            background-size: 100% 100%;
+            z-index: -1;
+        }
+    }
 }
