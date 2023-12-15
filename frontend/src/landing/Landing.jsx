@@ -29,14 +29,16 @@ function Landing() {
     if (el) {
       const onWheel = (e) => {
         if (e.deltaY === 0) return;
-        if (
+
+        /*    if (
           !(el.scrollLeft === 0 && e.deltaY < 0) &&
           !(
             el.scrollWidth - el.clientWidth - Math.round(el.scrollLeft) === 0 &&
             e.deltaY > 0
           )
-        )
-          e.preventDefault();
+        ) */
+
+        e.preventDefault();
         el.scrollTo({
           left: el.scrollLeft + e.deltaY,
         });
