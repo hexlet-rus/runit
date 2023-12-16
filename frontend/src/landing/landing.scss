@@ -1,3 +1,35 @@
+:root{
+    .btn-signin {
+        --bs-btn-bg: #136EF6;
+        --bs-btn-color: #EBF1F9;
+        --bs-btn-border-color: #136EF6;
+        --hover-background: #136EF6;
+        --hover-border: #136EF6;
+        --hover-color: #EBF1F9;
+        --bs-btn-hover-color: #EBF1F9;
+        --bs-btn-hover-bg: #136EF6;
+        --bs-btn-hover-border-color: #136EF6;
+        --bs-btn-focus-shadow-rgb: #136EF6;
+        &:hover, :focus {
+            font-weight: 500;
+        }
+    }
+    .btn-signup {
+        --bs-btn-bg: #EBF1F9;
+        --bs-btn-color: #136EF6;
+        --bs-btn-border-color: #EBF1F9;
+        --hover-background: #EBF1F9;
+        --hover-border: #EBF1F9;
+        --hover-color: #136EF6;
+        --bs-btn-hover-color: #136EF6;
+        --bs-btn-hover-bg: #EBF1F9;
+        --bs-btn-hover-border-color: #EBF1F9;
+        --bs-btn-focus-shadow-rgb: #EBF1F9;
+        &:hover, :focus {
+            font-weight: 500;
+        }
+    }
+}
 .header-link:hover,
 .header-link:focus {
     border-bottom: 1px solid var(--Aent, #136EF6);
@@ -6,6 +38,8 @@
 .button-start:focus {
     background-color: #EBF1F9 !important;
     color: #136EF6 !important;
+    border-color: #EBF1F9 !important;
+    font-weight: 500 !important;
 }
 .footer {
     background-color: #136EF6;

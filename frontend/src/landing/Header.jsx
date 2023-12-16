@@ -55,10 +55,10 @@ function Header() {
             </Nav>
           </Navbar.Collapse>
           <Navbar.Collapse className="mb-3 mb-lg-0" id="navbar-responsive">
-            <Nav className="gap-2 ms-auto">
+            <Nav className="gap-3 ms-auto">
               <Button
                 as={Link}
-                className="rounded-5 d-flex px-5 justify-content-center"
+                className="rounded-5 d-flex px-5 justify-content-center btn-signin"
                 to={routes.signInPagePath()}
                 variant="primary"
               >
@@ -66,13 +66,11 @@ function Header() {
               </Button>
               <Button
                 as={Link}
-                className="rounded-5 d-flex px-5 justify-content-center"
+                className="rounded-5 d-flex px-5 justify-content-center btn-signup"
                 to={routes.signUpPagePath()}
-                variant="light"
+                variant="secondary"
               >
-                <span className="text-primary">
-                  {t('signUp.registerButton')}
-                </span>
+                <span>{t('signUp.registerButton')}</span>
               </Button>
             </Nav>
           </Navbar.Collapse>
