@@ -3,15 +3,18 @@ import { Container, Navbar, Image, Nav, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import routes from '../routes';
 
-import './landing.scss';
-
-import RunItLogo from './assets/LogoLight.svg';
+import RunItLogoLight from './assets/LogoHeaderLightTheme.svg';
+import RunItLogoDark from './assets/LogoHeaderDarkTheme.svg';
 import Burger from './assets/Burger.svg';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './landing.scss';
+import './custom-colors.scss';
 
 function Header() {
   const { t } = useTranslation();
+  const themeMode = localStorage.getItem('theme');
+  const logo = themeMode === 'light' ? RunItLogoLight : RunItLogoDark;
 
   return (
     <header>
@@ -19,7 +22,7 @@ function Header() {
         <Container className="justify-content-between">
           <div className="d-flex justify-content-between">
             <Navbar.Brand className="d-flex pb-lg-4">
-              <Image fluid src={RunItLogo} width="80%" />
+              <Image fluid src={logo} width="80%" />
             </Navbar.Brand>
             <Navbar.Toggle
               aria-controls="navbar-responsive"
@@ -33,24 +36,24 @@ function Header() {
           <Navbar.Collapse className="mb-3 mb-lg-0" id="navbar-responsive">
             <Nav as="ul" className="gap-2 text-center">
               <li>
-                <Nav.Link className="header-link" href="#aboutProject">
+                <Navbar.Brand className="header-link" href="#aboutProject">
                   <span>{t('landing.header.about')}</span>
-                </Nav.Link>
+                </Navbar.Brand>
               </li>
               <li>
-                <Nav.Link className="header-link" href="#advantages">
+                <Navbar.Brand className="header-link" href="#advantages">
                   <span>{t('landing.header.advantages')}</span>
-                </Nav.Link>
+                </Navbar.Brand>
               </li>
               <li>
-                <Nav.Link className="header-link" href="#possibilities">
+                <Navbar.Brand className="header-link" href="#possibilities">
                   <span>{t('landing.header.opportunities')}</span>
-                </Nav.Link>
+                </Navbar.Brand>
               </li>
               <li>
-                <Nav.Link className="header-link" href="#faq">
+                <Navbar.Brand className="header-link" href="#faq">
                   <span>{t('faq.faq')}</span>
-                </Nav.Link>
+                </Navbar.Brand>
               </li>
             </Nav>
           </Navbar.Collapse>

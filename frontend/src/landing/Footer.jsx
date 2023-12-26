@@ -5,149 +5,186 @@ import {
   Image,
   Form,
   FloatingLabel,
+  NavbarBrand,
   Nav,
 } from 'react-bootstrap';
+import './custom-colors.scss';
 import './landing.scss';
 import { useTranslation } from 'react-i18next';
-import RunItLogo from './assets/LogoDark.svg';
-import Twitter from './assets/Twitter_black.svg';
-import Telegram from './assets/Telegram_black.svg';
-import VK from './assets/VK_black.svg';
-import YouTube from './assets/YouTube_black.svg';
-import TwitterLg from './assets/Twitter_black 1.svg';
-import TelegramLg from './assets/Telegram_black 1.svg';
-import VKLg from './assets/VK_black 1.svg';
-import YouTubeLg from './assets/YouTube_black 1.svg';
+import TwitterDarkMobile from './assets/Twitter_dark_theme_mobile.svg';
+import TwitterLightMobile from './assets/Twitter_light_theme_mobile.svg';
+import TelegramDarkMobile from './assets/Telegram_dark_theme_mobile.svg';
+import TelegramLightMobile from './assets/Telegram_light_theme_mobile.svg';
+import VKDarkMobile from './assets/VK_dark_theme_mobile.svg';
+import VKLightMobile from './assets/VK_light_theme_mobile.svg';
+import YouTubeDarkMobile from './assets/YouTube_dark_theme_mobile.svg';
+import YouTubeLightMobile from './assets/YouTube_light_theme_mobile.svg';
+import TwitterDark from './assets/Twitter_dark_theme.svg';
+import TwitterLight from './assets/Twitter_light_theme.svg';
+import TelegramDark from './assets/Telegram_dark_theme.svg';
+import TelegramLight from './assets/Telegram_light_theme.svg';
+import VKDark from './assets/VK_dark_theme.svg';
+import VKLight from './assets/VK_light_theme.svg';
+import YouTubeDark from './assets/YouTube_dark_theme.svg';
+import YouTubeLight from './assets/YouTube_light_theme.svg';
+import RunItLogoLight from './assets/LogoFooterLight.svg';
+import RunItLogoDark from './assets/LogoFooterDark.svg';
 
 function Footer() {
   const { t } = useTranslation();
+  const themeMode = localStorage.getItem('theme');
+  const logo = themeMode === 'light' ? RunItLogoLight : RunItLogoDark;
+
   return (
     <footer className="footer">
-      <Container className="mt-5">
+      <Container className="mt-5 py-5 text-white">
         <Row className="pt-4 d-lg-none">
           <Col className="col-6 mb-4">
-            <Nav.Link>
-              <Image className="pb-2" fluid src={RunItLogo} />
-            </Nav.Link>
+            <NavbarBrand>
+              <Image className="pb-2" fluid src={logo} />
+            </NavbarBrand>
           </Col>
           <Col className="col-6 d-flex gap-2 mb-4">
             <Nav
               as="ul"
-              className="d-flex justify-content-between px-3"
-              style={{ width: '100%' }}
+              className="d-flex flex-fill justify-content-between px-3 social-networks"
             >
               <li>
-                <Nav.Link
+                <NavbarBrand
                   aria-label="Vk"
                   className="px-0"
                   href="https://vk.com/hexlet"
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image fluid src={VK} />
-                </Nav.Link>
+                  <Image
+                    fluid
+                    src={themeMode === 'light' ? VKLightMobile : VKDarkMobile}
+                  />
+                </NavbarBrand>
               </li>
               <li>
-                <Nav.Link
+                <NavbarBrand
                   aria-label="Telegram"
                   className="px-0"
                   href="https://t.me/hexletcommunity/12"
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image fluid src={Telegram} />
-                </Nav.Link>
+                  <Image
+                    fluid
+                    src={
+                      themeMode === 'light'
+                        ? TelegramLightMobile
+                        : TelegramDarkMobile
+                    }
+                  />
+                </NavbarBrand>
               </li>
               <li>
-                <Nav.Link
+                <NavbarBrand
                   aria-label="Youtube"
                   className="px-0"
                   href="https://www.youtube.com/user/HexletUniversity"
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image fluid src={YouTube} />
-                </Nav.Link>
+                  <Image
+                    fluid
+                    src={
+                      themeMode === 'light'
+                        ? YouTubeLightMobile
+                        : YouTubeDarkMobile
+                    }
+                  />
+                </NavbarBrand>
               </li>
               <li>
-                <Nav.Link
+                <NavbarBrand
                   aria-label="X"
                   className="px-0"
                   href="https://x.com/HexletHQ"
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image fluid src={Twitter} />
-                </Nav.Link>
+                  <Image
+                    fluid
+                    src={
+                      themeMode === 'light'
+                        ? TwitterLightMobile
+                        : TwitterDarkMobile
+                    }
+                  />
+                </NavbarBrand>
               </li>
             </Nav>
           </Col>
           <Col className="col-6 mb-4">
             <Nav as="ul">
               <li className="mb-2">
-                <Nav.Link href="#aboutProject">
+                <NavbarBrand href="#aboutProject">
                   {t('landing.header.advantages')}
-                </Nav.Link>
+                </NavbarBrand>
               </li>
               <li className="mb-2 link-light">
-                <Nav.Link href="#advantages">Преимущества</Nav.Link>
+                <NavbarBrand href="#advantages">Преимущества</NavbarBrand>
               </li>
               <li className="mb-2">
-                <Nav.Link href="#possibilities">
+                <NavbarBrand href="#possibilities">
                   {t('landing.header.opportunities')}
-                </Nav.Link>
+                </NavbarBrand>
               </li>
               <li className="mb-2">
-                <Nav.Link href="#faq">{t('faq.faq')}</Nav.Link>
+                <NavbarBrand href="#faq">{t('faq.faq')}</NavbarBrand>
               </li>
             </Nav>
           </Col>
           <Col className="col-6 mb-4">
             <Nav as="ul">
               <li className="mb-2">
-                <Nav.Link
+                <NavbarBrand
                   href="https://ru.hexlet.io/pages/about"
                   target="_blank"
                 >
                   {t('footer.about')}
-                </Nav.Link>
+                </NavbarBrand>
               </li>
               <li className="mb-2">
-                <Nav.Link
+                <NavbarBrand
                   href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
                   target="_blank"
                 >
                   {t('footer.career')}
-                </Nav.Link>
+                </NavbarBrand>
               </li>
               <li className="mb-2">
-                <Nav.Link
+                <NavbarBrand
                   href="https://hexlet.printdirect.ru/?partner_id=615497"
                   target="_blank"
                 >
                   {t('footer.shop')}
-                </Nav.Link>
+                </NavbarBrand>
               </li>
               <li className="mb-2">
-                <Nav.Link href="mailto: runit@hexlet.io" target="_blank">
+                <NavbarBrand href="mailto: runit@hexlet.io" target="_blank">
                   {t('footer.mailSupport')}
-                </Nav.Link>
+                </NavbarBrand>
               </li>
             </Nav>
           </Col>
           <Col className="col-6 mb-4">
             <span>
-              <a href={t('footer.tel1Href')}>
+              <NavbarBrand href={t('footer.tel1Href')}>
                 <b>{t('footer.tel1')}</b>
-              </a>
+              </NavbarBrand>
               {t('footer.rf')}
             </span>
           </Col>
           <Col className="col-6 mb-4">
             <span className="m-0">
-              <a href={t('footer.tel2Href')}>
+              <NavbarBrand href={t('footer.tel2Href')}>
                 <b>{t('footer.tel2')}</b>
-              </a>
+              </NavbarBrand>
               {t('footer.moscow')}
             </span>
           </Col>
@@ -166,69 +203,81 @@ function Footer() {
         </Row>
         <Row className="d-flex mx-5 mb-3 align-items-center d-none d-lg-flex">
           <Col>
-            <Image className="pb-3" fluid src={RunItLogo} />
+            <Image className="pb-3" fluid src={logo} />
           </Col>
           <Col>
             <Row>
               <Col>
                 <span>
-                  <a href={t('footer.tel1Href')}>
+                  <NavbarBrand href={t('footer.tel1Href')}>
                     <b>{t('footer.tel1')}</b>
-                  </a>
+                  </NavbarBrand>
                   {t('footer.rf')}
                 </span>
               </Col>
               <Col>
                 <span className="m-0">
-                  <a href={t('footer.tel2Href')}>
+                  <NavbarBrand href={t('footer.tel2Href')}>
                     <b>{t('footer.tel2')}</b>
-                  </a>
+                  </NavbarBrand>
                   {t('footer.moscow')}
                 </span>
               </Col>
             </Row>
           </Col>
           <Col className="d-flex gap-4">
-            <Nav as="ul">
+            <Nav
+              as="ul"
+              className="justify-content-between w-75 social-networks"
+            >
               <li>
-                <Nav.Link
+                <NavbarBrand
                   aria-label="Vk"
                   href="https://vk.com/hexlet"
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image fluid src={VKLg} />
-                </Nav.Link>
+                  <Image fluid src={themeMode === 'light' ? VKLight : VKDark} />
+                </NavbarBrand>
               </li>
               <li>
-                <Nav.Link
+                <NavbarBrand
                   aria-label="Telegram"
                   href="https://t.me/hexletcommunity/12"
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image fluid src={TelegramLg} />
-                </Nav.Link>
+                  <Image
+                    fluid
+                    src={themeMode === 'light' ? TelegramLight : TelegramDark}
+                  />
+                </NavbarBrand>
               </li>
               <li>
-                <Nav.Link
+                <NavbarBrand
                   aria-label="Youtube"
                   href="https://www.youtube.com/user/HexletUniversity"
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image fluid src={YouTubeLg} />
-                </Nav.Link>
+                  <Image
+                    fluid
+                    src={themeMode === 'light' ? YouTubeLight : YouTubeDark}
+                  />
+                </NavbarBrand>
               </li>
               <li>
-                <Nav.Link
+                <NavbarBrand
                   aria-label="X"
                   href="https://x.com/HexletHQ"
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image fluid src={TwitterLg} />
-                </Nav.Link>
+                  <Image
+                    fluid
+                    src={themeMode === 'light' ? TwitterLight : TwitterDark}
+                  />
+                </NavbarBrand>
               </li>
             </Nav>
           </Col>
@@ -239,72 +288,73 @@ function Footer() {
               <Col>
                 <Nav as="ul">
                   <li className="mb-2">
-                    <Nav.Link className="p-0" href="#aboutProject">
+                    <NavbarBrand className="p-0" href="#aboutProject">
                       {t('landing.header.advantages')}
-                    </Nav.Link>
+                    </NavbarBrand>
                   </li>
                   <li className="mb-2">
-                    <Nav.Link className="p-0" href="#advantages">
+                    <NavbarBrand className="p-0" href="#advantages">
                       Преимущества
-                    </Nav.Link>
+                    </NavbarBrand>
                   </li>
                   <li className="mb-2">
-                    <Nav.Link className="p-0 pe-5" href="#possibilities">
+                    <NavbarBrand className="p-0 pe-5" href="#possibilities">
                       {t('landing.header.opportunities')}
-                    </Nav.Link>
+                    </NavbarBrand>
                   </li>
                   <li className="mb-2">
-                    <Nav.Link className="p-0" href="#faq">
+                    <NavbarBrand className="p-0" href="#faq">
                       {t('faq.faq')}
-                    </Nav.Link>
+                    </NavbarBrand>
                   </li>
                 </Nav>
               </Col>
               <Col>
                 <Nav as="ul">
                   <li className="mb-2">
-                    <Nav.Link
+                    <NavbarBrand
                       className="p-0"
                       href="https://ru.hexlet.io/pages/about"
                       target="_blank"
                     >
                       {t('footer.about')}
-                    </Nav.Link>
+                    </NavbarBrand>
                   </li>
                   <li className="mb-2">
-                    <Nav.Link
+                    <NavbarBrand
                       className="p-0"
                       href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
                       target="_blank"
                     >
                       {t('footer.career')}
-                    </Nav.Link>
+                    </NavbarBrand>
                   </li>
                   <li className="mb-2">
-                    <Nav.Link
+                    <NavbarBrand
                       className="p-0"
                       href="https://hexlet.printdirect.ru/?partner_id=615497"
                       target="_blank"
                     >
                       {t('footer.shop')}
-                    </Nav.Link>
+                    </NavbarBrand>
                   </li>
                   <li className="mb-2">
-                    <Nav.Link
+                    <NavbarBrand
                       className="p-0"
                       href="mailto: runit@hexlet.io"
                       target="_blank"
                     >
                       {t('footer.mailSupport')}
-                    </Nav.Link>
+                    </NavbarBrand>
                   </li>
                 </Nav>
               </Col>
             </Row>
           </Col>
           <Col>
-            <Form.Group>
+            <Form.Group data-bs-theme="light">
               <FloatingLabel
+                className="text-black"
                 controlId="floatingTextarea"
                 label={t('footer.mailSupport')}
               >

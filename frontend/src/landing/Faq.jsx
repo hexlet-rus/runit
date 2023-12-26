@@ -15,10 +15,15 @@ function CustomToggle({ children, eventKey }) {
 
   const isCurrentEventKey = activeEventKey === eventKey;
 
+  const themeMode = localStorage.getItem('theme');
+  const colorForEl = themeMode === 'light' ? 'black' : 'white';
+
   return (
     <div
       className={
-        isCurrentEventKey ? 'd-grid' : 'd-grid border-bottom border-white'
+        isCurrentEventKey
+          ? 'd-grid'
+          : `d-grid border-bottom border-${colorForEl}`
       }
     >
       <button
@@ -26,7 +31,7 @@ function CustomToggle({ children, eventKey }) {
         onClick={decoratedOnClick}
         type="button"
       >
-        <h3 className="m-0 text-white me-3">{children}</h3>
+        <h3 className="m-0  me-3">{children}</h3>
         {isCurrentEventKey ? (
           <div className="ms-3">
             <svg
@@ -38,7 +43,7 @@ function CustomToggle({ children, eventKey }) {
             >
               <path
                 d="M36 30L24 18L12 30"
-                stroke="white"
+                stroke={colorForEl}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="4"
@@ -56,7 +61,7 @@ function CustomToggle({ children, eventKey }) {
             >
               <path
                 d="M12 18L24 30L36 18"
-                stroke="white"
+                stroke={colorForEl}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="4"
@@ -75,22 +80,20 @@ function Faq() {
   return (
     <Row>
       <Col className="my-5 pb-3" id="faq">
-        <h2 className="text-white pb-3 mb-4">{t('faq.faq')}</h2>
+        <h2 className=" pb-3 mb-4">{t('faq.faq')}</h2>
         <Accordion defaultActiveKey="0" flush>
           <div>
             <CustomToggle eventKey="0">{t('faq.q0')}</CustomToggle>
             <Accordion.Collapse eventKey="0">
-              <article className="px-3 text-white">
+              <article className="px-3 ">
                 <p>{t('faq.a0')}</p>
               </article>
             </Accordion.Collapse>
           </div>
           <div>
-            <CustomToggle eventKey="1">
-              Какие бывают IDE?{t('faq.q2')}
-            </CustomToggle>
+            <CustomToggle eventKey="1">{t('faq.q2')}</CustomToggle>
             <Accordion.Collapse eventKey="1">
-              <article className="px-3 text-white">
+              <article className="px-3 ">
                 <p>{t('faq.a2')}</p>
                 <p>
                   <b>{t('faq.a21')}</b>
@@ -106,7 +109,7 @@ function Faq() {
           <div>
             <CustomToggle eventKey="2">{t('faq.q3')}</CustomToggle>
             <Accordion.Collapse eventKey="2">
-              <article className="px-3 text-white">
+              <article className="px-3 ">
                 <p>{t('faq.a3')}</p>
               </article>
             </Accordion.Collapse>
@@ -114,7 +117,7 @@ function Faq() {
           <div>
             <CustomToggle eventKey="3">{t('faq.q1')}</CustomToggle>
             <Accordion.Collapse eventKey="3">
-              <article className="px-3 text-white">
+              <article className="px-3 ">
                 <p>{t('faq.a11')}</p>
                 <p>
                   <b>{t('faq.a110')}</b>
