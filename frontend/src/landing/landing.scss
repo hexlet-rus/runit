@@ -60,7 +60,7 @@
     .first-bg-image{
         position: relative;
         max-width: 2000px;
-        overflow: visible;
+        overflow: hidden;
         &::before {
             position: absolute;
             top: -5%;
