@@ -120,7 +120,7 @@ function Footer() {
             </Nav>
           </Col>
           <Col className="col-6 mb-4">
-            <Nav as="ul">
+            <Nav as="ul" className="list-group">
               <li className="mb-2">
                 <NavbarBrand href="#aboutProject">
                   {t('landing.header.advantages')}
@@ -140,7 +140,7 @@ function Footer() {
             </Nav>
           </Col>
           <Col className="col-6 mb-4">
-            <Nav as="ul">
+            <Nav as="ul" className="list-group">
               <li className="mb-2">
                 <NavbarBrand
                   href="https://ru.hexlet.io/pages/about"
@@ -173,32 +173,28 @@ function Footer() {
             </Nav>
           </Col>
           <Col className="col-6 mb-4">
-            <span>
+            <p className="m-0">
               <NavbarBrand href={t('footer.tel1Href')}>
                 <b>{t('footer.tel1')}</b>
               </NavbarBrand>
-              {t('footer.rf')}
-            </span>
+            </p>
+            <p>{t('footer.rf')}</p>
           </Col>
           <Col className="col-6 mb-4">
-            <span className="m-0">
+            <p className="m-0">
               <NavbarBrand href={t('footer.tel2Href')}>
                 <b>{t('footer.tel2')}</b>
               </NavbarBrand>
-              {t('footer.moscow')}
-            </span>
+            </p>
+            <p> {t('footer.moscow')}</p>
           </Col>
           <Col className="col-6  mb-4">
-            <p className="m-0">
-              <span className="m-0">{t('footer.name')}</span>
-              <span className="m-0">{t('footer.ogrn')}</span>
-            </p>
+            <p className="m-0">{t('footer.name')}</p>
+            <p className="m-0">{t('footer.ogrn')}</p>
           </Col>
           <Col className="col-6 mb-4">
-            <p className="m-0">
-              <span className="m-0">{t('footer.city')}</span>
-              <span className="m-0">{t('footer.street')}</span>
-            </p>
+            <p className="m-0">{t('footer.city')}</p>
+            <p className="m-0">{t('footer.street')}</p>
           </Col>
         </Row>
         <Row className="d-flex mx-5 mb-3 align-items-center d-none d-lg-flex">
@@ -207,28 +203,28 @@ function Footer() {
           </Col>
           <Col>
             <Row>
-              <Col>
-                <span>
+              <Col className="align-self-center">
+                <p className="mb-0">
                   <NavbarBrand href={t('footer.tel1Href')}>
                     <b>{t('footer.tel1')}</b>
                   </NavbarBrand>
-                  {t('footer.rf')}
-                </span>
+                </p>
+                <p className="m-0">{t('footer.rf')}</p>
               </Col>
               <Col>
-                <span className="m-0">
+                <p className="m-0">
                   <NavbarBrand href={t('footer.tel2Href')}>
                     <b>{t('footer.tel2')}</b>
                   </NavbarBrand>
-                  {t('footer.moscow')}
-                </span>
+                </p>
+                <p className="m-0">{t('footer.moscow')}</p>
               </Col>
             </Row>
           </Col>
-          <Col className="d-flex gap-4">
+          <Col className="d-flex gap-4 flex-nowrap">
             <Nav
               as="ul"
-              className="justify-content-between w-75 social-networks"
+              className="justify-content-between w-75 social-networks flex-nowrap"
             >
               <li>
                 <NavbarBrand
@@ -286,7 +282,7 @@ function Footer() {
           <Col>
             <Row>
               <Col>
-                <Nav as="ul">
+                <Nav as="ul" className="list-group">
                   <li className="mb-2">
                     <NavbarBrand className="p-0" href="#aboutProject">
                       {t('landing.header.advantages')}
@@ -298,7 +294,7 @@ function Footer() {
                     </NavbarBrand>
                   </li>
                   <li className="mb-2">
-                    <NavbarBrand className="p-0 pe-5" href="#possibilities">
+                    <NavbarBrand className="p-0" href="#possibilities">
                       {t('landing.header.opportunities')}
                     </NavbarBrand>
                   </li>
@@ -310,7 +306,7 @@ function Footer() {
                 </Nav>
               </Col>
               <Col>
-                <Nav as="ul">
+                <Nav as="ul" className="list-group">
                   <li className="mb-2">
                     <NavbarBrand
                       className="p-0"

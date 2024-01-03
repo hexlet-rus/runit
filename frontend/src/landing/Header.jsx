@@ -19,19 +19,17 @@ function Header() {
   return (
     <header>
       <Navbar expand="lg">
-        <Container className="justify-content-between">
-          <div className="d-flex justify-content-between">
-            <Navbar.Brand className="d-flex pb-lg-4">
-              <Image fluid src={logo} width="80%" />
-            </Navbar.Brand>
-            <Navbar.Toggle
-              aria-controls="navbar-responsive"
-              className="border-0"
-              data-bs-toogle="collapse"
-            >
-              <Image src={Burger} />
-            </Navbar.Toggle>
-          </div>
+        <Container className="d-flex justify-content-between flex-nowrap">
+          <Navbar.Brand className="d-flex pb-lg-4 me-auto">
+            <Image fluid src={logo} width="80%" />
+          </Navbar.Brand>
+          <Navbar.Toggle
+            aria-controls="navbar-responsive"
+            className="border-0 ms-auto"
+            data-bs-toogle="collapse"
+          >
+            <Image src={Burger} />
+          </Navbar.Toggle>
 
           <Navbar.Collapse className="mb-3 mb-lg-0" id="navbar-responsive">
             <Nav as="ul" className="gap-2 text-center">

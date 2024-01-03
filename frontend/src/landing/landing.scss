@@ -39,6 +39,11 @@
 .header-link:focus {
     border-bottom: 1px solid var(--Aent, #136EF6);
 }
+
+.wrapper-for-bg-images {
+    overflow: hidden;
+}
+
   
 @media (min-width: 992px) {
     .about-project > .d-lg-flex > h4 {
@@ -59,12 +64,11 @@
     }
     .first-bg-image{
         position: relative;
-        max-width: 2000px;
-        overflow: hidden;
+        overflow: visible;
         &::before {
             position: absolute;
             top: -5%;
-            right: -70%;
+            right: -40%;
             width: 130rem;
             height: 83rem;
             content: "";
@@ -108,10 +112,10 @@
         position: relative;
         &::before {
             position: absolute;
-            top: 3%;
-            right: -70%;
+            top: 2%;
+            right: -100%;
             width: 64rem;
-            height: 55rem;
+            height: 65rem;
             content: "";
             background-image: url("./assets/BGElement.svg");
             background-repeat: no-repeat;
