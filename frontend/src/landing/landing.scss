@@ -79,7 +79,9 @@
             z-index: -1;
         }
     }
-    
+    .background-dark{
+        color: white;
+    }
     .background-dark::before {
         content: "";
         position: absolute;
@@ -124,7 +126,9 @@
             z-index: -1;
         }
     }
-    
+    .background-dark {
+        color: black;
+    }
     .possibilities-background {
         position: relative;
         &::before {
