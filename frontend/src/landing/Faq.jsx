@@ -15,8 +15,10 @@ function CustomToggle({ children, eventKey }) {
 
   const isCurrentEventKey = activeEventKey === eventKey;
 
-  const themeMode = localStorage.getItem('theme');
-  const colorForEl = themeMode === 'light' ? 'black' : 'white';
+  const IsThemeModeLight = window.matchMedia(
+    '(prefers-color-scheme: light)',
+  ).matches;
+  const colorForEl = IsThemeModeLight ? 'black' : 'white';
 
   return (
     <div

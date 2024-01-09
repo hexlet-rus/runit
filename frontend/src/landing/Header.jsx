@@ -13,8 +13,10 @@ import './custom-colors.scss';
 
 function Header() {
   const { t } = useTranslation();
-  const themeMode = localStorage.getItem('theme');
-  const logo = themeMode === 'light' ? RunItLogoLight : RunItLogoDark;
+  const IsThemeModeLight = window.matchMedia(
+    '(prefers-color-scheme: light)',
+  ).matches;
+  const logo = IsThemeModeLight ? RunItLogoLight : RunItLogoDark;
 
   return (
     <header>
