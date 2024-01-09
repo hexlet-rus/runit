@@ -63,7 +63,7 @@ function Header() {
                 to={routes.signInPagePath()}
                 variant="primary"
               >
-                <span>{t('signIn.signInButton')}</span>
+                <span>{t('profileActions.signIn')}</span>
               </Button>
               <Button
                 as={Link}
@@ -71,7 +71,7 @@ function Header() {
                 to={routes.signUpPagePath()}
                 variant="secondary"
               >
-                <span>{t('signUp.registerButton')}</span>
+                <span>{t('profileActions.signUp')}</span>
               </Button>
             </Nav>
           </Navbar.Collapse>
