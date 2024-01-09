@@ -122,7 +122,7 @@ function Header() {
                   to={routes.signInPagePath()}
                   variant="primary"
                 >
-                  <span>sdfsd</span>
+                  <span>{t('profileActions.signIn')}</span>
                 </Button>
                 <Button
                   as={Link}
