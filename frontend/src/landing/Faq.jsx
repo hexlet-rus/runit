@@ -15,10 +15,9 @@ function CustomToggle({ children, eventKey }) {
 
   const isCurrentEventKey = activeEventKey === eventKey;
 
-  const IsThemeModeLight = window.matchMedia(
-    '(prefers-color-scheme: light)',
-  ).matches;
-  const colorForEl = IsThemeModeLight ? 'black' : 'white';
+  const theme = document.documentElement.getAttribute('data-bs-theme');
+
+  const colorForEl = theme === 'light' ? 'black' : 'white';
 
   return (
     <div

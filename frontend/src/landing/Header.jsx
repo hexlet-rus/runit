@@ -21,10 +21,10 @@ import './custom-colors.scss';
 
 function Header() {
   const { t } = useTranslation();
-  const IsThemeModeLight = window.matchMedia(
-    '(prefers-color-scheme: light)',
-  ).matches;
-  const logo = IsThemeModeLight ? RunItLogoLight : RunItLogoDark;
+
+  const theme = document.documentElement.getAttribute('data-bs-theme');
+
+  const logo = theme === 'light' ? RunItLogoLight : RunItLogoDark;
 
   return (
     <header>

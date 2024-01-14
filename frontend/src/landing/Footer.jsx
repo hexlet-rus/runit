@@ -32,10 +32,10 @@ import RunItLogoDark from './assets/LogoFooterDark.svg';
 
 function Footer() {
   const { t } = useTranslation();
-  const IsThemeModeLight = window.matchMedia(
-    '(prefers-color-scheme: light)',
-  ).matches;
-  const logo = IsThemeModeLight ? RunItLogoLight : RunItLogoDark;
+
+  const theme = document.documentElement.getAttribute('data-bs-theme');
+
+  const logo = theme === 'light' ? RunItLogoLight : RunItLogoDark;
 
   return (
     <footer className="footer">
@@ -59,10 +59,7 @@ function Footer() {
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image
-                    fluid
-                    src={IsThemeModeLight ? VKLightMobile : VKDarkMobile}
-                  />
+                  <Image fluid src={theme ? VKLightMobile : VKDarkMobile} />
                 </NavbarBrand>
               </li>
               <li>
@@ -75,11 +72,7 @@ function Footer() {
                 >
                   <Image
                     fluid
-                    src={
-                      IsThemeModeLight
-                        ? TelegramLightMobile
-                        : TelegramDarkMobile
-                    }
+                    src={theme ? TelegramLightMobile : TelegramDarkMobile}
                   />
                 </NavbarBrand>
               </li>
@@ -93,9 +86,7 @@ function Footer() {
                 >
                   <Image
                     fluid
-                    src={
-                      IsThemeModeLight ? YouTubeLightMobile : YouTubeDarkMobile
-                    }
+                    src={theme ? YouTubeLightMobile : YouTubeDarkMobile}
                   />
                 </NavbarBrand>
               </li>
@@ -109,9 +100,7 @@ function Footer() {
                 >
                   <Image
                     fluid
-                    src={
-                      IsThemeModeLight ? TwitterLightMobile : TwitterDarkMobile
-                    }
+                    src={theme ? TwitterLightMobile : TwitterDarkMobile}
                   />
                 </NavbarBrand>
               </li>
@@ -231,7 +220,7 @@ function Footer() {
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image fluid src={IsThemeModeLight ? VKLight : VKDark} />
+                  <Image fluid src={theme ? VKLight : VKDark} />
                 </NavbarBrand>
               </li>
               <li>
@@ -241,10 +230,7 @@ function Footer() {
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image
-                    fluid
-                    src={IsThemeModeLight ? TelegramLight : TelegramDark}
-                  />
+                  <Image fluid src={theme ? TelegramLight : TelegramDark} />
                 </NavbarBrand>
               </li>
               <li>
@@ -254,10 +240,7 @@ function Footer() {
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image
-                    fluid
-                    src={IsThemeModeLight ? YouTubeLight : YouTubeDark}
-                  />
+                  <Image fluid src={theme ? YouTubeLight : YouTubeDark} />
                 </NavbarBrand>
               </li>
               <li>
@@ -267,10 +250,7 @@ function Footer() {
                   rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
-                  <Image
-                    fluid
-                    src={IsThemeModeLight ? TwitterLight : TwitterDark}
-                  />
+                  <Image fluid src={theme ? TwitterLight : TwitterDark} />
                 </NavbarBrand>
               </li>
             </Nav>
