@@ -21,6 +21,8 @@ function ProfileLayout({ data, isEditable }) {
   const dispatch = useDispatch();
   const { user, snippets } = data;
 
+  const guestUser = localStorage.getItem('guestUserData');
+
   const handleInDevelopment = () => {
     dispatch(actions.openModal({ type: 'inDevelopment' }));
   };
@@ -29,7 +31,7 @@ function ProfileLayout({ data, isEditable }) {
     <div className="page-bg-image">
       <Container className="py-5">
         <div className="d-flex align-items-start">
-          <h1 className="display-5">{user.username}</h1>
+          {!guestUser && <h1 className="display-5">{user.username}</h1>}
           <Button
             className="btn-icon-only"
             onClick={handleInDevelopment}

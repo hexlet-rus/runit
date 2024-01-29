@@ -6,6 +6,7 @@
   --text-size-50: 3.125rem;
   --text-size-80: 5rem;
   --text-size-90: 5.625rem;
+  --dist-24: 1.5rem;
   --dist-35: 2.1875rem;
   --dist-40: 2.5rem;
   --dist-45: 2.8125rem;
@@ -22,6 +23,7 @@
   --color-purple: #7c7cf7;
   --color-light-grey: #f0f0f0;
   --color-off-white: #fcfcfc;
+  --color-transparent: transparent;
 }
 
 * {
@@ -42,6 +44,19 @@
   color: var(--color-off-white);
 }
 
+.btnOutlinePrimary {
+  --bs-btn-bg: var(--color-transparent);
+  --bs-btn-hover-bg: var(--color-transparent);
+  --bs-btn-border-color: var(--color-transparent);
+  --bs-btn-hover-border-color: var(--color-purple);
+  --bs-btn-hover-color: var(--color-purple);
+}
+
+.btnNoAttention {
+  width: 20.625rem;
+  color: var(--color-blue);
+  margin-top: var(--dist-24);
+}
 .fs5 {
   font-size: var(--text-size-18) !important;
 }
