@@ -32,8 +32,10 @@ function UpdateAccountForm() {
     username: userInfo.username,
     email: toUnicode(userInfo.email),
   };
+
   const formik = useFormik({
     initialValues,
+    validateOnBlur: false,
     validationSchema,
     onSubmit: async (values, actions) => {
       setFormState(initialFormState);
@@ -51,8 +53,8 @@ function UpdateAccountForm() {
         });
         actions.resetForm({ values });
       } catch (err) {
-        formik.resetForm();
         if (!err.isAxiosError) {
+          formik.resetForm();
           setFormState({
             state: 'failed',
             message: 'errors.unknown',
@@ -63,7 +65,8 @@ function UpdateAccountForm() {
           err.response?.status === 400 &&
           Array.isArray(err.response?.data?.errs?.message)
         ) {
-          err.response.data.errs.message.forEach((e) => {
+          const errResponseMessages = err.response.data.errs.message;
+          errResponseMessages.forEach((e) => {
             switch (e) {
               case 'usernameIsUsed':
                 actions.setFieldError(
