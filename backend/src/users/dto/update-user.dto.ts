@@ -26,7 +26,7 @@ export class UpdateUserDto {
   @IsString()
   @Matches(/^[\w\S]*$/)
   @Validate(CheckUsername, {
-    message: 'Уже существует!',
+    message: 'usernameIsUsed',
   })
   username?: string;
 
@@ -39,7 +39,7 @@ export class UpdateUserDto {
   @IsString()
   @IsEmail()
   @Validate(CheckEmail, {
-    message: 'Уже существует!',
+    message: 'emailIsUsed',
   })
   email?: string;
 
