@@ -1,7 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Row, Col, Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+import { useAuth } from '../../hooks';
 import routes from '../../routes.js';
 
 import { Faq } from '../about/Faq.jsx';
@@ -13,9 +16,22 @@ import shareImg from '../../assets/landing/images/share.png';
 import codeImg from '../../assets/landing/images/code.png';
 import personImg from '../../assets/landing/images/person.png';
 import blankImg from '../../assets/landing/images/blank.png';
+import { actions } from '../../slices/modalSlice';
 
 function Landing() {
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const { t } = useTranslation();
+
+  const handleCodeWithoutRegButton = () => {
+    if (isLoggedIn) {
+      navigate(routes.myProfilePagePath());
+      return;
+    }
+    dispatch(actions.openModal({ type: 'newSnippet' }));
+  };
 
   return (
     <div className="bg-dark text-white fw-normal w-100">
@@ -82,6 +98,15 @@ function Landing() {
               to={routes.signInPagePath()}
             >
               {t('landing.startCoding')}
+            </Button>
+          </Row>
+          <Row className="justify-content-center">
+            <Button
+              onClick={handleCodeWithoutRegButton}
+              className={`btn ${classes.btnOutlinePrimary} ${classes.btnNoAttention} py-3 ${classes.fs5} ${classes.lh5}"`}
+              size="lg"
+            >
+              {t('landing.codeWithoutReg')}
             </Button>
           </Row>
         </section>

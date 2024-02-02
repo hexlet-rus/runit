@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { object } from 'yup';
+import { faker } from '@faker-js/faker';
 
 import { Typeahead } from 'react-bootstrap-typeahead';
 import Button from 'react-bootstrap/Button';
@@ -11,7 +12,10 @@ import Modal from 'react-bootstrap/Modal';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 
-import { useSnippets } from '../../hooks';
+import axios from 'axios';
+import routes from '../../routes';
+
+import { useAuth, useSnippets } from '../../hooks';
 import { snippetName } from '../../utils/validationSchemas';
 import { actions as modalActions } from '../../slices/modalSlice.js';
 import JavaScriptIcon from '../../assets/images/icons/javascript.svg';
@@ -28,8 +32,16 @@ const extensions = new Map()
   .set('python', 'py')
   .set('php', 'php');
 
+const generateGuestUserData = () => {
+  const username = `guest_${faker.string.alphanumeric(5)}`;
+  const email = `${username}@hexlet.com`;
+  const password = `guest_${faker.internet.password()}`;
+  return { username, email, password };
+};
+
 function NewSnippet({ handleClose, isOpen }) {
   const { t } = useTranslation();
+  const auth = useAuth();
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
   const navigate = useNavigate();
@@ -58,6 +70,36 @@ function NewSnippet({ handleClose, isOpen }) {
     validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
       setSubmitting(true);
+      const guestData = !auth.isLoggedIn && generateGuestUserData();
+      const targetUsername = auth.isLoggedIn ? username : guestData.username;
+      if (!auth.isLoggedIn) {
+        try {
+          await axios.post(routes.usersPath(), guestData);
+          auth.signIn();
+          localStorage.setItem(
+            'guestUserData',
+            JSON.stringify({
+              guestId: guestData.password,
+            }),
+          );
+        } catch (err) {
+          if (!err.isAxiosError) {
+            console.log('errors.unknown');
+            throw err;
+          }
+          if (
+            err.response?.status === 400 &&
+            Array.isArray(err.response?.data?.errs?.message)
+          ) {
+            // случай, когда случайно сгенерировался username или email, который уже есть в базе
+            console.log(t('errors.network'));
+            throw err;
+          } else {
+            console.log(t('errors.network'));
+            throw err;
+          }
+        }
+      }
       const [language] = selectedLng;
       const code = t(`codeTemplates.${language}`);
       // TODO: Тут не должно быть проверок, нужно создать абстракцию сервиса, который будет работать с любыми языками
@@ -66,7 +108,9 @@ function NewSnippet({ handleClose, isOpen }) {
           const snipName = `${values.name}.${extensions.get(language)}`;
           const id = await snippetApi.saveSnippet(code, snipName, language);
           const { slug } = await snippetApi.getSnippetData(id);
-          const url = new URL(snippetApi.genViewSnippetLink(username, slug));
+          const url = new URL(
+            snippetApi.genViewSnippetLink(targetUsername, slug),
+          );
           console.log(id, slug, url.pathname);
           formik.values.name = '';
           navigate(url.pathname);

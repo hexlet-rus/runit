@@ -15,10 +15,13 @@ import LanguageSelector from './LanguageSelector.jsx';
 import NavMenu from './NavMenu.jsx';
 import ThemeSelector from './ThemeSelector.jsx';
 import UserMenu from './UserMenu.jsx';
+import GuestMenu from './GuestMenu.jsx';
 
 function Navigation() {
   const { isLoggedIn } = useAuth();
   const { t } = useTranslation();
+
+  const guestUser = localStorage.getItem('guestUserData');
 
   return (
     <Navbar
@@ -50,7 +53,9 @@ function Navigation() {
           >
             <LanguageSelector />
             <ThemeSelector />
-            {isLoggedIn ? <UserMenu /> : <AuthButtons />}
+            {isLoggedIn && !guestUser && <UserMenu />}
+            {isLoggedIn && guestUser && <GuestMenu />}
+            {!isLoggedIn && <AuthButtons />}
           </Nav>
         </Navbar.Collapse>
       </Container>

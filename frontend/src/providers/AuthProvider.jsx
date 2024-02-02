@@ -23,6 +23,7 @@ function AuthProvider({ children }) {
       })
       .catch(() => {
         localStorage.removeItem('signInStatus');
+        localStorage.removeItem('guestUserData');
         setLoggedIn(false);
       });
   }, [dispatch]);
