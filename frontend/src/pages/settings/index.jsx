@@ -19,7 +19,7 @@ function SettingsPage() {
   const dispatch = useDispatch();
 
   const handleRemoveAccount = () => {
-    dispatch(modalActions.openModal({ type: 'inDevelopment' }));
+    dispatch(modalActions.openModal({ type: 'removeAccount' }));
   };
 
   return (
