@@ -333,6 +333,16 @@
       "snippetName": "Название",
       "template": "Шаблон",
       "create": "Создать"
+    },
+    "changeAvatar": {
+      "chooseFileButton": "Выберите файл",
+      "uploadButton": "Загрузить",
+      "cancelButton": "Отмена"
+    },
+    "removeAvatar": {
+      "message": "Вы уверены, что хотите удалить изображение?",
+      "removeButton": "Удалить",
+      "cancelButton": "Отмена"
     }
   },
   "navbar": {

@@ -17,6 +17,10 @@ function AvatarChangeForm() {
     dispatch(modalActions.openModal({ type: 'inDevelopment' }));
   };
 
+  const handleEditAvatar = (type) => () => {
+    dispatch(modalActions.openModal(type));
+  };
+
   return (
     <div className="d-flex flex-column align-items-center gap-2">
       <div
@@ -27,14 +31,14 @@ function AvatarChangeForm() {
       </div>
       <Button
         className="position-relative"
-        onClick={handleInDevelopment}
+        onClick={handleEditAvatar({ type: 'changeAvatar' })}
         style={{ marginTop: '-2rem' }}
         variant="primary"
       >
         {t('profileSettings.updateButton')}
       </Button>
       <Button
-        onClick={handleInDevelopment}
+        onClick={handleEditAvatar({ type: 'removeAvatar' })}
         size="sm"
         variant="nofill-secondary"
       >
