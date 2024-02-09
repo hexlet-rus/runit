@@ -48,6 +48,7 @@ export default {
   // OAuth
   oAuthPath: () => [apiPath, 'oauth'].join('/'),
 
+  newLandingPath: () => '/landing',
   homePagePath: () => '/editor',
   aboutPagePath: () => '/about',
   profilePagePath: (username = ':username') => `/u/${username}`,

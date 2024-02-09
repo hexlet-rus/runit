@@ -11,13 +11,15 @@ import ScrollToTop from './utils/scrollToTop.js';
 
 import DefaultLoader from './components/Loaders/DefaultLoader.jsx';
 
+const Landing = lazy(() => import('./pages/landing'));
+const NewLanding = lazy(() => import('./landing/Landing.jsx'));
+
 const ProfilePage = lazy(() => import('./pages/profile'));
 const SettingsPage = lazy(() => import('./pages/settings'));
 const SnippetPage = lazy(() => import('./pages/snippet'));
 const AboutPage = lazy(() => import('./pages/about'));
 const SignUpPage = lazy(() => import('./pages/signup'));
 const SignInPage = lazy(() => import('./pages/signin'));
-const Landing = lazy(() => import('./landing/Landing'));
 const LicenseAgreement = lazy(() => import('./pages/license-agreement'));
 const ForgotPasswordPage = lazy(() => import('./pages/forgot-password'));
 const ResetPasswordPage = lazy(() => import('./pages/reset-password'));
@@ -53,8 +55,9 @@ function AppRoutes() {
     <Suspense fallback={<DefaultLoader />}>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path={routes.newLandingPath()} element={<NewLanding />} />
         <Route element={<Layout />}>
+          <Route index element={<Landing />} />
           <Route path={routes.homePagePath()} element={<SnippetPage />} />
           <Route path={routes.snippetPagePath()} element={<SnippetPage />} />
           <Route path={routes.aboutPagePath()} element={<AboutPage />} />
