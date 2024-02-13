@@ -1,0 +1,60 @@
+[data-bs-theme=dark] {
+    --bs-body-bg: #050914;
+    --bs-body-color: #EBF1F9;
+    .btn-signup {
+        --bs-btn-bg: #EBF1F9;
+        --bs-btn-color: #136EF6;
+        --bs-btn-border-color: #EBF1F9;
+        --hover-background: #EBF1F9;
+        --hover-border: #EBF1F9;
+        --hover-color: #136EF6;
+        --bs-btn-hover-color: #136EF6;
+        --bs-btn-hover-bg: #EBF1F9;
+        --bs-btn-hover-border-color: #EBF1F9;
+        --bs-btn-focus-shadow-rgb: #EBF1F9;
+        &:hover, :focus {
+            font-weight: 600;
+        }
+    }
+    .button-start:hover,
+    .button-start:focus {
+        background-color: #EBF1F9 !important;
+        color: #136EF6 !important;
+        border-color: #EBF1F9 !important;
+        font-weight: 500 !important;
+    }
+    .footer {
+        background-color: #136EF6;
+    }
+}
+
+[data-bs-theme=light] {
+    --bs-body-bg: #EBF1F9;
+    --bs-body-color: #050914;
+    .btn-signup {
+        --bs-btn-bg: #050914;
+        --bs-btn-color: #EBF1F9;
+        --bs-btn-border-color: #050914;
+        --hover-background: #050914;
+        --hover-border: #050914;
+        --hover-color: #EBF1F9;
+        --bs-btn-hover-color: #EBF1F9;
+        --bs-btn-hover-bg: #050914;
+        --bs-btn-hover-border-color: #050914;
+        --bs-btn-focus-shadow-rgb: #050914;
+        &:hover, :focus {
+            font-weight: 600;
+        }
+    }
+    .button-start:hover,
+    .button-start:focus {
+        background-color: #050914 !important;
+        color: #EBF1F9 !important;
+        border-color: #050914 !important;
+        font-weight: 500 !important;
+    }
+    .footer {
+        background-color: #050914;
+        width: 100vw;
+    }
+}
