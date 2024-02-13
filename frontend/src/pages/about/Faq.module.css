@@ -1,9 +1,5 @@
 :global(.accordion) {
   --bs-accordion-bg: none;
-  --bs-accordion-color: white;
-  --bs-accordion-btn-color: white;
-  --bs-accordion-active-color: white;
-  --bs-accordion-icon-color: #fff;
   --bs-accordion-border-width: 0px;
   margin-left: -1.3rem;
 }
@@ -23,9 +19,11 @@
 :global(.accordion-button:not(.collapsed)::before) {
   transform: var(--bs-accordion-btn-icon-transform);
 }
-
 :global(.accordion-button::before) {
-  content: "";
+  content: "^";
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: lighter;
   flex-shrink: 0;
   width: var(--bs-accordion-btn-icon-width);
   height: var(--bs-accordion-btn-icon-width);
@@ -33,7 +31,6 @@
   background-size: var(--bs-accordion-btn-icon-width);
   transition: var(--bs-accordion-btn-icon-transition);
   margin-right: 15px;
-  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
 }
 
 :global(.accordion-button::after) {

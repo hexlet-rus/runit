@@ -6,7 +6,7 @@ function AboutPage() {
   const { t } = useTranslation();
 
   return (
-    <div className="container-fluid py-5 m-0 bg-dark text-white">
+    <div className="container-fluid py-5 m-0">
       <div className="container">
         <h3>{t('about.pageHeader')}</h3>
         <p>
