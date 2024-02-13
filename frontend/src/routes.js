@@ -22,7 +22,7 @@ export default {
   signOutPath: () => [apiPath, 'signout'].join('/'),
 
   // delete user
-  deleteUserPath: (id) => [apiPath, 'users', `:${id}`].join('/'),
+  deleteUserPath: (id) => [apiPath, 'users', `${id}`].join('/'),
 
   // get - shows all snippets
   snippetsPath: () => [apiPath, 'snippets'].join('/'),

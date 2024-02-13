@@ -324,6 +324,12 @@
       "message": "Эта функция пока недоступна",
       "okButton": "Понятно"
     },
+    "removeAccount": {
+      "message": "Вы действительно хотите",
+      "messageBold": "удалить учетную запись?",
+      "okButton": "Удалить",
+      "cancelButton": "Отмена"
+    },
     "share": {
       "snippetEmbedLabel": "Код сниппета для вставки",
       "snippetLinkLabel": "Ссылка на сниппет"
