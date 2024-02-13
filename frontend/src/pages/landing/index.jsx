@@ -46,7 +46,7 @@ function Landing() {
             <h1
               className={`${classes.colorPrimary} text-center fw-bold mb-0 mt-sm-5 display-1`}
             >
-              {t('landing.fastIDE')}
+              {t('landing.fastIDE.first')} {t('landing.fastIDE.second')}
             </h1>
           </Row>
           <Row>

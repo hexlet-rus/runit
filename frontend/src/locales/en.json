@@ -164,7 +164,10 @@
       "second": "the application"
     },
     "fast": "The free online code editor Run IT will allow you to do this quickly and without fussing with settings",
-    "fastIDE": "Instant IDE",
+    "fastIDE": {
+      "first": "Instant",
+      "second": "IDE"
+    },
     "freeProject": "Free Hexlet Project",
     "inBrowser": "The editor runs entirely in the browser, so you can start coding in seconds",
     "modern": "In modern web development, you need to constantly keep up with the latest news, and even better - to try out new products in real-world",
