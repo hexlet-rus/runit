@@ -43,11 +43,12 @@ function UserMenu() {
             {t('snippetActions.new')}
           </Dropdown.Item>
         </li>
-        <li>
+        {/* TODO: uncomment and implement share profile, when public profiles will be implemented */}
+        {/* <li>
           <Dropdown.Item as={Button} onClick={handleInDevelopment}>
             {t('profileActions.share')}
           </Dropdown.Item>
-        </li>
+        </li> */}
         <Dropdown.Divider />
         <li>
           <Dropdown.Item as={Link} to={routes.settingsPagePath()}>
