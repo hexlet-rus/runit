@@ -4,7 +4,7 @@ function LicenseAgreement() {
   const { t } = useTranslation();
 
   return (
-    <div className="container-fluid py-5 m-0 bg-dark text-white">
+    <div className="container-fluid py-5 m-0">
       <div className="container my-5">
         <div className="row justify-content-center">
           <div className="col-md-10 col-lg-9">

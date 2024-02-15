@@ -34,7 +34,7 @@ function Landing() {
   };
 
   return (
-    <div className="bg-dark text-white fw-normal w-100">
+    <div className="fw-normal w-100">
       <main className="container pb-5">
         <section className="d-flex flex-column flex-grow h-100 py-3 py-md-4 py-lg-5 justify-content-evenly">
           <Row>
