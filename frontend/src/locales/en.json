@@ -34,7 +34,7 @@
     "html": "<!--Write your code in HTML-->\n"
   },
   "editor": {
-    "authBanner": "Sign in to edit",
+    "authAlert": "To edit snippet, you must be its author or copy it",
     "saved": "All changes saved",
     "saving": "Saving...",
     "unsaved": "There are unsaved changes in the code"

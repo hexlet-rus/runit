@@ -4,7 +4,6 @@ import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import { useParams } from 'react-router';
 import { useDebounce, useMediaQuery } from 'usehooks-ts';
 
-import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
@@ -14,8 +13,9 @@ import { actions } from '../../slices/index.js';
 import CodeEditor from '../../components/Editor/index.jsx';
 import DefaultLoader from '../../components/Loaders/DefaultLoader.jsx';
 import Terminal from '../../components/Terminal/index.jsx';
-import ActionsToolbar from './ActionsToolbar.jsx';
 import FileToolbar from './FileToolbar.jsx';
+import AuthWarning from './AuthWarning.jsx';
+import ActionsToolbar from './ActionsToolbar.jsx';
 import HTMLPreview from '../../components/HTMLPreview/HTMLPreview.jsx';
 
 const AUTOSAVE_TIMEOUT = 1000;
@@ -139,17 +139,14 @@ function SnippetPage() {
       className="py-3 editor-page d-flex flex-column gap-3 px-xl-3 bg-body-secondary"
       fluid
     >
-      <Row className="align-items-center">
-        <Col className="toolbar gap-3">
-          <FileToolbar
-            snippet={{ isAllSaved, isReady, code, hasSnippetData, snippetData }}
-          />
-        </Col>
-        <Col className="toolbar" xs="auto">
-          <ActionsToolbar
-            snippet={{ isAllSaved, isReady, code, hasSnippetData, snippetData }}
-          />
-        </Col>
+      <Row xs="auto" className="justify-content-between align-items-center">
+        <FileToolbar
+          snippet={{ isAllSaved, isReady, code, hasSnippetData, snippetData }}
+        />
+        {!isLoggedIn && <AuthWarning />}
+        <ActionsToolbar
+          snippet={{ isAllSaved, isReady, code, hasSnippetData, snippetData }}
+        />
       </Row>
       <PanelGroup direction={direction}>
         <Panel
