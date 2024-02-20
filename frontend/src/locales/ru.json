@@ -343,6 +343,12 @@
       "save": "Подтвердить",
       "cancel": "Отмена"
     },
+    "attemptDuplicateSnippet": {
+      "title": "Скопировать сниппет",
+      "or": "или",
+      "copyButton": "Скопировать без регистрации",
+      "signinButton": "Зарегистрироваться / Войти"
+    },
     "newSnippet": {
       "title": "Создать сниппет",
       "snippetName": "Название",

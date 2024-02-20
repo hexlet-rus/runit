@@ -217,6 +217,12 @@
       "message": "To copy snippet you need to be authorized",
       "cancel": "Cancel"
     },
+    "attemptDuplicateSnippet": {
+      "title": "Duplicate snippet",
+      "or": "or",
+      "copyButton": "Copy without registration",
+      "signinButton": "Signup / Signin"
+    },
     "newSnippet": {
       "title": "Create snippet",
       "snippetName": "Title",

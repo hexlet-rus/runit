@@ -40,7 +40,7 @@ function ActionsToolbar({ snippet }) {
     } else {
       dispatch(
         actions.openModal({
-          type: 'signingIn',
+          type: 'attemptDuplicateSnippet',
         }),
       );
     }
