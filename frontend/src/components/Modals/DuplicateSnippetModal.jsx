@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { object } from 'yup';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useSnippets } from '../../hooks';
 import useDuplicateSnippet from '../../hooks/useDuplicateSnippet';
 import { snippetName } from '../../utils/validationSchemas';
@@ -53,6 +55,7 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
         const url = new URL(genViewSnippetLink(username, slug));
         navigate(url.pathname);
         handleClose();
+        toast.success(t('toasts.duplicateSnippet.success'));
       } catch (error) {
         console.log('err', error);
         if (!error.isAxiosError) {
