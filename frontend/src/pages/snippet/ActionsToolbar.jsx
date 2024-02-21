@@ -33,7 +33,6 @@ function ActionsToolbar({ snippet }) {
             currSnippetName: snippetName,
             ownerUsername,
             code,
-            shouldOpen: true,
           },
         }),
       );
@@ -41,6 +40,10 @@ function ActionsToolbar({ snippet }) {
       dispatch(
         actions.openModal({
           type: 'attemptDuplicateSnippet',
+          item: {
+            currSnippetName: snippetName,
+            code,
+          },
         }),
       );
     }
