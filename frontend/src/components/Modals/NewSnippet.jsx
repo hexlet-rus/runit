@@ -19,11 +19,13 @@ import { useAuth, useSnippets } from '../../hooks';
 import { snippetName } from '../../utils/validationSchemas';
 import { actions as modalActions } from '../../slices/modalSlice.js';
 import JavaScriptIcon from '../../assets/images/icons/javascript.svg';
+import HtmlIcon from '../../assets/images/icons/html.svg';
 import PhpIcon from '../../assets/images/icons/php.svg';
 import PythonIcon from '../../assets/images/icons/python.svg';
 
 const icons = new Map()
   .set('javascript', JavaScriptIcon)
+  .set('html', HtmlIcon)
   .set('python', PythonIcon)
   .set('php', PhpIcon);
 
@@ -47,8 +49,8 @@ function NewSnippet({ handleClose, isOpen }) {
   const navigate = useNavigate();
   const inputRefTemplate = useRef(null);
   const inputRefName = useRef(null);
-  const supportedLanguages = ['javascript']; // #TODO: later change it to a selector with data on support languages
   const username = useSelector((state) => state.user.userInfo.username);
+  const { supportedLanguages } = useSelector((state) => state.languages);
   const [selectedLng, setSelectedLng] = useState([]);
   const [once, setOnce] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -103,7 +105,7 @@ function NewSnippet({ handleClose, isOpen }) {
       const [language] = selectedLng;
       const code = t(`codeTemplates.${language}`);
       // TODO: Тут не должно быть проверок, нужно создать абстракцию сервиса, который будет работать с любыми языками
-      if (language === 'javascript') {
+      if (supportedLanguages.includes(language)) {
         try {
           const snipName = `${values.name}.${extensions.get(language)}`;
           const id = await snippetApi.saveSnippet(code, snipName, language);
