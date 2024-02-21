@@ -326,5 +326,10 @@
     "rename": "Renane",
     "run": "Run",
     "share": "Share"
+  },
+  "toasts": {
+    "duplicateSnippet": {
+      "success": "Snippet successfully copied!"
+    }
   }
 }

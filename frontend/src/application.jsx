@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import AppRoutes from './AppRoutes.jsx';
 import ModalWindow from './components/Modals';
+import Toast from './components/Toast';
 import AuthProvider from './providers/AuthProvider.jsx';
 import SnippetsProvider from './providers/SnippetsProvider.jsx';
 import { rootReducer } from './slices';
@@ -30,6 +31,7 @@ export default async () => {
           <SnippetsProvider>
             <AppRoutes />
             <ModalWindow />
+            <Toast />
           </SnippetsProvider>
         </AuthProvider>
       </BrowserRouter>
