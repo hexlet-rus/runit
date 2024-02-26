@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
 import { BoxArrowUp, Files, PlayFill } from 'react-bootstrap-icons';
 import { actions } from '../../slices';
 import { useAuth, useRunButton } from '../../hooks';
@@ -32,21 +33,24 @@ function ActionsToolbar({ snippet }) {
             currSnippetName: snippetName,
             ownerUsername,
             code,
-            shouldOpen: true,
           },
         }),
       );
     } else {
       dispatch(
         actions.openModal({
-          type: 'signingIn',
+          type: 'attemptDuplicateSnippet',
+          item: {
+            currSnippetName: snippetName,
+            code,
+          },
         }),
       );
     }
   };
 
   return (
-    <>
+    <Col className="toolbar">
       <Button
         className="btn-icon-only-full-height"
         onClick={handleDuplicate}
@@ -72,7 +76,7 @@ function ActionsToolbar({ snippet }) {
         <PlayFill className="bi" />
         {t('snippetActions.run')}
       </Button>
-    </>
+    </Col>
   );
 }
 

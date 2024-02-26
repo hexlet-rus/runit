@@ -10,6 +10,7 @@ import ShareSnippet from './ShareSnippet.jsx';
 import InDevelopment from './InDevelopment.jsx';
 import SnippetUnavailable from './SnippetUnavailable.jsx';
 import DuplicateSnippetModal from './DuplicateSnippetModal';
+import AttemptDuplicateSnippet from './AttemptDuplicateSnippet.jsx';
 import ChangeAvatarModal from './ChangeAvatar';
 import RemoveAvatarModal from './RemoveAvatar';
 
@@ -22,6 +23,7 @@ const modals = {
   inDevelopment: InDevelopment,
   snippetUnavailable: SnippetUnavailable, // #TODO: Remove this modal once proper re-direct is configured on the backend,
   duplicateSnippet: DuplicateSnippetModal,
+  attemptDuplicateSnippet: AttemptDuplicateSnippet,
   changeAvatar: ChangeAvatarModal,
   removeAvatar: RemoveAvatarModal,
 };

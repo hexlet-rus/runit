@@ -10,6 +10,7 @@ import { CloudArrowUp, CloudCheck, PencilFill } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
+import Col from 'react-bootstrap/Col';
 
 import { useAuth, useSnippets } from '../../hooks';
 import { actions } from '../../slices/index.js';
@@ -152,38 +153,15 @@ function SavingIndicator({ isAllSaved = false }) {
   );
 }
 
-function AuthWarning() {
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
-
-  const handleSignIn = () => {
-    dispatch(actions.openModal({ type: 'signingIn' }));
-  };
-
-  return (
-    <Button
-      onClick={handleSignIn}
-      size="sm"
-      variant="outline-primary text-nowrap"
-    >
-      {t('editor.authBanner')}
-    </Button>
-  );
-}
-
 function FileToolbar({ snippet }) {
   const { isLoggedIn } = useAuth();
   const { isAllSaved } = snippet;
 
   return (
-    <>
+    <Col className="toolbar">
       <SnippetName snippet={snippet} />
-      {isLoggedIn ? (
-        <SavingIndicator isAllSaved={isAllSaved} />
-      ) : (
-        <AuthWarning />
-      )}
-    </>
+      {isLoggedIn && <SavingIndicator isAllSaved={isAllSaved} />}
+    </Col>
   );
 }
 
