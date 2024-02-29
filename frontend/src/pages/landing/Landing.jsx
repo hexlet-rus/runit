@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom';
-import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { Button, Col, Container, Image, Row } from 'react-bootstrap';
+
+import { useAuth } from '../../hooks';
 import routes from '../../routes.js';
+import { actions } from '../../slices/modalSlice';
 import Faq from './Faq.jsx';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
@@ -23,8 +29,19 @@ import Template from './assets/Icons=Template.svg';
 import ImageUnderCarousel from './assets/ReadyAssets.jpeg';
 
 function NewLanding() {
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const advantagesRef = useRef();
+
+  const handleCodeWithoutRegButton = () => {
+    if (isLoggedIn) {
+      navigate(routes.myProfilePagePath());
+      return;
+    }
+    dispatch(actions.openModal({ type: 'newSnippet' }));
+  };
 
   const horizontalScroll = () => {
     const el = advantagesRef.current;
@@ -90,6 +107,15 @@ function NewLanding() {
                 to={routes.signInPagePath()}
               >
                 {t('landing.startCoding')}
+              </Button>
+            </Col>
+            <Col className="text-center d-grid" lg={{ span: 3, offset: 1 }}>
+              <Button
+                onClick={handleCodeWithoutRegButton}
+                className="button-start rounded-5 px-auto"
+                size="lg"
+              >
+                {t('landing.codeWithoutReg')}
               </Button>
             </Col>
           </Row>
@@ -482,6 +508,13 @@ function NewLanding() {
                 to={routes.signInPagePath()}
               >
                 {t('landing.startCoding')}
+              </Button>
+              <Button
+                onClick={handleCodeWithoutRegButton}
+                className="button-start rounded-5 px-auto"
+                size="lg"
+              >
+                {t('landing.codeWithoutReg')}
               </Button>
             </Col>
           </Row>
