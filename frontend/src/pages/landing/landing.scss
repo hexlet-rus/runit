@@ -31,6 +31,16 @@
             font-weight: 600;
         }
     }
+    .btn-start {
+        width: 20.625rem;
+        &:hover,
+        :focus {
+          font-weight: 600;
+        }
+    }
+    .btn-start-no-reg {
+      width: 20.625rem;
+    }
 }
 .first-bg-image {
     font-family: 'Nunito Sans Light';

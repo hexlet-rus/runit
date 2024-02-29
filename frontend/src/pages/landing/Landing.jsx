@@ -98,21 +98,21 @@ function NewLanding() {
               </div>
             </Col>
           </Row>
-          <Row className="my-5 pt-5">
-            <Col className="text-center d-grid" lg={{ span: 3, offset: 1 }}>
+          <Row className="my-5" xs="auto">
+            <Col lg={{ offset: 1 }} className="mb-3">
               <Button
                 as={Link}
-                className="button-start rounded-5 px-auto"
+                className="btn-start rounded-5"
                 size="lg"
                 to={routes.signInPagePath()}
               >
                 {t('landing.startCoding')}
               </Button>
             </Col>
-            <Col className="text-center d-grid" lg={{ span: 3, offset: 1 }}>
+            <Col>
               <Button
                 onClick={handleCodeWithoutRegButton}
-                className="button-start rounded-5 px-auto"
+                className="btn-start-no-reg rounded-5"
                 size="lg"
               >
                 {t('landing.codeWithoutReg')}
@@ -493,25 +493,31 @@ function NewLanding() {
               <Image className="rounded-5" fluid src={ImageUnderCarousel} />
             </Col>
           </Row>
-          <Row className="pb-3 mb-5">
-            <Col className="text-center col-12">
+          <Row className="mb-3">
+            <Col className="text-center">
               <p className="pt-3 mb-4 d-lg-none">{t('landing.nowCoding')}</p>
               <p className="fs-2 pt-3 mb-4 d-none d-lg-block">
                 {t('landing.nowCoding')}
               </p>
             </Col>
-            <Col className="mx-auto d-grid mb-lg-5" lg={{ span: 3 }}>
+          </Row>
+          <Row>
+            <Col className="d-flex justify-content-center">
               <Button
                 as={Link}
-                className="button-start rounded-5 px-auto"
+                className="btn-start rounded-5 mb-3"
                 size="lg"
                 to={routes.signInPagePath()}
               >
                 {t('landing.startCoding')}
               </Button>
+            </Col>
+          </Row>
+          <Row className="mb-5">
+            <Col className="d-flex justify-content-center">
               <Button
                 onClick={handleCodeWithoutRegButton}
-                className="button-start rounded-5 px-auto"
+                className="btn-start-no-reg rounded-5"
                 size="lg"
               >
                 {t('landing.codeWithoutReg')}
