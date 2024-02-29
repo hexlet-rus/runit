@@ -9,7 +9,7 @@ import {
   Col,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import routes from '../routes';
+import routes from '../../routes.js';
 
 import RunItLogoLight from './assets/LogoHeaderLightTheme.svg';
 import RunItLogoDark from './assets/LogoHeaderDarkTheme.svg';

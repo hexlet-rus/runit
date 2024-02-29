@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
-import routes from '../routes.js';
+import routes from '../../routes.js';
 import Faq from './Faq.jsx';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
