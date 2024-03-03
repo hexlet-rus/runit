@@ -1,14 +1,9 @@
 import { Link } from 'react-router-dom';
-import {
-  Container,
-  Navbar,
-  Image,
-  Nav,
-  Button,
-  Row,
-  Col,
-} from 'react-bootstrap';
+import { Container, Navbar, Image, Nav, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useTernaryDarkMode } from 'usehooks-ts';
+import LanguageSelector from '../../components/Navigation/LanguageSelector.jsx';
+import ThemeSelector from '../../components/Navigation/ThemeSelector.jsx';
 import routes from '../../routes.js';
 
 import RunItLogoLight from './assets/LogoHeaderLightTheme.svg';
@@ -21,120 +16,70 @@ import './custom-colors.scss';
 
 function Header() {
   const { t } = useTranslation();
+  const { ternaryDarkMode } = useTernaryDarkMode();
 
-  const theme = document.documentElement.getAttribute('data-bs-theme');
-
-  const logo = theme === 'light' ? RunItLogoLight : RunItLogoDark;
-
+  const logo = ternaryDarkMode === 'light' ? RunItLogoLight : RunItLogoDark;
   return (
     <header>
       <Navbar expand="lg">
-        <Container>
-          <Row className="justify-content-between gap-5">
-            <Col>
-              <div className="d-flex flex-nowrap justify-content-between gap-5">
-                <Navbar.Brand className="m-0">
-                  <Image fluid src={logo} />
+        <Container className="justify-content-between">
+          <Navbar.Brand className="mr-5">
+            <Image src={logo} />
+          </Navbar.Brand>
+          <Navbar.Toggle
+            aria-controls="navbar-responsive"
+            className="border-0 ms-auto"
+            data-bs-toogle="collapse"
+          >
+            <Image src={Burger} />
+          </Navbar.Toggle>
+          <Navbar.Collapse className="my-3 mb-lg-0" id="navbar-responsive">
+            <Nav as="ul" className="text-center">
+              <li>
+                <Navbar.Brand className="header-link" href="#aboutProject">
+                  <span>{t('landing.header.about')}</span>
                 </Navbar.Brand>
-                <Navbar.Toggle
-                  aria-controls="navbar-responsive"
-                  className="border-0 ms-auto"
-                  data-bs-toogle="collapse"
-                >
-                  <Image src={Burger} />
-                </Navbar.Toggle>
-              </div>
-              <Navbar.Collapse className="my-3 mb-lg-0" id="navbar-responsive">
-                <Nav as="ul" className="gap-2 text-center d-lg-none mb-3">
-                  <li>
-                    <Navbar.Brand className="header-link" href="#aboutProject">
-                      <span>{t('landing.header.about')}</span>
-                    </Navbar.Brand>
-                  </li>
-                  <li>
-                    <Navbar.Brand className="header-link" href="#advantages">
-                      <span>{t('landing.header.advantages')}</span>
-                    </Navbar.Brand>
-                  </li>
-                  <li>
-                    <Navbar.Brand className="header-link" href="#possibilities">
-                      <span>{t('landing.header.opportunities')}</span>
-                    </Navbar.Brand>
-                  </li>
-                  <li>
-                    <Navbar.Brand className="header-link" href="#faq">
-                      <span>{t('landing.header.faq')}</span>
-                    </Navbar.Brand>
-                  </li>
-                </Nav>
-                <Nav className=" mb-3 mb-lg-0 gap-3 ms-auto d-lg-none">
-                  <Button
-                    as={Link}
-                    className="rounded-5 d-flex px-5 justify-content-center btn-signin"
-                    to={routes.signInPagePath()}
-                    variant="primary"
-                  >
-                    <span>{t('profileActions.signIn')}</span>
-                  </Button>
-                  <Button
-                    as={Link}
-                    className="rounded-5 d-flex px-5 justify-content-center btn-signup"
-                    to={routes.signUpPagePath()}
-                    variant="secondary"
-                  >
-                    <span>{t('profileActions.signUp')}</span>
-                  </Button>
-                </Nav>
-              </Navbar.Collapse>
-            </Col>
-            <Col className="mt-5 mt-lg-0 d-none d-lg-block">
-              <Nav
-                as="ul"
-                className="h-100 gap-2 text-center align-items-center"
+              </li>
+              <li>
+                <Navbar.Brand className="header-link" href="#advantages">
+                  <span>{t('landing.header.advantages')}</span>
+                </Navbar.Brand>
+              </li>
+              <li>
+                <Navbar.Brand className="header-link" href="#possibilities">
+                  <span>{t('landing.header.opportunities')}</span>
+                </Navbar.Brand>
+              </li>
+              <li>
+                <Navbar.Brand className="header-link" href="#faq">
+                  <span>{t('landing.header.faq')}</span>
+                </Navbar.Brand>
+              </li>
+            </Nav>
+            <Nav
+              as="ul"
+              className="mb-3 mb-lg-0 gap-1 ms-auto align-items-center"
+            >
+              <LanguageSelector />
+              <ThemeSelector />
+              <Button
+                as={Link}
+                className="rounded-5 btn-signin"
+                to={routes.signInPagePath()}
+                variant="primary"
               >
-                <li>
-                  <Navbar.Brand className="header-link" href="#aboutProject">
-                    <span>{t('landing.header.about')}</span>
-                  </Navbar.Brand>
-                </li>
-                <li>
-                  <Navbar.Brand className="header-link" href="#advantages">
-                    <span>{t('landing.header.advantages')}</span>
-                  </Navbar.Brand>
-                </li>
-                <li>
-                  <Navbar.Brand className="header-link" href="#possibilities">
-                    <span>{t('landing.header.opportunities')}</span>
-                  </Navbar.Brand>
-                </li>
-                <li>
-                  <Navbar.Brand className="header-link" href="#faq">
-                    <span>{t('landing.header.faq')}</span>
-                  </Navbar.Brand>
-                </li>
-              </Nav>
-            </Col>
-            <Col className="d-none d-lg-block">
-              <Nav className="gap-3 ms-auto h-100 align-items-center">
-                <Button
-                  as={Link}
-                  className="rounded-5 d-flex px-5 justify-content-center btn-signin"
-                  to={routes.signInPagePath()}
-                  variant="primary"
-                >
-                  <span>{t('profileActions.signIn')}</span>
-                </Button>
-                <Button
-                  as={Link}
-                  className="rounded-5 d-flex px-5 justify-content-center btn-signup"
-                  to={routes.signUpPagePath()}
-                  variant="secondary"
-                >
-                  <span>{t('profileActions.signUp')}</span>
-                </Button>
-              </Nav>
-            </Col>
-          </Row>
+                <span>{t('profileActions.signIn')}</span>
+              </Button>
+              <Button
+                as={Link}
+                className="rounded-5 btn-signup"
+                to={routes.signUpPagePath()}
+                variant="secondary"
+              >
+                <span>{t('profileActions.signUp')}</span>
+              </Button>
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </header>
