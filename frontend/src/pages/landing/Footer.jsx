@@ -1,13 +1,4 @@
-import {
-  Row,
-  Col,
-  Container,
-  Image,
-  Form,
-  FloatingLabel,
-  NavbarBrand,
-  Nav,
-} from 'react-bootstrap';
+import { Row, Col, Container, Image, NavbarBrand, Nav } from 'react-bootstrap';
 import './custom-colors.scss';
 import './landing.scss';
 import { useTranslation } from 'react-i18next';
@@ -263,12 +254,12 @@ function Footer() {
                 <Nav as="ul" className="list-group">
                   <li className="mb-2">
                     <NavbarBrand className="p-0" href="#aboutProject">
-                      {t('landing.header.advantages')}
+                      {t('landing.header.about')}
                     </NavbarBrand>
                   </li>
                   <li className="mb-2">
                     <NavbarBrand className="p-0" href="#advantages">
-                      Преимущества
+                      {t('landing.header.advantages')}
                     </NavbarBrand>
                   </li>
                   <li className="mb-2">
@@ -278,7 +269,7 @@ function Footer() {
                   </li>
                   <li className="mb-2">
                     <NavbarBrand className="p-0" href="#faq">
-                      {t('faq.faq')}
+                      {t('landing.header.faq')}
                     </NavbarBrand>
                   </li>
                 </Nav>
@@ -324,21 +315,6 @@ function Footer() {
                 </Nav>
               </Col>
             </Row>
-          </Col>
-          <Col>
-            <Form.Group data-bs-theme="light">
-              <FloatingLabel
-                className="text-black"
-                controlId="floatingTextarea"
-                label={t('footer.mailSupport')}
-              >
-                <Form.Control
-                  as="textarea"
-                  placeholder={t('footer.mailSupport')}
-                  style={{ height: '8rem' }}
-                />
-              </FloatingLabel>
-            </Form.Group>
           </Col>
           <Col>
             <div className="ms-auto">

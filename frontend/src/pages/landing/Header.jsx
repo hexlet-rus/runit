@@ -48,12 +48,12 @@ function Header() {
                 <Nav as="ul" className="gap-2 text-center d-lg-none mb-3">
                   <li>
                     <Navbar.Brand className="header-link" href="#aboutProject">
-                      <span>{t('landing.header.advantages')}</span>
+                      <span>{t('landing.header.about')}</span>
                     </Navbar.Brand>
                   </li>
                   <li>
                     <Navbar.Brand className="header-link" href="#advantages">
-                      <span>Преимущества</span>
+                      <span>{t('landing.header.advantages')}</span>
                     </Navbar.Brand>
                   </li>
                   <li>
@@ -63,7 +63,7 @@ function Header() {
                   </li>
                   <li>
                     <Navbar.Brand className="header-link" href="#faq">
-                      <span>{t('faq.faq')}</span>
+                      <span>{t('landing.header.faq')}</span>
                     </Navbar.Brand>
                   </li>
                 </Nav>
@@ -94,12 +94,12 @@ function Header() {
               >
                 <li>
                   <Navbar.Brand className="header-link" href="#aboutProject">
-                    <span>{t('landing.header.advantages')}</span>
+                    <span>{t('landing.header.about')}</span>
                   </Navbar.Brand>
                 </li>
                 <li>
                   <Navbar.Brand className="header-link" href="#advantages">
-                    <span>Преимущества</span>
+                    <span>{t('landing.header.advantages')}</span>
                   </Navbar.Brand>
                 </li>
                 <li>
@@ -109,7 +109,7 @@ function Header() {
                 </li>
                 <li>
                   <Navbar.Brand className="header-link" href="#faq">
-                    <span>{t('faq.faq')}</span>
+                    <span>{t('landing.header.faq')}</span>
                   </Navbar.Brand>
                 </li>
               </Nav>
