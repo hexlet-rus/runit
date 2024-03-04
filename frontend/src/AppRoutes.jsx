@@ -11,8 +11,8 @@ import ScrollToTop from './utils/scrollToTop.js';
 
 import DefaultLoader from './components/Loaders/DefaultLoader.jsx';
 
-const Landing = lazy(() => import('./pages/landing'));
-const NewLanding = lazy(() => import('./landing/Landing.jsx'));
+const Landing = lazy(() => import('./pages/landing/Landing.jsx'));
+const OldLanding = lazy(() => import('./pages/old-landing'));
 
 const ProfilePage = lazy(() => import('./pages/profile'));
 const SettingsPage = lazy(() => import('./pages/settings'));
@@ -55,9 +55,9 @@ function AppRoutes() {
     <Suspense fallback={<DefaultLoader />}>
       <ScrollToTop />
       <Routes>
-        <Route path={routes.newLandingPath()} element={<NewLanding />} />
+        <Route index element={<Landing />} />
         <Route element={<Layout />}>
-          <Route index element={<Landing />} />
+          <Route path={routes.oldLandingPath()} element={<OldLanding />} />
           <Route path={routes.homePagePath()} element={<SnippetPage />} />
           <Route path={routes.snippetPagePath()} element={<SnippetPage />} />
           <Route path={routes.aboutPagePath()} element={<AboutPage />} />

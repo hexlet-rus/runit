@@ -87,13 +87,13 @@
     "dist0": "The software is distributed as an online service (SaaS solution)",
     "dist1": "No special software installation steps on the user side are required",
     "faq": "FAQ",
-    "q0": "What if an IDE?",
+    "q0": "What is an IDE?",
     "q1": "How do IDE tools help developers?",
     "q2": "What kind of IDEs are there?",
     "q3": "What are the features of the Run IT IDE?"
   },
   "footer": {
-    "about": "About",
+    "about": "About Us",
     "agreement": "Privacy",
     "blog": "Blog",
     "career": "Careers at Hexlet",
@@ -169,6 +169,12 @@
       "second": "IDE"
     },
     "freeProject": "Free Hexlet Project",
+    "header": {
+      "about": "About",
+      "advantages": "Advantages",
+      "opportunities": "Opportunities",
+      "faq": "FAQ"
+    },
     "inBrowser": "The editor runs entirely in the browser, so you can start coding in seconds",
     "modern": "In modern web development, you need to constantly keep up with the latest news, and even better - to try out new products in real-world",
     "moreOpportunity": "Even more opportunities in the future",
