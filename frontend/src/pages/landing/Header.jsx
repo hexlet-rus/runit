@@ -16,9 +16,9 @@ import './custom-colors.scss';
 
 function Header() {
   const { t } = useTranslation();
-  const { ternaryDarkMode } = useTernaryDarkMode();
+  const { isDarkMode } = useTernaryDarkMode();
 
-  const logo = ternaryDarkMode === 'light' ? RunItLogoLight : RunItLogoDark;
+  const logo = isDarkMode ? RunItLogoDark : RunItLogoLight;
   return (
     <header>
       <Navbar expand="lg">
