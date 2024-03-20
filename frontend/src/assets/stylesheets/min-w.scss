@@ -1,0 +1,10 @@
+$utilities: map-merge(
+  $utilities,
+  (
+    "min-width": (
+      property: min-width,
+      class: min-w,
+      values: (150: 9.375rem),
+    ),
+  )
+);
