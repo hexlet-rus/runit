@@ -104,7 +104,7 @@ function SnippetName({ snippet }) {
             value={formik.values.name}
           />
           <Form.Control.Feedback
-            className={formik.errors.name && 'd-block'}
+            className={formik.errors.name && 'd-block min-w-150'}
             tooltip
             type="invalid"
           >
