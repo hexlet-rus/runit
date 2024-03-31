@@ -1,6 +1,6 @@
 .toolbar {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   gap: $spacer * 0.25;
   align-items: center;
 
