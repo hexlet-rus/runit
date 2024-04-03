@@ -13,12 +13,10 @@ export const SNIPPET_NAME_MAX_LENGTH = 30;
 
 export const username = () =>
   string()
-    .trim()
     .required('errors.validation.requiredField')
     .min(USERNAME_MIN_LENGTH, 'errors.validation.usernameLength')
     .max(USERNAME_MAX_LENGTH, 'errors.validation.usernameLength')
     .matches(/^[\w\S]*$/, 'errors.validation.incorrectUsername');
-
 export const email = () =>
   string()
     .trim()

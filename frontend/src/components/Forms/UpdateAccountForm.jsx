@@ -23,6 +23,12 @@ function UpdateAccountForm() {
   const initialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
 
+  const handleBeforeInput = (e) => {
+    if (e.nativeEvent.key === ' ') {
+      e.preventDefault();
+    }
+  };
+
   const validationSchema = object().shape({
     username: username(),
     email: email(),
@@ -118,6 +124,7 @@ function UpdateAccountForm() {
           autoComplete="username"
           isInvalid={formik.touched.username && formik.errors.username}
           name="username"
+          onBeforeInput={handleBeforeInput}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           required
@@ -135,6 +142,7 @@ function UpdateAccountForm() {
           autoComplete="email"
           isInvalid={formik.touched.email && formik.errors.email}
           name="email"
+          onBeforeInput={handleBeforeInput}
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
           required

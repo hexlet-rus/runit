@@ -35,6 +35,12 @@ function GuestSignupForm() {
     setPasswordVisibility(!isPasswordVisible);
   };
 
+  const handleBeforeInput = (e) => {
+    if (e.nativeEvent.key === ' ') {
+      e.preventDefault();
+    }
+  };
+
   useEffect(() => {
     usernameRef.current.focus();
   }, []);
@@ -140,6 +146,7 @@ function GuestSignupForm() {
               autoComplete="username"
               isInvalid={!!formik.touched.username && !!formik.errors.username}
               name="username"
+              onBeforeInput={handleBeforeInput}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               required
@@ -158,6 +165,7 @@ function GuestSignupForm() {
               autoComplete="email"
               isInvalid={!!formik.touched.email && !!formik.errors.email}
               name="email"
+              onBeforeInput={handleBeforeInput}
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               required
