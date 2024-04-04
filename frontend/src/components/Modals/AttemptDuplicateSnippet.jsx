@@ -79,13 +79,13 @@ function AttemptDuplicateSnippet({ handleClose, isOpen }) {
         <Modal.Title>{t('modals.attemptDuplicateSnippet.title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="d-flex flex-column gap-3">
-        <Button variant="primary" onClick={handleCopy}>
+        <Button onClick={handleCopy} variant="primary">
           {t('modals.attemptDuplicateSnippet.copyButton')}
         </Button>
         <p className="d-flex justify-content-center my-0">
           {t('modals.attemptDuplicateSnippet.or')}
         </p>
-        <Button variant="outline-primary" onClick={handleSignin}>
+        <Button onClick={handleSignin} variant="outline-primary">
           {t('modals.attemptDuplicateSnippet.signinButton')}
         </Button>
       </Modal.Body>
