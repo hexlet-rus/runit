@@ -213,7 +213,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
           }`}
         >
           <Button
-            className="btn-icon-only me-auto"
+            className={`btn-icon-only me-auto ${isOpened ? '' : 'd-none'}`}
             onClick={handleDelete}
             variant="nofill-danger"
           >
@@ -223,7 +223,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
             </span>
           </Button>
           <Button
-            className="btn-icon-only ms-auto"
+            className={`btn-icon-only ms-auto ${isOpened ? '' : 'd-none'}`}
             onClick={handleDuplicate}
             variant="nofill-body"
           >
