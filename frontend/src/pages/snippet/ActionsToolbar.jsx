@@ -5,11 +5,12 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import { BoxArrowUp, Files, PlayFill } from 'react-bootstrap-icons';
 import { actions } from '../../slices';
-import { useAuth, useRunButton } from '../../hooks';
+import { useAuth, useRunButton, useSaveButton } from '../../hooks';
 
 function ActionsToolbar({ snippet }) {
   const { t } = useTranslation();
   const { onClick, disabled } = useRunButton();
+  const { moveTo, saveCode } = useSaveButton();
   const dispatch = useDispatch();
   const { snippetData, code } = snippet;
   const { name: snippetName, ownerUsername } = snippetData;
@@ -75,6 +76,14 @@ function ActionsToolbar({ snippet }) {
       >
         <PlayFill className="bi" />
         {t('snippetActions.run')}
+      </Button>
+      <Button
+        className={`ms-3 btn-run${disabled ? ' running' : ''}`}
+        disabled={disabled}
+        variant="primary"
+        onClick
+      >
+        {t('snippetActions.save')}
       </Button>
     </Col>
   );
