@@ -1,20 +1,22 @@
 // 1. сохранить код
 // 2 перенаправить в мои снипеты
 
-import { useSelector } from 'react-redux'
-import routes from "../routes.js";
+import { useSelector, useDispatch } from 'react-redux';
+import routes from '../routes.js';
 
 const useSaveButton = () => {
-    const moveTo = () => {
-        const username = useSelector((state) => state.user.userInfo.username)
-        routes.profilePagePath(username)
+  const { editor, user } = useSelector((state) => state);
+  const saveCode = () => {
+    if (editor.isAllSaved) {
+      console.log(user, 'user');
+      routes.profilePagePath(user.userInfo.username);
     }
-    const saveCode = ''
+  };
 
-    return {
-        moveTo,
-        saveCode
-    }
-}
+  return {
+    moveTo,
+    saveCode,
+  };
+};
 
-export default useSaveButton
+export default useSaveButton;

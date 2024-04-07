@@ -80,8 +80,8 @@ function ActionsToolbar({ snippet }) {
       <Button
         className={`ms-3 btn-run${disabled ? ' running' : ''}`}
         disabled={disabled}
+        onClick={saveCode}
         variant="primary"
-        onClick
       >
         {t('snippetActions.save')}
       </Button>
