@@ -2,19 +2,21 @@
 // 2 перенаправить в мои снипеты
 
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import routes from '../routes.js';
+import { actions } from '../slices/editorSlice.js';
 
 const useSaveButton = () => {
-  const { editor, user } = useSelector((state) => state);
+  const currentCode = useSelector((state) => state.editor.code);
+  const username = useSelector((state) => state.user.userInfo.username);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const saveCode = () => {
-    if (editor.isAllSaved) {
-      console.log(user, 'user');
-      routes.profilePagePath(user.userInfo.username);
-    }
+    dispatch(actions.setCodeAndSavedCode(currentCode));
+    navigate(routes.profilePagePath(username));
   };
 
   return {
-    moveTo,
     saveCode,
   };
 };

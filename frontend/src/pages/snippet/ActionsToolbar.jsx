@@ -10,7 +10,7 @@ import { useAuth, useRunButton, useSaveButton } from '../../hooks';
 function ActionsToolbar({ snippet }) {
   const { t } = useTranslation();
   const { onClick, disabled } = useRunButton();
-  const { moveTo, saveCode } = useSaveButton();
+  const { saveCode } = useSaveButton();
   const dispatch = useDispatch();
   const { snippetData, code } = snippet;
   const { name: snippetName, ownerUsername } = snippetData;
