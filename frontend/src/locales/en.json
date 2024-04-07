@@ -337,7 +337,8 @@
     "openOnRunIT": "Edit on RunIT",
     "rename": "Renane",
     "run": "Run",
-    "share": "Share"
+    "share": "Share",
+    "save": "Save"
   },
   "toasts": {
     "duplicateSnippet": {

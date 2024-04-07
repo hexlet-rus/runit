@@ -468,7 +468,8 @@
     "openOnRunIT": "Редактировать в RunIT",
     "rename": "Переименовать",
     "run": "Запустить",
-    "share": "Поделиться"
+    "share": "Поделиться",
+    "save": "Сохранить"
   },
   "toasts": {
     "duplicateSnippet": {
