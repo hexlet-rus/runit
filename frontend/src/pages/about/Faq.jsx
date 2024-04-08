@@ -1,5 +1,5 @@
 import { Accordion, Row } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import './Faq.module.css';
 
 export function Faq() {
@@ -18,36 +18,28 @@ export function Faq() {
             {t('faq.a11')}
             <br />
             <br />
-            <strong>{t('faq.a12')}</strong>
-            {t('faq.a13')}
+            <Trans i18nKey="faq.a12" />
             <br />
             <br />
-            <strong>{t('faq.a14')}</strong>
-            {t('faq.a15')}
+            <Trans i18nKey="faq.a14" />
             <br />
             <br />
-            <strong>{t('faq.a16')}</strong>
-            {t('faq.a17')}
+            <Trans i18nKey="faq.a16" />
             <br />
             <br />
-            <strong>{t('faq.a18')}</strong>
-            {t('faq.a19')}
+            <Trans i18nKey="faq.a18" />
             <br />
             <br />
-            <strong>{t('faq.a110')}</strong>
-            {t('faq.a111')}
+            <Trans i18nKey="faq.a110" />
             <br />
             <br />
-            <strong>{t('faq.a112')}</strong>
-            {t('faq.a113')}
+            <Trans i18nKey="faq.a112" />
             <br />
             <br />
-            <strong>{t('faq.a114')}</strong>
-            {t('faq.a115')}
+            <Trans i18nKey="faq.a114" />
             <br />
             <br />
-            <strong>{t('faq.a116')}</strong>
-            {t('faq.a117')}
+            <Trans i18nKey="faq.a116" />
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="2">
@@ -56,12 +48,10 @@ export function Faq() {
             {t('faq.a2')}
             <br />
             <br />
-            <strong>{t('faq.a21')}</strong>
-            {t('faq.a22')}
+            <Trans i18nKey="faq.a21" />
             <br />
             <br />
-            <strong>{t('faq.a23')}</strong>
-            {t('faq.a24')}
+            <Trans i18nKey="faq.a23" />
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="3">

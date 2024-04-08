@@ -139,7 +139,7 @@ function SnippetPage() {
       className="py-3 editor-page d-flex flex-column gap-3 px-xl-3 bg-body-secondary"
       fluid
     >
-      <Row xs="auto" className="justify-content-between align-items-center">
+      <Row className="justify-content-between align-items-center" xs="auto">
         <FileToolbar
           snippet={{ isAllSaved, isReady, code, hasSnippetData, snippetData }}
         />

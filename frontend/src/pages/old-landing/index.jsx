@@ -1,8 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Row, Col, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../hooks';
 import routes from '../../routes.js';
@@ -102,8 +101,8 @@ function Landing() {
           </Row>
           <Row className="justify-content-center">
             <Button
-              onClick={handleCodeWithoutRegButton}
               className={`btn ${classes.btnOutlinePrimary} ${classes.btnNoAttention} py-3 ${classes.fs5} ${classes.lh5}"`}
+              onClick={handleCodeWithoutRegButton}
               size="lg"
             >
               {t('landing.codeWithoutReg')}

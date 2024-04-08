@@ -6,15 +6,15 @@ function Toast() {
 
   return (
     <ToastContainer
-      position="top-center"
       autoClose={3000}
+      closeOnClick
+      draggable
       hideProgressBar
       newestOnTop={false}
-      closeOnClick
-      rtl={false}
       pauseOnFocusLoss
-      draggable
       pauseOnHover
+      position="top-center"
+      rtl={false}
       theme={isDarkMode ? 'dark' : 'light'}
     />
   );

@@ -25,7 +25,7 @@ function UserMenu() {
   };
 
   return (
-    <Dropdown title="User Menu" align="end" as="li">
+    <Dropdown align="end" as="li" title="User Menu">
       <Dropdown.Toggle
         as={Button}
         className="d-flex p-0 px-lg-2 align-items-center nav-link"

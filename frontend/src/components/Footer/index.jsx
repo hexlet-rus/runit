@@ -13,7 +13,7 @@ function Footer() {
     <footer className="bg-dark border-top border-secondary pt-4 pb-5">
       <Container>
         <Row className="gy-2 gx-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row pt-3">
-          <Col md={5} lg={5}>
+          <Col lg={5} md={5}>
             <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link
@@ -89,7 +89,7 @@ function Footer() {
               <span className="d-block">{t('footer.ogrn')}</span>
             </p>
           </Col>
-          <Col md={5} lg={5}>
+          <Col lg={5} md={5}>
             <div className="fw-bold mt-3 mb-2 text-white">
               {t('footer.doc')}
             </div>
@@ -243,7 +243,7 @@ function Footer() {
                 </Dropdown.Menu>
               </Dropdown> */}
           </Col>
-          <Col md={12} lg={2}>
+          <Col lg={2} md={12}>
             <div className="fw-bold mt-3 mb-2 text-white">
               {t('footer.project')}
             </div>
