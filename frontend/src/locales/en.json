@@ -48,7 +48,7 @@
       "emailIsUsed": "This email address is already being used",
       "incorrectEmail": "Incorrect email",
       "incorrectPassword": "Only Latin letters, numbers and punctuation are allowed",
-      "incorrectUsername": "There must be no spaces in the username",
+      "incorrectUsername": "There must be no spaces or slashes in the username",
       "passwordLength": "From 8 to 30 characters",
       "requiredField": "Required field",
       "singleWord": "Allowed latin letters, numbers and symbols - _ .",

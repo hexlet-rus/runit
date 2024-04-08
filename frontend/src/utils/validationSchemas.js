@@ -4,6 +4,7 @@ import { string } from 'yup';
 
 const USERNAME_MIN_LENGTH = 3;
 const USERNAME_MAX_LENGTH = 16;
+const USERNAME_REGEX = /^[^\s/\\]*$/;
 
 const PASSWORD_MIN_LENGTH = 8;
 const PASSWORD_MAX_LENGTH = 30;
@@ -14,9 +15,9 @@ export const SNIPPET_NAME_MAX_LENGTH = 30;
 export const username = () =>
   string()
     .required('errors.validation.requiredField')
+    .matches(USERNAME_REGEX, 'errors.validation.incorrectUsername')
     .min(USERNAME_MIN_LENGTH, 'errors.validation.usernameLength')
-    .max(USERNAME_MAX_LENGTH, 'errors.validation.usernameLength')
-    .matches(/^[\w\S]*$/, 'errors.validation.incorrectUsername');
+    .max(USERNAME_MAX_LENGTH, 'errors.validation.usernameLength');
 export const email = () =>
   string()
     .trim()
