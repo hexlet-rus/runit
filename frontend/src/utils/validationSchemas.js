@@ -4,7 +4,7 @@ import { string } from 'yup';
 
 const USERNAME_MIN_LENGTH = 3;
 const USERNAME_MAX_LENGTH = 16;
-const USERNAME_REGEX = /^[^\s/\\]*$/;
+const USERNAME_REGEX = /^[a-zA-Z0-9_-]+$/;
 
 const PASSWORD_MIN_LENGTH = 8;
 const PASSWORD_MAX_LENGTH = 30;
