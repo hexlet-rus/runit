@@ -24,7 +24,7 @@ function Header() {
       <Navbar expand="lg">
         <Container className="justify-content-between">
           <Navbar.Brand className="mr-5">
-            <Image src={logo} />
+            <Image className="navbar-logo" src={logo} />
           </Navbar.Brand>
           <Navbar.Toggle
             aria-controls="navbar-responsive"
@@ -34,7 +34,7 @@ function Header() {
             <Image src={Burger} />
           </Navbar.Toggle>
           <Navbar.Collapse className="my-3 mb-lg-0" id="navbar-responsive">
-            <Nav as="ul" className="text-center">
+            <Nav as="ul" className="text-left text-xl-center">
               <li>
                 <Navbar.Brand className="header-link" href="#aboutProject">
                   <span>{t('landing.header.about')}</span>
@@ -58,7 +58,7 @@ function Header() {
             </Nav>
             <Nav
               as="ul"
-              className="mb-3 mb-lg-0 gap-1 ms-auto align-items-center"
+              className="mb-3 mb-lg-0 gap-1 ms-auto align-items-xl-center align-items-start"
             >
               <LanguageSelector />
               <ThemeSelector />

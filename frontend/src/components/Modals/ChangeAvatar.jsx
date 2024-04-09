@@ -22,36 +22,35 @@ function ChangeAvatar({ handleClose, isOpen }) {
     <Modal centered onHide={handleClose} show={isOpen} size="sm">
       <div className="m-2 text-center">
         <AvatarEditor
-          image={avatarState.img}
-          width={250}
-          height={250}
           border={0}
-          scale={avatarState.scale}
-          rotate={0}
           className="rounded-circle"
+          height={250}
+          image={avatarState.img}
+          rotate={0}
+          scale={avatarState.scale}
+          width={250}
         />
       </div>
       <Modal.Body className="text-center py-3">
         <Form.Range
+          max={20}
+          min={10}
           onChange={(e) =>
             setAvatarState({ ...avatarState, scale: e.target.value / 10 })
           }
-          min={10}
-          max={20}
         />
         <Button onClick={handleInputClick}>
           <FormLabel
-            htmlFor="customFile1"
             className="text-white m-1 fs-6"
+            htmlFor="customFile1"
             onClick={handleLabelClick}
           >
             {t('modals.changeAvatar.chooseFileButton')}
           </FormLabel>
           <FormControl
-            type="file"
+            ref={fileInputRef}
             className="form-control d-none"
             id="customFile1"
-            ref={fileInputRef}
             onChange={(e) =>
               setAvatarState({
                 ...avatarState,
@@ -59,18 +58,19 @@ function ChangeAvatar({ handleClose, isOpen }) {
                 imageChosen: true,
               })
             }
+            type="file"
           />
         </Button>
         <div>
           <Button
-            onClick={handleClose}
             className="mt-3 me-3"
-            variant="success"
             disabled={!avatarState.imageChosen}
+            onClick={handleClose}
+            variant="success"
           >
             {t('modals.changeAvatar.uploadButton')}
           </Button>
-          <Button onClick={handleClose} className="mt-3" variant="secondary">
+          <Button className="mt-3" onClick={handleClose} variant="secondary">
             {t('modals.changeAvatar.cancelButton')}
           </Button>
         </div>

@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 
@@ -99,7 +98,7 @@ function NewLanding() {
             </Col>
           </Row>
           <Row className="my-5" xs="auto">
-            <Col lg={{ offset: 1 }} className="mb-3">
+            <Col className="mb-3" lg={{ offset: 1 }}>
               <Button
                 as={Link}
                 className="btn-start rounded-5"
@@ -111,8 +110,8 @@ function NewLanding() {
             </Col>
             <Col>
               <Button
-                onClick={handleCodeWithoutRegButton}
                 className="btn-start-no-reg rounded-5"
+                onClick={handleCodeWithoutRegButton}
                 size="lg"
               >
                 {t('landing.codeWithoutReg')}
@@ -516,8 +515,8 @@ function NewLanding() {
           <Row className="mb-5">
             <Col className="d-flex justify-content-center">
               <Button
-                onClick={handleCodeWithoutRegButton}
                 className="btn-start-no-reg rounded-5"
+                onClick={handleCodeWithoutRegButton}
                 size="lg"
               >
                 {t('landing.codeWithoutReg')}

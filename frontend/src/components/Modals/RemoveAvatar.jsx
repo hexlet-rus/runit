@@ -13,10 +13,10 @@ function RemoveAvatar({ handleClose, isOpen }) {
           <p>{t('modals.removeAvatar.message')}</p>
         </div>
         <FormGroup className="d-flex justify-content-center">
-          <Button onClick={handleClose} variant="danger" className="me-5 px-4">
+          <Button className="me-5 px-4" onClick={handleClose} variant="danger">
             {t('modals.removeAvatar.removeButton')}
           </Button>
-          <Button onClick={handleClose} variant="secondary" className="px-4">
+          <Button className="px-4" onClick={handleClose} variant="secondary">
             {t('modals.removeAvatar.cancelButton')}
           </Button>
         </FormGroup>
