@@ -56,6 +56,9 @@
 
   
 @media (min-width: 992px) {
+    .navbar-logo {
+        width: 150px;
+    }
     .about-project > .d-lg-flex > h4 {
         font-family: 'Nunito Sans';
         line-height: 130%;
