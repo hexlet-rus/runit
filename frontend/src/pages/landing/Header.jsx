@@ -21,7 +21,7 @@ function Header() {
   const logo = isDarkMode ? RunItLogoDark : RunItLogoLight;
   return (
     <header>
-      <Navbar expand="xl">
+      <Navbar expand="lg">
         <Container className="justify-content-between">
           <Navbar.Brand className="mr-5">
             <Image src={logo} />
