@@ -24,7 +24,7 @@ function Header() {
       <Navbar expand="lg">
         <Container className="justify-content-between">
           <Navbar.Brand className="mr-5">
-            <Image src={logo} />
+            <Image className="navbar-logo" src={logo} />
           </Navbar.Brand>
           <Navbar.Toggle
             aria-controls="navbar-responsive"
