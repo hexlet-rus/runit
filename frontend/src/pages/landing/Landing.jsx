@@ -118,7 +118,7 @@ function NewLanding() {
               </Button>
             </Col>
           </Row>
-          <Row className="d-lg-inline-flex mb-5 my-lg-5 background-dark">
+          <Row className="d-lg-inline-flex mb-5 my-lg-5 background-dark align-items-center">
             <div className="d-lg-flex py-5 py-xl-4 py-lg-1 px-lg-1 justify-content-between px-5">
               <Col
                 as="figure"
