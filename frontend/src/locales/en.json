@@ -333,6 +333,10 @@
   "toasts": {
     "duplicateSnippet": {
       "success": "Snippet successfully copied!"
+    },
+    "saveCode": {
+      "success": "Snippet successfully saved!",
+      "error" : "Snippet was not saved"
     }
   }
 }
