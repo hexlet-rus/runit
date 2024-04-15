@@ -1,6 +1,3 @@
-// 1. сохранить код
-// 2 перенаправить в мои снипеты
-
 import { useSelector, useDispatch } from 'react-redux';
 import { actions } from '../slices/editorSlice.js';
 
@@ -9,7 +6,6 @@ const useSaveButton = () => {
   const dispatch = useDispatch();
   const saveCode = () => {
     dispatch(actions.setCodeAndSavedCode(currentCode));
-
   };
 
   return {
