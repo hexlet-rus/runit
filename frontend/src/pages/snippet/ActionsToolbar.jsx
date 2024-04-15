@@ -4,15 +4,17 @@ import { useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import { BoxArrowUp, Files, PlayFill } from 'react-bootstrap-icons';
+import { toast } from 'react-toastify';
 import { actions } from '../../slices';
 import { useAuth, useRunButton, useSaveButton } from '../../hooks';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ActionsToolbar({ snippet }) {
   const { t } = useTranslation();
   const { onClick, disabled } = useRunButton();
   const { saveCode } = useSaveButton();
   const dispatch = useDispatch();
-  const { snippetData, code } = snippet;
+  const { snippetData, code, isAllSaved } = snippet;
   const { name: snippetName, ownerUsername } = snippetData;
   const { isLoggedIn } = useAuth();
 
@@ -50,6 +52,15 @@ function ActionsToolbar({ snippet }) {
     }
   };
 
+  const handleSaveCode = () => {
+    if (isAllSaved) {
+      saveCode();
+      toast.success(t('toasts.saveCode.success'));
+      return;
+    }
+    toast.error(t('toasts.saveCode.error'));
+  };
+
   return (
     <Col className="toolbar">
       <Button
@@ -59,7 +70,6 @@ function ActionsToolbar({ snippet }) {
       >
         <Files />
       </Button>
-
       <Button
         className="btn-icon-only-full-height"
         onClick={handleShare}
@@ -79,8 +89,8 @@ function ActionsToolbar({ snippet }) {
       </Button>
       <Button
         className={`ms-3 btn-run${disabled ? ' running' : ''}`}
-        disabled={disabled}
-        onClick={saveCode}
+        disabled={!isAllSaved}
+        onClick={handleSaveCode}
         variant="primary"
       >
         {t('snippetActions.save')}
