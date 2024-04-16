@@ -1,7 +1,7 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 
@@ -9,20 +9,20 @@ import { useAuth } from '../../hooks';
 import routes from '../../routes.js';
 import { actions } from '../../slices/modalSlice';
 import Faq from './Faq.jsx';
-import Header from './Header.jsx';
 import Footer from './Footer.jsx';
-import './landing.scss';
+import Header from './Header.jsx';
 import './assets/fonts/NunitoSans_10pt-Light.ttf';
+import './landing.scss';
 
-import Code from './assets/Icons=Code.svg';
-import Devices from './assets/Icons=Devices.svg';
-import Share from './assets/Icons=Share.svg';
 import ImageCarousel1 from './assets/DisplayWithCode1.jpeg';
 import ImageCarousel2 from './assets/DisplayWithCode2.jpeg';
 import ImageCarousel3 from './assets/DisplayWithCode3.jpeg';
 import ImageCarousel4 from './assets/DisplayWithCode4.jpeg';
 import ImageCarousel5 from './assets/DisplayWithCode5.jpeg';
+import Code from './assets/Icons=Code.svg';
+import Devices from './assets/Icons=Devices.svg';
 import Languages from './assets/Icons=Languages.svg';
+import Share from './assets/Icons=Share.svg';
 import TeamWork from './assets/Icons=TeamWork.svg';
 import Template from './assets/Icons=Template.svg';
 import ImageUnderCarousel from './assets/ReadyAssets.jpeg';
@@ -171,7 +171,7 @@ function NewLanding() {
             ref={advantagesRef}
             className="d-none d-lg-inline-flex my-5 overflow-auto flex-nowrap advantages-horizontal-scroll"
           >
-            <Col clssaName="col-12" lg={{ offset: 1, span: 11 }}>
+            <Col className="col-12" lg={{ offset: 1, span: 11 }}>
               <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center me-5">
                 <Col>
                   <Image
@@ -190,7 +190,7 @@ function NewLanding() {
                 </Col>
               </figure>
             </Col>
-            <Col clssaName="col-12" lg={{ offset: 1, span: 11 }}>
+            <Col className="col-12" lg={{ offset: 1, span: 11 }}>
               <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center mx-5">
                 <Col>
                   <Image
@@ -209,7 +209,7 @@ function NewLanding() {
                 </Col>
               </figure>
             </Col>
-            <Col clssaName="col-12" lg={{ offset: 1, span: 11 }}>
+            <Col className="col-12" lg={{ offset: 1, span: 11 }}>
               <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center mx-5">
                 <Col>
                   <Image
@@ -228,7 +228,7 @@ function NewLanding() {
                 </Col>
               </figure>
             </Col>
-            <Col clssaName="col-12" lg={{ offset: 1, span: 11 }}>
+            <Col className="col-12" lg={{ offset: 1, span: 11 }}>
               <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center mx-5">
                 <Col>
                   <Image
@@ -247,7 +247,7 @@ function NewLanding() {
                 </Col>
               </figure>
             </Col>
-            <Col clssaName="col-12" lg={{ offset: 1, span: 11 }}>
+            <Col className="col-12" lg={{ offset: 1, span: 11 }}>
               <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
                 <Col>
                   <Image

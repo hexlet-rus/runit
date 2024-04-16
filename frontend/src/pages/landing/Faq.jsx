@@ -1,12 +1,13 @@
 import { useContext } from 'react';
 import {
   Accordion,
-  Row,
-  Col,
-  useAccordionButton,
   AccordionContext,
+  Col,
+  Row,
+  useAccordionButton,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { useTernaryDarkMode } from 'usehooks-ts';
 
 function CustomToggle({ children, eventKey }) {
   const { activeEventKey } = useContext(AccordionContext);
@@ -15,9 +16,8 @@ function CustomToggle({ children, eventKey }) {
 
   const isCurrentEventKey = activeEventKey === eventKey;
 
-  const theme = document.documentElement.getAttribute('data-bs-theme');
-
-  const colorForEl = theme === 'light' ? 'black' : 'white';
+  const { isDarkMode } = useTernaryDarkMode();
+  const colorForEl = isDarkMode ? 'white' : 'black';
 
   return (
     <div
