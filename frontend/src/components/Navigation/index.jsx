@@ -49,7 +49,7 @@ function Navigation() {
           <NavMenu />
           <Nav
             as="ul"
-            className="flex-row flex-wrap ms-sm-auto align-items-center gap-2"
+            className="flex-sm-row flex-column flex-wrap ms-sm-auto align-items-sm-center align-items-start gap-2"
           >
             <LanguageSelector />
             <ThemeSelector />
