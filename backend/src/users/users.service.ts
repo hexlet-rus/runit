@@ -13,6 +13,7 @@ import { Snippets } from '../entities/snippet.entity';
 import { User } from './interfaces/users.interface';
 import { RecoverUserDto } from './dto/recover-user.dto';
 import { cipher, decipher } from './secure/cipher';
+import { mkdirSync, openSync, appendFileSync } from 'fs';
 
 @Injectable()
 export class UsersService {
@@ -83,6 +84,14 @@ export class UsersService {
         context: {
           url,
         },
+      })
+      .then((data) => {
+        if (process.env.NODE_ENV !== "production" && !process.env.TRANSPORT_MAILER_URL) {
+          const logsDirName = process.env.LOGS_PATH ?? 'logs';
+          mkdirSync(logsDirName, { recursive: true });
+          openSync(`${logsDirName}/mail.log`, 'a');  
+          appendFileSync(`${logsDirName}/mail.log`, `${data.message}\n`);
+        }
       });
     } catch (e) {
       throw new Error(e);

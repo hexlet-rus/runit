@@ -34,7 +34,7 @@ export class MailerConfig implements MailerOptionsFactory {
       default:
         options.transport =
           process.env.TRANSPORT_MAILER_URL ??
-          'smtp://794dca83-1386-44ea-8f60-60308490a1e2:236b45b9-b334-45b2-813b-4fab6308e389@app.debugmail.io:25';
+          { jsonTransport: true }
         options.preview = true;
         return options;
     }
