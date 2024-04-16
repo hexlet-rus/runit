@@ -1,13 +1,23 @@
 import { MailerOptionsFactory, MailerOptions } from '@nestjs-modules/mailer';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 
+const configFromName = (transportUrl) => {
+  const parts = transportUrl.replace('smtp://', '').split(':');
+  const [emailName, otherInfo] = parts;
+  const domain = otherInfo.split('.');
+  const [,domName, dom] = domain;
+
+  return `${emailName}@${domName}.${dom}`
+}
+
 export class MailerConfig implements MailerOptionsFactory {
   /* eslint-disable-next-line class-methods-use-this */
   createMailerOptions(): MailerOptions | Promise<MailerOptions> {
+    const transportUrl = process.env.TRANSPORT_MAILER_URL;
     const options: MailerOptions = {
-      transport: process.env.TRANSPORT_MAILER_URL,
+      transport: transportUrl,
       defaults: {
-        from: '"Run IT" <noreply@runit.hexlet.ru>',
+        from: `"Run IT" <${transportUrl ? configFromName(transportUrl) : "test"}>`,
       },
       template: {
         dir: `${process.cwd()}/src/users/templates`,
@@ -22,10 +32,9 @@ export class MailerConfig implements MailerOptionsFactory {
       case 'production':
         return options;
       default:
-        // FIXME: use some test transport
         options.transport =
           process.env.TRANSPORT_MAILER_URL ??
-          'smtp://test:test@imap.ethereal.email:587';
+          { jsonTransport: true }
         options.preview = true;
         return options;
     }
