@@ -51,7 +51,7 @@ const editorSlice = createSlice({
       const code = payload ?? DEFAULT_CODE;
       return { ...initialState, code };
     },
-    updateDirection(state, { payload}) {
+    updateDirection(state, { payload }) {
       const direction = payload;
       switch (direction) {
         case 'vertical':

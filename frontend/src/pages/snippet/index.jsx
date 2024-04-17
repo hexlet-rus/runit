@@ -72,11 +72,10 @@ function SnippetPage() {
   useEffect(() => {
     if (isNotMobile) {
       dispatch(actions.updateDirection('horizontal'));
-    }
-    else {
+    } else {
       dispatch(actions.updateDirection('vertical'));
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     const editorData = editorDataRef.current;
