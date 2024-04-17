@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import { BoxArrowUp, Files, PlayFill } from 'react-bootstrap-icons';
+import { BoxArrowUp, Files, PlayFill, DistributeHorizontal, DistributeVertical } from 'react-bootstrap-icons';
 import { actions } from '../../slices';
 import { useAuth, useRunButton } from '../../hooks';
 
@@ -14,7 +14,7 @@ function ActionsToolbar({ snippet }) {
   const { snippetData, code } = snippet;
   const { name: snippetName, ownerUsername } = snippetData;
   const { isLoggedIn } = useAuth();
-
+  const { direction } = useSelector((state) => state.editor);
   const handleShare = () => {
     dispatch(
       actions.openModal({
@@ -49,8 +49,19 @@ function ActionsToolbar({ snippet }) {
     }
   };
 
+  const handleView = () => {
+
+  }
+
   return (
     <Col className="toolbar">
+      <Button 
+        className="btn-icon-only-full-height"
+        onClick={handleView}
+        variant="nofill-body"
+      >
+      <DistributeHorizontal />
+      </Button>
       <Button
         className="btn-icon-only-full-height"
         onClick={handleDuplicate}
