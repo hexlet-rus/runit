@@ -75,7 +75,7 @@ function ActionsToolbar({ snippet }) {
   return (
     <Col className="toolbar">
       <Button 
-        className="btn-icon-only-full-height"
+        className="btn-icon-only-full-height d-none d-md-inline-block"
         onClick={handleView}
         variant="nofill-body"
       >
