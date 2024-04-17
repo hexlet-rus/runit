@@ -64,9 +64,9 @@ const editorSlice = createSlice({
           state.direction = 'horizontal';
       }
     },
-    updateIsNotMobile(state, {payload}) {
+    updateIsNotMobile(state, { payload }) {
       state.isNotMobile = payload;
-    }
+    },
   },
 });
 

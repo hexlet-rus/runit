@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import { BoxArrowUp, Files, PlayFill, DistributeHorizontal, DistributeVertical } from 'react-bootstrap-icons';
+import {
+  BoxArrowUp,
+  Files,
+  PlayFill,
+  DistributeHorizontal,
+  DistributeVertical,
+} from 'react-bootstrap-icons';
 import { actions } from '../../slices';
 import { useAuth, useRunButton } from '../../hooks';
 
@@ -49,7 +55,7 @@ function ActionsToolbar({ snippet }) {
     }
   };
 
-  const DisplayIconView = () => {
+  function DisplayIconView() {
     switch (direction) {
       case 'horizontal':
         return <DistributeHorizontal />;
@@ -61,25 +67,23 @@ function ActionsToolbar({ snippet }) {
   }
 
   const handleView = () => {
-    
     if (direction === 'horizontal') {
       dispatch(actions.updateDirection('vertical'));
       return;
     }
     if (direction === 'vertical') {
       dispatch(actions.updateDirection('horizontal'));
-      return;
     }
-  }
+  };
 
   return (
     <Col className="toolbar">
-      <Button 
+      <Button
         className="btn-icon-only-full-height d-none d-md-inline-block"
         onClick={handleView}
         variant="nofill-body"
       >
-      <DisplayIconView/>
+        <DisplayIconView />
       </Button>
       <Button
         className="btn-icon-only-full-height"
