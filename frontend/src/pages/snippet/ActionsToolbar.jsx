@@ -7,11 +7,10 @@ import {
   BoxArrowUp,
   Files,
   PlayFill,
-  DistributeHorizontal,
-  DistributeVertical,
 } from 'react-bootstrap-icons';
 import { actions } from '../../slices';
 import { useAuth, useRunButton } from '../../hooks';
+import DisplayIconView from '../../components/ActionsToolbar/index.jsx';
 
 function ActionsToolbar({ snippet }) {
   const { t } = useTranslation();
@@ -54,17 +53,6 @@ function ActionsToolbar({ snippet }) {
       );
     }
   };
-
-  function DisplayIconView() {
-    switch (direction) {
-      case 'horizontal':
-        return <DistributeHorizontal />;
-      case 'vertical':
-        return <DistributeVertical />;
-      default:
-        return <DistributeHorizontal />;
-    }
-  }
 
   const handleView = () => {
     if (direction === 'horizontal') {
