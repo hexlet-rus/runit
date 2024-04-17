@@ -14,8 +14,11 @@ function GuestMenu() {
   const handleNewSnippet = () => {
     dispatch(actions.openModal({ type: 'newSnippet' }));
   };
+  const handleSignInButton = () => {
+    dispatch(actions.openModal({ type: 'signingIn' }));
+  };
 
-  const handleRegButton = () => {
+  const handleSignUpButton = () => {
     dispatch(actions.openModal({ type: 'signingUp' }));
   };
 
@@ -39,8 +42,14 @@ function GuestMenu() {
         </li>
         <Dropdown.Divider />
         <li>
-          <Dropdown.Item as={Button} onClick={handleRegButton}>
+          <Dropdown.Item as={Button} onClick={handleSignUpButton}>
             {t('signUp.registerButton')}
+          </Dropdown.Item>
+        </li>
+        <Dropdown.Divider />
+        <li>
+          <Dropdown.Item as={Button} onClick={handleSignInButton}>
+            {t('profileActions.signIn')}
           </Dropdown.Item>
         </li>
       </Dropdown.Menu>

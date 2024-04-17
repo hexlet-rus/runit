@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { object } from 'yup';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
@@ -20,6 +20,7 @@ function SignInForm({ onSuccess = () => null }) {
   const { t } = useTranslation();
   const emailRef = useRef();
   const auth = useAuth();
+  const navigate = useNavigate();
 
   const initialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
@@ -43,12 +44,23 @@ function SignInForm({ onSuccess = () => null }) {
     onSubmit: async (values, actions) => {
       setFormState(initialFormState);
       const preparedValues = validationSchema.cast(values);
+      const guest = localStorage.getItem('guestUserData');
       try {
         actions.setSubmitting(true);
         await axios.post(routes.signInPath(), {
           email: preparedValues.email,
           password: values.password,
         });
+        if (guest) {
+          localStorage.removeItem('guestUserData');
+          const {
+            data: {
+              currentUser: { username },
+            },
+          } = await axios.get(routes.userProfilePath());
+          navigate(routes.profilePagePath(username));
+          actions.setSubmitting(false);
+        }
         auth.signIn();
         actions.setSubmitting(false);
         onSuccess();
