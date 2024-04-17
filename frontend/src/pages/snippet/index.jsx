@@ -76,7 +76,7 @@ function SnippetPage() {
     else {
       dispatch(actions.updateDirection('vertical'));
     }
-  })
+  }, [])
 
   useEffect(() => {
     const editorData = editorDataRef.current;
