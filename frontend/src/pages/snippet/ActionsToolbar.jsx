@@ -49,8 +49,27 @@ function ActionsToolbar({ snippet }) {
     }
   };
 
-  const handleView = () => {
+  const DisplayIconView = () => {
+    switch (direction) {
+      case 'horizontal':
+        return <DistributeHorizontal />;
+      case 'vertical':
+        return <DistributeVertical />;
+      default:
+        return <DistributeHorizontal />;
+    }
+  }
 
+  const handleView = () => {
+    
+    if (direction === 'horizontal') {
+      dispatch(actions.updateDirection('vertical'));
+      return;
+    }
+    if (direction === 'vertical') {
+      dispatch(actions.updateDirection('horizontal'));
+      return;
+    }
   }
 
   return (
@@ -60,7 +79,7 @@ function ActionsToolbar({ snippet }) {
         onClick={handleView}
         variant="nofill-body"
       >
-      <DistributeHorizontal />
+      <DisplayIconView/>
       </Button>
       <Button
         className="btn-icon-only-full-height"
