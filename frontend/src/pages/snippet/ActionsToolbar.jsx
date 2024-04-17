@@ -3,11 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
-import {
-  BoxArrowUp,
-  Files,
-  PlayFill,
-} from 'react-bootstrap-icons';
+import { BoxArrowUp, Files, PlayFill } from 'react-bootstrap-icons';
 import { actions } from '../../slices';
 import { useAuth, useRunButton } from '../../hooks';
 import DisplayIconView from '../../components/ActionsToolbar/index.jsx';
