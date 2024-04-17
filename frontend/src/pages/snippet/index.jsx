@@ -28,7 +28,7 @@ function ResizeHandler({ direction = 'horizontal' }) {
 
 function SnippetPage() {
   const { isLoggedIn } = useAuth();
-  const { isAllSaved, isReady, code, hasSnippetData, snippetData } =
+  const { isAllSaved, isReady, code, hasSnippetData, snippetData, direction } =
     useSelector((state) => state.editor);
   const snippetApi = useSnippets();
   const params = useParams();
@@ -67,9 +67,16 @@ function SnippetPage() {
 
   const debouncedValue = useDebounce(code, AUTOSAVE_TIMEOUT);
 
-  const direction = useMediaQuery('(min-width: 768px)')
-    ? 'horizontal'
-    : 'vertical';
+  const isNotMobile = useMediaQuery('(min-width: 768px)');
+
+  useEffect(() => {
+    if (isNotMobile) {
+      dispatch(actions.updateDirection('horizontal'));
+    }
+    else {
+      dispatch(actions.updateDirection('vertical'));
+    }
+  })
 
   useEffect(() => {
     const editorData = editorDataRef.current;
