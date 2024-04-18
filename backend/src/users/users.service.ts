@@ -2,6 +2,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable class-methods-use-this */
 
+import { mkdirSync, openSync, appendFileSync } from 'fs';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
@@ -13,7 +14,6 @@ import { Snippets } from '../entities/snippet.entity';
 import { User } from './interfaces/users.interface';
 import { RecoverUserDto } from './dto/recover-user.dto';
 import { cipher, decipher } from './secure/cipher';
-import { mkdirSync, openSync, appendFileSync } from 'fs';
 
 @Injectable()
 export class UsersService {
@@ -76,23 +76,27 @@ export class UsersService {
     const url = `${frontendUrl}/recovery/${recoverHash}`;
 
     try {
-      this.mailerService.sendMail({
-        to: email,
-        // FIXME: use i18n
-        subject: 'Ссылка для изменения пароля на runit.hexlet.ru',
-        template: 'recover',
-        context: {
-          url,
-        },
-      })
-      .then((data) => {
-        if (process.env.NODE_ENV !== "production" && !process.env.TRANSPORT_MAILER_URL) {
-          const logsDirName = process.env.LOGS_PATH ?? 'logs';
-          mkdirSync(logsDirName, { recursive: true });
-          openSync(`${logsDirName}/mail.log`, 'a');  
-          appendFileSync(`${logsDirName}/mail.log`, `${data.message}\n`);
-        }
-      });
+      this.mailerService
+        .sendMail({
+          to: email,
+          // FIXME: use i18n
+          subject: 'Ссылка для изменения пароля на runit.hexlet.ru',
+          template: 'recover',
+          context: {
+            url,
+          },
+        })
+        .then((data) => {
+          if (
+            process.env.NODE_ENV !== 'production' &&
+            !process.env.TRANSPORT_MAILER_URL
+          ) {
+            const logsDirName = process.env.LOGS_PATH ?? 'logs';
+            mkdirSync(logsDirName, { recursive: true });
+            openSync(`${logsDirName}/mail.log`, 'a');
+            appendFileSync(`${logsDirName}/mail.log`, `${data.message}\n`);
+          }
+        });
     } catch (e) {
       throw new Error(e);
     }
