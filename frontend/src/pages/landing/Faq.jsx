@@ -96,13 +96,13 @@ function Faq() {
             <Accordion.Collapse eventKey="1">
               <article className="px-3 ">
                 <p>
-                <Trans i18nKey="faq.a2"/>
+                  <Trans i18nKey="faq.a2" />
                 </p>
                 <p>
-                <Trans i18nKey="faq.a21"/>
+                  <Trans i18nKey="faq.a21" />
                 </p>
                 <p>
-                <Trans i18nKey="faq.a23"/>
+                  <Trans i18nKey="faq.a23" />
                 </p>
               </article>
             </Accordion.Collapse>
@@ -121,36 +121,36 @@ function Faq() {
               <article className="px-3 ">
                 <p>{t('faq.a11')}</p>
                 <p>
-                <Trans i18nKey="faq.a110"/>
+                  <Trans i18nKey="faq.a110" />
                 </p>
-                
+
                 <p>
-                <Trans i18nKey="faq.a112"/>
+                  <Trans i18nKey="faq.a112" />
                 </p>
-                
+
                 <p>
-                <Trans i18nKey="faq.a114"/>
+                  <Trans i18nKey="faq.a114" />
                 </p>
-                
+
                 <p>
-                <Trans i18nKey="faq.a116"/>
+                  <Trans i18nKey="faq.a116" />
                 </p>
-                
+
                 <p>
-                <Trans i18nKey="faq.a12"/>
+                  <Trans i18nKey="faq.a12" />
                 </p>
-                
+
                 <p>
-                <Trans i18nKey="faq.a14"/>
+                  <Trans i18nKey="faq.a14" />
                 </p>
-                
+
                 <p>
-                <Trans i18nKey="faq.a16"/>
+                  <Trans i18nKey="faq.a16" />
                 </p>
-                
+
                 <p>
-                <Trans i18nKey="faq.a18"/>
-                </p>                
+                  <Trans i18nKey="faq.a18" />
+                </p>
               </article>
             </Accordion.Collapse>
           </div>
