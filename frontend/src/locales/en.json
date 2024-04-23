@@ -327,11 +327,16 @@
     "openOnRunIT": "Edit on RunIT",
     "rename": "Renane",
     "run": "Run",
-    "share": "Share"
+    "share": "Share",
+    "save": "Save"
   },
   "toasts": {
     "duplicateSnippet": {
       "success": "Snippet successfully copied!"
+    },
+    "saveCode": {
+      "success": "Snippet successfully saved!",
+      "error" : "Snippet was not saved"
     }
   }
 }
