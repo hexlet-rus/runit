@@ -87,7 +87,9 @@ function Faq() {
             <CustomToggle eventKey="0">{t('faq.q0')}</CustomToggle>
             <Accordion.Collapse eventKey="0">
               <article className="px-3 ">
-                <p>{t('faq.a0')}</p>
+                <p>
+                  <Trans i18nKey="faq.a0" />
+                </p>
               </article>
             </Accordion.Collapse>
           </div>
@@ -111,7 +113,9 @@ function Faq() {
             <CustomToggle eventKey="2">{t('faq.q3')}</CustomToggle>
             <Accordion.Collapse eventKey="2">
               <article className="px-3 ">
-                <p>{t('faq.a3')}</p>
+                <p>
+                  <Trans i18nKey="faq.a3" />
+                </p>
               </article>
             </Accordion.Collapse>
           </div>
