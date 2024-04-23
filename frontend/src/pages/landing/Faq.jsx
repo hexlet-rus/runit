@@ -6,7 +6,7 @@ import {
   Row,
   useAccordionButton,
 } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import { useTernaryDarkMode } from 'usehooks-ts';
 
 function CustomToggle({ children, eventKey }) {
@@ -95,15 +95,15 @@ function Faq() {
             <CustomToggle eventKey="1">{t('faq.q2')}</CustomToggle>
             <Accordion.Collapse eventKey="1">
               <article className="px-3 ">
-                <p>{t('faq.a2')}</p>
                 <p>
-                  <b>{t('faq.a21')}</b>
+                <Trans i18nKey="faq.a2"/>
                 </p>
-                <p>{t('faq.a22')}</p>
                 <p>
-                  <b>{t('faq.a23')}</b>
+                <Trans i18nKey="faq.a21"/>
                 </p>
-                <p>{t('faq.a24')}</p>
+                <p>
+                <Trans i18nKey="faq.a23"/>
+                </p>
               </article>
             </Accordion.Collapse>
           </div>
@@ -121,37 +121,36 @@ function Faq() {
               <article className="px-3 ">
                 <p>{t('faq.a11')}</p>
                 <p>
-                  <b>{t('faq.a110')}</b>
+                <Trans i18nKey="faq.a110"/>
                 </p>
-                <p>{t('faq.a111')}</p>
+                
                 <p>
-                  <b>{t('faq.a112')}</b>
+                <Trans i18nKey="faq.a112"/>
                 </p>
-                <p>{t('faq.a113')}</p>
+                
                 <p>
-                  <b>{t('faq.a114')}</b>
+                <Trans i18nKey="faq.a114"/>
                 </p>
-                <p>{t('faq.a115')}</p>
+                
                 <p>
-                  <b>{t('faq.a116')}</b>
+                <Trans i18nKey="faq.a116"/>
                 </p>
-                <p>{t('faq.a117')}</p>
+                
                 <p>
-                  <b>{t('faq.a12')}</b>
+                <Trans i18nKey="faq.a12"/>
                 </p>
-                <p>{t('faq.a13')}</p>
+                
                 <p>
-                  <b>{t('faq.a14')}</b>
+                <Trans i18nKey="faq.a14"/>
                 </p>
-                <p>{t('faq.a15')}</p>
+                
                 <p>
-                  <b>{t('faq.a16')}</b>
+                <Trans i18nKey="faq.a16"/>
                 </p>
-                <p>{t('faq.a17')}</p>
+                
                 <p>
-                  <b>{t('faq.a18')}</b>
-                </p>
-                <p>{t('faq.a19')}</p>
+                <Trans i18nKey="faq.a18"/>
+                </p>                
               </article>
             </Accordion.Collapse>
           </div>
