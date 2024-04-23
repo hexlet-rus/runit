@@ -1,11 +1,12 @@
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import { BoxArrowUp, Files, PlayFill } from 'react-bootstrap-icons';
 import { toast } from 'react-toastify';
 import { actions } from '../../slices';
+import DisplayIconView from '../../components/ActionsToolbar/index.jsx';
 import { useAuth, useRunButton, useSaveButton } from '../../hooks';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -17,7 +18,7 @@ function ActionsToolbar({ snippet }) {
   const { snippetData, code, isAllSaved } = snippet;
   const { name: snippetName, ownerUsername } = snippetData;
   const { isLoggedIn } = useAuth();
-
+  const { direction } = useSelector((state) => state.editor);
   const handleShare = () => {
     dispatch(
       actions.openModal({
@@ -61,8 +62,25 @@ function ActionsToolbar({ snippet }) {
     toast.error(t('toasts.saveCode.error'));
   };
 
+  const handleView = () => {
+    if (direction === 'horizontal') {
+      dispatch(actions.updateDirection('vertical'));
+      return;
+    }
+    if (direction === 'vertical') {
+      dispatch(actions.updateDirection('horizontal'));
+    }
+  };
+
   return (
     <Col className="toolbar">
+      <Button
+        className="btn-icon-only-full-height d-none d-md-inline-block"
+        onClick={handleView}
+        variant="nofill-body"
+      >
+        <DisplayIconView />
+      </Button>
       <Button
         className="btn-icon-only-full-height"
         onClick={handleDuplicate}

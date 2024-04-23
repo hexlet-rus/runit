@@ -18,6 +18,8 @@ const initialState = {
   code: DEFAULT_CODE,
   savedCode: DEFAULT_CODE,
   isAllSaved: true,
+  direction: 'horizontal',
+  isNotMobile: false,
 };
 
 const editorSlice = createSlice({
@@ -48,6 +50,22 @@ const editorSlice = createSlice({
     resetEditor(_state, { payload }) {
       const code = payload ?? DEFAULT_CODE;
       return { ...initialState, code };
+    },
+    updateDirection(state, { payload }) {
+      const direction = payload;
+      switch (direction) {
+        case 'vertical':
+          state.direction = 'vertical';
+          break;
+        case 'horizontal':
+          state.direction = 'horizontal';
+          break;
+        default:
+          state.direction = 'horizontal';
+      }
+    },
+    updateIsNotMobile(state, { payload }) {
+      state.isNotMobile = payload;
     },
   },
 });

@@ -5,10 +5,10 @@ const configFromName = (transportUrl) => {
   const parts = transportUrl.replace('smtp://', '').split(':');
   const [emailName, otherInfo] = parts;
   const domain = otherInfo.split('.');
-  const [,domName, dom] = domain;
+  const [, domName, dom] = domain;
 
-  return `${emailName}@${domName}.${dom}`
-}
+  return `${emailName}@${domName}.${dom}`;
+};
 
 export class MailerConfig implements MailerOptionsFactory {
   /* eslint-disable-next-line class-methods-use-this */
@@ -17,7 +17,9 @@ export class MailerConfig implements MailerOptionsFactory {
     const options: MailerOptions = {
       transport: transportUrl,
       defaults: {
-        from: `"Run IT" <${transportUrl ? configFromName(transportUrl) : "test"}>`,
+        from: `"Run IT" <${
+          transportUrl ? configFromName(transportUrl) : 'test'
+        }>`,
       },
       template: {
         dir: `${process.cwd()}/src/users/templates`,
@@ -32,9 +34,9 @@ export class MailerConfig implements MailerOptionsFactory {
       case 'production':
         return options;
       default:
-        options.transport =
-          process.env.TRANSPORT_MAILER_URL ??
-          { jsonTransport: true }
+        options.transport = process.env.TRANSPORT_MAILER_URL ?? {
+          jsonTransport: true,
+        };
         options.preview = true;
         return options;
     }
