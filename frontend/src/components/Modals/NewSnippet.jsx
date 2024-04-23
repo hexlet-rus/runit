@@ -32,7 +32,8 @@ const icons = new Map()
 const extensions = new Map()
   .set('javascript', 'js')
   .set('python', 'py')
-  .set('php', 'php');
+  .set('php', 'php')
+  .set('html', 'html');
 
 const generateGuestUserData = () => {
   const username = `guest_${faker.string.alphanumeric(5)}`;
