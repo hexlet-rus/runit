@@ -32,7 +32,8 @@ const icons = new Map()
 const extensions = new Map()
   .set('javascript', 'js')
   .set('python', 'py')
-  .set('php', 'php');
+  .set('php', 'php')
+  .set('html', 'html');
 
 const generateGuestUserData = () => {
   const username = `guest_${faker.string.alphanumeric(5)}`;
@@ -107,7 +108,7 @@ function NewSnippet({ handleClose, isOpen }) {
       // TODO: Тут не должно быть проверок, нужно создать абстракцию сервиса, который будет работать с любыми языками
       if (supportedLanguages.includes(language)) {
         try {
-          const snipName = `${values.name}.${extensions.get(language)}`;
+          const snipName = `${values.name}`;
           const id = await snippetApi.saveSnippet(code, snipName, language);
           const { slug } = await snippetApi.getSnippetData(id);
           const url = new URL(

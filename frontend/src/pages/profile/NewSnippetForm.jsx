@@ -12,12 +12,6 @@ import SnippetCardWrapper from './SnippetCardWrapper';
 
 import icons from '../../utils/icons';
 
-const extensions = new Map()
-  .set('javascript', 'js')
-  .set('python', 'py')
-  .set('php', 'php')
-  .set('html', 'html');
-
 function NewSnippetForm() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -31,7 +25,7 @@ function NewSnippetForm() {
     if (supportedLanguages.includes(language)) {
       try {
         const generatedName = await snippetApi.getDefaultSnippetName();
-        const snippetName = `${generatedName}.${extensions.get(language)}`;
+        const snippetName = `${generatedName}`;
         const id = await snippetApi.saveSnippet(code, snippetName, language);
         const { slug } = await snippetApi.getSnippetData(id);
         const url = new URL(snippetApi.genViewSnippetLink(username, slug));
