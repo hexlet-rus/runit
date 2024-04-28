@@ -10,7 +10,7 @@ import RunItLogoLight from './assets/LogoHeaderLightTheme.svg';
 import RunItLogoDark from './assets/LogoHeaderDarkTheme.svg';
 import Burger from './assets/Burger.svg';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './landing.scss';
 import './custom-colors.scss';
 

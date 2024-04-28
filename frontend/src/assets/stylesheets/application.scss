@@ -2,6 +2,41 @@
 @import "./fonts";
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
+//Colors
+$primary: #136ef6;
+$body-secondary-bg: #ebf1f9;
+$body-tertiary-bg: #f5f8fc;
+$body-bg-dark: $gray-900;
+$body-secondary-bg-dark: #16191c;
+$body-tertiary-bg-dark: mix($body-bg-dark, $body-secondary-bg-dark, 50%);
+
+// Options
+$focus-ring-width: 0.125rem;
+
+$btn-box-shadow: none;
+$btn-border-radius: var(--#{$prefix}border-radius-xxl);
+$btn-border-radius-sm: var(--#{$prefix}border-radius-xl);
+$btn-border-radius-lg: var(--#{$prefix}border-radius-xxl);
+
+$form-label-margin-bottom: $spacer * 0.25;
+$form-label-font-size: $font-size-sm;
+
+$card-spacer-y: $spacer * 2;
+$card-spacer-x: $spacer * 2;
+$card-border-width: 0;
+$card-border-radius: $border-radius-xl;
+$card-cap-bg: $card-bg;
+
+$modal-inner-padding: $spacer * 2;
+$modal-header-padding: $modal-inner-padding;
+$modal-content-border-radius: var(--#{$prefix}border-radius-xl);
+$modal-header-border-width: 0;
+
+$navbar-toggler-padding-y: 0;
+$navbar-toggler-padding-x: 0;
+
+$dropdown-padding-x: 0.25rem;
+$dropdown-padding-y: 0.25rem;
 
 @import "bootstrap/scss/variables-dark";
 @import "bootstrap/scss/maps";
@@ -54,42 +89,6 @@
 @import "bootstrap/scss/helpers";
 
 @import "bootstrap/scss/utilities/api";
-
-//Colors
-$primary: #136ef6;
-$body-secondary-bg: #ebf1f9;
-$body-tertiary-bg: #f5f8fc;
-$body-bg-dark: $gray-900;
-$body-secondary-bg-dark: #16191c;
-$body-tertiary-bg-dark: mix($body-bg-dark, $body-secondary-bg-dark, 50%);
-
-// Options
-$focus-ring-width: 0.125rem;
-
-$btn-box-shadow: none;
-$btn-border-radius: var(--#{$prefix}border-radius-xxl);
-$btn-border-radius-sm: var(--#{$prefix}border-radius-xl);
-$btn-border-radius-lg: var(--#{$prefix}border-radius-xxl);
-
-$form-label-margin-bottom: $spacer * 0.25;
-$form-label-font-size: $font-size-sm;
-
-$card-spacer-y: $spacer * 2;
-$card-spacer-x: $spacer * 2;
-$card-border-width: 0;
-$card-border-radius: $border-radius-xl;
-$card-cap-bg: $card-bg;
-
-$modal-inner-padding: $spacer * 2;
-$modal-header-padding: $modal-inner-padding;
-$modal-content-border-radius: var(--#{$prefix}border-radius-xl);
-$modal-header-border-width: 0;
-
-$navbar-toggler-padding-y: 0;
-$navbar-toggler-padding-x: 0;
-
-$dropdown-padding-x: 0.25rem;
-$dropdown-padding-y: 0.25rem;
 
 :root {
   --#{$prefix}dropdown-item-border-radius: #{$border-radius-sm};
