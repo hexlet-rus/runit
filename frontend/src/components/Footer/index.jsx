@@ -81,6 +81,19 @@ function Footer() {
                 </span>
                 <span className="text-secondary">{t('footer.moscow')}</span>
               </li>
+              <li>
+                <span className="lead fw-normal">
+                  <a
+                    className={`${classes.footerLink} text-decoration-none`}
+                    href={t('footer.tgLink')}
+                    rel="noopener noreferrer nofollow"
+                    target="_blank"
+                  >
+                    {t('footer.help')}:
+                  </a>
+                </span>
+                <span className="text-secondary">{t('footer.tg')}</span>
+              </li>
             </Nav>
             <p className="mt-3 text-secondary">
               <span className="d-block">{t('footer.name')}</span>
@@ -147,17 +160,6 @@ function Footer() {
                 {t('footer.subscribe')}
               </div>
               <ul className="list-unstyled h3 text-start d-flex flex-wrap">
-                <li className="me-4 mb-2">
-                  <a
-                    aria-label="Telegram"
-                    className={`${classes.footerLink}`}
-                    href="https://t.me/hexletcommunity/12"
-                    rel="noopener noreferrer nofollow"
-                    target="_blank"
-                  >
-                    <Telegram />
-                  </a>
-                </li>
                 <li className="me-4 mb-2">
                   <a
                     aria-label="Youtube"
