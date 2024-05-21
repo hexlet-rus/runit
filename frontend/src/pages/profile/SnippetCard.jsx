@@ -260,7 +260,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
 }
 
 function SnippetCard({ data }) {
-  const { id, name, slug, code } = data;
+  const { id, name, slug, code, language } = data;
   const ownerUsername = data.user.username;
   const dispatch = useDispatch();
   const [mode, setMode] = useState('viewing');
@@ -277,6 +277,7 @@ function SnippetCard({ data }) {
         type: 'duplicateSnippet',
         item: {
           currSnippetName: name,
+          currSnippetLng: language,
           ownerUsername,
           code,
         },

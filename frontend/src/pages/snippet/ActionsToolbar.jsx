@@ -17,6 +17,7 @@ function ActionsToolbar({ snippet }) {
   const dispatch = useDispatch();
   const { snippetData, code, isAllSaved } = snippet;
   const { name: snippetName, ownerUsername } = snippetData;
+  const { language } = snippetData;
   const { isLoggedIn } = useAuth();
   const { direction } = useSelector((state) => state.editor);
   const handleShare = () => {
@@ -35,6 +36,7 @@ function ActionsToolbar({ snippet }) {
           type: 'duplicateSnippet',
           item: {
             currSnippetName: snippetName,
+            currSnippetLng: language,
             ownerUsername,
             code,
           },
@@ -46,6 +48,7 @@ function ActionsToolbar({ snippet }) {
           type: 'attemptDuplicateSnippet',
           item: {
             currSnippetName: snippetName,
+            currSnippetLng: language,
             code,
           },
         }),

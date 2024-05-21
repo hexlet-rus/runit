@@ -21,7 +21,7 @@ const initialFormState = { state: 'initial', message: '' };
 
 // duplicateSnippet
 function DuplicateSnippetModal({ handleClose, isOpen }) {
-  const { currSnippetName, code, ownerUsername } = useSelector(
+  const { currSnippetName, currSnippetLng, code, ownerUsername } = useSelector(
     ({ modal }) => modal.item,
   );
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
   const { genViewSnippetLink } = useSnippets();
   const { t } = useTranslation();
   const username = useSelector((state) => state.user.userInfo.username);
-  const language = useSelector((state) => state.languages.currentLanguage);
+
   const nameRef = useRef(null);
   const [formState, setFormState] = useState({ state: 'initial', message: '' });
 
@@ -49,7 +49,7 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
         const { slug } = await duplicateSnippet({
           code,
           snippetName: preparedValues.snippetName,
-          language,
+          language: currSnippetLng,
         });
 
         const url = new URL(genViewSnippetLink(username, slug));
