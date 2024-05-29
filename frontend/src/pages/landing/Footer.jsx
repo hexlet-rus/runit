@@ -98,14 +98,11 @@ function Footer() {
             </Nav>
           </Col>
           <Col className="col-6 mb-4">
-            <Nav as="ul" className="list-group">
+            <Nav as="ul" className="list-group flex-column">
               <li className="mb-2">
                 <NavbarBrand href="#aboutProject">
                   {t('landing.header.advantages')}
                 </NavbarBrand>
-              </li>
-              <li className="mb-2 link-light">
-                <NavbarBrand href="#advantages">Преимущества</NavbarBrand>
               </li>
               <li className="mb-2">
                 <NavbarBrand href="#possibilities">
@@ -251,7 +248,7 @@ function Footer() {
           <Col>
             <Row>
               <Col>
-                <Nav as="ul" className="list-group">
+                <Nav as="ul" className="list-group flex-column">
                   <li className="mb-2">
                     <NavbarBrand className="p-0" href="#aboutProject">
                       {t('landing.header.about')}
@@ -275,7 +272,7 @@ function Footer() {
                 </Nav>
               </Col>
               <Col>
-                <Nav as="ul" className="list-group">
+                <Nav as="ul" className="list-group flex-column">
                   <li className="mb-2">
                     <NavbarBrand
                       className="p-0"
