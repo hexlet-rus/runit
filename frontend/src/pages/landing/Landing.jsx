@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 
+import { useTernaryDarkMode } from 'usehooks-ts';
 import { useAuth } from '../../hooks';
 import routes from '../../routes.js';
 import { actions } from '../../slices/modalSlice';
@@ -33,6 +34,10 @@ function NewLanding() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const advantagesRef = useRef();
+  const { isDarkMode } = useTernaryDarkMode();
+  const rowClass = `d-lg-inline-flex mb-5 my-lg-5 ${
+    isDarkMode ? 'background-dark' : ''
+  } align-items-center`;
 
   const handleCodeWithoutRegButton = () => {
     if (isLoggedIn) {
@@ -118,7 +123,7 @@ function NewLanding() {
               </Button>
             </Col>
           </Row>
-          <Row className="d-lg-inline-flex mb-5 my-lg-5 background-dark align-items-center">
+          <Row className={rowClass}>
             <div className="d-lg-flex py-5 py-xl-4 py-lg-1 px-lg-1 justify-content-between px-5">
               <Col
                 as="figure"
