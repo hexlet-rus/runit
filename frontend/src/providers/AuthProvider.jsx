@@ -38,6 +38,7 @@ function AuthProvider({ children }) {
       },
 
       signIn: () => {
+        localStorage.removeItem('guestUserData');
         dispatch(fetchUserData())
           .unwrap()
           .catch((serializedError) => {
