@@ -1,11 +1,9 @@
 import { Button, Modal, FormControl, FormLabel, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 import { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 
 function ChangeAvatar({ handleClose, isOpen }) {
-  const dispatch = useDispatch();
   const { t } = useTranslation();
   const [avatarState, setAvatarState] = useState({
     scale: 1,

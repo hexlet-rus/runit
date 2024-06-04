@@ -1,9 +1,7 @@
 import { Button, Modal, FormGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 
 function RemoveAvatar({ handleClose, isOpen }) {
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   return (

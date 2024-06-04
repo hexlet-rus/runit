@@ -29,12 +29,6 @@ const icons = new Map()
   .set('python', PythonIcon)
   .set('php', PhpIcon);
 
-const extensions = new Map()
-  .set('javascript', 'js')
-  .set('python', 'py')
-  .set('php', 'php')
-  .set('html', 'html');
-
 const generateGuestUserData = () => {
   const username = `guest_${faker.string.alphanumeric(5)}`;
   const email = `${username}@hexlet.com`;

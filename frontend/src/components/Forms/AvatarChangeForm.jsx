@@ -13,10 +13,6 @@ function AvatarChangeForm() {
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.userInfo.username);
 
-  const handleInDevelopment = () => {
-    dispatch(modalActions.openModal({ type: 'inDevelopment' }));
-  };
-
   const handleEditAvatar = (type) => () => {
     dispatch(modalActions.openModal(type));
   };

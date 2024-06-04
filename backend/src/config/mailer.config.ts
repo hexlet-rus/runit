@@ -5,7 +5,7 @@ export class MailerConfig implements MailerOptionsFactory {
   /* eslint-disable-next-line class-methods-use-this */
   createMailerOptions(): MailerOptions | Promise<MailerOptions> {
     const transportUrl = process.env.TRANSPORT_MAILER_URL;
-    const emailFrom = process.env.EMAIL_FROM ?? 'runit@localhost'
+    const emailFrom = process.env.EMAIL_FROM ?? 'runit@localhost';
     const options: MailerOptions = {
       transport: transportUrl,
       defaults: {
