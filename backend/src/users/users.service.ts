@@ -14,6 +14,7 @@ import { Snippets } from '../entities/snippet.entity';
 import { User } from './interfaces/users.interface';
 import { RecoverUserDto } from './dto/recover-user.dto';
 import { cipher, decipher } from './secure/cipher';
+import { InjectSentry, SentryService } from '@ntegral/nestjs-sentry';
 
 @Injectable()
 export class UsersService {
@@ -23,6 +24,7 @@ export class UsersService {
     @InjectRepository(Snippets)
     private snippetsRepository: Repository<Snippets>,
     private readonly mailerService: MailerService,
+    @InjectSentry() private readonly sentryService: SentryService,
   ) {}
 
   async findOne(id: number): Promise<Users> {
@@ -96,9 +98,14 @@ export class UsersService {
             openSync(`${logsDirName}/mail.log`, 'a');
             appendFileSync(`${logsDirName}/mail.log`, `${data.message}\n`);
           }
+        })
+        .catch((data) => {
+          this.sentryService.debug(data.toString());
         });
     } catch (e) {
-      throw new Error(e);
+      console.log(`${e}`);
+      this.sentryService.debug(e.toString());
+      // throw new Error(e);
     }
   }
 
