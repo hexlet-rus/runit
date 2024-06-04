@@ -9,6 +9,7 @@ export class MailerConfig implements MailerOptionsFactory {
     const options: MailerOptions = {
       transport: transportUrl,
       defaults: {
+        // NOTE: use runit.hexlet.ru domain for production
         from: `"Run IT" <${emailFrom}>`,
       },
       template: {
