@@ -7,6 +7,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
 import { MailerService } from '@nestjs-modules/mailer';
+import { InjectSentry, SentryService } from '@ntegral/nestjs-sentry';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Users } from '../entities/user.entity';
@@ -14,7 +15,6 @@ import { Snippets } from '../entities/snippet.entity';
 import { User } from './interfaces/users.interface';
 import { RecoverUserDto } from './dto/recover-user.dto';
 import { cipher, decipher } from './secure/cipher';
-import { InjectSentry, SentryService } from '@ntegral/nestjs-sentry';
 
 @Injectable()
 export class UsersService {
@@ -103,9 +103,7 @@ export class UsersService {
           this.sentryService.debug(data.toString());
         });
     } catch (e) {
-      console.log(`${e}`);
       this.sentryService.debug(e.toString());
-      // throw new Error(e);
     }
   }
 
