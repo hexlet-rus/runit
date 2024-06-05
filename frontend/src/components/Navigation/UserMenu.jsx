@@ -17,9 +17,6 @@ function UserMenu() {
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.userInfo.username);
 
-  const handleInDevelopment = () => {
-    dispatch(actions.openModal({ type: 'inDevelopment' }));
-  };
   const handleNewSnippet = () => {
     dispatch(actions.openModal({ type: 'newSnippet' }));
   };
