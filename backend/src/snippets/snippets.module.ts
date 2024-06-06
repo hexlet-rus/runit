@@ -2,15 +2,15 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { AuthService } from '../auth/auth.service';
-import { Users } from '../entities/user.entity';
-import { Snippets } from '../entities/snippet.entity';
+import { User } from '../entities/user.entity';
+import { Snippet } from '../entities/snippet.entity';
 import { SnippetsController } from './snippets.controller';
 import { SnippetsService } from './snippets.service';
 import { SnippetSubscriber } from './snippets.subscriber';
 import { UsersService } from '../users/users.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Snippets, Users])],
+  imports: [TypeOrmModule.forFeature([Snippet, User])],
   controllers: [SnippetsController],
   providers: [
     SnippetsService,

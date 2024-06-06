@@ -7,10 +7,10 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import type { Users } from './user.entity';
+import { User } from './user.entity';
 
-@Entity()
-export class Snippets {
+@Entity('snippets')
+export class Snippet {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -26,9 +26,9 @@ export class Snippets {
   @Column('text')
   language: string;
 
-  @ManyToOne('Users', 'snippets', { onDelete: 'CASCADE' })
+  @ManyToOne(() => User, (user) => user.snippets)
   @JoinColumn()
-  user: Users;
+  user: User;
 
   @CreateDateColumn()
   created_at: string;

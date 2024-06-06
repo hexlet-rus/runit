@@ -10,48 +10,48 @@ import { MailerService } from '@nestjs-modules/mailer';
 import { InjectSentry, SentryService } from '@ntegral/nestjs-sentry';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { Users } from '../entities/user.entity';
-import { Snippets } from '../entities/snippet.entity';
-import { User } from './interfaces/users.interface';
+import { User } from '../entities/user.entity';
+import { Snippet } from '../entities/snippet.entity';
+import { IUser } from './interfaces/users.interface';
 import { RecoverUserDto } from './dto/recover-user.dto';
 import { cipher, decipher } from './secure/cipher';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(Users)
-    private usersRepository: Repository<Users>,
-    @InjectRepository(Snippets)
-    private snippetsRepository: Repository<Snippets>,
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
+    @InjectRepository(Snippet)
+    private snippetsRepository: Repository<Snippet>,
     private readonly mailerService: MailerService,
     @InjectSentry() private readonly sentryService: SentryService,
   ) {}
 
-  async findOne(id: number): Promise<Users> {
+  async findOne(id: number): Promise<User> {
     return this.usersRepository.findOneBy({ id });
   }
 
-  async find(email: string): Promise<Users> {
+  async find(email: string): Promise<User> {
     return this.usersRepository.findOneBy({ email });
   }
 
-  async findByUsername(username: string): Promise<Users> {
+  async findByUsername(username: string): Promise<User> {
     return this.usersRepository.findOneBy({ username: ILike(username) });
   }
 
-  async findByEmail(email: string): Promise<Users> {
+  async findByEmail(email: string): Promise<User> {
     return this.usersRepository.findOneBy({ email });
   }
 
-  create(createUserDto: CreateUserDto): Promise<Users> {
-    const user = new Users();
+  create(createUserDto: CreateUserDto): Promise<User> {
+    const user = new User();
     user.username = createUserDto.username;
     user.email = createUserDto.email.toLowerCase();
     user.password = createUserDto.password;
     return this.usersRepository.save(user);
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto): Promise<Users> {
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const { ...data } = updateUserDto;
     const currentUser = await this.usersRepository.findOneBy({ id });
     const updatedUser = this.usersRepository.merge(currentUser, data);
@@ -136,11 +136,11 @@ export class UsersService {
     await this.usersRepository.delete(id);
   }
 
-  findAll(): Promise<Users[]> {
+  findAll(): Promise<User[]> {
     return this.usersRepository.find();
   }
 
-  async getData({ id }: User): Promise<any> {
+  async getData({ id }: IUser): Promise<any> {
     const currentUser = await this.usersRepository.findOneBy({ id });
     const snippets = await this.snippetsRepository.find({
       relations: {

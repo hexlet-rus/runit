@@ -7,7 +7,7 @@ import { Repository } from 'typeorm';
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
 import { JwtService } from '@nestjs/jwt';
-import { Users } from '../src/entities/user.entity';
+import { User } from '../src/entities/user.entity';
 import { AuthModule } from '../src/auth/auth.module';
 import getDataSourceConfig from '../src/config/data-source.config';
 import { AppModule } from '../src/app.module';
@@ -15,11 +15,11 @@ import { UsersModule } from '../src/users/users.module';
 
 describe('AuthController (e2e)', () => {
   let app: NestExpressApplication;
-  let usersRepo: Repository<Users>;
+  let usersRepo: Repository<User>;
   let testData: Record<string, any>;
   let users: Array<Record<string, unknown>>;
   let moduleFixture: TestingModule;
-  let usersData: Users[];
+  let usersData: User[];
   let jwtService: JwtService;
 
   // FIXME: все тесты проходят если beforeEach
@@ -32,7 +32,7 @@ describe('AuthController (e2e)', () => {
         UsersModule,
         AuthModule,
         TypeOrmModule.forRoot(getDataSourceConfig()),
-        TypeOrmModule.forFeature([Users]),
+        TypeOrmModule.forFeature([User]),
       ],
     }).compile();
 

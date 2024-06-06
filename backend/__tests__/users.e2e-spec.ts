@@ -14,20 +14,20 @@ import { AppService } from '../src/app.service';
 import { UsersService } from '../src/users/users.service';
 import { CheckEmail } from '../src/users/validation/check-email';
 import { AppModule } from '../src/app.module';
-import { Users } from '../src/entities/user.entity';
-import { Snippets } from '../src/entities/snippet.entity';
+import { User } from '../src/entities/user.entity';
+import { Snippet } from '../src/entities/snippet.entity';
 import getDataSourceConfig from '../src/config/data-source.config';
 
 describe('UsersController (e2e)', () => {
   let app: NestExpressApplication;
-  let usersRepo: Repository<Users>;
-  let snippetsRepo: Repository<Snippets>;
+  let usersRepo: Repository<User>;
+  let snippetsRepo: Repository<Snippet>;
   let testData: Record<string, any>;
   let users: Array<Record<string, unknown>>;
   let snippets: Array<Record<string, unknown>>;
   let moduleFixture: TestingModule;
-  let usersData: Users[];
-  let snippetsData: Snippets[];
+  let usersData: User[];
+  let snippetsData: Snippet[];
   let jwtService: JwtService;
   let token: string;
 
@@ -38,7 +38,7 @@ describe('UsersController (e2e)', () => {
         UsersModule,
         AuthModule,
         TypeOrmModule.forRoot(getDataSourceConfig()),
-        TypeOrmModule.forFeature([Users, Snippets]),
+        TypeOrmModule.forFeature([User, Snippet]),
       ],
       providers: [AppService, UsersService, CheckEmail],
     }).compile();
