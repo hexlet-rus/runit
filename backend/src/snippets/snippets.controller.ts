@@ -63,7 +63,9 @@ export class SnippetsController {
 
   @Get(':id')
   @ApiOkResponse({ description: 'Successfully returned snippet by id' })
-  async findOne(@Param('id', new ParseIntPipe()) id: number): Promise<ISnippet> {
+  async findOne(
+    @Param('id', new ParseIntPipe()) id: number,
+  ): Promise<ISnippet> {
     return this.snippetsService.findOne(id);
   }
 

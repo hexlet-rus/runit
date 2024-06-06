@@ -1,9 +1,9 @@
 import { DataSourceOptions } from 'typeorm';
+
 export default (): DataSourceOptions => {
   const defaultConfig = {
-    entities: [ __dirname + `/../entities/**/*{.ts,.js}`],
-    migrations: [ __dirname + `/../migrations/**/*{.ts,.js}`],
-
+    entities: [`${__dirname}/../entities/**/*{.ts,.js}`],
+    migrations: [`${__dirname}/../migrations/**/*{.ts,.js}`],
   };
   switch (process.env.NODE_ENV) {
     case 'production':
@@ -23,7 +23,6 @@ export default (): DataSourceOptions => {
         type: 'sqlite',
         database: ':memory:',
         synchronize: true,
-
       };
     default:
       return {

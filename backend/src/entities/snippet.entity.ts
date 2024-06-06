@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { User } from './user.entity';
+import type { User } from './user.entity';
 
 @Entity('snippets')
 export class Snippet {
@@ -26,7 +26,7 @@ export class Snippet {
   @Column('text')
   language: string;
 
-  @ManyToOne(() => User, (user) => user.snippets)
+  @ManyToOne('User', 'snippets')
   @JoinColumn()
   user: User;
 

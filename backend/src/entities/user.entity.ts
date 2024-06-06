@@ -11,7 +11,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { encrypt } from '../users/secure/encrypt';
-import { Snippet } from './snippet.entity';
+import type { Snippet } from './snippet.entity';
 
 @Entity('users')
 export class User {
@@ -28,7 +28,7 @@ export class User {
   @Column('text')
   password: string;
 
-  @OneToMany(() => Snippet, (snippet) => snippet.user)
+  @OneToMany('Snippet', 'user')
   snippets: Snippet[];
 
   @Column({ nullable: true })

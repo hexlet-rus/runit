@@ -1,8 +1,7 @@
-/* eslint class-methods-use-this: ["error", { "exceptMethods": ["up", "down"] }] */
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class Migrations1699462100238 implements MigrationInterface {
-    public async up(queryRunner: QueryRunner): Promise<void> {
+  public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
         name: 'users',
@@ -114,10 +113,10 @@ export class Migrations1699462100238 implements MigrationInterface {
         ],
       }),
     );
-    }
+  }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.query(`DROP TABLE "snippets"`);
-      await queryRunner.query(`DROP TABLE "users"`);
-    }
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(`DROP TABLE "snippets"`);
+    await queryRunner.query(`DROP TABLE "users"`);
+  }
 }
