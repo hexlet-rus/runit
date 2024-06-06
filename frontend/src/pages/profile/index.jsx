@@ -1,15 +1,11 @@
 import { useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { Link45deg } from 'react-bootstrap-icons';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-import { actions } from '../../slices/modalSlice.js';
 import { fetchUserSnippets } from '../../slices/snippetsSlice.js';
 
 import NotFoundPage from '../404';
@@ -17,30 +13,16 @@ import NewSnippetForm from './NewSnippetForm.jsx';
 import SnippetCard from './SnippetCard.jsx';
 
 function ProfileLayout({ data, isEditable }) {
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
   const { user, snippets } = data;
 
   const guestUser = localStorage.getItem('guestUserData');
-
-  const handleInDevelopment = () => {
-    dispatch(actions.openModal({ type: 'inDevelopment' }));
-  };
+  // TODO: добавить возможность делится профилем
 
   return (
     <div className="page-bg-image">
       <Container className="py-5">
         <div className="d-flex align-items-start">
           {!guestUser && <h1 className="display-5">{user.username}</h1>}
-          <Button
-            className="btn-icon-only"
-            onClick={handleInDevelopment}
-            size="sm"
-            variant="nofill-body"
-          >
-            <Link45deg />
-            <span className="visually-hidden">{t('profileActions.share')}</span>
-          </Button>
         </div>
 
         <Row
