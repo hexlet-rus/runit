@@ -59,7 +59,7 @@ function AppRoutes() {
           element={
             <ProtectedRoute
               isAllowed={!isLoggedIn}
-              redirectTo={routes.profilePagePath()}
+              redirectTo={routes.myProfilePagePath()}
             />
           }
         >
