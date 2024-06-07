@@ -1,21 +1,22 @@
+$font-family: 'Nunito Sans';
+
 :root{
     @font-face {
-        font-family: "Nunito Sans Light";
-        src: local("Nunito Sans Light");
-        src: url("./assets/fonts/NunitoSans_10pt-Light.ttf") format("truetype");
-        }
-    @font-face {
-        font-family: "Nunito Sans SemiBold";
-        src: local("Nunito Sans SemiBold");
-        src: url("./assets/fonts/NunitoSans_10pt-SemiBold.ttf") format("truetype");
+        font-family: $font-family;
+        src: local("Nunito Sans"), url("./assets/fonts/NunitoSans_10pt-Light.ttf") format("truetype");
+        font-weight: 300;
     }
     @font-face {
-        font-family: "Nunito Sans Bold";
-        src: local("Nunito Sans Bold");
-        src: url("./assets/fonts/NunitoSans_10pt-Bold.ttf") format("truetype");
+        font-family: $font-family;
+        src: local("Nunito Sans"), url("./assets/fonts/NunitoSans_10pt-SemiBold.ttf") format("truetype");
+        font-weight: 600;
     }
-            
-    // font-family: 'Nunito Sans Light';
+    @font-face {
+        font-family: $font-family;
+        src: local("Nunito Sans"), url("./assets/fonts/NunitoSans_10pt-Bold.ttf") format("truetype");
+        font-weight: 700;
+    }
+
     .btn-signin {
         --bs-btn-bg: #136EF6;
         --bs-btn-color: #EBF1F9;
@@ -43,35 +44,36 @@
     }
 }
 .first-bg-image {
-    font-family: 'Nunito Sans Light';
+    font-family: $font-family;
 }
 .header-link:hover,
 .header-link:focus {
     border-bottom: 1px solid var(--Aent, #136EF6);
 }
-
 .wrapper-for-bg-images {
     overflow: hidden;
 }
-
   
 @media (min-width: 992px) {
     .navbar-logo {
         width: 150px;
     }
     .about-project > .d-lg-flex > h4 {
-        font-family: 'Nunito Sans Light';
+        font-family: $font-family;
+        font-weight: 300;
         line-height: 130%;
         text-transform: uppercase;
     }
     .about-project > .d-lg-flex > h1 {
-        font-family: 'Nunito Sans Light';
+        font-family: $font-family;
+        font-weight: 700;
         font-size: 6rem;
         line-height: 130%;
         text-transform: uppercase;
     }
     .about-project > .d-lg-flex > div > h2 {
-        font-family: 'Nunito Sans Light';
+        font-family: $font-family;
+        font-weight: 600;
         font-size: 2.5rem;
         line-height: 130%;
     }
@@ -108,19 +110,22 @@
 
 @media (max-width: 992px) {
     .about-project > .d-lg-none > h1 {
-        font-family: 'Nunito Sans Bold';
+        font-family: $font-family;
+        font-weight: 700;
         font-size: 2.8rem;
         line-height: 130%;
         text-transform: uppercase;
     }
     .about-project > .d-lg-none > div > h1 {
-        font-family: 'Nunito Sans Bold';
+        font-family: $font-family;
+        font-weight: 700;
         font-size: 4rem;
         line-height: 130%;
         text-transform: uppercase;
     }
     .about-project > .d-lg-none > div > h2 {
-        font-family: 'Nunito Sans SemiBold';
+        font-family: $font-family;
+        font-weight: 600;
         line-height: 130%;
     }
     .first-bg-image{
@@ -156,7 +161,6 @@
         }
     }
 }
-
 @media (max-width: 991px) {
     .background-dark {
         color: black;
