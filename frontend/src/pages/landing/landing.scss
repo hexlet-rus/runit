@@ -15,7 +15,7 @@
         src: url("./assets/fonts/NunitoSans_10pt-Bold.ttf") format("truetype");
     }
             
-    font-family: 'Nunito Sans Light';
+    // font-family: 'Nunito Sans Light';
     .btn-signin {
         --bs-btn-bg: #136EF6;
         --bs-btn-color: #EBF1F9;
@@ -60,18 +60,18 @@
         width: 150px;
     }
     .about-project > .d-lg-flex > h4 {
-        font-family: 'Nunito Sans';
+        font-family: 'Nunito Sans Light';
         line-height: 130%;
         text-transform: uppercase;
     }
     .about-project > .d-lg-flex > h1 {
-        font-family: 'Nunito Sans Bold';
+        font-family: 'Nunito Sans Light';
         font-size: 6rem;
         line-height: 130%;
         text-transform: uppercase;
     }
     .about-project > .d-lg-flex > div > h2 {
-        font-family: 'Nunito Sans SemiBold';
+        font-family: 'Nunito Sans Light';
         font-size: 2.5rem;
         line-height: 130%;
     }
@@ -103,7 +103,7 @@
         height: 11rem;
         background-color: #050914;
         z-index: -1;
-    }
+    }  
 }
 
 @media (max-width: 992px) {
