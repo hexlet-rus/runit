@@ -395,6 +395,7 @@
     "signUp": "Регистрация"
   },
   "profileSettings": {
+    "appearance": "Внешний вид",
     "changeButton": "Изменить",
     "changePassword": "Изменить пароль",
     "currentPassword": "Текущий пароль",
@@ -407,7 +408,11 @@
     "updateButton": "Изменить",
     "updateFailed": "Не удалось обновить данные. Попробуйте позже",
     "updateSuccessful": "Данные аккаунта были обновлены",
-    "usernameLabel": "Имя пользователя"
+    "usernameLabel": "Имя пользователя",
+    "language": "Язык интерфейса",
+    "theme": "Тема",
+    "russian": "Русский",
+    "english": "English"
   },
   "forgotPass": {
     "pageHeader": "Забыли пароль?",
