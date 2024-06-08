@@ -262,6 +262,7 @@
     "signUp": "Sign Up"
   },
   "profileSettings": {
+    "appearance": "Appearance",
     "changeButton": "Change",
     "changePassword": "Change Password",
     "currentPassword": "Current Password",
@@ -274,7 +275,9 @@
     "updateButton": "Update",
     "updateFailed": "Failed to update account data. Try again later",
     "updateSuccessful": "Profile has been updated successfully",
-    "usernameLabel": "Username"
+    "usernameLabel": "Username",
+    "ru": "Russian",
+    "en": "English"
   },
   "forgotPass": {
     "pageHeader": "Forgot password?",
