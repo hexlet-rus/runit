@@ -411,8 +411,8 @@
     "usernameLabel": "Имя пользователя",
     "language": "Язык интерфейса",
     "theme": "Тема",
-    "russian": "Русский",
-    "english": "English"
+    "ru": "Русский",
+    "en": "English"
   },
   "forgotPass": {
     "pageHeader": "Забыли пароль?",
