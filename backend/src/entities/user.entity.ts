@@ -11,10 +11,10 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { encrypt } from '../users/secure/encrypt';
-import type { Snippets } from './snippet.entity';
+import type { Snippet } from './snippet.entity';
 
-@Entity()
-export class Users {
+@Entity('users')
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -28,8 +28,8 @@ export class Users {
   @Column('text')
   password: string;
 
-  @OneToMany('Snippets', 'user')
-  snippets: Snippets[];
+  @OneToMany('Snippet', 'user')
+  snippets: Snippet[];
 
   @Column({ nullable: true })
   recover_hash: string;
