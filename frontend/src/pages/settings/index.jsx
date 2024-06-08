@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Stack from 'react-bootstrap/Stack';
 
+import ApperearanceForm from 'src/components/Forms/AppearanceForm.jsx';
 import { actions as modalActions } from '../../slices/modalSlice.js';
 
 import AvatarChangeForm from '../../components/Forms/AvatarChangeForm.jsx';
@@ -40,6 +41,8 @@ function SettingsPage() {
                     <UpdateAccountForm />
                     <hr className="border-secondary-subtle" />
                     <ChangePasswordForm />
+                    <hr className="border-secondary-subtle" />
+                    <ApperearanceForm />
                   </Stack>
                 </div>
               </div>
