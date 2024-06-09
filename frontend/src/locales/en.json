@@ -276,6 +276,8 @@
     "updateFailed": "Failed to update account data. Try again later",
     "updateSuccessful": "Profile has been updated successfully",
     "usernameLabel": "Username",
+    "language": "UI Language",
+    "theme": "Theme",
     "ru": "Russian",
     "en": "English"
   },
