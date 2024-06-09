@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { useTernaryDarkMode } from 'usehooks-ts';
 import { useLanguage } from '../../hooks';
 
 function LanguageItem({ value, language }) {
@@ -14,13 +15,24 @@ function LanguageItem({ value, language }) {
   );
 }
 
+function ThemeItem({ value, theme }) {
+  const { t } = useTranslation();
+  return value === theme ? (
+    <option selected>{t(`settings.themes.${theme}`)}</option>
+  ) : (
+    <option value={value}>{t(`settings.themes.${theme}`)}</option>
+  );
+}
+
 function ApperearanceForm() {
   const { t } = useTranslation();
   const { language, availableLanguages, setLanguage } = useLanguage();
-  const userInfo = useSelector((state) => state.user.userInfo);
+  const { ternaryDarkMode, setTernaryDarkMode } = useTernaryDarkMode();
+  const themes = ['system', 'light', 'dark'];
+  // const userInfo = useSelector((state) => state.user.userInfo);
   const initialValues = {
-    language: language,
-    theme: '',
+    language,
+    theme: ternaryDarkMode,
   };
   const formik = useFormik({
     initialValues,
@@ -31,7 +43,7 @@ function ApperearanceForm() {
       <h5>{t('profileSettings.appearance')}</h5>
       <Form.Group>
         <Form.Label>{t('profileSettings.language')}</Form.Label>
-        <Form.Select name='language' onChange={formik.handleChange}>
+        <Form.Select name="language" onChange={formik.handleChange}>
           {availableLanguages.map((lang) => {
             return <LanguageItem key={lang} language={language} value={lang} />;
           })}
@@ -39,10 +51,12 @@ function ApperearanceForm() {
       </Form.Group>
       <Form.Group>
         <Form.Label>{t('profileSettings.theme')}</Form.Label>
-        <Form.Select name='theme' onChange={formik.handleChange}>
-          <option>{t('settings.themes.system')}</option>
-          <option>{t('settings.themes.light')}</option>
-          <option>{t('settings.themes.dark')}</option>
+        <Form.Select name="theme" onChange={formik.handleChange}>
+          {themes.map((theme) => {
+            return (
+              <ThemeItem key={theme} theme={theme} value={ternaryDarkMode} />
+            );
+          })}
         </Form.Select>
       </Form.Group>
       <Button
