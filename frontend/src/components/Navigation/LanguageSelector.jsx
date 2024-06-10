@@ -3,12 +3,17 @@ import { useTranslation } from 'react-i18next';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 
+import { useEffect } from 'react';
 import { useLanguage } from '../../hooks';
 
 function LanguageSelector() {
   const { t, i18n } = useTranslation();
 
   const { language, availableLanguages, setLanguage } = useLanguage();
+
+  useEffect(() => {
+    setLanguage(language);
+  }, [setLanguage, language]);
 
   return (
     <Dropdown align="end" as="li" className="nav-item">
