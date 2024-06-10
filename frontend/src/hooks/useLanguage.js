@@ -10,7 +10,7 @@ const useLanguage = () => {
 
   useEffect(() => {
     setLanguage(resolvedLanguage);
-  });
+  }, [setLanguage, resolvedLanguage]);
 
   useLayoutEffect(() => {
     changeLanguage(language);
