@@ -29,16 +29,18 @@ function ApperearanceForm() {
   const initialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
   const initialValues = {
-    selectedLanguage: language,
-    selectedTheme: ternaryDarkMode,
+    selectedLanguage: '',
+    selectedTheme: '',
   };
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
       const { selectedLanguage, selectedTheme } = values;
       setFormState(initialFormState);
-      setLanguage(selectedLanguage);
-      setTernaryDarkMode(selectedTheme);
+      setLanguage(selectedLanguage !== '' ? selectedLanguage : language);
+      setTernaryDarkMode(
+        selectedTheme !== '' ? selectedTheme : ternaryDarkMode,
+      );
       setFormState({
         state: 'success',
         message: 'profileSettings.updateSuccessful',
