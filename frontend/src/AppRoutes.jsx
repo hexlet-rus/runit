@@ -55,7 +55,16 @@ function AppRoutes() {
     <Suspense fallback={<DefaultLoader />}>
       <ScrollToTop />
       <Routes>
-        <Route index element={<Landing />} />
+        <Route
+          element={
+            <ProtectedRoute
+              isAllowed={!isLoggedIn}
+              redirectTo={routes.myProfilePagePath()}
+            />
+          }
+        >
+          <Route index element={<Landing />} />
+        </Route>
         <Route element={<Layout />}>
           <Route path={routes.oldLandingPath()} element={<OldLanding />} />
           <Route path={routes.homePagePath()} element={<SnippetPage />} />
