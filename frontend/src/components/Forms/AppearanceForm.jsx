@@ -3,9 +3,9 @@ import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { useTranslation } from 'react-i18next';
 import { useTernaryDarkMode } from 'usehooks-ts';
+import { useState } from 'react';
 import { useLanguage } from '../../hooks';
 import FormAlert from './FormAlert.jsx';
-import { useState } from 'react';
 
 function LanguageItem({ value, language }) {
   const { t } = useTranslation();
@@ -33,32 +33,35 @@ function ApperearanceForm() {
   const initialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
   const initialValues = {
-    language,
-    theme: ternaryDarkMode,
+    selectedLanguage: language,
+    selectedTheme: ternaryDarkMode,
   };
   const formik = useFormik({
     initialValues,
     onSubmit: (values) => {
-      const {language, theme } = values; 
+      const { selectedLanguage, selectedTheme } = values;
       setFormState(initialFormState);
-      setLanguage(language);
-      setTernaryDarkMode(theme);
+      setLanguage(selectedLanguage);
+      setTernaryDarkMode(selectedTheme);
       setFormState({
         state: 'success',
         message: 'profileSettings.updateSuccessful',
-      })
+      });
       formik.resetForm();
     },
   });
   return (
     <Form className="d-flex flex-column gap-3" onSubmit={formik.handleSubmit}>
       <h5>{t('profileSettings.appearance')}</h5>
-      <FormAlert onClose={() => setFormState(initialFormState)} state={formState.state}>
+      <FormAlert
+        onClose={() => setFormState(initialFormState)}
+        state={formState.state}
+      >
         {t(formState.message)}
       </FormAlert>
       <Form.Group>
         <Form.Label>{t('profileSettings.language')}</Form.Label>
-        <Form.Select name="language" onChange={formik.handleChange}>
+        <Form.Select name="selectedLanguage" onChange={formik.handleChange}>
           {availableLanguages.map((lang) => {
             return <LanguageItem key={lang} language={language} value={lang} />;
           })}
@@ -66,10 +69,10 @@ function ApperearanceForm() {
       </Form.Group>
       <Form.Group>
         <Form.Label>{t('profileSettings.theme')}</Form.Label>
-        <Form.Select name="theme" onChange={formik.handleChange}>
-          {themes.map((theme) => {
+        <Form.Select name="selectedTheme" onChange={formik.handleChange}>
+          {themes.map((item) => {
             return (
-              <ThemeItem key={theme} theme={ternaryDarkMode} value={theme} />
+              <ThemeItem key={item} theme={ternaryDarkMode} value={item} />
             );
           })}
         </Form.Select>
