@@ -3,26 +3,22 @@ import { Button } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { useTranslation } from 'react-i18next';
 import { useTernaryDarkMode } from 'usehooks-ts';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useLanguage } from '../../hooks';
 import FormAlert from './FormAlert.jsx';
 
 function LanguageItem({ value, language }) {
   const { t } = useTranslation();
   if (value !== language) {
-    return (
-      <option value={value}>{t(`profileSettings.${value}`)}</option>
-    )
+    return <option value={value}>{t(`profileSettings.${value}`)}</option>;
   }
 }
 
 function ThemeItem({ value, theme }) {
   const { t } = useTranslation();
-  return value === theme ? (
-    <option value={value}>{t(`settings.themes.${value}`)}</option>
-  ) : (
-    <option value={value}>{t(`settings.themes.${value}`)}</option>
-  );
+  if (value !== theme) {
+    return <option value={value}>{t(`settings.themes.${value}`)}</option>;
+  }
 }
 
 function ApperearanceForm() {
@@ -62,7 +58,9 @@ function ApperearanceForm() {
       <Form.Group>
         <Form.Label>{t('profileSettings.language')}</Form.Label>
         <Form.Select name="selectedLanguage" onChange={formik.handleChange}>
-        <option defaultValue={language}>{t(`profileSettings.${language}`)}</option>
+          <option defaultValue={language}>
+            {t(`profileSettings.${language}`)}
+          </option>
           {availableLanguages.map((lang) => {
             return <LanguageItem key={lang} language={language} value={lang} />;
           })}
@@ -71,6 +69,9 @@ function ApperearanceForm() {
       <Form.Group>
         <Form.Label>{t('profileSettings.theme')}</Form.Label>
         <Form.Select name="selectedTheme" onChange={formik.handleChange}>
+          <option defaultValue={ternaryDarkMode}>
+            {t(`settings.themes.${ternaryDarkMode}`)}
+          </option>
           {themes.map((item) => {
             return (
               <ThemeItem key={item} theme={ternaryDarkMode} value={item} />
