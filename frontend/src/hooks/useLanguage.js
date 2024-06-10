@@ -7,7 +7,7 @@ const useLanguage = () => {
   const { i18n } = useTranslation();
   const { resolvedLanguage, changeLanguage } = i18n;
   const [language, setLanguage] = useState(resolvedLanguage);
-  
+
   useEffect(() => {
     setLanguage(resolvedLanguage);
   });
