@@ -11,6 +11,7 @@ import { fetchUserSnippets } from '../../slices/snippetsSlice.js';
 import NotFoundPage from '../404';
 import NewSnippetForm from './NewSnippetForm.jsx';
 import SnippetCard from './SnippetCard.jsx';
+import SnippetBadge from './SnippetBadge.jsx';
 
 function ProfileLayout({ data, isEditable }) {
   const { user, snippets } = data;
@@ -40,6 +41,7 @@ function ProfileLayout({ data, isEditable }) {
             </CSSTransition>
           ))}
         </Row>
+        <SnippetBadge />
       </Container>
     </div>
   );
