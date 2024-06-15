@@ -12,12 +12,12 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 function GithubSignInButton() {
-  const { t } = useTranslation();
+  const { t: tFA } = useTranslation('translation', { keyPrefix: 'formActions' });
 
   return (
     <Button as="a" href={OAUTH_LINK.toString()} variant="outline-secondary">
       <Github className="bi me-1" />
-      {t('formActions.withGithub')}
+      {tFA('withGithub')}
     </Button>
   );
 }

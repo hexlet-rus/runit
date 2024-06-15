@@ -14,6 +14,7 @@ import PasswordVisibilityButton from './PasswordVisibilityButton.jsx';
 import FormAlert from './FormAlert.jsx';
 
 function ChangePasswordForm() {
+  const { t: tPS } = useTranslation('translation', { keyPrefix: 'profileSettings' });
   const { t } = useTranslation();
   const inputRef = useRef(null);
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -84,7 +85,7 @@ function ChangePasswordForm() {
 
   return (
     <Form className="d-flex flex-column gap-3" onSubmit={formik.handleSubmit}>
-      <h5>{t('profileSettings.changePassword')}</h5>
+      <h5>{tPS('changePassword')}</h5>
       <FormAlert
         onClose={() => setFormState(initialFormState)}
         state={formState.state}
@@ -92,7 +93,7 @@ function ChangePasswordForm() {
         {t(formState.message)}
       </FormAlert>
       <Form.Group controlId="current-passowrd">
-        <Form.Label>{t('profileSettings.currentPassword')}</Form.Label>
+        <Form.Label>{tPS('currentPassword')}</Form.Label>
         <div className="input-group-inline-button">
           <Form.Control
             ref={inputRef}
@@ -118,7 +119,7 @@ function ChangePasswordForm() {
         </div>
       </Form.Group>
       <Form.Group controlId="new-passowrd">
-        <Form.Label>{t('profileSettings.newPassword')}</Form.Label>
+        <Form.Label>{tPS('newPassword')}</Form.Label>
         <div className="input-group-inline-button">
           <Form.Control
             autoComplete="new-password"
@@ -147,7 +148,7 @@ function ChangePasswordForm() {
         type="submit"
         variant="primary"
       >
-        {t('profileSettings.changeButton')}
+        {tPS('changeButton')}
       </Button>
     </Form>
   );

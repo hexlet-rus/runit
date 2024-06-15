@@ -7,7 +7,7 @@ function PasswordVisibilityButton({
   onClick = () => null,
   enabled = false,
 }) {
-  const { t } = useTranslation();
+  const { t: tFA } = useTranslation('translation', { keyPrefix: 'formActions' });
 
   return (
     <Button onClick={onClick} variant={variant}>
@@ -15,14 +15,14 @@ function PasswordVisibilityButton({
         <>
           <EyeSlash />
           <span className="visually-hidden">
-            {t('formActions.hidePassword')}
+            {tFA('hidePassword')}
           </span>
         </>
       ) : (
         <>
           <Eye />
           <span className="visually-hidden">
-            {t('formActions.showPassword')}
+            {tFA('showPassword')}
           </span>
         </>
       )}

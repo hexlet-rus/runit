@@ -9,7 +9,7 @@ import { actions as modalActions } from '../../slices/modalSlice.js';
 import Avatar from '../Avatar/index.jsx';
 
 function AvatarChangeForm() {
-  const { t } = useTranslation();
+  const { t: tPS } = useTranslation('translation', { keyPrefix: 'profileSettings' });
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.userInfo.username);
 
@@ -31,14 +31,14 @@ function AvatarChangeForm() {
         style={{ marginTop: '-2rem' }}
         variant="primary"
       >
-        {t('profileSettings.updateButton')}
+        {tPS('updateButton')}
       </Button>
       <Button
         onClick={handleEditAvatar({ type: 'removeAvatar' })}
         size="sm"
         variant="nofill-secondary"
       >
-        <XCircle className="bi" /> {t('profileSettings.removeButton')}
+        <XCircle className="bi" /> {tPS('removeButton')}
       </Button>
     </div>
   );

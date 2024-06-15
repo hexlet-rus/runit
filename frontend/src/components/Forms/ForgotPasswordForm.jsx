@@ -14,6 +14,8 @@ import FormAlert from './FormAlert.jsx';
 
 function ForgotPasswordForm() {
   const { t } = useTranslation();
+  const { t: tPS } = useTranslation('translation', { keyPrefix: 'profileSettings' });
+  const { t: tFP } = useTranslation('translation', { keyPrefix: 'forgotPass' });
   const emailRef = useRef();
   const location = window.location.origin;
 
@@ -79,7 +81,7 @@ function ForgotPasswordForm() {
       >
         <Form.Group controlId="email">
           <Form.Label className="visually-hidden">
-            {t('profileSettings.emailLabel')}
+            {tPS('emailLabel')}
           </Form.Label>
           <Form.Control
             ref={emailRef}
@@ -88,7 +90,7 @@ function ForgotPasswordForm() {
             name="email"
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
-            placeholder={t('profileSettings.emailLabel')}
+            placeholder={tPS('emailLabel')}
             required
             type="email"
             value={formik.values.email}
@@ -99,12 +101,12 @@ function ForgotPasswordForm() {
         </Form.Group>
 
         <Button
-          data-disable-with={t('forgotPass.resetButton')}
+          data-disable-with={tFP('resetButton')}
           disabled={formik.isSubmitting}
           type="submit"
           variant="primary"
         >
-          {t('forgotPass.resetButton')}
+          {tFP('resetButton')}
         </Button>
       </Form>
     </>

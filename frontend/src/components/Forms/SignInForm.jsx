@@ -17,6 +17,8 @@ import PasswordVisibilityButton from './PasswordVisibilityButton.jsx';
 import FormAlert from './FormAlert.jsx';
 
 function SignInForm({ onSuccess = () => null }) {
+  const { t: tPS } = useTranslation('translation', { keyPrefix: 'profileSettings' });
+  const { t: tSI } = useTranslation('translation', { keyPrefix: 'signIn' });
   const { t } = useTranslation();
   const emailRef = useRef();
   const auth = useAuth();
@@ -98,7 +100,7 @@ function SignInForm({ onSuccess = () => null }) {
         <div className="d-flex flex-column gap-3">
           <Form.Group controlId="email">
             <Form.Label className="visually-hidden">
-              {t('profileSettings.emailLabel')}
+              {tPS('emailLabel')}
             </Form.Label>
             <Form.Control
               ref={emailRef}
@@ -107,7 +109,7 @@ function SignInForm({ onSuccess = () => null }) {
               name="email"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              placeholder={t('profileSettings.emailLabel')}
+              placeholder={tPS('emailLabel')}
               required
               type="email"
               value={formik.values.email}
@@ -119,7 +121,7 @@ function SignInForm({ onSuccess = () => null }) {
 
           <Form.Group controlId="current-passowrd">
             <Form.Label className="visually-hidden">
-              {t('profileSettings.passwordLabel')}
+              {tPS('passwordLabel')}
             </Form.Label>
             <div className="input-group-inline-button input-group-inline-button">
               <Form.Control
@@ -130,7 +132,7 @@ function SignInForm({ onSuccess = () => null }) {
                 name="password"
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
-                placeholder={t('profileSettings.passwordLabel')}
+                placeholder={tPS('passwordLabel')}
                 required
                 type={isPasswordVisible ? 'text' : 'password'}
                 value={formik.values.password}
@@ -150,17 +152,17 @@ function SignInForm({ onSuccess = () => null }) {
             className="icon-link link-secondary d-block align-self-center"
             to={routes.forgotPassPagePath()}
           >
-            {t('signIn.remindPass')}
+            {tSI('remindPass')}
           </Link>
           <Button
             className="flex-fill"
-            data-disable-with={t('signIn.signInButton')}
+            data-disable-with={tSI('signInButton')}
             data-testid="signin-button"
             disabled={formik.isSubmitting}
             type="submit"
             variant="primary"
           >
-            {t('signIn.signInButton')}
+            {tSI('signInButton')}
           </Button>
         </div>
       </Form>
