@@ -9,7 +9,8 @@ import { useAuth } from '../../hooks';
 import routes from '../../routes.js';
 
 function SnippetUnavailable({ handleClose, isOpen }) {
-  const { t } = useTranslation();
+  const { t: tMSU } = useTranslation('translation', { keyPrefix: 'modals.snippetUnavailable' });
+  const { t: tMID } = useTranslation('translation', { keyPrefix: 'modals.inDevelopment' });
   const { isLoggedIn } = useAuth();
 
   const navigate = useNavigate();
@@ -28,9 +29,9 @@ function SnippetUnavailable({ handleClose, isOpen }) {
       <Modal.Body>
         <div className="d-flex flex-column gap-3 text-center">
           <EmojiExpressionless className="bi fs-1 align-self-center text-primary m-3" />
-          <p>{t('modals.snippetUnavailable.message')}</p>
+          <p>{tMSU('message')}</p>
           <Button onClick={handleCloseDialogAndNavigate} type="button">
-            {t('modals.inDevelopment.okButton')}
+            {tMID('okButton')}
           </Button>
         </div>
       </Modal.Body>

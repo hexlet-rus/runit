@@ -12,6 +12,7 @@ import routes from '../../routes';
 import FormAlert from '../Forms/FormAlert.jsx';
 
 function RemoveAccount({ handleClose, isOpen }) {
+  const { t: tMRA } = useTranslation('translation', { keyPrefix: 'modals.removeAccount' });
   const { t } = useTranslation();
   const auth = useAuth();
 
@@ -58,8 +59,8 @@ function RemoveAccount({ handleClose, isOpen }) {
           </FormAlert>
           <PersonFillDash className="bi fs-1 align-self-center text-danger m-3" />
           <p>
-            {t('modals.removeAccount.message')}{' '}
-            <b>{t('modals.removeAccount.messageBold')}</b>
+            {tMRA('message')}{' '}
+            <b>{tMRA('messageBold')}</b>
           </p>
           <div className="d-flex justify-content-end">
             <Button
@@ -69,14 +70,14 @@ function RemoveAccount({ handleClose, isOpen }) {
               type="button"
               variant="danger"
             >
-              {t('modals.removeAccount.okButton')}
+              {tMRA('okButton')}
             </Button>
             <Button
               onClick={handleClose}
               type="button"
               variant="outline-danger"
             >
-              {t('modals.removeAccount.cancelButton')}
+              {tMRA('cancelButton')}
             </Button>
           </div>
         </div>

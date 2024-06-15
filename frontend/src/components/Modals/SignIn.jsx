@@ -8,26 +8,27 @@ import SignInForm from '../Forms/SignInForm';
 
 function SignInModal({ handleClose, isOpen }) {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { t: tSIF } = useTranslation('translation', { keyPrefix: 'signIn.footer' });
+  const { t: tSI } = useTranslation('translation', { keyPrefix: 'signIn' });
 
   return (
     <Modal centered onHide={handleClose} show={isOpen}>
       <Modal.Header className="py-3" closeButton>
         <Modal.Title className="display-6">
-          {t('signIn.pageHeader')}
+          {tSI('pageHeader')}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <SignInForm onSuccess={handleClose} />
         <div className="d-flex justify-content-center align-items-baseline mt-5">
           <span className="text-body-secondary">
-            {t('signIn.footer.signUpHeader')}
+            {tSIF('signUpHeader')}
           </span>{' '}
           <Button
             onClick={() => dispatch(actions.openModal({ type: 'signingUp' }))}
             variant="link"
           >
-            {t('signIn.footer.signUpAction')}
+            {tSIF('signUpAction')}
           </Button>
         </div>
       </Modal.Body>

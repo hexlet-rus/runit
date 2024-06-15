@@ -18,7 +18,8 @@ const generateGuestUserData = () => {
 };
 
 function AttemptDuplicateSnippet({ handleClose, isOpen }) {
-  const { t } = useTranslation();
+  const { t: tMADS } = useTranslation('translation', { keyPrefix: 'modals.attemptDuplicateSnippet' });
+  const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
   const auth = useAuth();
   const dispatch = useDispatch();
   const { currSnippetName, code } = useSelector(({ modal }) => modal.item);
@@ -45,10 +46,10 @@ function AttemptDuplicateSnippet({ handleClose, isOpen }) {
         Array.isArray(err.response?.data?.errs?.message)
       ) {
         // случай, когда случайно сгенерировался username или email, который уже есть в базе
-        console.log(t('errors.network'));
+        console.log(tErr('network'));
         throw err;
       } else {
-        console.log(t('errors.network'));
+        console.log(tErr('network'));
         throw err;
       }
     }
@@ -76,17 +77,17 @@ function AttemptDuplicateSnippet({ handleClose, isOpen }) {
   return (
     <Modal centered keyboard onHide={handleClose} show={isOpen}>
       <Modal.Header className="py-3" closeButton>
-        <Modal.Title>{t('modals.attemptDuplicateSnippet.title')}</Modal.Title>
+        <Modal.Title>{tMADS('title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="d-flex flex-column gap-3">
         <Button onClick={handleCopy} variant="primary">
-          {t('modals.attemptDuplicateSnippet.copyButton')}
+          {tMADS('copyButton')}
         </Button>
         <p className="d-flex justify-content-center my-0">
-          {t('modals.attemptDuplicateSnippet.or')}
+          {tMADS('or')}
         </p>
         <Button onClick={handleSignin} variant="outline-primary">
-          {t('modals.attemptDuplicateSnippet.signinButton')}
+          {tMADS('signinButton')}
         </Button>
       </Modal.Body>
     </Modal>
