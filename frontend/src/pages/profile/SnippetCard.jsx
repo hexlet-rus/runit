@@ -40,6 +40,7 @@ function CardHeader({
   const { t } = useTranslation();
   const snippetApi = useSnippets();
   const { name, id, code, language } = data;
+  const [isChecked, setIsChecked] = useState(null);
 
   useEffect(() => {
     const filenameInput = inputRef.current;
@@ -88,6 +89,12 @@ function CardHeader({
       formik.resetForm();
     }
     handleCancel();
+  };
+
+  const handleOnChange = (e) => {
+    const { checked } = e.target;
+    dispatch(snippetsActions.updateCheckedSnippet({ id, checked }));
+    setIsChecked(checked);
   };
 
   return (
