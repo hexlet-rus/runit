@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { useLanguage } from '../../hooks';
 
 function LanguageSelector() {
-  const { t, i18n } = useTranslation();
+  const { t: tSL, i18n } = useTranslation('translation', { keyPrefix: 'settings.languages' });
 
   const { language, availableLanguages, setLanguage } = useLanguage();
 
@@ -19,7 +19,7 @@ function LanguageSelector() {
       >
         <span className="text-uppercase">{language}</span>
         <span className="visually-hidden">
-          {t('settings.languages.header')}
+          {tSL('header')}
         </span>
       </Dropdown.Toggle>
       <Dropdown.Menu as="ul">

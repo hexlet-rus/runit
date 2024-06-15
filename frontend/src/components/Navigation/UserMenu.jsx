@@ -13,7 +13,8 @@ import Avatar from '../Avatar/index.jsx';
 
 function UserMenu() {
   const { signOut } = useAuth();
-  const { t } = useTranslation();
+  const { t: tPA } = useTranslation('translation', { keyPrefix: 'profileActions' });
+  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.userInfo.username);
 
@@ -31,31 +32,31 @@ function UserMenu() {
         <div className="logo-height">
           <Avatar username={username} />
         </div>
-        <span className="visually-hidden">{t('profileActions.header')}</span>
+        <span className="visually-hidden">{tPA('header')}</span>
       </Dropdown.Toggle>
       <Dropdown.Menu as="ul">
         <Dropdown.Header as="li">{username}</Dropdown.Header>
         <li>
           <Dropdown.Item as={Button} onClick={handleNewSnippet}>
-            {t('snippetActions.new')}
+            {tSA('new')}
           </Dropdown.Item>
         </li>
         {/* TODO: uncomment and implement share profile, when public profiles will be implemented */}
         {/* <li>
           <Dropdown.Item as={Button} onClick={handleInDevelopment}>
-            {t('profileActions.share')}
+            {tPA('share')}
           </Dropdown.Item>
         </li> */}
         <Dropdown.Divider />
         <li>
           <Dropdown.Item as={Link} to={routes.settingsPagePath()}>
-            {t('profileActions.settings')}
+            {tPA('settings')}
           </Dropdown.Item>
         </li>
         <Dropdown.Divider />
         <li>
           <Dropdown.Item as={Button} onClick={signOut}>
-            {t('profileActions.logout')}
+            {tPA('logout')}
           </Dropdown.Item>
         </li>
       </Dropdown.Menu>

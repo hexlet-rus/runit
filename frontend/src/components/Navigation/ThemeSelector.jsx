@@ -27,8 +27,7 @@ function ThemeOption({ themeName, handleSelect, active = false }) {
 }
 
 function ThemeSelector() {
-  const { t } = useTranslation();
-
+  const { t: tST } = useTranslation('translation', { keyPrefix: 'settings.themes' });
   const { ternaryDarkMode, setTernaryDarkMode } = useTernaryDarkMode();
 
   const CurrentThemeIcon = themeIcons[ternaryDarkMode];
@@ -40,7 +39,7 @@ function ThemeSelector() {
         variant="link"
       >
         <CurrentThemeIcon />
-        <span className="visually-hidden">{t('settings.themes.header')}</span>
+        <span className="visually-hidden">{tST('header')}</span>
       </Dropdown.Toggle>
       <Dropdown.Menu as="ul">
         {Object.keys(themeIcons).map((themeName) => (
