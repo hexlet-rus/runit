@@ -24,7 +24,13 @@ import icons from '../../utils/icons';
 
 import SnippetCardWrapper from './SnippetCardWrapper.jsx';
 
-function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
+function CardHeader({
+  data,
+  isRenaming,
+  handleRename,
+  handleCancel,
+  isHovered,
+}) {
   const dispatch = useDispatch();
   const inputRef = useRef();
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
@@ -86,11 +92,20 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
 
   return (
     <div className="snippet-card-header">
-      <Image
-        alt="JavaScript"
-        className="snippet-card-header-icon"
-        src={icons.get(language)}
-      />
+      {isHovered || isChecked !== null ? (
+        <Form.Check
+          className="z-2 form-check"
+          type="checkbox"
+          aria-label={name}
+          onChange={handleOnChange}
+        />
+      ) : (
+        <Image
+          alt="JavaScript"
+          className="snippet-card-header-icon"
+          src={icons.get(language)}
+        />
+      )}
       <Form className="flex-fill" onSubmit={handleSubmit}>
         {formik.isSubmitting ? null : (
           <Form.Group className="position-relative">
@@ -272,6 +287,8 @@ function SnippetCard({ data }) {
   const dispatch = useDispatch();
   const [mode, setMode] = useState('viewing');
 
+  const [isHovered, setIsHovered] = useState(false);
+
   const handleRename = () => setMode('renaming');
 
   const handleDelete = () => setMode('deleting');
@@ -316,12 +333,17 @@ function SnippetCard({ data }) {
 
   return (
     <SnippetCardWrapper>
-      <div className="snippet-card h-100">
+      <div
+        className="snippet-card h-100"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <CardHeader
           data={data}
           handleCancel={handleView}
           handleRename={handleRename}
           isRenaming={mode === 'renaming'}
+          isHovered={isHovered}
         />
 
         <CardBody data={data} handleCancel={handleView} />
