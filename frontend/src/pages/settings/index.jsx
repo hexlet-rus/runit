@@ -15,7 +15,7 @@ import ChangePasswordForm from '../../components/Forms/ChangePasswordForm.jsx';
 import UpdateAccountForm from '../../components/Forms/UpdateAccountForm.jsx';
 
 function SettingsPage() {
-  const { t } = useTranslation();
+  const { t: tPS } = useTranslation('translation', { keyPrefix: 'profileSettings' });
   const dispatch = useDispatch();
 
   const handleRemoveAccount = () => {
@@ -29,7 +29,7 @@ function SettingsPage() {
           <Col className="max-w-lg">
             <div className="d-flex flex-column gap-2 bg-body rounded-4 p-4 p-sm-5">
               <h1 className="display-6 mb-5">
-                {t('profileSettings.pageHeader')}
+                {tPS('pageHeader')}
               </h1>
               <div className="d-flex flex-column flex-md-row gap-5">
                 <div className="flex-shrink-1">
@@ -51,7 +51,7 @@ function SettingsPage() {
                   size="sm"
                   variant="nofill-secondary"
                 >
-                  <XCircle className="bi" /> {t('profileActions.removeAccount')}
+                  <XCircle className="bi" /> {tPS('removeAccount')}
                 </Button>
               </div>
             </div>

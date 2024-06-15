@@ -19,7 +19,8 @@ import DefaultLoader from '../../components/Loaders/DefaultLoader.jsx';
 import Terminal from '../../components/Terminal/index.jsx';
 
 function EmbeddedPage() {
-  const { t } = useTranslation();
+  const { t: tN } = useTranslation('translation', { keyPrefix: 'navbar' });
+  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
   const params = useParams();
   const dispatch = useDispatch();
   const { isReady } = useSelector((state) => state.editor);
@@ -66,7 +67,7 @@ function EmbeddedPage() {
       >
         <Navbar.Brand as={Link} className="me-auto" to={routes.landingPath()}>
           <Image
-            alt={t('navbar.mainLabel')}
+            alt={tN('mainLabel')}
             className="logo-height"
             src={Logo}
           />
@@ -82,7 +83,7 @@ function EmbeddedPage() {
             >
               <PencilSquare className="bi" />{' '}
               <span className="d-none d-sm-inline small">
-                {t('snippetActions.openOnRunIT')}
+                {tSA('openOnRunIT')}
               </span>
             </Button>
           </Nav.Item>
@@ -95,7 +96,7 @@ function EmbeddedPage() {
             >
               <PlayFill className="bi" />
               <span className="flex-shrink-1 text-truncate">
-                {t('snippetActions.run')}
+                {tSA('run')}
               </span>
             </Button>
           </Nav.Item>

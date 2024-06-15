@@ -13,7 +13,10 @@ import SnippetCardWrapper from './SnippetCardWrapper';
 import icons from '../../utils/icons';
 
 function NewSnippetForm() {
-  const { t } = useTranslation();
+  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
+  const { t: tL } = useTranslation('translation', { keyPrefix: 'languages' });
+  const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
+  const { t: tCT } = useTranslation('translation', { keyPrefix: 'codeTemplates' });
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
   const navigate = useNavigate();
@@ -21,7 +24,7 @@ function NewSnippetForm() {
   const username = useSelector((state) => state.user.userInfo.username);
 
   const handleNewSnippet = (language) => async () => {
-    const code = t(`codeTemplates.${language}`);
+    const code = tCT(`${language}`);
     if (supportedLanguages.includes(language)) {
       try {
         const generatedName = await snippetApi.getDefaultSnippetName();
@@ -33,10 +36,10 @@ function NewSnippetForm() {
         navigate(url.pathname);
       } catch (error) {
         if (!error.isAxiosError) {
-          console.log(t('errors.unknown'));
+          console.log(tErr('unknown'));
           throw error;
         } else {
-          console.log(t('errors.network'));
+          console.log(tErr('network'));
           throw error;
         }
       }
@@ -48,7 +51,7 @@ function NewSnippetForm() {
   return (
     <SnippetCardWrapper>
       <div className="new-snippet h-100">
-        <div>{t('snippetActions.new')}</div>
+        <div>{tSA('new')}</div>
         <div className="new-snippet-links flex-wrap">
           {supportedLanguages.map((language) => (
             <Button
@@ -57,12 +60,12 @@ function NewSnippetForm() {
               variant={null}
             >
               <Image
-                alt={t(`languages.${language}`)}
+                alt={tL(`${language}`)}
                 src={icons.get(language)}
               />
               <span className="visually-hidden">
-                {t('snippetActions.createOnLanguage', {
-                  language: t(`languages.${language}`),
+                {tSA('snippetActions.createOnLanguage', {
+                  language: tL(`${language}`),
                 })}
               </span>
             </Button>

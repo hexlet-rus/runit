@@ -25,6 +25,8 @@ function SnippetName({ snippet }) {
     snippetData: { id, name, language },
   } = snippet;
   const dispatch = useDispatch();
+  const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
+  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
   const { t } = useTranslation();
   const snippetApi = useSnippets();
   const inputRef = useRef(null);
@@ -54,10 +56,10 @@ function SnippetName({ snippet }) {
       } catch (error) {
         formik.resetForm();
         if (!error.isAxiosError) {
-          console.log(t('errors.unknown'));
+          console.log(tErr('unknown'));
           throw error;
         } else {
-          console.log(t('errors.network'));
+          console.log(tErr('network'));
           throw error;
         }
       }
@@ -122,7 +124,7 @@ function SnippetName({ snippet }) {
           variant="nofill-body"
         >
           <PencilFill />
-          <span className="visually-hidden">{t('snippetActions.rename')}</span>
+          <span className="visually-hidden">{tSA('rename')}</span>
         </Button>
       )}
     </Form>
@@ -130,7 +132,7 @@ function SnippetName({ snippet }) {
 }
 
 function SavingIndicator({ isAllSaved = false }) {
-  const { t } = useTranslation();
+  const { t: tE } = useTranslation('translation', { keyPrefix: 'editor' });
 
   if (isAllSaved) {
     return (
@@ -138,7 +140,7 @@ function SavingIndicator({ isAllSaved = false }) {
         <div className="toolbar-indicator">
           <CloudCheck className="bi" />
         </div>
-        <div className="small">{t('editor.saved')}</div>
+        <div className="small">{tE('saved')}</div>
       </div>
     );
   }
@@ -146,9 +148,9 @@ function SavingIndicator({ isAllSaved = false }) {
     <div className="d-flex flex-row align-items-center text-body-secondary glow">
       <div className="toolbar-indicator">
         <CloudArrowUp className="bi" />
-        <span className="visually-hidden">{t('editor.unsaved')}</span>
+        <span className="visually-hidden">{tE('unsaved')}</span>
       </div>
-      <div className="small">{t('editor.saving')}</div>
+      <div className="small">{tE('saving')}</div>
     </div>
   );
 }

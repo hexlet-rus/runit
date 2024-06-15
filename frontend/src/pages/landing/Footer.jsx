@@ -22,7 +22,9 @@ import RunItLogoLight from './assets/LogoFooterLight.svg';
 import RunItLogoDark from './assets/LogoFooterDark.svg';
 
 function Footer() {
-  const { t } = useTranslation();
+  const { t: tLH } = useTranslation('translation', { keyPrefix: 'landing.header' });
+  const { t: tFAQ } = useTranslation('translation', { keyPrefix: 'faq' });
+  const { t: tF } = useTranslation('translation', { keyPrefix: 'footer' });
 
   const theme = document.documentElement.getAttribute('data-bs-theme');
 
@@ -101,16 +103,16 @@ function Footer() {
             <Nav as="ul" className="list-group flex-column">
               <li className="mb-2">
                 <NavbarBrand href="#aboutProject">
-                  {t('landing.header.advantages')}
+                  {tLH('advantages')}
                 </NavbarBrand>
               </li>
               <li className="mb-2">
                 <NavbarBrand href="#possibilities">
-                  {t('landing.header.opportunities')}
+                  {tLH('opportunities')}
                 </NavbarBrand>
               </li>
               <li className="mb-2">
-                <NavbarBrand href="#faq">{t('faq.faq')}</NavbarBrand>
+                <NavbarBrand href="#faq">{tFAQ('faq')}</NavbarBrand>
               </li>
             </Nav>
           </Col>
@@ -121,7 +123,7 @@ function Footer() {
                   href="https://ru.hexlet.io/pages/about"
                   target="_blank"
                 >
-                  {t('footer.about')}
+                  {tF('about')}
                 </NavbarBrand>
               </li>
               <li className="mb-2">
@@ -129,7 +131,7 @@ function Footer() {
                   href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
                   target="_blank"
                 >
-                  {t('footer.career')}
+                  {tF('career')}
                 </NavbarBrand>
               </li>
               <li className="mb-2">
@@ -137,39 +139,39 @@ function Footer() {
                   href="https://hexlet.printdirect.ru/?partner_id=615497"
                   target="_blank"
                 >
-                  {t('footer.shop')}
+                  {tF('shop')}
                 </NavbarBrand>
               </li>
               <li className="mb-2">
                 <NavbarBrand href="mailto: runit@hexlet.io" target="_blank">
-                  {t('footer.mailSupport')}
+                  {tF('mailSupport')}
                 </NavbarBrand>
               </li>
             </Nav>
           </Col>
           <Col className="col-6 mb-4">
             <p className="m-0">
-              <NavbarBrand href={t('footer.tel1Href')}>
-                <b>{t('footer.tel1')}</b>
+              <NavbarBrand href={tF('tel1Href')}>
+                <b>{tF('tel1')}</b>
               </NavbarBrand>
             </p>
-            <p>{t('footer.rf')}</p>
+            <p>{tF('rf')}</p>
           </Col>
           <Col className="col-6 mb-4">
             <p className="m-0">
-              <NavbarBrand href={t('footer.tel2Href')}>
-                <b>{t('footer.tel2')}</b>
+              <NavbarBrand href={tF('tel2Href')}>
+                <b>{tF('tel2')}</b>
               </NavbarBrand>
             </p>
-            <p> {t('footer.moscow')}</p>
+            <p> {tF('moscow')}</p>
           </Col>
           <Col className="col-6  mb-4">
-            <p className="m-0">{t('footer.name')}</p>
-            <p className="m-0">{t('footer.ogrn')}</p>
+            <p className="m-0">{tF('name')}</p>
+            <p className="m-0">{tF('ogrn')}</p>
           </Col>
           <Col className="col-6 mb-4">
-            <p className="m-0">{t('footer.city')}</p>
-            <p className="m-0">{t('footer.street')}</p>
+            <p className="m-0">{tF('city')}</p>
+            <p className="m-0">{tF('street')}</p>
           </Col>
         </Row>
         <Row className="d-flex mx-5 mb-3 align-items-center d-none d-lg-flex">
@@ -180,19 +182,19 @@ function Footer() {
             <Row>
               <Col className="align-self-center">
                 <p className="mb-0">
-                  <NavbarBrand href={t('footer.tel1Href')}>
-                    <b>{t('footer.tel1')}</b>
+                  <NavbarBrand href={tF('tel1Href')}>
+                    <b>{tF('tel1')}</b>
                   </NavbarBrand>
                 </p>
-                <p className="m-0">{t('footer.rf')}</p>
+                <p className="m-0">{tF('rf')}</p>
               </Col>
               <Col>
                 <p className="m-0">
-                  <NavbarBrand href={t('footer.tel2Href')}>
-                    <b>{t('footer.tel2')}</b>
+                  <NavbarBrand href={tF('tel2Href')}>
+                    <b>{tF('tel2')}</b>
                   </NavbarBrand>
                 </p>
-                <p className="m-0">{t('footer.moscow')}</p>
+                <p className="m-0">{tF('moscow')}</p>
               </Col>
             </Row>
           </Col>
@@ -251,22 +253,22 @@ function Footer() {
                 <Nav as="ul" className="list-group flex-column">
                   <li className="mb-2">
                     <NavbarBrand className="p-0" href="#aboutProject">
-                      {t('landing.header.about')}
+                      {tLH('about')}
                     </NavbarBrand>
                   </li>
                   <li className="mb-2">
                     <NavbarBrand className="p-0" href="#advantages">
-                      {t('landing.header.advantages')}
+                      {tLH('advantages')}
                     </NavbarBrand>
                   </li>
                   <li className="mb-2">
                     <NavbarBrand className="p-0" href="#possibilities">
-                      {t('landing.header.opportunities')}
+                      {tLH('opportunities')}
                     </NavbarBrand>
                   </li>
                   <li className="mb-2">
                     <NavbarBrand className="p-0" href="#faq">
-                      {t('landing.header.faq')}
+                      {tLH('faq')}
                     </NavbarBrand>
                   </li>
                 </Nav>
@@ -279,7 +281,7 @@ function Footer() {
                       href="https://ru.hexlet.io/pages/about"
                       target="_blank"
                     >
-                      {t('footer.about')}
+                      {tF('about')}
                     </NavbarBrand>
                   </li>
                   <li className="mb-2">
@@ -288,7 +290,7 @@ function Footer() {
                       href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
                       target="_blank"
                     >
-                      {t('footer.career')}
+                      {tF('career')}
                     </NavbarBrand>
                   </li>
                   <li className="mb-2">
@@ -297,7 +299,7 @@ function Footer() {
                       href="https://hexlet.printdirect.ru/?partner_id=615497"
                       target="_blank"
                     >
-                      {t('footer.shop')}
+                      {tF('shop')}
                     </NavbarBrand>
                   </li>
                   <li className="mb-2">
@@ -306,7 +308,7 @@ function Footer() {
                       href="mailto: runit@hexlet.io"
                       target="_blank"
                     >
-                      {t('footer.mailSupport')}
+                      {tF('mailSupport')}
                     </NavbarBrand>
                   </li>
                 </Nav>
@@ -315,10 +317,10 @@ function Footer() {
           </Col>
           <Col>
             <div className="ms-auto">
-              <p>{t('footer.name')}</p>
-              <p className="m-0">{t('footer.city')}</p>
-              <p>{t('footer.street')}</p>
-              <p className="m-0">{t('footer.ogrn')}</p>
+              <p>{tF('name')}</p>
+              <p className="m-0">{tF('city')}</p>
+              <p>{tF('street')}</p>
+              <p className="m-0">{tF('ogrn')}</p>
             </div>
           </Col>
         </Row>

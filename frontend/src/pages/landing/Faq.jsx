@@ -76,15 +76,15 @@ function CustomToggle({ children, eventKey }) {
 }
 
 function Faq() {
-  const { t } = useTranslation();
+  const { t: tFAQ } = useTranslation('translation', { keyPrefix: 'faq' });
 
   return (
     <Row>
       <Col className="my-5 pb-3" id="faq">
-        <h2 className=" pb-3 mb-4">{t('faq.faq')}</h2>
+        <h2 className=" pb-3 mb-4">{tFAQ('faq')}</h2>
         <Accordion defaultActiveKey="0" flush>
           <div>
-            <CustomToggle eventKey="0">{t('faq.q0')}</CustomToggle>
+            <CustomToggle eventKey="0">{tFAQ('q0')}</CustomToggle>
             <Accordion.Collapse eventKey="0">
               <article className="px-3 ">
                 <p>
@@ -94,7 +94,7 @@ function Faq() {
             </Accordion.Collapse>
           </div>
           <div>
-            <CustomToggle eventKey="1">{t('faq.q2')}</CustomToggle>
+            <CustomToggle eventKey="1">{tFAQ('q2')}</CustomToggle>
             <Accordion.Collapse eventKey="1">
               <article className="px-3 ">
                 <p>
@@ -110,7 +110,7 @@ function Faq() {
             </Accordion.Collapse>
           </div>
           <div>
-            <CustomToggle eventKey="2">{t('faq.q3')}</CustomToggle>
+            <CustomToggle eventKey="2">{tFAQ('q3')}</CustomToggle>
             <Accordion.Collapse eventKey="2">
               <article className="px-3 ">
                 <p>
@@ -120,10 +120,10 @@ function Faq() {
             </Accordion.Collapse>
           </div>
           <div>
-            <CustomToggle eventKey="3">{t('faq.q1')}</CustomToggle>
+            <CustomToggle eventKey="3">{tFAQ('q1')}</CustomToggle>
             <Accordion.Collapse eventKey="3">
               <article className="px-3 ">
-                <p>{t('faq.a11')}</p>
+                <p>{tFAQ('a11')}</p>
                 <p>
                   <Trans i18nKey="faq.a110" />
                 </p>

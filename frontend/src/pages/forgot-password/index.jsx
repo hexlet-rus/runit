@@ -10,7 +10,8 @@ import routes from '../../routes.js';
 import ForgotPasswordForm from '../../components/Forms/ForgotPasswordForm';
 
 function ForgotPasswordPage() {
-  const { t } = useTranslation();
+  const { t: tSIF } = useTranslation('translation', { keyPrefix: 'signIn.footer' });
+  const { t: tFP } = useTranslation('translation', { keyPrefix: 'forgotPass' });
 
   return (
     <div className="page-bg-image">
@@ -18,15 +19,15 @@ function ForgotPasswordPage() {
         <Row className="justify-content-center align-items-center m-auto py-3 py-sm-5 h-100">
           <Col className="max-w-sm p-0">
             <div className="d-flex flex-column gap-sm-3 gap-4 bg-body rounded-4 p-4 p-sm-5">
-              <h1 className="display-6">{t('forgotPass.pageHeader')}</h1>
+              <h1 className="display-6">{tFP('pageHeader')}</h1>
               <ForgotPasswordForm />
               <hr />
               <div className="small">
                 <span className="text-body-secondary">
-                  {t('signIn.footer.signUpHeader')}
+                  {tSIF('signUpHeader')}
                 </span>{' '}
                 <Link to={routes.signUpPagePath()}>
-                  {t('signIn.footer.signUpAction')}
+                  {tSIF('signUpAction')}
                 </Link>
               </div>
             </div>

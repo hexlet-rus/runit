@@ -14,7 +14,7 @@ import ResetPasswordForm from '../../components/Forms/ResetPasswordForm';
 import NotFoundPage from '../404';
 
 function ResetPasswordPage() {
-  const { t } = useTranslation();
+  const { t: tRP } = useTranslation('translation', { keyPrefix: 'resetPass' });
   const navigate = useNavigate();
   const { hash } = useParams();
   const [userId, setUserId] = useState(false);
@@ -33,7 +33,7 @@ function ResetPasswordPage() {
         <Row className="justify-content-center align-items-center m-auto py-3 py-sm-5 h-100">
           <Col className="max-w-sm p-0">
             <div className="d-flex flex-column gap-sm-3 gap-4 bg-body rounded-4 p-4 p-sm-5">
-              <h1 className="display-6">{t('resetPass.pageHeader')}</h1>
+              <h1 className="display-6">{tRP('pageHeader')}</h1>
               <ResetPasswordForm
                 onSuccess={() => {
                   navigate(routes.myProfilePagePath());

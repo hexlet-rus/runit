@@ -14,7 +14,8 @@ import './landing.scss';
 import './custom-colors.scss';
 
 function Header() {
-  const { t } = useTranslation();
+  const { t: tLH } = useTranslation('translation', { keyPrefix: 'landing.header' });
+  const { t: tPA } = useTranslation('translation', { keyPrefix: 'profileActions' });
   const { isDarkMode } = useTernaryDarkMode();
 
   const logo = isDarkMode ? RunItLogoDark : RunItLogoLight;
@@ -36,22 +37,22 @@ function Header() {
             <Nav as="ul" className="text-left text-xl-center">
               <li>
                 <Navbar.Brand className="header-link" href="#aboutProject">
-                  <span>{t('landing.header.about')}</span>
+                  <span>{tLH('about')}</span>
                 </Navbar.Brand>
               </li>
               <li>
                 <Navbar.Brand className="header-link" href="#advantages">
-                  <span>{t('landing.header.advantages')}</span>
+                  <span>{tLH('advantages')}</span>
                 </Navbar.Brand>
               </li>
               <li>
                 <Navbar.Brand className="header-link" href="#possibilities">
-                  <span>{t('landing.header.opportunities')}</span>
+                  <span>{tLH('opportunities')}</span>
                 </Navbar.Brand>
               </li>
               <li>
                 <Navbar.Brand className="header-link" href="#faq">
-                  <span>{t('landing.header.faq')}</span>
+                  <span>{tLH('faq')}</span>
                 </Navbar.Brand>
               </li>
             </Nav>
@@ -67,7 +68,7 @@ function Header() {
                 to={routes.signInPagePath()}
                 variant="primary"
               >
-                <span>{t('profileActions.signIn')}</span>
+                <span>{tPA('signIn')}</span>
               </Button>
               <Button
                 as={Link}
@@ -75,7 +76,7 @@ function Header() {
                 to={routes.signUpPagePath()}
                 variant="secondary"
               >
-                <span>{t('profileActions.signUp')}</span>
+                <span>{tPA('signUp')}</span>
               </Button>
             </Nav>
           </Navbar.Collapse>
