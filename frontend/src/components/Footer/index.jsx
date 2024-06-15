@@ -6,7 +6,7 @@ import { ReactComponent as Vk } from '../../assets/images/icons/vk.svg';
 import classes from './index.module.css';
 
 function Footer() {
-  const { t, i18n } = useTranslation();
+  const { t: tF, i18n } = useTranslation('translation', { keyPrefix: 'footer' });
   const { language } = i18n;
 
   return (
@@ -23,7 +23,7 @@ function Footer() {
                   href="https://ru.hexlet.io/pages/about"
                   target="_blank"
                 >
-                  {t('footer.about')}
+                  {tF('about')}
                 </Nav.Link>
               </li>
               <li>
@@ -34,7 +34,7 @@ function Footer() {
                   href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
                   target="_blank"
                 >
-                  {t('footer.career')}
+                  {tF('career')}
                 </Nav.Link>
               </li>
               <li>
@@ -45,7 +45,7 @@ function Footer() {
                   href="https://hexlet.printdirect.ru/?partner_id=615497"
                   target="_blank"
                 >
-                  {t('footer.shop')}
+                  {tF('shop')}
                 </Nav.Link>
                 <Nav.Link
                   as="a"
@@ -54,7 +54,7 @@ function Footer() {
                   href="mailto: runit@hexlet.io"
                   target="_blank"
                 >
-                  {t('footer.mailSupport')}
+                  {tF('mailSupport')}
                 </Nav.Link>
               </li>
             </Nav>
@@ -63,48 +63,48 @@ function Footer() {
                 <span className="lead fw-normal">
                   <a
                     className={`${classes.footerLink} text-decoration-none`}
-                    href={t('footer.tel1Href')}
+                    href={tF('tel1Href')}
                   >
-                    {t('footer.tel1')}
+                    {tF('tel1')}
                   </a>
                 </span>
-                <span className="text-secondary">{t('footer.rf')}</span>
+                <span className="text-secondary">{tF('rf')}</span>
               </li>
               <li>
                 <span className="lead fw-normal">
                   <a
                     className={`${classes.footerLink} text-decoration-none`}
-                    href={t('footer.tel2Href')}
+                    href={tF('tel2Href')}
                   >
-                    {t('footer.tel2')}
+                    {tF('tel2')}
                   </a>
                 </span>
-                <span className="text-secondary">{t('footer.moscow')}</span>
+                <span className="text-secondary">{tF('moscow')}</span>
               </li>
               <li>
                 <span className="lead fw-normal">
                   <a
                     className={`${classes.footerLink} text-decoration-none`}
-                    href={t('footer.tgLink')}
+                    href={tF('tgLink')}
                     rel="noopener noreferrer nofollow"
                     target="_blank"
                   >
-                    {t('footer.help')}:
+                    {tF('help')}:
                   </a>
                 </span>
-                <span className="text-secondary">{t('footer.tg')}</span>
+                <span className="text-secondary">{tF('tg')}</span>
               </li>
             </Nav>
             <p className="mt-3 text-secondary">
-              <span className="d-block">{t('footer.name')}</span>
-              <span className="d-block">{t('footer.city')}</span>
-              <span className="d-block">{t('footer.street')}</span>
-              <span className="d-block">{t('footer.ogrn')}</span>
+              <span className="d-block">{tF('name')}</span>
+              <span className="d-block">{tF('city')}</span>
+              <span className="d-block">{tF('street')}</span>
+              <span className="d-block">{tF('ogrn')}</span>
             </p>
           </Col>
           <Col lg={5} md={5}>
             <div className="fw-bold mt-3 mb-2 text-white">
-              {t('footer.doc')}
+              {tF('doc')}
             </div>
             <Nav as="ul" className="flex-column align-items-start">
               <li>
@@ -115,7 +115,7 @@ function Footer() {
                   href="https://ru.hexlet.io/pages/tos"
                   target="_blank"
                 >
-                  {t('footer.conditions')}
+                  {tF('conditions')}
                 </Nav.Link>
               </li>
               <li>
@@ -126,7 +126,7 @@ function Footer() {
                   href="https://ru.hexlet.io/pages/personal_data"
                   target="_blank"
                 >
-                  {t('footer.agreement')}
+                  {tF('agreement')}
                 </Nav.Link>
               </li>
               {language === 'ru' && (
@@ -138,7 +138,7 @@ function Footer() {
                     to="/licenseAgreement"
                   >
                     <span style={{ paddingRight: '1.25rem' }}>
-                      {t('footer.licenseAgreement')}
+                      {tF('licenseAgreement')}
                     </span>
                   </Nav.Link>
                 </li>
@@ -151,13 +151,13 @@ function Footer() {
                   href="https://github.com/hexlet-rus/runit"
                   target="_blank"
                 >
-                  {t('footer.source')}
+                  {tF('source')}
                 </Nav.Link>
               </li>
             </Nav>
             <Nav as="ul" className="flex-column align-items-start">
               <div className="fw-bold mt-3 mb-3 text-white">
-                {t('footer.subscribe')}
+                {tF('subscribe')}
               </div>
               <ul className="list-unstyled h3 text-start d-flex flex-wrap">
                 <li className="me-4 mb-2">
@@ -214,7 +214,7 @@ function Footer() {
                   variant="none"
                 >
                   <Globe /> // from react-bootstrap-icons
-                  <span className="fw-bold me-2">{t('footer.language')}</span>
+                  <span className="fw-bold me-2">{tF('language')}</span>
                 </Dropdown.Toggle>
   
                 <Dropdown.Menu as="ul">
@@ -239,7 +239,7 @@ function Footer() {
                         loading="lazy"
                         src="https://cdn2.hexlet.io/assets/flag-ru-593864ce87ae202b2c2e9393b2a6cf9384ac9cbb1c70632f4c6eeca34341483e.svg"
                       />
-                      <span className="my-auto text-muted">{t('footer.ru')}</span>
+                      <span className="my-auto text-muted">{tF('ru')}</span>
                     </Dropdown.Item>
                   </li>
                 </Dropdown.Menu>
@@ -247,7 +247,7 @@ function Footer() {
           </Col>
           <Col lg={2} md={12}>
             <div className="fw-bold mt-3 mb-2 text-white">
-              {t('footer.project')}
+              {tF('project')}
             </div>
             <Nav as="ul" className="flex-column align-items-start">
               <li>
@@ -258,7 +258,7 @@ function Footer() {
                   href="https://ru.hexlet.io"
                   target="_blank"
                 >
-                  {t('footer.hexlet')}
+                  {tF('hexlet')}
                 </Nav.Link>
               </li>
               <li>
@@ -269,7 +269,7 @@ function Footer() {
                   href="https://hexly.ru/"
                   target="_blank"
                 >
-                  {t('footer.college')}
+                  {tF('college')}
                 </Nav.Link>
               </li>
               <li>
@@ -280,7 +280,7 @@ function Footer() {
                   href="https://code-basics.com/ru"
                   target="_blank"
                 >
-                  {t('footer.codeBasics')}
+                  {tF('codeBasics')}
                 </Nav.Link>
               </li>
               <li>
@@ -291,7 +291,7 @@ function Footer() {
                   href="https://codebattle.hexlet.io"
                   target="_blank"
                 >
-                  {t('footer.codeBattle')}
+                  {tF('codeBattle')}
                 </Nav.Link>
               </li>
               <li>
@@ -302,7 +302,7 @@ function Footer() {
                   href="https://guides.hexlet.io/ru"
                   target="_blank"
                 >
-                  {t('footer.guides')}
+                  {tF('guides')}
                 </Nav.Link>
               </li>
               <li>
@@ -313,7 +313,7 @@ function Footer() {
                   href="https://cv.hexlet.io"
                   target="_blank"
                 >
-                  {t('footer.cv')}
+                  {tF('cv')}
                 </Nav.Link>
               </li>
             </Nav>
