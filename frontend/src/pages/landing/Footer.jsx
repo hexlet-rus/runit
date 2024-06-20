@@ -115,7 +115,7 @@ function Footer() {
             </Nav>
           </Col>
           <Col className="col-6 mb-4">
-            <Nav as="ul" className="list-group">
+            <Nav as="ul" className="list-group flex-column">
               <li className="mb-2">
                 <NavbarBrand
                   href="https://ru.hexlet.io/pages/about"
