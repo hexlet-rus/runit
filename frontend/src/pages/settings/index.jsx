@@ -13,6 +13,7 @@ import { actions as modalActions } from '../../slices/modalSlice.js';
 import AvatarChangeForm from '../../components/Forms/AvatarChangeForm.jsx';
 import ChangePasswordForm from '../../components/Forms/ChangePasswordForm.jsx';
 import UpdateAccountForm from '../../components/Forms/UpdateAccountForm.jsx';
+import ApperearanceForm from '../../components/Forms/AppearanceForm.jsx';
 
 function SettingsPage() {
   const { t } = useTranslation();
@@ -40,6 +41,8 @@ function SettingsPage() {
                     <UpdateAccountForm />
                     <hr className="border-secondary-subtle" />
                     <ChangePasswordForm />
+                    <hr className="border-secondary-subtle" />
+                    <ApperearanceForm />
                   </Stack>
                 </div>
               </div>
