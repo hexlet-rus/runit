@@ -5,7 +5,9 @@ import Modal from 'react-bootstrap/Modal';
 import { Tools } from 'react-bootstrap-icons';
 
 function InDevelopment({ handleClose, isOpen }) {
-  const { t: tMID } = useTranslation('translation', { keyPrefix: 'modals.inDevelopment' });
+  const { t: tMID } = useTranslation('translation', {
+    keyPrefix: 'modals.inDevelopment',
+  });
 
   return (
     <Modal centered onHide={handleClose} show={isOpen} size="sm">

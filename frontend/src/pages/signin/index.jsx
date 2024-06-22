@@ -11,7 +11,9 @@ import SignInForm from '../../components/Forms/SignInForm.jsx';
 
 function SignIn() {
   const { t: tSI } = useTranslation('translation', { keyPrefix: 'signIn' });
-  const { t: tSIF } = useTranslation('translation', { keyPrefix: 'signIn.footer' });
+  const { t: tSIF } = useTranslation('translation', {
+    keyPrefix: 'signIn.footer',
+  });
   const navigate = useNavigate();
 
   return (
@@ -31,9 +33,7 @@ function SignIn() {
                 <span className="text-body-secondary">
                   {tSIF('signUpHeader')}
                 </span>{' '}
-                <Link to={routes.signUpPagePath()}>
-                  {tSIF('signUpAction')}
-                </Link>
+                <Link to={routes.signUpPagePath()}>{tSIF('signUpAction')}</Link>
               </div>
             </div>
           </Col>

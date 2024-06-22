@@ -27,8 +27,12 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
   const navigate = useNavigate();
   const duplicateSnippet = useDuplicateSnippet();
   const { genViewSnippetLink } = useSnippets();
-  const { t: tMDS } = useTranslation('translation', { keyPrefix: 'modals.duplicateSnippet' });
-  const { t: tTDS } = useTranslation('translation', { keyPrefix: 'toasts.duplicateSnippet' });
+  const { t: tMDS } = useTranslation('translation', {
+    keyPrefix: 'modals.duplicateSnippet',
+  });
+  const { t: tTDS } = useTranslation('translation', {
+    keyPrefix: 'toasts.duplicateSnippet',
+  });
   const { t } = useTranslation();
   const username = useSelector((state) => state.user.userInfo.username);
 
@@ -96,9 +100,7 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
   return (
     <Modal centered onHide={handleClose} show={isOpen}>
       <Modal.Header className="py-3" closeButton>
-        <Modal.Title className="display-7">
-          {tMDS('title')}
-        </Modal.Title>
+        <Modal.Title className="display-7">{tMDS('title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="d-flex flex-column gap-4">
@@ -115,9 +117,7 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
           >
             <div className="d-flex flex-column gap-3">
               <Form.Group controlId="email">
-                <Form.Label>
-                  {tMDS('snippetName')}
-                </Form.Label>
+                <Form.Label>{tMDS('snippetName')}</Form.Label>
                 <Form.Control
                   ref={nameRef}
                   isInvalid={

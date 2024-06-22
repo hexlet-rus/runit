@@ -14,8 +14,12 @@ import './landing.scss';
 import './custom-colors.scss';
 
 function Header() {
-  const { t: tLH } = useTranslation('translation', { keyPrefix: 'landing.header' });
-  const { t: tPA } = useTranslation('translation', { keyPrefix: 'profileActions' });
+  const { t: tLH } = useTranslation('translation', {
+    keyPrefix: 'landing.header',
+  });
+  const { t: tPA } = useTranslation('translation', {
+    keyPrefix: 'profileActions',
+  });
   const { isDarkMode } = useTernaryDarkMode();
 
   const logo = isDarkMode ? RunItLogoDark : RunItLogoLight;

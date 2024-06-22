@@ -2,7 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 function NotFound() {
-  const { t: tPNF } = useTranslation('translation', { keyPrefix: 'pageNotFound' });
+  const { t: tPNF } = useTranslation('translation', {
+    keyPrefix: 'pageNotFound',
+  });
 
   return (
     <div className="container mb-5">
@@ -17,17 +19,11 @@ function NotFound() {
         </div>
         <div className="col">
           <h1 className="mb-4">{tPNF('title')}</h1>
-          <p className="fs-5 text-black mb-3">
-            {tPNF('whatHappened.title')}
-          </p>
+          <p className="fs-5 text-black mb-3">{tPNF('whatHappened.title')}</p>
           <p className="mb-4">{tPNF('whatHappened.body')}</p>
-          <p className="fs-5 text-black mb-3">
-            {tPNF('whyHappened.title')}
-          </p>
+          <p className="fs-5 text-black mb-3">{tPNF('whyHappened.title')}</p>
           <p className="mb-4">{tPNF('whyHappened.body')}</p>
-          <p className="fs-5 text-black mb-3">
-            {tPNF('whatToDo.title')}
-          </p>
+          <p className="fs-5 text-black mb-3">{tPNF('whatToDo.title')}</p>
           <p className="mb-2">
             {tPNF('whatToDo.body')}
             <Link to="/">{tPNF('whatToDo.returnButton')}</Link>

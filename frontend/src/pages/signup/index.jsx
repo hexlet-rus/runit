@@ -11,8 +11,12 @@ import SignUpForm from '../../components/Forms/SignUpForm.jsx';
 
 function SignUp() {
   const { t: tSU } = useTranslation('translation', { keyPrefix: 'signUp' });
-  const { t: tSUF } = useTranslation('translation', { keyPrefix: 'signUp.footer' });
-  const { t: tPA } = useTranslation('translation', { keyPrefix: 'profileActions' });
+  const { t: tSUF } = useTranslation('translation', {
+    keyPrefix: 'signUp.footer',
+  });
+  const { t: tPA } = useTranslation('translation', {
+    keyPrefix: 'profileActions',
+  });
   const navigate = useNavigate();
 
   return (
@@ -32,9 +36,7 @@ function SignUp() {
                 <span className="text-body-secondary">
                   {tSUF('signInHeader')}
                 </span>{' '}
-                <Link to={routes.signInPagePath()}>
-                  {tPA('signIn')}
-                </Link>
+                <Link to={routes.signInPagePath()}>{tPA('signIn')}</Link>
               </div>
             </div>
           </Col>

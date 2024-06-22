@@ -15,7 +15,9 @@ import { email, username } from '../../utils/validationSchemas';
 import FormAlert from './FormAlert.jsx';
 
 function UpdateAccountForm() {
-  const { t: tPS } = useTranslation('translation', { keyPrefix: 'profileSettings' });
+  const { t: tPS } = useTranslation('translation', {
+    keyPrefix: 'profileSettings',
+  });
   const { t } = useTranslation();
   const emailRef = useRef();
   const usernameRef = useRef();

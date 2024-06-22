@@ -10,7 +10,9 @@ import routes from '../../routes.js';
 import ForgotPasswordForm from '../../components/Forms/ForgotPasswordForm';
 
 function ForgotPasswordPage() {
-  const { t: tSIF } = useTranslation('translation', { keyPrefix: 'signIn.footer' });
+  const { t: tSIF } = useTranslation('translation', {
+    keyPrefix: 'signIn.footer',
+  });
   const { t: tFP } = useTranslation('translation', { keyPrefix: 'forgotPass' });
 
   return (
@@ -26,9 +28,7 @@ function ForgotPasswordPage() {
                 <span className="text-body-secondary">
                   {tSIF('signUpHeader')}
                 </span>{' '}
-                <Link to={routes.signUpPagePath()}>
-                  {tSIF('signUpAction')}
-                </Link>
+                <Link to={routes.signUpPagePath()}>{tSIF('signUpAction')}</Link>
               </div>
             </div>
           </Col>

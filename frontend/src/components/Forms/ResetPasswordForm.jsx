@@ -17,7 +17,9 @@ import FormAlert from './FormAlert.jsx';
 import PasswordVisibilityButton from './PasswordVisibilityButton';
 
 function ResetPasswordForm({ onSuccess = () => null }) {
-  const { t: tPS } = useTranslation('translation', { keyPrefix: 'profileSettings' });
+  const { t: tPS } = useTranslation('translation', {
+    keyPrefix: 'profileSettings',
+  });
   const { t } = useTranslation();
   const { hash } = useParams();
   const passwordRef = useRef();

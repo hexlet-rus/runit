@@ -14,7 +14,9 @@ import FormAlert from './FormAlert.jsx';
 
 function ForgotPasswordForm() {
   const { t } = useTranslation();
-  const { t: tPS } = useTranslation('translation', { keyPrefix: 'profileSettings' });
+  const { t: tPS } = useTranslation('translation', {
+    keyPrefix: 'profileSettings',
+  });
   const { t: tFP } = useTranslation('translation', { keyPrefix: 'forgotPass' });
   const emailRef = useRef();
   const location = window.location.origin;

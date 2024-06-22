@@ -18,7 +18,9 @@ const generateGuestUserData = () => {
 };
 
 function AttemptDuplicateSnippet({ handleClose, isOpen }) {
-  const { t: tMADS } = useTranslation('translation', { keyPrefix: 'modals.attemptDuplicateSnippet' });
+  const { t: tMADS } = useTranslation('translation', {
+    keyPrefix: 'modals.attemptDuplicateSnippet',
+  });
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
   const auth = useAuth();
   const dispatch = useDispatch();
@@ -83,9 +85,7 @@ function AttemptDuplicateSnippet({ handleClose, isOpen }) {
         <Button onClick={handleCopy} variant="primary">
           {tMADS('copyButton')}
         </Button>
-        <p className="d-flex justify-content-center my-0">
-          {tMADS('or')}
-        </p>
+        <p className="d-flex justify-content-center my-0">{tMADS('or')}</p>
         <Button onClick={handleSignin} variant="outline-primary">
           {tMADS('signinButton')}
         </Button>

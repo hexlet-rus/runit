@@ -22,7 +22,9 @@ import RunItLogoLight from './assets/LogoFooterLight.svg';
 import RunItLogoDark from './assets/LogoFooterDark.svg';
 
 function Footer() {
-  const { t: tLH } = useTranslation('translation', { keyPrefix: 'landing.header' });
+  const { t: tLH } = useTranslation('translation', {
+    keyPrefix: 'landing.header',
+  });
   const { t: tFAQ } = useTranslation('translation', { keyPrefix: 'faq' });
   const { t: tF } = useTranslation('translation', { keyPrefix: 'footer' });
 

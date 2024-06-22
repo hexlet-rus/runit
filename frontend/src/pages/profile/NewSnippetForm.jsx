@@ -13,10 +13,14 @@ import SnippetCardWrapper from './SnippetCardWrapper';
 import icons from '../../utils/icons';
 
 function NewSnippetForm() {
-  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const { t: tL } = useTranslation('translation', { keyPrefix: 'languages' });
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
-  const { t: tCT } = useTranslation('translation', { keyPrefix: 'codeTemplates' });
+  const { t: tCT } = useTranslation('translation', {
+    keyPrefix: 'codeTemplates',
+  });
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
   const navigate = useNavigate();
@@ -59,10 +63,7 @@ function NewSnippetForm() {
               onClick={handleNewSnippet(language)}
               variant={null}
             >
-              <Image
-                alt={tL(`${language}`)}
-                src={icons.get(language)}
-              />
+              <Image alt={tL(`${language}`)} src={icons.get(language)} />
               <span className="visually-hidden">
                 {tSA('snippetActions.createOnLanguage', {
                   language: tL(`${language}`),

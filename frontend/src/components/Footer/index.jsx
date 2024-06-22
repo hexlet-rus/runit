@@ -6,7 +6,9 @@ import { ReactComponent as Vk } from '../../assets/images/icons/vk.svg';
 import classes from './index.module.css';
 
 function Footer() {
-  const { t: tF, i18n } = useTranslation('translation', { keyPrefix: 'footer' });
+  const { t: tF, i18n } = useTranslation('translation', {
+    keyPrefix: 'footer',
+  });
   const { language } = i18n;
 
   return (
@@ -103,9 +105,7 @@ function Footer() {
             </p>
           </Col>
           <Col lg={5} md={5}>
-            <div className="fw-bold mt-3 mb-2 text-white">
-              {tF('doc')}
-            </div>
+            <div className="fw-bold mt-3 mb-2 text-white">{tF('doc')}</div>
             <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link
@@ -246,9 +246,7 @@ function Footer() {
               </Dropdown> */}
           </Col>
           <Col lg={2} md={12}>
-            <div className="fw-bold mt-3 mb-2 text-white">
-              {tF('project')}
-            </div>
+            <div className="fw-bold mt-3 mb-2 text-white">{tF('project')}</div>
             <Nav as="ul" className="flex-column align-items-start">
               <li>
                 <Nav.Link

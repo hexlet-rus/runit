@@ -13,7 +13,9 @@ import { useSnippets } from '../../hooks';
 function ShareSnippet({ isOpen, handleClose }) {
   const { name, slug, ownerUsername } = useSelector(({ modal }) => modal.item);
   const snippetApi = useSnippets();
-  const { t: tMS } = useTranslation('translation', { keyPrefix: 'modals.share' });
+  const { t: tMS } = useTranslation('translation', {
+    keyPrefix: 'modals.share',
+  });
 
   useEffect(() => {
     const clipboard = new ClipboardJS('.button-copy');
@@ -52,9 +54,7 @@ function ShareSnippet({ isOpen, handleClose }) {
               variant="nofill-body"
             >
               <Clipboard className="bi" />
-              <span className="visually-hidden">
-                {tMS('copyLinkButton')}
-              </span>
+              <span className="visually-hidden">{tMS('copyLinkButton')}</span>
             </Button>
           </div>
         </Form.Group>
@@ -78,9 +78,7 @@ function ShareSnippet({ isOpen, handleClose }) {
               variant="nofill-body"
             >
               <Clipboard className="bi" />
-              <span className="visually-hidden">
-                {tMS('copyEmbedButton')}
-              </span>
+              <span className="visually-hidden">{tMS('copyEmbedButton')}</span>
             </Button>
           </div>
         </Form.Group>

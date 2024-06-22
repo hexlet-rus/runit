@@ -7,7 +7,9 @@ import Nav from 'react-bootstrap/Nav';
 import routes from '../../routes.js';
 
 function AuthButtons() {
-  const { t: tPA } = useTranslation('translation', { keyPrefix: 'profileActions' });
+  const { t: tPA } = useTranslation('translation', {
+    keyPrefix: 'profileActions',
+  });
 
   return (
     <>

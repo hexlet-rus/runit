@@ -9,7 +9,9 @@ import { actions as modalActions } from '../../slices/modalSlice.js';
 import Avatar from '../Avatar/index.jsx';
 
 function AvatarChangeForm() {
-  const { t: tPS } = useTranslation('translation', { keyPrefix: 'profileSettings' });
+  const { t: tPS } = useTranslation('translation', {
+    keyPrefix: 'profileSettings',
+  });
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.userInfo.username);
 

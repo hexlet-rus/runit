@@ -144,8 +144,7 @@ function NewLanding() {
                   src={Devices}
                 />
                 <figcaption>
-                  {tL('allDevices.first')}{' '}
-                  {tL('allDevices.second')}
+                  {tL('allDevices.first')} {tL('allDevices.second')}
                 </figcaption>
               </Col>
               <Col
@@ -486,9 +485,7 @@ function NewLanding() {
               <div className="d-flex flex-column gap-3 pt-3">
                 <div className="d-flex align-items-center">
                   <Image className="pe-3" fluid src={Template} />
-                  <h3 className="ps-3">
-                    {tL('readyBoilerplates.title')}
-                  </h3>
+                  <h3 className="ps-3">{tL('readyBoilerplates.title')}</h3>
                 </div>
                 <p>{tL('readyBoilerplates.text')}</p>
               </div>

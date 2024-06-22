@@ -16,7 +16,9 @@ import PasswordVisibilityButton from './PasswordVisibilityButton.jsx';
 import FormAlert from './FormAlert.jsx';
 
 function SignupForm({ onSuccess = () => null }) {
-  const { t: tPS } = useTranslation('translation', { keyPrefix: 'profileSettings' });
+  const { t: tPS } = useTranslation('translation', {
+    keyPrefix: 'profileSettings',
+  });
   const { t: tSU } = useTranslation('translation', { keyPrefix: 'signUp' });
   const { t } = useTranslation();
   const emailRef = useRef();

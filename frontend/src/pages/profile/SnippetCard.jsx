@@ -28,7 +28,9 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   const dispatch = useDispatch();
   const inputRef = useRef();
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
-  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const { t } = useTranslation();
   const snippetApi = useSnippets();
   const { name, id, code, language } = data;
@@ -128,7 +130,9 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
 }
 
 function CardCode({ data, noLink = false }) {
-  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const snippetApi = useSnippets();
   const { code, slug } = data;
   const snippetCreatorUsername = data.user.username;
@@ -157,7 +161,9 @@ function RenameMode({ data }) {
 function DeleteMode({ data, handleCancel }) {
   const { id } = data;
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
-  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
 
@@ -205,7 +211,9 @@ function DeleteMode({ data, handleCancel }) {
 
 function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
   const [isOpened, setOpened] = useState(false);
-  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
 
   return (
     <div className="snippet-card-footer">
@@ -221,9 +229,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
             variant="nofill-danger"
           >
             <Trash3 className="bi" />
-            <span className="visually-hidden">
-              {tSA('delete')}
-            </span>
+            <span className="visually-hidden">{tSA('delete')}</span>
           </Button>
           <Button
             className={`btn-icon-only ms-auto ${isOpened ? '' : 'd-none'}`}
@@ -244,9 +250,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
           variant="nofill-body"
         >
           <ThreeDotsVertical className="bi" />
-          <span className="visually-hidden">
-            {tSA('additionalHeader')}
-          </span>
+          <span className="visually-hidden">{tSA('additionalHeader')}</span>
         </Button>
 
         <Button

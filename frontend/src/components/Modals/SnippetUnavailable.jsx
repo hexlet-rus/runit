@@ -9,8 +9,12 @@ import { useAuth } from '../../hooks';
 import routes from '../../routes.js';
 
 function SnippetUnavailable({ handleClose, isOpen }) {
-  const { t: tMSU } = useTranslation('translation', { keyPrefix: 'modals.snippetUnavailable' });
-  const { t: tMID } = useTranslation('translation', { keyPrefix: 'modals.inDevelopment' });
+  const { t: tMSU } = useTranslation('translation', {
+    keyPrefix: 'modals.snippetUnavailable',
+  });
+  const { t: tMID } = useTranslation('translation', {
+    keyPrefix: 'modals.inDevelopment',
+  });
   const { isLoggedIn } = useAuth();
 
   const navigate = useNavigate();

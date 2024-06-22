@@ -2,7 +2,9 @@ import { Button, Modal, FormGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
 function RemoveAvatar({ handleClose, isOpen }) {
-  const { t: tMRA } = useTranslation('translation', { keyPrefix: 'modals.removeAvatar' });
+  const { t: tMRA } = useTranslation('translation', {
+    keyPrefix: 'modals.removeAvatar',
+  });
 
   return (
     <Modal centered onHide={handleClose} show={isOpen} size="m">

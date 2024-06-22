@@ -14,7 +14,9 @@ import PasswordVisibilityButton from './PasswordVisibilityButton.jsx';
 import FormAlert from './FormAlert.jsx';
 
 function ChangePasswordForm() {
-  const { t: tPS } = useTranslation('translation', { keyPrefix: 'profileSettings' });
+  const { t: tPS } = useTranslation('translation', {
+    keyPrefix: 'profileSettings',
+  });
   const { t } = useTranslation();
   const inputRef = useRef(null);
   const userInfo = useSelector((state) => state.user.userInfo);

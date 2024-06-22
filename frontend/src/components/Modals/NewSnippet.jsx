@@ -37,7 +37,9 @@ const generateGuestUserData = () => {
 };
 
 function NewSnippet({ handleClose, isOpen }) {
-  const { t: tMNS } = useTranslation('translation', { keyPrefix: 'modals.newSnippet' });
+  const { t: tMNS } = useTranslation('translation', {
+    keyPrefix: 'modals.newSnippet',
+  });
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
   const { t } = useTranslation();
   const auth = useAuth();
@@ -186,9 +188,7 @@ function NewSnippet({ handleClose, isOpen }) {
   return (
     <Modal centered onHide={handleModalClose} show={isOpen}>
       <Modal.Header className="py-3 pb-0" closeButton>
-        <Modal.Title className="display-6 fs-3">
-          {tMNS('title')}
-        </Modal.Title>
+        <Modal.Title className="display-6 fs-3">{tMNS('title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="row">

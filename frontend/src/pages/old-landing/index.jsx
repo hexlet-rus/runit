@@ -175,9 +175,7 @@ function Landing() {
                   {tL('allLanguages.title')}
                 </h5>
               </div>
-              <p className={`${classes.lh6} mb-0`}>
-                {tL('allLanguages.text')}
-              </p>
+              <p className={`${classes.lh6} mb-0`}>{tL('allLanguages.text')}</p>
             </Col>
             <Col className="d-flex flex-column mb-4 mb-sm-0">
               <div className="d-flex flex-sm-column align-items-center align-items-sm-start">
@@ -192,9 +190,7 @@ function Landing() {
                   {tL('teamWork.title')}
                 </h5>
               </div>
-              <p className={`${classes.lh6} mb-0`}>
-                {tL('teamWork.text')}
-              </p>
+              <p className={`${classes.lh6} mb-0`}>{tL('teamWork.text')}</p>
             </Col>
             <Col className="d-flex flex-column mb-4 mb-sm-0">
               <div className="d-flex flex-sm-column align-items-center align-items-sm-start">

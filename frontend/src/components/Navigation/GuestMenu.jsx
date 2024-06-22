@@ -8,8 +8,12 @@ import Button from 'react-bootstrap/Button';
 import { actions } from '../../slices/modalSlice.js';
 
 function GuestMenu() {
-  const { t: tPA } = useTranslation('translation', { keyPrefix: 'profileActions' });
-  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
+  const { t: tPA } = useTranslation('translation', {
+    keyPrefix: 'profileActions',
+  });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const { t: tSU } = useTranslation('translation', { keyPrefix: 'signUp' });
   const dispatch = useDispatch();
 

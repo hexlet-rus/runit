@@ -27,7 +27,9 @@ function ThemeOption({ themeName, handleSelect, active = false }) {
 }
 
 function ThemeSelector() {
-  const { t: tST } = useTranslation('translation', { keyPrefix: 'settings.themes' });
+  const { t: tST } = useTranslation('translation', {
+    keyPrefix: 'settings.themes',
+  });
   const { ternaryDarkMode, setTernaryDarkMode } = useTernaryDarkMode();
 
   const CurrentThemeIcon = themeIcons[ternaryDarkMode];

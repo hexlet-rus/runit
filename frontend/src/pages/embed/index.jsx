@@ -20,7 +20,9 @@ import Terminal from '../../components/Terminal/index.jsx';
 
 function EmbeddedPage() {
   const { t: tN } = useTranslation('translation', { keyPrefix: 'navbar' });
-  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const params = useParams();
   const dispatch = useDispatch();
   const { isReady } = useSelector((state) => state.editor);
@@ -66,11 +68,7 @@ function EmbeddedPage() {
         data-bs-theme="dark"
       >
         <Navbar.Brand as={Link} className="me-auto" to={routes.landingPath()}>
-          <Image
-            alt={tN('mainLabel')}
-            className="logo-height"
-            src={Logo}
-          />
+          <Image alt={tN('mainLabel')} className="logo-height" src={Logo} />
         </Navbar.Brand>
         <Nav as="ul" className="flex-row flex-nowrap align-items-center">
           <Nav.Item as="li">
@@ -95,9 +93,7 @@ function EmbeddedPage() {
               variant="primary"
             >
               <PlayFill className="bi" />
-              <span className="flex-shrink-1 text-truncate">
-                {tSA('run')}
-              </span>
+              <span className="flex-shrink-1 text-truncate">{tSA('run')}</span>
             </Button>
           </Nav.Item>
         </Nav>

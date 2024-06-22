@@ -11,8 +11,12 @@ import { useAuth, useRunButton, useSaveButton } from '../../hooks';
 import 'react-toastify/dist/ReactToastify.css';
 
 function ActionsToolbar({ snippet }) {
-  const { t: tTSC } = useTranslation('translation', { keyPrefix: 'toasts.saveCode' });
-  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
+  const { t: tTSC } = useTranslation('translation', {
+    keyPrefix: 'toasts.saveCode',
+  });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const { onClick, disabled } = useRunButton();
   const { saveCode } = useSaveButton();
   const dispatch = useDispatch();

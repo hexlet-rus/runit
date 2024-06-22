@@ -26,7 +26,9 @@ function SnippetName({ snippet }) {
   } = snippet;
   const dispatch = useDispatch();
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
-  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const { t } = useTranslation();
   const snippetApi = useSnippets();
   const inputRef = useRef(null);

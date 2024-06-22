@@ -15,7 +15,9 @@ import ChangePasswordForm from '../../components/Forms/ChangePasswordForm.jsx';
 import UpdateAccountForm from '../../components/Forms/UpdateAccountForm.jsx';
 
 function SettingsPage() {
-  const { t: tPS } = useTranslation('translation', { keyPrefix: 'profileSettings' });
+  const { t: tPS } = useTranslation('translation', {
+    keyPrefix: 'profileSettings',
+  });
   const dispatch = useDispatch();
 
   const handleRemoveAccount = () => {
@@ -28,9 +30,7 @@ function SettingsPage() {
         <Row className="justify-content-center align-items-center h-100 py-5 m-auto py-5 h-100">
           <Col className="max-w-lg">
             <div className="d-flex flex-column gap-2 bg-body rounded-4 p-4 p-sm-5">
-              <h1 className="display-6 mb-5">
-                {tPS('pageHeader')}
-              </h1>
+              <h1 className="display-6 mb-5">{tPS('pageHeader')}</h1>
               <div className="d-flex flex-column flex-md-row gap-5">
                 <div className="flex-shrink-1">
                   <AvatarChangeForm />

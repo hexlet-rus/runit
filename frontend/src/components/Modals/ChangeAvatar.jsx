@@ -4,7 +4,9 @@ import { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 
 function ChangeAvatar({ handleClose, isOpen }) {
-  const { t: tMCA } = useTranslation('translation', { keyPrefix: 'modals.changeAvatar' });
+  const { t: tMCA } = useTranslation('translation', {
+    keyPrefix: 'modals.changeAvatar',
+  });
   const [avatarState, setAvatarState] = useState({
     scale: 1,
     img: null,

@@ -13,8 +13,12 @@ import Avatar from '../Avatar/index.jsx';
 
 function UserMenu() {
   const { signOut } = useAuth();
-  const { t: tPA } = useTranslation('translation', { keyPrefix: 'profileActions' });
-  const { t: tSA } = useTranslation('translation', { keyPrefix: 'snippetActions' });
+  const { t: tPA } = useTranslation('translation', {
+    keyPrefix: 'profileActions',
+  });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.userInfo.username);
 
