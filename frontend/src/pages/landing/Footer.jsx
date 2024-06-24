@@ -40,7 +40,7 @@ function Footer() {
           <Col className="col-6 d-flex gap-2 mb-4">
             <Nav
               as="ul"
-              className="d-flex flex-fill justify-content-between px-3 social-networks"
+              className="d-flex flex-fill justify-content-between px-3 social-networks align-content-center"
             >
               <li>
                 <NavbarBrand
@@ -115,7 +115,7 @@ function Footer() {
             </Nav>
           </Col>
           <Col className="col-6 mb-4">
-            <Nav as="ul" className="list-group">
+            <Nav as="ul" className="list-group flex-column">
               <li className="mb-2">
                 <NavbarBrand
                   href="https://ru.hexlet.io/pages/about"
@@ -176,26 +176,6 @@ function Footer() {
           <Col>
             <Image className="pb-3" fluid src={logo} />
           </Col>
-          <Col>
-            <Row>
-              <Col className="align-self-center">
-                <p className="mb-0">
-                  <NavbarBrand href={t('footer.tel1Href')}>
-                    <b>{t('footer.tel1')}</b>
-                  </NavbarBrand>
-                </p>
-                <p className="m-0">{t('footer.rf')}</p>
-              </Col>
-              <Col>
-                <p className="m-0">
-                  <NavbarBrand href={t('footer.tel2Href')}>
-                    <b>{t('footer.tel2')}</b>
-                  </NavbarBrand>
-                </p>
-                <p className="m-0">{t('footer.moscow')}</p>
-              </Col>
-            </Row>
-          </Col>
           <Col className="d-flex gap-4 flex-nowrap">
             <Nav
               as="ul"
@@ -246,72 +226,86 @@ function Footer() {
         </Row>
         <Row className="d-flex mx-5 mb-5 align-items-center d-none d-lg-flex">
           <Col>
-            <Row>
-              <Col>
-                <Nav as="ul" className="list-group flex-column">
-                  <li className="mb-2">
-                    <NavbarBrand className="p-0" href="#aboutProject">
-                      {t('landing.header.about')}
-                    </NavbarBrand>
-                  </li>
-                  <li className="mb-2">
-                    <NavbarBrand className="p-0" href="#advantages">
-                      {t('landing.header.advantages')}
-                    </NavbarBrand>
-                  </li>
-                  <li className="mb-2">
-                    <NavbarBrand className="p-0" href="#possibilities">
-                      {t('landing.header.opportunities')}
-                    </NavbarBrand>
-                  </li>
-                  <li className="mb-2">
-                    <NavbarBrand className="p-0" href="#faq">
-                      {t('landing.header.faq')}
-                    </NavbarBrand>
-                  </li>
-                </Nav>
-              </Col>
-              <Col>
-                <Nav as="ul" className="list-group flex-column">
-                  <li className="mb-2">
-                    <NavbarBrand
-                      className="p-0"
-                      href="https://ru.hexlet.io/pages/about"
-                      target="_blank"
-                    >
-                      {t('footer.about')}
-                    </NavbarBrand>
-                  </li>
-                  <li className="mb-2">
-                    <NavbarBrand
-                      className="p-0"
-                      href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
-                      target="_blank"
-                    >
-                      {t('footer.career')}
-                    </NavbarBrand>
-                  </li>
-                  <li className="mb-2">
-                    <NavbarBrand
-                      className="p-0"
-                      href="https://hexlet.printdirect.ru/?partner_id=615497"
-                      target="_blank"
-                    >
-                      {t('footer.shop')}
-                    </NavbarBrand>
-                  </li>
-                  <li className="mb-2">
-                    <NavbarBrand
-                      className="p-0"
-                      href="mailto: runit@hexlet.io"
-                      target="_blank"
-                    >
-                      {t('footer.mailSupport')}
-                    </NavbarBrand>
-                  </li>
-                </Nav>
-              </Col>
-            </Row>
+            <div className="mb-2">
+              <p className="mb-0">
+                <NavbarBrand href={t('footer.tel1Href')}>
+                  <b>{t('footer.tel1')}</b>
+                </NavbarBrand>
+              </p>
+              <p className="m-0">{t('footer.rf')}</p>
+            </div>
+            <div>
+              <p className="m-0">
+                <NavbarBrand href={t('footer.tel2Href')}>
+                  <b>{t('footer.tel2')}</b>
+                </NavbarBrand>
+              </p>
+              <p className="m-0">{t('footer.moscow')}</p>
+            </div>
+          </Col>
+          <Col>
+            <Nav as="ul" className="list-group flex-column">
+              <li className="mb-2">
+                <NavbarBrand className="p-0" href="#aboutProject">
+                  {t('landing.header.about')}
+                </NavbarBrand>
+              </li>
+              <li className="mb-2">
+                <NavbarBrand className="p-0" href="#advantages">
+                  {t('landing.header.advantages')}
+                </NavbarBrand>
+              </li>
+              <li className="mb-2">
+                <NavbarBrand className="p-0" href="#possibilities">
+                  {t('landing.header.opportunities')}
+                </NavbarBrand>
+              </li>
+              <li className="mb-2">
+                <NavbarBrand className="p-0" href="#faq">
+                  {t('landing.header.faq')}
+                </NavbarBrand>
+              </li>
+            </Nav>
+          </Col>
+          <Col>
+            <Nav as="ul" className="list-group flex-column">
+              <li className="mb-2">
+                <NavbarBrand
+                  className="p-0"
+                  href="https://ru.hexlet.io/pages/about"
+                  target="_blank"
+                >
+                  {t('footer.about')}
+                </NavbarBrand>
+              </li>
+              <li className="mb-2">
+                <NavbarBrand
+                  className="p-0"
+                  href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
+                  target="_blank"
+                >
+                  {t('footer.career')}
+                </NavbarBrand>
+              </li>
+              <li className="mb-2">
+                <NavbarBrand
+                  className="p-0"
+                  href="https://hexlet.printdirect.ru/?partner_id=615497"
+                  target="_blank"
+                >
+                  {t('footer.shop')}
+                </NavbarBrand>
+              </li>
+              <li className="mb-2">
+                <NavbarBrand
+                  className="p-0"
+                  href="mailto: runit@hexlet.io"
+                  target="_blank"
+                >
+                  {t('footer.mailSupport')}
+                </NavbarBrand>
+              </li>
+            </Nav>
           </Col>
           <Col>
             <div className="ms-auto">
