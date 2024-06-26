@@ -160,4 +160,10 @@ $font-family: 'Nunito Sans';
             z-index: -1;
         }
     }
+
+    @media (max-width: 991px) {
+        .background-dark {
+            color: black;
+        }
+    }
 }

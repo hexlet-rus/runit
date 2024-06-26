@@ -44,7 +44,7 @@ function Footer() {
           <Col className="col-6 d-flex gap-2 mb-4">
             <Nav
               as="ul"
-              className="d-flex flex-fill justify-content-between px-3 social-networks align-content-center align-content-center"
+              className="d-flex flex-fill justify-content-between px-3 social-networks align-content-center"
             >
               <li>
                 <NavbarBrand
@@ -232,41 +232,41 @@ function Footer() {
           <Col>
             <div className="mb-2">
               <p className="mb-0">
-                <NavbarBrand href={t('footer.tel1Href')}>
-                  <b>{t('footer.tel1')}</b>
+                <NavbarBrand href={tF('tel1Href')}>
+                  <b>{tF('tel1')}</b>
                 </NavbarBrand>
               </p>
-              <p className="m-0">{t('footer.rf')}</p>
+              <p className="m-0">{tF('rf')}</p>
             </div>
             <div>
               <p className="m-0">
-                <NavbarBrand href={t('footer.tel2Href')}>
-                  <b>{t('footer.tel2')}</b>
+                <NavbarBrand href={tF('tel2Href')}>
+                  <b>{tF('tel2')}</b>
                 </NavbarBrand>
               </p>
-              <p className="m-0">{t('footer.moscow')}</p>
+              <p className="m-0">{tF('moscow')}</p>
             </div>
           </Col>
           <Col>
             <Nav as="ul" className="list-group flex-column">
               <li className="mb-2">
                 <NavbarBrand className="p-0" href="#aboutProject">
-                  {t('landing.header.about')}
+                  {tLH('about')}
                 </NavbarBrand>
               </li>
               <li className="mb-2">
                 <NavbarBrand className="p-0" href="#advantages">
-                  {t('landing.header.advantages')}
+                  {tLH('advantages')}
                 </NavbarBrand>
               </li>
               <li className="mb-2">
                 <NavbarBrand className="p-0" href="#possibilities">
-                  {t('landing.header.opportunities')}
+                  {tLH('opportunities')}
                 </NavbarBrand>
               </li>
               <li className="mb-2">
                 <NavbarBrand className="p-0" href="#faq">
-                  {t('landing.header.faq')}
+                  {tLH('faq')}
                 </NavbarBrand>
               </li>
             </Nav>
@@ -279,7 +279,7 @@ function Footer() {
                   href="https://ru.hexlet.io/pages/about"
                   target="_blank"
                 >
-                  {t('footer.about')}
+                  {tF('about')}
                 </NavbarBrand>
               </li>
               <li className="mb-2">
@@ -288,7 +288,7 @@ function Footer() {
                   href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
                   target="_blank"
                 >
-                  {t('footer.career')}
+                  {tF('career')}
                 </NavbarBrand>
               </li>
               <li className="mb-2">
@@ -297,7 +297,7 @@ function Footer() {
                   href="https://hexlet.printdirect.ru/?partner_id=615497"
                   target="_blank"
                 >
-                  {t('footer.shop')}
+                  {tF('shop')}
                 </NavbarBrand>
               </li>
               <li className="mb-2">
@@ -306,7 +306,7 @@ function Footer() {
                   href="mailto: runit@hexlet.io"
                   target="_blank"
                 >
-                  {t('footer.mailSupport')}
+                  {tF('mailSupport')}
                 </NavbarBrand>
               </li>
             </Nav>
