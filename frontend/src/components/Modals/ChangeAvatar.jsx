@@ -4,7 +4,9 @@ import { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 
 function ChangeAvatar({ handleClose, isOpen }) {
-  const { t } = useTranslation();
+  const { t: tMCA } = useTranslation('translation', {
+    keyPrefix: 'modals.changeAvatar',
+  });
   const [avatarState, setAvatarState] = useState({
     scale: 1,
     img: null,
@@ -43,7 +45,7 @@ function ChangeAvatar({ handleClose, isOpen }) {
             htmlFor="customFile1"
             onClick={handleLabelClick}
           >
-            {t('modals.changeAvatar.chooseFileButton')}
+            {tMCA('chooseFileButton')}
           </FormLabel>
           <FormControl
             ref={fileInputRef}
@@ -66,10 +68,10 @@ function ChangeAvatar({ handleClose, isOpen }) {
             onClick={handleClose}
             variant="success"
           >
-            {t('modals.changeAvatar.uploadButton')}
+            {tMCA('uploadButton')}
           </Button>
           <Button className="mt-3" onClick={handleClose} variant="secondary">
-            {t('modals.changeAvatar.cancelButton')}
+            {tMCA('cancelButton')}
           </Button>
         </div>
       </Modal.Body>

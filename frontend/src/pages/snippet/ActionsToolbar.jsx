@@ -11,7 +11,12 @@ import { useAuth, useRunButton, useSaveButton } from '../../hooks';
 import 'react-toastify/dist/ReactToastify.css';
 
 function ActionsToolbar({ snippet }) {
-  const { t } = useTranslation();
+  const { t: tTSC } = useTranslation('translation', {
+    keyPrefix: 'toasts.saveCode',
+  });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const { onClick, disabled } = useRunButton();
   const { saveCode } = useSaveButton();
   const dispatch = useDispatch();
@@ -59,10 +64,10 @@ function ActionsToolbar({ snippet }) {
   const handleSaveCode = () => {
     if (isAllSaved) {
       saveCode();
-      toast.success(t('toasts.saveCode.success'));
+      toast.success(tTSC('success'));
       return;
     }
-    toast.error(t('toasts.saveCode.error'));
+    toast.error(tTSC('error'));
   };
 
   const handleView = () => {
@@ -97,7 +102,7 @@ function ActionsToolbar({ snippet }) {
         variant="nofill-body"
       >
         <BoxArrowUp />
-        <span className="visually-hidden">{t('snippetActions.share')}</span>
+        <span className="visually-hidden">{tSA('share')}</span>
       </Button>
       <Button
         className={`ms-3 btn-run${disabled ? ' running' : ''}`}
@@ -106,7 +111,7 @@ function ActionsToolbar({ snippet }) {
         variant="primary"
       >
         <PlayFill className="bi" />
-        {t('snippetActions.run')}
+        {tSA('run')}
       </Button>
       <Button
         className={`ms-3 btn-run${disabled ? ' running' : ''}`}
@@ -114,7 +119,7 @@ function ActionsToolbar({ snippet }) {
         onClick={handleSaveCode}
         variant="primary"
       >
-        {t('snippetActions.save')}
+        {tSA('save')}
       </Button>
     </Col>
   );

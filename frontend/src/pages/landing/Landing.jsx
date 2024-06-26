@@ -32,7 +32,7 @@ function NewLanding() {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { t: tL } = useTranslation('translation', { keyPrefix: 'landing' });
   const advantagesRef = useRef();
   const { isDarkMode } = useTernaryDarkMode();
   const rowClass = `d-lg-inline-flex mb-5 my-lg-5 ${
@@ -81,24 +81,24 @@ function NewLanding() {
           <Row className="my-5 pt-5 about-project" id="aboutProject">
             <Col className="pt-5 d-lg-none" lg={{ offset: 1 }}>
               <div className="pt-5">
-                <p>{t('landing.freeProject')}</p>
+                <p>{tL('freeProject')}</p>
               </div>
-              <h1>{t('landing.fastIDE.first')}</h1>
+              <h1>{tL('fastIDE.first')}</h1>
               <div className="d-flex align-items-center pb-5 mb-5">
-                <h1 className="m-0 pe-3">{t('landing.fastIDE.second')}</h1>
-                <p className="m-0 ps-3">{t('landing.writeInBrowser')}</p>
+                <h1 className="m-0 pe-3">{tL('fastIDE.second')}</h1>
+                <p className="m-0 ps-3">{tL('writeInBrowser')}</p>
               </div>
             </Col>
             <Col
               className="pt-5 d-none d-lg-flex flex-column"
               lg={{ offset: 1 }}
             >
-              <h4 className="m-0 pt-5">{t('landing.freeProject')}</h4>
+              <h4 className="m-0 pt-5">{tL('freeProject')}</h4>
               <h1 className="m-0">
-                {t('landing.fastIDE.first')} {t('landing.fastIDE.second')}
+                {tL('fastIDE.first')} {tL('fastIDE.second')}
               </h1>
               <div className="align-items-center pb-5 mb-5">
-                <h2 className="m-0">{t('landing.writeInBrowser')}</h2>
+                <h2 className="m-0">{tL('writeInBrowser')}</h2>
               </div>
             </Col>
           </Row>
@@ -110,7 +110,7 @@ function NewLanding() {
                 size="lg"
                 to={routes.signInPagePath()}
               >
-                {t('landing.startCoding')}
+                {tL('startCoding')}
               </Button>
             </Col>
             <Col>
@@ -119,7 +119,7 @@ function NewLanding() {
                 onClick={handleCodeWithoutRegButton}
                 size="lg"
               >
-                {t('landing.codeWithoutReg')}
+                {tL('codeWithoutReg')}
               </Button>
             </Col>
           </Row>
@@ -131,7 +131,7 @@ function NewLanding() {
               >
                 <Image className="bg-primary rounded-circle" fluid src={Code} />
                 <figcaption>
-                  {t('landing.easyStart.first')} {t('landing.easyStart.second')}
+                  {tL('easyStart.first')} {tL('easyStart.second')}
                 </figcaption>
               </Col>
               <Col
@@ -144,8 +144,7 @@ function NewLanding() {
                   src={Devices}
                 />
                 <figcaption>
-                  {t('landing.allDevices.first')}{' '}
-                  {t('landing.allDevices.second')}
+                  {tL('allDevices.first')} {tL('allDevices.second')}
                 </figcaption>
               </Col>
               <Col
@@ -158,18 +157,18 @@ function NewLanding() {
                   src={Share}
                 />
                 <figcaption>
-                  {t('landing.shareCode.first')} {t('landing.shareCode.second')}
+                  {tL('shareCode.first')} {tL('shareCode.second')}
                 </figcaption>
               </Col>
             </div>
           </Row>
           <Row className="mb-lg-5 pb-lg-5 gap-lg-3 mt-5" id="advantages">
             <Col className="col-12" lg={{ span: 5, offset: 1 }}>
-              <h2 className="mt-5 mb-4">{t('landing.noConfig')}</h2>
+              <h2 className="mt-5 mb-4">{tL('noConfig')}</h2>
             </Col>
             <Col className="col-12 mb-xl-5 pe-lg-3" lg={{ span: 5 }}>
-              <p className="mt-2 mb-3 mt-xl-5">{t('landing.modern')}</p>
-              <p className="mb-3">{t('landing.fast')}</p>
+              <p className="mt-2 mb-3 mt-xl-5">{tL('modern')}</p>
+              <p className="mb-3">{tL('fast')}</p>
             </Col>
           </Row>
           <Row
@@ -191,7 +190,7 @@ function NewLanding() {
                   />
                 </Col>
                 <Col>
-                  <figcaption>{t('landing.inBrowser')}</figcaption>
+                  <figcaption>{tL('inBrowser')}</figcaption>
                 </Col>
               </figure>
             </Col>
@@ -210,7 +209,7 @@ function NewLanding() {
                   />
                 </Col>
                 <Col>
-                  <figcaption>{t('landing.noZIP')}</figcaption>
+                  <figcaption>{tL('noZIP')}</figcaption>
                 </Col>
               </figure>
             </Col>
@@ -229,7 +228,7 @@ function NewLanding() {
                   />
                 </Col>
                 <Col>
-                  <figcaption>{t('landing.allComputers')}</figcaption>
+                  <figcaption>{tL('allComputers')}</figcaption>
                 </Col>
               </figure>
             </Col>
@@ -248,7 +247,7 @@ function NewLanding() {
                   />
                 </Col>
                 <Col>
-                  <figcaption>{t('landing.allOS')}</figcaption>
+                  <figcaption>{tL('allOS')}</figcaption>
                 </Col>
               </figure>
             </Col>
@@ -267,7 +266,7 @@ function NewLanding() {
                   />
                 </Col>
                 <Col>
-                  <figcaption>{t('landing.noSettings')}</figcaption>
+                  <figcaption>{tL('noSettings')}</figcaption>
                 </Col>
               </figure>
             </Col>
@@ -276,7 +275,7 @@ function NewLanding() {
             <Col className="my-3 d-lg-none">
               <figure>
                 <figcaption className="mb-3 mx-auto">
-                  {t('landing.inBrowser')}
+                  {tL('inBrowser')}
                 </figcaption>
                 <Image
                   className="rounded-5 mb-4 mx-auto"
@@ -291,7 +290,7 @@ function NewLanding() {
               </figure>
               <figure>
                 <figcaption className="mb-3 mt-3 mx-auto">
-                  {t('landing.noZIP')}
+                  {tL('noZIP')}
                 </figcaption>
                 <Image
                   className="rounded-5 mb-4 mx-auto"
@@ -306,7 +305,7 @@ function NewLanding() {
               </figure>
               <figure>
                 <figcaption className="mb-3 mt-3 mx-auto">
-                  {t('landing.allComputers')}
+                  {tL('allComputers')}
                 </figcaption>
                 <Image
                   className="rounded-5 mb-4 mx-auto"
@@ -321,7 +320,7 @@ function NewLanding() {
               </figure>
               <figure>
                 <figcaption className="mb-3 mt-3 mx-auto">
-                  {t('landing.allOS')}
+                  {tL('allOS')}
                 </figcaption>
                 <Image
                   className="rounded-5 mb-4 mx-auto"
@@ -336,7 +335,7 @@ function NewLanding() {
               </figure>
               <figure>
                 <figcaption className="mb-3 mt-3">
-                  {t('landing.noSettings')}
+                  {tL('noSettings')}
                 </figcaption>
                 <Image
                   className="rounded-5 mb-4"
@@ -376,7 +375,7 @@ function NewLanding() {
                       />
                     </Col>
                     <Col>
-                      <figcaption>{t('landing.inBrowser')}</figcaption>
+                      <figcaption>{tL('inBrowser')}</figcaption>
                     </Col>
                   </figure>
                 </Carousel.Item>
@@ -395,7 +394,7 @@ function NewLanding() {
                       />
                     </Col>
                     <Col>
-                      <figcaption>{t('landing.noZIP')}</figcaption>
+                      <figcaption>{tL('noZIP')}</figcaption>
                     </Col>
                   </figure>
                 </Carousel.Item>
@@ -414,7 +413,7 @@ function NewLanding() {
                       />
                     </Col>
                     <Col>
-                      <figcaption>{t('landing.allComputers')}</figcaption>
+                      <figcaption>{tL('allComputers')}</figcaption>
                     </Col>
                   </figure>
                 </Carousel.Item>
@@ -433,7 +432,7 @@ function NewLanding() {
                       />
                     </Col>
                     <Col>
-                      <figcaption>{t('landing.allOS')}</figcaption>
+                      <figcaption>{tL('allOS')}</figcaption>
                     </Col>
                   </figure>
                 </Carousel.Item>
@@ -452,7 +451,7 @@ function NewLanding() {
                       />
                     </Col>
                     <Col>
-                      <figcaption>{t('landing.noSettings')}</figcaption>
+                      <figcaption>{tL('noSettings')}</figcaption>
                     </Col>
                   </figure>
                 </Carousel.Item>
@@ -463,7 +462,7 @@ function NewLanding() {
           <Row>
             <div className="my-5 possibilities-background">
               <Col className="my-lg-5" id="possibilities" lg={{ offset: 1 }}>
-                <h2 className="m-0">{t('landing.moreOpportunity')}</h2>
+                <h2 className="m-0">{tL('moreOpportunity')}</h2>
               </Col>
             </div>
           </Row>
@@ -472,25 +471,23 @@ function NewLanding() {
               <div className="d-flex flex-column gap-3 mb-lg-5">
                 <div className="d-flex align-items-center">
                   <Image className="pe-3" fluid src={Languages} />
-                  <h3 className="ps-3">{t('landing.allLanguages.title')}</h3>
+                  <h3 className="ps-3">{tL('allLanguages.title')}</h3>
                 </div>
-                <p>{t('landing.allLanguages.text')}</p>
+                <p>{tL('allLanguages.text')}</p>
               </div>
               <div className="d-flex flex-column gap-3 pt-3 mb-lg-5">
                 <div className="d-flex align-items-center">
                   <Image className="pe-3" fluid src={TeamWork} />
-                  <h3 className="ps-3">{t('landing.teamWork.title')}</h3>
+                  <h3 className="ps-3">{tL('teamWork.title')}</h3>
                 </div>
-                <p>{t('landing.teamWork.text')}</p>
+                <p>{tL('teamWork.text')}</p>
               </div>
               <div className="d-flex flex-column gap-3 pt-3">
                 <div className="d-flex align-items-center">
                   <Image className="pe-3" fluid src={Template} />
-                  <h3 className="ps-3">
-                    {t('landing.readyBoilerplates.title')}
-                  </h3>
+                  <h3 className="ps-3">{tL('readyBoilerplates.title')}</h3>
                 </div>
-                <p>{t('landing.readyBoilerplates.text')}</p>
+                <p>{tL('readyBoilerplates.text')}</p>
               </div>
             </Col>
             <Col className="col-12 mb-lg-5 d-flex" lg={7}>
@@ -499,9 +496,9 @@ function NewLanding() {
           </Row>
           <Row className="mb-3">
             <Col className="text-center">
-              <p className="pt-3 mb-4 d-lg-none">{t('landing.nowCoding')}</p>
+              <p className="pt-3 mb-4 d-lg-none">{tL('nowCoding')}</p>
               <p className="fs-2 pt-3 mb-4 d-none d-lg-block">
-                {t('landing.nowCoding')}
+                {tL('nowCoding')}
               </p>
             </Col>
           </Row>
@@ -513,7 +510,7 @@ function NewLanding() {
                 size="lg"
                 to={routes.signInPagePath()}
               >
-                {t('landing.startCoding')}
+                {tL('startCoding')}
               </Button>
             </Col>
           </Row>
@@ -524,7 +521,7 @@ function NewLanding() {
                 onClick={handleCodeWithoutRegButton}
                 size="lg"
               >
-                {t('landing.codeWithoutReg')}
+                {tL('codeWithoutReg')}
               </Button>
             </Col>
           </Row>

@@ -27,6 +27,12 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
   const navigate = useNavigate();
   const duplicateSnippet = useDuplicateSnippet();
   const { genViewSnippetLink } = useSnippets();
+  const { t: tMDS } = useTranslation('translation', {
+    keyPrefix: 'modals.duplicateSnippet',
+  });
+  const { t: tTDS } = useTranslation('translation', {
+    keyPrefix: 'toasts.duplicateSnippet',
+  });
   const { t } = useTranslation();
   const username = useSelector((state) => state.user.userInfo.username);
 
@@ -55,7 +61,7 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
         const url = new URL(genViewSnippetLink(username, slug));
         navigate(url.pathname);
         handleClose();
-        toast.success(t('toasts.duplicateSnippet.success'));
+        toast.success(tTDS('success'));
       } catch (error) {
         console.log('err', error);
         if (!error.isAxiosError) {
@@ -94,9 +100,7 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
   return (
     <Modal centered onHide={handleClose} show={isOpen}>
       <Modal.Header className="py-3" closeButton>
-        <Modal.Title className="display-7">
-          {t('modals.duplicateSnippet.title')}
-        </Modal.Title>
+        <Modal.Title className="display-7">{tMDS('title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="d-flex flex-column gap-4">
@@ -113,9 +117,7 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
           >
             <div className="d-flex flex-column gap-3">
               <Form.Group controlId="email">
-                <Form.Label>
-                  {t('modals.duplicateSnippet.snippetName')}
-                </Form.Label>
+                <Form.Label>{tMDS('snippetName')}</Form.Label>
                 <Form.Control
                   ref={nameRef}
                   isInvalid={
@@ -124,7 +126,7 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
                   name="snippetName"
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
-                  placeholder={t('modals.duplicateSnippet.snippetName')}
+                  placeholder={tMDS('snippetName')}
                   required
                   type="text"
                   value={formik.values.snippetName}
@@ -138,21 +140,21 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
               {formState.state === 'failed' && <div>{formState.message}</div>}
               <Button
                 className="flex-fill"
-                data-disable-with={t('modals.duplicateSnippet.cancel')}
+                data-disable-with={tMDS('cancel')}
                 disabled={formik.isSubmitting}
                 onClick={() => handleClose()}
                 variant="secondary"
               >
-                {t('modals.duplicateSnippet.cancel')}
+                {tMDS('cancel')}
               </Button>
               <Button
                 className="flex-fill"
-                data-disable-with={t('modals.duplicateSnippet.save')}
+                data-disable-with={tMDS('save')}
                 disabled={formik.isSubmitting}
                 type="submit"
                 variant="primary"
               >
-                {t('modals.duplicateSnippet.save')}
+                {tMDS('save')}
               </Button>
             </div>
           </Form>

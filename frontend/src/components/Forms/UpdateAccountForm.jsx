@@ -15,6 +15,9 @@ import { email, username } from '../../utils/validationSchemas';
 import FormAlert from './FormAlert.jsx';
 
 function UpdateAccountForm() {
+  const { t: tPS } = useTranslation('translation', {
+    keyPrefix: 'profileSettings',
+  });
   const { t } = useTranslation();
   const emailRef = useRef();
   const usernameRef = useRef();
@@ -104,7 +107,7 @@ function UpdateAccountForm() {
       noValidate
       onSubmit={formik.handleSubmit}
     >
-      <h5>{t('profileSettings.updateAccount')}</h5>
+      <h5>{tPS('updateAccount')}</h5>
       <FormAlert
         onClose={() => setFormState(initialFormState)}
         state={formState.state}
@@ -112,7 +115,7 @@ function UpdateAccountForm() {
         {t(formState.message)}
       </FormAlert>
       <Form.Group controlId="username">
-        <Form.Label>{t('profileSettings.usernameLabel')}</Form.Label>
+        <Form.Label>{tPS('usernameLabel')}</Form.Label>
         <Form.Control
           ref={usernameRef}
           autoComplete="username"
@@ -129,7 +132,7 @@ function UpdateAccountForm() {
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group controlId="email">
-        <Form.Label>{t('profileSettings.emailLabel')}</Form.Label>
+        <Form.Label>{tPS('emailLabel')}</Form.Label>
         <Form.Control
           ref={emailRef}
           autoComplete="email"
@@ -152,7 +155,7 @@ function UpdateAccountForm() {
         type="submit"
         variant="primary"
       >
-        {t('profileSettings.updateButton')}
+        {tPS('updateButton')}
       </Button>
     </Form>
   );

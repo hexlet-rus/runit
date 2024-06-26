@@ -4,11 +4,12 @@ import Alert from 'react-bootstrap/Alert';
 import Col from 'react-bootstrap/Col';
 
 function AuthWarning() {
-  const { t } = useTranslation();
+  const { t: tE } = useTranslation('translation', { keyPrefix: 'editor' });
+
   return (
     <Col className="toolbar">
       <Alert className="d-flex my-1" variant="primary">
-        {t('editor.authAlert')}
+        {tE('authAlert')}
       </Alert>
     </Col>
   );

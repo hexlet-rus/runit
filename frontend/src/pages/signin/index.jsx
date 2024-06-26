@@ -10,7 +10,10 @@ import routes from '../../routes.js';
 import SignInForm from '../../components/Forms/SignInForm.jsx';
 
 function SignIn() {
-  const { t } = useTranslation();
+  const { t: tSI } = useTranslation('translation', { keyPrefix: 'signIn' });
+  const { t: tSIF } = useTranslation('translation', {
+    keyPrefix: 'signIn.footer',
+  });
   const navigate = useNavigate();
 
   return (
@@ -19,7 +22,7 @@ function SignIn() {
         <Row className="justify-content-center align-items-center m-auto py-3 py-sm-5 h-100">
           <Col className="max-w-sm p-0">
             <div className="d-flex flex-column gap-sm-3 gap-4 bg-body rounded-4 p-4 p-sm-5">
-              <h1 className="display-6">{t('signIn.pageHeader')}</h1>
+              <h1 className="display-6">{tSI('pageHeader')}</h1>
               <SignInForm
                 onSuccess={() => {
                   navigate(routes.myProfilePagePath());
@@ -28,11 +31,9 @@ function SignIn() {
               <hr />
               <div className="small">
                 <span className="text-body-secondary">
-                  {t('signIn.footer.signUpHeader')}
+                  {tSIF('signUpHeader')}
                 </span>{' '}
-                <Link to={routes.signUpPagePath()}>
-                  {t('signIn.footer.signUpAction')}
-                </Link>
+                <Link to={routes.signUpPagePath()}>{tSIF('signUpAction')}</Link>
               </div>
             </div>
           </Col>

@@ -7,7 +7,9 @@ import { useEffect } from 'react';
 import { useLanguage } from '../../hooks';
 
 function LanguageSelector() {
-  const { t, i18n } = useTranslation();
+  const { t: tSL, i18n } = useTranslation('translation', {
+    keyPrefix: 'settings.languages',
+  });
 
   const { language, availableLanguages, setLanguage } = useLanguage();
 
@@ -23,9 +25,7 @@ function LanguageSelector() {
         variant="link"
       >
         <span className="text-uppercase">{language}</span>
-        <span className="visually-hidden">
-          {t('settings.languages.header')}
-        </span>
+        <span className="visually-hidden">{tSL('header')}</span>
       </Dropdown.Toggle>
       <Dropdown.Menu as="ul">
         {availableLanguages.map((lng) => (

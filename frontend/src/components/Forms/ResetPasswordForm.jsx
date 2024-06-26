@@ -17,6 +17,9 @@ import FormAlert from './FormAlert.jsx';
 import PasswordVisibilityButton from './PasswordVisibilityButton';
 
 function ResetPasswordForm({ onSuccess = () => null }) {
+  const { t: tPS } = useTranslation('translation', {
+    keyPrefix: 'profileSettings',
+  });
   const { t } = useTranslation();
   const { hash } = useParams();
   const passwordRef = useRef();
@@ -90,7 +93,7 @@ function ResetPasswordForm({ onSuccess = () => null }) {
       >
         <Form.Group controlId="password">
           <Form.Label className="visually-hidden">
-            {t('profileSettings.newPassword')}
+            {tPS('newPassword')}
           </Form.Label>
           <div className="input-group-inline-button input-group-inline-button">
             <Form.Control
@@ -100,7 +103,7 @@ function ResetPasswordForm({ onSuccess = () => null }) {
               name="password"
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
-              placeholder={t('profileSettings.newPassword')}
+              placeholder={tPS('newPassword')}
               required
               type={isPasswordVisible ? 'text' : 'password'}
               value={formik.values.password}
@@ -116,12 +119,12 @@ function ResetPasswordForm({ onSuccess = () => null }) {
         </Form.Group>
 
         <Button
-          data-disable-with={t('profileSettings.changePassword')}
+          data-disable-with={tPS('changePassword')}
           disabled={formik.isSubmitting}
           type="submit"
           variant="primary"
         >
-          {t('profileSettings.changePassword')}
+          {tPS('changePassword')}
         </Button>
       </Form>
     </>
