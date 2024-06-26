@@ -65,7 +65,7 @@ function NewSnippetForm() {
             >
               <Image alt={tL(`${language}`)} src={icons.get(language)} />
               <span className="visually-hidden">
-                {tSA('snippetActions.createOnLanguage', {
+                {tSA('createOnLanguage', {
                   language: tL(`${language}`),
                 })}
               </span>
