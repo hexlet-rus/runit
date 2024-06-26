@@ -161,9 +161,15 @@ $font-family: 'Nunito Sans';
         }
     }
 
+<<<<<<< HEAD
     @media (max-width: 991px) {
         .background-dark {
             color: black;
         }
+=======
+@media (max-width: 991px) {
+    .background-dark {
+        color: black;
+>>>>>>> hexlet-rus/main
     }
 }

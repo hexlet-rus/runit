@@ -232,6 +232,7 @@ function Footer() {
           <Col>
             <div className="mb-2">
               <p className="mb-0">
+<<<<<<< HEAD
                 <NavbarBrand href={tF('tel1Href')}>
                   <b>{tF('tel1')}</b>
                 </NavbarBrand>
@@ -245,28 +246,59 @@ function Footer() {
                 </NavbarBrand>
               </p>
               <p className="m-0">{tF('moscow')}</p>
+=======
+                <NavbarBrand href={t('footer.tel1Href')}>
+                  <b>{t('footer.tel1')}</b>
+                </NavbarBrand>
+              </p>
+              <p className="m-0">{t('footer.rf')}</p>
+            </div>
+            <div>
+              <p className="m-0">
+                <NavbarBrand href={t('footer.tel2Href')}>
+                  <b>{t('footer.tel2')}</b>
+                </NavbarBrand>
+              </p>
+              <p className="m-0">{t('footer.moscow')}</p>
+>>>>>>> hexlet-rus/main
             </div>
           </Col>
           <Col>
             <Nav as="ul" className="list-group flex-column">
               <li className="mb-2">
                 <NavbarBrand className="p-0" href="#aboutProject">
+<<<<<<< HEAD
                   {tLH('about')}
+=======
+                  {t('landing.header.about')}
+>>>>>>> hexlet-rus/main
                 </NavbarBrand>
               </li>
               <li className="mb-2">
                 <NavbarBrand className="p-0" href="#advantages">
+<<<<<<< HEAD
                   {tLH('advantages')}
+=======
+                  {t('landing.header.advantages')}
+>>>>>>> hexlet-rus/main
                 </NavbarBrand>
               </li>
               <li className="mb-2">
                 <NavbarBrand className="p-0" href="#possibilities">
+<<<<<<< HEAD
                   {tLH('opportunities')}
+=======
+                  {t('landing.header.opportunities')}
+>>>>>>> hexlet-rus/main
                 </NavbarBrand>
               </li>
               <li className="mb-2">
                 <NavbarBrand className="p-0" href="#faq">
+<<<<<<< HEAD
                   {tLH('faq')}
+=======
+                  {t('landing.header.faq')}
+>>>>>>> hexlet-rus/main
                 </NavbarBrand>
               </li>
             </Nav>
@@ -279,7 +311,11 @@ function Footer() {
                   href="https://ru.hexlet.io/pages/about"
                   target="_blank"
                 >
+<<<<<<< HEAD
                   {tF('about')}
+=======
+                  {t('footer.about')}
+>>>>>>> hexlet-rus/main
                 </NavbarBrand>
               </li>
               <li className="mb-2">
@@ -288,7 +324,11 @@ function Footer() {
                   href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
                   target="_blank"
                 >
+<<<<<<< HEAD
                   {tF('career')}
+=======
+                  {t('footer.career')}
+>>>>>>> hexlet-rus/main
                 </NavbarBrand>
               </li>
               <li className="mb-2">
@@ -297,7 +337,11 @@ function Footer() {
                   href="https://hexlet.printdirect.ru/?partner_id=615497"
                   target="_blank"
                 >
+<<<<<<< HEAD
                   {tF('shop')}
+=======
+                  {t('footer.shop')}
+>>>>>>> hexlet-rus/main
                 </NavbarBrand>
               </li>
               <li className="mb-2">
@@ -306,7 +350,11 @@ function Footer() {
                   href="mailto: runit@hexlet.io"
                   target="_blank"
                 >
+<<<<<<< HEAD
                   {tF('mailSupport')}
+=======
+                  {t('footer.mailSupport')}
+>>>>>>> hexlet-rus/main
                 </NavbarBrand>
               </li>
             </Nav>
