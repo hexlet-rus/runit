@@ -36,7 +36,7 @@ function NewLanding() {
   const advantagesRef = useRef();
   const { isDarkMode } = useTernaryDarkMode();
   const rowClass = `d-lg-inline-flex mb-5 my-lg-5 ${
-    isDarkMode ? 'background-dark' : ''
+    isDarkMode ? 'background-light' : ''
   } align-items-center`;
 
   const handleCodeWithoutRegButton = () => {
