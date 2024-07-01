@@ -36,6 +36,12 @@ const snippetSlice = createSlice({
       );
       renamedSnippet.name = name;
     },
+    updateCheckedSnippet: (state, { payload: { id, checked } }) => {
+      const checkedSnippet = state.snippets.find(
+        (snippet) => snippet.id === id,
+      );
+      checkedSnippet.checkbox = checked;
+    },
   },
   extraReducers: (builder) => {
     builder

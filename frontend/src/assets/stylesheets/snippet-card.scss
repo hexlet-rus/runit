@@ -17,6 +17,11 @@ $snippet-card-color: $card-color;
   padding-bottom: var(--#{$prefix}snippet-card-spacer-y);
 }
 
+@mixin form-check-size($size) {
+  width: $size;
+  height: $size;
+}
+
 .snippet-card-wrapper {
   height: 10rem;
 }
@@ -109,6 +114,14 @@ $snippet-card-color: $card-color;
         opacity: 0;
       }
     }
+  }
+
+  .form-check {
+    @include form-check-size($font-size-base * $line-height-base);
+  }
+
+  .form-check-input {
+    @include form-check-size($font-size-base * $line-height-sm);
   }
 }
 
