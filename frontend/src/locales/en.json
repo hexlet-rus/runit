@@ -351,7 +351,8 @@
     "share": "Share",
     "save": "Save",
     "key_one": "{{count}} snippet selected",
-    "key_other": "{{count}} snippets selected"
+    "key_other": "{{count}} snippets selected",
+    "select": "Select snippets"
   },
   "toasts": {
     "duplicateSnippet": {

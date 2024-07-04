@@ -486,7 +486,8 @@
     "save": "Сохранить",
     "key_one": "Выбран {{count}} сниппет",
     "key_few": "Выбрано {{count}} сниппета",
-    "key_many": "Выбрано {{count}} сниппетов"
+    "key_many": "Выбрано {{count}} сниппетов",
+    "select": "Выбрать сниппеты"
   },
   "toasts": {
     "duplicateSnippet": {
