@@ -23,6 +23,7 @@ function DeleteSnippetModal({ handleClose, isOpen }) {
         try {
           await snippetApi.deleteSnippet(id);
           dispatch(snippetsActions.deleteSnippet(id));
+          dispatch(snippetsActions.CloseCheckboxes());
         } catch (error) {
           if (!error.isAxiosError) {
             console.log(t('errors.unknown'));
