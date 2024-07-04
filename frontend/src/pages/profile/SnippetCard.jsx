@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { object } from 'yup';
 
 import {
@@ -33,8 +33,10 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   });
   const { t } = useTranslation();
   const snippetApi = useSnippets();
-  const { name, id, code, language } = data;
-  const [isChecked, setIsChecked] = useState(null);
+  const { name, id, code, language, checkbox } = data;
+  const { isCheckboxesOpen } = useSelector((state) => state.snippets);
+
+  const checked = checkbox;
 
   useEffect(() => {
     const filenameInput = inputRef.current;
@@ -119,9 +121,16 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
           </Form.Group>
         )}
       </Form>
+      <Form.Check
+        className={`z-2 form-check ${isCheckboxesOpen ? '' : 'd-none'}`}
+        type="checkbox"
+        aria-label={name}
+        checked={checked}
+        onChange={handleOnChange}
+      />
       {isRenaming ? null : (
         <Button
-          className="btn-icon-only z-2"
+          className={`btn-icon-only z-2 ${isCheckboxesOpen ? 'd-none' : ''}`}
           onClick={handleRename}
           size="sm"
           variant="nofill-body"
