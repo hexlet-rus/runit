@@ -16,6 +16,7 @@ export const fetchUserSnippets = createAsyncThunk(
 const initialState = {
   status: 'empty',
   snippets: [],
+  isCheckboxesOpen: false,
 };
 
 const snippetSlice = createSlice({
@@ -42,6 +43,18 @@ const snippetSlice = createSlice({
       );
       checkedSnippet.checkbox = checked;
     },
+    OpenCheckboxes: (state) => {
+      state.isCheckboxesOpen = true;
+      state.snippets.forEach((snippet) => {
+        snippet.checkbox = false;
+      });
+    },
+    CloseCheckboxes: (state) => {
+      state.isCheckboxesOpen = false;
+      state.snippets.forEach((snippet) => {
+        snippet.checkbox = false;
+      });
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -51,6 +64,7 @@ const snippetSlice = createSlice({
       .addCase(fetchUserSnippets.fulfilled, (state, { payload }) => {
         state.snippets = payload.snippets;
         state.status = 'fullfilled';
+        state.isCheckboxesOpen = false;
       });
   },
 });
