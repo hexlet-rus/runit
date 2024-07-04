@@ -12,6 +12,7 @@ import NotFoundPage from '../404';
 import NewSnippetForm from './NewSnippetForm.jsx';
 import SnippetCard from './SnippetCard.jsx';
 import SnippetBadge from './SnippetBadge.jsx';
+import SnippetCheck from './SnippetCheck.jsx';
 
 function ProfileLayout({ data, isEditable }) {
   const { user, snippets } = data;
@@ -25,6 +26,7 @@ function ProfileLayout({ data, isEditable }) {
         <div className="d-flex align-items-start">
           {!guestUser && <h1 className="display-5">{user.username}</h1>}
         </div>
+        <SnippetCheck />
 
         <Row
           as={TransitionGroup}
