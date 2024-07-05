@@ -25,7 +25,7 @@
     "secondBackendDevTool": "TypeScript"
   },
   "appStatus": {
-    "loading": "Загрузка"
+    "loading": "Загрузка..."
   },
   "codeTemplates": {
     "javascript": "// Здесь будет код на JavaScript\n",
