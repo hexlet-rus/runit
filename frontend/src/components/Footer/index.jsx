@@ -6,10 +6,9 @@ import { ReactComponent as Vk } from '../../assets/images/icons/vk.svg';
 import classes from './index.module.css';
 
 function Footer() {
-  const { t: tF, i18n } = useTranslation('translation', {
+  const { t: tF } = useTranslation('translation', {
     keyPrefix: 'footer',
   });
-  const { language } = i18n;
 
   return (
     <footer className="bg-dark border-top border-secondary pt-4 pb-5">

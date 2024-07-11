@@ -25,7 +25,6 @@ function Footer() {
   const { t: tLH } = useTranslation('translation', {
     keyPrefix: 'landing.header',
   });
-  const { t: tFAQ } = useTranslation('translation', { keyPrefix: 'faq' });
   const { t: tF } = useTranslation('translation', { keyPrefix: 'footer' });
 
   const theme = document.documentElement.getAttribute('data-bs-theme');
