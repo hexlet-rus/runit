@@ -129,20 +129,18 @@ function Footer() {
                   {tF('agreement')}
                 </Nav.Link>
               </li>
-              {language === 'ru' && (
-                <li>
-                  <Nav.Link
-                    as={Link}
-                    className={`${classes.footerNavLink} py-1 px-0`}
-                    eventKey="licenseAgreement"
-                    to="/licenseAgreement"
-                  >
-                    <span style={{ paddingRight: '1.25rem' }}>
-                      {tF('licenseAgreement')}
-                    </span>
-                  </Nav.Link>
-                </li>
-              )}
+              <li>
+                <Nav.Link
+                  as={Link}
+                  className={`${classes.footerNavLink} py-1 px-0`}
+                  eventKey="licenseAgreement"
+                  to="/licenseAgreement"
+                >
+                  <span style={{ paddingRight: '1.25rem' }}>
+                    {tF('licenseAgreement')}
+                  </span>
+                </Nav.Link>
+              </li>
               <li>
                 <Nav.Link
                   as="a"
