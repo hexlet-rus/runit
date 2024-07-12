@@ -83,10 +83,10 @@ function NewLanding() {
               <div className="pt-5">
                 <p>{tL('freeProject')}</p>
               </div>
-              <h1>{tL('fastIDE.first')}</h1>
-              <div className="d-flex align-items-center pb-5 mb-5">
-                <h1 className="m-0 pe-3">{tL('fastIDE.second')}</h1>
-                <p className="m-0 ps-3">{tL('writeInBrowser')}</p>
+              <div className="d-flex justify-content-start flex-wrap align-items-center pb-5 mb-5 title-wrapper">
+                <h1>{tL('fastIDE.first')}</h1>
+                <h1>{tL('fastIDE.second')}</h1>
+                <p className="m-0">{tL('writeInBrowser')}</p>
               </div>
             </Col>
             <Col
