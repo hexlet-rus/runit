@@ -109,14 +109,17 @@ $font-family: 'Nunito Sans';
 }
 
 @media (max-width: 992px) {
-    .about-project > .d-lg-none > h1 {
+    .title-wrapper {
+        column-gap: 0.85rem;
+    }
+    .about-project > .d-lg-none > .d-flex > h1 {
         font-family: $font-family;
         font-weight: 700;
         font-size: 2.8rem;
         line-height: 130%;
         text-transform: uppercase;
     }
-    .about-project > .d-lg-none > div > h1 {
+    .about-project > .d-lg-none > .d-flex > h1.m-0 {
         font-family: $font-family;
         font-weight: 700;
         font-size: 4rem;
@@ -125,7 +128,7 @@ $font-family: 'Nunito Sans';
     }
     .about-project > .d-lg-none > div > h2 {
         font-family: $font-family;
-        font-weight: 600;
+        font-weight: 500;
         line-height: 130%;
     }
     .first-bg-image{
@@ -133,14 +136,15 @@ $font-family: 'Nunito Sans';
         &::before {
             position: absolute;
             top: 2%;
-            right: -100%;
+            right: 0;
             width: 64rem;
             height: 65rem;
             content: "";
             background-image: url("./assets/BGElement.svg");
             background-repeat: no-repeat;
+            background-size: cover;
             background-position: top;
-            background-size: 100% 100%;
+            // background-size: 100% 100%;
             z-index: -1;
         }
     }
@@ -159,11 +163,23 @@ $font-family: 'Nunito Sans';
             background-size: 100% 100%;
             z-index: -1;
         }
-    }
-
+    }  
 @media (max-width: 991px) {
     .background-dark {
         color: black;
     }
   }
 }
+@media (max-width: 992px) and (orientation: landscape) {
+    
+    .about-project > .d-lg-none > .d-flex > h1 {
+        display: inline-block;
+        width: auto;
+      }
+      
+    .about-project > .d-lg-none > .d-flex > p {
+      display: block;
+      width: 100%;
+    
+    }
+  }
