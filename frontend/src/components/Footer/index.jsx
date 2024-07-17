@@ -135,9 +135,7 @@ function Footer() {
                   eventKey="licenseAgreement"
                   to="/licenseAgreement"
                 >
-                  <span style={{ paddingRight: '1.25rem' }}>
-                    {tF('licenseAgreement')}
-                  </span>
+                  <span>{tF('licenseAgreement')}</span>
                 </Nav.Link>
               </li>
               <li>
