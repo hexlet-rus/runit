@@ -6,10 +6,9 @@ import { ReactComponent as Vk } from '../../assets/images/icons/vk.svg';
 import classes from './index.module.css';
 
 function Footer() {
-  const { t: tF, i18n } = useTranslation('translation', {
+  const { t: tF } = useTranslation('translation', {
     keyPrefix: 'footer',
   });
-  const { language } = i18n;
 
   return (
     <footer className="bg-dark border-top border-secondary pt-4 pb-5">
@@ -129,20 +128,16 @@ function Footer() {
                   {tF('agreement')}
                 </Nav.Link>
               </li>
-              {language === 'ru' && (
-                <li>
-                  <Nav.Link
-                    as={Link}
-                    className={`${classes.footerNavLink} py-1 px-0`}
-                    eventKey="licenseAgreement"
-                    to="/licenseAgreement"
-                  >
-                    <span style={{ paddingRight: '1.25rem' }}>
-                      {tF('licenseAgreement')}
-                    </span>
-                  </Nav.Link>
-                </li>
-              )}
+              <li>
+                <Nav.Link
+                  as={Link}
+                  className={`${classes.footerNavLink} py-1 px-0`}
+                  eventKey="licenseAgreement"
+                  to="/licenseAgreement"
+                >
+                  <span>{tF('licenseAgreement')}</span>
+                </Nav.Link>
+              </li>
               <li>
                 <Nav.Link
                   as="a"
