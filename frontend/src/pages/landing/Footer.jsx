@@ -153,8 +153,8 @@ function Footer() {
             </Nav>
           </Col>
         </Row>
-        <Row className="d-flex mx-5 mb-5 align-items-center d-none d-lg-flex">
-          <Col>
+        <Row className="d-flex mb-5 align-items-center d-lg-flex">
+          <Col className="footer-menu">
             <div className="mb-2">
               <p className="mb-0">
                 <NavbarBrand href={tF('tel1Href')}>
@@ -172,7 +172,7 @@ function Footer() {
               <p className="m-0">{tF('moscow')}</p>
             </div>
           </Col>
-          <Col>
+          <Col className="footer-menu">
             <Nav as="ul" className="list-group flex-column">
               <li className="mb-2">
                 <NavbarBrand className="p-0" href="#aboutProject">
@@ -196,7 +196,7 @@ function Footer() {
               </li>
             </Nav>
           </Col>
-          <Col>
+          <Col className="footer-menu">
             <Nav as="ul" className="list-group flex-column">
               <li className="mb-2">
                 <NavbarBrand
@@ -236,7 +236,7 @@ function Footer() {
               </li>
             </Nav>
           </Col>
-          <Col>
+          <Col className="footer-menu">
             <div className="ms-auto">
               <p>{tF('name')}</p>
               <p className="m-0">{tF('city')}</p>
