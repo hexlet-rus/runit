@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -26,6 +27,31 @@ function UserMenu() {
     dispatch(actions.openModal({ type: 'newSnippet' }));
   };
 
+  // The following code checks if the Github profile picture exists
+  const imageExists = (url) => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = url;
+    });
+  };
+
+  const [githubImageExists, setGithubExists] = useState(false);
+
+  useEffect(() => {
+    const url = `https://github.com/${username}.png`;
+    imageExists(url).then((exists) => setGithubExists(exists));
+  }, [username]);
+
+  //This function takes the first letter of the username and converts it to uppercase
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase();
+  }
+
+  console.log("Mehdi: ", capitalizeFirstLetter("Mehdi"));
+
+
   return (
     <Dropdown align="end" as="li" title="User Menu">
       <Dropdown.Toggle
@@ -34,7 +60,23 @@ function UserMenu() {
         variant="link"
       >
         <div className="logo-height">
-          <Avatar username={username} />
+          {githubImageExists ? (
+            <img
+              alt="Github Profile"
+              src={`https://github.com/${username}.png`}
+              style={{
+                position: 'relative',
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+              }}
+            />
+          )
+            : (
+              <Avatar username={capitalizeFirstLetter(username)} />
+            )}
+
+
         </div>
         <span className="visually-hidden">{tPA('header')}</span>
       </Dropdown.Toggle>

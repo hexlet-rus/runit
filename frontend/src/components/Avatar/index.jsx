@@ -25,11 +25,12 @@ function Avatar({ username }) {
           style={{
             fontSize: '20px',
             fontWeight: 300,
-            letterSpacing: '-2px',
+            // letterSpacing: '-2px',
             pointerEvents: 'none',
           }}
-          x="20%"
-          y="50%"
+          x="50%"
+          y="52%"
+          textAnchor="middle"
         >
           {username}
         </text>
