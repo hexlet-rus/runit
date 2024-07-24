@@ -49,9 +49,6 @@ function UserMenu() {
     return string.charAt(0).toUpperCase();
   }
 
-  console.log("Mehdi: ", capitalizeFirstLetter("Mehdi"));
-
-
   return (
     <Dropdown align="end" as="li" title="User Menu">
       <Dropdown.Toggle
