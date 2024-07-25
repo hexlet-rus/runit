@@ -44,10 +44,10 @@ function UserMenu() {
     imageExists(url).then((exists) => setGithubExists(exists));
   }, [username]);
 
-  //This function takes the first letter of the username and converts it to uppercase
+  // This function takes the first letter of the username and converts it to uppercase
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase();
-  }
+  };
 
   return (
     <Dropdown align="end" as="li" title="User Menu">
@@ -68,12 +68,9 @@ function UserMenu() {
                 borderRadius: '50%',
               }}
             />
-          )
-            : (
-              <Avatar username={capitalizeFirstLetter(username)} />
-            )}
-
-
+          ) : (
+            <Avatar username={capitalizeFirstLetter(username)} />
+          )}
         </div>
         <span className="visually-hidden">{tPA('header')}</span>
       </Dropdown.Toggle>

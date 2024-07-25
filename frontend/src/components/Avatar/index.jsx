@@ -27,9 +27,9 @@ function Avatar({ username }) {
             fontWeight: 300,
             pointerEvents: 'none',
           }}
+          textAnchor="middle"
           x="50%"
           y="52%"
-          textAnchor="middle"
         >
           {username}
         </text>
