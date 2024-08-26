@@ -1,0 +1,1008 @@
+[33m2490845[m[33m ([m[1;36mHEAD -> [m[1;32madd-signIn-option-for-guest[m[33m, [m[1;31morigin/add-signIn-option-for-guest[m[33m)[m Merge branch 'hexlet-rus:main' into add-signIn-option-for-guest
+[33m0af48fe[m[33m ([m[1;31mupstream/main[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Merge pull request #486 from bobrov-site/fixedTGFooter
+[33m5b00336[m added locale for tg footer
+[33mb8f3c7f[m fixed footer
+[33m19d8f8e[m add signin option for guest
+[33me3db524[m Merge pull request #480 from bobronaud/fix-empty-snippetName
+[33mcdd5200[m[33m ([m[1;31morigin/fix-empty-snippetName[m[33m)[m fix empty snippet name
+[33m69c25fa[m Merge pull request #475 from bobrov-site/fixBootstrapStyle
+[33m7f457ab[m remove bootstrap min css from header
+[33mf7fa865[m fix bootstrap styles scss
+[33m260ee65[m fix bootstrap styles scss
+[33m53d1680[m Merge pull request #470 from bobrov-site/fixSnippetExtantion
+[33m3e2fd35[m Merge pull request #471 from bobrov-site/fixedFAQSectionOnLanding
+[33m8a38779[m remove extention name from new snippets
+[33mb8ade91[m added dash to locales
+[33m3dd1184[m fixed another faq question to one style
+[33mea4b84a[m fix lint
+[33m5fff5b6[m fixed faq
+[33ma2a10df[m added html extention
+[33m5f5a886[m Merge pull request #466 from bobrov-site/ViewButtonForEditor
+[33m0ac950f[m Merge branch 'main' into ViewButtonForEditor
+[33m8260d31[m Merge pull request #455 from bobrov-site/addSaveButton
+[33m146958e[m lint backend
+[33mef03c64[m make lint
+[33m1cb6eeb[m imported DisplayIconView
+[33m0e1aa73[m created component ActionsToolbar
+[33mfbcc6ea[m lint
+[33mdcc3cd1[m linter
+[33m905544f[m linter
+[33m806848c[m added updateIsNotMobile
+[33md3f374d[m added d-none and d-md-inline-block to button
+[33mdda3296[m one time render to useEffect
+[33mdc7eded[m added displayicons
+[33m25e8bbf[m added direction in state, and added action updateDirection
+[33mb5b2c71[m import direction. Added useEffect on mobile
+[33me0163ce[m added icons
+[33m06fc7d3[m Merge pull request #464 from JS-Demi/bugfix-faq-theme
+[33mbb948f6[m Merge pull request #463 from bobrov-site/fixedUserMenuDropdownMobile
+[33m76002cf[m Merge pull request #460 from Loresina/fix-send-message
+[33mdd7614f[m fix: logging emails in dev mode
+[33m191c504[m import toast to ActionsToolbar. Added handleSaveCode
+[33m94f2726[m remove commentary from useSaveButton
+[33m9c2a300[m added locales ru, eng for toast
+[33m5b7074b[m removed useNavigate import
+[33m7b78162[m removeNavigation
+[33ma140076[m Merge pull request #459 from bobrov-site/fixMarginsInLanding
+[33m90a84d8[m fixed dropdown on mobile
+[33m90f6bda[m Fix bug #462
+[33mff0d5d1[m fix: test default name
+[33m854710a[m fix: mailer.config
+[33m6fcac41[m fixed color in background-dark for 991px max width size
+[33md73fec4[m added align-items-center
+[33m85b1266[m fixed paddings in black second screen
+[33m33559f0[m Merge pull request #451 from Heaven-Tonight/reg-update-forms-validation-enhancements
+[33m5fd7f51[m Merge branch 'main' into addSaveButton
+[33m352c5f2[m Merge pull request #454 from bobrov-site/fixRegistrationButton
+[33m35ed2b7[m back to left items inside collapse header
+[33me6de151[m back to center items inside collapse header
+[33m32200a3[m added className navbar-logo and added width 150px for logo from min-width 992px
+[33m5d00443[m back to lg expand navbar
+[33mc86d586[m added a check for forbidden characters in username
+[33m80b5618[m deleted disallowing entering whitespaces handlers for username/email fields in reg/updated forms
+[33me5e6169[m Merge pull request #452 from IVANn84/faq-update
+[33m7317db1[m added save code button
+[33m5e742de[m make fix
+[33m0e1ddf5[m added layout of saveButton in toolbar
+[33m079d7a6[m created useSaveButton hook
+[33m3e0efc3[m added locales for saveButton
+[33m06b6dad[m remove nav-list class from navbar
+[33m3afd1a6[m fixed 992px header size collapse
+[33mbb42d3a[m Separate the title from the description
+[33m0debd5f[m Merge pull request #450 from VarWaeR/issue_branch
+[33m7bafd00[m Merge pull request #447 from vyacheslav-pv/bugfix-toolbar
+[33mf1bfd41[m fixed username field feedback error ("no leading/trailing/middle whitespaces" rule)
+[33m217facd[m [#448] added classes d-none for snippet card footer buttons
+[33m55c01b1[m change flex-flow
+[33mcdbc79b[m Merge pull request #445 from vyacheslav-pv/update-snippet
+[33m8bd757c[m Add class for tooltip
+[33m0c580c8[m import Sass
+[33me0ad482[m Add utilities
+[33mb7c8788[m remove the "w-auto" class in the toolbar snippet
+[33mdfc4130[m Merge pull request #437 from bobronaud/switch-to-new-landing
+[33m1b0f45a[m[33m ([m[1;31morigin/switch-to-new-landing[m[33m)[m fix logo`s theme switching
+[33m6f8177a[m Merge pull request #436 from KirillTheStranger/footer-update
+[33m1f46b23[m fix header. add lang and theme selectors
+[33m9d54a27[m fix landing locales. remove footer`s email form
+[33md9ec39e[m add styles to buttons start code
+[33m0a35d3f[m add button to code without reg
+[33m1a8dc57[m change roots for old/new landings
+[33m8253e6e[m [#435] center footer to look the same as hole page
+[33m854f95c[m Merge pull request #433 from bobronaud/fix-new-snippet-html
+[33mff3aeaa[m Merge pull request #431 from bobronaud/improve-snippet-ux
+[33m91f466b[m fix-new-snippet-html
+[33mdabda9d[m implement copy snippet as guest
+[33m5b6ee59[m add modal to copy snippet as guest
+[33mb28a6c3[m replace signin button to auth warning alert in snippet
+[33m27213da[m Merge pull request #429 from bobronaud/fix-copy-snippet
+[33m4fa0c41[m add toast on copy snippet
+[33mf7df0da[m fix copy snippet
+[33m2d68c2d[m Merge pull request #427 from bobronaud/fix-light-theme
+[33mde92c0c[m fix light theme
+[33m5078aaa[m Merge pull request #426 from bobronaud/fix-landing-header
+[33m9071334[m fix landing header
+[33m83c5081[m Merge pull request #421 from KirillTheStranger/create-avatar-change-modal
+[33m0403052[m Merge pull request #425 from bobronaud/hide-share_tab-in-user_menu
+[33m646d216[m Merge pull request #424 from bobronaud/feature-remove_account
+[33md8eeb63[m Merge pull request #362 from Ledchig/main
+[33m51c3c0b[m update routes for newLanding
+[33m6f48899[m hide share tab in user menu
+[33m85ec6e1[m implement remove account
+[33m6f023b7[m [#418] create two modals: to upload user avatar, to delete user avatar, create locales for both modals
+[33m1b6c21c[m Merge pull request #415 from Heaven-Tonight/guest-user-snippets-feature
+[33m460d2b6[m Merge pull request #414 from Heaven-Tonight/update-account-form-hotfix
+[33mba9b99c[m fixed update-account-form errors displaying
+[33m6a8d0e9[m added create and save snippets feature for guest users
+[33ma4749d6[m Merge pull request #413 from hexlet-rus/dependabot/npm_and_yarn/follow-redirects-1.15.4
+[33ma1eeace[m fix theme mode detect
+[33md54a1bb[m Bump follow-redirects from 1.15.2 to 1.15.4
+[33m3829710[m update header
+[33mba28aa6[m update header
+[33m0ef3a73[m Update comments from tester
+[33mc395499[m update detector theme mode
+[33m7656f4e[m update auth buttons text
+[33m24cdecd[m update bg images, header and footer lists
+[33m949f255[m update overflow bg image and footer width
+[33m43aa390[m update footer width
+[33m2aa2d28[m add fonts, update theme colors and imgs
+[33m755414b[m Merge branch 'hexlet-rus:main' into main
+[33mc3c9fc1[m Merge pull request #411 from hexlet-rus/dependabot/npm_and_yarn/adobe/css-tools-4.3.2
+[33m25633d8[m Merge pull request #412 from elenashcherbinina/faq_text_color
+[33meaa9b67[m add styles for signin and signup buttons
+[33mb2fc228[m update horizontal scroll
+[33m70e914f[m add background images
+[33m5c63862[m add background images
+[33m7bb8689[m add backgroud for points block
+[33mf3b193d[m #410 changed --bs-accordion-active-color to white
+[33m3ac977a[m add inline advantages block with mouse scroll
+[33mab7ffb1[m Bump @adobe/css-tools from 4.3.1 to 4.3.2
+[33md9efd55[m add all links, update header, footer
+[33m74b7a4d[m Merge branch 'hexlet-rus:main' into main
+[33m50dced4[m update Makefile
+[33m8a31ef8[m add git-update
+[33m4baf4c7[m Merge pull request #406 from niramov/tooltip
+[33me923d65[m add button-start hover effect
+[33m7220a6a[m add hover effect on nav-links
+[33m237fe82[m [#399 fix snippet-tooltip
+[33ma32daea[m Merge branch 'hexlet-rus:main' into main
+[33mcd5dd62[m Merge pull request #404 from Lena05k/warning-tooltip
+[33m5adc7e1[m Merge pull request #405 from elenashcherbinina/supported_languages
+[33m759fdae[m #401 deleted php and python from supported-languages
+[33m990a74a[m Delete Row, Col
+[33m02f55c5[m Made the warning tooltip wider
+[33md4f265d[m Merge pull request #402 from hexlet-rus/dependabot/npm_and_yarn/axios-1.6.0
+[33m510cae7[m Bump axios from 1.4.0 to 1.6.0
+[33me47d2fb[m update faq h2
+[33mee85966[m Merge branch 'hexlet-rus:main' into main
+[33mdb7c8e0[m Merge pull request #385 from d13ch/html_brunch
+[33m357696e[m fixes
+[33md2d2b4a[m Merge branch 'main' into html_brunch
+[33ma51fc90[m fix e2e tests
+[33m0c11bd7[m fix lint errors
+[33m9d52c46[m fix tests
+[33mcf0cb84[m add html compile to backend
+[33m5f15945[m Merge branch 'hexlet-rus:main' into main
+[33m1dda385[m Merge pull request #397 from hexlet-rus/dependabot/npm_and_yarn/browserify-sign-4.2.2
+[33m8e3c8d7[m Merge pull request #395 from elenashcherbinina/faq-text-muted
+[33mc633cad[m Merge pull request #394 from elenashcherbinina/footer-text-muted
+[33m073ab2f[m Bump browserify-sign from 4.2.1 to 4.2.2
+[33m625b2a3[m Merge pull request #396 from Scampik/modal-createSnippet
+[33mafd5ef7[m add e2e-test for modal create snippets
+[33m2bbdd9e[m upd NewSnippet support lng only JS
+[33md61c4fb[m #387 add modal for create new snippet
+[33m6b4df90[m Merge pull request #393 from SamIvan-ark/main
+[33me6ac515[m Merge pull request #390 from hexlet-rus/dependabot/npm_and_yarn/babel/traverse-7.23.2
+[33m6bae77f[m add test for html snippet
+[33m1d72ee8[m remove snippet language substitution in axios resp
+[33m0274efd[m changed class because text-muted was unvisible
+[33m770125b[m changed class text-muted to text-secondary for visibility
+[33m7a9825c[m Merge pull request #389 from Shamatarev/task-#375-add-eg-local-for-License-Condition
+[33mc213fe6[m Fix scroll reset after navigating pages
+[33m8725022[m Add scrollToTop component into utils
+[33m3864cad[m finish
+[33m1b5daab[m fix linter mistakes
+[33m224a843[m Bump @babel/traverse from 7.21.4 to 7.23.2
+[33m6e8ae80[m task 375-add-eg-local-for-License-Condition ver1.2
+[33ma7b977e[m 
+[33m898b7b0[m task 375-add-eg-local-for-License-Condition ver1.1
+[33m90368a4[m task-#375-add-eg-local-for-License-Condition ver1
+[33mdee153c[m Merge pull request #388 from GusinieIstorii/main
+[33mfe3d17d[m Merge branch 'hexlet-rus:main' into main
+[33mede90fb[m fix typo 'sign in' button
+[33m8515861[m Merge pull request #386 from elenashcherbinina/snippet_name
+[33mc303786[m [#368] move icons mapping to utils, remove getIcon
+[33me1a70f5[m [#368] add html render
+[33m9bb56af[m [#379] added a space-symbol to validationSchemas.js/snippetName
+[33ma8872da[m Merge branch 'hexlet-rus:main' into main
+[33m98ccd7f[m [#368] add html as supported language
+[33mc4d1444[m Merge pull request #384 from elenashcherbinina/signin_branch
+[33m5017819[m [#381] added link to forgot Password in Forms/SignInForm.jsx
+[33m73fca1c[m Merge pull request #382 from Scampik/snippet_branch
+[33mf216e9f[m Merge pull request #363 from likurg42/snippet-duplication-feature
+[33mccc22fb[m fix new snippet name generation, modal header size and translation
+[33mcf9fc30[m Merge remote-tracking branch 'hexlet-rus/main' into snippet-duplication-feature merge-upstream
+[33m1ba165e[m add confirmation modal for snippet duplication
+[33m161ff01[m [#378] fix error msg edit snippet name
+[33m91ffaef[m adda i18n
+[33m6672f5d[m Merge branch 'hexlet-rus:main' into main
+[33madc5e15[m Merge pull request #380 from SkyAjax/feature-reset-password
+[33mc2e847a[m [#355] fix checkHash function
+[33m0b80530[m [#355] fix checkHash function
+[33mf1f046a[m [#355] remove extra return
+[33mf396268[m Merge pull request #367 from SkyAjax/main
+[33m5cf9fdd[m [#355] fix linter error
+[33m5add9b2[m [#355] fix non-exist hash access
+[33mc4a3d72[m update footer
+[33mea461be[m Merge branch 'hexlet-rus:main' into main
+[33me17e19d[m Merge pull request #356 from shahzod418/language-detector
+[33ma8e94b7[m [#355] fix lint errors
+[33m7dbae4b[m [#355] update yarn.lock
+[33md8d133d[m [#355] update comments
+[33mcb0ebc6[m change duplication snippet icon and behaviour
+[33meb45068[m update styles for pc
+[33mc113501[m Merge branch 'hexlet-rus:main' into main
+[33ma6f201d[m await initI18next
+[33mcd87f40[m Merge pull request #366 from glazovanastasia/patch-1
+[33m87cf695[m Clean up
+[33mb21f764[m Merge branch 'main' into language-detector
+[33m89d53c1[m Delete docs/testcase.yaml
+[33m39ef282[m [#355] add reset password feature
+[33mf005849[m clean footer links
+[33made3e19[m Merge pull request #364 from hexlet-rus/dependabot/npm_and_yarn/adobe/css-tools-4.3.1
+[33m7aebaca[m Bump @adobe/css-tools from 4.2.0 to 4.3.1
+[33mf3720f8[m fix url link to hexlet
+[33m1f5b205[m remove code server request
+[33m67a73dc[m add snippet duplication
+[33m38c2357[m [#355] work in progress
+[33mb67c391[m Merge pull request #361 from fey/fix-dev-github-signin-redirect
+[33m035bd85[m update border color
+[33m31200ac[m add new FAQ and update spaces, bgImage
+[33mc22faef[m Merge branch 'hexlet-rus:main' into main
+[33md7edb5d[m fix while backend redirected to itself isntead of to frontend url
+[33m0f27a1d[m Merge pull request #359 from shahzod418/remove-confirm-password
+[33md3385b0[m Remove backend/src/users/validation/compare-passwords.ts
+[33mefbadf1[m Merge pull request #358 from faciledictu/linter-fix
+[33m7e81324[m added all elements on landing
+[33meec91ce[m Merge branch 'hexlet-rus:main' into main
+[33m6930bb5[m Fix yarn.lock
+[33mb131182[m Lint fix
+[33mf417cc4[m Removed confirmPassword field in remaining locations
+[33m4bede02[m Remove confirm password field
+[33mcde5a20[m Add REACT_APP_NODE_ENV in playwright config
+[33m3c33a99[m Fix linter issues
+[33m2d6e9c5[m Fix linter params
+[33m70b4e13[m Update eslint&plugins
+[33m167dfe6[m fix lint errors
+[33ma168dfc[m Change fallback language setting
+[33m6f924cb[m Language detector
+[33m62be48e[m fix mailer serivce config
+[33m18ffc7a[m Merge pull request #353 from faciledictu/ui-ux-issues
+[33mb53e7de[m sentry update
+[33m0f09ccb[m Disable minimap. Resolves #320
+[33mb06896e[m Fix editor state reset
+[33me7aea9b[m Fix selectors
+[33m0a7a4d6[m Fix layout and theme issues
+[33ma87f393[m Merge pull request #351 from faciledictu/validation-issues
+[33m5b853da[m Fix locales
+[33mb1d8b84[m Fix password validaton
+[33md68af85[m Trim values before data sending
+[33mf247fce[m Add punycode emails. Resolves #194
+[33m4e251ef[m Merge pull request #344 from faciledictu/faciledictu/issue340
+[33m8f3e172[m fix
+[33m088b42d[m new landing
+[33m9bad6e4[m Merge pull request #350 from DieWerkself/fixCheckRegister
+[33m57401dc[m fix method name
+[33m1a1aaf6[m fix resolve
+[33m8408611[m Merge branch 'main' into fixCheckRegister
+[33ma99b14d[m Merge pull request #349 from faciledictu/oauth-button
+[33ma0af036[m Merge pull request #345 from faciledictu/password-validation
+[33m665f492[m Merge pull request #342 from faciledictu/backend-remove-dependencies
+[33med420aa[m Merge pull request #341 from faciledictu/faciledictu/issue328
+[33m79805df[m Fixed login uniqueness check
+[33m0ec0195[m Update redirect
+[33m2f2f05a[m Fix GithubSignInButton
+[33mf0cd4d9[m Update instructions
+[33m0ad443d[m Update frontend e2e-tests
+[33mf6a0298[m Add validation on backend. Fix #316
+[33m9a8fd55[m Fix #316
+[33ma3f0323[m Add instructions for setting up OAuth. Resolves #340
+[33mc96b933[m Remove unnecessary dependencies
+[33m52fbf79[m Fix migrations
+[33m380e487[m Rename 'login' to 'username' or 'signin'
+[33mf51e0b1[m Update endpoints to 'signin' and 'signout'
+[33m94a336d[m Add DB migration
+[33maf2ae2d[m Rename check-username.ts
+[33m2c227aa[m Rename 'login' to 'username' or 'signin'
+[33m31fdaad[m Merge pull request #338 from faciledictu/frontend-new-design
+[33m02e6ebd[m Refactor hooks
+[33mc77a225[m Fix formatting
+[33mc528ee5[m Update tests
+[33mfc6a883[m Redesign
+[33m100b94f[m Set linters
+[33m940baa8[m Install and update packages
+[33meeb27dd[m Change files structure
+[33m64229fd[m Merge pull request #336 from SkyAjax/main
+[33m80d977b[m Merge pull request #335 from Shamilist/test-start
+[33m39010c4[m Merge pull request #331 from Shamilist/e2e-test
+[33mbd8f0d0[m Merge pull request #308 from boldurean/task-287
+[33m9ca823b[m [#309] fix bg color and localisation
+[33m45cf81c[m Merge remote-tracking branch 'upstream/main'
+[33m4e3222d[m [#325] add react-router switch
+[33m795d5e8[m [#177] change sign in button test-id
+[33m77d4404[m [#334]change e2e test start command in package.json
+[33m99ef17e[m change e2e test start command in package.json
+[33mdf06852[m Add TODO's for added changes
+[33m595f867[m [#177] fix proplem with random emails and logins
+[33m43da259[m Merge pull request #317 from Aallyycoop/add_spinner
+[33m4c2d0d2[m [#309] add loading spinner
+[33m89fdb28[m Merge pull request #333 from Shamilist/readme
+[33m6d3a112[m [#332] Update Node version in README.md
+[33m111e942[m [#177] write tests allure ids 364, 366, 367
+[33m1ccbd7d[m Merge pull request #329 from Shamilist/e2e-test
+[33m4415c3f[m Merge pull request #326 from TemaGolovin/fix-short-validate-password
+[33m325a2ff[m Merge pull request #330 from AavadaKedavra/333_add_testcases
+[33m99da26a[m update test-cases
+[33mb56da2a[m Delete test-cases.cvs
+[33m9712f5a[m [#177] write tests allure ids 301, 332, 333, 334
+[33m37ad74a[m Merge pull request #324 from ola-9/reset-pass
+[33mfab2c59[m Merge pull request #321 from hexlet-rus/dependabot/npm_and_yarn/word-wrap-1.2.4
+[33m5f72672[m added password validation in SignInForm
+[33m6056e61[m Merge pull request #323 from MikhailR1337/303-http-to-https-redirect
+[33m767a3f9[m reset password
+[33m0932be0[m 303 updated static.json
+[33m70b7eb8[m Merge pull request #322 from MikhailR1337/303-http-to-https-redirect
+[33m666a9e8[m Bump word-wrap from 1.2.3 to 1.2.4
+[33md775a6f[m Merge pull request #306 from Shamilist/e2e-test
+[33mf556ee9[m 303 added https only config
+[33mff8d7c4[m 303 fixed project starting error
+[33m29a77f4[m [#177] fix linter
+[33m0599052[m [#177] fix random password in Unable to register by invalid email case
+[33m8ebe591[m [#177] fix Unable to re-register case
+[33m06f67e4[m [#177] write tests allure ids 299, 300, 302
+[33m253a3c2[m [#309] add loading spinner
+[33m2954c82[m Merge pull request #312 from peperopuripuri/Public-email-Github-registration
+[33me0b1355[m Merge branch 'main' into Public-email-Github-registration
+[33me352cec[m Merge pull request #315 from ilya-rodin/fix-link
+[33m4d071da[m Merge pull request #311 from likurg42/fix-email-validation-letter-case
+[33m527f5ba[m Merge pull request #305 from likurg42/login-signup-form-update
+[33meb44a2d[m fix form input classes
+[33m68f87cc[m #313 fix wronk url in link
+[33mf1647bc[m remove unnecessary styles and change form styles import
+[33mc843b46[m [#283] fix: undo changes on the frontend
+[33macf97e5[m [#283] fix: change email to lower case
+[33mcda5466[m [#283/282] fix: fix route profile
+[33m1c9b125[m [#283] feat: added logic for registering via github with a hidden email
+[33m259b7d4[m [#283] fix: add parametr in scope for oauth github
+[33mcce1e4b[m Merge branch 'main' into fix-email-validation-letter-case
+[33m5c89137[m fix make email validation with different letter case
+[33me70c288[m Merge pull request #300 from faciledictu/linter-config
+[33m8b8a229[m Add lint with -fix option
+[33m797222e[m Merge branch 'hexlet-rus:main' into linter-config
+[33m5ceb2e0[m Fix: #287 Show Snippet Unavailable Dialog and navigate user to home page if snippet has been deleted
+[33m822b22e[m Merge pull request #304 from hexlet-rus/dependabot/npm_and_yarn/semver-5.7.2
+[33m1113856[m move login and signup forms into components, use them in pages and modals
+[33ma6427b8[m Merge pull request #297 from ilya-rodin/fix-font
+[33md593fc5[m Bump semver from 5.7.1 to 5.7.2
+[33m225448a[m Merge pull request #302 from hexlet-rus/dependabot/npm_and_yarn/tough-cookie-4.1.3
+[33m7f29ea5[m Merge pull request #299 from Mabby20/fix-routes-profile
+[33m7f9be36[m Merge pull request #301 from AavadaKedavra/333_add_testcases
+[33m56996b5[m Bump tough-cookie from 4.1.2 to 4.1.3
+[33m86a0e4d[m add test-cases from Allure TestOps
+[33mcc704b2[m Fix code formatting
+[33m62b847f[m Allow js and jsx files checking
+[33m5e86fb7[m Add --fix option to lint command
+[33m1d84b37[m rename thing...
+[33m40705d7[m feat: fix previous commit
+[33mbac316b[m complete fix #288
+[33m6c773ae[m fix global font
+[33m0786360[m add monospace font
+[33mb42c080[m fix syntax error
+[33m2704eaa[m Merge pull request #295 from faciledictu/fix-previous-resolving
+[33m3d01469[m feat: add popup and localization
+[33m8d9e4a7[m Fix previous conflict resolving
+[33me13988c[m Merge pull request #293 from ilya-rodin/refactor-validation-schemas
+[33mf426dd7[m fix conflicts
+[33m0cecb09[m Merge pull request #292 from ilya-rodin/refactor-validation-schemas
+[33m5b42e29[m Merge branch 'main' into refactor-validation-schemas
+[33m927a95b[m closes #289
+[33mce48bd9[m Merge https://github.com/peperopuripuri/runit into Public-email-Github-registration
+[33ma5cb800[m [282] fix routes profile
+[33ma88a346[m add attention in bottom and alert and modal
+[33mff0a489[m Merge pull request #291 from faciledictu/update-readme
+[33mf245c85[m Merge pull request #290 from faciledictu/signup-form-messages
+[33m170bf40[m Merge pull request #286 from faciledictu/signin-error-message
+[33m505d336[m Merge pull request #1 from faciledictu/validation-schemas
+[33mad80617[m Add validation schemas
+[33m25ba367[m Update readme
+[33m303fd1b[m Fix SignUp form messages
+[33m209472b[m Fix signIn error message
+[33ma809887[m add correction
+[33m81c308f[m Merge pull request #281 from SemyonSt/main
+[33m39ff0c8[m fix logout
+[33m83a88db[m Merge pull request #278 from ola-9/login
+[33m4f0b335[m cleanup comments, add details
+[33m52299f0[m fix playwright config
+[33m46af242[m fix routes and frontend tests
+[33m2bbbe6e[m Login bug
+[33m73ffe02[m Merge pull request #262 from kairina2020/patch-1
+[33m1a0e49e[m Update requirements.md
+[33m7ad88d7[m Update requirements.md
+[33m67752c6[m Merge pull request #268 from AavadaKedavra/333_add_testcases
+[33m1a610e3[m Merge pull request #275 from hexlet-rus/dependabot/npm_and_yarn/socket.io-parser-4.2.3
+[33ma363e08[m Merge pull request #276 from M4XPRD/fix-profile-maxprd
+[33mf5d48a3[m Merge pull request #272 from SemyonSt/main
+[33m1395ef7[m fix bag route lending 2
+[33md6ddda6[m Update use cases.yaml
+[33m0d75454[m Final eslint fixes
+[33ma3c2523[m Small eslint fixes
+[33me52fbbc[m Small eslint fixes
+[33md699d20[m Rename use casec.yaml to use cases.yaml
+[33m010dfec[m Update requirements.md
+[33m115e4a8[m Create use casec.yaml
+[33mb7190bc[m Update requirements.md
+[33m0a7d640[m Profile text changed and CSS added
+[33m83ecac4[m Merge branch 'fix-profile-maxprd' of https://github.com/M4XPRD/runit into fix-profile-maxprd
+[33med6a870[m [#259] Delete copyProfileButton
+[33m634b231[m Merge pull request #274 from NadyKamenskaya/readme-update
+[33m24e6c8f[m Bump socket.io-parser from 4.2.2 to 4.2.3
+[33m34603fd[m Update files to match
+[33mc29bb6c[m fix bag route lending
+[33mee01e7d[m fix bag route lending
+[33m406de1a[m add env example
+[33m70d6d9c[m fix
+[33mcda1f98[m Merge pull request #270 from NadyKamenskaya/validate-bugfix
+[33m9420b38[m Packages updated
+[33ma7f4271[m React scripts updated
+[33m75b6b22[m Routes renamed and Links added
+[33mcd5029e[m Routes change and addition
+[33m8fd124b[m Profile route changed
+[33m45babfa[m Improved locals
+[33m49f98bb[m Account page created
+[33m0927165[m Profile page refactoring
+[33m8b770b9[m Improved CSS
+[33m87e88f9[m Profile route renamed
+[33m0f8cb03[m Created Snippets component
+[33m17262d6[m [#266] Set a configuration for validateOnBlur
+[33m1612431[m Update requirements.md
+[33mcfd5104[m Create testcase.yaml
+[33m4237292[m Merge pull request #265 from hexlet-rus/dependabot/npm_and_yarn/vm2-3.9.19
+[33m9ac786e[m Merge pull request #264 from NadyKamenskaya/profile-update
+[33m9f1891b[m Merge pull request #263 from AavadaKedavra/main
+[33mcf40bea[m Bump vm2 from 3.9.17 to 3.9.19
+[33m62f6ff1[m [#259] Delete copyProfileButton from locales
+[33m2b40f4d[m [#259] Delete copyProfileButton
+[33m4b5f191[m Update requirements.yml
+[33m0a6bf01[m Update requirements.yml
+[33m0e6b002[m Create requirements.yml
+[33m027b7dc[m Update .gitkeep
+[33m92329eb[m Update requirements.md
+[33m9addd3c[m Create requirements.md
+[33m0ec93d7[m Update .gitkeep
+[33m4e7a141[m Merge pull request #255 from hexlet-rus/dependabot/npm_and_yarn/engine.io-6.4.2
+[33mcc64060[m Merge pull request #256 from Viktorline/main
+[33mc00a9c7[m add link to api documentation
+[33mf135a8f[m add sentry frontend
+[33m38158c8[m add test error
+[33m33e4e83[m test error
+[33m551e856[m add sentry test
+[33mde0766f[m Bump engine.io from 6.4.1 to 6.4.2
+[33m4464f98[m Merge pull request #247 from hexlet-rus/dependabot/npm_and_yarn/vm2-3.9.17
+[33mf800fb9[m Merge pull request #253 from redaktorscha/fix-landing
+[33m1dd24a3[m Merge pull request #1 from dzencot/fix-landing
+[33m03d738f[m fix tests
+[33m0d3ca82[m Merge pull request #252 from LarendsD/main
+[33m376ec9b[m fix oauth links
+[33m288ef20[m merge upstream
+[33ma6f4195[m fix Footer (add scoped styles, fix links color on hover)
+[33m89346af[m fix Landing (remove commented code)
+[33mc9712e6[m fix Navbar styles and logo (remove blank space from svg), add header tag
+[33m2db6f0e[m fix Fax styles
+[33m771b851[m fix Landing styles (margins between sections)
+[33m5ef5d11[m fix Faq styles
+[33m214f240[m fix application.scss (remove landing css import)
+[33m984b30b[m fix landing and navbar styles
+[33m7b6c6d6[m fix linting last one
+[33md3676aa[m fix linting?
+[33mc3c7316[m fix lint errors
+[33m20d6337[m added migration to fill null values for slugs
+[33m90cdc60[m fix navbar and layout (naming, links, styles, signup button text)
+[33m9b75f5e[m Merge pull request #251 from LarendsD/main
+[33m38473fb[m Merge branch 'main' into main
+[33m39ee3dd[m Merge pull request #250 from SuperSnowSnail/Issue248
+[33meaf93f5[m fix tests pass
+[33m55b4786[m added tags
+[33m3a0f347[m added swagger documentation
+[33mf997322[m [#248] Fix login validation bug in modals
+[33m19380d4[m Merge pull request #245 from boldurean/extractSnippets
+[33me433fcb[m fix navbar (add react-bootstrap components, fix responsive behaviour)
+[33m568452f[m Bump vm2 from 3.9.15 to 3.9.17
+[33m9a23997[m Extract Snippet component/styles out from Profile page
+[33m2aafddb[m add make tag release
+[33m86d06be[m add packge-lock to ignore
+[33m856d094[m rm lock
+[33m351bf4b[m update oauth and sentry
+[33m9b713b0[m Merge pull request #243 from JS-NinjaNN/fix-validation-for-username
+[33m12415e5[m Fixes #240
+[33m91cc4dd[m fix lock
+[33m803fa30[m Merge pull request #242 from hexlet-rus/github-oauth
+[33m04c55f2[m Merge branch 'main' into github-oauth
+[33mb5b8bff[m Merge pull request #238 from hexlet-rus/dependabot/npm_and_yarn/vm2-3.9.15
+[33mb5e220b[m Merge branch 'main' into dependabot/npm_and_yarn/vm2-3.9.15
+[33m4c03752[m Merge pull request #236 from hexlet-rus/sentry
+[33ma7bcb65[m fix
+[33m9486dbd[m Merge pull request #239 from fey/hide-github
+[33m938abfd[m hide github
+[33mfb6a133[m Bump vm2 from 3.9.14 to 3.9.15
+[33md01e38f[m fix lint errors
+[33me76a87b[m add sentry
+[33m49dde10[m Merge branch 'github-oauth'
+[33me7d1123[m fix lock-file
+[33m9246233[m Merge pull request #234 from hexlet-rus/github-oauth
+[33mb5d0236[m Merge branch 'main' into github-oauth
+[33m09f469e[m fix yarn.lock
+[33m4637bef[m add oauth
+[33m462b274[m Merge pull request #232 from fey/add-sparkpost
+[33mba5b512[m Merge pull request #233 from fey/add-swagger
+[33m58cc527[m add swagger
+[33m06925a9[m send email only for exists users
+[33ma864c35[m use smtp for production
+[33m4e60241[m Merge pull request #231 from semenChe/signIn-update
+[33mf4e440b[m Adding an explanation to a comment
+[33mb96ac81[m Temporarily hide password reset link
+[33md21941a[m Merge pull request #229 from boldurean/fix-221
+[33me7fc5c6[m Create .gitkeep
+[33mbf217b0[m Update Navbar links to contain "editor" when user logged in
+[33mdba78e7[m Update featureRequest.yml
+[33ma2742ad[m Merge pull request #220 from AnastasiaKv/snippet-autosave
+[33m736b105[m Merge branch 'main' into snippet-autosave
+[33m8b89496[m Add deferred value
+[33m0c5231c[m fix tests
+[33md735e20[m Merge pull request #226 from hexlet-rus/dependabot/npm_and_yarn/sqlite3-5.1.5
+[33m9c60631[m Merge pull request #225 from tysky/optimize-assets
+[33m2b3d694[m Merge pull request #218 from faciledictu/email-validation
+[33m878eb8d[m Fix debounce by creating hook
+[33mf259a40[m Merge pull request #227 from antonkrupin/main
+[33med1c147[m remove 'бесплатный' from remindPass.footer.signUp signIn.footer.signUp
+[33mb1f67cb[m Bump sqlite3 from 5.1.4 to 5.1.5
+[33m8981bfb[m move nestjs cli dep for deploy
+[33m6853f05[m fix makefile
+[33m20312a3[m fix public folder
+[33mfab186c[m fix package.json
+[33m919b3ae[m delete font awesome icons
+[33m655bc85[m remove unused eslint disable lines
+[33mde99737[m fix yup
+[33m89b8681[m fix getting snippet name
+[33mc21dd93[m code splitting by routes
+[33m845cbe5[m Merge pull request #219 from philologistIsCodingHere/update-links
+[33mca330d4[m fixed conflict
+[33m5da9073[m Merge pull request #217 from sgmdlt/patch-1
+[33mf03e33b[m Add snippet load and code autosave
+[33mb8421fd[m Remove repetitive snippet loading
+[33m3fac0cb[m Refactor snippet button
+[33me53f703[m update link
+[33m18faac3[m update link
+[33m8f94b5c[m update link
+[33m9e05518[m Update README.ru.md
+[33m83059d3[m Update README.md
+[33m60813c3[m Fix email validation
+[33mc6697ce[m fix start command
+[33m7e3f50a[m Merge pull request #215 from AnastasiaKv/update-dependencies
+[33m5fa9baf[m Merge pull request #216 from sgmdlt/patch-2
+[33me7572d6[m Update README.ru.md
+[33m0b06d32[m Update README.md
+[33m332a4cb[m Merge branch 'main' into update-dependencies
+[33m671805c[m Fix for Playwright Tests
+[33md02be5a[m Fix dependencies
+[33m6fb29e2[m Move to devDependencies
+[33meb07a49[m Merge pull request #214 from AnastasiaKv/fix-embed-snippets-load
+[33mdda4609[m Merge pull request #203 from hexlet-rus/tests
+[33m38e4a06[m fix
+[33m3e8192f[m fix tests
+[33me60401e[m Add node-gyp pckg
+[33m435a427[m fix version
+[33ma4eb805[m rm lock file
+[33meaecc8b[m fix lock file
+[33mf25076b[m Merge branch 'main' into tests
+[33m922d00a[m warning fix
+[33m8d4b17e[m Fix snippet loading
+[33me47ea48[m Merge pull request #213 from fey/fix-migrations
+[33mb420fa6[m add migrations
+[33m3a93c33[m fix migrations
+[33m79e7e60[m Merge pull request #211 from fey/update-setup
+[33maa1a17d[m update instructions
+[33mf36036b[m remove procfile dev
+[33m09d56b3[m fix?
+[33mc692c5a[m fix
+[33m17c1ac5[m add node version
+[33m9448023[m fix commands
+[33m995f732[m update setup
+[33m5006f4b[m Merge pull request #205 from AnastasiaKv/fix-snippet-links
+[33m2aed6a4[m Create dependabot.yml
+[33m227733e[m Fix editor bug when loading snippet code & creating new shippet
+[33m41ac211[m Fix slug generation
+[33m5f46234[m Remove slug updates for every snippet data update
+[33m6daa771[m Merge pull request #206 from LarendsD/main
+[33m479f474[m Merge pull request #204 from YuliaMisc/bugfix/issue-194
+[33m135438a[m add build
+[33m2ddef4e[m add playwright workflow
+[33mde28798[m fix lint
+[33m7891f81[m fix config
+[33mf12a75d[m fix tests
+[33m70fc8ba[m added password recovery
+[33m65967d8[m Fetch user data for generation of sharing links
+[33mf64af7a[m Fix snippets api for embaed link
+[33m3de96bd[m Update auth routes and refactor other
+[33m4c63a43[m Update locals
+[33mb6ec50b[m Fix share&save snippet feature
+[33m19b9ea1[m Check and fix links for opening snippet
+[33mc1abfe4[m bugfix issue-194
+[33m8ed0020[m fix
+[33mbdee0be[m fix install command
+[33m0a36a8b[m fix lint errors
+[33mcf11b4c[m fix migrations
+[33m8630e29[m add tests
+[33m68afb4f[m Merge pull request #202 from PShorin/main
+[33m45f0600[m Merge pull request #172 from AnastasiaKv/fix-snippets-duplicate-bug
+[33m9eeb07e[m Merge pull request #171 from hexlet-rus/dependabot/npm_and_yarn/backend/cookiejar-2.1.4
+[33m30d1391[m Added Copy URL to Profile #186
+[33mf7392d0[m Merge pull request #201 from seregad544/fix_pr_not_found
+[33m867489a[m fixed linter errors
+[33m8ebe7f0[m Merge pull request #192 from seregad544/not_found
+[33m8a31318[m Merge pull request #190 from MikRyam/editProfile
+[33m5be3488[m Merge pull request #189 from MikRyam/email_feedback
+[33m4f8d3a7[m fix typo
+[33m5e0f746[m Merge pull request #196 from hexlet-rus/dependabot/npm_and_yarn/frontend/http-cache-semantics-4.1.1
+[33m7ee8b05[m Merge pull request #195 from hexlet-rus/dependabot/npm_and_yarn/backend/http-cache-semantics-4.1.1
+[33mf0027bd[m Bump http-cache-semantics from 4.1.0 to 4.1.1 in /frontend
+[33m87ad768[m Bump http-cache-semantics from 4.1.0 to 4.1.1 in /backend
+[33m954507f[m [#51] added NotFoundPage
+[33md300291[m [#184] fix issue #184, issue #185
+[33m852fe73[m [#181] fix email field feedback message bug 2
+[33m2350f46[m [#181] fix email feedback message bug
+[33m95f3a31[m [#183] fix incorrect email field feedback bug
+[33m1a1ad3f[m Merge pull request #188 from YuliaMisc/bugfix/issue-178
+[33m24a7edf[m Merge pull request #187 from YuliaMisc/bugfix/issue-179
+[33mde529cc[m fix feedback bug
+[33mb4182b3[m fix page RemindPassword
+[33m0adea19[m Update featureRequest.yml
+[33m4070bda[m Update task.yml
+[33m2600ec4[m Update task.yml
+[33mfe65dc6[m Fix selected user data for link
+[33m7379844[m Create async thunk for fetching profile data
+[33m42b22c2[m Bump cookiejar from 2.1.3 to 2.1.4 in /backend
+[33mf409a83[m Remove redundant data fetching
+[33mf4a5995[m fix deploy
+[33m1e85c70[m add package.json
+[33m7af8c7e[m Merge pull request #168 from hexlet-rus/fix-routing
+[33mb8daa53[m add todo
+[33mf8c8053[m fixes
+[33m81e51dc[m Merge pull request #167 from Abra19/put-landing-text-to-locale
+[33mc5991d5[m Merge pull request #166 from JS-Samurai/add-task-issue-template
+[33m74ddd1f[m Merge pull request #165 from JS-Samurai/add-feature-request-issue-template
+[33mc88fbad[m Merge pull request #163 from Abra19/footer-add-source
+[33mc3d9ae3[m Merge pull request #164 from JS-Samurai/add-bug-issue-template
+[33m59ffcd5[m put landing text to locale
+[33m9087445[m [#159] add task issue template
+[33mb4aa6be[m [#159] add feature request issue template
+[33med8d516[m add bugreport.yml template
+[33m9861932[m footer add source code
+[33m28ca262[m fix snippets router
+[33m56ac2f0[m fix init
+[33m6b838d5[m fixes
+[33m3621316[m remove js
+[33m6a86f49[m fix command
+[33m1ebd375[m Merge pull request #158 from Abra19/update-footer-support
+[33m155d329[m Merge pull request #157 from tigp/make-linter-happy
+[33m05f54b3[m insert support mail in footer
+[33mec163f8[m added eslint-disable in files
+[33me3b6a37[m cant resolved problem in to the src/index.jsx and added to the .eslintignore
+[33m679dd82[m [#154] fixed linter errors
+[33m8fe9701[m fix
+[33m09614bb[m Merge pull request #156 from hexlet-rus/refactoring
+[33m1375d5a[m Merge remote-tracking branch 'elizablok/feature/slug' into refactoring
+[33m4c6d503[m Merge pull request #148 from vladikKir/enter-button-update
+[33mdae32b4[m Merge branch 'main' into enter-button-update
+[33m3b4ed28[m Merge branch 'main' of github.com:hexlet-rus/runit into main
+[33mab5f67b[m Merge pull request #153 from hexlet-rus/dependabot/npm_and_yarn/backend/class-validator-0.14.0
+[33m7ffbb1a[m Merge pull request #149 from vladikKir/faq-update
+[33me57d198[m Update enter button way to login page
+[33m6a18db6[m fixes
+[33m8531ea6[m Bump class-validator from 0.13.2 to 0.14.0 in /backend
+[33m4372531[m Merge branch 'main' of github.com:vladikKir/runit into main
+[33mba4e206[m Add FAQ comment
+[33m21f6212[m Merge branch 'main' of github.com:hexlet-rus/runit into main
+[33meb76ffe[m Add FAQ comment
+[33m8cecbe4[m Merge pull request #144 from hexlet-rus/refactoring
+[33m10ad735[m add eslintignore to frontend
+[33m1a0683c[m Update enter button way to login page
+[33m295d01c[m add tsconfig to frontend
+[33mcdda29f[m hotfix
+[33meb83d7e[m hotfix
+[33mbbf5e9c[m hotfix
+[33m3d709c4[m Merge branch 'main' into refactoring
+[33m1ee93a9[m Merge pull request #141 from Abra19/validation-text-update
+[33m6bfe237[m Merge branch 'main' into refactoring
+[33mbeb3882[m refactoring update
+[33mc73b946[m change validation text SugnupPage -> Login
+[33m66b1682[m Merge pull request #1 from hexlet-rus/main
+[33m75feb8b[m hotfix styles
+[33ma2a039b[m fix commands
+[33m63b10c6[m Merge pull request #135 from EgorUlitin/links-in-navbar-hotfix
+[33m5afd543[m Merge pull request #137 from hexlet-rus/dependabot/npm_and_yarn/json5-1.0.2
+[33m800eab5[m Bump json5 from 1.0.1 to 1.0.2
+[33m303fcde[m resoleve conflicts
+[33m80781c0[m rm dist
+[33mf902c01[m refactoring backend
+[33m3d3ac3c[m refactoring frontend
+[33m7feb5e2[m Merge pull request #136 from rinat-lucky/fix-on-push-badge
+[33me10e04b[m Merge pull request #134 from denikeev/fix-eslint
+[33m26384d9[m Merge pull request #133 from antonkrupin/main
+[33m0873699[m Merge pull request #130 from EgorUlitin/the-name-update
+[33m3c5b0e0[m fix on-push badge
+[33m1824fb3[m Update README.md
+[33mf0678ac[m fix 26 errors and 3 linter warnings
+[33mf3d9262[m add end newline
+[33m5a67b26[m add lint frontend & fix 'npx eslint .'
+[33m6cba253[m Merge branch 'main' into main
+[33m5955c18[m remove class fs-4
+[33mea6836e[m add media query
+[33m877f118[m change links in buttons "Начать кодить"
+[33m59cebb9[m add bootstrap classes for adaptive displaying
+[33mf63f6e8[m add media queries for adaptive buttons displaying
+[33m0b1d9b0[m add bootstrap classes for adaptive displaying
+[33mabf5173[m add bootstrap classes for adaptive navbar dispalying
+[33mf0f9059[m update the name in project
+[33m5b8a449[m Merge pull request #132 from hexlet-rus/dependabot/npm_and_yarn/jsonwebtoken-and-nestjs/jwt-and-passport-jwt-9.0.0
+[33mb63dc85[m Merge pull request #131 from maddbuzz/snippet-saving-status
+[33mcca82ec[m Merge pull request #128 from tigp/locales-hotfix
+[33m4ef1118[m Bump jsonwebtoken, @nestjs/jwt and passport-jwt
+[33m4385011[m Merge pull request #127 from denikeev/edit-modals-style
+[33mff93987[m Merge pull request #126 from LarendsD/main
+[33maa55d03[m fix
+[33mf81892f[m Show the current saving status of the snippet. Closes #28
+[33mb3e9615[m add new line at end of file
+[33mc9f539e[m removed a duplicate import(LicenseAgreement)
+[33md060825[m removed useless semicolon
+[33m067e3ca[m Merge pull request #123 from EgorUlitin/landing-migrate-to-react
+[33md02696b[m Merge pull request #106 from tigp/adding-locales-switcher
+[33m15e5911[m Merge branch 'main' into adding-locales-switcher
+[33m8fb69c3[m update tests
+[33m3efbbf1[m [#110] fix borders in modals
+[33m87cc8dc[m [#110] edit modals style to dark
+[33m17d6473[m [#110] refactoring Navbar, ShareRepl components; fix eslint errors;
+[33m3ea492d[m [#110] move all common styles into scss; delete bootstrap duplicate import; up deps;
+[33mda80538[m Merge branch 'hexlet-rus:main' into main
+[33m70f5de2[m add update user and change password at backend
+[33mba63284[m migrate landing to react
+[33ma1be574[m Merge pull request #120 from antonkrupin/main
+[33m765c883[m remove changes in webpack config
+[33mef1a21d[m Merge pull request #124 from LarendsD/main
+[33m8df31de[m Merge branch 'main' into main
+[33medecf43[m Merge pull request #121 from Mansur903/main
+[33mce5bf42[m Merge pull request #117 from artem-mar/edit-profile
+[33mf79b79c[m [#115] added license agreement -fix
+[33m260dedb[m delete make start-dev
+[33ma491833[m add hot-reload for frontend
+[33m437397a[m Merge pull request #122 from hexlet-rus/fix-sentry
+[33mf869445[m update webpack config
+[33ma2eb868[m [#115] added license agreement
+[33m0829a1f[m fix snippet err
+[33mc6d4f74[m change webpack config before change i have error in ChromeDev tools: uncaught (in promise) referenceerror: process is not defined at __webpack_default_export__
+[33m8e6a144[m change link path to (href="/editor") in buttons "Начать кодить"
+[33m90706eb[m added TODO
+[33mcc4830c[m Merge pull request #116 from movmovbaby/add-sentry
+[33m73d5acf[m updated update-user.dto.ts
+[33madbf307[m added userSlice
+[33m234570b[m updated Profile.jsx
+[33m5ef5b03[m updated locales
+[33m5b2105f[m added EditProfile and ChangePassword to Modal.jsx
+[33m4134747[m added ChangePassword modal
+[33m54c92aa[m added EditProfile modal
+[33m0faf312[m Added sending errors via sentry
+[33m457ceab[m add slug column to db and change frontend slug link
+[33ma1f1e8a[m Merge pull request #113 from Difuster/check-styles-rem-pass
+[33me3a0060[m Merge pull request #109 from EgorUlitin/landing-stylefix
+[33mfc85cdc[m checked styles in remind-pass
+[33m22715d4[m Merge pull request #108 from hexlet-rus/dependabot/npm_and_yarn/qs-and-formidable-6.10.3
+[33mc25e1a7[m Bump qs and formidable
+[33m70ccc66[m Merge pull request #112 from hexlet-rus/dependabot/npm_and_yarn/decode-uri-component-0.2.2
+[33ma33a04a[m Bump decode-uri-component from 0.2.0 to 0.2.2
+[33md07c277[m Merge pull request #97 from Difuster/edit_footer
+[33m1303bcd[m Delete 1668857027632-migrations.ts
+[33m4cbada4[m add margin for faq section
+[33m3d740fa[m update accordion style on landing page
+[33m4e0ed3a[m added at footer language changer
+[33mb9819c0[m fixed and added some new locales
+[33mc2a1b47[m Merge pull request #103 from EgorUlitin/logo-bugfix
+[33me5d8d1e[m Merge pull request #102 from svyatoslavxq/implement-email-case-insensitivity
+[33m4eb1041[m added new locales for english
+[33m643c686[m fixed indent deep and added lang switcher button
+[33mf1b010c[m added a missing semilicon
+[33m9b10c5e[m fix navbar logo display
+[33m9c5625b[m feat: email-case-insensitivity
+[33m8c2b3bf[m Merge pull request #101 from svyatoslavxq/add-indents-on-landing
+[33mede44f8[m fix: indents on landing page
+[33mf926107[m disable eslint rule in migration
+[33m9cde236[m edit_footer
+[33mea9e489[m Merge pull request #96 from Asya-Kamaeva/faq
+[33md294940[m Merge branch 'main' into faq
+[33mb9f8ce5[m added faq section
+[33m1a08f70[m Merge pull request #93 from hexlet-rus/adaptive-landing
+[33m6422cb0[m Merge branch 'main' into adaptive-landing
+[33m5ac9a15[m Merge pull request #92 from svyatoslavxq/change-png-logo-to-svg
+[33m17a1307[m fix links
+[33m3718da1[m Revert "Revert "added adaptive for landing page""
+[33ma624358[m style: change png logo to svg
+[33m65e06fe[m Merge pull request #91 from userao/editing-dropout-button
+[33mcff9294[m Update Profile.module.css
+[33m695a171[m Merge pull request #88 from Wenn911/feature2
+[33m19ff257[m commented code deleted
+[33m7f6133f[m dropout button relocated
+[33m78db046[m Update README.md
+[33m805eb49[m Update release.yml
+[33ma3498e1[m Merge pull request #86 from Hexlet/revert-65-adaptive-landing
+[33me00035a[m Revert "added adaptive for landing page"
+[33m5088537[m fix
+[33mb6b819a[m Merge pull request #85 from Hexlet/dependabot/npm_and_yarn/engine.io-6.2.1
+[33m4da3840[m Merge pull request #80 from Funkicide/add-confirmation
+[33mf9e6b87[m fix deleted closing brace for tag
+[33m2d43fda[m Merge branch 'main' into add-confirmation
+[33m1bcc450[m Bump engine.io from 6.2.0 to 6.2.1
+[33m0d55193[m Merge pull request #84 from Hexlet/dependabot/npm_and_yarn/glob-parent-and-webpack-cli/generators-5.1.2
+[33m901e96c[m Merge pull request #83 from Hexlet/dependabot/npm_and_yarn/ejs-and-webpack-cli/generators-3.1.8
+[33m979ada8[m Merge pull request #82 from Hexlet/dependabot/npm_and_yarn/got-and-webpack-cli/generators--removed
+[33m9806d13[m Merge pull request #81 from tigp/add-en-locales
+[33mddf1176[m Merge pull request #79 from kaamosdao/unify-modal-style
+[33me1269b8[m Merge pull request #76 from Hexlet/dependabot/npm_and_yarn/loader-utils-1.4.2
+[33m3c49628[m Merge pull request #70 from userao/fixing-dropout-button
+[33mcfec702[m Merge branch 'main' into fixing-dropout-button
+[33mc4f28e1[m Bump glob-parent and @webpack-cli/generators
+[33ma3c3ce7[m Bump ejs and @webpack-cli/generators
+[33m671750b[m Bump got and @webpack-cli/generators
+[33md3b9cc8[m Merge pull request #69 from LarendsD/websocket
+[33mbb8066d[m Merge pull request #65 from Asya-Kamaeva/adaptive-landing
+[33m8ff3d8e[m Merge pull request #64 from Wenn911/feature
+[33mb317140[m Merge pull request #63 from kaamosdao/auth-interfaces-error-handling
+[33ma3baddd[m Merge pull request #58 from Difuster/dif_br
+[33m0fb9536[m Merge pull request #77 from kaamosdao/readme-update
+[33m5a5834d[m Merge pull request #78 from kaamosdao/fix-iframe-button
+[33mb7f5005[m added english locales
+[33m306a2fe[m fixed newReplButton
+[33m6b151de[m fixed newReplBtn
+[33m4363130[m Merge branch 'Hexlet:main' into dif_br
+[33m2d7e235[m add confirmation on snippet deletion
+[33mcdc9f58[m change signup modal style
+[33mab10b2d[m change signin modal style
+[33mb102c65[m change info modal style
+[33me0b1176[m make runit logo link open new tab on click
+[33md187ded[m Bump loader-utils from 1.4.1 to 1.4.2
+[33me17145d[m snippet cards no longer cover dropout button
+[33mb9b2eab[m add make build to readme
+[33m167cb63[m websockets backend
+[33m7fec682[m revert release drop migrations
+[33m5483d06[m update prod db
+[33ma0f2f1b[m Delete PageNotFound.jsx
+[33mebefc53[m fix footer & add footer in landing page
+[33ma62300b[m fixed mistake in last commit
+[33mfdcc6d0[m added adaptive for landing page
+[33m75bd4f4[m change logo & delete burger menu
+[33m8e798b3[m Merge branch 'main' into dif_br
+[33m2df16e7[m Merge pull request #56 from artem-mar/rename-snippet
+[33me436c64[m add min-height to form-group signIn page
+[33mf52990b[m add min-height to form-group
+[33m9a9cfb6[m Merge pull request #62 from gogoiakash2311/update-footer
+[33me8193bb[m deleted footer on about page
+[33me7c9088[m redesigned the ability to rename/delete snippets
+[33m6a5d0c8[m added snippets slice
+[33mf389762[m Merge pull request #59 from kaamosdao/unified-style
+[33m7424ae7[m change background, hover havbar button, bg-color profile page
+[33ma6a8175[m change background, text color footer
+[33m5bf4817[m change background, text color Navbar
+[33mead9675[m change background, text color About page
+[33mec2fd4c[m checked translations in jsx
+[33m2e979a5[m added renameSnippet func to snippetProvider.jsx
+[33m7a73272[m added snippet renaming handler to Profile.jsx
+[33mff43e9f[m added RenameRepl modal
+[33mab844e1[m change signUp form footer link color
+[33m77dd7be[m change signUp bg-color, text color, :active, :focus inputs
+[33m6726ef1[m change bg-color, text-white signUp card
+[33m20cdd17[m change signUp bg-color, fluid container
+[33me18f1e4[m change signIn inputs :acive and :focus
+[33m1d23d4f[m change signIn inputs bg-color, text color
+[33m6ccf502[m change signin page container bg-color, change to fluid, add margin bottom
+[33m51c7d25[m change containers bg-color, change margin to padding
+[33mdc12bea[m add border to editor, terminal
+[33m4572b92[m change background color, hover/disabled shareButton
+[33me5dfd13[m change background color runButton
+[33mbdafc8b[m add style.css import
+[33mcbc252b[m Merge pull request #54 from Asya-Kamaeva/adding-footer
+[33m2bbc8c4[m Merge pull request #53 from LarendsD/database
+[33m4804664[m Merge pull request #45 from Hexlet/dependabot/npm_and_yarn/loader-utils-1.4.1
+[33mc43b4c1[m Merge pull request #44 from LarendsD/main
+[33med5692a[m Merge pull request #42 from Funkicide/replace-tags
+[33maf91f5d[m added footer
+[33m6c31a04[m fix postgres
+[33m34f461a[m Bump loader-utils from 1.4.0 to 1.4.1
+[33md9e9bb1[m fix tests
+[33mc8ae37c[m delete useless middleware
+[33mfe31d94[m add redirections to https
+[33m143a4ef[m [#40] Replace tags on landing
+[33m045cf6f[m Merge pull request #36 from artem-mar/changeNameField
+[33mdb2b648[m rename 'name' to 'login' in migrations
+[33m0c0eb32[m Merge pull request #32 from Takaiva/delete-snippet
+[33med9bc32[m remove useless dep #25
+[33me3aee67[m Merge pull request #30 from sleepy-corpse/auth-bar
+[33m5643fc5[m rename Name field to Login
+[33mdf9054d[m update name validation (backend)
+[33m2b0c054[m update texts
+[33m7ace323[m Merge branch 'main' into auth-bar
+[33mf4b813d[m add AuthBanner component and auth context usage
+[33m3e05134[m remove useless get query, filter snippets directly #25
+[33m009c62f[m Merge pull request #35 from LarendsD/main
+[33ma00eef0[m Merge pull request #34 from Funkicide/add-translations
+[33m20f763d[m Merge pull request #33 from sleepy-corpse/name-generator
+[33m9a525d0[m delete and fix some files
+[33m792de26[m add e2e tests
+[33m88c0b9a[m [#29] Add translations to the editor
+[33m8a97ae2[m Add snippet name generation
+[33ma20e0f9[m fix yandex verification
+[33m2e04608[m fix favicon
+[33m7282973[m add favicon
+[33mf31c646[m add a snippet deletion handler #25
+[33m9a4a1c6[m add a notification when registering if a user already exists #25
+[33m4e604a8[m add a snippet deletion function to provider #25
+[33md774b14[m add yandex verification
+[33m0a42e3f[m Require authorization for editing(fix)
+[33m32ea3d8[m Require authorization for editing
+[33mf476692[m Merge pull request #21 from Hexlet/landing-route
+[33m6f4fbe5[m fix link
+[33m8b0bccb[m fix snippet link
+[33m34dfa91[m fix links
+[33mb4e1505[m reverse doctype
+[33mff04077[m fix link
+[33mc61836f[m add landing routing
+[33me9720cd[m use heroku email from secrets
+[33m7cd3b49[m update release.yml action
+[33m5673c21[m update deploy aciton
+[33m17b8ea8[m Merge pull request #17 from Takaiva/share-embed
+[33m6bcb6c3[m resolve conficts #9
+[33mac404ba[m add clipboard to copy on button click #9
+[33m39a7589[m update snippet provider, add methods for embedding components #9
+[33m8663a69[m add local storage clearing when access token expired #9
+[33m1b2fd48[m update navbar #9
+[33m434771a[m update locales for new components #9
+[33m872f9b3[m add new embedPagePath, remove useless /repls page path #9
+[33mb6e9414[m remove navbar from root index.jsx to be able to not render it on certain pages; add main layout outler to avoid forcefully render navbar for embed snippet component; add private route to restrict access to profile #9
+[33meeed388[m add styles for modals #9
+[33m950c3d1[m update main modal component due to changes #9
+[33m2ef8518[m add new universal component for sharing and saving snippets, simplifying the logic #9
+[33md71a08a[m make this modal usefull only for "New Repl" button on profile page #9
+[33mc56ead5[m update signIn/signUp modals to not fource user to create new repl after authorizing #9
+[33mc9f3233[m add main component for snippet embedding #9
+[33m4ba5335[m add run button component for embed version of snippet without updating the source code on click #9
+[33m7df945b[m add word breaking logic to editor, especially usefull for embed version of editor #9
+[33m57e6962[m add styles for run button for embed snippet frame #9
+[33mcad18db[m update SHARE button logic, add various behaviour based on user login status and search params #9
+[33m5a1c285[m add redirect to profile when authorize with separate signIn/signUp pages #9
+[33m7fbf1c2[m update profile page and styles for profile #9
+[33m247fca9[m Merge pull request #16 from Pavel-nk95/redoing-the-landing
+[33m8a49072[m Merge pull request #15 from LarendsD/main
+[33m7f83426[m routes changed
+[33md5364ac[m code correction based on comments
+[33m785cdae[m fix logout button
+[33mb26b113[m Merge pull request #14 from Takaiva/profile-page
+[33m05b2fd1[m small fixes #4
+[33m7d6b176[m made prettier #4
+[33m53bd445[m update tests #4
+[33md62b7e9[m add checking login status with localStorage as well to avoid navbar components re-rendrs #4
+[33m72a8a65[m update texts #4
+[33m1d7cc69[m add routing to profile when click on My Repls in bar menu #4
+[33mb8c36b5[m update validation rules for snippet name and update text through i18n #4
+[33m9b5b377[m update text through i18n #4
+[33m2b6c797[m add profile page and styles #4
+[33mf1d2bfa[m Create LICENSE.md
+[33madcc9d4[m Delete LICENCE.md
+[33m40ef39d[m Create LICENCE.md
+[33mda8a9af[m Merge pull request #11 from Pavel-nk95/redoing-the-landing
+[33md926cf7[m Merge pull request #10 from Takaiva/snippet/modal
+[33mbbbe8b6[m small fixes #5
+[33mdf4a7f6[m add correctly moving to a page with save snippet even if click outside the modal window fix #5
+[33m3630f52[m make lint #5
+[33m822dab5[m complete task
+[33mee41bc3[m add buffer #5
+[33m22d67ee[m add posibility to use optionally "code" or "name" keys when creating snippet while making post query #5
+[33m680fd9a[m add code loading from snippet when snippet search params are present #5
+[33md654754[m update routes with more info #5
+[33ma7e1607[m add snippet provider wrapper to entire app, add main modal component #5
+[33mfe523ab[m add modal reducer to redux store #5
+[33me527337[m update locales due to modal components #5
+[33m57632c4[m update auth provider #5
+[33m2cd6c0c[m add snippet provider component as a context api unified interface for operating on snippets #5
+[33m88d25c4[m render 'My Repls' component in navbar menu only when user is logged in #5
+[33m6f84e89[m restrict xterm to overflow; fix ui making editor and output terminal look symmetrical #5
+[33m2d5710d[m add share button opening modals, add correct snippet id initialization when component mounts, add snippet code updating after every run if it has been saved #5
+[33m747e059[m add style for two main buttons: run and share #5
+[33m468b087[m add encoded link for every repl saved in profile #5
+[33m6a95cd8[m update texts, add login status updating with auth provider #5
+[33m24a6f87[m added modal slice with modal components for sharing tool #5
+[33mf5cc285[m initial commit
