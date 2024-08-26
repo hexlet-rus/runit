@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 import { useParams } from 'react-router';
-import { useDebounce, useMediaQuery } from 'usehooks-ts';
+import { useDebounce, useMediaQuery, useTernaryDarkMode } from 'usehooks-ts';
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -11,12 +11,12 @@ import { useAuth, useSnippets } from '../../hooks/index.js';
 import { actions } from '../../slices/index.js';
 
 import CodeEditor from '../../components/Editor/index.jsx';
+import HTMLPreview from '../../components/HTMLPreview/HTMLPreview.jsx';
 import DefaultLoader from '../../components/Loaders/DefaultLoader.jsx';
 import Terminal from '../../components/Terminal/index.jsx';
-import FileToolbar from './FileToolbar.jsx';
-import AuthWarning from './AuthWarning.jsx';
 import ActionsToolbar from './ActionsToolbar.jsx';
-import HTMLPreview from '../../components/HTMLPreview/HTMLPreview.jsx';
+import AuthWarning from './AuthWarning.jsx';
+import FileToolbar from './FileToolbar.jsx';
 
 const AUTOSAVE_TIMEOUT = 1000;
 
@@ -27,6 +27,7 @@ function ResizeHandler({ direction = 'horizontal' }) {
 }
 
 function SnippetPage() {
+  const { isDarkMode } = useTernaryDarkMode();
   const { isLoggedIn } = useAuth();
   const { isAllSaved, isReady, code, hasSnippetData, snippetData, direction } =
     useSelector((state) => state.editor);
@@ -164,7 +165,9 @@ function SnippetPage() {
         </Panel>
         <ResizeHandler direction={direction} />
         <Panel
-          className="bg-white rounded-3 overflow-hidden"
+          className={`${
+            isDarkMode ? 'bg-dark' : 'bg-white'
+          } rounded-3 overflow-hidden`}
           collapsible
           minSize={10}
         >
