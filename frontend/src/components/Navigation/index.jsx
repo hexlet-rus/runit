@@ -19,7 +19,7 @@ import GuestMenu from './GuestMenu.jsx';
 
 function Navigation() {
   const { isLoggedIn } = useAuth();
-  const { t } = useTranslation();
+  const { t: tN } = useTranslation('translation', { keyPrefix: 'navbar' });
 
   const guestUser = localStorage.getItem('guestUserData');
 
@@ -35,11 +35,7 @@ function Navigation() {
           as={Link}
           to={isLoggedIn ? routes.myProfilePagePath() : routes.landingPath()}
         >
-          <Image
-            alt={t('navbar.mainLabel')}
-            className="logo-height"
-            src={Logo}
-          />
+          <Image alt={tN('mainLabel')} className="logo-height" src={Logo} />
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"

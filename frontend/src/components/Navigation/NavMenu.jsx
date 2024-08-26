@@ -9,7 +9,7 @@ import { useAuth } from '../../hooks';
 import routes from '../../routes.js';
 
 function MySnippetsLink() {
-  const { t } = useTranslation();
+  const { t: tN } = useTranslation('translation', { keyPrefix: 'navbar' });
   const username = useSelector((state) => state.user.userInfo.username);
 
   return (
@@ -22,7 +22,7 @@ function MySnippetsLink() {
       >
         <span>
           <GridFill className="bi me-1" />
-          {t('navbar.mySnippets')}
+          {tN('mySnippets')}
         </span>
       </Nav.Link>
     </Nav.Item>
@@ -30,7 +30,7 @@ function MySnippetsLink() {
 }
 
 function AboutLink() {
-  const { t } = useTranslation();
+  const { t: tN } = useTranslation('translation', { keyPrefix: 'navbar' });
 
   return (
     <Nav.Item as="li">
@@ -39,7 +39,7 @@ function AboutLink() {
         eventKey={routes.aboutPagePath()}
         to={routes.aboutPagePath()}
       >
-        {t('navbar.about')}
+        {tN('about')}
       </Nav.Link>
     </Nav.Item>
   );

@@ -29,12 +29,6 @@ const icons = new Map()
   .set('python', PythonIcon)
   .set('php', PhpIcon);
 
-const extensions = new Map()
-  .set('javascript', 'js')
-  .set('python', 'py')
-  .set('php', 'php')
-  .set('html', 'html');
-
 const generateGuestUserData = () => {
   const username = `guest_${faker.string.alphanumeric(5)}`;
   const email = `${username}@hexlet.com`;
@@ -43,6 +37,10 @@ const generateGuestUserData = () => {
 };
 
 function NewSnippet({ handleClose, isOpen }) {
+  const { t: tMNS } = useTranslation('translation', {
+    keyPrefix: 'modals.newSnippet',
+  });
+  const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
   const { t } = useTranslation();
   const auth = useAuth();
   const dispatch = useDispatch();
@@ -95,10 +93,10 @@ function NewSnippet({ handleClose, isOpen }) {
             Array.isArray(err.response?.data?.errs?.message)
           ) {
             // случай, когда случайно сгенерировался username или email, который уже есть в базе
-            console.log(t('errors.network'));
+            console.log(tErr('network'));
             throw err;
           } else {
-            console.log(t('errors.network'));
+            console.log(tErr('network'));
             throw err;
           }
         }
@@ -120,10 +118,10 @@ function NewSnippet({ handleClose, isOpen }) {
           handleClose();
         } catch (error) {
           if (!error.isAxiosError) {
-            console.log(t('errors.unknown'));
+            console.log(tErr('unknown'));
             throw error;
           } else {
-            console.log(t('errors.network'));
+            console.log(tErr('network'));
             throw error;
           }
         } finally {
@@ -161,10 +159,10 @@ function NewSnippet({ handleClose, isOpen }) {
       formik.setFieldTouched('name', true);
     } catch (error) {
       if (!error.isAxiosError) {
-        console.log(t('errors.unknown'));
+        console.log(tErr('unknown'));
         throw error;
       } else {
-        console.log(t('errors.network'));
+        console.log(tErr('network'));
         throw error;
       }
     }
@@ -190,14 +188,12 @@ function NewSnippet({ handleClose, isOpen }) {
   return (
     <Modal centered onHide={handleModalClose} show={isOpen}>
       <Modal.Header className="py-3 pb-0" closeButton>
-        <Modal.Title className="display-6 fs-3">
-          {t('modals.newSnippet.title')}
-        </Modal.Title>
+        <Modal.Title className="display-6 fs-3">{tMNS('title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="row">
           <div className="col-md-6">
-            <Form.Label>{t('modals.newSnippet.template')}</Form.Label>
+            <Form.Label>{tMNS('template')}</Form.Label>
             <Typeahead
               id="template"
               labelKey="template"
@@ -240,7 +236,7 @@ function NewSnippet({ handleClose, isOpen }) {
           <div className="col-md-6">
             <Form className="flex-fill" onSubmit={formik.handleSubmit}>
               <Form.Group className="position-relative">
-                <Form.Label>{t('modals.newSnippet.snippetName')}</Form.Label>
+                <Form.Label>{tMNS('snippetName')}</Form.Label>
                 <Form.Control
                   ref={inputRefName}
                   autoComplete="off"
@@ -263,7 +259,7 @@ function NewSnippet({ handleClose, isOpen }) {
                   type="submit"
                   variant="primary"
                 >
-                  {t('modals.newSnippet.create')}
+                  {tMNS('create')}
                 </Button>
               </div>
             </Form>

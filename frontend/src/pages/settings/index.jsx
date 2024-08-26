@@ -13,9 +13,12 @@ import { actions as modalActions } from '../../slices/modalSlice.js';
 import AvatarChangeForm from '../../components/Forms/AvatarChangeForm.jsx';
 import ChangePasswordForm from '../../components/Forms/ChangePasswordForm.jsx';
 import UpdateAccountForm from '../../components/Forms/UpdateAccountForm.jsx';
+import ApperearanceForm from '../../components/Forms/AppearanceForm.jsx';
 
 function SettingsPage() {
-  const { t } = useTranslation();
+  const { t: tPS } = useTranslation('translation', {
+    keyPrefix: 'profileSettings',
+  });
   const dispatch = useDispatch();
 
   const handleRemoveAccount = () => {
@@ -28,9 +31,7 @@ function SettingsPage() {
         <Row className="justify-content-center align-items-center h-100 py-5 m-auto py-5 h-100">
           <Col className="max-w-lg">
             <div className="d-flex flex-column gap-2 bg-body rounded-4 p-4 p-sm-5">
-              <h1 className="display-6 mb-5">
-                {t('profileSettings.pageHeader')}
-              </h1>
+              <h1 className="display-6 mb-5">{tPS('pageHeader')}</h1>
               <div className="d-flex flex-column flex-md-row gap-5">
                 <div className="flex-shrink-1">
                   <AvatarChangeForm />
@@ -40,6 +41,8 @@ function SettingsPage() {
                     <UpdateAccountForm />
                     <hr className="border-secondary-subtle" />
                     <ChangePasswordForm />
+                    <hr className="border-secondary-subtle" />
+                    <ApperearanceForm />
                   </Stack>
                 </div>
               </div>
@@ -51,7 +54,7 @@ function SettingsPage() {
                   size="sm"
                   variant="nofill-secondary"
                 >
-                  <XCircle className="bi" /> {t('profileActions.removeAccount')}
+                  <XCircle className="bi" /> {tPS('removeAccount')}
                 </Button>
               </div>
             </div>

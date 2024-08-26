@@ -2,7 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 function NotFound() {
-  const { t } = useTranslation();
+  const { t: tPNF } = useTranslation('translation', {
+    keyPrefix: 'pageNotFound',
+  });
 
   return (
     <div className="container mb-5">
@@ -16,28 +18,22 @@ function NotFound() {
           />
         </div>
         <div className="col">
-          <h1 className="mb-4">{t('pageNotFound.title')}</h1>
-          <p className="fs-5 text-black mb-3">
-            {t('pageNotFound.whatHappened.title')}
-          </p>
-          <p className="mb-4">{t('pageNotFound.whatHappened.body')}</p>
-          <p className="fs-5 text-black mb-3">
-            {t('pageNotFound.whyHappened.title')}
-          </p>
-          <p className="mb-4">{t('pageNotFound.whyHappened.body')}</p>
-          <p className="fs-5 text-black mb-3">
-            {t('pageNotFound.whatToDo.title')}
-          </p>
+          <h1 className="mb-4">{tPNF('title')}</h1>
+          <p className="fs-5 text-black mb-3">{tPNF('whatHappened.title')}</p>
+          <p className="mb-4">{tPNF('whatHappened.body')}</p>
+          <p className="fs-5 text-black mb-3">{tPNF('whyHappened.title')}</p>
+          <p className="mb-4">{tPNF('whyHappened.body')}</p>
+          <p className="fs-5 text-black mb-3">{tPNF('whatToDo.title')}</p>
           <p className="mb-2">
-            {t('pageNotFound.whatToDo.body')}
-            <Link to="/">{t('pageNotFound.whatToDo.returnButton')}</Link>
+            {tPNF('whatToDo.body')}
+            <Link to="/">{tPNF('whatToDo.returnButton')}</Link>
           </p>
           <p className="mb-0">
-            {t('pageNotFound.support.writeToUs')}
+            {tPNF('support.writeToUs')}
             <a href="mailto:runit@hexlet.io" rel="nofollow">
-              {t('pageNotFound.support.link')}
+              {tPNF('support.link')}
             </a>
-            {t('pageNotFound.support.promise')}
+            {tPNF('support.promise')}
           </p>
         </div>
       </div>

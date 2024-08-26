@@ -10,7 +10,13 @@ import routes from '../../routes.js';
 import SignUpForm from '../../components/Forms/SignUpForm.jsx';
 
 function SignUp() {
-  const { t } = useTranslation();
+  const { t: tSU } = useTranslation('translation', { keyPrefix: 'signUp' });
+  const { t: tSUF } = useTranslation('translation', {
+    keyPrefix: 'signUp.footer',
+  });
+  const { t: tPA } = useTranslation('translation', {
+    keyPrefix: 'profileActions',
+  });
   const navigate = useNavigate();
 
   return (
@@ -19,7 +25,7 @@ function SignUp() {
         <Row className="justify-content-center align-items-center m-auto py-3 py-sm-5 h-100">
           <Col className="max-w-sm p-0">
             <div className="d-flex flex-column gap-sm-3 gap-4 bg-body rounded-4 p-4 p-sm-5">
-              <h1 className="display-6">{t('signUp.pageHeader')}</h1>
+              <h1 className="display-6">{tSU('pageHeader')}</h1>
               <SignUpForm
                 onSuccess={() => {
                   navigate(routes.myProfilePagePath());
@@ -28,11 +34,9 @@ function SignUp() {
               <hr />
               <div className="small">
                 <span className="text-body-secondary">
-                  {t('signUp.footer.signInHeader')}
+                  {tSUF('signInHeader')}
                 </span>{' '}
-                <Link to={routes.signInPagePath()}>
-                  {t('profileActions.signIn')}
-                </Link>
+                <Link to={routes.signInPagePath()}>{tPA('signIn')}</Link>
               </div>
             </div>
           </Col>

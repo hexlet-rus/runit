@@ -19,6 +19,10 @@ import { actions as userActions } from '../../slices/userSlice';
 import { actions as modalActions } from '../../slices/modalSlice.js';
 
 function GuestSignupForm() {
+  const { t: tPS } = useTranslation('translation', {
+    keyPrefix: 'profileSettings',
+  });
+  const { t: tSU } = useTranslation('translation', { keyPrefix: 'signUp' });
   const { t } = useTranslation();
   const emailRef = useRef();
   const usernameRef = useRef();
@@ -134,7 +138,7 @@ function GuestSignupForm() {
       >
         <div className="d-flex flex-column">
           <Form.Group className="form-group" controlId="username">
-            <Form.Label>{t('profileSettings.usernameLabel')}</Form.Label>
+            <Form.Label>{tPS('usernameLabel')}</Form.Label>
             <Form.Control
               ref={usernameRef}
               autoComplete="username"
@@ -152,7 +156,7 @@ function GuestSignupForm() {
           </Form.Group>
 
           <Form.Group className="form-group" controlId="email">
-            <Form.Label>{t('profileSettings.emailLabel')}</Form.Label>
+            <Form.Label>{tPS('emailLabel')}</Form.Label>
             <Form.Control
               ref={emailRef}
               autoComplete="email"
@@ -170,7 +174,7 @@ function GuestSignupForm() {
           </Form.Group>
 
           <Form.Group className="form-group" controlId="password">
-            <Form.Label>{t('profileSettings.passwordLabel')}</Form.Label>
+            <Form.Label>{tPS('passwordLabel')}</Form.Label>
             <div className="input-group-inline-button">
               <Form.Control
                 autoComplete="new-password"
@@ -200,7 +204,7 @@ function GuestSignupForm() {
           type="submit"
           variant="primary"
         >
-          {t('signUp.registerButton')}
+          {tSU('registerButton')}
         </Button>
       </Form>
       <GithubSignInButton />

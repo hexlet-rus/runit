@@ -36,6 +36,9 @@ settings:
         - .ts
 
 rules:
+  class-methods-use-this:
+    - 2
+    - exceptMethods: ["up", "down"]
   import/no-cycle: [2, { maxDepth: 1 }]
   import/prefer-default-export: 0
   import/extensions: 0

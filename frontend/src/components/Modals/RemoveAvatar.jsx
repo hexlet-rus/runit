@@ -1,23 +1,23 @@
 import { Button, Modal, FormGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
 
 function RemoveAvatar({ handleClose, isOpen }) {
-  const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { t: tMRA } = useTranslation('translation', {
+    keyPrefix: 'modals.removeAvatar',
+  });
 
   return (
     <Modal centered onHide={handleClose} show={isOpen} size="m">
       <Modal.Body>
         <div className="text-center">
-          <p>{t('modals.removeAvatar.message')}</p>
+          <p>{tMRA('message')}</p>
         </div>
         <FormGroup className="d-flex justify-content-center">
           <Button className="me-5 px-4" onClick={handleClose} variant="danger">
-            {t('modals.removeAvatar.removeButton')}
+            {tMRA('removeButton')}
           </Button>
           <Button className="px-4" onClick={handleClose} variant="secondary">
-            {t('modals.removeAvatar.cancelButton')}
+            {tMRA('cancelButton')}
           </Button>
         </FormGroup>
       </Modal.Body>

@@ -13,7 +13,9 @@ import { useSnippets } from '../../hooks';
 function ShareSnippet({ isOpen, handleClose }) {
   const { name, slug, ownerUsername } = useSelector(({ modal }) => modal.item);
   const snippetApi = useSnippets();
-  const { t } = useTranslation();
+  const { t: tMS } = useTranslation('translation', {
+    keyPrefix: 'modals.share',
+  });
 
   useEffect(() => {
     const clipboard = new ClipboardJS('.button-copy');
@@ -36,7 +38,7 @@ function ShareSnippet({ isOpen, handleClose }) {
 
       <Modal.Body>
         <Form.Group controlId="link-input">
-          <Form.Label>{t('modals.share.snippetLinkLabel')}</Form.Label>
+          <Form.Label>{tMS('snippetLinkLabel')}</Form.Label>
           <div className="input-group-inline-button">
             <Form.Control
               className="text-secondary"
@@ -52,15 +54,13 @@ function ShareSnippet({ isOpen, handleClose }) {
               variant="nofill-body"
             >
               <Clipboard className="bi" />
-              <span className="visually-hidden">
-                {t('modals.share.copyLinkButton')}
-              </span>
+              <span className="visually-hidden">{tMS('copyLinkButton')}</span>
             </Button>
           </div>
         </Form.Group>
 
         <Form.Group className="mt-5" controlId="embed-input">
-          <Form.Label>{t('modals.share.snippetEmbedLabel')}</Form.Label>
+          <Form.Label>{tMS('snippetEmbedLabel')}</Form.Label>
           <div className="input-group-inline-button">
             <Form.Control
               as="textarea"
@@ -78,9 +78,7 @@ function ShareSnippet({ isOpen, handleClose }) {
               variant="nofill-body"
             >
               <Clipboard className="bi" />
-              <span className="visually-hidden">
-                {t('modals.share.copyEmbedButton')}
-              </span>
+              <span className="visually-hidden">{tMS('copyEmbedButton')}</span>
             </Button>
           </div>
         </Form.Group>

@@ -22,7 +22,7 @@ function Landing() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { t } = useTranslation();
+  const { t: tL } = useTranslation('translation', { keyPrefix: 'landing' });
 
   const handleCodeWithoutRegButton = () => {
     if (isLoggedIn) {
@@ -38,21 +38,21 @@ function Landing() {
         <section className="d-flex flex-column flex-grow h-100 py-3 py-md-4 py-lg-5 justify-content-evenly">
           <Row>
             <p className={`text-center mb-0 ${classes.fs5} ${classes.lh5}`}>
-              {t('landing.freeProject')}
+              {tL('freeProject')}
             </p>
           </Row>
           <Row className="my-3">
             <h1
               className={`${classes.colorPrimary} text-center fw-bold mb-0 mt-sm-5 display-1`}
             >
-              {t('landing.fastIDE.first')} {t('landing.fastIDE.second')}
+              {tL('fastIDE.first')} {tL('fastIDE.second')}
             </h1>
           </Row>
           <Row>
             <p
               className={`text-center mb-0 mb-5 mt-sm-4 ${classes.fw500} ${classes.fs3} ${classes.lh3}`}
             >
-              {t('landing.writeInBrowser')}
+              {tL('writeInBrowser')}
             </p>
           </Row>
           <Row className="row-cols-1 row-cols-sm-3">
@@ -63,17 +63,17 @@ function Landing() {
                 src={tagImg}
               />
               <p className={`${classes.fs5} mb-0 ${classes.lh5}`}>
-                {t('landing.easyStart.first')}
+                {tL('easyStart.first')}
                 <br />
-                {t('landing.easyStart.second')}
+                {tL('easyStart.second')}
               </p>
             </Col>
             <Col className="d-flex flex-sm-column align-items-center align-items-sm-start mb-3 mb-sm-0">
               <img alt="os" className="mb-sm-3 mb-1 me-3 me-sm-0" src={osImg} />
               <p className={`${classes.fs5} mb-0 ${classes.lh5}`}>
-                {t('landing.allDevices.first')}
+                {tL('allDevices.first')}
                 <br />
-                {t('landing.allDevices.second')}
+                {tL('allDevices.second')}
               </p>
             </Col>
             <Col className="d-flex flex-sm-column align-items-center align-items-sm-start mb-3 mb-sm-0">
@@ -83,9 +83,9 @@ function Landing() {
                 src={shareImg}
               />
               <p className={`${classes.fs5} mb-0 ${classes.lh5}`}>
-                {t('landing.shareCode.first')}
+                {tL('shareCode.first')}
                 <br />
-                {t('landing.shareCode.second')}
+                {tL('shareCode.second')}
               </p>
             </Col>
           </Row>
@@ -96,7 +96,7 @@ function Landing() {
               size="lg"
               to={routes.signInPagePath()}
             >
-              {t('landing.startCoding')}
+              {tL('startCoding')}
             </Button>
           </Row>
           <Row className="justify-content-center">
@@ -105,20 +105,20 @@ function Landing() {
               onClick={handleCodeWithoutRegButton}
               size="lg"
             >
-              {t('landing.codeWithoutReg')}
+              {tL('codeWithoutReg')}
             </Button>
           </Row>
         </section>
         <section className={`${classes.mt45}`}>
           <h2 className="text-center display-4 fw-bold mb-0">
-            {t('landing.noConfig')}
+            {tL('noConfig')}
           </h2>
           <Row className="mt-5 row-cols-1 row-cols-sm-2 d-flex justify-content-between">
             <Col className="mb-5 mb-sm-0">
               <p className={`${classes.fs4} mb-0 ${classes.lh4} me-4`}>
-                {t('landing.modern')}
+                {tL('modern')}
                 <br /> <br />
-                {t('landing.fast')}
+                {tL('fast')}
               </p>
             </Col>
             <Col>
@@ -126,31 +126,31 @@ function Landing() {
                 <li className="mb-3 d-flex">
                   <img alt="" className={`${classes.listIcon}`} src={Checked} />
                   <p className={`${classes.fs5} ${classes.lh5}`}>
-                    {t('landing.inBrowser')}
+                    {tL('inBrowser')}
                   </p>
                 </li>
                 <li className="mb-3 d-flex">
                   <img alt="" className={`${classes.listIcon}`} src={Checked} />
                   <p className={`${classes.fs5} ${classes.lh5}`}>
-                    {t('landing.noZIP')}
+                    {tL('noZIP')}
                   </p>
                 </li>
                 <li className="mb-3 d-flex">
                   <img alt="" className={`${classes.listIcon}`} src={Checked} />
                   <p className={`${classes.fs5} ${classes.lh5}`}>
-                    {t('landing.allComputers')}
+                    {tL('allComputers')}
                   </p>
                 </li>
                 <li className="mb-3 d-flex">
                   <img alt="" className={`${classes.listIcon}`} src={Checked} />
                   <p className={`${classes.fs5} ${classes.lh5}`}>
-                    {t('landing.allOS')}
+                    {tL('allOS')}
                   </p>
                 </li>
                 <li className="mb-3 d-flex">
                   <img alt="" className={`${classes.listIcon}`} src={Checked} />
                   <p className={`${classes.fs5} ${classes.lh5}`}>
-                    {t('landing.noSettings')}
+                    {tL('noSettings')}
                   </p>
                 </li>
               </ul>
@@ -159,7 +159,7 @@ function Landing() {
         </section>
         <section className={`${classes.mt65}`}>
           <h2 className="text-center display-4 fw-bold mb-0">
-            {t('landing.moreOpportunity')}
+            {tL('moreOpportunity')}
           </h2>
           <Row className={`${classes.mt55} row-cols-1 row-cols-sm-3`}>
             <Col className="d-flex flex-column mb-4 mb-sm-0">
@@ -172,12 +172,10 @@ function Landing() {
                   width="39"
                 />
                 <h5 className={`${classes.lh4} ${classes.fs4} mb-2`}>
-                  {t('landing.allLanguages.title')}
+                  {tL('allLanguages.title')}
                 </h5>
               </div>
-              <p className={`${classes.lh6} mb-0`}>
-                {t('landing.allLanguages.text')}
-              </p>
+              <p className={`${classes.lh6} mb-0`}>{tL('allLanguages.text')}</p>
             </Col>
             <Col className="d-flex flex-column mb-4 mb-sm-0">
               <div className="d-flex flex-sm-column align-items-center align-items-sm-start">
@@ -189,12 +187,10 @@ function Landing() {
                   width="39"
                 />
                 <h5 className={`${classes.lh4} ${classes.fs4} mb-2`}>
-                  {t('landing.teamWork.title')}
+                  {tL('teamWork.title')}
                 </h5>
               </div>
-              <p className={`${classes.lh6} mb-0`}>
-                {t('landing.teamWork.text')}
-              </p>
+              <p className={`${classes.lh6} mb-0`}>{tL('teamWork.text')}</p>
             </Col>
             <Col className="d-flex flex-column mb-4 mb-sm-0">
               <div className="d-flex flex-sm-column align-items-center align-items-sm-start">
@@ -206,18 +202,18 @@ function Landing() {
                   width="39"
                 />
                 <h5 className={`${classes.lh4} ${classes.fs4} mb-2`}>
-                  {t('landing.readyBoilerplates.title')}
+                  {tL('readyBoilerplates.title')}
                 </h5>
               </div>
               <p className={`${classes.lh6} mb-0`}>
-                {t('landing.readyBoilerplates.text')}
+                {tL('readyBoilerplates.text')}
               </p>
             </Col>
           </Row>
         </section>
         <section className={`${classes.mt45}`}>
           <h3 className={`text-center ${classes.fs2} mb-0 ${classes.lh2}`}>
-            {t('landing.nowCoding')}
+            {tL('nowCoding')}
           </h3>
           <Row className="justify-content-center">
             <Button
@@ -226,7 +222,7 @@ function Landing() {
               size="lg"
               to={routes.signInPagePath()}
             >
-              {t('landing.startCoding')}
+              {tL('startCoding')}
             </Button>
           </Row>
         </section>

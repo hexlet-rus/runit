@@ -87,7 +87,7 @@
     "agreement": "Privacy",
     "blog": "Blog",
     "career": "Careers at Hexlet",
-    "city": "432071 Ulyanovsk, Russian Federation",
+    "city": "108813, Moscow",
     "codeBasics": "Code Basics",
     "codeBattle": "Codebattle",
     "college": "Hexlet College",
@@ -123,7 +123,7 @@
     "ru": "Русский",
     "shop": "Merch Shop",
     "source": "Source Code",
-    "street": "pr-t. Narimanova, d. 1g, 23",
+    "street": "Solnechnaya str., 3A, p. 1, 10/3",
     "study": "Study",
     "subscribe": "Subscribe",
     "success": "Success Stories",
@@ -262,6 +262,7 @@
     "signUp": "Sign Up"
   },
   "profileSettings": {
+    "appearance": "Appearance",
     "changeButton": "Change",
     "changePassword": "Change Password",
     "currentPassword": "Current Password",
@@ -274,7 +275,11 @@
     "updateButton": "Update",
     "updateFailed": "Failed to update account data. Try again later",
     "updateSuccessful": "Profile has been updated successfully",
-    "usernameLabel": "Username"
+    "usernameLabel": "Username",
+    "language": "UI Language",
+    "theme": "Theme",
+    "ru": "Russian",
+    "en": "English"
   },
   "forgotPass": {
     "pageHeader": "Forgot password?",

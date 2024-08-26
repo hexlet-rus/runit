@@ -10,7 +10,7 @@ import routes from '../../routes.js';
 export const Repls = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t: tP } = useTranslation('translation', { keyPrefix: 'profile' });
 
   const openTerminal = (code) => () => {
     dispatch(actions.setCodeAndSavedCode(code)); // далее роутинг на App
@@ -27,7 +27,7 @@ export const Repls = () => {
               <Card.Body>
                 <Card.Text>{img}</Card.Text>
                 <Button onClick={openTerminal(code)} variant="primary">
-                  {t('profile.openReplButton')}
+                  {tP('openReplButton')}
                 </Button>
               </Card.Body>
             </Card>

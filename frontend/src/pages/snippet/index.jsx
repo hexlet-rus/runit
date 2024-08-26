@@ -164,7 +164,7 @@ function SnippetPage() {
         </Panel>
         <ResizeHandler direction={direction} />
         <Panel
-          className="bg-body rounded-3 overflow-hidden"
+          className="bg-white rounded-3 overflow-hidden"
           collapsible
           minSize={10}
         >

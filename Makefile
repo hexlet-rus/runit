@@ -1,4 +1,4 @@
-setup: install db-migrate
+setup: prepare-env install db-migrate build
 
 install:
 	yarn install
@@ -69,3 +69,6 @@ release:
 git-update:
 	git switch main
 	git pull upstream main --tags --rebase
+
+prepare-env:
+	make -C backend prepare-env

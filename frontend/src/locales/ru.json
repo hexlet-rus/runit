@@ -25,7 +25,7 @@
     "secondBackendDevTool": "TypeScript"
   },
   "appStatus": {
-    "loading": "Загрузка"
+    "loading": "Загрузка..."
   },
   "codeTemplates": {
     "javascript": "// Здесь будет код на JavaScript\n",
@@ -87,7 +87,7 @@
     "agreement": "Соглашение об обработке ПД",
     "blog": "Блог",
     "career": "Карьера в Хекслете",
-    "city": "432071, г. Ульяновск,",
+    "city": "108813, г. Москва,вн.тер.г. поселение Московский, г. Московский",
     "codeBasics": "Code Basics",
     "codeBattle": "Codebattle",
     "college": "Хекслет Колледж",
@@ -123,7 +123,7 @@
     "ru": "Русский",
     "shop": "Магазин мерча",
     "source": "Исходный код",
-    "street": "пр-т Нариманова, дом 1Г, оф. 23",
+    "street": "ул. Солнечная, д. 3А, стр. 1, помещ. 10/3",
     "study": "Учиться",
     "subscribe": "Подписаться",
     "success": "Истории успеха",
@@ -395,6 +395,7 @@
     "signUp": "Регистрация"
   },
   "profileSettings": {
+    "appearance": "Внешний вид",
     "changeButton": "Изменить",
     "changePassword": "Изменить пароль",
     "currentPassword": "Текущий пароль",
@@ -407,7 +408,11 @@
     "updateButton": "Изменить",
     "updateFailed": "Не удалось обновить данные. Попробуйте позже",
     "updateSuccessful": "Данные аккаунта были обновлены",
-    "usernameLabel": "Имя пользователя"
+    "usernameLabel": "Имя пользователя",
+    "language": "Язык интерфейса",
+    "theme": "Тема",
+    "ru": "Русский",
+    "en": "English"
   },
   "forgotPass": {
     "pageHeader": "Забыли пароль?",

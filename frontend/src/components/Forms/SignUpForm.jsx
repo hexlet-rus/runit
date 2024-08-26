@@ -16,6 +16,10 @@ import PasswordVisibilityButton from './PasswordVisibilityButton.jsx';
 import FormAlert from './FormAlert.jsx';
 
 function SignupForm({ onSuccess = () => null }) {
+  const { t: tPS } = useTranslation('translation', {
+    keyPrefix: 'profileSettings',
+  });
+  const { t: tSU } = useTranslation('translation', { keyPrefix: 'signUp' });
   const { t } = useTranslation();
   const emailRef = useRef();
   const usernameRef = useRef();
@@ -119,7 +123,7 @@ function SignupForm({ onSuccess = () => null }) {
       >
         <div className="d-flex flex-column">
           <Form.Group className="form-group" controlId="username">
-            <Form.Label>{t('profileSettings.usernameLabel')}</Form.Label>
+            <Form.Label>{tPS('usernameLabel')}</Form.Label>
             <Form.Control
               ref={usernameRef}
               autoComplete="username"
@@ -137,7 +141,7 @@ function SignupForm({ onSuccess = () => null }) {
           </Form.Group>
 
           <Form.Group className="form-group" controlId="email">
-            <Form.Label>{t('profileSettings.emailLabel')}</Form.Label>
+            <Form.Label>{tPS('emailLabel')}</Form.Label>
             <Form.Control
               ref={emailRef}
               autoComplete="email"
@@ -155,7 +159,7 @@ function SignupForm({ onSuccess = () => null }) {
           </Form.Group>
 
           <Form.Group className="form-group" controlId="password">
-            <Form.Label>{t('profileSettings.passwordLabel')}</Form.Label>
+            <Form.Label>{tPS('passwordLabel')}</Form.Label>
             <div className="input-group-inline-button">
               <Form.Control
                 autoComplete="new-password"
@@ -185,7 +189,7 @@ function SignupForm({ onSuccess = () => null }) {
           type="submit"
           variant="primary"
         >
-          {t('signUp.registerButton')}
+          {tSU('registerButton')}
         </Button>
       </Form>
       <GithubSignInButton />

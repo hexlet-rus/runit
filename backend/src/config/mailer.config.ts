@@ -1,25 +1,16 @@
 import { MailerOptionsFactory, MailerOptions } from '@nestjs-modules/mailer';
 import { PugAdapter } from '@nestjs-modules/mailer/dist/adapters/pug.adapter';
 
-const configFromName = (transportUrl) => {
-  const parts = transportUrl.replace('smtp://', '').split(':');
-  const [emailName, otherInfo] = parts;
-  const domain = otherInfo.split('.');
-  const [, domName, dom] = domain;
-
-  return `${emailName}@${domName}.${dom}`;
-};
-
 export class MailerConfig implements MailerOptionsFactory {
   /* eslint-disable-next-line class-methods-use-this */
   createMailerOptions(): MailerOptions | Promise<MailerOptions> {
     const transportUrl = process.env.TRANSPORT_MAILER_URL;
+    const emailFrom = process.env.EMAIL_FROM ?? 'runit@localhost';
     const options: MailerOptions = {
       transport: transportUrl,
       defaults: {
-        from: `"Run IT" <${
-          transportUrl ? configFromName(transportUrl) : 'test'
-        }>`,
+        // NOTE: use runit.hexlet.ru domain for production
+        from: `"Run IT" <${emailFrom}>`,
       },
       template: {
         dir: `${process.cwd()}/src/users/templates`,

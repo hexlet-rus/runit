@@ -8,7 +8,13 @@ import Button from 'react-bootstrap/Button';
 import { actions } from '../../slices/modalSlice.js';
 
 function GuestMenu() {
-  const { t } = useTranslation();
+  const { t: tPA } = useTranslation('translation', {
+    keyPrefix: 'profileActions',
+  });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
+  const { t: tSU } = useTranslation('translation', { keyPrefix: 'signUp' });
   const dispatch = useDispatch();
 
   const handleNewSnippet = () => {
@@ -33,12 +39,12 @@ function GuestMenu() {
         <div className="snippet-logo">
           <GridFill className="bi" />
         </div>
-        <span className="visually-hidden">{t('profileActions.header')}</span>
+        <span className="visually-hidden">{tPA('header')}</span>
       </Dropdown.Toggle>
       <Dropdown.Menu as="ul">
         <li>
           <Dropdown.Item as={Button} onClick={handleNewSnippet}>
-            {t('snippetActions.new')}
+            {tSA('new')}
           </Dropdown.Item>
         </li>
         <Dropdown.Divider />
@@ -50,7 +56,7 @@ function GuestMenu() {
         <Dropdown.Divider />
         <li>
           <Dropdown.Item as={Button} onClick={handleRegButton}>
-            {t('signUp.registerButton')}
+            {tSU('registerButton')}
           </Dropdown.Item>
         </li>
       </Dropdown.Menu>

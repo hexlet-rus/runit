@@ -17,25 +17,25 @@ function SignInModal({ handleClose, isOpen }) {
     handleClose();
     navigate(routes.myProfilePagePath());
   };
+  const { t: tSIF } = useTranslation('translation', {
+    keyPrefix: 'signIn.footer',
+  });
+  const { t: tSI } = useTranslation('translation', { keyPrefix: 'signIn' });
 
   return (
     <Modal centered onHide={handleClose} show={isOpen}>
       <Modal.Header className="py-3" closeButton>
-        <Modal.Title className="display-6">
-          {t('signIn.pageHeader')}
-        </Modal.Title>
+        <Modal.Title className="display-6">{tSI('pageHeader')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <SignInForm onSuccess={handleSuccess} />
         <div className="d-flex justify-content-center align-items-baseline mt-5">
-          <span className="text-body-secondary">
-            {t('signIn.footer.signUpHeader')}
-          </span>{' '}
+          <span className="text-body-secondary">{tSIF('signUpHeader')}</span>{' '}
           <Button
             onClick={() => dispatch(actions.openModal({ type: 'signingUp' }))}
             variant="link"
           >
-            {t('signIn.footer.signUpAction')}
+            {tSIF('signUpAction')}
           </Button>
         </div>
       </Modal.Body>

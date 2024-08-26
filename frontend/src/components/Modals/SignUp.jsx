@@ -10,7 +10,13 @@ import { useAuth } from '../../hooks';
 
 function SignUpModal({ handleClose, isOpen }) {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { t: tSU } = useTranslation('translation', { keyPrefix: 'signUp' });
+  const { t: tSUF } = useTranslation('translation', {
+    keyPrefix: 'signUp.footer',
+  });
+  const { t: tPA } = useTranslation('translation', {
+    keyPrefix: 'profileActions',
+  });
   const auth = useAuth();
 
   const guestUser = localStorage.getItem('guestUserData');
@@ -18,9 +24,7 @@ function SignUpModal({ handleClose, isOpen }) {
   return (
     <Modal centered onHide={handleClose} show={isOpen}>
       <Modal.Header className="py-3" closeButton>
-        <Modal.Title className="display-6">
-          {t('signUp.pageHeader')}
-        </Modal.Title>
+        <Modal.Title className="display-6">{tSU('pageHeader')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {auth.isLoggedIn && guestUser ? (
@@ -30,14 +34,12 @@ function SignUpModal({ handleClose, isOpen }) {
         )}
         {!guestUser && (
           <div className="d-flex justify-content-center align-items-baseline mt-5">
-            <span className="text-body-secondary">
-              {t('signUp.footer.signInHeader')}
-            </span>{' '}
+            <span className="text-body-secondary">{tSUF('signInHeader')}</span>{' '}
             <Button
               onClick={() => dispatch(actions.openModal({ type: 'signingIn' }))}
               variant="link"
             >
-              {t('profileActions.signIn')}
+              {tPA('signIn')}
             </Button>
           </div>
         )}

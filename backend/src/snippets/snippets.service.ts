@@ -4,11 +4,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
 import { EntityManager, Repository } from 'typeorm';
 import { faker } from '@faker-js/faker/locale/en';
-import { Users } from '../entities/user.entity';
+import { User } from '../entities/user.entity';
 import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
-import { Snippets } from '../entities/snippet.entity';
-import { User } from '../users/interfaces/users.interface';
+import { Snippet } from '../entities/snippet.entity';
+import { IUser } from '../users/interfaces/users.interface';
 import { generateUniqSlug } from './utils/generate-uniq-slug';
 
 @Injectable()
@@ -16,13 +16,13 @@ export class SnippetsService {
   constructor(
     @InjectEntityManager()
     private snippetManager: EntityManager,
-    @InjectRepository(Snippets)
-    private snippetsRepository: Repository<Snippets>,
-    @InjectRepository(Users)
-    private usersRepository: Repository<Users>,
+    @InjectRepository(Snippet)
+    private snippetsRepository: Repository<Snippet>,
+    @InjectRepository(User)
+    private usersRepository: Repository<User>,
   ) {}
 
-  async findOne(id: number): Promise<Snippets> {
+  async findOne(id: number): Promise<Snippet> {
     return this.snippetsRepository.findOneBy({ id });
   }
 
@@ -41,7 +41,7 @@ export class SnippetsService {
 
   async getSlug(id: number): Promise<string> {
     const snippets = await this.snippetManager
-      .createQueryBuilder(Snippets, 'snippet')
+      .createQueryBuilder(Snippet, 'snippet')
       .where('snippet.userId= :id', { id })
       .getMany();
     return generateUniqSlug(snippets);
@@ -49,9 +49,9 @@ export class SnippetsService {
 
   async create(
     createSnippetDto: CreateSnippetDto,
-    { id }: User,
-  ): Promise<Snippets> {
-    const snippet = new Snippets();
+    { id }: IUser,
+  ): Promise<Snippet> {
+    const snippet = new Snippet();
     const { name, code, language } = createSnippetDto;
     const user = await this.usersRepository.findOneBy({ id });
     snippet.slug = await this.getSlug(id);
@@ -65,7 +65,7 @@ export class SnippetsService {
   async update(
     id: number,
     updateSnippetDto: UpdateSnippetDto,
-  ): Promise<Snippets> {
+  ): Promise<Snippet> {
     await this.snippetsRepository.update(id, updateSnippetDto);
     return this.snippetsRepository.findOneBy({ id });
   }
@@ -74,7 +74,7 @@ export class SnippetsService {
     await this.snippetsRepository.delete(id);
   }
 
-  findAll(): Promise<Snippets[]> {
+  findAll(): Promise<Snippet[]> {
     return this.snippetsRepository.find();
   }
 

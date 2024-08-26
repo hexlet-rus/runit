@@ -27,6 +27,10 @@ import SnippetCardWrapper from './SnippetCardWrapper.jsx';
 function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   const dispatch = useDispatch();
   const inputRef = useRef();
+  const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const { t } = useTranslation();
   const snippetApi = useSnippets();
   const { name, id, code, language } = data;
@@ -59,10 +63,10 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
       } catch (error) {
         formik.resetForm();
         if (!error.isAxiosError) {
-          console.log(t('errors.unknown'));
+          console.log(tErr('unknown'));
           throw error;
         } else {
-          console.log(t('errors.network'));
+          console.log(tErr('network'));
           throw error;
         }
       }
@@ -118,7 +122,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
           variant="nofill-body"
         >
           <PencilFill className="bi" />
-          <span className="visually-hidden">{t('snippetActions.rename')}</span>
+          <span className="visually-hidden">{tSA('rename')}</span>
         </Button>
       )}
     </div>
@@ -126,7 +130,9 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
 }
 
 function CardCode({ data, noLink = false }) {
-  const { t } = useTranslation();
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const snippetApi = useSnippets();
   const { code, slug } = data;
   const snippetCreatorUsername = data.user.username;
@@ -139,7 +145,7 @@ function CardCode({ data, noLink = false }) {
           className="stretched-link"
           to={snippetApi.genViewSnippetLink(snippetCreatorUsername, slug)}
         >
-          <span className="visually-hidden">{t('snippetActions.open')}</span>
+          <span className="visually-hidden">{tSA('open')}</span>
         </Link>
       )}
     </div>
@@ -154,7 +160,10 @@ function RenameMode({ data }) {
 
 function DeleteMode({ data, handleCancel }) {
   const { id } = data;
-  const { t } = useTranslation();
+  const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
 
@@ -164,10 +173,10 @@ function DeleteMode({ data, handleCancel }) {
       dispatch(snippetsActions.deleteSnippet(snippetId));
     } catch (error) {
       if (!error.isAxiosError) {
-        console.log(t('errors.unknown'));
+        console.log(tErr('unknown'));
         throw error;
       } else {
-        console.log(t('errors.network'));
+        console.log(tErr('network'));
         throw error;
       }
     }
@@ -176,7 +185,7 @@ function DeleteMode({ data, handleCancel }) {
   return (
     <div className="snippet-card-body">
       <div className="d-flex flex-column justify-content-end h-100">
-        <p className="text-center">{t('snippetActions.deleteConfirmation')}</p>
+        <p className="text-center">{tSA('deleteConfirmation')}</p>
         <div className="d-flex flex-row flex-nowrap align-items-center gap-3 px-2">
           <Button
             className="w-100"
@@ -184,7 +193,7 @@ function DeleteMode({ data, handleCancel }) {
             type="button"
             variant="secondary"
           >
-            {t('snippetActions.cancelButton')}
+            {tSA('cancelButton')}
           </Button>
           <Button
             className="w-100"
@@ -192,7 +201,7 @@ function DeleteMode({ data, handleCancel }) {
             type="button"
             variant="danger"
           >
-            {t('snippetActions.delete')}
+            {tSA('delete')}
           </Button>
         </div>
       </div>
@@ -202,7 +211,9 @@ function DeleteMode({ data, handleCancel }) {
 
 function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
   const [isOpened, setOpened] = useState(false);
-  const { t } = useTranslation();
+  const { t: tSA } = useTranslation('translation', {
+    keyPrefix: 'snippetActions',
+  });
 
   return (
     <div className="snippet-card-footer">
@@ -218,9 +229,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
             variant="nofill-danger"
           >
             <Trash3 className="bi" />
-            <span className="visually-hidden">
-              {t('snippetActions.delete')}
-            </span>
+            <span className="visually-hidden">{tSA('delete')}</span>
           </Button>
           <Button
             className={`btn-icon-only ms-auto ${isOpened ? '' : 'd-none'}`}
@@ -241,9 +250,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
           variant="nofill-body"
         >
           <ThreeDotsVertical className="bi" />
-          <span className="visually-hidden">
-            {t('snippetActions.additionalHeader')}
-          </span>
+          <span className="visually-hidden">{tSA('additionalHeader')}</span>
         </Button>
 
         <Button
@@ -252,7 +259,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
           variant="nofill-body"
         >
           <BoxArrowUp className="bi" />
-          <span className="visually-hidden">{t('snippetActions.share')}</span>
+          <span className="visually-hidden">{tSA('share')}</span>
         </Button>
       </div>
     </div>
@@ -260,7 +267,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
 }
 
 function SnippetCard({ data }) {
-  const { id, name, slug, code } = data;
+  const { id, name, slug, code, language } = data;
   const ownerUsername = data.user.username;
   const dispatch = useDispatch();
   const [mode, setMode] = useState('viewing');
@@ -277,6 +284,7 @@ function SnippetCard({ data }) {
         type: 'duplicateSnippet',
         item: {
           currSnippetName: name,
+          currSnippetLng: language,
           ownerUsername,
           code,
         },
