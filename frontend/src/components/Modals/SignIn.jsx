@@ -10,7 +10,6 @@ import SignInForm from '../Forms/SignInForm';
 
 function SignInModal({ handleClose, isOpen }) {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleSuccess = () => {

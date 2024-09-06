@@ -50,7 +50,7 @@ function GuestMenu() {
         <Dropdown.Divider />
         <li>
           <Dropdown.Item as={Button} onClick={handleSignInButton}>
-            {t('signIn.signInButton')}
+            {tSU('signIn.signInButton')}
           </Dropdown.Item>
         </li>
         <Dropdown.Divider />
