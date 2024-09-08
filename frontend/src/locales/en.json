@@ -211,6 +211,7 @@
       "title": "Duplicate snippet",
       "snippetName": "Snippet name",
       "message": "To copy snippet you need to be authorized",
+      "save": "Confirm",
       "cancel": "Cancel"
     },
     "attemptDuplicateSnippet": {
