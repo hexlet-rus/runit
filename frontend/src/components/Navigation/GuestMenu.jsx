@@ -14,7 +14,9 @@ function GuestMenu() {
   const { t: tSA } = useTranslation('translation', {
     keyPrefix: 'snippetActions',
   });
-  const { t: tSU } = useTranslation('translation', { keyPrefix: 'signUp' });
+  const { t: tSU } = useTranslation('translation', {
+    keyPrefix: 'profileActions',
+  });
   const dispatch = useDispatch();
 
   const handleNewSnippet = () => {
@@ -50,13 +52,13 @@ function GuestMenu() {
         <Dropdown.Divider />
         <li>
           <Dropdown.Item as={Button} onClick={handleSignInButton}>
-            {tSU('signIn.signInButton')}
+            {tSU('signIn')}
           </Dropdown.Item>
         </li>
         <Dropdown.Divider />
         <li>
           <Dropdown.Item as={Button} onClick={handleRegButton}>
-            {tSU('registerButton')}
+            {tSU('signUp')}
           </Dropdown.Item>
         </li>
       </Dropdown.Menu>

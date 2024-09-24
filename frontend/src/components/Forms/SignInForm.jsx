@@ -157,7 +157,7 @@ function SignInForm({ onSuccess = () => null }) {
             {tSI('remindPass')}
           </Link>
           <Button
-            className="flex-fill"
+            className="flex-fill w-50"
             data-disable-with={tSI('signInButton')}
             data-testid="signin-button"
             disabled={formik.isSubmitting}
