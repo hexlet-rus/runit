@@ -7,7 +7,7 @@ function NotFound() {
     keyPrefix: 'pageNotFound',
   });
   const { isDarkMode } = useTernaryDarkMode();
-  const paragraphClass = `fs-5 mb-3 ${isDarkMode ? '' : 'text-black '}`;
+  const paragraphClass = `fs-5 mb-3 text-${isDarkMode ? 'white' : 'black'}`;
 
   return (
     <div className="container mb-5">
