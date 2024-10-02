@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { useTernaryDarkMode } from 'usehooks-ts';
+import './404.css';
 
 function NotFound() {
   const { t: tPNF } = useTranslation('translation', {
     keyPrefix: 'pageNotFound',
   });
-  const { isDarkMode } = useTernaryDarkMode();
-  const paragraphClass = `fs-5 mb-3 text-${isDarkMode ? 'white' : 'black'}`;
+
+  const paragraphClass = `fs-5 mb-3 paragraph-color`;
 
   return (
     <div className="container mb-5">
