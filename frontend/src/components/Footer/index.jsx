@@ -192,7 +192,7 @@ function Footer() {
                   <a
                     aria-label="Twitter"
                     className={`${classes.footerLink}`}
-                    href="https://twitter.com/HexletHQ"
+                    href="https://x.com/HexletHQ"
                     rel="noopener noreferrer nofollow"
                     target="_blank"
                   >
