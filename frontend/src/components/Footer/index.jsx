@@ -185,7 +185,7 @@ function Footer() {
                     rel="noopener noreferrer nofollow"
                     target="_blank"
                   >
-                    <Vk />
+                    <Vk className="bi" />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
