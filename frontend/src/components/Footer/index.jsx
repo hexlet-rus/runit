@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
-import { Youtube, Telegram, Twitter } from 'react-bootstrap-icons';
+import { Youtube, Telegram, TwitterX } from 'react-bootstrap-icons';
 import { ReactComponent as Vk } from '../../assets/images/icons/vk.svg';
 import classes from './index.module.css';
 
@@ -185,18 +185,18 @@ function Footer() {
                     rel="noopener noreferrer nofollow"
                     target="_blank"
                   >
-                    <Vk />
+                    <Vk className="bi" />
                   </a>
                 </li>
                 <li className="me-4 mb-2">
                   <a
                     aria-label="Twitter"
                     className={`${classes.footerLink}`}
-                    href="https://twitter.com/HexletHQ"
+                    href="https://x.com/HexletHQ"
                     rel="noopener noreferrer nofollow"
                     target="_blank"
                   >
-                    <Twitter />
+                    <TwitterX />
                   </a>
                 </li>
               </ul>
