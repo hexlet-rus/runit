@@ -16,6 +16,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 
+import setCopyWordCount from '../../utils/setCopyWordCount.js';
 import { useSnippets } from '../../hooks';
 import { actions as modalActions } from '../../slices/modalSlice.js';
 import { actions as snippetsActions } from '../../slices/snippetsSlice.js';
@@ -106,7 +107,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
               onChange={formik.handleChange}
               plaintext={!isRenaming}
               readOnly={!isRenaming}
-              value={formik.values.name}
+              value={setCopyWordCount(formik.values.name)}
             />
             <Form.Control.Feedback tooltip type="invalid">
               {t(formik.errors.name)}
@@ -316,7 +317,12 @@ function SnippetCard({ data }) {
 
   return (
     <SnippetCardWrapper>
-      <div className="snippet-card h-100">
+      <div
+        className="snippet-card h-100"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title={data.name}
+      >
         <CardHeader
           data={data}
           handleCancel={handleView}
