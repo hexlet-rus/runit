@@ -1,8 +1,7 @@
 function SnippetCardWrapper({ children }) {
+  const childrenProps = children.props.children;
   const hoverTooltip =
-    children.props.children.length > 1
-      ? children.props.children[0].props.data?.name
-      : '';
+    childrenProps.length > 1 ? childrenProps[0].props.data?.name : '';
   return (
     <div className="snippet-card-wrapper" title={hoverTooltip}>
       {children}
