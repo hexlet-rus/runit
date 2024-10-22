@@ -5,7 +5,6 @@ const genDuplicateSnippetName = (fileName) => {
   const copyTextIndex = fileName.lastIndexOf('-copy');
   const dashIndex = fileName.lastIndexOf('_');
   const existCopyNumber = Number(fileName.slice(dashIndex + 1));
-  console.log(copyTextIndex, dashIndex, existCopyNumber, extensionIndex);
 
   let finalName = '';
   const extension = extensionIndex !== -1 ? fileName.slice(extensionIndex) : '';
