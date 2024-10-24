@@ -15,10 +15,12 @@
     "build:frontend": "DISABLE_ESLINT_PLUGIN=true yarn workspace frontend run build",
     "build": "npm-run-all --parallel build:*",
     "production": "yarn workspace backend run start:prod",
-    "start:backend": "yarn workspace backend run start:debug",
+    "start:backend:dev": "yarn workspace backend run start:debug",
+    "start:backend:test": "yarn workspace backend run start:test",
     "start:frontend": "yarn workspace frontend run start",
-    "start": "npm-run-all --parallel start:*",
-    "test": "playwright test --trace on" 
+    "start:dev": "npm-run-all --parallel start:backend:dev start:frontend",
+    "start:test": "npm-run-all --parallel start:backend:test start:frontend",
+    "test": "playwright test --trace on"
   },
   "repository": {
     "type": "git",
