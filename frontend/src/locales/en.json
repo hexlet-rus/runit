@@ -225,6 +225,20 @@
       "snippetName": "Title",
       "template": "Template",
       "create": "Create"
+    },
+    "deleteSnippet": {
+      "title": {
+        "key_one": "Delete snippet",
+        "key_other": "Delete snippets"
+      },
+      "body": {
+        "key_one": "Are you sure you want to remove the {{count}} snippet?",
+        "key_other": "Are you sure you want to remove the {{count}} snippets?"
+      },
+      "button": {
+        "okButton": "Delete",
+        "cancelButton": "Cancel"
+      }
     }
   },
   "navbar": {
@@ -335,7 +349,10 @@
     "rename": "Renane",
     "run": "Run",
     "share": "Share",
-    "save": "Save"
+    "save": "Save",
+    "key_one": "{{count}} snippet selected",
+    "key_other": "{{count}} snippets selected",
+    "select": "Select snippets"
   },
   "toasts": {
     "duplicateSnippet": {
