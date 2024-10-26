@@ -5,7 +5,7 @@
   "private": true,
   "license": "Affero GPL 3.0",
   "scripts": {
-    "build": "nest build",
+    "build": "nest build && docker build -t my-code-runner-python ./src/runner/dockers/python",
     "format": "prettier --write \\\"src/**/*.ts\\\" \\\"__test__/**/*.ts\\\"",
     "start": "PORT=5001 nest start",
     "typeorm": "typeorm-ts-node-commonjs",
