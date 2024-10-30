@@ -28,6 +28,7 @@ start-prod:
 
 build:
 	npm run build
+	docker build -t my-code-runner-python ./src/runner/dockers/python
 
 lint:
 	npm run lint
