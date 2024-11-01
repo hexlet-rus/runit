@@ -7,6 +7,7 @@ export const fetchUserData = createAsyncThunk(
   'user/fetchUserData',
   async () => {
     const response = await axios.get(routes.userProfilePath());
+
     return response.data;
   },
 );

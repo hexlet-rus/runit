@@ -31,6 +31,7 @@ import getSentryConfig from './config/sentry.config';
 import appConfig from './config/app.config';
 
 import '@sentry/tracing';
+import { DockerModule } from './dockers/docker.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import '@sentry/tracing';
     SnippetsModule,
     UsersModule,
     AuthModule,
+    DockerModule,
     EventsModule,
     MailerModule.forRootAsync({
       useClass: MailerConfig,
@@ -54,6 +56,7 @@ import '@sentry/tracing';
     UsersController,
     AuthController,
   ],
+
   providers: [AppService, SnippetsService, UsersService, AuthModule],
 })
 export class AppModule implements NestModule {

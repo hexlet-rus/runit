@@ -48,6 +48,9 @@ export default {
   // OAuth
   oAuthPath: () => [apiPath, 'oauth'].join('/'),
 
+  // RunCode
+  runCode: () => [apiPath, 'docker', 'run'].join('/'),
+
   oldLandingPath: () => '/oldLanding',
   homePagePath: () => '/editor',
   aboutPagePath: () => '/about',

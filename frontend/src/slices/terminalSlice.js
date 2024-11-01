@@ -1,13 +1,14 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import routes from '../routes';
 import { actions as editorActions } from './editorSlice';
 
 export const runCode = createAsyncThunk(
   'terminal/runCode',
   async (snippet) => {
-    // TODO: захардкоден урл, плюс тут явно не нужен createAsyncThunk
-    const { data, status } = await axios.get(`/api/compile`, {
+    // TODO: захардкоден урл, плюс тут явно не нужен createAsyncThunk. (Урл исправлен)
+    const { data, status } = await axios.get(routes.runCode(), {
       params: {
         snippet: {
           code: snippet.code,
