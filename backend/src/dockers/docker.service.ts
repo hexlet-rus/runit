@@ -44,35 +44,34 @@ export class DockerService {
         return { terminal: [errorMsg], alertLogs };
       }
     }
-    if (language === 'javascript') {
-      const alertLogs = [];
-      const stdout = new Transform({
-        transform(chunk, enc, cb) {
-          cb(null, chunk);
-        },
-      });
-      const logger = new Console({ stdout });
 
-      const context = createContext(logger, alertLogs);
+    const alertLogs = [];
+    const stdout = new Transform({
+      transform(chunk, enc, cb) {
+        cb(null, chunk);
+      },
+    });
+    const logger = new Console({ stdout });
 
-      vm.createContext(context);
+    const context = createContext(logger, alertLogs);
 
-      try {
-        const script = new vm.Script(code);
+    vm.createContext(context);
 
-        // run the script
-        script.runInContext(context);
+    try {
+      const script = new vm.Script(code);
 
-        const terminal = (stdout.read() || '').toString().split('\n');
+      // run the script
+      script.runInContext(context);
 
-        return { terminal, alertLogs };
-      } catch (err) {
-        const lineOfError = err.stack
-          .split('evalmachine.<anonymous>:')[1]
-          .substring(0, 1);
-        const errorMsg = `${err.message} at line ${lineOfError}`;
-        return { terminal: [errorMsg], alertLogs };
-      }
+      const terminal = (stdout.read() || '').toString().split('\n');
+
+      return { terminal, alertLogs };
+    } catch (err) {
+      const lineOfError = err.stack
+        .split('evalmachine.<anonymous>:')[1]
+        .substring(0, 1);
+      const errorMsg = `${err.message} at line ${lineOfError}`;
+      return { terminal: [errorMsg], alertLogs };
     }
   }
 }
