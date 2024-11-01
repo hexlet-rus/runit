@@ -1,13 +1,14 @@
 import * as vm from 'node:vm';
 import { Console } from 'node:console';
 import { Transform } from 'node:stream';
+import { execSync } from 'node:child_process';
 import { Injectable } from '@nestjs/common';
 import { createContext } from '../console/console.config';
 import { Output } from '../console/interfaces/output.interface';
-import { execSync } from 'node:child_process';
 
 @Injectable()
 export class DockerService {
+  // eslint-disable-next-line class-methods-use-this
   async run(code: string, language: string): Promise<Output> {
     if (language === 'html') {
       return { terminal: [code], alertLogs: [] };
@@ -18,7 +19,6 @@ export class DockerService {
     if (language === 'python') {
       const alertLogs = [];
       try {
-        console.log(code.replace(/"/g, '\\"'));
         const command = `docker run --memory="256m" --cpus="1" --rm -i --read-only --user 1000:1000 my-code-runner-python python -c "${code.replace(
           /"/g,
           '\\"',
