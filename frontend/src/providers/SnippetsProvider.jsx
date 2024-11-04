@@ -26,8 +26,10 @@ function SnippetsProvider({ children }) {
     return data.id;
   };
 
-  const deleteSnippet = async (decodedId) => {
-    const response = await axios.delete(routes.deleteSnippetPath(decodedId));
+  const deleteSnippet = async (...decodedId) => {
+    const response = await Promise.all(
+      decodedId.map((id) => axios.delete(routes.deleteSnippetPath(id))),
+    );
     return response;
   };
 
