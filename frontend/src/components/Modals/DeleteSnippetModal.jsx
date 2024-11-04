@@ -18,26 +18,24 @@ function DeleteSnippetModal({ handleClose, isOpen }) {
   const snippetApi = useSnippets();
   const { t } = useTranslation();
 
-  const handleSnippetDelete = (snippetsSlice) => {
+  const handleSnippetDelete = async (currSnippets) => {
+    const checkedIds = currSnippets
+      .filter((snippet) => snippet.isChecked)
+      .map((snippet) => snippet.id);
     handleClose();
-    snippetsSlice.forEach(async (snippet) => {
-      const { id } = snippet;
-      if (snippet.checkbox) {
-        try {
-          await snippetApi.deleteSnippet(id);
-          dispatch(snippetsActions.deleteSnippet(id));
-          dispatch(snippetsActions.CloseCheckboxes());
-        } catch (error) {
-          if (!error.isAxiosError) {
-            console.log(t('errors.unknown'));
-            throw error;
-          } else {
-            console.log(t('errors.network'));
-            throw error;
-          }
-        }
+    try {
+      await snippetApi.deleteSnippet(...checkedIds);
+      dispatch(snippetsActions.deleteSnippet(checkedIds));
+      dispatch(checkboxesActions.CloseCheckboxes());
+    } catch (error) {
+      if (!error.isAxiosError) {
+        console.log(t('errors.unknown'));
+        throw error;
+      } else {
+        console.log(t('errors.network'));
+        throw error;
       }
-    });
+    }
   };
 
   return (
@@ -61,7 +59,7 @@ function DeleteSnippetModal({ handleClose, isOpen }) {
             <Button
               className="flex-fill"
               variant="primary"
-              onClick={() => handleSnippetDelete(snippets)}
+              onClick={() => handleSnippetDelete(checkedSnippets)}
             >
               {t('modals.deleteSnippet.button.okButton')}
             </Button>
