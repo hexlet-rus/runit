@@ -19,6 +19,7 @@ import Image from 'react-bootstrap/Image';
 import { useSnippets } from '../../hooks';
 import { actions as modalActions } from '../../slices/modalSlice.js';
 import { actions as snippetsActions } from '../../slices/snippetsSlice.js';
+import { actions as checkboxesActions } from '../../slices/checkboxesSlice.js';
 import { snippetName } from '../../utils/validationSchemas';
 import icons from '../../utils/icons';
 
@@ -33,10 +34,13 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   });
   const { t } = useTranslation();
   const snippetApi = useSnippets();
-  const { name, id, code, language, checkbox } = data;
-  const { isCheckboxesOpen } = useSelector((state) => state.snippets);
+  const { name, id, code, language } = data;
+  const { isCheckboxesOpen, checkedSnippets } = useSelector(
+    (state) => state.checkboxes,
+  );
 
-  const checked = checkbox;
+  const checkedSnippet = checkedSnippets.find((snippet) => snippet.id === id);
+  const { isChecked } = checkedSnippet;
 
   useEffect(() => {
     const filenameInput = inputRef.current;
@@ -88,7 +92,9 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   };
 
   const handleOnChange = () => {
-    dispatch(snippetsActions.updateCheckedSnippet({ id, checked: !checked }));
+    dispatch(
+      checkboxesActions.updateCheckedSnippet({ id, checked: !isChecked }),
+    );
   };
 
   return (
@@ -125,7 +131,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
         className={`z-2 form-check ${isCheckboxesOpen ? '' : 'd-none'}`}
         type="checkbox"
         aria-label={name}
-        checked={checked}
+        checked={isChecked || false}
         onChange={handleOnChange}
       />
       {isRenaming ? null : (
