@@ -14,6 +14,10 @@ export default {
   // put - update user info: { name, email, password }
   updateUserPath: (id) => [apiPath, 'users', `${id}`].join('/'),
 
+  // put - update user settings: { theme, language }
+  updateUserSettingsPath: (id) =>
+    [apiPath, 'users', 'settings', `${id}`].join('/'),
+
   resetPassPath: () => [apiPath, 'users', 'recover'].join('/'),
 
   signInPath: () => [apiPath, 'signin'].join('/'),

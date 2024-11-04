@@ -6,12 +6,15 @@ import {
   CreateDateColumn,
   Entity,
   Index,
+  JoinColumn,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { encrypt } from '../users/secure/encrypt';
 import type { Snippet } from './snippet.entity';
+import { UserSettings } from './user-settings.entity';
 
 @Entity('users')
 export class User {
@@ -30,6 +33,10 @@ export class User {
 
   @OneToMany('Snippet', 'user')
   snippets: Snippet[];
+
+  @OneToOne('UserSettings', 'user')
+  @JoinColumn({ name: 'id' })
+  userSettings: UserSettings;
 
   @Column({ nullable: true })
   recover_hash: string;

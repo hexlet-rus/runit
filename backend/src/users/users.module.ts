@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Snippet } from '../entities/snippet.entity';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../entities/user.entity';
+import { UserSettings } from 'src/entities/user-settings.entity';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { UsersSubscriber } from './users.subscriber';
@@ -12,7 +13,7 @@ import { CheckUsername } from './validation/check-username';
 import { CheckPassword } from './validation/check-password';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Snippet])],
+  imports: [TypeOrmModule.forFeature([User, Snippet, UserSettings])],
   controllers: [UsersController],
   providers: [
     UsersService,
