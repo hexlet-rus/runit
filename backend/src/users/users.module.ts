@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserSettings } from '../entities/user-settings.entity';
 import { Snippet } from '../entities/snippet.entity';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../entities/user.entity';
-import { UserSettings } from 'src/entities/user-settings.entity';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { UsersSubscriber } from './users.subscriber';

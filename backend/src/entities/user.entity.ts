@@ -14,7 +14,7 @@ import {
 } from 'typeorm';
 import { encrypt } from '../users/secure/encrypt';
 import type { Snippet } from './snippet.entity';
-import { UserSettings } from './user-settings.entity';
+import type { UserSettings } from './user-settings.entity';
 
 @Entity('users')
 export class User {
