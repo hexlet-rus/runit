@@ -6,11 +6,14 @@ import Modal from 'react-bootstrap/Modal';
 
 import { useSnippets } from '../../hooks';
 import { actions as snippetsActions } from '../../slices/snippetsSlice.js';
+import { actions as checkboxesActions } from '../../slices/checkboxesSlice.js';
 
 function DeleteSnippetModal({ handleClose, isOpen }) {
-  const { snippets } = useSelector((state) => state.snippets);
-  const checkedSnippet = snippets.filter((snippet) => snippet.checkbox);
-  const countChecked = checkedSnippet.length;
+  const { checkedSnippets } = useSelector((state) => state.checkboxes);
+
+  const countChecked = checkedSnippets.filter(
+    (snippet) => snippet.isChecked,
+  ).length;
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
   const { t } = useTranslation();
