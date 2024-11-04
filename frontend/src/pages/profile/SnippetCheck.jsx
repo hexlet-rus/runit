@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { actions as snippetsActions } from '../../slices/snippetsSlice.js';
+import { actions as checkboxesActions } from '../../slices/checkboxesSlice.js';
 
 function SnippetCheck() {
   const { isCheckboxesOpen } = useSelector((state) => state.snippets);
