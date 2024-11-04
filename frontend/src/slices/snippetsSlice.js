@@ -16,7 +16,6 @@ export const fetchUserSnippets = createAsyncThunk(
 const initialState = {
   status: 'empty',
   snippets: [],
-  isCheckboxesOpen: false,
 };
 
 const snippetSlice = createSlice({
@@ -27,8 +26,9 @@ const snippetSlice = createSlice({
       state.snippets = [...state.snippets, ...payload];
     },
     deleteSnippet: (state, { payload }) => {
+      const snippetId = !Array.isArray(payload) ? [payload] : payload;
       state.snippets = state.snippets.filter(
-        (snippet) => snippet.id !== payload,
+        (snippet) => !snippetId.includes(snippet.id),
       );
     },
     updateSnippet: (state, { payload: { id, name } }) => {
@@ -36,24 +36,6 @@ const snippetSlice = createSlice({
         (snippet) => snippet.id === id,
       );
       renamedSnippet.name = name;
-    },
-    updateCheckedSnippet: (state, { payload: { id, checked } }) => {
-      const checkedSnippet = state.snippets.find(
-        (snippet) => snippet.id === id,
-      );
-      checkedSnippet.checkbox = checked;
-    },
-    OpenCheckboxes: (state) => {
-      state.isCheckboxesOpen = true;
-      state.snippets.forEach((snippet) => {
-        snippet.checkbox = false;
-      });
-    },
-    CloseCheckboxes: (state) => {
-      state.isCheckboxesOpen = false;
-      state.snippets.forEach((snippet) => {
-        snippet.checkbox = false;
-      });
     },
   },
   extraReducers: (builder) => {
@@ -64,7 +46,6 @@ const snippetSlice = createSlice({
       .addCase(fetchUserSnippets.fulfilled, (state, { payload }) => {
         state.snippets = payload.snippets;
         state.status = 'fullfilled';
-        state.isCheckboxesOpen = false;
       });
   },
 });
