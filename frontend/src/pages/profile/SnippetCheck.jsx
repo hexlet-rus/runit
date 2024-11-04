@@ -6,18 +6,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actions as checkboxesActions } from '../../slices/checkboxesSlice.js';
 
 function SnippetCheck() {
-  const { isCheckboxesOpen } = useSelector((state) => state.snippets);
+  const { isCheckboxesOpen } = useSelector((state) => state.checkboxes);
   const { t } = useTranslation();
   const { snippets } = useSelector((state) => state.snippets);
   const isCreateSnippet = snippets.length > 0;
   const dispatch = useDispatch();
 
   const handleCloseCheckboxes = () => {
-    dispatch(snippetsActions.CloseCheckboxes());
+    dispatch(checkboxesActions.CloseCheckboxes());
   };
 
   const handleOpenCheckboxes = () => {
-    dispatch(snippetsActions.OpenCheckboxes());
+    dispatch(checkboxesActions.OpenCheckboxes());
   };
 
   return (
