@@ -4,14 +4,14 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { actions as modalActions } from '../../slices/modalSlice.js';
-import { actions as snippetsActions } from '../../slices/snippetsSlice.js';
+import { actions as checkboxesActions } from '../../slices/checkboxesSlice.js';
 
 function SnippetBadge() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const { snippets } = useSelector((state) => state.snippets);
-  const checkedSnippet = snippets.filter((snippet) => snippet.checkbox);
+  const { checkedSnippets } = useSelector((state) => state.checkboxes);
+  const checkedSnippet = checkedSnippets.filter((snippet) => snippet.isChecked);
   const countChecked = checkedSnippet.length;
   const isChecked = checkedSnippet.length > 0;
 
@@ -20,7 +20,7 @@ function SnippetBadge() {
   };
 
   const handleCloseCheckboxes = () => {
-    dispatch(snippetsActions.CloseCheckboxes());
+    dispatch(checkboxesActions.CloseCheckboxes());
   };
 
   return (
