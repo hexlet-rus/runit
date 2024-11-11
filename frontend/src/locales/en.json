@@ -193,7 +193,8 @@
     "javascript": "JavaScript",
     "php": "PHP",
     "python": "Python",
-    "html": "HTML"
+    "html": "HTML",
+    "java": "Java"
   },
   "modals": {
     "inDevelopment": {

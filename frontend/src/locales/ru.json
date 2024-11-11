@@ -196,7 +196,8 @@
     "javascript": "JavaScript",
     "php": "PHP",
     "python": "Python",
-    "html": "HTML"
+    "html": "HTML",
+    "java": "Java"
   },
   "licAgr": {
     "city": "город Ульяновск",
