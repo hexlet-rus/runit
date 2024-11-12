@@ -27,8 +27,11 @@ export class Snippet {
   language: string;
 
   @ManyToOne('User', 'snippets')
-  @JoinColumn()
+  @JoinColumn({ name: 'userId' })
   user: User;
+
+  @Column({ name: 'userId' })
+  userId: number;
 
   @CreateDateColumn()
   created_at: string;

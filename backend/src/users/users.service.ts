@@ -12,9 +12,11 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from '../entities/user.entity';
 import { Snippet } from '../entities/snippet.entity';
+import { UserSettings } from '../entities/user-settings.entity';
 import { IUser } from './interfaces/users.interface';
 import { RecoverUserDto } from './dto/recover-user.dto';
 import { cipher, decipher } from './secure/cipher';
+import { UpdateUserSettingsDto } from './dto/update-user-settings.dto';
 
 @Injectable()
 export class UsersService {
@@ -25,6 +27,8 @@ export class UsersService {
     private snippetsRepository: Repository<Snippet>,
     private readonly mailerService: MailerService,
     @InjectSentry() private readonly sentryService: SentryService,
+    @InjectRepository(UserSettings)
+    private userSettingsRepository: Repository<UserSettings>,
   ) {}
 
   async findOne(id: number): Promise<User> {
@@ -43,20 +47,56 @@ export class UsersService {
     return this.usersRepository.findOneBy({ email });
   }
 
-  create(createUserDto: CreateUserDto): Promise<User> {
+  async create(createUserDto: CreateUserDto): Promise<User> {
     const user = new User();
     user.username = createUserDto.username;
     user.email = createUserDto.email.toLowerCase();
     user.password = createUserDto.password;
-    return this.usersRepository.save(user);
+    const newUser = await this.usersRepository.save(user);
+    const userSettings = await this.userSettingsRepository.create({
+      userId: newUser.id,
+      theme: 'system',
+      language: 'ru',
+    });
+    await this.userSettingsRepository.save(userSettings);
+    return newUser;
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
+  async update(id: number, updateUserDto: UpdateUserDto): Promise<any> {
     const { ...data } = updateUserDto;
     const currentUser = await this.usersRepository.findOneBy({ id });
+    const settings = await this.userSettingsRepository.findOneBy({
+      userId: id,
+    });
     const updatedUser = this.usersRepository.merge(currentUser, data);
     await this.usersRepository.save(updatedUser);
-    return updatedUser;
+
+    return {
+      ...updatedUser,
+      language: settings.language,
+      theme: settings.theme,
+    };
+  }
+
+  async updateSettings(
+    id: number,
+    updateUserSettingsDto: UpdateUserSettingsDto,
+  ): Promise<any> {
+    const { ...data } = updateUserSettingsDto;
+    const currentSettings = await this.userSettingsRepository.findOneBy({
+      userId: id,
+    });
+    const currentUser = await this.usersRepository.findOneBy({ id });
+    const updateSettings = await this.userSettingsRepository.merge(
+      currentSettings,
+      data,
+    );
+    await this.userSettingsRepository.save(updateSettings);
+    return {
+      ...currentUser,
+      language: updateSettings.language,
+      theme: updateSettings.theme,
+    };
   }
 
   async recover({ email, frontendUrl }: RecoverUserDto): Promise<void> {
@@ -133,7 +173,9 @@ export class UsersService {
   }
 
   async delete(id: number): Promise<void> {
-    await this.usersRepository.delete(id);
+    await this.snippetsRepository.delete({ userId: id });
+    await this.userSettingsRepository.delete({ userId: id });
+    await this.usersRepository.delete({ id });
   }
 
   findAll(): Promise<User[]> {
@@ -142,6 +184,9 @@ export class UsersService {
 
   async getData({ id }: IUser): Promise<any> {
     const currentUser = await this.usersRepository.findOneBy({ id });
+    const settingsUser = await this.userSettingsRepository.findOne({
+      where: { userId: id },
+    });
     const snippets = await this.snippetsRepository.find({
       relations: {
         user: true,
@@ -152,6 +197,22 @@ export class UsersService {
         },
       },
     });
-    return { currentUser, snippets };
+    if (!settingsUser) {
+      const createSettingsUser = this.userSettingsRepository.create({
+        userId: id,
+        theme: 'system',
+        language: 'ru',
+      });
+      await this.userSettingsRepository.save(createSettingsUser);
+    }
+    const settings = await this.userSettingsRepository.findOne({
+      where: { userId: id },
+    });
+    const data = {
+      ...currentUser,
+      language: settings.language,
+      theme: settings.theme,
+    };
+    return { currentUser: data, snippets };
   }
 }

@@ -33,6 +33,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { HttpValidationFilter } from './exceptions/validation-exception.filter';
 import { AuthService } from '../auth/auth.service';
 import { RecoverUserDto } from './dto/recover-user.dto';
+import { UpdateUserSettingsDto } from './dto/update-user-settings.dto';
 
 @ApiTags('users')
 @Controller('users')
@@ -131,6 +132,17 @@ export class UsersController {
     @Body() updateUserDto: UpdateUserDto,
   ) {
     return this.usersService.update(id, updateUserDto);
+  }
+
+  @Put('settings/:id')
+  @UseGuards(JwtAuthGuard)
+  @UseFilters(new HttpValidationFilter())
+  @ApiCookieAuth('access_token')
+  updateSettings(
+    @Param('id', new ParseIntPipe()) id: number,
+    @Body() updateUserSettingsDto: UpdateUserSettingsDto,
+  ) {
+    return this.usersService.updateSettings(id, updateUserSettingsDto);
   }
 
   @Delete(':id')
