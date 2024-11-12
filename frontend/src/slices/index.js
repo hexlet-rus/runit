@@ -10,6 +10,9 @@ import languagesReducer, {
 import modalReducer, { actions as modalActions } from './modalSlice.js';
 import snippetsSlice, { actions as snippetsActions } from './snippetsSlice.js';
 import userSlice, { actions as userActions } from './userSlice';
+import checkboxesSlice, {
+  actions as checkboxesActions,
+} from './checkboxesSlice.js';
 
 export const rootReducer = combineReducers({
   editor: editorReducer,
@@ -18,6 +21,7 @@ export const rootReducer = combineReducers({
   modal: modalReducer,
   snippets: snippetsSlice,
   user: userSlice,
+  checkboxes: checkboxesSlice,
 });
 
 // export const setupState = (gon) => (dispatch) => {
@@ -32,5 +36,6 @@ export const actions = {
   ...modalActions,
   ...snippetsActions,
   ...userActions,
+  ...checkboxesActions,
   runCode,
 };
