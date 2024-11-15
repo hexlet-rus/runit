@@ -13,7 +13,7 @@ function RemoveAvatar({ handleClose, isOpen }) {
   const { loadingStatus } = useSelector((state) => state.userSettings);
 
   const handleDeleteAvatar = async () => {
-    const data = { avatar_img: null };
+    const data = { avatar_base64: null };
     dispatch(updateUserSettings({ id, data })).then((req) => {
       if (!req.error) {
         handleClose();

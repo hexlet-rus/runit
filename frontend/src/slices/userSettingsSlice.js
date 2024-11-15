@@ -35,14 +35,14 @@ const userSettingsSlice = createSlice({
       .addCase(fetchUserSettings.fulfilled, (state, { payload }) => {
         state.language = payload.currentUser?.language;
         state.theme = payload.currentUser?.theme;
-        state.avatar = payload.currentUser?.avatar_img;
+        state.avatar = payload.currentUser?.avatar_base64;
       })
       .addCase(updateUserSettings.pending, (state) => {
         state.loadingStatus = 'loading';
       })
       .addCase(updateUserSettings.fulfilled, (state, { payload }) => {
         state.loadingStatus = 'idle';
-        state.avatar = payload.avatar_img;
+        state.avatar = payload.avatar_base64;
       })
       .addCase(updateUserSettings.rejected, (state) => {
         state.loadingStatus = 'failed';

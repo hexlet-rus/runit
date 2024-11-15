@@ -21,7 +21,7 @@ export class UserSettings {
   theme: string;
   
   @Column({ nullable: true })
-  avatar_img: string;
+  avatar_base64: string;
 
   @CreateDateColumn()
   created_at: string;

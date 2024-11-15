@@ -15,5 +15,5 @@ export class UpdateUserSettingsDto {
   @ApiProperty()
   @IsOptional()
   @IsString()
-  avatar_img?: string;
+  avatar_base64?: string;
 }

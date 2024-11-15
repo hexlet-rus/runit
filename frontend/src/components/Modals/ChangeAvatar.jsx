@@ -77,7 +77,7 @@ function ChangeAvatar({ handleClose, isOpen }) {
         ...avatarState,
         isResized: true,
       });
-      const data = { avatar_img: image };
+      const data = { avatar_base64: image };
       dispatch(updateUserSettings({ id, data })).then((req) => {
         if (!req.error) {
           handleClose();
