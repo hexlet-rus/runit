@@ -19,6 +19,9 @@ export class UserSettings {
 
   @Column('text', { default: 'system' })
   theme: string;
+  
+  @Column({ nullable: true })
+  avatar_img: string;
 
   @CreateDateColumn()
   created_at: string;

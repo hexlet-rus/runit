@@ -1,27 +1,105 @@
+import { toast } from 'react-toastify';
 import { Button, Modal, FormControl, FormLabel, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
+import Resizer from 'react-image-file-resizer';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserSettings } from '../../slices/userSettingsSlice';
+
+const resizeFile = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      250,
+      250,
+      'JPEG',
+      100,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      'base64',
+    );
+  });
 
 function ChangeAvatar({ handleClose, isOpen }) {
+  const dispatch = useDispatch();
   const { t: tMCA } = useTranslation('translation', {
     keyPrefix: 'modals.changeAvatar',
   });
-  const [avatarState, setAvatarState] = useState({
+  const initialAvatarState = {
     scale: 1,
     img: null,
-    imageChosen: false,
-  });
+    isResized: true,
+  };
+  const [avatarState, setAvatarState] = useState(initialAvatarState);
 
+  const { id } = useSelector((state) => state.user.userInfo);
+  const { loadingStatus } = useSelector((state) => state.userSettings);
   const fileInputRef = useRef(null);
+  const cropRef = useRef(null);
 
   const handleInputClick = () => fileInputRef.current.click();
   const handleLabelClick = (e) => e.stopPropagation();
+
+  const handleChangeAvatar = (e) => {
+    const file = e.target.files[0];
+    if (!file) {
+      return;
+    }
+    if (
+      file.type === 'image/png' ||
+      file.type === 'image/bmp' ||
+      file.type === 'image/jpeg'
+    ) {
+      setAvatarState({
+        ...avatarState,
+        img: file,
+      });
+    } else {
+      toast.error('Неверный формат файла');
+      setAvatarState(initialAvatarState);
+    }
+  };
+
+  const handleSaveAvatar = async () => {
+    if (cropRef) {
+      setAvatarState({
+        ...avatarState,
+        isResized: false,
+      });
+      const dataUrl = cropRef.current.getImage().toDataURL();
+      const result = await fetch(dataUrl);
+      const blob = await result.blob();
+      const image = await resizeFile(blob);
+      setAvatarState({
+        ...avatarState,
+        isResized: true,
+      });
+      const data = { avatar_img: image };
+      dispatch(updateUserSettings({ id, data })).then((req) => {
+        if (!req.error) {
+          handleClose();
+          setAvatarState(initialAvatarState);
+        } else {
+          toast.error('Ошибка сети');
+        }
+      });
+    }
+  };
+
+  const handleCancel = () => {
+    handleClose();
+    setAvatarState(initialAvatarState);
+  };
 
   return (
     <Modal centered onHide={handleClose} show={isOpen} size="sm">
       <div className="m-2 text-center">
         <AvatarEditor
+          ref={cropRef}
+          backgroundColor="white"
           border={0}
           className="rounded-circle"
           height={250}
@@ -38,6 +116,7 @@ function ChangeAvatar({ handleClose, isOpen }) {
           onChange={(e) =>
             setAvatarState({ ...avatarState, scale: e.target.value / 10 })
           }
+          value={avatarState.scale * 10}
         />
         <Button onClick={handleInputClick}>
           <FormLabel
@@ -49,28 +128,30 @@ function ChangeAvatar({ handleClose, isOpen }) {
           </FormLabel>
           <FormControl
             ref={fileInputRef}
+            accept="image/png, image/jpeg, , image/bmp"
             className="form-control d-none"
             id="customFile1"
-            onChange={(e) =>
-              setAvatarState({
-                ...avatarState,
-                img: e.target.files[0],
-                imageChosen: true,
-              })
-            }
+            onChange={(e) => handleChangeAvatar(e)}
             type="file"
           />
         </Button>
         <div>
+          <p style={{ fontSize: 'small', margin: '5px' }}>
+            Формат: jpg, png, bmp
+          </p>
           <Button
             className="mt-3 me-3"
-            disabled={!avatarState.imageChosen}
-            onClick={handleClose}
+            disabled={
+              !avatarState.img ||
+              !avatarState.isResized ||
+              loadingStatus === 'loading'
+            }
+            onClick={handleSaveAvatar}
             variant="success"
           >
             {tMCA('uploadButton')}
           </Button>
-          <Button className="mt-3" onClick={handleClose} variant="secondary">
+          <Button className="mt-3" onClick={handleCancel} variant="secondary">
             {tMCA('cancelButton')}
           </Button>
         </div>

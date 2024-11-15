@@ -57,6 +57,7 @@ export class UsersService {
       userId: newUser.id,
       theme: 'system',
       language: 'ru',
+      avatar_img: null,
     });
     await this.userSettingsRepository.save(userSettings);
     return newUser;
@@ -75,6 +76,7 @@ export class UsersService {
       ...updatedUser,
       language: settings.language,
       theme: settings.theme,
+      avatar_img: settings.avatar_img,
     };
   }
 
@@ -96,6 +98,7 @@ export class UsersService {
       ...currentUser,
       language: updateSettings.language,
       theme: updateSettings.theme,
+      avatar_img: updateSettings.avatar_img,
     };
   }
 
@@ -202,6 +205,7 @@ export class UsersService {
         userId: id,
         theme: 'system',
         language: 'ru',
+        avatar_img: null,
       });
       await this.userSettingsRepository.save(createSettingsUser);
     }
@@ -212,6 +216,7 @@ export class UsersService {
       ...currentUser,
       language: settings.language,
       theme: settings.theme,
+      avatar_img: settings.avatar_img,
     };
     return { currentUser: data, snippets };
   }
