@@ -96,7 +96,7 @@ function SnippetName({ snippet }) {
             ref={inputRef}
             as={AutowidthInput}
             autoComplete="off"
-            className="transition-padding"
+            className="transition-padding text-center min-w-70"
             id="name"
             isInvalid={!!formik.errors.name}
             maxLength={30}
