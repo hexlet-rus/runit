@@ -13,6 +13,7 @@ function AvatarChangeForm() {
     keyPrefix: 'profileSettings',
   });
   const dispatch = useDispatch();
+  const avatar = useSelector((state) => state.userSettings.avatar);
   const username = useSelector((state) => state.user.userInfo.username);
 
   const handleEditAvatar = (type) => () => {
@@ -25,7 +26,17 @@ function AvatarChangeForm() {
         className="img-thumbnail rounded-circle overflow-hidden"
         style={{ width: '14rem', height: '14rem' }}
       >
-        <Avatar username={username} />
+        {avatar ? (
+          <img
+            alt=""
+            className="rounded-circle overflow-hidden h-100"
+            height="100%"
+            src={avatar}
+            width="100%"
+          />
+        ) : (
+          <Avatar username={username} />
+        )}
       </div>
       <Button
         className="position-relative"
@@ -36,6 +47,7 @@ function AvatarChangeForm() {
         {tPS('updateButton')}
       </Button>
       <Button
+        disabled={!avatar}
         onClick={handleEditAvatar({ type: 'removeAvatar' })}
         size="sm"
         variant="nofill-secondary"

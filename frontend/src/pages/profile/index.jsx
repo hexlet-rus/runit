@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { fetchUserSnippets } from '../../slices/snippetsSlice.js';
+import { fetchUserSettings } from '../../slices/userSettingsSlice';
 
 import NotFoundPage from '../404';
 import NewSnippetForm from './NewSnippetForm.jsx';
@@ -65,6 +66,10 @@ function ProfilePage() {
         error.name = serializedError.name;
         throw error;
       });
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchUserSettings());
   }, [dispatch]);
 
   // TODO: добавить возможность получать сниппеты другого пользователя, когда появится возможность делится профилем

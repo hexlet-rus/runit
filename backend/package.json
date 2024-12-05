@@ -45,6 +45,7 @@
     "@types/bcrypt": "^5.0.0",
     "axios": "^1.6.0",
     "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.3",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",

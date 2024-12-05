@@ -13,6 +13,9 @@ import userSlice, { actions as userActions } from './userSlice';
 import checkboxesSlice, {
   actions as checkboxesActions,
 } from './checkboxesSlice.js';
+import userSettingsSlice, {
+  actions as userSettingsActions,
+} from './userSettingsSlice';
 
 export const rootReducer = combineReducers({
   editor: editorReducer,
@@ -22,6 +25,7 @@ export const rootReducer = combineReducers({
   snippets: snippetsSlice,
   user: userSlice,
   checkboxes: checkboxesSlice,
+  userSettings: userSettingsSlice,
 });
 
 // export const setupState = (gon) => (dispatch) => {
@@ -37,5 +41,6 @@ export const actions = {
   ...snippetsActions,
   ...userActions,
   ...checkboxesActions,
+  ...userSettingsActions,
   runCode,
 };
