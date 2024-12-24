@@ -25,13 +25,13 @@ export default class JavaScriptRunner implements IRunner {
 
       const terminal = (stdout.read() || '').toString().split('\n');
 
-      return { terminal, alertLogs };
+      return Promise.resolve({ terminal, alertLogs });
     } catch (err) {
       const lineOfError = err.stack
         .split('evalmachine.<anonymous>:')[1]
         .substring(0, 1);
       const errorMsg = `${err.message} at line ${lineOfError}`;
-      return { terminal: [errorMsg], alertLogs };
+      return Promise.resolve({ terminal: [errorMsg], alertLogs });
     }
   }
 }

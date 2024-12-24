@@ -2,9 +2,10 @@ import PythonRunner from './PythonRunner';
 import PhpRunner from './PhpRunner';
 import JavaScriptRunner from './JavaScriptRunner';
 import HtmlRunner from './HtmlRunner';
+import JavaRunner from './JavaRunner';
 import IRunner from './IRunner';
 
-const getRunner = (language: string): IRunner => {
+const buildRunner = (language: string): IRunner => {
   switch (language) {
     case 'python':
       return new PythonRunner();
@@ -12,6 +13,8 @@ const getRunner = (language: string): IRunner => {
       return new PhpRunner();
     case 'javascript':
       return new JavaScriptRunner();
+    case 'java':
+      return new JavaRunner();
     case 'html':
       return new HtmlRunner();
     default:
@@ -19,4 +22,4 @@ const getRunner = (language: string): IRunner => {
   }
 };
 
-export default getRunner;
+export default buildRunner;

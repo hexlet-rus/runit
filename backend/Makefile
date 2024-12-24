@@ -6,6 +6,7 @@ install:
 docker-builds:
 	docker build -t runit-local-runner-python ./src/runner/dockers/python
 	docker build -t runit-local-runner-php ./src/runner/dockers/php
+	docker build -t runit-local-runner-java ./src/runner/dockers/java
 
 db-migrate:
 	npm run typeorm -- migration:run -d src/data-source.ts

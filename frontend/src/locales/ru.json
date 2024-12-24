@@ -31,7 +31,8 @@
     "javascript": "// Здесь будет код на JavaScript\n",
     "php": "// Здесь будет код на PHP\n",
     "python": "# Здесь будет код на Pyhton\n",
-    "html": "<!--Здесь будет код на HTML-->\n"
+    "html": "<!--Здесь будет код на HTML-->\n",
+    "java": "class Main {\n    public static void main(String[] args) {\n\n    }\n}"
   },
   "editor": {
     "authAlert": "Чтобы изменить сниппет, необходимо быть его автором или скопировать его",

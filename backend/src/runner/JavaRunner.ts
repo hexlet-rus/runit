@@ -5,7 +5,7 @@ import { execSync } from 'node:child_process';
 import IRunner from './IRunner';
 import config from './dockerConfig';
 
-export default class PythonRunner implements IRunner {
+export default class JavaRunner implements IRunner {
   static buildRunnerCommand(language, mainScriptPath, codeDirPath) {
     const memoryStr = config.languageDocker.config.memory ? `--memory="${config.languageDocker.config.memory}"` : '';
     const cpusStr = config.languageDocker.config.cpus ? `--cpus="${config.languageDocker.config.cpus}"` : '';
@@ -18,18 +18,18 @@ export default class PythonRunner implements IRunner {
       readOnlyStr,
       `-v ${codeDirPath}:/app`,
       containerTag,
-      `python ${mainScriptPath}`,
+      `java ${mainScriptPath}`,
     ].join(' ');
 
     return command;
   }
 
   async run(code: string) {
-    const tmpDirPath = await fsp.mkdtemp(path.join(os.tmpdir(), 'python-runner-'));
-    const mainScriptPath = path.join(tmpDirPath, 'index.py');
+    const tmpDirPath = await fsp.mkdtemp(path.join(os.tmpdir(), 'java-runner-'));
+    const mainScriptPath = path.join(tmpDirPath, 'Main.java');
     await fsp.writeFile(mainScriptPath, code);
-    const scriptDockerPath = '/app/index.py';
-    const command = PythonRunner.buildRunnerCommand('python', scriptDockerPath, tmpDirPath);
+    const scriptDockerPath = '/app/Main.java';
+    const command = JavaRunner.buildRunnerCommand('java', scriptDockerPath, tmpDirPath);
     try {
       const stdout = execSync(command, {
         stdio: 'pipe',
@@ -37,17 +37,8 @@ export default class PythonRunner implements IRunner {
       }).toString();
       return Promise.resolve({ terminal: stdout.split('\n'), alertLogs: [] });
     } catch (error) {
-      const lineOfError = error.stack;
-      const startIndex =
-        lineOfError.indexOf('Traceback') === -1
-          ? lineOfError.indexOf('File')
-          : lineOfError.indexOf('Traceback');
-      const trimmedMessage = lineOfError
-        .slice(startIndex)
-        .split('\n')
-        .slice(0, 5)
-        .join('\n');
-      return Promise.resolve({ terminal: [trimmedMessage], alertLogs: [] });
+      const message = error.output.join();
+      return { terminal: [message], alertLogs: [] };
     }
   }
 }
