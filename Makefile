@@ -1,4 +1,4 @@
-setup: prepare-env install db-migrate build docker-builds
+setup: prepare-env install db-migrate build
 
 docker-builds:
 	make -C backend docker-builds
