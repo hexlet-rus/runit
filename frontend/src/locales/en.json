@@ -29,10 +29,10 @@
   },
   "codeTemplates": {
     "javascript": "// Write your code in JavaScript\n",
-    "php": "// Write your code in PHP\n",
-    "python": "# Write your code in Pyhton\n",
+    "php": "<?php\n// your code\n?>",
+    "python": "# Write Your code in Pyhton\n",
     "html": "<!--Write your code in HTML-->\n",
-    "java": "// Write your code in JAVA\n"
+    "java": "class Main {\n    public static void main(String[] args) {\n\n    }\n}"
   },
   "editor": {
     "authAlert": "To edit snippet, you must be its author or copy it",
@@ -194,7 +194,8 @@
     "javascript": "JavaScript",
     "php": "PHP",
     "python": "Python",
-    "html": "HTML"
+    "html": "HTML",
+    "java": "Java"
   },
   "modals": {
     "inDevelopment": {
@@ -226,6 +227,20 @@
       "snippetName": "Title",
       "template": "Template",
       "create": "Create"
+    },
+    "deleteSnippet": {
+      "title": {
+        "key_one": "Delete snippet",
+        "key_other": "Delete snippets"
+      },
+      "body": {
+        "key_one": "Are you sure you want to remove the {{count}} snippet?",
+        "key_other": "Are you sure you want to remove the {{count}} snippets?"
+      },
+      "button": {
+        "okButton": "Delete",
+        "cancelButton": "Cancel"
+      }
     }
   },
   "navbar": {
@@ -336,7 +351,10 @@
     "rename": "Renane",
     "run": "Run",
     "share": "Share",
-    "save": "Save"
+    "save": "Save",
+    "key_one": "{{count}} snippet selected",
+    "key_other": "{{count}} snippets selected",
+    "select": "Select snippets"
   },
   "toasts": {
     "duplicateSnippet": {

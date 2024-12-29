@@ -1,13 +1,13 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { DockerService } from './docker.service';
+import { RunnerService } from './runner.service';
 import { Output } from '../console/interfaces/output.interface';
 
 @ApiTags('runCode')
-@Controller('docker')
-export class DockerController {
+@Controller('runner')
+export class RunnerController {
   // eslint-disable-next-line no-useless-constructor
-  constructor(private readonly dockerService: DockerService) {}
+  constructor(private readonly runnerService: RunnerService) {}
 
   @Get('run')
   @ApiQuery({
@@ -22,6 +22,6 @@ export class DockerController {
   })
   async getLogs(@Query('snippet') snippet: any): Promise<Output> {
     const { language, code } = snippet;
-    return this.dockerService.run(code, language);
+    return this.runnerService.run(code, language);
   }
 }

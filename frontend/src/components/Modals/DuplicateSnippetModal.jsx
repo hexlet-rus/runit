@@ -63,7 +63,6 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
         handleClose();
         toast.success(tTDS('success'));
       } catch (error) {
-        console.log('err', error);
         if (!error.isAxiosError) {
           setFormState({
             state: 'failed',

@@ -1,5 +1,8 @@
 setup: prepare-env install db-migrate build
 
+docker-builds:
+	make -C backend docker-builds
+
 install:
 	yarn install
 

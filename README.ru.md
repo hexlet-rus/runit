@@ -24,11 +24,13 @@ Runit — это среда для написания и выполнения к
 * node >= 18
 * [Yarn 1 (Classic)](https://classic.yarnpkg.com/)
 * PostgreSQL для продакшена, либо SQLite для локальной разработки
+* Docker для локальной разработки
 
 ## Установка
 
 ```bash
 make setup
+make docker-builds
 ```
 
 ## Запуск приложения

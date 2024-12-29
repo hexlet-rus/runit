@@ -1,22 +1,22 @@
 /* eslint-disable consistent-return */
 import { Test, TestingModule } from '@nestjs/testing';
 import { MockFunctionMetadata, ModuleMocker } from 'jest-mock';
-import { DockerController } from './docker.controller';
-import { DockerService } from './docker.service';
+import { RunnerController } from './runner.controller';
+import { RunnerService } from './runner.service';
 
 const moduleMocker = new ModuleMocker(global);
 
 describe('AppController', () => {
-  let dockerController: DockerController;
-  let dockerService: DockerService;
+  let runnerController: RunnerController;
+  let runnerService: RunnerService;
   let dataUsers: any;
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
-      controllers: [DockerController],
+      controllers: [RunnerController],
     })
       .useMocker((token) => {
-        if (token === DockerService) {
+        if (token === RunnerService) {
           return {
             run: jest.fn().mockResolvedValue(dataUsers),
           };
@@ -31,19 +31,19 @@ describe('AppController', () => {
       })
       .compile();
 
-    dockerController = moduleRef.get(DockerController);
-    dockerService = moduleRef.get(DockerService);
+    runnerController = moduleRef.get(RunnerController);
+    runnerService = moduleRef.get(RunnerService);
   });
 
-  describe('docker', () => {
+  describe('runner', () => {
     it('should run code', async () => {
-      jest.spyOn(dockerController, 'getLogs');
-      await dockerController.getLogs({
+      jest.spyOn(runnerController, 'getLogs');
+      await runnerController.getLogs({
         code: 'console.log("hello");',
         language: 'javascript',
       });
 
-      expect(dockerService.run).toHaveBeenCalledWith(
+      expect(runnerService.run).toHaveBeenCalledWith(
         'console.log("hello");',
         'javascript',
       );

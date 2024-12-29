@@ -3,6 +3,11 @@ setup: prepare-env install db-migrate
 install:
 	npm install
 
+docker-builds:
+	docker build -t runit-local-runner-python ./src/runner/dockers/python
+	docker build -t runit-local-runner-php ./src/runner/dockers/php
+	docker build -t runit-local-runner-java ./src/runner/dockers/java
+
 db-migrate:
 	npm run typeorm -- migration:run -d src/data-source.ts
 
@@ -28,7 +33,6 @@ start-prod:
 
 build:
 	npm run build
-	docker build -t my-code-runner-python ./src/dockers/languages/python
 
 lint:
 	npm run lint

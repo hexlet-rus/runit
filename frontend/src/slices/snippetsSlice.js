@@ -26,8 +26,9 @@ const snippetSlice = createSlice({
       state.snippets = [...state.snippets, ...payload];
     },
     deleteSnippet: (state, { payload }) => {
+      const snippetId = !Array.isArray(payload) ? [payload] : payload;
       state.snippets = state.snippets.filter(
-        (snippet) => snippet.id !== payload,
+        (snippet) => !snippetId.includes(snippet.id),
       );
     },
     updateSnippet: (state, { payload: { id, name } }) => {

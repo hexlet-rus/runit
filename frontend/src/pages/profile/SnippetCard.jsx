@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { object } from 'yup';
 
 import {
@@ -19,6 +19,7 @@ import Image from 'react-bootstrap/Image';
 import { useSnippets } from '../../hooks';
 import { actions as modalActions } from '../../slices/modalSlice.js';
 import { actions as snippetsActions } from '../../slices/snippetsSlice.js';
+import { actions as checkboxesActions } from '../../slices/checkboxesSlice.js';
 import { snippetName } from '../../utils/validationSchemas';
 import icons from '../../utils/icons';
 
@@ -34,6 +35,12 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   const { t } = useTranslation();
   const snippetApi = useSnippets();
   const { name, id, code, language } = data;
+  const { isCheckboxesOpen, checkedSnippets } = useSelector(
+    (state) => state.checkboxes,
+  );
+
+  const checkedSnippet = checkedSnippets.find((snippet) => snippet.id === id);
+  const { isChecked } = checkedSnippet;
 
   useEffect(() => {
     const filenameInput = inputRef.current;
@@ -84,6 +91,12 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
     handleCancel();
   };
 
+  const handleOnChange = () => {
+    dispatch(
+      checkboxesActions.updateCheckedSnippet({ id, checked: !isChecked }),
+    );
+  };
+
   return (
     <div className="snippet-card-header">
       <Image
@@ -114,9 +127,16 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
           </Form.Group>
         )}
       </Form>
+      <Form.Check
+        aria-label={name}
+        checked={isChecked || false}
+        className={`z-2 form-check ${isCheckboxesOpen ? '' : 'd-none'}`}
+        onChange={handleOnChange}
+        type="checkbox"
+      />
       {isRenaming ? null : (
         <Button
-          className="btn-icon-only z-2"
+          className={`btn-icon-only z-2 ${isCheckboxesOpen ? 'd-none' : ''}`}
           onClick={handleRename}
           size="sm"
           variant="nofill-body"

@@ -31,7 +31,7 @@ import getSentryConfig from './config/sentry.config';
 import appConfig from './config/app.config';
 
 import '@sentry/tracing';
-import { DockerModule } from './dockers/docker.module';
+import { RunnerModule } from './runner/runner.module';
 
 @Module({
   imports: [
@@ -42,7 +42,7 @@ import { DockerModule } from './dockers/docker.module';
     SnippetsModule,
     UsersModule,
     AuthModule,
-    DockerModule,
+    RunnerModule,
     EventsModule,
     MailerModule.forRootAsync({
       useClass: MailerConfig,

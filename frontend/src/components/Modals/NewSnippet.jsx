@@ -18,16 +18,7 @@ import routes from '../../routes';
 import { useAuth, useSnippets } from '../../hooks';
 import { snippetName } from '../../utils/validationSchemas';
 import { actions as modalActions } from '../../slices/modalSlice.js';
-import JavaScriptIcon from '../../assets/images/icons/javascript.svg';
-import HtmlIcon from '../../assets/images/icons/html.svg';
-import PhpIcon from '../../assets/images/icons/php.svg';
-import PythonIcon from '../../assets/images/icons/python.svg';
-
-const icons = new Map()
-  .set('javascript', JavaScriptIcon)
-  .set('html', HtmlIcon)
-  .set('python', PythonIcon)
-  .set('php', PhpIcon);
+import icons from '../../utils/icons';
 
 const generateGuestUserData = () => {
   const username = `guest_${faker.string.alphanumeric(5)}`;
@@ -170,11 +161,19 @@ function NewSnippet({ handleClose, isOpen }) {
   };
 
   const handleInputLng = (inputValue) => {
-    if (inputValue && inputValue.trim() !== '') {
+    const lowerInput = inputValue.trim().toLowerCase();
+
+    if (lowerInput) {
       const filteredOptions = supportedLanguages.filter((language) =>
-        language.toLowerCase().startsWith(inputValue.toLowerCase()),
+        language.toLowerCase().startsWith(lowerInput),
       );
-      setSelectedLng(filteredOptions.slice(0, 1));
+
+      const selectedLanguage =
+        filteredOptions.find(
+          (language) => language.toLowerCase() === lowerInput,
+        ) || filteredOptions[0];
+
+      setSelectedLng([selectedLanguage]);
 
       if (!once) {
         setOnce(true);

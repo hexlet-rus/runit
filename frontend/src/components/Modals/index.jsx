@@ -13,6 +13,7 @@ import DuplicateSnippetModal from './DuplicateSnippetModal';
 import AttemptDuplicateSnippet from './AttemptDuplicateSnippet.jsx';
 import ChangeAvatarModal from './ChangeAvatar';
 import RemoveAvatarModal from './RemoveAvatar';
+import DeleteSnippetModal from './DeleteSnippetModal';
 
 const modals = {
   signingUp: SignUpModal,
@@ -26,6 +27,7 @@ const modals = {
   attemptDuplicateSnippet: AttemptDuplicateSnippet,
   changeAvatar: ChangeAvatarModal,
   removeAvatar: RemoveAvatarModal,
+  deleteSnippet: DeleteSnippetModal,
 };
 
 function ModalWindow() {

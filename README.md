@@ -24,11 +24,13 @@ Tasks can be discussed in [Telegram](https://t.me/hexletcommunity/12).
 * node >= >=18.13.0
 * [Yarn 1 (Classic)](https://classic.yarnpkg.com/)
 * PostgreSQL for use in production environments or SQLite for use in local development environments
+* Docker for local development
 
 ## Installation
 
 ```bash
 make setup
+make docker-builds
 ```
 
 ## Running the app

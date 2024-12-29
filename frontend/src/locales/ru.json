@@ -29,10 +29,10 @@
   },
   "codeTemplates": {
     "javascript": "// Здесь будет код на JavaScript\n",
-    "php": "// Здесь будет код на PHP\n",
+    "php": "<?php\n// Ваш код\n?>",
     "python": "# Здесь будет код на Pyhton\n",
     "html": "<!--Здесь будет код на HTML-->\n",
-    "java": "// Здесь будет код на JAVA\n"
+    "java": "class Main {\n    public static void main(String[] args) {\n\n    }\n}"
   },
   "editor": {
     "authAlert": "Чтобы изменить сниппет, необходимо быть его автором или скопировать его",
@@ -197,7 +197,8 @@
     "javascript": "JavaScript",
     "php": "PHP",
     "python": "Python",
-    "html": "HTML"
+    "html": "HTML",
+    "java": "Java"
   },
   "licAgr": {
     "city": "город Ульяновск",
@@ -358,6 +359,22 @@
       "message": "Вы уверены, что хотите удалить изображение?",
       "removeButton": "Удалить",
       "cancelButton": "Отмена"
+    },
+    "deleteSnippet": {
+      "title": {
+        "key_one": "Удалить сниппет",
+        "key_few": "Удалить сниппеты",
+        "key_many": "Удалить сниппеты"
+      },
+      "body": {
+        "key_one": "Вы точно хотите удалить {{count}} сниппет?",
+        "key_few": "Вы точно хотите удалить {{count}} сниппета?",
+        "key_many": "Вы точно хотите удалить {{count}} сниппетов?"
+      },
+      "button": {
+        "okButton": "Удалить",
+        "cancelButton": "Отмена"
+      }
     }
   },
   "navbar": {
@@ -468,7 +485,11 @@
     "rename": "Переименовать",
     "run": "Запустить",
     "share": "Поделиться",
-    "save": "Сохранить"
+    "save": "Сохранить",
+    "key_one": "Выбран {{count}} сниппет",
+    "key_few": "Выбрано {{count}} сниппета",
+    "key_many": "Выбрано {{count}} сниппетов",
+    "select": "Выбрать сниппеты"
   },
   "toasts": {
     "duplicateSnippet": {
