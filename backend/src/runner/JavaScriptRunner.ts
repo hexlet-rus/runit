@@ -5,7 +5,6 @@ import { createContext } from '../console/console.config';
 import IRunner from './IRunner';
 
 export default class JavaScriptRunner implements IRunner {
-
   // eslint-disable-next-line class-methods-use-this
   run(code: string) {
     const alertLogs = [];
