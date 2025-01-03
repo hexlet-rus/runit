@@ -1,6 +1,7 @@
 /* eslint-disable import/no-import-module-exports */
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { json } from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import { useContainer } from 'class-validator';
 import { ValidationPipe } from '@nestjs/common';
@@ -27,6 +28,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.enable('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
   app.use(cookieParser());
+  app.use(json({ limit: '500kb' }));
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()

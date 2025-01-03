@@ -21,6 +21,7 @@ function UserMenu() {
   });
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.userInfo.username);
+  const avatar = useSelector((state) => state.userSettings.avatar);
 
   const handleNewSnippet = () => {
     dispatch(actions.openModal({ type: 'newSnippet' }));
@@ -34,7 +35,17 @@ function UserMenu() {
         variant="link"
       >
         <div className="logo-height">
-          <Avatar username={username} />
+          {avatar ? (
+            <img
+              alt=""
+              className="rounded-circle overflow-hidden h-100"
+              height="100%"
+              src={avatar}
+              width="100%"
+            />
+          ) : (
+            <Avatar username={username} />
+          )}
         </div>
         <span className="visually-hidden">{tPA('header')}</span>
       </Dropdown.Toggle>

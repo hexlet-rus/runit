@@ -27,6 +27,11 @@ export class BackendUserSettings1730013613468 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: 'avatar_base64',
+            type: 'text',
+            isNullable: true,
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             isNullable: false,
