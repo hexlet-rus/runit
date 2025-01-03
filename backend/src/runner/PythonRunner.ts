@@ -7,9 +7,15 @@ import config from './dockerConfig';
 
 export default class PythonRunner implements IRunner {
   static buildRunnerCommand(language, mainScriptPath, codeDirPath) {
-    const memoryStr = config.languageDocker.config.memory ? `--memory="${config.languageDocker.config.memory}"` : '';
-    const cpusStr = config.languageDocker.config.cpus ? `--cpus="${config.languageDocker.config.cpus}"` : '';
-    const readOnlyStr = config.languageDocker.config.readOnly ? '--read-only' : '';
+    const memoryStr = config.languageDocker.config.memory
+      ? `--memory="${config.languageDocker.config.memory}"`
+      : '';
+    const cpusStr = config.languageDocker.config.cpus
+      ? `--cpus="${config.languageDocker.config.cpus}"`
+      : '';
+    const readOnlyStr = config.languageDocker.config.readOnly
+      ? '--read-only'
+      : '';
     const containerTag = `${config.languageDocker.languageImagesTag}-${language}`;
     const command = [
       'docker run --rm -i --user 1000:1000',
@@ -24,12 +30,19 @@ export default class PythonRunner implements IRunner {
     return command;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   async run(code: string) {
-    const tmpDirPath = await fsp.mkdtemp(path.join(os.tmpdir(), 'python-runner-'));
+    const tmpDirPath = await fsp.mkdtemp(
+      path.join(os.tmpdir(), 'python-runner-'),
+    );
     const mainScriptPath = path.join(tmpDirPath, 'index.py');
     await fsp.writeFile(mainScriptPath, code);
     const scriptDockerPath = '/app/index.py';
-    const command = PythonRunner.buildRunnerCommand('python', scriptDockerPath, tmpDirPath);
+    const command = PythonRunner.buildRunnerCommand(
+      'python',
+      scriptDockerPath,
+      tmpDirPath,
+    );
     try {
       const stdout = execSync(command, {
         stdio: 'pipe',

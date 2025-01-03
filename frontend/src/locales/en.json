@@ -29,9 +29,10 @@
   },
   "codeTemplates": {
     "javascript": "// Write your code in JavaScript\n",
-    "php": "// Write your code in PHP\n",
-    "python": "# Write your code in Pyhton\n",
-    "html": "<!--Write your code in HTML-->\n"
+    "php": "<?php\n// your code\n?>",
+    "python": "# Write Your code in Pyhton\n",
+    "html": "<!--Write your code in HTML-->\n",
+    "java": "class Main {\n    public static void main(String[] args) {\n\n    }\n}"
   },
   "editor": {
     "authAlert": "To edit snippet, you must be its author or copy it",
@@ -361,7 +362,7 @@
     },
     "saveCode": {
       "success": "Snippet successfully saved!",
-      "error" : "Snippet was not saved"
+      "error": "Snippet was not saved"
     }
   }
 }

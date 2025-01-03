@@ -26,12 +26,12 @@ function SnippetBadge() {
   return (
     <Row className={`sticky-bottom ${isChecked ? '' : 'd-none'}`}>
       <Col className="d-flex justify-content-center">
-        <Badge className="badge-snippet toolbar" bg="primary">
+        <Badge bg="primary" className="badge-snippet toolbar">
           {t('snippetActions.key', { count: countChecked })}
           <Button
             className="btn-icon-only me-auto"
-            variant="nofill-light"
             onClick={handleDelete}
+            variant="nofill-light"
           >
             <Trash3 className="bi" />
             <span className="visually-hidden">
@@ -40,8 +40,8 @@ function SnippetBadge() {
           </Button>
           <Button
             className="btn-icon-only me-auto"
-            variant="nofill-light"
             onClick={handleCloseCheckboxes}
+            variant="nofill-light"
           >
             <XLg className="bi" />
             <span className="visually-hidden">

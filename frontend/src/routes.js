@@ -52,6 +52,9 @@ export default {
   // OAuth
   oAuthPath: () => [apiPath, 'oauth'].join('/'),
 
+  // RunCode
+  runCode: () => [apiPath, 'runner', 'run'].join('/'),
+
   oldLandingPath: () => '/oldLanding',
   homePagePath: () => '/editor',
   aboutPagePath: () => '/about',

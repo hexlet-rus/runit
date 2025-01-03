@@ -1,22 +1,22 @@
 /* eslint-disable consistent-return */
 import { Test, TestingModule } from '@nestjs/testing';
 import { MockFunctionMetadata, ModuleMocker } from 'jest-mock';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { RunnerController } from './runner.controller';
+import { RunnerService } from './runner.service';
 
 const moduleMocker = new ModuleMocker(global);
 
 describe('AppController', () => {
-  let appController: AppController;
-  let appService: AppService;
+  let runnerController: RunnerController;
+  let runnerService: RunnerService;
   let dataUsers: any;
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
-      controllers: [AppController],
+      controllers: [RunnerController],
     })
       .useMocker((token) => {
-        if (token === AppService) {
+        if (token === RunnerService) {
           return {
             run: jest.fn().mockResolvedValue(dataUsers),
           };
@@ -31,19 +31,19 @@ describe('AppController', () => {
       })
       .compile();
 
-    appController = moduleRef.get(AppController);
-    appService = moduleRef.get(AppService);
+    runnerController = moduleRef.get(RunnerController);
+    runnerService = moduleRef.get(RunnerService);
   });
 
-  describe('app', () => {
+  describe('runner', () => {
     it('should run code', async () => {
-      jest.spyOn(appController, 'getLogs');
-      await appController.getLogs({
+      jest.spyOn(runnerController, 'getLogs');
+      await runnerController.getLogs({
         code: 'console.log("hello");',
         language: 'javascript',
       });
 
-      expect(appService.run).toHaveBeenCalledWith(
+      expect(runnerService.run).toHaveBeenCalledWith(
         'console.log("hello");',
         'javascript',
       );

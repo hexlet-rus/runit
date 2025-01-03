@@ -23,11 +23,11 @@ function SnippetCheck() {
   return (
     <div className={`${isCreateSnippet ? '' : 'd-none'}`}>
       {isCheckboxesOpen ? (
-        <Button variant="outline-primary" onClick={handleCloseCheckboxes}>
+        <Button onClick={handleCloseCheckboxes} variant="outline-primary">
           {t('snippetActions.cancelButton')} <XLg />
         </Button>
       ) : (
-        <Button variant="outline-primary" onClick={handleOpenCheckboxes}>
+        <Button onClick={handleOpenCheckboxes} variant="outline-primary">
           {t('snippetActions.select')} <Check2Square />
         </Button>
       )}

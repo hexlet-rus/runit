@@ -128,11 +128,11 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
         )}
       </Form>
       <Form.Check
-        className={`z-2 form-check ${isCheckboxesOpen ? '' : 'd-none'}`}
-        type="checkbox"
         aria-label={name}
         checked={isChecked || false}
+        className={`z-2 form-check ${isCheckboxesOpen ? '' : 'd-none'}`}
         onChange={handleOnChange}
+        type="checkbox"
       />
       {isRenaming ? null : (
         <Button

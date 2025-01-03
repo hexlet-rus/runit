@@ -39,7 +39,7 @@ function DeleteSnippetModal({ handleClose, isOpen }) {
   };
 
   return (
-    <Modal centered show={isOpen} onHide={handleClose}>
+    <Modal centered onHide={handleClose} show={isOpen}>
       <Modal.Header className="py-3" closeButton>
         <Modal.Title>
           {t('modals.deleteSnippet.title.key', { count: countChecked })}
@@ -51,15 +51,15 @@ function DeleteSnippetModal({ handleClose, isOpen }) {
           <div className="d-flex flex-row gap-5 mt-3">
             <Button
               className="flex-fill"
-              variant="secondary"
               onClick={handleClose}
+              variant="secondary"
             >
               {t('modals.deleteSnippet.button.cancelButton')}
             </Button>
             <Button
               className="flex-fill"
-              variant="primary"
               onClick={() => handleSnippetDelete(checkedSnippets)}
+              variant="primary"
             >
               {t('modals.deleteSnippet.button.okButton')}
             </Button>
