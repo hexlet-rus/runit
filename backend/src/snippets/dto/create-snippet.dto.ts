@@ -1,14 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, Length } from 'class-validator';
-
-enum LANGUAGES {
-  RUBY = 'ruby',
-  JAVA = 'java',
-  PHP = 'php',
-  PYTHON = 'python',
-  JAVASCRIPT = 'javascript',
-  HTML = 'html'
-}
+import { Languages } from '../enums/Languages';
 
 export class CreateSnippetDto {
   @ApiProperty({ example: 'console.log("Hello world!");' })
@@ -26,8 +18,8 @@ export class CreateSnippetDto {
 
   @IsString()
   @ApiProperty({
-    enum: LANGUAGES,
-    example: LANGUAGES.JAVASCRIPT
+    enum: Languages,
+    example: Languages.javascript,
   })
   language: string;
 }
