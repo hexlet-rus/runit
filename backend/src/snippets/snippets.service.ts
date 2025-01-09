@@ -8,7 +8,7 @@ import { User } from '../entities/user.entity';
 import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
 import { Snippet } from '../entities/snippet.entity';
-import { IUser } from '../users/interfaces/users.interface';
+import { User as UserInterface } from '../users/interfaces/users.interface';
 import { generateUniqSlug } from './utils/generate-uniq-slug';
 
 @Injectable()
@@ -49,7 +49,7 @@ export class SnippetsService {
 
   async create(
     createSnippetDto: CreateSnippetDto,
-    { id }: IUser,
+    { id }: UserInterface,
   ): Promise<Snippet> {
     const snippet = new Snippet();
     const { name, code, language } = createSnippetDto;

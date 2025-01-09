@@ -25,7 +25,7 @@ import {
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User as UserDecorator } from './users.decorator';
-import { IUser } from './interfaces/users.interface';
+import { User } from './interfaces/users.interface';
 import { UsersService } from './users.service';
 import { HttpExceptionFilter } from './exceptions/http-exception.filter';
 import { ParseIntPipe } from './pipes/parse-int.pipe';
@@ -49,7 +49,7 @@ export class UsersController {
   @ApiCookieAuth('access_token')
   @ApiOkResponse({ description: 'Successfully returned all users' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  async findAll(): Promise<IUser[]> {
+  async findAll(): Promise<User[]> {
     return this.usersService.findAll();
   }
 
@@ -58,7 +58,7 @@ export class UsersController {
   @ApiCookieAuth('access_token')
   @ApiOkResponse({ description: 'Successfully returned user profile' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  async getProfile(@UserDecorator('user') user: IUser) {
+  async getProfile(@UserDecorator('user') user: User) {
     return this.usersService.getData(user);
   }
 
@@ -67,7 +67,7 @@ export class UsersController {
   @ApiCookieAuth('access_token')
   @ApiOkResponse({ description: 'Successfully returned user' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  async findOne(@Param('id', new ParseIntPipe()) id: number): Promise<IUser> {
+  async findOne(@Param('id', new ParseIntPipe()) id: number): Promise<User> {
     return this.usersService.findOne(id);
   }
 
@@ -76,7 +76,7 @@ export class UsersController {
   @ApiCookieAuth('access_token')
   @ApiOkResponse({ description: 'Successfully returned user by username' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  async findByUsername(@Param('username') username: string): Promise<IUser> {
+  async findByUsername(@Param('username') username: string): Promise<User> {
     return this.usersService.findByUsername(username);
   }
 
