@@ -1,10 +1,12 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 
+const languages = ['javascript', 'html', 'php', 'python', 'java', 'ruby'];
+
 const slice = createSlice({
   name: 'languages',
   initialState: {
-    supportedLanguages: ['javascript', 'html', 'php', 'python', 'java'],
+    supportedLanguages: languages,
     currentLanguage: 'javascript',
   },
   reducers: {

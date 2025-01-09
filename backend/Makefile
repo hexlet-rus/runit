@@ -7,6 +7,7 @@ docker-builds:
 	docker build -t runit-local-runner-python ./src/runner/dockers/python
 	docker build -t runit-local-runner-php ./src/runner/dockers/php
 	docker build -t runit-local-runner-java ./src/runner/dockers/java
+	docker build -t runit-local-runner-ruby ./src/runner/dockers/ruby
 
 db-migrate:
 	npm run typeorm -- migration:run -d src/data-source.ts
