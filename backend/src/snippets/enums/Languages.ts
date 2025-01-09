@@ -1,8 +1,8 @@
 export enum Languages {
-  RUBY = 'ruby',
-  JAVA = 'java',
-  PHP = 'php',
-  PYTHON = 'python',
-  JAVASCRIPT = 'javascript',
-  HTML = 'html',
+  ruby = 'ruby',
+  java = 'java',
+  php = 'php',
+  python = 'python',
+  javascript = 'javascript',
+  html = 'html',
 }
