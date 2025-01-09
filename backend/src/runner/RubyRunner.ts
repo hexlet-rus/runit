@@ -32,7 +32,9 @@ export default class RubyRunner implements IRunner {
 
   // eslint-disable-next-line class-methods-use-this
   async run(code: string) {
-    const tmpDirPath = await fsp.mkdtemp(path.join(os.tmpdir(), 'ruby-runner-'));
+    const tmpDirPath = await fsp.mkdtemp(
+      path.join(os.tmpdir(), 'ruby-runner-'),
+    );
     const mainScriptPath = path.join(tmpDirPath, 'main.rb');
     await fsp.writeFile(mainScriptPath, code);
     const scriptDockerPath = '/app/main.rb';
