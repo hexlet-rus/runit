@@ -24,13 +24,13 @@ import {
 import { User as UserDecorator } from '../users/users.decorator';
 import { CreateSnippetDto } from './dto/create-snippet.dto';
 import { UpdateSnippetDto } from './dto/update-snippet.dto';
-import { ISnippet } from './interfaces/snippet.interface';
+import { Snippet } from './interfaces/snippet.interface';
 import { SnippetsService } from './snippets.service';
 import { HttpExceptionFilter } from './exceptions/http-exception.filter';
 import { ParseIntPipe } from './pipes/parse-int.pipe';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ValidationPipe } from './validation/validation.pipe';
-import { IUser } from '../users/interfaces/users.interface';
+import { User } from '../users/interfaces/users.interface';
 
 @ApiTags('snippets')
 @Controller('snippets')
@@ -40,7 +40,7 @@ export class SnippetsController {
 
   @Get()
   @ApiOkResponse({ description: 'Successfully returned all snippets' })
-  async findAll(): Promise<ISnippet[]> {
+  async findAll(): Promise<Snippet[]> {
     return this.snippetsService.findAll();
   }
 
@@ -57,15 +57,13 @@ export class SnippetsController {
   async findOneByUsernameSlug(
     @Param('username') username: string,
     @Param('slug') slug: string,
-  ): Promise<ISnippet> {
+  ): Promise<Snippet> {
     return this.snippetsService.findByUsernameSlug(username, slug);
   }
 
   @Get(':id')
   @ApiOkResponse({ description: 'Successfully returned snippet by id' })
-  async findOne(
-    @Param('id', new ParseIntPipe()) id: number,
-  ): Promise<ISnippet> {
+  async findOne(@Param('id', new ParseIntPipe()) id: number): Promise<Snippet> {
     return this.snippetsService.findOne(id);
   }
 
@@ -76,7 +74,7 @@ export class SnippetsController {
   @ApiBadRequestResponse({ description: 'Validation failed!' })
   @ApiCreatedResponse({ description: 'Snippet successfully created!' })
   async create(
-    @UserDecorator('user') user: IUser,
+    @UserDecorator('user') user: User,
     @Body(new ValidationPipe())
     createSnippetDto: CreateSnippetDto,
   ) {
