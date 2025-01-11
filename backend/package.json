@@ -49,6 +49,7 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
     "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.7",
     "express": "^4.18.2",
     "express-ws": "^5.0.2",
     "generate-password": "^1.7.0",

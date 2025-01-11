@@ -48,10 +48,12 @@ export class UsersService {
   }
 
   async create(createUserDto: CreateUserDto): Promise<User> {
+    const adminEmail = process.env.ADMIN_EMAIL;
     const user = new User();
     user.username = createUserDto.username;
     user.email = createUserDto.email.toLowerCase();
     user.password = createUserDto.password;
+    user.isAdmin = createUserDto.email.toLowerCase() === adminEmail;
     const newUser = await this.usersRepository.save(user);
     const userSettings = await this.userSettingsRepository.create({
       userId: newUser.id,
@@ -181,8 +183,15 @@ export class UsersService {
     await this.usersRepository.delete({ id });
   }
 
-  findAll(): Promise<User[]> {
+  async findAll(): Promise<User[]> {
     return this.usersRepository.find();
+  }
+
+  async findAllUsers(page: number, take: number): Promise<User[]> {
+    return this.usersRepository.find({
+      skip: (page - 1) * take,
+      take,
+    });
   }
 
   async getData({ id }: IUser): Promise<any> {

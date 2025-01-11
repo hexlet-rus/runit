@@ -32,6 +32,7 @@ import appConfig from './config/app.config';
 
 import '@sentry/tracing';
 import { RunnerModule } from './runner/runner.module';
+import { AdminsModule } from './admins/admins.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { RunnerModule } from './runner/runner.module';
     AuthModule,
     RunnerModule,
     EventsModule,
+    AdminsModule,
     MailerModule.forRootAsync({
       useClass: MailerConfig,
     }),
