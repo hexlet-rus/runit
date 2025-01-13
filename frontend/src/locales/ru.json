@@ -32,7 +32,8 @@
     "php": "<?php\n// Ваш код\n",
     "python": "# Здесь будет код на Pyhton\n",
     "html": "<!--Здесь будет код на HTML-->\n",
-    "java": "class Main {\n    public static void main(String[] args) {\n\n    }\n}"
+    "java": "class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+    "ruby": "# Write your code here"
   },
   "editor": {
     "authAlert": "Чтобы изменить сниппет, необходимо быть его автором или скопировать его",

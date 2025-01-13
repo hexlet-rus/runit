@@ -15,6 +15,10 @@ export default {
         language: 'php',
         command: 'php -r',
       },
+      ruby: {
+        language: 'ruby',
+        command: 'ruby',
+      },
     },
   },
 };
