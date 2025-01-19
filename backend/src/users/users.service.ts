@@ -187,13 +187,6 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  async findAllUsers(page: number, take: number): Promise<User[]> {
-    return this.usersRepository.find({
-      skip: (page - 1) * take,
-      take,
-    });
-  }
-
   async getData({ id }: IUser): Promise<any> {
     const currentUser = await this.usersRepository.findOneBy({ id });
     const settingsUser = await this.userSettingsRepository.findOne({

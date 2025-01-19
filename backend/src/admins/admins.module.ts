@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
-import { UsersModule } from '../users/users.module';
-import { AdminsController } from './admins.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AdminsService } from './admins.service';
+import { AdminsController } from './admins.controller';
+import { User } from '../entities/user.entity';
+import { Snippet } from '../entities/snippet.entity';
+import { UserSettings } from '../entities/user-settings.entity';
 
 @Module({
-  imports: [UsersModule],
+  imports: [TypeOrmModule.forFeature([User, Snippet, UserSettings])],
   providers: [AdminsService],
   controllers: [AdminsController],
 })

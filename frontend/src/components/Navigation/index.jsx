@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
@@ -16,11 +17,12 @@ import NavMenu from './NavMenu.jsx';
 import ThemeSelector from './ThemeSelector.jsx';
 import UserMenu from './UserMenu.jsx';
 import GuestMenu from './GuestMenu.jsx';
+import AdminMenu from './AdminMenu';
 
 function Navigation() {
   const { isLoggedIn } = useAuth();
   const { t: tN } = useTranslation('translation', { keyPrefix: 'navbar' });
-
+  const isAdmin = useSelector((state) => state.user.userInfo.isAdmin);
   const guestUser = localStorage.getItem('guestUserData');
 
   return (
@@ -47,6 +49,7 @@ function Navigation() {
             as="ul"
             className="flex-sm-row flex-column flex-wrap ms-sm-auto align-items-sm-center align-items-start gap-2"
           >
+            {isAdmin && <AdminMenu />}
             <LanguageSelector />
             <ThemeSelector />
             {isLoggedIn && !guestUser && <UserMenu />}
