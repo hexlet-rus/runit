@@ -1,6 +1,5 @@
 FROM node:23
 
-
 RUN apt update && apt install -y make curl
 
 ENV DOCKER_CHANNEL stable
@@ -13,6 +12,7 @@ WORKDIR /usr/src/runit
 
 COPY . .
 
-RUN make setup
+RUN yarn install --frozen-lockfile
+RUN make build
 
 CMD [ "make", "start-prod" ]

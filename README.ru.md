@@ -101,6 +101,11 @@ make test-e2e
 
 Посмотрите список issue, выберите интересную задачу, напишите в issue, что хотите работать над этой задачей.
 
+## Полезные ссылки
+
+* [Гайдлайн по TS от Microsoft](https://github.com/microsoft/TypeScript/wiki/Coding-guidelines)
+* [Гайдлайн по TS от Google](https://google.github.io/styleguide/tsguide.html)
+
 ---
 
 [![© ООО «Хекслет Рус» logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=hexlet-editor)

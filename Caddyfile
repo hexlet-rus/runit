@@ -1,0 +1,10 @@
+runit.local {
+  log {
+    format json
+  }
+
+  encode zstd
+  tls internal
+
+  reverse_proxy /* app:3000
+}
