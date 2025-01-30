@@ -15,7 +15,6 @@ declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-
   Sentry.init({
     dsn: process.env.SENTRY_DNS,
     debug: process.env.DEBUG === 'true',

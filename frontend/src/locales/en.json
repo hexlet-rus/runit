@@ -276,7 +276,8 @@
     "settings": "Settings",
     "share": "Share my profile",
     "signIn": "Sign In",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "adminPanel": "Admin panel"
   },
   "profileSettings": {
     "appearance": "Appearance",

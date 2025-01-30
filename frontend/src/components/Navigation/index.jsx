@@ -17,7 +17,7 @@ import NavMenu from './NavMenu.jsx';
 import ThemeSelector from './ThemeSelector.jsx';
 import UserMenu from './UserMenu.jsx';
 import GuestMenu from './GuestMenu.jsx';
-import AdminMenu from './AdminMenu';
+import AdminPanelButton from './AdminPanelButton';
 
 function Navigation() {
   const { isLoggedIn } = useAuth();
@@ -49,7 +49,7 @@ function Navigation() {
             as="ul"
             className="flex-sm-row flex-column flex-wrap ms-sm-auto align-items-sm-center align-items-start gap-2"
           >
-            {isAdmin && <AdminMenu />}
+            {isAdmin && isLoggedIn && <AdminPanelButton />}
             <LanguageSelector />
             <ThemeSelector />
             {isLoggedIn && !guestUser && <UserMenu />}

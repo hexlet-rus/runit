@@ -1,4 +1,3 @@
-doctype html
 html
     head
         meta(charset='utf-8')
@@ -16,16 +15,24 @@ html
         h1.text-center.font-weight-bold.pb-3
                 | Редактирование профиля
         .d-flex.align-items-center.justify-content-center
-          form(action=`/api/admin/users/edit/${user.id}`, method="post")
+          form(action=`/api/admin/users/edit/${updateUserDto.id}`, method="post")
             div.mb-3
               label.form-label(for="username") Имя
-              input.form-control(id="username" name="username" type="text" value=user.username)
+              input.form-control(id="username" name="username" type="text" value=updateUserDto.username)
+              if status === 'validationFailed' && errors.username
+                .alert.alert-warning(role="alert") #{errors.username.message}
             div.mb-3
               label.form-label(for="email") Емейл
-              input.form-control(id="email" name="email" type="email" value=user.email)
+              input.form-control(id="email" name="email" type="email" value=updateUserDto.email)
+              if status === 'validationFailed' && errors.email
+                .alert.alert-warning(role="alert") #{errors.email.message}
             div.mb-3
               label.form-label(for="status") Роль
               select.form-select(id="status" name="isAdmin")
-                option(value="off" selected=user.isAdmin) Пользователь
-                option(value="on" selected=user.isAdmin) Администратор
+                option(value="off" selected=updateUserDto.isAdmin) Пользователь
+                option(value="on" selected=updateUserDto.isAdmin) Администратор
+              if status === 'success'
+                .alert.alert-success(role="alert") Пользователь успешно обновлен
+              if status === 'failed'
+                .alert.alert-warning(role="alert") #{errors}
             button.btn.btn-primary(type="submit") Сохранить
