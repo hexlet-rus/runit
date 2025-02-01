@@ -48,12 +48,10 @@ export class UsersService {
   }
 
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const adminEmail = process.env.ADMIN_EMAIL;
     const user = new User();
     user.username = createUserDto.username;
     user.email = createUserDto.email.toLowerCase();
     user.password = createUserDto.password;
-    user.isAdmin = createUserDto.email.toLowerCase() === adminEmail;
     const newUser = await this.usersRepository.save(user);
     const userSettings = await this.userSettingsRepository.create({
       userId: newUser.id,

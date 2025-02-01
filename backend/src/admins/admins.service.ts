@@ -53,6 +53,10 @@ export class AdminsService {
     return this.usersRepository.findOneBy({ id });
   }
 
+  async findUserByEmail(email: string): Promise<User> {
+    return this.usersRepository.findOneBy({ email });
+  }
+
   async updateUser(
     id: number,
     dto: any,
@@ -71,6 +75,10 @@ export class AdminsService {
     } catch (e) {
       return { status: 'failed', errors: e.message, updateUserDto: dto };
     }
+  }
+
+  async update(userId: number, updateDto: { isAdmin: boolean }): Promise<void> {
+    await this.usersRepository.update(userId, updateDto);
   }
 
   async create(dto: CreateUserDto): Promise<{

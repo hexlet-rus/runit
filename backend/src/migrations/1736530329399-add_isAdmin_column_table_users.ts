@@ -1,7 +1,5 @@
 import { MigrationInterface, QueryRunner, TableColumn } from 'typeorm';
-import { config } from 'dotenv';
 
-config();
 export class AddIsAdminColumnTableUsers1736530329399
   implements MigrationInterface
 {
@@ -15,7 +13,7 @@ export class AddIsAdminColumnTableUsers1736530329399
       }),
     );
 
-    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminEmail = 'test@test.ru';
 
     await queryRunner.query(
       `UPDATE users SET isAdmin = true WHERE email = $1`,
