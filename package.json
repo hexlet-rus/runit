@@ -18,7 +18,8 @@
     "start:backend": "yarn workspace backend run start:debug",
     "start:frontend": "yarn workspace frontend run start",
     "start": "npm-run-all --parallel start:*",
-    "test": "playwright test --trace on"
+    "test": "playwright test",
+    "test:debug": "yarn test -- --ui"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,8 @@
   },
   "devDependencies": {
     "@nestjs/cli": "^9.2.0",
-    "@playwright/test": "^1.30.0",
-    "node-gyp": "^9.3.1"
+    "@playwright/test": "^1.50.0",
+    "node-gyp": "^9.3.1",
+    "@faker-js/faker": "^9.4.0"
   }
 }
