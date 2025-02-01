@@ -29,10 +29,11 @@
   },
   "codeTemplates": {
     "javascript": "// Write your code in JavaScript\n",
-    "php": "<?php\n// your code\n?>",
+    "php": "<?php\n// your code",
     "python": "# Write Your code in Pyhton\n",
     "html": "<!--Write your code in HTML-->\n",
-    "java": "class Main {\n    public static void main(String[] args) {\n\n    }\n}"
+    "java": "class Main {\n    public static void main(String[] args) {\n\n    }\n}",
+    "ruby": "# Write your code here"
   },
   "editor": {
     "authAlert": "To edit snippet, you must be its author or copy it",
@@ -195,7 +196,8 @@
     "php": "PHP",
     "python": "Python",
     "html": "HTML",
-    "java": "Java"
+    "java": "Java",
+    "ruby": "Ruby"
   },
   "modals": {
     "inDevelopment": {

@@ -1,3 +1,5 @@
+include make-compose.mk
+
 setup: prepare-env install db-migrate build
 
 docker-builds:
@@ -75,3 +77,14 @@ git-update:
 
 prepare-env:
 	make -C backend prepare-env
+
+build-image:
+	docker build . -t runit
+
+run-container:
+	docker run --rm runit
+
+compose-ci-build:
+	docker build -f Dockerfile.production -t runit .
+	docker build -f services/web-nginx/Dockerfile -t runit/services-web .
+	docker compose -f docker-compose.yml build

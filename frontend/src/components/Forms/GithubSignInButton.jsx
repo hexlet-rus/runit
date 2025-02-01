@@ -12,9 +12,13 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 function GithubSignInButton() {
-  const { t: tFA } = useTranslation('translation', {
+  const { t: tFA, i18n } = useTranslation('translation', {
     keyPrefix: 'formActions',
   });
+
+  if (i18n.language === 'ru') {
+    return null; // Для ru скрываем вход по github
+  }
 
   return (
     <Button as="a" href={OAUTH_LINK.toString()} variant="outline-secondary">
