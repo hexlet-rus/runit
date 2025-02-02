@@ -12,13 +12,6 @@ export class AddIsAdminColumnTableUsers1736530329399
         default: false,
       }),
     );
-
-    const adminEmail = 'test@test.ru';
-
-    await queryRunner.query(
-      `UPDATE users SET isAdmin = true WHERE email = $1`,
-      [adminEmail],
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
