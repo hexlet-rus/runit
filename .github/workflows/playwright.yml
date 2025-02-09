@@ -27,3 +27,8 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+
+    - uses: daun/playwright-report-summary@v3
+      if: always()
+      with:
+        report-file: results.json
