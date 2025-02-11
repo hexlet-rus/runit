@@ -38,7 +38,7 @@ test.describe('Registration and login', () => {
             email: faker.internet.email(),
             username: faker.person.firstName(),
             password: 'Проверка',
-            error: 'Only Latin letters, numbers and punctuation are allowed!'
+            error: 'Only Latin letters, numbers and punctuation are allowed'
         },
         {
             title: 'Username too short',
