@@ -19,6 +19,7 @@
     "start:frontend": "yarn workspace frontend run start",
     "start": "npm-run-all --parallel start:*",
     "test": "playwright test",
+    "test:withDocker": "WITHOUT_DOCKER = false playwright test",
     "test:debug": "yarn test -- --ui"
   },
   "repository": {

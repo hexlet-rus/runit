@@ -1,6 +1,7 @@
 import {expect, test} from '../fixture';
 import {TypeSnippets} from "../page/MySnippetsPage";
 import {readExpectedFile, readSnippetFile, typeSnippetsPath} from "../data/snipets";
+import {configHelper} from "../helpers/configHelper";
 
 /* TODO: Тесты каждый раз создают пользователя в приложении,все должно происходит в тестовом окружении */
 
@@ -8,29 +9,36 @@ const listTestCase = [
     {
         title: 'Add and check JavaScript snippet',
         lang: TypeSnippets.js,
+        skip: false
     },
     {
         title: 'Add and check PHP snippet',
         lang: TypeSnippets.php,
+        skip: configHelper.runWithoutDocker
     },
     {
         title: 'Add and check Python snippet',
         lang: TypeSnippets.python,
+        skip: configHelper.runWithoutDocker
     },
     {
         title: 'Add and check Ruby snippet',
         lang: TypeSnippets.ruby,
+        skip: configHelper.runWithoutDocker
     },
     {
         title: 'Add and check Java snippet',
         lang: TypeSnippets.java,
+        skip: configHelper.runWithoutDocker
     }
 ]
 
 test.describe('Check snippets', () => {
     for (const testCase of listTestCase) {
-        const {title, lang} = testCase;
+        const {title, lang, skip} = testCase;
         test(title, async ({app: {mySnippetsPage, codeEditorPage}}) => {
+            test.skip(skip, 'Нужно поднимать все докеры, для запуска всех тестов');
+
             const code = await readSnippetFile(typeSnippetsPath.simple, lang);
             const expectedOutput = await readExpectedFile(typeSnippetsPath.simple)
             await mySnippetsPage.create(lang);
