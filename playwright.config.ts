@@ -94,7 +94,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm start && sleep 5',
+    command: 'npm start',
     port: 3000,
     reuseExistingServer: !process.env.CI,
     env: {

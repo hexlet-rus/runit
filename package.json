@@ -18,7 +18,9 @@
     "start:backend": "yarn workspace backend run start:debug",
     "start:frontend": "yarn workspace frontend run start",
     "start": "npm-run-all --parallel start:*",
+    "start-server": "npm start",
     "test": "playwright test",
+    "test:ci": "npx start-server-and-test start-server http://localhost:3000 test",
     "test:withDocker": "WITHOUT_DOCKER = false playwright test",
     "test:debug": "yarn test -- --ui"
   },
