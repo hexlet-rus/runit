@@ -14,6 +14,7 @@ const useLanguage = () => {
 
   useLayoutEffect(() => {
     changeLanguage(language);
+    localStorage.setItem('language', language);
   }, [language, changeLanguage]);
 
   return {
