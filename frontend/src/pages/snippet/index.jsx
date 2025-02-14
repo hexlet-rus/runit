@@ -72,8 +72,6 @@ function SnippetPage() {
   const isNotMobile = useMediaQuery('(min-width: 768px)');
 
   useEffect(() => {
-    console.log(`UseEffect отработал isNotMobile =${isNotMobile}`);
-    console.log(`Текущий маршрут: ${window.location.pathname}`);
     if (isNotMobile) {
       dispatch(actions.updateDirection('horizontal'));
     } else {
