@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { useDebounce, useMediaQuery, useTernaryDarkMode } from 'usehooks-ts';
 
 import Container from 'react-bootstrap/Container';
@@ -34,6 +34,7 @@ function SnippetPage() {
   const snippetApi = useSnippets();
   const params = useParams();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const { currentLanguage } = useSelector((state) => state.languages);
 
@@ -71,12 +72,14 @@ function SnippetPage() {
   const isNotMobile = useMediaQuery('(min-width: 768px)');
 
   useEffect(() => {
+    console.log(`UseEffect отработал isNotMobile =${isNotMobile}`);
+    console.log(`Текущий маршрут: ${window.location.pathname}`);
     if (isNotMobile) {
       dispatch(actions.updateDirection('horizontal'));
     } else {
       dispatch(actions.updateDirection('vertical'));
     }
-  }, [dispatch, isNotMobile]);
+  }, [dispatch, isNotMobile, location]);
 
   useEffect(() => {
     const editorData = editorDataRef.current;
