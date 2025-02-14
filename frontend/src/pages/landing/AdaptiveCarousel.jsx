@@ -32,11 +32,7 @@ function AdaptiveCarousel() {
             <Carousel.Item key={text}>
               <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
                 <Col>
-                  <Image
-                    className="card-carousel rounded-5"
-                    src={image}
-                    // style={styleCardCarousel}
-                  />
+                  <Image className="card-carousel rounded-5" src={image} />
                 </Col>
                 <Col>
                   <figcaption className="min-width">{text}</figcaption>
@@ -55,11 +51,6 @@ function AdaptiveCarousel() {
               className="card-adaptive rounded-5 mb-4 mx-auto"
               fluid
               src={image}
-              // style={{
-              //   height: '13.75rem',
-              //   width: '100%',
-              //   objectFit: 'cover',
-              // }}
             />
           </figure>
         ))}
