@@ -7,6 +7,7 @@ import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 
 import { useTernaryDarkMode } from 'usehooks-ts';
 import { useAuth } from '../../hooks';
+import { landingTestIds } from '../../constants';
 import routes from '../../routes.js';
 import { actions } from '../../slices/modalSlice';
 import Faq from './Faq.jsx';
@@ -116,6 +117,7 @@ function NewLanding() {
             <Col>
               <Button
                 className="btn-start-no-reg rounded-5"
+                data-testid={landingTestIds.codeWithoutReg}
                 onClick={handleCodeWithoutRegButton}
                 size="lg"
               >

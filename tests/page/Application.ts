@@ -4,6 +4,7 @@ import {SignupPage} from "./SignupPage";
 import {Page} from "@playwright/test";
 import {MySnippetsPage} from "./MySnippetsPage";
 import {CodeEditorPage} from "./CodeEditorPage/CodeEditorPage";
+import {MainPage} from "./MainPage";
 
 export class Application extends AbstractPage {
     constructor(page: Page) {
@@ -14,4 +15,5 @@ export class Application extends AbstractPage {
     signup = new SignupPage(this.page);
     mySnippetsPage = new MySnippetsPage(this.page)
     codeEditorPage = new CodeEditorPage(this.page)
+    mainPage = new MainPage(this.page)
 }
