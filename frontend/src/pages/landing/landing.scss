@@ -61,36 +61,6 @@ $font-family: "Nunito Sans";
   overflow: hidden;
 }
 
-.max-height-350 {
-  max-height: 350px;
-}
-.min-width {
-  min-width: 400px;
-}
-.card-adaptive {
-  max-height: 13.75rem;
-  width: 100%;
-  object-fit: cover;
-}
-.card-carousel {
-  width: 530px;
-  height: 400px;
-  object-fit: cover;
-}
-
-.carousel-control-next-icon{
-  visibility: hidden;
-}
-.carousel-control-prev-icon{
-  visibility: hidden;
-}
-
-.carousel:hover .carousel-control-prev-icon, .carousel:hover .carousel-control-next-icon {
-  visibility: visible;
-  background-color:  #136ef6;
-  border-radius: 5px
-}
-
 .footer-menu {
   margin-block-end: 2rem;
   align-self: flex-start;

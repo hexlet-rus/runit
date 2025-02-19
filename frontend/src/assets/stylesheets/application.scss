@@ -81,7 +81,7 @@ $dropdown-padding-y: 0.25rem;
 @import "bootstrap/scss/modal"; // Requires transitions
 // @import "bootstrap/scss/tooltip";
 // @import "bootstrap/scss/popover";
-// @import "bootstrap/scss/carousel";
+@import "bootstrap/scss/carousel";
 @import "bootstrap/scss/spinners";
 
 // @import "bootstrap/scss/offcanvas"; // Requires transitions
@@ -136,6 +136,7 @@ $navbar-height: $logo-height + $navbar-brand-padding-y * 2 + $navbar-padding-y *
 @import "./embed-page";
 @import "./btn-run.scss";
 @import "./badge-snippet";
+@import "./adaptive-carousel.scss";
 
 @include media-breakpoint-down(sm) {
   .btn-lg {

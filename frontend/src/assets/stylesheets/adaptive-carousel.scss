@@ -1,0 +1,29 @@
+.card-adaptive {
+  max-height: 13.75rem;
+  width: 100%;
+  object-fit: cover;
+}
+.card-carousel {
+  width: 600px;
+  height: 400px;
+  object-fit: cover;
+}
+.carousel-control-next {
+  position: absolute;
+  right: -7rem;
+}
+.carousel-control-prev {
+  position: absolute;
+  left: -7rem;
+}
+.carousel-control-next-icon{
+  visibility: hidden;
+}
+.carousel-control-prev-icon{
+  visibility: hidden;
+}
+.carousel:hover .carousel-control-prev-icon, .carousel:hover .carousel-control-next-icon {
+  visibility: visible;
+  background-color: $primary;
+  border-radius: 5px
+}

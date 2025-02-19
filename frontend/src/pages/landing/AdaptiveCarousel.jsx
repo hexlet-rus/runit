@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import './landing.scss';
 
 import { Col, Image, Row, Carousel } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import ImageCarousel1 from './assets/DisplayWithCode1.jpeg';
 import ImageCarousel2 from './assets/DisplayWithCode2.jpeg';
@@ -27,7 +25,7 @@ function AdaptiveCarousel() {
         className="d-none d-lg-inline-flex mb-5 pb-5"
         lg={{ offset: 1, span: 10 }}
       >
-        <Carousel className="mb-5 max-height-350" indicators={false}>
+        <Carousel className="mb-5" indicators={false}>
           {cards.map(({ image, text }) => (
             <Carousel.Item key={text}>
               <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
@@ -35,7 +33,7 @@ function AdaptiveCarousel() {
                   <Image className="card-carousel rounded-5" src={image} />
                 </Col>
                 <Col>
-                  <figcaption className="min-width">{text}</figcaption>
+                  <figcaption>{text}</figcaption>
                 </Col>
               </figure>
             </Carousel.Item>
