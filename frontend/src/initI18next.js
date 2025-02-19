@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 
 import resources from './locales';
 
-const defaultLanguage = 'ru';
+const defaultLanguage = localStorage.getItem('language') || 'ru';
 const baseI18NextConfig = {
   debug: process.env.NODE_ENV === 'development',
   resources,
