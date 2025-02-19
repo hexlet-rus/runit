@@ -1,0 +1,58 @@
+---
+services:
+  caddy:
+    image: caddy:2.9.1
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - "./Caddyfile:/etc/caddy/Caddyfile"
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+
+  postgres:
+    image: postgres:17.2-alpine
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    environment:
+      NODE_ENV: production
+      OAUTH_ACCESS_TOKEN_URL: https://github.com/login/oauth/access_token
+      OAUTH_AUTHORIZE_URL: https://github.com/login/oauth/authorize
+      OAUTH_CLIENT_ID: Ov23liWZbNRpCxVhoKg3
+      OAUTH_CLIENT_SECRET: d656a085f6af07a8fd58e4a75132ab327635b547
+      GITHUB_USER_URL: https://api.github.com/user
+      SENTRY_DSN: https://aaaa@bbbbb.ingest.sentry.io/000000
+      FRONTEND_URL: https://runit.local
+      EMAIL_FROM: runit@localhost
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_PORT: 5432
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres?sslmode=disable
+      SECRET_KEY_JWT: production
+    ports:
+      - "5001:5001"
+      - "3000:3000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - postgres
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    ports:
+      - 8025:8025
+      - 1025:1025
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:

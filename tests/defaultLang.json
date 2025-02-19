@@ -1,0 +1,14 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "localhost",
+      "localStorage": [
+        {
+          "name": "language",
+          "value": "en"
+        }
+      ]
+    }
+  ]
+}
