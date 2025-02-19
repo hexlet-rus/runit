@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Col, Image, Row, Carousel } from 'react-bootstrap';
+import { Col, Image, Row } from 'react-bootstrap';
 
 import ImageCarousel1 from './assets/DisplayWithCode1.jpeg';
 import ImageCarousel2 from './assets/DisplayWithCode2.jpeg';
@@ -20,15 +20,15 @@ function AdaptiveCarousel() {
   ];
 
   return (
-    <Row className="mt-3">
-      <Col
-        className="d-none d-lg-inline-flex mb-5 pb-5"
-        lg={{ offset: 1, span: 10 }}
-      >
-        <Carousel className="mb-5" indicators={false}>
-          {cards.map(({ image, text }) => (
-            <Carousel.Item key={text}>
-              <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
+    <Col className="mt-3">
+      <Row className="d-none d-lg-inline-flex mb-5 pb-5">
+        {cards.map(({ image, text }, index) => {
+          if (index % 2 === 0) {
+            return (
+              <figure
+                key={text}
+                className="mb-5 d-flex flex-row gap-5 align-items-center m-0 justify-content-center"
+              >
                 <Col>
                   <Image className="card-carousel rounded-5" src={image} />
                 </Col>
@@ -36,10 +36,23 @@ function AdaptiveCarousel() {
                   <figcaption>{text}</figcaption>
                 </Col>
               </figure>
-            </Carousel.Item>
-          ))}
-        </Carousel>
-      </Col>
+            );
+          }
+          return (
+            <figure
+              key={text}
+              className="mb-5 d-flex flex-row gap-5 align-items-center m-0 justify-content-center"
+            >
+              <Col>
+                <figcaption>{text}</figcaption>
+              </Col>
+              <Col>
+                <Image className="card-carousel rounded-5" src={image} />
+              </Col>
+            </figure>
+          );
+        })}
+      </Row>
 
       <Col className="my-3 d-lg-none">
         {cards.map(({ image, text }) => (
@@ -53,7 +66,7 @@ function AdaptiveCarousel() {
           </figure>
         ))}
       </Col>
-    </Row>
+    </Col>
   );
 }
 
