@@ -12,6 +12,7 @@ block content
           th Дата создания
           th Дата обновления
           th Язык
+          th Ссылка
           th Действие
       tbody
         each snippet in snippets
@@ -23,10 +24,12 @@ block content
             td= snippet.updated_at.toLocaleDateString()
             td= snippet.language
             td
+              a.btn.btn-primary(href=`${frontendUrl}/u/${snippet.user.username}/snippets/${snippet.slug}` role="button") Перейти
+            td
               if userId
-                a.link-dark.link-offset-2.link-underline-opacity-25.link-underline-opacity-100-hover(href=`/api/admin/users/${userId}/snippets/delete/${snippet.id}`) Удалить
+                a.btn.btn-danger(href=`/api/admin/users/${userId}/snippets/delete/${snippet.id}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") Удалить
               if !userId 
-                a.link-dark.link-offset-2.link-underline-opacity-25.link-underline-opacity-100-hover(href=`/api/admin/snippets/delete/${snippet.id}`) Удалить
+                a.btn.btn-danger(href=`/api/admin/snippets/delete/${snippet.id}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") Удалить
   if(currentPage)
     .d-flex.align-items-center.justify-content-center.gap-3
       if currentPage > 1

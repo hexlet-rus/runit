@@ -17,16 +17,17 @@ block content
         each user in users
           tr.align-middle
             td= user.id
-            td
-              a.link-dark.link-offset-2.link-underline-opacity-25.link-underline-opacity-100-hover(href=`users/edit/${user.id}`) #{user.username}
+            td= user.username
             td= user.email
             td= user.created_at.toLocaleDateString()
             td
               if user.snippets.length > 0
-                a.link-dark.link-offset-2.link-underline-opacity-25.link-underline-opacity-100-hover(href=`users/${user.id}/snippets`) #{user.snippets.length}
+                a.btn.btn-primary(href=`users/${user.id}/snippets`) #{user.snippets.length}
             td= user.isAdmin ? 'Да' : 'Нет'
             td
-              a.link-dark.link-offset-2.link-underline-opacity-25.link-underline-opacity-100-hover(href=`users/delete/${user.id}`) Удалить
+              div
+                a.btn.btn-primary.me-2(href=`users/edit/${user.id}` role="button") Редактировать
+                a.btn.btn-danger(href=`users/delete/${user.id}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") Удалить
     .d-flex.align-items-center.justify-content-center.gap-3
       if currentPage > 1
         a(href=`users?page=${currentPage - 1}`) Предыдущая
