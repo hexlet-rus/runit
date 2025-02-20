@@ -11,6 +11,10 @@ if (process.env.NODE_ENV !== 'production') {
   OAUTH_LINK.port = '5001';
 }
 
+const handleClick = () => {
+  localStorage.removeItem('guestUserData');
+};
+
 function GithubSignInButton() {
   const { t: tFA, i18n } = useTranslation('translation', {
     keyPrefix: 'formActions',
@@ -21,7 +25,12 @@ function GithubSignInButton() {
   }
 
   return (
-    <Button as="a" href={OAUTH_LINK.toString()} variant="outline-secondary">
+    <Button
+      as="a"
+      href={OAUTH_LINK.toString()}
+      onClick={handleClick}
+      variant="outline-secondary"
+    >
       <Github className="bi me-1" />
       {tFA('withGithub')}
     </Button>
