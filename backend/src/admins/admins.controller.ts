@@ -76,7 +76,7 @@ export class AdminsController {
     return this.adminsService.create(createUserDto);
   }
 
-  @Delete('users/delete/:id')
+  @Delete('users/:id')
   @Redirect('/api/admin/users')
   deleteUser(@Param('id', ParseIntPipe) userId: number): Promise<void> {
     return this.adminsService.deleteUser(userId);
@@ -138,13 +138,13 @@ export class AdminsController {
     };
   }
 
-  @Delete('snippets/delete/:id')
+  @Delete('snippets/:id')
   @Redirect('/api/admin/snippets')
   deleteSnippet(@Param('id', ParseIntPipe) snippetId: number): Promise<void> {
     return this.adminsService.deleteSnippet(snippetId);
   }
 
-  @Delete('users/:userId/snippets/delete/:snippetId')
+  @Delete('users/:userId/snippets/:snippetId')
   async deleteUserSnippet(
     @Param('userId', ParseIntPipe) userId: number,
     @Param('snippetId', ParseIntPipe) snippetId: number,

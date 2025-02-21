@@ -27,9 +27,9 @@ block content
               a.btn.btn-primary(href=`${frontendUrl}/u/${snippet.user.username}/snippets/${snippet.slug}` role="button") Перейти
             td
               if userId
-                a.btn.btn-danger(href=`/api/admin/users/${userId}/snippets/delete/${snippet.id}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") Удалить
+                a.btn.btn-danger(href=`/api/admin/users/${userId}/snippets/${snippet.id}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") Удалить
               if !userId 
-                a.btn.btn-danger(href=`/api/admin/snippets/delete/${snippet.id}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") Удалить
+                a.btn.btn-danger(href=`/api/admin/snippets/${snippet.id}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") Удалить
   if(currentPage)
     .d-flex.align-items-center.justify-content-center.gap-3
       if currentPage > 1
