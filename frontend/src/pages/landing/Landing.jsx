@@ -11,7 +11,7 @@ import { actions } from '../../slices/modalSlice';
 import Faq from './Faq.jsx';
 import Footer from './Footer.jsx';
 import Header from './Header.jsx';
-import AdaptiveCarousel from './AdaptiveCarousel.jsx';
+import Theses from './Theses';
 import './assets/fonts/NunitoSans_10pt-Light.ttf';
 import './landing.scss';
 
@@ -140,7 +140,7 @@ function NewLanding() {
             </Col>
           </Row>
 
-          <AdaptiveCarousel />
+          <Theses />
 
           <Row>
             <div className="my-5 possibilities-background">

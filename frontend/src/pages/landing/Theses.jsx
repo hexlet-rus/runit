@@ -23,32 +23,25 @@ function AdaptiveCarousel() {
     <Col className="mt-3">
       <Row className="d-none d-lg-inline-flex mb-5 pb-5">
         {cards.map(({ image, text }, index) => {
-          if (index % 2 === 0) {
-            return (
-              <figure
-                key={text}
-                className="mb-5 d-flex flex-row gap-5 align-items-center m-0 justify-content-center"
-              >
-                <Col>
-                  <Image className="card-carousel rounded-5" src={image} />
-                </Col>
-                <Col>
-                  <figcaption>{text}</figcaption>
-                </Col>
-              </figure>
-            );
-          }
+          const checker = index % 2 === 0;
           return (
             <figure
               key={text}
               className="mb-5 d-flex flex-row gap-5 align-items-center m-0 justify-content-center"
             >
+              {checker && (
+                <Col>
+                  <Image className="rounded-5 x-card-lg" fluid src={image} />
+                </Col>
+              )}
               <Col>
                 <figcaption>{text}</figcaption>
               </Col>
-              <Col>
-                <Image className="card-carousel rounded-5" src={image} />
-              </Col>
+              {!checker && (
+                <Col>
+                  <Image className="rounded-5 x-card-lg" fluid src={image} />
+                </Col>
+              )}
             </figure>
           );
         })}
@@ -59,7 +52,7 @@ function AdaptiveCarousel() {
           <figure key={text}>
             <figcaption className="mb-3 mx-auto">{text}</figcaption>
             <Image
-              className="card-adaptive rounded-5 mb-4 mx-auto"
+              className="rounded-5 mb-4 mx-auto x-card-other"
               fluid
               src={image}
             />
