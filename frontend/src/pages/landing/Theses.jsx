@@ -31,7 +31,7 @@ function AdaptiveCarousel() {
             >
               {checker && (
                 <Col>
-                  <Image className="rounded-5 x-card-lg" fluid src={image} />
+                  <Image className="rounded-5 x-card-theses" width="600px" fluid src={image} />
                 </Col>
               )}
               <Col>
@@ -39,7 +39,7 @@ function AdaptiveCarousel() {
               </Col>
               {!checker && (
                 <Col>
-                  <Image className="rounded-5 x-card-lg" fluid src={image} />
+                  <Image className="rounded-5 x-card-theses" width="600px" fluid src={image} />
                 </Col>
               )}
             </figure>
@@ -52,7 +52,8 @@ function AdaptiveCarousel() {
           <figure key={text}>
             <figcaption className="mb-3 mx-auto">{text}</figcaption>
             <Image
-              className="rounded-5 mb-4 mx-auto x-card-other"
+              className="rounded-5 mb-4 mx-auto x-card-theses"
+              width="100%"
               fluid
               src={image}
             />
