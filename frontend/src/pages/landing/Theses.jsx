@@ -8,7 +8,7 @@ import ImageCarousel3 from './assets/DisplayWithCode3.jpeg';
 import ImageCarousel4 from './assets/DisplayWithCode4.jpeg';
 import ImageCarousel5 from './assets/DisplayWithCode5.jpeg';
 
-function AdaptiveCarousel() {
+function Theses() {
   const { t: tL } = useTranslation('translation', { keyPrefix: 'landing' });
 
   const cards = [
@@ -31,7 +31,12 @@ function AdaptiveCarousel() {
             >
               {checker && (
                 <Col>
-                  <Image className="rounded-5 x-card-theses" width="600px" fluid src={image} />
+                  <Image
+                    className="rounded-5 object-fit-cover"
+                    height="220px"
+                    src={image}
+                    width="600px"
+                  />
                 </Col>
               )}
               <Col>
@@ -39,7 +44,12 @@ function AdaptiveCarousel() {
               </Col>
               {!checker && (
                 <Col>
-                  <Image className="rounded-5 x-card-theses" width="600px" fluid src={image} />
+                  <Image
+                    className="rounded-5 object-fit-cover"
+                    height="220px"
+                    src={image}
+                    width="600px"
+                  />
                 </Col>
               )}
             </figure>
@@ -52,10 +62,10 @@ function AdaptiveCarousel() {
           <figure key={text}>
             <figcaption className="mb-3 mx-auto">{text}</figcaption>
             <Image
-              className="rounded-5 mb-4 mx-auto x-card-theses"
-              width="100%"
-              fluid
+              className="rounded-5 mb-4 mx-auto object-fit-cover"
+              height="137.5rem"
               src={image}
+              width="100%"
             />
           </figure>
         ))}
@@ -64,4 +74,4 @@ function AdaptiveCarousel() {
   );
 }
 
-export default AdaptiveCarousel;
+export default Theses;

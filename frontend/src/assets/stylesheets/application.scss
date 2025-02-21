@@ -136,7 +136,6 @@ $navbar-height: $logo-height + $navbar-brand-padding-y * 2 + $navbar-padding-y *
 @import "./embed-page";
 @import "./btn-run.scss";
 @import "./badge-snippet";
-@import "./theses.scss";
 
 @include media-breakpoint-down(sm) {
   .btn-lg {
