@@ -1,0 +1,36 @@
+extends layout.pug
+block content
+  .container
+    h1.text-center.font-weight-bold.pb-3
+      | Пользователи
+    table.table
+      thead
+        tr
+          th ID
+          th Имя
+          th Email
+          th Дата регистрации
+          th Кол-во снипеттов
+          th Админ
+          th Действия
+      tbody
+        each user in users
+          tr.align-middle
+            td= user.id
+            td= user.username
+            td= user.email
+            td= user.created_at.toLocaleDateString()
+            td
+              if user.snippets.length > 0
+                a.btn.btn-primary(href=`users/${user.id}/snippets`) #{user.snippets.length}
+            td= user.isAdmin ? 'Да' : 'Нет'
+            td
+              div
+                a.btn.btn-primary.me-2(href=`users/edit/${user.id}` role="button") Редактировать
+                a.btn.btn-danger(href=`users/${user.id}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") Удалить
+    .d-flex.align-items-center.justify-content-center.gap-3
+      if currentPage > 1
+        a(href=`users?page=${currentPage - 1}`) Предыдущая
+      span Страница № #{currentPage}
+      if users.length >= 10
+        a(href=`users?page=${currentPage + 1}`) Следующая

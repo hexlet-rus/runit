@@ -1,4 +1,5 @@
 /* eslint-disable import/no-import-module-exports */
+import { join } from 'node:path';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { json } from 'body-parser';
@@ -14,7 +15,6 @@ declare const module: any;
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-
   Sentry.init({
     dsn: process.env.SENTRY_DNS,
     debug: process.env.DEBUG === 'true',
@@ -29,6 +29,8 @@ async function bootstrap() {
   app.enable('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
   app.use(cookieParser());
   app.use(json({ limit: '500kb' }));
+  app.setBaseViewsDir(join(__dirname, 'admins/views'));
+  app.setViewEngine('pug');
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()

@@ -20,7 +20,8 @@
     "test:e2e": "jest --config __tests__/jest-e2e.json",
     "build:dev": "webpack --mode=development",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "set-admin": "ts-node src/admins/commands/set-admin.command.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",

@@ -1,0 +1,39 @@
+extends layout.pug
+block content
+  .container
+    h1.text-center.font-weight-bold.pb-3
+      | Сниппеты
+    table.table
+      thead
+        tr
+          th ID
+          th Создатель
+          th Имя
+          th Дата создания
+          th Дата обновления
+          th Язык
+          th Ссылка
+          th Действие
+      tbody
+        each snippet in snippets
+          tr.align-middle
+            td= snippet.id
+            td= snippet.user.username
+            td= snippet.name
+            td= snippet.created_at.toLocaleDateString()
+            td= snippet.updated_at.toLocaleDateString()
+            td= snippet.language
+            td
+              a.btn.btn-primary(href=`${frontendUrl}/u/${snippet.user.username}/snippets/${snippet.slug}` role="button") Перейти
+            td
+              if userId
+                a.btn.btn-danger(href=`/api/admin/users/${userId}/snippets/${snippet.id}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") Удалить
+              if !userId 
+                a.btn.btn-danger(href=`/api/admin/snippets/${snippet.id}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") Удалить
+  if(currentPage)
+    .d-flex.align-items-center.justify-content-center.gap-3
+      if currentPage > 1
+        a(href=`snippets?page=${currentPage - 1}`) Предыдущая
+      span Страница № #{currentPage}
+      if snippets.length >= 10
+        a(href=`snippets?page=${currentPage + 1}`) Следующая
