@@ -10,6 +10,8 @@ $panel-handler-padding: 4px;
   align-items: center;
   justify-content: center;
   outline: none;
+  position: relative;
+  z-index: 10;
 
   --handler-color: var(--#{$prefix}tertiary-color);
   --handler-size: 3rem;
@@ -17,18 +19,47 @@ $panel-handler-padding: 4px;
   &[data-resize-handle-active] {
     --handler-color: var(--#{$prefix}secondary-color);
     --handler-size: 9rem;
+
+    &::before {
+      display: block;
+    }
+  }
+
+  &-horizontal,
+  &-vertical {
+    &::before {
+      content: "";
+      position: absolute;
+      display: none;
+    }
   }
 
   &-horizontal {
     --handler-width: 0.125rem;
     --handler-height: var(--handler-size);
     --handler-transition: height 0.15s ease-in-out;
+    cursor: ew-resize;
+    
+    &::before {
+      top: 0;
+      bottom: 0;
+      left: -100vw;
+      right: -100vw;
+    }
   }
 
   &-vertical {
     --handler-width: var(--handler-size);
     --handler-height: 0.125rem;
     --handler-transition: width 0.15s ease-in-out;
+    cursor: ns-resize;
+    
+    &::before {
+      left: 0;
+      right: 0;
+      top: -100vh;
+      bottom: -100vh;
+    }
   }
 
   &::after {
