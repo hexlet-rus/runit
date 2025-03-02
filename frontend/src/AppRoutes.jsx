@@ -10,7 +10,6 @@ import routes from './routes.js';
 import ScrollToTop from './utils/scrollToTop.js';
 
 import DefaultLoader from './components/Loaders/DefaultLoader.jsx';
-// import AdminPage from './pages/admins';
 
 const Landing = lazy(() => import('./pages/landing/Landing.jsx'));
 const OldLanding = lazy(() => import('./pages/old-landing'));
@@ -72,7 +71,6 @@ function AppRoutes() {
           <Route path={routes.snippetPagePath()} element={<SnippetPage />} />
           <Route path={routes.aboutPagePath()} element={<AboutPage />} />
           <Route path={routes.profilePagePath()} element={<ProfilePage />} />
-          {/* <Route path="/admins" element={<AdminPage />} /> */}
 
           <Route
             element={

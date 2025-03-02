@@ -8,6 +8,8 @@ import { useContainer } from 'class-validator';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as Sentry from '@sentry/node';
+import * as session from 'express-session';
+import * as flash from 'connect-flash';
 import { AppModule } from './app.module';
 import { SentryFilter } from './filters/sentry.filter';
 
@@ -25,9 +27,20 @@ async function bootstrap() {
 
   // app.useLogger(SentryService.SentryServiceInstance());
 
-  app.setGlobalPrefix('api');
+  // TODO: Закомментировал глобальный префикс "api". Для разделения путей "api" и "admin".Будет прописан в соответствующих контроллерах.
+  // app.setGlobalPrefix('api');
+
   app.enable('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
   app.use(cookieParser());
+  app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false,
+      cookie: { maxAge: 60000 },
+    }),
+  );
+  app.use(flash());
   app.use(json({ limit: '500kb' }));
   app.setBaseViewsDir(join(__dirname, 'admins/views'));
   app.setViewEngine('pug');

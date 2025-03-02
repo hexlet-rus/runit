@@ -2,18 +2,18 @@ extends layout.pug
 block content
   .container
     h1.text-center.font-weight-bold.pb-3
-      | Сниппеты
+      | #{t('templates.snippets.title', currentLang)}
     table.table
       thead
         tr
           th ID
-          th Создатель
-          th Имя
-          th Дата создания
-          th Дата обновления
-          th Язык
-          th Ссылка
-          th Действие
+          th #{t('templates.snippets.owner', currentLang)}
+          th #{t('templates.snippets.username', currentLang)}
+          th #{t('templates.snippets.createDate', currentLang)}
+          th #{t('templates.snippets.updateDate', currentLang)}
+          th #{t('templates.snippets.language', currentLang)}
+          th #{t('templates.snippets.link', currentLang)}
+          th #{t('templates.snippets.action', currentLang)}
       tbody
         each snippet in snippets
           tr.align-middle
@@ -24,16 +24,16 @@ block content
             td= snippet.updated_at.toLocaleDateString()
             td= snippet.language
             td
-              a.btn.btn-primary(href=`${frontendUrl}/u/${snippet.user.username}/snippets/${snippet.slug}` role="button") Перейти
+              a.btn.btn-primary(href=`${routes.getSnippetLink(frontendUrl, snippet.user.username, snippet.slug)}` role="button") #{t('templates.snippets.watch', currentLang)}
             td
               if userId
-                a.btn.btn-danger(href=`/api/admin/users/${userId}/snippets/${snippet.id}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") Удалить
+                a.btn.btn-danger(href=`${routes.deleteUserSnippetPath(userId,snippet.id)}` role="button" data-confirm=`${t('templates.snippets.confirm', currentLang)}` data-method="delete" rel="nofollow") #{t('templates.snippets.delete', currentLang)}
               if !userId 
-                a.btn.btn-danger(href=`/api/admin/snippets/${snippet.id}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") Удалить
+                a.btn.btn-danger(href=`${routes.deleteSnippetsPath(snippet.id)}` role="button" data-confirm=`${t('templates.snippets.confirm', currentLang)}` data-method="delete" rel="nofollow") #{t('templates.snippets.delete', currentLang)}
   if(currentPage)
     .d-flex.align-items-center.justify-content-center.gap-3
       if currentPage > 1
-        a(href=`snippets?page=${currentPage - 1}`) Предыдущая
-      span Страница № #{currentPage}
+        a(href=`${routes.getSnippetsPath(currentPage - 1)}`) #{t('templates.snippets.prev', currentLang)}
+      span #{t('templates.snippets.page', currentLang)} № #{currentPage}
       if snippets.length >= 10
-        a(href=`snippets?page=${currentPage + 1}`) Следующая
+        a(href=`${routes.getSnippetsPath(currentPage + 1)}`) #{t('templates.snippets.next', currentLang)}
