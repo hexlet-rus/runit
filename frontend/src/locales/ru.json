@@ -30,7 +30,7 @@
   "codeTemplates": {
     "javascript": "// Здесь будет код на JavaScript\n",
     "php": "<?php\n// Ваш код\n",
-    "python": "# Здесь будет код на Pyhton\n",
+    "python": "# Здесь будет код на Python\n",
     "html": "<!--Здесь будет код на HTML-->\n",
     "java": "class Main {\n    public static void main(String[] args) {\n\n    }\n}",
     "ruby": "# Write your code here"
