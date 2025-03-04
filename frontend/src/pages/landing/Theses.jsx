@@ -63,8 +63,8 @@ function Theses() {
       </Row>
 
       <Col className="my-3 d-lg-none">
-        {cards.map(({ image, text }) => (
-          <figure key={text}>
+        {cards.map(({ id, image, text }) => (
+          <figure key={id}>
             <figcaption className="mb-3 mx-auto">{text}</figcaption>
             <Image
               className="rounded-5 mb-4 mx-auto object-fit-cover"
