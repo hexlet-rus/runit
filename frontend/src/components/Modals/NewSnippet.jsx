@@ -19,6 +19,7 @@ import { useAuth, useSnippets } from '../../hooks';
 import { snippetName } from '../../utils/validationSchemas';
 import { actions as modalActions } from '../../slices/modalSlice.js';
 import icons from '../../utils/icons';
+import { newSnippetModalTestIds } from '../../constants/testIds/NewSnippetModal';
 
 const generateGuestUserData = () => {
   const username = `guest_${faker.string.alphanumeric(5)}`;
@@ -206,6 +207,7 @@ function NewSnippet({ handleClose, isOpen }) {
                       inputRefTemplate.current = node;
                       referenceElementRef(node);
                     }}
+                    data-testid={newSnippetModalTestIds.inputLang}
                     onBlur={(e) => handleInputLng(e.target.value)}
                     onChange={inputProps.onChange}
                     onFocus={inputProps.onFocus}
@@ -240,6 +242,7 @@ function NewSnippet({ handleClose, isOpen }) {
                   ref={inputRefName}
                   autoComplete="off"
                   className="transition-padding"
+                  data-testid={newSnippetModalTestIds.inputTitle}
                   disabled={selectedLng.length === 0 || isLoading}
                   id="name"
                   isInvalid={formik.errors.name && formik.touched.name}
@@ -254,6 +257,7 @@ function NewSnippet({ handleClose, isOpen }) {
               <div className="d-flex flex-row-reverse pt-4">
                 <Button
                   className="col-md-8"
+                  data-testid={newSnippetModalTestIds.buttonCreate}
                   disabled={!formik.values.name || formik.isSubmitting}
                   type="submit"
                   variant="primary"
