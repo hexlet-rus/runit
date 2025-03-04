@@ -24,7 +24,7 @@ import { JwtAuthGuard } from './jwt-auth.guard';
 import { SignUpUserDto } from '../users/dto/signUp-user.dto';
 
 @ApiTags('auth')
-@Controller()
+@Controller('api')
 export class AuthController {
   // eslint-disable-next-line no-useless-constructor
   constructor(private authService: AuthService) {}

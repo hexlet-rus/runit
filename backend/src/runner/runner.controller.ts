@@ -4,7 +4,7 @@ import { RunnerService } from './runner.service';
 import { Output } from '../console/interfaces/output.interface';
 
 @ApiTags('runCode')
-@Controller('runner')
+@Controller('api/runner')
 export class RunnerController {
   // eslint-disable-next-line no-useless-constructor
   constructor(private readonly runnerService: RunnerService) {}

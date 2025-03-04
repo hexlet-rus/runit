@@ -33,7 +33,7 @@ import { ValidationPipe } from './validation/validation.pipe';
 import { IUser } from '../users/interfaces/users.interface';
 
 @ApiTags('snippets')
-@Controller('snippets')
+@Controller('api/snippets')
 @UseFilters(new HttpExceptionFilter())
 export class SnippetsController {
   constructor(private snippetsService: SnippetsService) {}

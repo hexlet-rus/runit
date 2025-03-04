@@ -1,0 +1,50 @@
+{
+  "layout": {
+    "title": "Admin panel",
+    "home": "Home",
+    "users": "Users",
+    "snippets": "Snippets"
+  },
+  "users": {
+    "title": "Users",
+    "profile": "User profile",
+    "page": "Page",
+    "prev": "Previous",
+    "next": "Next",
+    "delete": "Delete",
+    "edit": "Edit",
+    "administrator": "Administrator",
+    "user": "User",
+    "action": "Action",
+    "role": "Role",
+    "registrationDate": "Date of registration",
+    "username": "Username",
+    "email": "Email",
+    "numberSnippets": "Number of snippets",
+    "save": "Save",
+    "success": "Profile has been updated successfully"
+  },
+  "snippets": {
+    "title": "Snippets",
+    "page": "Page",
+    "prev": "Previous",
+    "next": "Next",
+    "delete": "Delete",
+    "owner": "Owner",
+    "action": "Action",
+    "username": "Username",
+    "language": "Language",
+    "createDate": "Date of creation",
+    "updateDate": "Date of the update",
+    "link": "Link",
+    "confirm": "Are you sure?",
+    "watch": "Watch"
+  },
+  "validation": {
+    "usernameIsUsed": "This username is already taken",
+    "emailIsUsed": "This email address is already being used",
+    "incorrectEmail": "Incorrect email",
+    "usernameLength": "From 3 to 20 characters",
+    "incorrectUsername": "Only Latin letters, numbers and symbols - _ are allowed"
+  }
+}

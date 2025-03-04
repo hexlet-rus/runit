@@ -36,7 +36,7 @@ import { RecoverUserDto } from './dto/recover-user.dto';
 import { UpdateUserSettingsDto } from './dto/update-user-settings.dto';
 
 @ApiTags('users')
-@Controller('users')
+@Controller('api/users')
 @UseFilters(new HttpExceptionFilter())
 export class UsersController {
   constructor(

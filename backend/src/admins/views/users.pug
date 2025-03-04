@@ -1,0 +1,39 @@
+extends layout.pug
+block content
+  .container
+    if message.length > 0
+      .alert.alert-success.alert-dismissible.fade.show.text-center(role="alert") #{message[0]}
+        button.btn-close(type="button" data-bs-dismiss="alert" aria-label="Close")
+    h1.text-center.font-weight-bold.pb-3
+      | #{t('templates.users.title', currentLang)}
+    table.table
+      thead
+        tr
+          th ID
+          th #{t('templates.users.username', currentLang)}
+          th #{t('templates.users.email', currentLang)}
+          th #{t('templates.users.registrationDate', currentLang)}
+          th #{t('templates.users.numberSnippets', currentLang)}
+          th #{t('templates.users.role', currentLang)}
+          th #{t('templates.users.action', currentLang)}
+      tbody
+        each user in users
+          tr.align-middle
+            td= user.id
+            td= user.username
+            td= user.email
+            td= user.created_at.toLocaleDateString()
+            td
+              if user.snippets.length > 0
+                a.btn.btn-primary(href=`${routes.getUserSnippetsPath(user.id)}`) #{user.snippets.length}
+            td= user.isAdmin ? `${t('templates.users.administrator', currentLang)}` : `${t('templates.users.user', currentLang)}`
+            td
+              div
+                a.btn.btn-primary.me-2(href=`${routes.getFormUserEditPath(user.id)}` role="button") #{t('templates.users.edit', currentLang)}
+                a.btn.btn-danger(href=`${routes.deleteUserPath(user.id)}` role="button" data-confirm="Вы уверены?" data-method="delete" rel="nofollow") #{t('templates.users.delete', currentLang)}
+    .d-flex.align-items-center.justify-content-center.gap-3
+      if currentPage > 1
+        a(href=`${routes.getUserPath(currentPage - 1)}`) #{t('templates.users.prev', currentLang)}
+      span #{t('templates.users.page', currentLang)} № #{currentPage}
+      if users.length >= 10
+        a(href=`${routes.getUserPath(currentPage + 1)}`) #{t('templates.users.next', currentLang)}

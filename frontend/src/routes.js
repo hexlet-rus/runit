@@ -52,6 +52,8 @@ export default {
   // OAuth
   oAuthPath: () => [apiPath, 'oauth'].join('/'),
 
+  adminPanelPath: () => ['admin', 'users'].join('/'),
+
   // RunCode
   runCode: () => [apiPath, 'runner', 'run'].join('/'),
 
