@@ -31,6 +31,9 @@ export class User {
   @Column('text')
   password: string;
 
+  @Column('boolean', { default: false })
+  isAdmin: boolean;
+
   @OneToMany('Snippet', 'user')
   snippets: Snippet[];
 

@@ -181,7 +181,7 @@ export class UsersService {
     await this.usersRepository.delete({ id });
   }
 
-  findAll(): Promise<User[]> {
+  async findAll(): Promise<User[]> {
     return this.usersRepository.find();
   }
 

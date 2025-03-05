@@ -52,3 +52,7 @@ data-drop:
 
 prepare-env:
 	cp -n .env.example .env
+
+# Set admin by email. Usage: make set-admin email=test@test.ru
+set-admin:
+	npm run set-admin -- $(email)

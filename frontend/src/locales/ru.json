@@ -411,7 +411,8 @@
     "settings": "Настройки",
     "share": "Поделиться профилем",
     "signIn": "Войти",
-    "signUp": "Регистрация"
+    "signUp": "Регистрация",
+    "adminPanel": "Панель администратора"
   },
   "profileSettings": {
     "appearance": "Внешний вид",
