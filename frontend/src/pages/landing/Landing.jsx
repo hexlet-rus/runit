@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -12,14 +11,10 @@ import { actions } from '../../slices/modalSlice';
 import Faq from './Faq.jsx';
 import Footer from './Footer.jsx';
 import Header from './Header.jsx';
+import Theses from './Theses';
 import './assets/fonts/NunitoSans_10pt-Light.ttf';
 import './landing.scss';
 
-import ImageCarousel1 from './assets/DisplayWithCode1.jpeg';
-import ImageCarousel2 from './assets/DisplayWithCode2.jpeg';
-import ImageCarousel3 from './assets/DisplayWithCode3.jpeg';
-import ImageCarousel4 from './assets/DisplayWithCode4.jpeg';
-import ImageCarousel5 from './assets/DisplayWithCode5.jpeg';
 import Code from './assets/Icons=Code.svg';
 import Devices from './assets/Icons=Devices.svg';
 import Languages from './assets/Icons=Languages.svg';
@@ -33,7 +28,6 @@ function NewLanding() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t: tL } = useTranslation('translation', { keyPrefix: 'landing' });
-  const advantagesRef = useRef();
   const { isDarkMode } = useTernaryDarkMode();
   const rowClass = `d-lg-inline-flex mb-5 my-lg-5 ${
     isDarkMode ? 'background-light' : ''
@@ -46,32 +40,6 @@ function NewLanding() {
     }
     dispatch(actions.openModal({ type: 'newSnippet' }));
   };
-
-  const horizontalScroll = () => {
-    const el = advantagesRef.current;
-    if (el) {
-      const onWheel = (e) => {
-        if (e.deltaY === 0) return;
-
-        /*    if (
-          !(el.scrollLeft === 0 && e.deltaY < 0) &&
-          !(
-            el.scrollWidth - el.clientWidth - Math.round(el.scrollLeft) === 0 &&
-            e.deltaY > 0
-          )
-        ) */
-
-        e.preventDefault();
-        el.scrollTo({
-          left: el.scrollLeft + e.deltaY,
-        });
-      };
-      el.addEventListener('wheel', onWheel);
-      return () => el.removeEventListener('wheel', onWheel);
-    }
-  };
-
-  useEffect(horizontalScroll, []);
 
   return (
     <div className="wrapper-for-bg-images">
@@ -171,294 +139,9 @@ function NewLanding() {
               <p className="mb-3">{tL('fast')}</p>
             </Col>
           </Row>
-          <Row
-            ref={advantagesRef}
-            className="d-none d-lg-inline-flex my-5 overflow-auto flex-nowrap advantages-horizontal-scroll"
-          >
-            <Col className="col-12" lg={{ offset: 1, span: 11 }}>
-              <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center me-5">
-                <Col>
-                  <Image
-                    className="rounded-5"
-                    fluid
-                    src={ImageCarousel1}
-                    style={{
-                      width: '38rem',
-                      height: '25rem',
-                      objectFit: 'cover',
-                    }}
-                  />
-                </Col>
-                <Col>
-                  <figcaption>{tL('inBrowser')}</figcaption>
-                </Col>
-              </figure>
-            </Col>
-            <Col className="col-12" lg={{ offset: 1, span: 11 }}>
-              <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center mx-5">
-                <Col>
-                  <Image
-                    className="rounded-5"
-                    fluid
-                    src={ImageCarousel2}
-                    style={{
-                      width: '38rem',
-                      height: '25rem',
-                      objectFit: 'cover',
-                    }}
-                  />
-                </Col>
-                <Col>
-                  <figcaption>{tL('noZIP')}</figcaption>
-                </Col>
-              </figure>
-            </Col>
-            <Col className="col-12" lg={{ offset: 1, span: 11 }}>
-              <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center mx-5">
-                <Col>
-                  <Image
-                    className="rounded-5"
-                    fluid
-                    src={ImageCarousel3}
-                    style={{
-                      width: '38rem',
-                      height: '25rem',
-                      objectFit: 'cover',
-                    }}
-                  />
-                </Col>
-                <Col>
-                  <figcaption>{tL('allComputers')}</figcaption>
-                </Col>
-              </figure>
-            </Col>
-            <Col className="col-12" lg={{ offset: 1, span: 11 }}>
-              <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center mx-5">
-                <Col>
-                  <Image
-                    className="rounded-5"
-                    fluid
-                    src={ImageCarousel4}
-                    style={{
-                      width: '38rem',
-                      height: '25rem',
-                      objectFit: 'cover',
-                    }}
-                  />
-                </Col>
-                <Col>
-                  <figcaption>{tL('allOS')}</figcaption>
-                </Col>
-              </figure>
-            </Col>
-            <Col className="col-12" lg={{ offset: 1, span: 11 }}>
-              <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
-                <Col>
-                  <Image
-                    className="rounded-5"
-                    fluid
-                    src={ImageCarousel5}
-                    style={{
-                      width: '38rem',
-                      height: '25rem',
-                      objectFit: 'cover',
-                    }}
-                  />
-                </Col>
-                <Col>
-                  <figcaption>{tL('noSettings')}</figcaption>
-                </Col>
-              </figure>
-            </Col>
-          </Row>
-          <Row className="mt-3">
-            <Col className="my-3 d-lg-none">
-              <figure>
-                <figcaption className="mb-3 mx-auto">
-                  {tL('inBrowser')}
-                </figcaption>
-                <Image
-                  className="rounded-5 mb-4 mx-auto"
-                  fluid
-                  src={ImageCarousel1}
-                  style={{
-                    height: '13.75rem',
-                    width: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </figure>
-              <figure>
-                <figcaption className="mb-3 mt-3 mx-auto">
-                  {tL('noZIP')}
-                </figcaption>
-                <Image
-                  className="rounded-5 mb-4 mx-auto"
-                  fluid
-                  src={ImageCarousel2}
-                  style={{
-                    height: '13.75rem',
-                    width: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </figure>
-              <figure>
-                <figcaption className="mb-3 mt-3 mx-auto">
-                  {tL('allComputers')}
-                </figcaption>
-                <Image
-                  className="rounded-5 mb-4 mx-auto"
-                  fluid
-                  src={ImageCarousel3}
-                  style={{
-                    height: '13.75rem',
-                    width: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </figure>
-              <figure>
-                <figcaption className="mb-3 mt-3 mx-auto">
-                  {tL('allOS')}
-                </figcaption>
-                <Image
-                  className="rounded-5 mb-4 mx-auto"
-                  fluid
-                  src={ImageCarousel4}
-                  style={{
-                    height: '13.75rem',
-                    width: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </figure>
-              <figure>
-                <figcaption className="mb-3 mt-3">
-                  {tL('noSettings')}
-                </figcaption>
-                <Image
-                  className="rounded-5 mb-4"
-                  fluid
-                  src={ImageCarousel5}
-                  style={{
-                    height: '13.75rem',
-                    width: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
-              </figure>
-            </Col>
-          </Row>
-          {/*
-            <Col
-              className="d-none d-lg-inline-flex mb-5 pb-5"
-              lg={{ offset: 1, span: 10 }}
-            >
-              <Carousel
-                className="mb-5"
-                indicators={false}
-                style={{ maxHeight: '350px' }}
-              >
-                <Carousel.Item>
-                  <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
-                    <Col>
-                      <Image
-                        className="rounded-5"
-                        fluid
-                        src={ImageCarousel1}
-                        style={{
-                          width: '600px',
-                          height: '400px',
-                          objectFit: 'cover',
-                        }}
-                      />
-                    </Col>
-                    <Col>
-                      <figcaption>{tL('inBrowser')}</figcaption>
-                    </Col>
-                  </figure>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
-                    <Col>
-                      <Image
-                        className="rounded-5"
-                        fluid
-                        src={ImageCarousel2}
-                        style={{
-                          width: '600px',
-                          height: '400px',
-                          objectFit: 'cover',
-                        }}
-                      />
-                    </Col>
-                    <Col>
-                      <figcaption>{tL('noZIP')}</figcaption>
-                    </Col>
-                  </figure>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
-                    <Col>
-                      <Image
-                        className="rounded-5"
-                        fluid
-                        src={ImageCarousel3}
-                        style={{
-                          width: '600px',
-                          height: '400px',
-                          objectFit: 'cover',
-                        }}
-                      />
-                    </Col>
-                    <Col>
-                      <figcaption>{tL('allComputers')}</figcaption>
-                    </Col>
-                  </figure>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
-                    <Col>
-                      <Image
-                        className="rounded-5"
-                        fluid
-                        src={ImageCarousel4}
-                        style={{
-                          width: '600px',
-                          height: '400px',
-                          objectFit: 'cover',
-                        }}
-                      />
-                    </Col>
-                    <Col>
-                      <figcaption>{tL('allOS')}</figcaption>
-                    </Col>
-                  </figure>
-                </Carousel.Item>
-                <Carousel.Item>
-                  <figure className="d-flex flex-row gap-5 align-items-center m-0 justify-content-center">
-                    <Col>
-                      <Image
-                        className="rounded-5"
-                        fluid
-                        src={ImageCarousel5}
-                        style={{
-                          width: '600px',
-                          height: '400px',
-                          objectFit: 'cover',
-                        }}
-                      />
-                    </Col>
-                    <Col>
-                      <figcaption>{tL('noSettings')}</figcaption>
-                    </Col>
-                  </figure>
-                </Carousel.Item>
-              </Carousel>
-            </Col>
-          </Row>
-*/}
+
+          <Theses />
+
           <Row>
             <div className="my-5 possibilities-background">
               <Col className="my-lg-5" id="possibilities" lg={{ offset: 1 }}>
