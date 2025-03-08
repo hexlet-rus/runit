@@ -22,12 +22,16 @@ export default class JavaScriptRunner implements IRunner {
 
     try {
       const script = new vm.Script(code);
-      script.runInContext(context);
+      script.runInContext(context, { timeout: 5000 });
 
       const terminal = (stdout.read() || '').toString().split('\n');
 
       return Promise.resolve({ terminal, alertLogs });
     } catch (err) {
+      if (err.message === 'Script execution timed out after 5000ms') {
+        const errorMsg = 'Script execution timed out';
+        return Promise.resolve({ terminal: [errorMsg], alertLogs });
+      }
       const lineOfError = err.stack
         .split('evalmachine.<anonymous>:')[1]
         .substring(0, 1);
