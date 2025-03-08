@@ -21,7 +21,7 @@
     "build:dev": "webpack --mode=development",
     "watch": "webpack --watch",
     "serve": "webpack serve",
-    "set-admin": "ts-node src/admins/commands/set-admin.command.ts"
+    "set-admin": "cross-env COMMAND_MODE=true ts-node src/admins/commands/set-admin.command.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
@@ -90,6 +90,7 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
     "@typescript-eslint/parser": "^5.53.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.47.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.0.0",

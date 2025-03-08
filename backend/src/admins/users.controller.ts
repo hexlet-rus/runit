@@ -45,7 +45,9 @@ export class UsersController {
   ): Promise<any> {
     const currentUser = req.user as User;
     const currentLang = await this.adminsService.getCurrentLang(currentUser.id);
-
+    const request = req as Request & {
+      flash: (type: string, message?: string) => any;
+    };
     const frontendUrl = this.configService.get<string>('app.frontendUrl');
     const take = 10;
     const users: User[] = await this.adminsService.findAllUsers(page, take);
@@ -55,7 +57,7 @@ export class UsersController {
       currentPage: page,
       routes,
       currentLang,
-      message: req.flash('success'),
+      message: request.flash('success'),
     };
   }
 
@@ -68,11 +70,13 @@ export class UsersController {
     @I18n() i18n: I18nContext,
   ): Promise<any> {
     const currentUser = req.user as User;
+    const request = req as Request & {
+      flash: (type: string, message?: string) => any;
+    };
     const currentLang = await this.adminsService.getCurrentLang(currentUser.id);
     const frontendUrl = this.configService.get<string>('app.frontendUrl');
     const updateUserDto = { ...updatedUserDto, id: userId };
-    const validateDto =
-      await this.adminsService.formatValidationErrors(updateUserDto);
+    const validateDto = await this.adminsService.validateDto(updateUserDto);
     if (validateDto.errors) {
       res.status(422).render('edit-user.pug', {
         status: 'validationFailed',
@@ -84,7 +88,7 @@ export class UsersController {
       });
     } else {
       await this.adminsService.updateUser(userId, validateDto.data);
-      req.flash(
+      request.flash(
         'success',
         `${i18n.t('templates.users.success', { lang: currentLang })}`,
       );
