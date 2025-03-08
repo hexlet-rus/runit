@@ -14,7 +14,9 @@ import { i18nConfig } from '../config/i18n.config';
 @Module({
   imports: [
     TypeOrmModule.forFeature([User, Snippet, UserSettings]),
-    I18nModule.forRoot(i18nConfig),
+    ...(process.env.COMMAND_MODE !== 'true'
+      ? [I18nModule.forRoot(i18nConfig)]
+      : []),
   ],
   providers: [AdminsService],
   controllers: [UsersController, SnippetsController],

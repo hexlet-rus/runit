@@ -1,10 +1,11 @@
 /* eslint-disable no-useless-constructor */
+/* eslint-disable class-methods-use-this */
 
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { plainToInstance } from 'class-transformer';
-import { validate } from 'class-validator';
+import { validate, ValidationError } from 'class-validator';
 import { User } from '../entities/user.entity';
 import { Snippet } from '../entities/snippet.entity';
 import { UserSettings } from '../entities/user-settings.entity';
@@ -97,17 +98,20 @@ export class AdminsService {
     return language;
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  async formatValidationErrors(dto: UpdateUserDto): Promise<any> {
+  async validateDto(dto: UpdateUserDto): Promise<any> {
     const data = plainToInstance(UpdateUserDto, dto);
     const errors = await validate(data);
     if (errors.length > 0) {
-      const formattedErrors = errors.reduce((acc, err) => {
-        acc[err.property] = { message: Object.values(err.constraints)[0] };
-        return acc;
-      }, {});
+      const formattedErrors = await this.formatErrors(errors);
       return { data, errors: { ...formattedErrors } };
     }
     return { data, errors: null };
+  }
+
+  async formatErrors(errors: ValidationError[]): Promise<any> {
+    return errors.reduce((acc, err) => {
+      acc[err.property] = { message: Object.values(err.constraints)[0] };
+      return acc;
+    }, {});
   }
 }

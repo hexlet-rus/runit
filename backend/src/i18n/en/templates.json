@@ -22,7 +22,8 @@
     "email": "Email",
     "numberSnippets": "Number of snippets",
     "save": "Save",
-    "success": "Profile has been updated successfully"
+    "success": "Profile has been updated successfully",
+    "confirm": "Are you sure?"
   },
   "snippets": {
     "title": "Snippets",
