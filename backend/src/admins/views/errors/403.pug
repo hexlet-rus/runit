@@ -1,0 +1,5 @@
+extends layoutErrors.pug
+block content
+  h1.display-1 #{statusCode}
+  p.lead #{message}
+  a.btn.btn-primary(href=`${frontendUrl}`) Назад

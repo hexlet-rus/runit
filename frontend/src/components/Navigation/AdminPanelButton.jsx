@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +15,7 @@ function AdminPanelButton() {
   });
   return (
     <Nav.Item as="li">
-      <Button as={Link} to={ADMIN_LINK.toString()} variant="primary">
+      <Button as="a" href={ADMIN_LINK.toString()} variant="primary">
         {tPA('adminPanel')}
       </Button>
     </Nav.Item>

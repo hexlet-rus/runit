@@ -14,7 +14,6 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Request } from 'express';
 import { Snippet } from '../entities/snippet.entity';
 import { AdminsService } from './admins.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -22,7 +21,6 @@ import { RoleGuard } from './guards/role.guard';
 import { Role } from './decorators/roles.decorator';
 import { UserRole } from './enums/user-role.enum';
 import routes from './routes';
-import { User } from '../entities/user.entity';
 
 @UseGuards(JwtAuthGuard, RoleGuard)
 @Controller('admin')
@@ -36,7 +34,7 @@ export class SnippetsController {
   @Get('snippets')
   @Render('snippets.pug')
   async findAllSnippets(
-    @Req() req: Request,
+    @Req() req: any,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page = 1,
   ): Promise<{
     frontendUrl: string;
@@ -45,7 +43,7 @@ export class SnippetsController {
     routes: typeof routes;
     currentLang: string;
   }> {
-    const currentUser = req.user as User;
+    const currentUser = req.user;
     const currentLang = await this.adminsService.getCurrentLang(currentUser.id);
     const frontendUrl = this.configService.get<string>('app.frontendUrl');
     const take = 10;
