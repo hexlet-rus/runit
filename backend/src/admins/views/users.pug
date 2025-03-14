@@ -33,7 +33,7 @@ block content
                 a.btn.btn-danger(href=`${routes.deleteUserPath(user.id)}` role="button" data-confirm=`${t('templates.users.confirm', currentLang)}` data-method="delete" rel="nofollow") #{t('templates.users.delete', currentLang)}
     .d-flex.align-items-center.justify-content-center.gap-3
       if currentPage > 1
-        a(href=`${routes.getUserPath(currentPage - 1)}`) #{t('templates.users.prev', currentLang)}
+        a(href=`${routes.getUsersPath(currentPage - 1)}`) #{t('templates.users.prev', currentLang)}
       span #{t('templates.users.page', currentLang)} № #{currentPage}
       if users.length >= 10
-        a(href=`${routes.getUserPath(currentPage + 1)}`) #{t('templates.users.next', currentLang)}
+        a(href=`${routes.getUsersPath(currentPage + 1)}`) #{t('templates.users.next', currentLang)}

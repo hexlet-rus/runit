@@ -11,6 +11,7 @@ import {
   Redirect,
   Render,
   Req,
+  UseFilters,
   UseGuards,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -21,8 +22,10 @@ import { RoleGuard } from './guards/role.guard';
 import { Role } from './decorators/roles.decorator';
 import { UserRole } from './enums/user-role.enum';
 import routes from './routes';
+import { HttpExceptionFilter } from './exceptions/http-exceptions.filter';
 
 @UseGuards(JwtAuthGuard, RoleGuard)
+@UseFilters(HttpExceptionFilter)
 @Controller('admin')
 @Role(UserRole.Admin)
 export class SnippetsController {
