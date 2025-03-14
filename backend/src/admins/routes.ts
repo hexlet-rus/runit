@@ -2,10 +2,9 @@ const adminPath = '/admin';
 
 export default {
   // Get
-  getUsersPath: (page = 1) => [adminPath, 'users?page', `${page}`].join('/'),
+  getUsersPath: (page = 1) => [adminPath, `users?page=${page}`].join('/'),
 
-  getSnippetsPath: (page = 1) =>
-    [adminPath, 'snippets?page', `${page}`].join('/'),
+  getSnippetsPath: (page = 1) => [adminPath, `snippets?page=${page}`].join('/'),
 
   getUserSnippetsPath: (userId) =>
     [adminPath, 'users', `${userId}`, 'snippets'].join('/'),
