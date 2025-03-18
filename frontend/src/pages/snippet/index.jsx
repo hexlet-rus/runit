@@ -173,7 +173,14 @@ function SnippetPage() {
           minSize={10}
         >
           {currentLanguage === 'html' ? (
-            <HTMLPreview code={code} />
+            <div
+              style={{
+                backgroundColor: 'white',
+                height: '100%',
+              }}
+            >
+              <HTMLPreview code={code} />
+            </div>
           ) : (
             <Terminal />
           )}
