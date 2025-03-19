@@ -196,7 +196,7 @@ function NewSnippet({ handleClose, isOpen }) {
             <Typeahead
               id="template"
               labelKey="template"
-              maxResults={10}
+              maxResults={12}
               onChange={([e]) => handleInputLng(e)}
               options={supportedLanguages}
               renderInput={({ referenceElementRef, ...inputProps }) => {
