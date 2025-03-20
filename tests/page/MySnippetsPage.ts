@@ -3,7 +3,7 @@ import {Locator, expect} from "@playwright/test";
 import {step} from "../helpers/alluerStep";
 
 export enum TypeSnippets {
-    js = 'js',
+    js = 'javascript',
     html = 'html',
     ruby = 'ruby',
     python = 'python',
