@@ -160,7 +160,7 @@ function NewSnippet({ handleClose, isOpen }) {
     setIsLoading(false);
   };
 
-  const handleInputLng = (inputValue) => {
+  const handleInputLng = (inputValue = '') => {
     const lowerInput = inputValue.trim().toLowerCase();
 
     if (lowerInput) {
@@ -196,7 +196,7 @@ function NewSnippet({ handleClose, isOpen }) {
             <Typeahead
               id="template"
               labelKey="template"
-              maxResults={3}
+              maxResults={12}
               onChange={([e]) => handleInputLng(e)}
               options={supportedLanguages}
               renderInput={({ referenceElementRef, ...inputProps }) => {
