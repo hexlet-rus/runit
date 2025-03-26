@@ -40,7 +40,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   );
 
   const checkedSnippet = checkedSnippets.find((snippet) => snippet.id === id);
-  const { isChecked } = checkedSnippet;
+  const isChecked = checkedSnippet?.isChecked;
 
   useEffect(() => {
     const filenameInput = inputRef.current;
