@@ -1,4 +1,5 @@
 import {BasePage} from "../AbstractPage";
+import {expect} from "@playwright/test";
 import {TerminalComponents} from "./TerminalComponents";
 
 export class CodeEditorPage extends BasePage {
@@ -14,8 +15,8 @@ export class CodeEditorPage extends BasePage {
     terminal = new TerminalComponents(this.page)
 
     async expectedLoad(): Promise<void> {
-        expect(this.editor).toBeVisible()
-        expect(this.notepadCode).toBeVisible()
+        await expect(this.editor).toBeVisible()
+        await expect(this.notepadCode).toBeVisible()
     }
 
     async save() {
