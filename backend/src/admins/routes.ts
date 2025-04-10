@@ -1,10 +1,28 @@
 const adminPath = '/admin';
 
+const getPathWithQuery = (basePathSegment, page = 1, additionalParams = {}) => {
+  const basePath = [adminPath, basePathSegment].join('/');
+  const queryParams = { page, ...additionalParams };
+
+  const searchParams = new URLSearchParams();
+  for (const [key, value] of Object.entries(queryParams)) {
+    if (value !== undefined && value !== null) {
+      searchParams.append(key, String(value));
+    }
+  }
+  const queryString = searchParams.toString();
+  return queryString ? `${basePath}?${queryString}` : basePath;
+};
+
 export default {
   // Get
-  getUsersPath: (page = 1) => [adminPath, `users?page=${page}`].join('/'),
+  getUsersPath: (page = 1, additionalParams = {}) => {
+    return getPathWithQuery('users', page, additionalParams);
+  },
 
-  getSnippetsPath: (page = 1) => [adminPath, `snippets?page=${page}`].join('/'),
+  getSnippetsPath: (page = 1, additionalParams = {}) => {
+    return getPathWithQuery('snippets', page, additionalParams);
+  },
 
   getUserSnippetsPath: (userId) =>
     [adminPath, 'users', `${userId}`, 'snippets'].join('/'),

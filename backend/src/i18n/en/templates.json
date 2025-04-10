@@ -3,7 +3,8 @@
     "title": "Admin panel",
     "home": "Home",
     "users": "Users",
-    "snippets": "Snippets"
+    "snippets": "Snippets",
+    "search": "Search"
   },
   "users": {
     "title": "Users",

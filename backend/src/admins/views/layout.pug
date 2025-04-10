@@ -9,14 +9,20 @@ html
       script(src="https://code.jquery.com/jquery-3.6.0.min.js")
       script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ujs/1.2.3/rails.min.js")
     body
-      nav.navbar.navbar-expand-lg
+      nav.navbar.navbar-expand-lg.bg-body-tertiary
         .container-fluid
-          .collapse.navbar-collapse#navbarSupportedContent
+          button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+          #navbarSupportedContent.collapse.navbar-collapse
             ul.navbar-nav.me-auto.mb-2.mb-lg-0
               li.nav-item
                 a.nav-link(href=`${frontendUrl}`) #{t('templates.layout.home', currentLang)}
               li.nav-item
                 a.nav-link(href=`${routes.getUsersPath()}`) #{t('templates.layout.users', currentLang)}
-              li.nav-item 
+              li.nav-item
                 a.nav-link(href=`${routes.getSnippetsPath()}`) #{t('templates.layout.snippets', currentLang)}
+            if users
+              form.d-flex(role='search' action=`${routes.getUsersPath()}` method='get')
+                input.form-control.me-2(type='search', name='search', value=`${searchQuery}`, placeholder=`${t('templates.layout.search', currentLang)}`, aria-label='Search')
+                button.btn.btn-outline-success(type='submit') #{t('templates.layout.search', currentLang)}
       block content
