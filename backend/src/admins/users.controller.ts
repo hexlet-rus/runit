@@ -57,8 +57,16 @@ export class UsersController {
     const currentLang = await this.adminsService.getCurrentLang(currentUser.id);
     const frontendUrl = this.configService.get<string>('app.frontendUrl');
     const take = 10;
-    const users: User[] = await this.adminsService.findAllUsers(page, take);
+    const users: User[] = await this.adminsService.findAllUsers(
+      page,
+      take,
+      sortField,
+      sortOrder,
+      searchQuery,
+    );
     return {
+      sortField,
+      sortOrder,
       searchQuery,
       frontendUrl,
       users,

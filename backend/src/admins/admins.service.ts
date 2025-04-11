@@ -3,7 +3,7 @@
 
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { plainToInstance } from 'class-transformer';
 import { validate, ValidationError } from 'class-validator';
 import { User } from '../entities/user.entity';
@@ -22,13 +22,26 @@ export class AdminsService {
     private userSettingsRepository: Repository<UserSettings>,
   ) {}
 
-  async findAllUsers(page: number, take: number): Promise<User[]> {
+  async findAllUsers(
+    page: number,
+    take: number,
+    sortField: string,
+    sortOrder: string,
+    searchQuery: string,
+  ): Promise<User[]> {
+    const order = {};
+    order[sortField] = sortOrder;
     return this.usersRepository.find({
-      skip: (page - 1) * take,
-      take,
       relations: {
         snippets: true,
       },
+      where: [
+        { username: Like(`%${searchQuery}%`) },
+        { email: Like(`%${searchQuery}%`) },
+      ],
+      order: order,
+      skip: (page - 1) * take,
+      take,
     });
   }
 
