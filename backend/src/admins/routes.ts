@@ -5,6 +5,7 @@ const getPathWithQuery = (basePathSegment, page = 1, additionalParams = {}) => {
   const queryParams = { page, ...additionalParams };
 
   const searchParams = new URLSearchParams();
+  /* eslint-disable no-restricted-syntax */
   for (const [key, value] of Object.entries(queryParams)) {
     if (value !== undefined && value !== null) {
       searchParams.append(key, String(value));

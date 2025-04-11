@@ -39,7 +39,7 @@ export class AdminsService {
         { username: Like(`%${searchQuery}%`) },
         { email: Like(`%${searchQuery}%`) },
       ],
-      order: order,
+      order,
       skip: (page - 1) * take,
       take,
     });
