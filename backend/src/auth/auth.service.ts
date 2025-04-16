@@ -84,7 +84,7 @@ export class AuthService {
 
     this.sentryService.debug(`current user email: ${user.email}`);
 
-    const payload = { email: user.email, sub: user.id };
+    const payload = { email: user.email, sub: user.id, isAdmin: user.isAdmin };
     const token = this.jwtService.sign(payload);
     response.cookie('access_token', token);
 
