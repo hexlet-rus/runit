@@ -26,9 +26,14 @@ export class AuthService {
     return null;
   }
 
-  async signin(user: any, response: any) {
+  generateJwtToken(user: any): string {
     const payload = { email: user.email, sub: user.id, isAdmin: user.isAdmin };
     const token = this.jwtService.sign(payload);
+    return token;
+  }
+
+  async signin(user: any, response: any) {
+    const token = this.generateJwtToken(user);
     response.cookie('access_token', token);
     response.send({ token });
   }
@@ -84,8 +89,7 @@ export class AuthService {
 
     this.sentryService.debug(`current user email: ${user.email}`);
 
-    const payload = { email: user.email, sub: user.id, isAdmin: user.isAdmin };
-    const token = this.jwtService.sign(payload);
+    const token = this.generateJwtToken(user);
     response.cookie('access_token', token);
 
     const frontendUrl = this.configService.get<string>('app.frontendUrl');
