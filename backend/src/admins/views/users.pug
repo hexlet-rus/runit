@@ -6,11 +6,19 @@ block content
         button.btn-close(type="button" data-bs-dismiss="alert" aria-label="Close")
     h1.text-center.font-weight-bold.pb-3
       | #{t('templates.users.title', currentLang)}
+    form.d-flex.justify-content-center.mb-4(role='search' action=`${routes.getUsersPath()}` method='GET')
+      .input-group.w-50
+        input.form-control(type='search' name='search' placeholder=`${t('templates.users.searchPlaceholder', currentLang)}` value=searchQuery aria-label='Search')
+        button.btn.btn-primary(type='submit')
+          i.bi.bi-search.me-2
+          | #{t('templates.users.searchButton', currentLang)}
     table.table
       thead
         tr
           th
             a(href=`${routes.getUsersPath(currentPage, { sort: sortField, order: sortOrder === 'asc' ? 'desc':'asc', search: searchQuery })}`) ID
+              if sortField === 'id'
+                i.bi.ms-1(class=sortOrder === 'asc' ? 'bi-sort-up' : 'bi-sort-down')
           th #{t('templates.users.username', currentLang)}
           th #{t('templates.users.email', currentLang)}
           th #{t('templates.users.registrationDate', currentLang)}

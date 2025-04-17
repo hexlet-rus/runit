@@ -3,8 +3,7 @@
     "title": "Admin panel",
     "home": "Home",
     "users": "Users",
-    "snippets": "Snippets",
-    "search": "Search"
+    "snippets": "Snippets"
   },
   "users": {
     "title": "Users",
@@ -24,7 +23,9 @@
     "numberSnippets": "Number of snippets",
     "save": "Save",
     "success": "Profile has been updated successfully",
-    "confirm": "Are you sure?"
+    "confirm": "Are you sure?",
+    "searchButton": "Search",
+    "searchPlaceholder": "Enter the user's name or email address"
   },
   "snippets": {
     "title": "Snippets",
