@@ -2,62 +2,68 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
 import * as fs from 'fs';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { useContainer } from 'class-validator';
 import * as cookieParser from 'cookie-parser';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { JwtService } from '@nestjs/jwt';
 import { UsersModule } from '../src/users/users.module';
 import { AuthModule } from '../src/auth/auth.module';
-import { AppService } from '../src/app.service';
-import { UsersService } from '../src/users/users.service';
-import { CheckEmail } from '../src/users/validation/check-email';
 import { AppModule } from '../src/app.module';
 import { User } from '../src/entities/user.entity';
 import { Snippet } from '../src/entities/snippet.entity';
 import getDataSourceConfig from '../src/config/data-source.config';
+import { UserSettings } from '../src/entities/user-settings.entity';
 
 describe('UsersController (e2e)', () => {
   let app: NestExpressApplication;
   let usersRepo: Repository<User>;
   let snippetsRepo: Repository<Snippet>;
+  let userSettingsRepo: Repository<UserSettings>;
   let testData: Record<string, any>;
   let users: Array<Record<string, unknown>>;
   let snippets: Array<Record<string, unknown>>;
-  let moduleFixture: TestingModule;
-  let usersData: User[];
-  let snippetsData: Snippet[];
+  let userSettings: Array<Record<string, unknown>>;
   let jwtService: JwtService;
   let token: string;
+  let dataSource: DataSource;
+
+  const loadTestData = <T>(filePath: string): T =>
+    JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
   beforeAll(async () => {
-    moduleFixture = await Test.createTestingModule({
+    // Создание тестового модуля
+    const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
         AppModule,
-        UsersModule,
-        AuthModule,
         TypeOrmModule.forRoot(getDataSourceConfig()),
-        TypeOrmModule.forFeature([User, Snippet]),
+        TypeOrmModule.forFeature([User, Snippet, UserSettings]),
       ],
-      providers: [AppService, UsersService, CheckEmail],
     }).compile();
 
+    // Получение зависимостей
     jwtService = moduleFixture.get<JwtService>(JwtService);
+    usersRepo = moduleFixture.get(getRepositoryToken(User));
+    snippetsRepo = moduleFixture.get(getRepositoryToken(Snippet));
+    userSettingsRepo = moduleFixture.get(getRepositoryToken(UserSettings));
+    dataSource = moduleFixture.get(DataSource);
 
-    users = JSON.parse(fs.readFileSync('__fixtures__/users.json', 'utf-8'));
-    snippets = JSON.parse(
-      fs.readFileSync('__fixtures__/snippets.json', 'utf-8'),
+    // Загрузка тестовых данных
+    users = loadTestData<Array<Record<string, unknown>>>(
+      '__fixtures__/users.json',
     );
-    testData = JSON.parse(
-      fs.readFileSync('__fixtures__/testData.json', 'utf-8'),
+    snippets = loadTestData<Array<Record<string, unknown>>>(
+      '__fixtures__/snippets.json',
+    );
+    userSettings = loadTestData<Array<Record<string, unknown>>>(
+      '__fixtures__/settings.json',
+    );
+    testData = loadTestData<Record<string, any>>(
+      '__fixtures__/testData.json',
     ).users;
 
-    usersRepo = moduleFixture.get('UsersRepository');
-    snippetsRepo = moduleFixture.get('SnippetsRepository');
-    usersData = usersRepo.create(users);
-    snippetsData = snippetsRepo.create(snippets);
-
+    // Инициализация приложения
     app = moduleFixture.createNestApplication<NestExpressApplication>();
     app.useGlobalPipes(new ValidationPipe());
     useContainer(app.select(AppModule), { fallbackOnErrors: true });
@@ -66,14 +72,44 @@ describe('UsersController (e2e)', () => {
   });
 
   beforeEach(async () => {
-    await usersRepo.insert(usersData);
-    await snippetsRepo.insert(snippetsData);
-    token = jwtService.sign(testData.sign);
+    // Создаем QueryRunner для управления транзакциями
+    const queryRunner = dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    // Сохраняем QueryRunner в глобальном контексте для использования в тестах
+    (global as any).queryRunner = queryRunner;
+
+    // Вставка пользователей
+    const testUsers = usersRepo.create(users);
+    await usersRepo.save(testUsers);
+
+    // Вставка сниппетов
+    const testSnippets = snippetsRepo.create(snippets);
+    await snippetsRepo.save(testSnippets);
+
+    // Вставка настроек пользователей
+    const testUserSettings = userSettingsRepo.create(userSettings);
+    await userSettingsRepo.save(testUserSettings);
+
+    // Генерация JWT-токена
+    token = await jwtService.sign(testData.sign);
+  });
+  afterEach(async () => {
+    // Откатываем транзакцию после каждого теста
+    const queryRunner = (global as any).queryRunner;
+    await queryRunner.rollbackTransaction();
+    await queryRunner.release();
+  });
+
+  afterAll(async () => {
+    // Закрытие приложения
+    await app.close();
   });
 
   it('create empty user', async () => {
     const { body } = await request(app.getHttpServer())
-      .post('/users')
+      .post('/api/users')
       .send(testData.empty)
       .expect(400);
     expect(body.errs.message).toEqual(testData.errs);
@@ -81,7 +117,7 @@ describe('UsersController (e2e)', () => {
 
   it('update empty user', async () => {
     const { body } = await request(app.getHttpServer())
-      .put('/users/1')
+      .put('/api/users/1')
       .auth(token, { type: 'bearer' })
       .send(testData.empty)
       .expect(400);
@@ -90,13 +126,13 @@ describe('UsersController (e2e)', () => {
 
   it('create', async () => {
     const { body } = await request(app.getHttpServer())
-      .post(`/users`)
+      .post(`/api/users`)
       .send(testData.create)
       .expect(201);
     expect(body.token).toBeDefined();
 
     const response = await request(app.getHttpServer())
-      .post(`/users`)
+      .post(`/api/users`)
       .send(testData.create)
       .expect(400);
     expect(response.body.errs.message).toMatchObject(testData.createErrsUnique);
@@ -104,7 +140,7 @@ describe('UsersController (e2e)', () => {
 
   it('read', async () => {
     const { body } = await request(app.getHttpServer())
-      .get('/users/1')
+      .get('/api/users/1')
       .auth(token, { type: 'bearer' })
       .expect(200);
     expect(body).toMatchObject(testData.read);
@@ -112,7 +148,7 @@ describe('UsersController (e2e)', () => {
 
   it('update', async () => {
     const response = await request(app.getHttpServer())
-      .put('/users/3')
+      .put('/api/users/3')
       .auth(token, { type: 'bearer' })
       .send(testData.updateIncorrect)
       .expect(400);
@@ -120,7 +156,7 @@ describe('UsersController (e2e)', () => {
 
     const { email, username } = testData.update;
     const { body } = await request(app.getHttpServer())
-      .put('/users/1')
+      .put('/api/users/1')
       .auth(token, { type: 'bearer' })
       .send(testData.update)
       .expect(200);
@@ -129,7 +165,7 @@ describe('UsersController (e2e)', () => {
 
   it('delete', async () => {
     await request(app.getHttpServer())
-      .delete('/users/1')
+      .delete('/api/users/1')
       .auth(token, { type: 'bearer' })
       .expect(200);
     const deletedUser = await usersRepo.findOneBy({ id: 1 });
@@ -138,7 +174,7 @@ describe('UsersController (e2e)', () => {
 
   it('profile', async () => {
     const { body } = await request(app.getHttpServer())
-      .get('/users/profile')
+      .get('/api/users/profile')
       .auth(token, { type: 'bearer' })
       .expect(200);
     expect(body).toMatchObject(testData.profile);
@@ -146,18 +182,9 @@ describe('UsersController (e2e)', () => {
 
   it('get all users', async () => {
     const { body } = await request(app.getHttpServer())
-      .get('/users')
+      .get('/api/users')
       .auth(token, { type: 'bearer' })
       .expect(200);
     expect(body).toHaveLength(3);
-  });
-
-  afterEach(async () => {
-    await snippetsRepo.clear();
-    await usersRepo.clear();
-  });
-
-  afterAll(async () => {
-    await app.close();
   });
 });

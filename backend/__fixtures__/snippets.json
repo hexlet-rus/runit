@@ -2,41 +2,36 @@
   {
     "name": "testSnippet",
     "code": "console.log('test')",
-    "user": {
-      "id": 1
-    },
-    "slug": "slug"
+    "userId": 1,
+    "slug": "slug",
+    "language": "javascript"
   },
   {
     "name": "snippet",
     "code": "const test = () => 1 + 1",
-    "user": {
-      "id": 1
-    },
-    "slug": "slugs"
+    "userId": 1,
+    "slug": "slugs",
+    "language": "javascript"
   },
   {
     "name": "codes",
     "code": "alert('Hello!');",
-    "user": {
-      "id": 2
-    },
-    "slug": "sluges"
+    "userId": 2,
+    "slug": "sluges",
+    "language": "javascript"
   },
   {
     "name": "snipp",
     "code": "console.table({ a: 'c', b: 'b' });",
-    "user": {
-      "id": 3
-    },
-    "slug": "myNewSlug"
+    "userId": 3,
+    "slug": "myNewSlug",
+    "language": "javascript"
   },
   {
     "name": "work snippet",
     "code": "console.log(3);",
-    "user": {
-      "id": 2
-    },
-    "slug": "sl"
+    "userId": 2,
+    "slug": "sl",
+    "language": "javascript"
   }
 ]

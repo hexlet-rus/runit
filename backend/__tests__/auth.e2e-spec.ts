@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import * as fs from 'fs';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
 import { JwtService } from '@nestjs/jwt';
@@ -18,33 +18,32 @@ describe('AuthController (e2e)', () => {
   let usersRepo: Repository<User>;
   let testData: Record<string, any>;
   let users: Array<Record<string, unknown>>;
-  let moduleFixture: TestingModule;
-  let usersData: User[];
   let jwtService: JwtService;
+  let token: string;
+  let dataSource: DataSource;
 
-  // FIXME: все тесты проходят если beforeEach
-  // заново полный setup -> надо перенести в хуки сброс аппа между тестами
-  // beforeEach(async () => {
+  const loadTestData = <T>(filePath: string): T =>
+    JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+
   beforeAll(async () => {
-    moduleFixture = await Test.createTestingModule({
+    const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
         AppModule,
-        UsersModule,
-        AuthModule,
         TypeOrmModule.forRoot(getDataSourceConfig()),
         TypeOrmModule.forFeature([User]),
       ],
     }).compile();
 
     jwtService = moduleFixture.get<JwtService>(JwtService);
+    usersRepo = moduleFixture.get(getRepositoryToken(User));
+    dataSource = moduleFixture.get(DataSource);
 
-    users = JSON.parse(fs.readFileSync('__fixtures__/users.json', 'utf-8'));
-    testData = JSON.parse(
-      fs.readFileSync('__fixtures__/testData.json', 'utf-8'),
+    users = loadTestData<Array<Record<string, unknown>>>(
+      '__fixtures__/users.json',
+    );
+    testData = loadTestData<Record<string, any>>(
+      '__fixtures__/testData.json',
     ).users;
-
-    usersRepo = moduleFixture.get('UsersRepository');
-    usersData = usersRepo.create(users);
 
     app = moduleFixture.createNestApplication<NestExpressApplication>();
     app.useGlobalPipes(new ValidationPipe());
@@ -53,13 +52,36 @@ describe('AuthController (e2e)', () => {
   });
 
   beforeEach(async () => {
-    await usersRepo.insert(usersData);
+    // Создаем QueryRunner для управления транзакциями
+    const queryRunner = dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    // Сохраняем QueryRunner в глобальном контексте для использования в тестах
+    (global as any).queryRunner = queryRunner;
+
+    // Вставка пользователей
+    const testUsers = usersRepo.create(users);
+    await usersRepo.save(testUsers);
+    token = await jwtService.sign(testData.sign);
+  });
+
+  afterEach(async () => {
+    // Откатываем транзакцию после каждого теста
+    const queryRunner = (global as any).queryRunner;
+    await queryRunner.rollbackTransaction();
+    await queryRunner.release();
+  });
+
+  afterAll(async () => {
+    // Закрытие приложения
+    await app.close();
   });
 
   it('/signin', async () => {
-    await request(app.getHttpServer()).post('/signin').send({}).expect(401);
+    await request(app.getHttpServer()).post('/api/signin').send({}).expect(401);
     const { body } = await request(app.getHttpServer())
-      .post(`/signin`)
+      .post(`/api/signin`)
       .send(testData.signin)
       .expect(201);
     expect(body.token).toBeDefined();
@@ -67,25 +89,16 @@ describe('AuthController (e2e)', () => {
 
   it('/signin upperCase', async () => {
     const { body } = await request(app.getHttpServer())
-      .post(`/signin`)
+      .post(`/api/signin`)
       .send(testData.signinUpperCase)
       .expect(201);
     expect(body.token).toBeDefined();
   });
 
   it('/signout', async () => {
-    const token = jwtService.sign(testData.sign);
     return request(app.getHttpServer())
-      .post('/signout')
+      .post('/api/signout')
       .auth(token, { type: 'bearer' })
       .expect(201);
-  });
-
-  afterEach(async () => {
-    await usersRepo.clear();
-  });
-
-  afterAll(async () => {
-    await app.close();
   });
 });

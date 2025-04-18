@@ -6,7 +6,6 @@ import {
   CreateDateColumn,
   Entity,
   Index,
-  JoinColumn,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -38,7 +37,6 @@ export class User {
   snippets: Snippet[];
 
   @OneToOne('UserSettings', 'user')
-  @JoinColumn({ name: 'id' })
   userSettings: UserSettings;
 
   @Column({ nullable: true })
