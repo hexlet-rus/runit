@@ -29,7 +29,7 @@ export class UserSettings {
   @UpdateDateColumn()
   updated_at: string;
 
-  @OneToOne('User', 'user_settings')
+  @OneToOne('User', 'userSettings')
   @JoinColumn({ name: 'userId' })
   user: User;
 

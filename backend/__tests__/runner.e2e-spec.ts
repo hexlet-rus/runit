@@ -2,15 +2,15 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import * as fs from 'fs';
-import { AppModule } from '../src/app.module';
+import { RunnerModule } from '../src/runner/runner.module';
 
-describe('AppController (e2e)', () => {
+describe('RunnerController (e2e)', () => {
   let app: INestApplication;
   let testData: Record<string, any>;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [RunnerModule],
     }).compile();
 
     testData = JSON.parse(
@@ -22,7 +22,9 @@ describe('AppController (e2e)', () => {
 
   it('compile ', async () => {
     return request(app.getHttpServer())
-      .get(`/compile?code=${testData.input};`)
+      .get(
+        `/api/runner/run?snippet[code]=${testData.input};&snippet[language]=javascript`,
+      )
       .expect(200)
       .expect(testData.output);
   });

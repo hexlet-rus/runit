@@ -29,21 +29,12 @@
       "password": "NewPassword"
     },
     "errs": [
-      "username must match /[A-Za-z]/ regular expression",
       "username must be longer than or equal to 3 characters",
       "email must be an email",
-      "password must be longer than or equal to 8 characters",
-      "Пароли не совпадают!"
+      "password must be longer than or equal to 8 characters"
     ],
-    "updateErrsUnique": [
-      "Уже существует!",
-      "Уже существует!",
-      "Неверный пароль!"
-    ],
-    "createErrsUnique": [
-      "Пользователь уже существует!",
-      "Пользователь уже существует!"
-    ],
+    "updateErrsUnique": ["usernameIsUsed", "emailIsUsed", "Неверный пароль!"],
+    "createErrsUnique": ["usernameIsUsed", "emailIsUsed"],
     "update": {
       "username": "redactedNick",
       "email": "myNewEmail@mail.ru",
@@ -84,11 +75,13 @@
   "snippets": {
     "read": {
       "name": "testSnippet",
-      "code": "console.log('test')"
+      "code": "console.log('test')",
+      "language": "javascript"
     },
     "create": {
       "name": "newSnippet",
-      "code": "console.log('hey');"
+      "code": "console.log('hey');",
+      "language": "javascript"
     },
     "update": {
       "name": "Redacted",
