@@ -45,6 +45,9 @@ export class UsersController {
   async findAllUsers(
     @Req() req: Request,
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page = 1,
+    @Query('sort') sortField = 'id',
+    @Query('order') sortOrder = 'asc',
+    @Query('search') searchQuery = '',
   ): Promise<any> {
     const request = req as Request & {
       flash: (type: string, message?: string) => any;
@@ -54,8 +57,17 @@ export class UsersController {
     const currentLang = await this.adminsService.getCurrentLang(currentUser.id);
     const frontendUrl = this.configService.get<string>('app.frontendUrl');
     const take = 10;
-    const users: User[] = await this.adminsService.findAllUsers(page, take);
+    const users: User[] = await this.adminsService.findAllUsers(
+      page,
+      take,
+      sortField,
+      sortOrder,
+      searchQuery,
+    );
     return {
+      sortField,
+      sortOrder,
+      searchQuery,
       frontendUrl,
       users,
       currentPage: page,
