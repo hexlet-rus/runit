@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import { Row, Col } from 'react-bootstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { fetchUserSnippets } from '../../slices/snippetsSlice.js';
 import { fetchUserSettings } from '../../slices/userSettingsSlice';
 
 import NotFoundPage from '../404';
-import NewSnippetForm from './NewSnippetForm.jsx';
+import NewSnipettButton from './NewSnipettButton.jsx';
 import SnippetCard from './SnippetCard.jsx';
 import SnippetBadge from './SnippetBadge.jsx';
 import SnippetCheck from './SnippetCheck.jsx';
@@ -27,7 +27,14 @@ function ProfileLayout({ data, isEditable }) {
         <div className="d-flex align-items-start">
           {!guestUser && <h1 className="display-5">{user.username}</h1>}
         </div>
-        <SnippetCheck />
+        <Row className="mt-2" md="auto" xs={2}>
+          <Col>
+            <NewSnipettButton />
+          </Col>
+          <Col>
+            <SnippetCheck />
+          </Col>
+        </Row>
 
         <Row
           as={TransitionGroup}
@@ -37,7 +44,6 @@ function ProfileLayout({ data, isEditable }) {
           xs={1}
           xxl={4}
         >
-          {isEditable ? <NewSnippetForm /> : null}
           {snippets.map((snippet) => (
             <CSSTransition key={snippet.id} classNames="width" timeout={250}>
               <SnippetCard data={snippet} isEditable={isEditable} />
