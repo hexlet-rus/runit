@@ -1,9 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ValidationPipe } from '@nestjs/common';
 import * as request from 'supertest';
+import { ValidationPipe } from '@nestjs/common';
 import * as fs from 'fs';
+import { join } from 'node:path';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
+import { useContainer } from 'class-validator';
 import * as cookieParser from 'cookie-parser';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { JwtService } from '@nestjs/jwt';
@@ -13,7 +15,7 @@ import { Snippet } from '../src/entities/snippet.entity';
 import getDataSourceConfig from '../src/config/data-source.config';
 import { UserSettings } from '../src/entities/user-settings.entity';
 
-describe('SnippetsController (e2e)', () => {
+describe('UsersController and SnippetsController (e2e)', () => {
   let app: NestExpressApplication;
   let usersRepo: Repository<User>;
   let snippetsRepo: Repository<Snippet>;
@@ -30,6 +32,7 @@ describe('SnippetsController (e2e)', () => {
     JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
   beforeAll(async () => {
+    // Создание тестового модуля
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [
         AppModule,
@@ -38,12 +41,14 @@ describe('SnippetsController (e2e)', () => {
       ],
     }).compile();
 
+    // Получение зависимостей
     jwtService = moduleFixture.get<JwtService>(JwtService);
     usersRepo = moduleFixture.get(getRepositoryToken(User));
     snippetsRepo = moduleFixture.get(getRepositoryToken(Snippet));
     userSettingsRepo = moduleFixture.get(getRepositoryToken(UserSettings));
     dataSource = moduleFixture.get(DataSource);
 
+    // Загрузка тестовых данных
     users = loadTestData<Array<Record<string, unknown>>>(
       '__fixtures__/users.json',
     );
@@ -53,12 +58,17 @@ describe('SnippetsController (e2e)', () => {
     userSettings = loadTestData<Array<Record<string, unknown>>>(
       '__fixtures__/settings.json',
     );
-    testData = loadTestData<Record<string, any>>('__fixtures__/testData.json');
+    testData = loadTestData<Record<string, any>>(
+      '__fixtures__/testData.json',
+    ).users;
 
     // Инициализация приложения
     app = moduleFixture.createNestApplication<NestExpressApplication>();
     app.useGlobalPipes(new ValidationPipe());
+    useContainer(app.select(AppModule), { fallbackOnErrors: true });
     app.use(cookieParser());
+    app.setBaseViewsDir(join(__dirname, '..', 'src/admins/views'));
+    // app.setViewEngine('pug');
     await app.init();
   });
 
@@ -84,9 +94,8 @@ describe('SnippetsController (e2e)', () => {
     await userSettingsRepo.save(testUserSettings);
 
     // Генерация JWT-токена
-    token = await jwtService.sign(testData.users.sign);
+    token = await jwtService.sign(testData.sign);
   });
-
   afterEach(async () => {
     // Откатываем транзакцию после каждого теста
     const queryRunner = (global as any).queryRunner;
@@ -99,44 +108,35 @@ describe('SnippetsController (e2e)', () => {
     await app.close();
   });
 
-  it('create', async () => {
-    const { body } = await request(app.getHttpServer())
-      .post('/api/snippets')
-      .auth(token, { type: 'bearer' })
-      .send(testData.snippets.create)
-      .expect(201);
-    expect(body).toMatchObject(testData.snippets.create);
-  });
-
-  it('read', async () => {
-    const { body } = await request(app.getHttpServer())
-      .get('/api/snippets/1')
-      .expect(200);
-    expect(body).toMatchObject(testData.snippets.read);
-  });
-
-  it('update', async () => {
-    const { body } = await request(app.getHttpServer())
-      .put('/api/snippets/1')
-      .auth(token, { type: 'bearer' })
-      .send(testData.snippets.update)
-      .expect(200);
-    expect(body).toMatchObject(testData.snippets.update);
-  });
-
-  it('delete', async () => {
+  it('/admin/users/:id (DELETE)', async () => {
     await request(app.getHttpServer())
-      .delete('/api/snippets/1')
+      .delete('/admin/users/1')
       .auth(token, { type: 'bearer' })
-      .expect(200);
-    const deletedSnippet = await snippetsRepo.findOneBy({ id: 1 });
-    expect(deletedSnippet).toBeNull();
+      .expect(302)
+      .expect('Location', '/admin/users');
+    const deletedUser = await usersRepo.findOneBy({ id: 1 });
+    expect(deletedUser).toBeNull();
   });
 
-  it('get all snippets', async () => {
-    const { body } = await request(app.getHttpServer())
-      .get('/api/snippets')
+  it('/admin/users/:id (GET)', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/admin/users/1')
+      .auth(token, { type: 'bearer' })
       .expect(200);
-    expect(body).toHaveLength(5);
+    expect(response.text).toContain(
+      '<h1 class="text-center font-weight-bold pb-3">Профиль пользователя</h1>',
+    );
+
+    expect(response.text).toContain(
+      `<input class="form-control" id="username" name="username" type="text" value="${users[0].username}"/>`,
+    );
+    expect(response.text).toContain(
+      `<input class="form-control" id="email" name="email" type="email" value="${users[0].email}"/>`,
+    );
+
+    // Проверяем кнопку submit
+    expect(response.text).toContain(
+      '<button class="btn btn-primary" type="submit">Сохранить</button>',
+    );
   });
 });

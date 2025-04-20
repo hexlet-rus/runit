@@ -42,7 +42,8 @@
     },
     "sign": {
       "sub": 1,
-      "email": "undefined@mail.ru"
+      "email": "undefined@mail.ru",
+      "isAdmin": true
     },
     "signin": {
       "email": "undefined@mail.ru",

@@ -8,10 +8,8 @@ import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
 import { JwtService } from '@nestjs/jwt';
 import { User } from '../src/entities/user.entity';
-import { AuthModule } from '../src/auth/auth.module';
 import getDataSourceConfig from '../src/config/data-source.config';
 import { AppModule } from '../src/app.module';
-import { UsersModule } from '../src/users/users.module';
 
 describe('AuthController (e2e)', () => {
   let app: NestExpressApplication;

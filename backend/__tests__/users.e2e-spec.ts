@@ -8,8 +8,6 @@ import { useContainer } from 'class-validator';
 import * as cookieParser from 'cookie-parser';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { JwtService } from '@nestjs/jwt';
-import { UsersModule } from '../src/users/users.module';
-import { AuthModule } from '../src/auth/auth.module';
 import { AppModule } from '../src/app.module';
 import { User } from '../src/entities/user.entity';
 import { Snippet } from '../src/entities/snippet.entity';
