@@ -14,6 +14,8 @@ import { User } from '../src/entities/user.entity';
 import { Snippet } from '../src/entities/snippet.entity';
 import getDataSourceConfig from '../src/config/data-source.config';
 import { UserSettings } from '../src/entities/user-settings.entity';
+import * as session from 'express-session';
+import * as flash from 'connect-flash';
 
 describe('UsersController and SnippetsController (e2e)', () => {
   let app: NestExpressApplication;
@@ -67,6 +69,15 @@ describe('UsersController and SnippetsController (e2e)', () => {
     app.useGlobalPipes(new ValidationPipe());
     useContainer(app.select(AppModule), { fallbackOnErrors: true });
     app.use(cookieParser());
+    app.use(
+      session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: { maxAge: 60000 },
+      }),
+    );
+    app.use(flash());
     app.setBaseViewsDir(join(__dirname, '..', 'src/admins/views'));
     // app.setViewEngine('pug');
     await app.init();
@@ -108,7 +119,7 @@ describe('UsersController and SnippetsController (e2e)', () => {
     await app.close();
   });
 
-  it('/admin/users/:id (DELETE)', async () => {
+  it('Delete user', async () => {
     await request(app.getHttpServer())
       .delete('/admin/users/1')
       .auth(token, { type: 'bearer' })
@@ -118,7 +129,7 @@ describe('UsersController and SnippetsController (e2e)', () => {
     expect(deletedUser).toBeNull();
   });
 
-  it('/admin/users/:id (GET)', async () => {
+  it('Get one user (Authorized admin)', async () => {
     const response = await request(app.getHttpServer())
       .get('/admin/users/1')
       .auth(token, { type: 'bearer' })
@@ -126,17 +137,82 @@ describe('UsersController and SnippetsController (e2e)', () => {
     expect(response.text).toContain(
       '<h1 class="text-center font-weight-bold pb-3">Профиль пользователя</h1>',
     );
-
     expect(response.text).toContain(
       `<input class="form-control" id="username" name="username" type="text" value="${users[0].username}"/>`,
     );
     expect(response.text).toContain(
       `<input class="form-control" id="email" name="email" type="email" value="${users[0].email}"/>`,
     );
-
-    // Проверяем кнопку submit
     expect(response.text).toContain(
       '<button class="btn btn-primary" type="submit">Сохранить</button>',
     );
+  });
+
+  it('Get one user (Authorized user)', async () => {
+    const token2 = await jwtService.sign(testData.sign2);
+    const response = await request(app.getHttpServer())
+      .get('/admin/users/1')
+      .auth(token2, { type: 'bearer' })
+      .expect(403);
+    expect(response.text).toContain('<p class="lead">Forbidden resource</p>');
+  });
+
+  it('Get one user (Unauthorized)', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/admin/users/1')
+      .expect(401);
+    expect(response.text).toContain('<p class="lead">Unauthorized</p>');
+  });
+
+  it('update user (exists username)-(Authorized admin)', async () => {
+    const response = await request(app.getHttpServer())
+      .put('/admin/users/3')
+      .auth(token, { type: 'bearer' })
+      .send(testData.updateIncorrect)
+      .expect(422);
+    expect(response.text).toContain(
+      '<div class="alert alert-warning" role="alert">Это имя уже занято</div>',
+    );
+    // const { username, email } = testData.update;
+    // const response = await request(app.getHttpServer())
+    //   .put('/admin/users/1')
+    //   .auth(token, { type: 'bearer' })
+    //   .type('form')
+    //   .field('username', username)
+    //   .field('email', email)
+    //   .field('isAdmin', true)
+    //   .expect(302)
+    //   .expect('Location', '/admin/users');
+    // expect(response.text).toContain(
+    //   '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">Профиль был успешно обновлен<button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button></div>',
+    // );
+  });
+
+  it('update user (empty data)-(Authorized admin)', async () => {
+    const response = await request(app.getHttpServer())
+      .put('/admin/users/3')
+      .auth(token, { type: 'bearer' })
+      .send(testData.empty)
+      .expect(422);
+    expect(response.text).toContain(
+      '<div class="alert alert-warning" role="alert">От 3 до 20 символов</div>',
+    );
+    expect(response.text).toContain(
+      '<div class="alert alert-warning" role="alert">Некорректная электронная почта</div>',
+    );
+  });
+
+  it('update user-(Authorized admin)', async () => {
+    const { username, email } = testData.update;
+    const response = await request(app.getHttpServer())
+      .put('/admin/users/3')
+      .auth(token, { type: 'bearer' })
+      .send(`username=${username}`)
+      .send(`email=${email}`)
+      .send('isAdmin=false')
+      .expect(302)
+      .expect('Location', '/admin/users');
+    const updatedUser = await usersRepo.findOneBy({ id: 3 });
+    expect(updatedUser).toMatchObject({ username, email });
   });
 });
