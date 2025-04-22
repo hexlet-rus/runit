@@ -229,7 +229,7 @@ describe('UsersController and SnippetsController (e2e)', () => {
       .expect(302)
       .expect('Location', '/admin/users');
     const updatedUser = await usersRepo.findOneBy({ id: 3 });
-    expect(updatedUser).toMatchObject({ username, email });
+    expect(updatedUser).toMatchObject({ username, email: email.toLowerCase() });
   });
 
   it('Get all snippets user (Authorized admin)', async () => {
