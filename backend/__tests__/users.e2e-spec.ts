@@ -160,7 +160,7 @@ describe('UsersController (e2e)', () => {
       .auth(token, { type: 'bearer' })
       .send(testData.update)
       .expect(200);
-    expect(body).toMatchObject({ email, username });
+    expect(body).toMatchObject({ email: email.toLowerCase(), username });
   });
 
   it('delete', async () => {

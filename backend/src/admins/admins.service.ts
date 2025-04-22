@@ -61,7 +61,7 @@ export class AdminsService {
     try {
       const user = await this.findOneUser(id);
       user.username = dto.username;
-      user.email = dto.email;
+      user.email = dto.email.toLowerCase();
       user.isAdmin = dto.isAdmin;
       await this.usersRepository.save(user);
     } catch (e) {
