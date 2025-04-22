@@ -64,7 +64,7 @@ export class UsersService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto): Promise<any> {
-    const { ...data } = updateUserDto;
+    const data = { ...updateUserDto, email: updateUserDto.email.toLowerCase() };
     const currentUser = await this.usersRepository.findOneBy({ id });
     const settings = await this.userSettingsRepository.findOneBy({
       userId: id,
