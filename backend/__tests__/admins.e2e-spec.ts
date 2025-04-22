@@ -79,7 +79,6 @@ describe('UsersController and SnippetsController (e2e)', () => {
     );
     app.use(flash());
     app.setBaseViewsDir(join(__dirname, '..', 'src/admins/views'));
-    // app.setViewEngine('pug');
     await app.init();
   });
 
@@ -119,7 +118,7 @@ describe('UsersController and SnippetsController (e2e)', () => {
     await app.close();
   });
 
-  it('Delete user', async () => {
+  it('Delete user (Authorized admin)', async () => {
     await request(app.getHttpServer())
       .delete('/admin/users/1')
       .auth(token, { type: 'bearer' })
@@ -127,6 +126,36 @@ describe('UsersController and SnippetsController (e2e)', () => {
       .expect('Location', '/admin/users');
     const deletedUser = await usersRepo.findOneBy({ id: 1 });
     expect(deletedUser).toBeNull();
+  });
+
+  it('Delete user snippet (Authorized admin)', async () => {
+    await request(app.getHttpServer())
+      .delete('/admin/users/1/snippets/1')
+      .auth(token, { type: 'bearer' })
+      .expect(302)
+      .expect('Location', '/admin/users/1/snippets');
+    const deletedSnippet = await snippetsRepo.findOneBy({ id: 1 });
+    expect(deletedSnippet).toBeNull();
+  });
+
+  it('Delete snippet (Authorized admin)', async () => {
+    await request(app.getHttpServer())
+      .delete('/admin/snippets/2')
+      .auth(token, { type: 'bearer' })
+      .expect(302)
+      .expect('Location', '/admin/snippets');
+    const deletedSnippet = await snippetsRepo.findOneBy({ id: 2 });
+    expect(deletedSnippet).toBeNull();
+  });
+
+  it('Get all users (Authorized admin)', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/admin/users')
+      .auth(token, { type: 'bearer' })
+      .expect(200);
+    expect(response.text).toContain(
+      '<h1 class="text-center font-weight-bold pb-3">Пользователи</h1>',
+    );
   });
 
   it('Get one user (Authorized admin)', async () => {
@@ -173,19 +202,6 @@ describe('UsersController and SnippetsController (e2e)', () => {
     expect(response.text).toContain(
       '<div class="alert alert-warning" role="alert">Это имя уже занято</div>',
     );
-    // const { username, email } = testData.update;
-    // const response = await request(app.getHttpServer())
-    //   .put('/admin/users/1')
-    //   .auth(token, { type: 'bearer' })
-    //   .type('form')
-    //   .field('username', username)
-    //   .field('email', email)
-    //   .field('isAdmin', true)
-    //   .expect(302)
-    //   .expect('Location', '/admin/users');
-    // expect(response.text).toContain(
-    //   '<div class="alert alert-success alert-dismissible fade show text-center" role="alert">Профиль был успешно обновлен<button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button></div>',
-    // );
   });
 
   it('update user (empty data)-(Authorized admin)', async () => {
@@ -214,5 +230,25 @@ describe('UsersController and SnippetsController (e2e)', () => {
       .expect('Location', '/admin/users');
     const updatedUser = await usersRepo.findOneBy({ id: 3 });
     expect(updatedUser).toMatchObject({ username, email });
+  });
+
+  it('Get all snippets user (Authorized admin)', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/admin/users/1/snippets')
+      .auth(token, { type: 'bearer' })
+      .expect(200);
+    expect(response.text).toContain(
+      '<h1 class="text-center font-weight-bold pb-3">Сниппеты</h1>',
+    );
+  });
+
+  it('Get all snippets (Authorized admin)', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/admin/snippets')
+      .auth(token, { type: 'bearer' })
+      .expect(200);
+    expect(response.text).toContain(
+      '<h1 class="text-center font-weight-bold pb-3">Сниппеты</h1>',
+    );
   });
 });
