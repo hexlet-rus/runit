@@ -42,7 +42,13 @@
     },
     "sign": {
       "sub": 1,
-      "email": "undefined@mail.ru"
+      "email": "undefined@mail.ru",
+      "isAdmin": true
+    },
+    "sign2": {
+      "sub": 1,
+      "email": "undefined@mail.ru",
+      "isAdmin": false
     },
     "signin": {
       "email": "undefined@mail.ru",

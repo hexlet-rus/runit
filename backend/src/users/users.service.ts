@@ -169,7 +169,7 @@ export class UsersService {
 
     if (currentUser && currentUser.recover_hash === hash) {
       await this.usersRepository.update(currentUser.id, { recover_hash: null });
-      await this.update(currentUser.id, { password });
+      await this.update(currentUser.id, { password, email });
       return currentUser;
     }
     return { id: null };
