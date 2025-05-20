@@ -14,19 +14,22 @@ export enum TypeSnippets {
 export class MySnippetsPage extends BasePage {
     url = '/profile'
     private groupSnippets = this.page.locator('.new-snippet')
+    private createBtn = this.page.locator('button', { hasText: /Create/ });
 
     private newSnippets: Record<TypeSnippets, Locator> = {
-        [TypeSnippets.js]: this.page.getByRole('button', { name: 'JavaScript Create snippet on' }),
-        [TypeSnippets.html]: this.page.getByRole('button', { name: 'HTML Create snippet on HTML' }),
-        [TypeSnippets.php]: this.page.getByRole('button', { name: 'PHP Create snippet on PHP' }),
-        [TypeSnippets.ruby]: this.page.getByRole('button', { name: 'Ruby Create snippet on Ruby' }),
-        [TypeSnippets.java]: this.page.getByRole('button', { name: 'Java Create snippet on Java' }),
-        [TypeSnippets.python]: this.page.getByRole('button', { name: 'Python Create snippet on Python' }),
+        [TypeSnippets.js]: this.page.locator('a[aria-label="javascript"]'),
+        [TypeSnippets.html]: this.page.locator('a[aria-label="html"]'),
+        [TypeSnippets.php]: this.page.locator('a[aria-label="php"]'),
+        [TypeSnippets.ruby]: this.page.locator('a[aria-label="ruby"]'),
+        [TypeSnippets.java]: this.page.locator('a[aria-label="java"]'),
+        [TypeSnippets.python]: this.page.locator('a[aria-label="python"]'),
     }
 
-    @step('Кликнуть на кнопку создания снипета для языка $0')
+    @step('Открытие модалки, выбор языка, кликнуть на кнопку создания снипета для языка $0')
     async create(type: TypeSnippets) {
+        await this.groupSnippets.click();
         await this.newSnippets[type].click();
+        await this.createBtn.click();
     }
 
     @step('Проверить, что страница загрузилась')
