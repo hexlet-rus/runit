@@ -13,7 +13,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from '../entities/user.entity';
 import { Snippet } from '../entities/snippet.entity';
 import { UserSettings } from '../entities/user-settings.entity';
-import { IUser } from './interfaces/users.interface';
+import { UserInterface } from './interfaces/users.interface';
 import { RecoverUserDto } from './dto/recover-user.dto';
 import { cipher, decipher } from './secure/cipher';
 import { UpdateUserSettingsDto } from './dto/update-user-settings.dto';
@@ -185,7 +185,7 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  async getData({ id }: IUser): Promise<any> {
+  async getData({ id }: UserInterface): Promise<any> {
     const currentUser = await this.usersRepository.findOneBy({ id });
     const settingsUser = await this.userSettingsRepository.findOne({
       where: { userId: id },
