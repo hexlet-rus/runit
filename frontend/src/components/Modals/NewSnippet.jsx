@@ -168,11 +168,16 @@ function NewSnippet({ handleClose, isOpen }) {
         language.toLowerCase().startsWith(lowerInput),
       );
 
-      const selectedLanguage =
+      let selectedLanguage =
         filteredOptions.find(
           (language) => language.toLowerCase() === lowerInput,
         ) || filteredOptions[0];
 
+      if (selectedLanguage === undefined) {
+        selectedLanguage = '';
+        setSelectedLng([selectedLanguage]);
+        return;
+      }
       setSelectedLng([selectedLanguage]);
 
       if (!once) {
@@ -181,6 +186,15 @@ function NewSnippet({ handleClose, isOpen }) {
       }
     } else {
       setSelectedLng([]);
+      formik.setFieldTouched('name', false);
+    }
+  };
+
+  const resetForm = () => {
+    try {
+      setSelectedLng([]);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -201,18 +215,40 @@ function NewSnippet({ handleClose, isOpen }) {
               options={supportedLanguages}
               renderInput={({ referenceElementRef, ...inputProps }) => {
                 return (
-                  <Form.Control
-                    ref={(node) => {
-                      inputRefTemplate.current = node;
-                      referenceElementRef(node);
-                    }}
-                    onBlur={(e) => handleInputLng(e.target.value)}
-                    onChange={inputProps.onChange}
-                    onFocus={inputProps.onFocus}
-                    placeholder={inputProps.placeholder}
-                    type={inputProps.type}
-                    value={inputProps.value}
-                  />
+                  <>
+                    <Form.Control
+                      ref={(node) => {
+                        inputRefTemplate.current = node;
+                        referenceElementRef(node);
+                      }}
+                      onBlur={(e) => handleInputLng(e.target.value)}
+                      onChange={inputProps.onChange}
+                      onFocus={inputProps.onFocus}
+                      placeholder={inputProps.placeholder}
+                      type={inputProps.type}
+                      value={inputProps.value}
+                    />
+                    {inputProps.value && (
+                      <Button
+                        type="button"
+                        className="btn"
+                        variant="link"
+                        style={{
+                          textDecoration: 'none',
+                          position: 'absolute',
+                          right: 5,
+                          top: '50%',
+                          transform: 'translateY(-50%)',
+                          padding: '5px',
+                          color: '#6c757d',
+                          zIndex: 5,
+                        }}
+                        onClick={resetForm}
+                      >
+                        X
+                      </Button>
+                    )}
+                  </>
                 );
               }}
               renderMenuItemChildren={(option) => (
@@ -253,7 +289,7 @@ function NewSnippet({ handleClose, isOpen }) {
               </Form.Group>
               <div className="d-flex flex-row-reverse pt-4">
                 <Button
-                  className="col-md-8"
+                  className="col-md-8 mx-2"
                   disabled={!formik.values.name || formik.isSubmitting}
                   type="submit"
                   variant="primary"
