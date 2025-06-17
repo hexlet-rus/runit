@@ -41,7 +41,6 @@ function NewSnippet({ handleClose, isOpen }) {
   const inputRefName = useRef(null);
   const username = useSelector((state) => state.user.userInfo.username);
   const { supportedLanguages } = useSelector((state) => state.languages);
-  const [selectedLng, setSelectedLng] = useState([]);
   const [once, setOnce] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -57,10 +56,12 @@ function NewSnippet({ handleClose, isOpen }) {
 
   const formik = useFormik({
     initialValues: {
+      template: '',
       name: '',
     },
     validationSchema,
     onSubmit: async (values, { setSubmitting }) => {
+      console.log(values);
       setSubmitting(true);
       const guestData = !auth.isLoggedIn && generateGuestUserData();
       const targetUsername = auth.isLoggedIn ? username : guestData.username;
@@ -92,36 +93,34 @@ function NewSnippet({ handleClose, isOpen }) {
           }
         }
       }
-      const [language] = selectedLng;
-      const code = t(`codeTemplates.${language}`);
-      // TODO: Тут не должно быть проверок, нужно создать абстракцию сервиса, который будет работать с любыми языками
-      if (supportedLanguages.includes(language)) {
-        try {
-          const snipName = `${values.name}`;
-          const id = await snippetApi.saveSnippet(code, snipName, language);
-          const { slug } = await snippetApi.getSnippetData(id);
-          const url = new URL(
-            snippetApi.genViewSnippetLink(targetUsername, slug),
-          );
-          console.log(id, slug, url.pathname);
-          formik.values.name = '';
-          navigate(url.pathname);
-          handleClose();
-        } catch (error) {
-          if (!error.isAxiosError) {
-            console.log(tErr('unknown'));
-            throw error;
-          } else {
-            console.log(tErr('network'));
-            throw error;
-          }
-        } finally {
-          setSelectedLng([]);
-          setOnce(false);
-          setSubmitting(false);
-        }
-      } else {
+      const { template } = values;
+      const code = t(`codeTemplates.${template}`);
+      if (!supportedLanguages.includes(template)) {
         dispatch(modalActions.openModal({ type: 'inDevelopment' }));
+      }
+      try {
+        const snipName = `${values.name}`;
+        const id = await snippetApi.saveSnippet(code, snipName, template);
+        const { slug } = await snippetApi.getSnippetData(id);
+        const url = new URL(
+          snippetApi.genViewSnippetLink(targetUsername, slug),
+        );
+        console.log(id, slug, url.pathname);
+        formik.values.name = '';
+        navigate(url.pathname);
+        handleClose();
+      } catch (error) {
+        if (!error.isAxiosError) {
+          console.log(tErr('unknown'));
+          throw error;
+        } else {
+          console.log(tErr('network'));
+          throw error;
+        }
+      } finally {
+        formik.resetForm();
+        setOnce(false);
+        setSubmitting(false);
       }
     },
   });
@@ -135,7 +134,6 @@ function NewSnippet({ handleClose, isOpen }) {
   }, [formik.touched.name]);
 
   const handleModalClose = () => {
-    setSelectedLng([]);
     setOnce(false);
     setIsLoading(false);
     formik.resetForm();
@@ -160,27 +158,43 @@ function NewSnippet({ handleClose, isOpen }) {
     setIsLoading(false);
   };
 
-  const handleInputLng = (inputValue = '') => {
+  const handleLanguageChange = (inputValue = '') => {
     const lowerInput = inputValue.trim().toLowerCase();
 
-    if (lowerInput) {
-      const filteredOptions = supportedLanguages.filter((language) =>
-        language.toLowerCase().startsWith(lowerInput),
-      );
+    if (!lowerInput) {
+      formik.setFieldValue('template', '');
+      formik.setFieldTouched('name', false);
+      return;
+    }
 
-      const selectedLanguage =
-        filteredOptions.find(
-          (language) => language.toLowerCase() === lowerInput,
-        ) || filteredOptions[0];
+    const filteredOptions = supportedLanguages.filter((language) =>
+      language.toLowerCase().startsWith(lowerInput),
+    );
 
-      setSelectedLng([selectedLanguage]);
+    if (filteredOptions.length === 0) {
+      formik.setFieldValue('template', '');
+      return;
+    }
 
-      if (!once) {
-        setOnce(true);
-        generateSnippetName();
-      }
-    } else {
-      setSelectedLng([]);
+    const selectedLanguage =
+      filteredOptions.find(
+        (language) => language.toLowerCase() === lowerInput,
+      ) || filteredOptions[0];
+
+    formik.setFieldValue('template', selectedLanguage);
+
+    if (!once) {
+      setOnce(true);
+      generateSnippetName();
+    }
+  };
+
+  const resetLanguage = () => {
+    try {
+      formik.setFieldValue('template', '');
+      inputRefTemplate.current.focus();
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -191,69 +205,111 @@ function NewSnippet({ handleClose, isOpen }) {
       </Modal.Header>
       <Modal.Body>
         <div className="row">
-          <div className="col-md-6">
-            <Form.Label>{tMNS('template')}</Form.Label>
-            <Typeahead
-              id="template"
-              labelKey="template"
-              maxResults={12}
-              onChange={([e]) => handleInputLng(e)}
-              options={supportedLanguages}
-              renderInput={({ referenceElementRef, ...inputProps }) => {
-                return (
-                  <Form.Control
-                    ref={(node) => {
-                      inputRefTemplate.current = node;
-                      referenceElementRef(node);
-                    }}
-                    onBlur={(e) => handleInputLng(e.target.value)}
-                    onChange={inputProps.onChange}
-                    onFocus={inputProps.onFocus}
-                    placeholder={inputProps.placeholder}
-                    type={inputProps.type}
-                    value={inputProps.value}
-                  />
-                );
-              }}
-              renderMenuItemChildren={(option) => (
-                <div>
-                  <Image
-                    alt={t(`languages.${option}`)}
-                    roundedCircle
-                    src={icons.get(option)}
-                    style={{
-                      width: '15%',
-                      height: 'auto',
-                    }}
-                  />
-                  {`  ${option}`}
-                </div>
-              )}
-              selected={selectedLng}
-            />
-          </div>
-          <div className="col-md-6">
+          <div className="snippet-form__wrapper">
             <Form className="flex-fill" onSubmit={formik.handleSubmit}>
-              <Form.Group className="position-relative">
-                <Form.Label>{tMNS('snippetName')}</Form.Label>
-                <Form.Control
-                  ref={inputRefName}
-                  autoComplete="off"
-                  className="transition-padding"
-                  disabled={selectedLng.length === 0 || isLoading}
-                  id="name"
-                  isInvalid={formik.errors.name && formik.touched.name}
-                  name="name"
-                  onChange={formik.handleChange}
-                  value={formik.values.name}
-                />
-                <Form.Control.Feedback tooltip type="invalid">
-                  {t(formik.errors.name)}
-                </Form.Control.Feedback>
+              <Form.Group className="d-flex">
+                <div className="template-input__wrapper me-2">
+                  <Form.Label>{tMNS('template')}</Form.Label>
+                  <Typeahead
+                    id="language"
+                    labelKey="template"
+                    maxResults={12}
+                    onChange={([e]) => handleLanguageChange(e)}
+                    options={supportedLanguages}
+                    renderInput={({ referenceElementRef, ...inputProps }) => {
+                      return (
+                        <>
+                          <Form.Control
+                            ref={(node) => {
+                              inputRefTemplate.current = node;
+                              referenceElementRef(node);
+                            }}
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            onFocus={inputProps.onFocus}
+                            placeholder={inputProps.placeholder}
+                            type={inputProps.type}
+                            value={formik.values.template}
+                            id="template"
+                          />
+                          {formik.values.template && (
+                            <Button
+                              type="button"
+                              className="btn"
+                              variant="link"
+                              style={{
+                                fontSize: '30px',
+                                textDecoration: 'none',
+                                position: 'absolute',
+                                right: 5,
+                                top: '50%',
+                                transform: 'translateY(-50%)',
+                                padding: '5px',
+                                color: '#6c757d',
+                                zIndex: 5,
+                              }}
+                              onClick={resetLanguage}
+                            >
+                              &times;
+                            </Button>
+                          )}
+                        </>
+                      );
+                    }}
+                    renderMenuItemChildren={(option) => (
+                      <div>
+                        <Image
+                          alt={t(`languages.${option}`)}
+                          roundedCircle
+                          src={icons.get(option)}
+                          style={{
+                            width: '10%',
+                            height: 'auto',
+                          }}
+                        />
+                        {`  ${option}`}
+                      </div>
+                    )}
+                    selected={
+                      formik.values.template ? [formik.values.template] : []
+                    }
+                  />
+                </div>
+                <div className="col snippetname-input__wrapper">
+                  <Form.Label>{tMNS('snippetName')}</Form.Label>
+                  <Form.Control
+                    ref={inputRefName}
+                    autoComplete="off"
+                    className="transition-padding"
+                    disabled={!formik.values.template || isLoading}
+                    id="name"
+                    isInvalid={formik.errors.name && formik.touched.name}
+                    name="name"
+                    onChange={formik.handleChange}
+                    value={formik.values.name}
+                  />
+                  <Form.Control.Feedback
+                    tooltip
+                    type="invalid"
+                    style={{
+                      textDecoration: 'none',
+                      position: 'absolute',
+                      right: 5,
+                      top: '60%',
+                      opacity: '0.8',
+                      transform: 'translateX(-100%) translateY(-50%)',
+                      padding: '5px',
+                      color: '#fff',
+                      zIndex: 5,
+                    }}
+                  >
+                    {t(formik.errors.name)}
+                  </Form.Control.Feedback>
+                </div>
               </Form.Group>
               <div className="d-flex flex-row-reverse pt-4">
                 <Button
-                  className="col-md-8"
+                  className="col-md-4 mx-6"
                   disabled={!formik.values.name || formik.isSubmitting}
                   type="submit"
                   variant="primary"
