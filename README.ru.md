@@ -112,4 +112,4 @@ make test-e2e
 
 Этот репозиторий создается и поддерживается командой и сообществом © ООО «Хекслет Рус», образовательный проект. [Подробнее о © ООО «Хекслет Рус»](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=hexlet-editor).
 
-См. самых активных участников на [hexlet-friends](https://friends.hexlet.io/).
+См., самых активных участников на [hexlet-friends](https://friends.hexlet.io/).
