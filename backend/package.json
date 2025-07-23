@@ -27,7 +27,7 @@
     "@faker-js/faker": "^7.6.0",
     "@nestjs-modules/mailer": "^1.8.1",
     "@nestjs/cli": "^9.2.0",
-    "@nestjs/common": "^9.3.9",
+    "@nestjs/common": "^10.4.16",
     "@nestjs/config": "^3.0.0",
     "@nestjs/core": "^9.3.9",
     "@nestjs/jwt": "^10.0.2",
