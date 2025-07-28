@@ -1,15 +1,15 @@
-FROM node:23
+# FROM node:23
 
 
-RUN apt update && apt install -y make curl
+# RUN apt update && apt install -y make curl
 
-ENV DOCKER_CHANNEL stable
-ENV DOCKER_VERSION 20.10.21
+# ENV DOCKER_CHANNEL stable
+# ENV DOCKER_VERSION 20.10.21
 
-WORKDIR /usr/src/runit
+# WORKDIR /usr/src/runit
 
-COPY . .
+# COPY . .
 
-RUN make setup
+# RUN make setup
 
-CMD [ "make", "start" ]
+# CMD [ "make", "start" ]

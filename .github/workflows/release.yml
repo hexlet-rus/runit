@@ -1,22 +1,22 @@
-name: On Release
+# name: On Release
 
-on:
-  push:
-    tags:
-      - v*
+# on:
+#   push:
+#     tags:
+#       - v*
 
-jobs:
+# jobs:
 
-  build:
-    if: github.repository == 'hexlet-rus/runit'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install Heroku CLI
-        run: |
-          curl https://cli-assets.heroku.com/install.sh | sh
-      - uses: akhileshns/heroku-deploy@v3.14.15 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: hexlet-editor
-          heroku_email: ${{secrets.HEROKU_EMAIL}}
+#   build:
+#     if: github.repository == 'hexlet-rus/runit'
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Install Heroku CLI
+#         run: |
+#           curl https://cli-assets.heroku.com/install.sh | sh
+#       - uses: akhileshns/heroku-deploy@v3.14.15 # This is the action
+#         with:
+#           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#           heroku_app_name: hexlet-editor
+#           heroku_email: ${{secrets.HEROKU_EMAIL}}
