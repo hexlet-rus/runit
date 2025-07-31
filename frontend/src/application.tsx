@@ -4,11 +4,11 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import AppRoutes from './AppRoutes.jsx';
-import ModalWindow from './components/Modals';
-import Toast from './components/Toast';
+import ModalWindow from './components/Modals/index.jsx';
+import Toast from './components/Toast/index.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
 import SnippetsProvider from './providers/SnippetsProvider.jsx';
-import { rootReducer } from './slices';
+import { rootReducer } from './slices/index.js';
 import { initI18next } from './initI18next.js';
 
 export default async () => {
@@ -17,7 +17,6 @@ export default async () => {
   const store = configureStore({
     reducer: rootReducer,
   });
-
   Sentry.init({
     dsn: process.env.REACT_APP_SENTRY_DSN,
     integrations: [new Sentry.BrowserTracing()],
