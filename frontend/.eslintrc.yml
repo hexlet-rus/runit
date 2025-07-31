@@ -29,6 +29,7 @@ settings:
     - .js
     - .jsx
     - .ts
+    - .tsx
   import/parsers:
     '@typescript-eslint/parser':
       - .ts
@@ -38,9 +39,11 @@ settings:
         - .js
         - .jsx
         - .ts
+        - .tsx
 
 rules:
   import/no-cycle: [2, { maxDepth: 1 }]
+  "react/jsx-filename-extension": ["error","extensions": [".jsx", ".tsx"]]
   import/prefer-default-export: 0
   import/extensions: 0
   no-console: 0
