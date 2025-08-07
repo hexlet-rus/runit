@@ -2,17 +2,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import routes from '../routes';
+import { UserSettingsThunkType, UserSliceStateType } from 'src/types/state';
 
-export const fetchUserData = createAsyncThunk(
+export const fetchUserData = createAsyncThunk<UserSettingsThunkType, UserSettingsThunkType>(
   'user/fetchUserData',
   async () => {
     const response = await axios.get(routes.userProfilePath());
-
     return response.data;
   },
 );
 
-const initialState = {
+const initialState: UserSliceStateType = {
   status: 'empty',
   userInfo: {},
 };
