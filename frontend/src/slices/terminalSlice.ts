@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import { FetchedTerminalDataType, IOutput, TerminalStateType } from '../types/slices';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import routes from '../routes';
@@ -6,7 +7,7 @@ import { actions as editorActions } from './editorSlice';
 
 export const runCode = createAsyncThunk(
   'terminal/runCode',
-  async (snippet) => {
+  async (snippet: FetchedTerminalDataType) => {
     // TODO: захардкоден урл, плюс тут явно не нужен createAsyncThunk. (Урл исправлен)
     const { data, status } = await axios.get(routes.runCode(), {
       params: {
@@ -21,38 +22,41 @@ export const runCode = createAsyncThunk(
     return 'Connection issues';
   },
   {
-    condition: (code, { getState }) => {
+    condition: (code, { getState }) =>  {
       const {
         terminal: { codeExecutionState },
-      } = getState();
+      } = getState() as { terminal: { codeExecutionState: 'idle' | 'executing' }};
       return codeExecutionState !== 'executing';
     },
   },
 );
 
-const slice = createSlice({
-  name: 'terminal',
-  initialState: {
+const initialState: TerminalStateType = {
     codeExecutionState: 'idle',
     output: { terminal: [], alertLogs: [] },
-  },
+};
+
+const slice = createSlice({
+  name: 'terminal',
+  initialState,
   reducers: {},
-  extraReducers: {
-    [runCode.pending]: (state) => {
-      state.codeExecutionState = 'executing';
-    },
-    [runCode.fulfilled]: (state, { payload }) => {
-      state.codeExecutionState = 'idle';
-      state.output = payload;
-    },
-    [runCode.rejected]: (state, { payload }) => {
-      state.output = payload;
-      state.codeExecutionState = 'idle';
-    },
-    [editorActions.resetEditor]: (state) => {
-      state.output = { terminal: [], alertLogs: [] };
-      state.codeExecutionState = 'idle';
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(runCode.pending, (state) => {
+        state.codeExecutionState = 'executing';
+      })
+      .addCase(runCode.fulfilled, (state, { payload }) => {
+        state.codeExecutionState = 'idle';
+        state.output = payload;
+      })
+      .addCase(runCode.rejected, (state, { payload }) => {
+        state.output = payload as IOutput;
+        state.codeExecutionState = 'idle';
+      })
+      .addCase(editorActions.resetEditor, (state) => {
+        state.output = { terminal: [], alertLogs: [] };
+        state.codeExecutionState = 'idle';
+      });
   },
 });
 

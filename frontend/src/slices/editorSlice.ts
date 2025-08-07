@@ -1,10 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-
+import type { EditorStateType } from '../types/slices';
 // TODO: добавить изменение надписи в завимимости от языка сниппета
 export const DEFAULT_CODE = '// Write your code in JS\n';
 
-const initialState = {
+const initialState: EditorStateType = {
   snippetData: {
     id: null,
     name: null,
