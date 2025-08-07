@@ -2,7 +2,7 @@ import ReactDOM from 'react-dom/client';
 
 import './assets/stylesheets/application.scss';
 import reportWebVitals from './reportWebVitals';
-import app from './application.jsx';
+import app from './application.tsx';
 
 const run = async () => {
   const root = ReactDOM.createRoot(document.getElementById('main'));
