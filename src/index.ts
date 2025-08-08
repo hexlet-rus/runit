@@ -1,16 +1,16 @@
 import { fastify } from 'fastify';
 import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
-import { initializeTables } from './db/connection';
-//import { runMigrations } from './db/connection';
+// import { initializeTables } from './db/connection';
+import { runMigrations } from './db/connection';
 import { appRouter } from './router/index';
 import { createContext } from './context';
 
 const getApp = async () => {
   // Запуск миграций
-  // await runMigrations();
+  await runMigrations();
 
   // Инициализация таблиц вместо миграций
-  initializeTables();
+  // initializeTables();
 
   const server = fastify({
     maxParamLength: 5000,

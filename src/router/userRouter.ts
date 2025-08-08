@@ -53,10 +53,4 @@ export const userRouter = router({
       
       return { success: true, id: input };
     }),
-
-  searchUsers: publicProcedure
-    .input(z.object({ query: z.string().min(1) }))
-    .query(async ({ input, ctx }) => {
-      return await UserDatabase.searchUsers(input.query);
-    }),
 });
