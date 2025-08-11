@@ -1,8 +1,9 @@
 /* eslint no-param-reassign:
 ["error", { "props": true, "ignorePropertyModificationsFor": ["state"] }]  */
 import { createSlice } from '@reduxjs/toolkit';
+import type { ModalStateType } from 'src/types/state';
 
-const initialState = {
+const initialState: ModalStateType = {
   isOpen: false,
   type: null,
   item: null,
