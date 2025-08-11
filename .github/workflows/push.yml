@@ -1,9 +1,21 @@
-# name: On Push
+name: On Push
 
-# on:
-#   push:
-#     branches:
-#       - main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment stub
+        run: |
+          echo "🚧 Deployment is temporarily disabled"
+          echo "This is a stub to prevent job failure"
+          echo "Tag: ${{ github.ref_name }}"
+          echo "Repository: ${{ github.repository }}
 
 # jobs:
 

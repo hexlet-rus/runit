@@ -1,9 +1,22 @@
-# name: Playwright Tests
-# on:
-#   push:
-#     branches: [ main, master ]
-#   pull_request:
-#     branches: [ main, master ]
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment stub
+        run: |
+          echo "🚧 Deployment is temporarily disabled"
+          echo "This is a stub to prevent job failure"
+          echo "Tag: ${{ github.ref_name }}"
+          echo "Repository: ${{ github.repository }}
+          
 # jobs:
 #   test:
 #     timeout-minutes: 60

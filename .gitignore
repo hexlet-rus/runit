@@ -44,6 +44,9 @@ lerna-debug.log*
 /test-results/
 /playwright-report/
 /playwright/.cache/
+/db/*.sqlite3*
+/db/*.sqlite3-journal
+/*drizzle
 
 # npm
 package-lock.json
