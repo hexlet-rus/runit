@@ -37,11 +37,11 @@ export type LanguagesStateType = {
     currentLanguage: Languages;
 }
 
-interface ISnippet {
-    id: number;             // string???
-    name: string;
+export interface ISnippet {
+    code: string;             // string???
+    currSnippetLng: Languages;
+    currSnippetName: string;
     ownerUsername: string;
-    slug: string;
 }
 
 export type ModalStateType = {
