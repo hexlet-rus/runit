@@ -12,14 +12,15 @@ import routes from '../../routes';
 import { password, required } from '../../utils/validationSchemas';
 import PasswordVisibilityButton from './PasswordVisibilityButton.jsx';
 import FormAlert from './FormAlert.jsx';
+import { RootReducerType } from 'src/types/slices';
 
 function ChangePasswordForm() {
   const { t: tPS } = useTranslation('translation', {
     keyPrefix: 'profileSettings',
   });
   const { t } = useTranslation();
-  const inputRef = useRef(null);
-  const userInfo = useSelector((state) => state.user.userInfo);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const userInfo = useSelector((state: RootReducerType) => state.user.userInfo);
   const initialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
   const [isCurrentPasswordVisible, setCurrentPasswordVisibility] =

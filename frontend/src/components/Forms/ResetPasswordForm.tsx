@@ -9,11 +9,12 @@ import { object } from 'yup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import { TypeInitialFormState } from 'src/types/components';
 import { useAuth } from '../../hooks';
 import routes from '../../routes';
 import { password } from '../../utils/validationSchemas';
 
-import FormAlert from './FormAlert.jsx';
+import FormAlert from './FormAlert';
 import PasswordVisibilityButton from './PasswordVisibilityButton';
 
 function ResetPasswordForm({ onSuccess = () => null }) {
@@ -22,10 +23,10 @@ function ResetPasswordForm({ onSuccess = () => null }) {
   });
   const { t } = useTranslation();
   const { hash } = useParams();
-  const passwordRef = useRef();
+  const passwordRef = useRef<HTMLInputElement>(null);
   const auth = useAuth();
 
-  const initialFormState = { state: 'initial', message: '' };
+  const initialFormState: TypeInitialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
   const handlePasswordVisibility = () => {

@@ -11,6 +11,7 @@ import routes from '../../routes';
 import { email } from '../../utils/validationSchemas';
 
 import FormAlert from './FormAlert.jsx';
+import { TypeInitialFormState } from 'src/types/components';
 
 function ForgotPasswordForm() {
   const { t } = useTranslation();
@@ -18,10 +19,10 @@ function ForgotPasswordForm() {
     keyPrefix: 'profileSettings',
   });
   const { t: tFP } = useTranslation('translation', { keyPrefix: 'forgotPass' });
-  const emailRef = useRef();
+  const emailRef = useRef<HTMLInputElement>(null);
   const location = window.location.origin;
 
-  const initialFormState = { state: 'initial', message: '' };
+  const initialFormState: TypeInitialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
 
   const validationSchema = object().shape({

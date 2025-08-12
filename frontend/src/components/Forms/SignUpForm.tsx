@@ -7,31 +7,26 @@ import { object } from 'yup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks';
 import routes from '../../routes';
 import { email, password, username } from '../../utils/validationSchemas';
 
-import GithubSignInButton from './GithubSignInButton.jsx';
-import PasswordVisibilityButton from './PasswordVisibilityButton.jsx';
-import FormAlert from './FormAlert.jsx';
-import { actions as userActions } from '../../slices/userSlice';
-import { actions as modalActions } from '../../slices/modalSlice.js';
+import GithubSignInButton from './GithubSignInButton';
+import PasswordVisibilityButton from './PasswordVisibilityButton';
+import FormAlert from './FormAlert';
+import { TypeInitialFormState } from 'src/types/components';
 
-function GuestSignupForm() {
+function SignupForm({ onSuccess = () => null }) {
   const { t: tPS } = useTranslation('translation', {
     keyPrefix: 'profileSettings',
   });
   const { t: tSU } = useTranslation('translation', { keyPrefix: 'signUp' });
   const { t } = useTranslation();
-  const emailRef = useRef();
-  const usernameRef = useRef();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const emailRef = useRef<HTMLInputElement>(null);
+  const usernameRef = useRef<HTMLInputElement>(null);
+  const auth = useAuth();
 
-  const userInfo = useSelector((state) => state.user.userInfo);
-
-  const initialFormState = { state: 'initial', message: '' };
+  const initialFormState: TypeInitialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
 
   const [isPasswordVisible, setPasswordVisibility] = useState(false);
@@ -60,26 +55,18 @@ function GuestSignupForm() {
     onSubmit: async (values, actions) => {
       setFormState(initialFormState);
       const preparedValues = validationSchema.cast(values);
-      console.log(preparedValues);
       try {
         actions.setSubmitting(true);
-
-        const response = await axios.put(routes.updateUserPath(userInfo.id), {
-          id: userInfo.id,
+        await axios.post(routes.usersPath(), {
           username: preparedValues.username,
           email: preparedValues.email,
-          currPassword: JSON.parse(localStorage.getItem('guestUserData'))
-            .guestId,
           password: values.password,
         });
-        dispatch(userActions.setUserInfo(response.data));
-        localStorage.removeItem('guestUserData');
-        dispatch(modalActions.closeModal());
-        navigate(routes.profilePagePath(preparedValues.username));
+        auth.signIn();
         actions.setSubmitting(false);
+        onSuccess();
       } catch (err) {
         if (!err.isAxiosError) {
-          formik.resetForm();
           setFormState({
             state: 'failed',
             message: 'errors.unknown',
@@ -112,7 +99,6 @@ function GuestSignupForm() {
             }
           });
         } else {
-          formik.resetForm();
           setFormState({
             state: 'failed',
             message: 'errors.network',
@@ -212,4 +198,4 @@ function GuestSignupForm() {
   );
 }
 
-export default GuestSignupForm;
+export default SignupForm;
