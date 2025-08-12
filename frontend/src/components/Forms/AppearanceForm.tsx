@@ -4,17 +4,28 @@ import Form from 'react-bootstrap/Form';
 import { useTranslation } from 'react-i18next';
 import { useTernaryDarkMode } from 'usehooks-ts';
 import { useState } from 'react';
+import type { Themes, UILanguages } from 'src/types/slices';
 import { useLanguage } from '../../hooks';
 import FormAlert from './FormAlert.jsx';
 
-function LanguageItem({ value, language }) {
+interface ILanguageItemArgs {
+  value: UILanguages;
+  language: UILanguages | string;
+}
+
+interface IThemeItemArgs {
+  value: Themes;
+  theme: Themes;
+}
+
+function LanguageItem({ value, language }: ILanguageItemArgs) {
   const { t } = useTranslation();
   if (value !== language) {
     return <option value={value}>{t(`profileSettings.${value}`)}</option>;
   }
 }
 
-function ThemeItem({ value, theme }) {
+function ThemeItem({ value, theme }: IThemeItemArgs) {
   const { t } = useTranslation();
   if (value !== theme) {
     return <option value={value}>{t(`settings.themes.${value}`)}</option>;
@@ -25,7 +36,7 @@ function ApperearanceForm() {
   const { t } = useTranslation();
   const { language, availableLanguages, setLanguage } = useLanguage();
   const { ternaryDarkMode, setTernaryDarkMode } = useTernaryDarkMode();
-  const themes = ['system', 'light', 'dark'];
+  const themes: Themes[] = ['system', 'light', 'dark'];
   const initialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
   const initialValues = {
@@ -39,7 +50,7 @@ function ApperearanceForm() {
       setFormState(initialFormState);
       setLanguage(selectedLanguage !== '' ? selectedLanguage : language);
       setTernaryDarkMode(
-        selectedTheme !== '' ? selectedTheme : ternaryDarkMode,
+        selectedTheme !== '' ? (selectedTheme as Themes) : ternaryDarkMode,
       );
       setFormState({
         state: 'success',

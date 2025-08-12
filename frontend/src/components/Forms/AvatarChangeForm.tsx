@@ -4,19 +4,20 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { XCircle } from 'react-bootstrap-icons';
 
-import { actions as modalActions } from '../../slices/modalSlice.js';
+import { actions as modalActions } from '../../slices/modalSlice';
 
-import Avatar from '../Avatar/index.jsx';
+import Avatar from '../Avatar/index';
+import { RootReducerType } from 'src/types/slices';
 
 function AvatarChangeForm() {
   const { t: tPS } = useTranslation('translation', {
     keyPrefix: 'profileSettings',
   });
   const dispatch = useDispatch();
-  const avatar = useSelector((state) => state.userSettings.avatar);
-  const username = useSelector((state) => state.user.userInfo.username);
+  const avatar = useSelector((state: RootReducerType) => state.userSettings.avatar);
+  const username = useSelector((state: RootReducerType) => state.user.userInfo.username);
 
-  const handleEditAvatar = (type) => () => {
+  const handleEditAvatar = (type: { type: 'changeAvatar' | 'removeAvatar' }) => () => {
     dispatch(modalActions.openModal(type));
   };
 
