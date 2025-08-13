@@ -4,9 +4,8 @@ import fastifyCookie from '@fastify/cookie';
 import fastifyCors from '@fastify/cors';
 import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
 import { runMigrations } from './db/connection';
-import { userRouter } from './router/index';
+import { appRouter } from './router/index';
 import { createContext } from './context';
-import { authRouter } from './auth/router';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -15,7 +14,7 @@ const buildApp = async (opts: FastifyServerOptions = {}): Promise<FastifyInstanc
   const server = fastify({
     ...opts,
     maxParamLength: 5000,
-    logger: {
+    logger: process.env.NODE_ENV === 'development' ? {
       transport: {
         target: 'pino-pretty',
         options: {
@@ -24,13 +23,13 @@ const buildApp = async (opts: FastifyServerOptions = {}): Promise<FastifyInstanc
           colorize: true
         }
       }
-    }
+    } : true
   });
 
-  // Запуск миграций
+  // Run database migrations
   await runMigrations();
 
-  // Регистрация плагинов
+  // Register plugins
   await server.register(fastifyCookie, {
     secret: process.env.COOKIE_SECRET || 'your-cookie-secret-here',
     hook: 'onRequest',
@@ -55,7 +54,7 @@ const buildApp = async (opts: FastifyServerOptions = {}): Promise<FastifyInstanc
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
   });
 
-  // Базовые роуты
+  // Base routes
   server.get('/', async (request, reply) => {
     reply.type('text/html').send(`
       <!DOCTYPE html>
@@ -79,10 +78,7 @@ const buildApp = async (opts: FastifyServerOptions = {}): Promise<FastifyInstanc
         <p>Available endpoints:</p>
         <ul>
           <li class="endpoint"><strong>GET</strong> <a href="/hello">/hello</a> - Test endpoint</li>
-          <li class="endpoint"><strong>POST</strong> /register - User registration</li>
-          <li class="endpoint"><strong>POST</strong> /login - User login</li>
-          <li class="endpoint"><strong>POST</strong> /refresh - Refresh token</li>
-          <li class="endpoint"><strong>POST</strong> /logout - User logout</li>
+          <li class="endpoint"><strong>GET</strong> <a href="/health">/health</a> - Health check</li>
           <li class="endpoint"><strong>TRPC</strong> /trpc - tRPC endpoint</li>
         </ul>
       </body>
@@ -98,14 +94,11 @@ const buildApp = async (opts: FastifyServerOptions = {}): Promise<FastifyInstanc
     return { status: 'ok', timestamp: new Date().toISOString() };
   });
 
-  // Регистрация auth роутера
-  await authRouter(server);
-
-  // Регистрация tRPC плагина
+  // Register tRPC plugin
   await server.register(fastifyTRPCPlugin, {
     prefix: '/trpc',
     trpcOptions: {
-      router: userRouter,
+      router: appRouter,
       createContext,
       onError: ({ path, error }) => {
         server.log.error(`tRPC error on ${path}:`, error);
@@ -113,12 +106,12 @@ const buildApp = async (opts: FastifyServerOptions = {}): Promise<FastifyInstanc
     }
   });
 
-  // Обработчик 404
+  // 404 handler
   server.setNotFoundHandler((request, reply) => {
     reply.code(404).send({
       error: 'Not Found',
       message: `Route ${request.method}:${request.url} not found`,
-      suggest: 'Try checking / for available endpoints'
+      statusCode: 404
     });
   });
 

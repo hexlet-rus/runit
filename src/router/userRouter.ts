@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { UserDatabase } from '../db/users';
 import { TRPCError } from '@trpc/server';
 
-// Расширенные схемы валидации
+// Улучшенные схемы валидации с сообщениями об ошибках
 const createUserSchema = z.object({
   username: z.string()
     .min(3, "Username must be at least 3 characters")
@@ -61,8 +61,8 @@ export const userRouter = router({
       }
     }),
 
-  // Получение пользователя по ID (только для админов)
-  getUserById: protectedProcedure
+  // Получение пользователя по ID (публичный доступ)
+  getUserById: publicProcedure
     .input(getUserByIdSchema)
     .query(async ({ input, ctx }) => {
       try {
@@ -83,8 +83,8 @@ export const userRouter = router({
       }
     }),
 
-  // Получение всех пользователей (только для админов)
-  getAllUsers: protectedProcedure
+  // Получение всех пользователей (публичный доступ)
+  getAllUsers: publicProcedure
     .query(async ({ ctx }) => {
       try {
         return await UserDatabase.getAllUsers();
@@ -131,7 +131,7 @@ export const userRouter = router({
       }
     }),
 
-  // Обновление пользователя (только свой профиль или админ)
+  // Обновление пользователя (защищенный доступ)
   updateUser: protectedProcedure
     .input(updateUserSchema)
     .mutation(async ({ input, ctx }) => {
@@ -167,7 +167,7 @@ export const userRouter = router({
       }
     }),
 
-  // Удаление пользователя (только админ или свой профиль)
+  // Удаление пользователя (защищенный доступ)
   deleteUser: protectedProcedure
     .input(getUserByIdSchema)
     .mutation(async ({ input, ctx }) => {

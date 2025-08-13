@@ -23,63 +23,13 @@ export const runMigrations = async () => {
   try {
     const migrationsPath = path.join(__dirname, '../../drizzle');
 
-     // Создаем папку миграций, если не существует
-    // if (!fs.existsSync(migrationsPath)) {
-    //   fs.mkdirSync(migrationsPath, { recursive: true });
-    //   console.log(' Created migrations directory');
-    // }
-
     await migrate(db, { migrationsFolder: migrationsPath });
     console.log('Migrations completed successfully');
   } catch (error) {
     console.error('Migration failed:', error);
     throw error;
   }
-
 };
-
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-
-// // Путь к директории с базой данных
-// const dataDir = path.join(__dirname, '../../data');
-// const dbPath = path.join(dataDir, 'database.sqlite');
-
-// // Создаем папку data, если она не существует
-// if (!fs.existsSync(dataDir)) {
-//   fs.mkdirSync(dataDir, { recursive: true });
-//   console.log('Created data directory');
-// }
-
-// const sqlite = new Database(dbPath);
-// export const initializeTables = () => {
-//   try {
-//     // Создание таблицы пользователей
-//     sqlite.exec(`
-//       CREATE TABLE IF NOT EXISTS users (
-//         id TEXT PRIMARY KEY,
-//         name TEXT NOT NULL,
-//         bio TEXT,
-//         email TEXT UNIQUE,
-//         created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-//         updated_at TEXT DEFAULT CURRENT_TIMESTAMP
-//       )
-//     `);
-
-//     // Создание индексов
-//     sqlite.exec(`
-//       CREATE INDEX IF NOT EXISTS idx_users_name ON users(name);
-//       CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
-//       CREATE INDEX IF NOT EXISTS idx_users_created_at ON users(created_at);
-//     `);
-
-//     console.log('Tables initialized successfully');
-//   } catch (error) {
-//     console.error('Table initialization failed:', error);
-//     throw error;
-//   }
-// };
-
 
 // Закрытие соединения при завершении процесса
 process.on('exit', () => sqlite.close());

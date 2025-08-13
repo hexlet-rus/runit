@@ -6,8 +6,9 @@ import {
   getUserByIdSchema,
   updateUserSchema 
 } from '../db/users';
+import { userRouter } from './userRouter';
 
-export const userRouter = router({
+export const userRouterImplementation = router({
   getUserById: publicProcedure
     .input(getUserByIdSchema)
     .query(async ({ input, ctx }) => {
@@ -54,3 +55,10 @@ export const userRouter = router({
       return { success: true, id: input };
     }),
 });
+
+export const appRouter = router({
+  users: userRouter, // из userRouter.ts
+  userImplementation: userRouterImplementation, // текущая реализация
+});
+
+export type AppRouter = typeof appRouter;

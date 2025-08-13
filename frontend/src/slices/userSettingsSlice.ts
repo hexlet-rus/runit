@@ -2,8 +2,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import routes from '../routes';
+import { FetchedCurrentUser, UserSettingsStateType, UserSettingsThunkType } from 'src/types/state';
 
-export const fetchUserSettings = createAsyncThunk(
+export const fetchUserSettings = createAsyncThunk<UserSettingsThunkType>(
   'userSettings/fetchUserSettings',
   async () => {
     const response = await axios.get(routes.userProfilePath());
@@ -11,7 +12,7 @@ export const fetchUserSettings = createAsyncThunk(
   },
 );
 
-export const updateUserSettings = createAsyncThunk(
+export const updateUserSettings = createAsyncThunk<FetchedCurrentUser, { id: number, data: FetchedCurrentUser}>(
   'userSettings/updateUserSettings',
   async ({ id, data }) => {
     const response = await axios.put(routes.updateUserSettingsPath(id), data);
@@ -19,7 +20,7 @@ export const updateUserSettings = createAsyncThunk(
   },
 );
 
-const initialState = {
+const initialState: UserSettingsStateType = {
   language: '',
   theme: '',
   avatar: null,
