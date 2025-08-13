@@ -1,16 +1,19 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import type {
+  UserSettingsThunkType,
+  UserSliceStateType,
+} from 'src/types/slices';
 import routes from '../routes';
-import { UserSettingsThunkType, UserSliceStateType } from 'src/types/state';
 
-export const fetchUserData = createAsyncThunk<UserSettingsThunkType, UserSettingsThunkType>(
-  'user/fetchUserData',
-  async () => {
-    const response = await axios.get(routes.userProfilePath());
-    return response.data;
-  },
-);
+export const fetchUserData = createAsyncThunk<
+  UserSettingsThunkType,
+  UserSettingsThunkType
+>('user/fetchUserData', async () => {
+  const response = await axios.get(routes.userProfilePath());
+  return response.data;
+});
 
 const initialState: UserSliceStateType = {
   status: 'empty',

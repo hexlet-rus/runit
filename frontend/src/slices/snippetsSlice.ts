@@ -1,14 +1,16 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
-import { ResponseUserSnippets, SnippetsStateType } from '../types/slices';
+import type { ResponseUserSnippets, SnippetsStateType } from '../types/slices';
 
 import routes from '../routes';
 
 export const fetchUserSnippets = createAsyncThunk(
   'user/fetchUserSnippets',
   async () => {
-    const response: AxiosResponse<ResponseUserSnippets> = await axios.get(routes.userProfilePath());
+    const response: AxiosResponse<ResponseUserSnippets> = await axios.get(
+      routes.userProfilePath(),
+    );
     console.log(response.data);
     // #TODO: ответ должен содержать данные о языке сниппета (response.data.snippets[snippet].language)
     return response.data;
