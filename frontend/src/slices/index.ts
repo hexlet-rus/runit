@@ -1,14 +1,14 @@
-import { combineReducers } from '@reduxjs/toolkit';
+import { AnyAction, combineReducers, ThunkDispatch } from '@reduxjs/toolkit';
 import editorReducer, { actions as editorActions } from './editorSlice';
 import terminalReducer, {
   actions as terminalActions,
   runCode,
-} from './terminalSlice.js';
+} from './terminalSlice';
 import languagesReducer, {
   actions as languagesActions,
 } from './languagesSlice';
 import modalReducer, { actions as modalActions } from './modalSlice';
-import snippetsSlice, { actions as snippetsActions } from './snippetsSlice.js';
+import snippetsSlice, { actions as snippetsActions } from './snippetsSlice';
 import userSlice, { actions as userActions } from './userSlice';
 import checkboxesSlice, {
   actions as checkboxesActions,
@@ -16,7 +16,7 @@ import checkboxesSlice, {
 import userSettingsSlice, {
   actions as userSettingsActions,
 } from './userSettingsSlice';
-import { RootReducerType } from 'src/types/state';
+import type { RootReducerType } from '../types/slices';
 
 export const rootReducer = combineReducers<RootReducerType>({
   editor: editorReducer,
@@ -28,6 +28,10 @@ export const rootReducer = combineReducers<RootReducerType>({
   checkboxes: checkboxesSlice,
   userSettings: userSettingsSlice,
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
+
+export type AppDispatch = ThunkDispatch<RootState, any, AnyAction>;
 
 // export const setupState = (gon) => (dispatch) => {
 // FIXME: гон сейчас пустой, поэтому фолбек на джаваскрипт

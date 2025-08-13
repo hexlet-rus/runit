@@ -1,7 +1,11 @@
 /* eslint-disable no-param-reassign */
-import { FetchedTerminalDataType, IOutput, TerminalStateType } from '../types/slices';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import type {
+  FetchedTerminalDataType,
+  IOutput,
+  TerminalStateType,
+} from '../types/slices';
 import routes from '../routes';
 import { actions as editorActions } from './editorSlice';
 
@@ -22,18 +26,20 @@ export const runCode = createAsyncThunk(
     return 'Connection issues';
   },
   {
-    condition: (code, { getState }) =>  {
+    condition: (code, { getState }) => {
       const {
         terminal: { codeExecutionState },
-      } = getState() as { terminal: { codeExecutionState: 'idle' | 'executing' }};
+      } = getState() as {
+        terminal: { codeExecutionState: 'idle' | 'executing' };
+      };
       return codeExecutionState !== 'executing';
     },
   },
 );
 
 const initialState: TerminalStateType = {
-    codeExecutionState: 'idle',
-    output: { terminal: [], alertLogs: [] },
+  codeExecutionState: 'idle',
+  output: { terminal: [], alertLogs: [] },
 };
 
 const slice = createSlice({

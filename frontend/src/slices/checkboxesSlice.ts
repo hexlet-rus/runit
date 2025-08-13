@@ -1,8 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import type { CheckedSnippetsType } from 'src/types/state';
-import type { CheckboxesSnippetsStateType } from 'src/types/state';
-import { fetchUserSnippets } from './snippetsSlice.js';
+import type {
+  CheckedSnippetsType,
+  CheckboxesSnippetsStateType,
+} from '../types/slices';
+import { fetchUserSnippets } from './snippetsSlice';
 
 const initialState: CheckboxesSnippetsStateType = {
   checkedSnippets: [],
@@ -17,7 +19,7 @@ const checkboxSlice = createSlice({
       const checkedSnippet = state.checkedSnippets.find(
         (snippet: CheckedSnippetsType) => snippet.id === id,
       );
-      checkedSnippet.isChecked = checked;
+      if (checkedSnippet) checkedSnippet.isChecked = checked;
     },
     OpenCheckboxes: (state) => {
       state.isCheckboxesOpen = true;
@@ -35,15 +37,13 @@ const checkboxSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(fetchUserSnippets.fulfilled, (state, { payload }) => {
-      state.checkedSnippets = payload.snippets.map(
-        (snippet) => {
-          const container: CheckedSnippetsType = {
-            id: snippet.id,
-            isChecked: false, // somnitel'no no okay
-          };
-          return container;
-        },
-      );
+      state.checkedSnippets = payload.snippets.map((snippet) => {
+        const container: CheckedSnippetsType = {
+          id: snippet.id,
+          isChecked: false, // somnitel'no no okay
+        };
+        return container;
+      });
       state.isCheckboxesOpen = false;
     });
   },
