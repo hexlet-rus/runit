@@ -1,3 +1,4 @@
+import { ReactElement, ReactNode } from 'react';
 import Alert from 'react-bootstrap/Alert';
 
 const variantMap = {
@@ -5,7 +6,13 @@ const variantMap = {
   success: 'primary',
 };
 
-function FormAlert({ state = 'failed', children, onClose = () => null }) {
+interface IFormAlert {
+  state?: 'failed' | 'success' | 'initial';
+  children?: ReactNode;
+  onClose: () => void;
+}
+
+function FormAlert({ state = 'failed', children, onClose = () => null }: IFormAlert): ReactElement | null  {
   if (!children) {
     return null;
   }

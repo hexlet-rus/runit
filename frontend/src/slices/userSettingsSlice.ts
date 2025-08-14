@@ -1,8 +1,12 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import type {
+  FetchedCurrentUser,
+  UserSettingsStateType,
+  UserSettingsThunkType,
+} from 'src/types/slices';
 import routes from '../routes';
-import { FetchedCurrentUser, UserSettingsStateType, UserSettingsThunkType } from 'src/types/state';
 
 export const fetchUserSettings = createAsyncThunk<UserSettingsThunkType>(
   'userSettings/fetchUserSettings',
@@ -12,13 +16,13 @@ export const fetchUserSettings = createAsyncThunk<UserSettingsThunkType>(
   },
 );
 
-export const updateUserSettings = createAsyncThunk<FetchedCurrentUser, { id: number, data: FetchedCurrentUser}>(
-  'userSettings/updateUserSettings',
-  async ({ id, data }) => {
-    const response = await axios.put(routes.updateUserSettingsPath(id), data);
-    return response.data;
-  },
-);
+export const updateUserSettings = createAsyncThunk<
+  FetchedCurrentUser,
+  { id: number; data: Partial<FetchedCurrentUser> }
+>('userSettings/updateUserSettings', async ({ id, data }) => {
+  const response = await axios.put(routes.updateUserSettingsPath(id), data);
+  return response.data;
+});
 
 const initialState: UserSettingsStateType = {
   language: '',
