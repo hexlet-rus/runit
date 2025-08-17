@@ -1,66 +1,71 @@
 import { router, publicProcedure } from '../context';
 import { z } from 'zod';
-import { SnippetDatabase } from '../db/snippets';
-
-// Явно определим схемы здесь, чтобы избежать проблем с парсингом
-const createSchema = z.object({
-  name: z.string().min(1).max(100),
-  code: z.string().min(1),
-  language: z.enum(['javascript', 'python', 'java', 'php', 'ruby', 'html']),
-});
-
-const updateSchema = createSchema.partial();
+import { 
+  SnippetDatabase, 
+  createSnippetSchema, 
+  updateSnippetSchema,
+  getSnippetByIdSchema,
+  getSnippetByUsernameSlugSchema
+} from '../db/snippets';
 
 export const snippetRouter = router({
-  getAll: publicProcedure.query(async () => {
-    return await SnippetDatabase.findAll();
-  }),
-
-  getById: publicProcedure
-    .input(z.object({ id: z.number() })) // Явно оборачиваем в z.object
+  getSnippetById: publicProcedure
+    .input(getSnippetByIdSchema)
     .query(async ({ input }) => {
-      const snippet = await SnippetDatabase.findOne(input.id);
-      if (!snippet) throw new Error('Snippet not found');
+      const snippet = await SnippetDatabase.getSnippetById(input);
+      if (!snippet) {
+        throw new Error('Snippet not found');
+      }
       return snippet;
     }),
 
-  getByUsernameSlug: publicProcedure
-    .input(z.object({
-      username: z.string(),
-      slug: z.string()
-    }))
+  getSnippetByUsernameSlug: publicProcedure
+    .input(getSnippetByUsernameSlugSchema)
     .query(async ({ input }) => {
-      const snippet = await SnippetDatabase.findByUsernameSlug(input.username, input.slug);
-      if (!snippet) throw new Error('Snippet not found');
+      const snippet = await SnippetDatabase.getSnippetByUsernameSlug(input.username, input.slug);
+      if (!snippet) {
+        throw new Error('Snippet not found');
+      }
       return snippet;
     }),
 
-  create: publicProcedure
-    .input(createSchema)
-    .mutation(async ({ input }) => {
-      return await SnippetDatabase.create(1, input); // TEMP_USER_ID = 1
+  getAllSnippets: publicProcedure
+    .query(async () => {
+      return await SnippetDatabase.getAllSnippets();
     }),
 
-  update: publicProcedure
-    .input(z.object({
-      id: z.number(),
-      data: updateSchema
-    }))
+  createSnippet: publicProcedure
+    .input(createSnippetSchema)
     .mutation(async ({ input }) => {
-      const updated = await SnippetDatabase.update(input.id, input.data);
-      if (!updated) throw new Error('Snippet not found');
-      return updated;
+      return await SnippetDatabase.createSnippet(1, input); // TEMP_USER_ID = 1
     }),
 
-  delete: publicProcedure
-    .input(z.object({ id: z.number() }))
+  updateSnippet: publicProcedure
+    .input(updateSnippetSchema)
     .mutation(async ({ input }) => {
-      const success = await SnippetDatabase.delete(input.id);
-      if (!success) throw new Error('Snippet not found');
-      return { success: true };
+      const { id, ...updates } = input;
+      const updatedSnippet = await SnippetDatabase.updateSnippet(id, updates);
+      
+      if (!updatedSnippet) {
+        throw new Error('Snippet not found');
+      }
+      
+      return updatedSnippet;
     }),
 
-  generateName: publicProcedure
+  deleteSnippet: publicProcedure
+    .input(getSnippetByIdSchema)
+    .mutation(async ({ input }) => {
+      const success = await SnippetDatabase.deleteSnippet(input);
+      
+      if (!success) {
+        throw new Error('Snippet not found');
+      }
+      
+      return { success: true, id: input };
+    }),
+
+  generateSnippetName: publicProcedure
     .query(() => {
       return { name: SnippetDatabase.generateName() };
     }),
