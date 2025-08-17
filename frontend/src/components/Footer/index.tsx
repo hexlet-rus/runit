@@ -135,6 +135,7 @@ function Footer() {
                   className={`${classes.footerNavLink} py-1 px-0`}
                   eventKey="licenseAgreement"
                   to="/licenseAgreement"
+                  target='_blank'
                 >
                   <span>{tF('licenseAgreement')}</span>
                 </Nav.Link>
