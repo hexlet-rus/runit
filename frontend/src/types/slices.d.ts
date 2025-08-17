@@ -62,7 +62,7 @@ export type ModalStateType = {
 
 type Statuses = 'empty' | 'fullfilled' | 'pending' | 'rejected';
 
-interface SnippetOwnerType {
+export interface SnippetOwnerType {
     created_at: string;
     email: string;
     id: number;

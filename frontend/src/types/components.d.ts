@@ -1,3 +1,5 @@
+import React from "react";
+
 export type InitialFormStateType = {
   state: 'initial' | 'failed' | 'success';
   message: string;
@@ -30,4 +32,10 @@ export type ColourThemeConfigType = {
   colors: {
     [key: `editor.${string}`]: `#${string}`
   }
+}
+
+export type CardsType = {
+  id: number;
+  image: string;
+  text: string;
 }
