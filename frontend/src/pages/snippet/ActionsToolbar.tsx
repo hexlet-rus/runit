@@ -6,11 +6,12 @@ import Col from 'react-bootstrap/Col';
 import { BoxArrowUp, Files, PlayFill } from 'react-bootstrap-icons';
 import { toast } from 'react-toastify';
 import { actions } from '../../slices';
-import DisplayIconView from '../../components/ActionsToolbar/index.jsx';
+import DisplayIconView from '../../components/ActionsToolbar/index';
+import type { EditorStateType, RootReducerType } from 'src/types/slices';
 import { useAuth, useRunButton, useSaveButton } from '../../hooks';
 import 'react-toastify/dist/ReactToastify.css';
 
-function ActionsToolbar({ snippet }) {
+function ActionsToolbar({ snippet }: { snippet: Partial<EditorStateType> }) {
   const { t: tTSC } = useTranslation('translation', {
     keyPrefix: 'toasts.saveCode',
   });
@@ -24,7 +25,7 @@ function ActionsToolbar({ snippet }) {
   const { name: snippetName, ownerUsername } = snippetData;
   const { language } = snippetData;
   const { isLoggedIn } = useAuth();
-  const { direction } = useSelector((state) => state.editor);
+  const { direction } = useSelector((state: RootReducerType) => state.editor);
   const handleShare = () => {
     dispatch(
       actions.openModal({

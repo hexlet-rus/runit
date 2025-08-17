@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { Faq } from './Faq.jsx';
+import { Faq } from './Faq';
 
 function AboutPage() {
   const { t: tA } = useTranslation('translation', { keyPrefix: 'about' });

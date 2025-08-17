@@ -9,14 +9,15 @@ import Image from 'react-bootstrap/Image';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
+import { RootReducerType } from 'src/types/slices';
 import { useRunButton, useSnippets } from '../../hooks';
 import routes from '../../routes.js';
-import { actions } from '../../slices/index.js';
+import { actions } from '../../slices/index';
 
 import Logo from '../../assets/images/RunITLogo.svg';
-import CodeEditor from '../../components/Editor/index.jsx';
-import DefaultLoader from '../../components/Loaders/DefaultLoader.jsx';
-import Terminal from '../../components/Terminal/index.jsx';
+import CodeEditor from '../../components/Editor/index';
+import DefaultLoader from '../../components/Loaders/DefaultLoader';
+import Terminal from '../../components/Terminal/index';
 
 function EmbeddedPage() {
   const { t: tN } = useTranslation('translation', { keyPrefix: 'navbar' });
@@ -25,7 +26,7 @@ function EmbeddedPage() {
   });
   const params = useParams();
   const dispatch = useDispatch();
-  const { isReady } = useSelector((state) => state.editor);
+  const { isReady } = useSelector((state: RootReducerType) => state.editor);
   // TODO: перебрать все useMemo и useCallback. Вряд ли они требуются и нужно все перекомпоновать
   const snippetParams = useMemo(
     () => ({

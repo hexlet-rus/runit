@@ -9,8 +9,8 @@ import { useAuth } from '../../hooks';
 import routes from '../../routes.js';
 import { actions } from '../../slices/modalSlice';
 import Faq from './Faq.jsx';
-import Footer from './Footer.jsx';
-import Header from './Header.jsx';
+import Footer from './Footer';
+import Header from './Header';
 import Theses from './Theses';
 import './assets/fonts/NunitoSans_10pt-Light.ttf';
 import './landing.scss';
@@ -73,7 +73,7 @@ function NewLanding() {
           <Row className="my-5" xs="auto">
             <Col className="mb-3" lg={{ offset: 1 }}>
               <Button
-                as={Link}
+                as={Link as any}
                 className="btn-start rounded-5"
                 size="lg"
                 to={routes.signInPagePath()}
@@ -188,7 +188,7 @@ function NewLanding() {
           <Row>
             <Col className="d-flex justify-content-center">
               <Button
-                as={Link}
+                as={Link as any}
                 className="btn-start rounded-5 mb-3"
                 size="lg"
                 to={routes.signInPagePath()}

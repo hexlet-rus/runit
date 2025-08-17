@@ -11,7 +11,7 @@ import Row from 'react-bootstrap/Row';
 import routes from '../../routes.js';
 
 import ResetPasswordForm from '../../components/Forms/ResetPasswordForm';
-import NotFoundPage from '../404';
+import NotFoundPage from '../404/index';
 
 function ResetPasswordPage() {
   const { t: tRP } = useTranslation('translation', { keyPrefix: 'resetPass' });

@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Col, Image, Row } from 'react-bootstrap';
 
+import { CardsType } from 'src/types/components';
 import ImageCarousel1 from './assets/DisplayWithCode1.jpeg';
 import ImageCarousel2 from './assets/DisplayWithCode2.jpeg';
 import ImageCarousel3 from './assets/DisplayWithCode3.jpeg';
@@ -16,7 +17,7 @@ const WIDTH_ADAPTIVE = '100%';
 function Theses() {
   const { t: tL } = useTranslation('translation', { keyPrefix: 'landing' });
 
-  const cards = [
+  const cards: CardsType[] = [
     { id: 1, image: ImageCarousel1, text: tL('inBrowser') },
     { id: 2, image: ImageCarousel2, text: tL('noZIP') },
     { id: 3, image: ImageCarousel3, text: tL('allComputers') },

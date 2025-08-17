@@ -5,9 +5,9 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-import routes from '../../routes.js';
+import routes from '../../routes';
 
-import SignUpForm from '../../components/Forms/SignUpForm.jsx';
+import SignUpForm from '../../components/Forms/SignUpForm';
 
 function SignUp() {
   const { t: tSU } = useTranslation('translation', { keyPrefix: 'signUp' });

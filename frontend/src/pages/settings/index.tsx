@@ -8,12 +8,12 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Stack from 'react-bootstrap/Stack';
 
-import { actions as modalActions } from '../../slices/modalSlice.js';
+import { actions as modalActions } from '../../slices/modalSlice';
 
-import AvatarChangeForm from '../../components/Forms/AvatarChangeForm.jsx';
-import ChangePasswordForm from '../../components/Forms/ChangePasswordForm.jsx';
-import UpdateAccountForm from '../../components/Forms/UpdateAccountForm.jsx';
-import ApperearanceForm from '../../components/Forms/AppearanceForm.jsx';
+import AvatarChangeForm from '../../components/Forms/AvatarChangeForm';
+import ChangePasswordForm from '../../components/Forms/ChangePasswordForm';
+import UpdateAccountForm from '../../components/Forms/UpdateAccountForm';
+import ApperearanceForm from '../../components/Forms/AppearanceForm';
 
 function SettingsPage() {
   const { t: tPS } = useTranslation('translation', {

@@ -1,20 +1,19 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-import routes from '../../routes.js';
+import routes from '../../routes';
 
-import SignInForm from '../../components/Forms/SignInForm.jsx';
+import ForgotPasswordForm from '../../components/Forms/ForgotPasswordForm';
 
-function SignIn() {
-  const { t: tSI } = useTranslation('translation', { keyPrefix: 'signIn' });
+function ForgotPasswordPage() {
   const { t: tSIF } = useTranslation('translation', {
     keyPrefix: 'signIn.footer',
   });
-  const navigate = useNavigate();
+  const { t: tFP } = useTranslation('translation', { keyPrefix: 'forgotPass' });
 
   return (
     <div className="page-bg-image">
@@ -22,12 +21,8 @@ function SignIn() {
         <Row className="justify-content-center align-items-center m-auto py-3 py-sm-5 h-100">
           <Col className="max-w-sm p-0">
             <div className="d-flex flex-column gap-sm-3 gap-4 bg-body rounded-4 p-4 p-sm-5">
-              <h1 className="display-6">{tSI('pageHeader')}</h1>
-              <SignInForm
-                onSuccess={() => {
-                  navigate(routes.myProfilePagePath());
-                }}
-              />
+              <h1 className="display-6">{tFP('pageHeader')}</h1>
+              <ForgotPasswordForm />
               <hr />
               <div className="small">
                 <span className="text-body-secondary">
@@ -43,4 +38,4 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default ForgotPasswordPage;

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
-import { actions as modalActions } from '../../slices/modalSlice.js';
+import { actions as modalActions } from '../../slices/modalSlice';
 
 import SnippetCardWrapper from './SnippetCardWrapper';
 

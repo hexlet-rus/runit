@@ -7,16 +7,17 @@ import { useDebounce, useMediaQuery, useTernaryDarkMode } from 'usehooks-ts';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-import { useAuth, useSnippets } from '../../hooks/index.js';
-import { actions } from '../../slices/index.js';
+import { useAuth, useSnippets } from '../../hooks/index';
+import { actions } from '../../slices/index';
 
-import CodeEditor from '../../components/Editor/index.jsx';
-import HTMLPreview from '../../components/HTMLPreview/HTMLPreview.jsx';
-import DefaultLoader from '../../components/Loaders/DefaultLoader.jsx';
-import Terminal from '../../components/Terminal/index.jsx';
-import ActionsToolbar from './ActionsToolbar.jsx';
-import AuthWarning from './AuthWarning.jsx';
-import FileToolbar from './FileToolbar.jsx';
+import CodeEditor from '../../components/Editor/index';
+import HTMLPreview from '../../components/HTMLPreview/HTMLPreview';
+import DefaultLoader from '../../components/Loaders/DefaultLoader';
+import Terminal from '../../components/Terminal/index';
+import ActionsToolbar from './ActionsToolbar';
+import AuthWarning from './AuthWarning';
+import FileToolbar from './FileToolbar';
+import type { RootReducerType } from 'src/types/slices';
 
 const AUTOSAVE_TIMEOUT = 1000;
 
@@ -30,13 +31,13 @@ function SnippetPage() {
   const { isDarkMode } = useTernaryDarkMode();
   const { isLoggedIn } = useAuth();
   const { isAllSaved, isReady, code, hasSnippetData, snippetData, direction } =
-    useSelector((state) => state.editor);
+    useSelector((state: RootReducerType) => state.editor);
   const snippetApi = useSnippets();
   const params = useParams();
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const { currentLanguage } = useSelector((state) => state.languages);
+  const { currentLanguage } = useSelector((state: RootReducerType) => state.languages);
 
   const snippetParams = useMemo(
     () => ({
@@ -130,7 +131,7 @@ function SnippetPage() {
         saveSnippet(editorData);
       }
 
-      dispatch(actions.resetEditor());
+      dispatch(actions.resetEditor(undefined));
     };
   }, [dispatch, hasViewSnippetParams, saveSnippet, snippetApi, snippetParams]);
 

@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { Container, Navbar, Image, Nav, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useTernaryDarkMode } from 'usehooks-ts';
-import LanguageSelector from '../../components/Navigation/LanguageSelector.jsx';
-import ThemeSelector from '../../components/Navigation/ThemeSelector.jsx';
+import LanguageSelector from '../../components/Navigation/LanguageSelector';
+import ThemeSelector from '../../components/Navigation/ThemeSelector';
 import routes from '../../routes.js';
 
 import RunItLogoLight from './assets/LogoHeaderLightTheme.svg';
@@ -67,7 +67,7 @@ function Header() {
               <LanguageSelector />
               <ThemeSelector />
               <Button
-                as={Link}
+                as={Link as any}
                 className="rounded-5 btn-signin"
                 to={routes.signInPagePath()}
                 variant="primary"
@@ -75,7 +75,7 @@ function Header() {
                 <span>{tPA('signIn')}</span>
               </Button>
               <Button
-                as={Link}
+                as={Link as any}
                 className="rounded-5 btn-signup"
                 to={routes.signUpPagePath()}
                 variant="secondary"

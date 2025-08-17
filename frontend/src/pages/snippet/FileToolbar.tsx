@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { object } from 'yup';
@@ -13,11 +13,12 @@ import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 
 import { useAuth, useSnippets } from '../../hooks';
-import { actions } from '../../slices/index.js';
+import { actions } from '../../slices/index';
 import { snippetName } from '../../utils/validationSchemas';
 import icons from '../../utils/icons';
+import type { EditorStateType } from 'src/types/slices';
 
-function SnippetName({ snippet }) {
+function SnippetName({ snippet }: { snippet: Partial<EditorStateType>}) {
   const { isLoggedIn } = useAuth();
   const [isRenaming, setRenaming] = useState(false);
   const {
@@ -54,7 +55,7 @@ function SnippetName({ snippet }) {
       try {
         await snippetApi.renameSnippet(id, { code, name: preparedValues.name });
         dispatch(actions.updateActiveSnippetName(preparedValues.name));
-        formik.resetForm({ values: preparedValues });
+        formik.resetForm({ values: preparedValues as { name: string }});
       } catch (error) {
         formik.resetForm();
         if (!error.isAxiosError) {
@@ -67,10 +68,12 @@ function SnippetName({ snippet }) {
       }
     },
   });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  
+  function handleSubmit(e: React.FocusEvent<HTMLInputElement>): void;
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void;
+  function handleSubmit (e: React.FocusEvent<HTMLInputElement> | React.FormEvent<HTMLFormElement>) {
+    if (e.type === 'submit') e.preventDefault();
+    
     if (formik.isValid && formik.dirty) {
       formik.handleSubmit();
     } else {
@@ -157,7 +160,7 @@ function SavingIndicator({ isAllSaved = false }) {
   );
 }
 
-function FileToolbar({ snippet }) {
+function FileToolbar({ snippet }: { snippet: Partial<EditorStateType>}) {
   const { isLoggedIn } = useAuth();
   const { isAllSaved } = snippet;
 

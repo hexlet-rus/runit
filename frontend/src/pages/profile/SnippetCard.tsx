@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import { Link } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { object } from 'yup';
@@ -16,27 +16,28 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 
+import type { FetchedSnippet, RootReducerType, SnippetOwnerType } from 'src/types/slices';
 import { useSnippets } from '../../hooks';
-import { actions as modalActions } from '../../slices/modalSlice.js';
-import { actions as snippetsActions } from '../../slices/snippetsSlice.js';
-import { actions as checkboxesActions } from '../../slices/checkboxesSlice.js';
+import { actions as modalActions } from '../../slices/modalSlice';
+import { actions as snippetsActions } from '../../slices/snippetsSlice';
+import { actions as checkboxesActions } from '../../slices/checkboxesSlice';
 import { snippetName } from '../../utils/validationSchemas';
 import icons from '../../utils/icons';
 
-import SnippetCardWrapper from './SnippetCardWrapper.jsx';
+import SnippetCardWrapper from './SnippetCardWrapper';
 
 function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   const dispatch = useDispatch();
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
   const { t: tSA } = useTranslation('translation', {
     keyPrefix: 'snippetActions',
   });
   const { t } = useTranslation();
   const snippetApi = useSnippets();
-  const { name, id, code, language } = data;
+  const { name, id, code, language } = data as FetchedSnippet & { user: SnippetOwnerType };
   const { isCheckboxesOpen, checkedSnippets } = useSelector(
-    (state) => state.checkboxes,
+    (state: RootReducerType) => state.checkboxes,
   );
 
   const checkedSnippet = checkedSnippets.find((snippet) => snippet.id === id);
@@ -66,7 +67,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
         dispatch(
           snippetsActions.updateSnippet({ id, name: preparedValues.name }),
         );
-        formik.resetForm({ values: preparedValues });
+        formik.resetForm({ values: preparedValues as { name: string } });
       } catch (error) {
         formik.resetForm();
         if (!error.isAxiosError) {
@@ -80,7 +81,9 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
     },
   });
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e: React.FocusEvent<HTMLInputElement>): void
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void
+  function handleSubmit(e: React.FocusEvent<HTMLInputElement> | React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
 
     if (formik.isValid && formik.dirty) {
@@ -122,7 +125,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
               value={formik.values.name}
             />
             <Form.Control.Feedback tooltip type="invalid">
-              {t(formik.errors.name)}
+              {t(formik.errors.name as string)}
             </Form.Control.Feedback>
           </Form.Group>
         )}
@@ -149,7 +152,11 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   );
 }
 
-function CardCode({ data, noLink = false }) {
+function CardCode({ data, noLink = false }:
+  {
+    data: FetchedSnippet & { user: SnippetOwnerType },
+    noLink: boolean
+  }) {
   const { t: tSA } = useTranslation('translation', {
     keyPrefix: 'snippetActions',
   });
@@ -174,11 +181,11 @@ function CardCode({ data, noLink = false }) {
 
 const ViewMode = CardCode;
 
-function RenameMode({ data }) {
+function RenameMode({ data }: { data: FetchedSnippet & { user: SnippetOwnerType } }) {
   return <CardCode data={data} noLink />;
 }
 
-function DeleteMode({ data, handleCancel }) {
+function DeleteMode({ data, handleCancel }: { data: FetchedSnippet & { user: SnippetOwnerType }, handleCancel: () => void }) {
   const { id } = data;
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
   const { t: tSA } = useTranslation('translation', {
@@ -187,7 +194,7 @@ function DeleteMode({ data, handleCancel }) {
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
 
-  const handleSnippetDelete = async (snippetId) => {
+  const handleSnippetDelete = async (snippetId: number[] | number) => {
     try {
       await snippetApi.deleteSnippet(snippetId);
       dispatch(snippetsActions.deleteSnippet(snippetId));
@@ -239,9 +246,8 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
     <div className="snippet-card-footer">
       <div className="toolbar z-1 w-100">
         <div
-          className={`toolbar animated flex-grow-1 ${
-            isOpened ? 'opened' : 'collapsed'
-          }`}
+          className={`toolbar animated flex-grow-1 ${isOpened ? 'opened' : 'collapsed'
+            }`}
         >
           <Button
             className={`btn-icon-only me-auto ${isOpened ? '' : 'd-none'}`}
@@ -286,7 +292,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
   );
 }
 
-function SnippetCard({ data }) {
+function SnippetCard({ data }: { data: FetchedSnippet & { user: SnippetOwnerType } }) {
   const { id, name, slug, code, language } = data;
   const ownerUsername = data.user.username;
   const dispatch = useDispatch();
