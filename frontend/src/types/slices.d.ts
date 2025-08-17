@@ -37,6 +37,7 @@ export type LanguagesStateType = {
     currentLanguage: Languages;
 }
 
+
 type CopiedSnippet = {
     code: string;             // string???
     currSnippetLng: Languages;
@@ -47,8 +48,8 @@ type CopiedSnippet = {
 type SharedSnippet = {
     name: string;
     id: number;
-    ownerUsername: string;
     slug: string;
+    ownerUsername: string;
 }
 
 export interface ISnippet extends CopiedSnippet, SharedSnippet {}
