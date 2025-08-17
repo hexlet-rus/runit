@@ -1,15 +1,17 @@
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { PersonFillDash } from 'react-bootstrap-icons';
 
+import { RootReducerType } from 'src/types/slices';
+import { InitialFormStateType } from 'src/types/components';
 import { useAuth } from '../../hooks';
 import routes from '../../routes';
-import FormAlert from '../Forms/FormAlert.jsx';
+import FormAlert from '../Forms/FormAlert';
 
 function RemoveAccount({ handleClose, isOpen }) {
   const { t: tMRA } = useTranslation('translation', {
@@ -19,11 +21,11 @@ function RemoveAccount({ handleClose, isOpen }) {
   const auth = useAuth();
 
   const [isSubmitting, setSubmitting] = useState(false);
-  const userInfo = useSelector((state) => state.user.userInfo);
-  const initialFormState = { state: 'initial', message: '' };
+  const userInfo = useSelector((state: RootReducerType) => state.user.userInfo);
+  const initialFormState: InitialFormStateType = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
 
-  const handleRemoveAccount = async (e) => {
+  const handleRemoveAccount = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setSubmitting(true);
     setFormState(initialFormState);
@@ -50,7 +52,7 @@ function RemoveAccount({ handleClose, isOpen }) {
   };
 
   return (
-    <Modal centered onHide={handleClose} show={isOpen} size="md">
+    <Modal centered onHide={handleClose} show={isOpen}> { /* Here was a size attr that had 'md' value (size='md) but, => Type '"md"' is not assignable to type '"sm" | "lg" | "xl"' */ }
       <Modal.Body>
         <div className="d-flex flex-column gap-3 text-center">
           <FormAlert

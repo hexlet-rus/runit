@@ -1,13 +1,14 @@
 import { toast } from 'react-toastify';
 import { Button, Modal, FormControl, FormLabel, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import Resizer from 'react-image-file-resizer';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserSettings } from '../../slices/userSettingsSlice';
+import { FetchedCurrentUser, RootReducerType } from 'src/types/slices';
 
-const resizeFile = (file) =>
+const resizeFile = (file: Blob) =>
   new Promise((resolve) => {
     Resizer.imageFileResizer(
       file,
@@ -23,8 +24,10 @@ const resizeFile = (file) =>
     );
   });
 
+import { AppDispatch } from 'src/slices';
+
 function ChangeAvatar({ handleClose, isOpen }) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { t: tMCA } = useTranslation('translation', {
     keyPrefix: 'modals.changeAvatar',
   });
@@ -35,15 +38,15 @@ function ChangeAvatar({ handleClose, isOpen }) {
   };
   const [avatarState, setAvatarState] = useState(initialAvatarState);
 
-  const { id } = useSelector((state) => state.user.userInfo);
-  const { loadingStatus } = useSelector((state) => state.userSettings);
+  const { id } = useSelector((state: RootReducerType) => state.user.userInfo);
+  const { loadingStatus } = useSelector((state: RootReducerType) => state.userSettings);
   const fileInputRef = useRef(null);
   const cropRef = useRef(null);
 
   const handleInputClick = () => fileInputRef.current.click();
-  const handleLabelClick = (e) => e.stopPropagation();
+  const handleLabelClick = (e: React.MouseEvent) => e.stopPropagation();
 
-  const handleChangeAvatar = (e) => {
+  const handleChangeAvatar = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files[0];
     if (!file) {
       return;
@@ -77,8 +80,10 @@ function ChangeAvatar({ handleClose, isOpen }) {
         ...avatarState,
         isResized: true,
       });
-      const data = { avatar_base64: image };
-      dispatch(updateUserSettings({ id, data })).then((req) => {
+      const data = { avatar_base64: image as string };
+      dispatch(updateUserSettings({ id, data }))
+      .unwrap()
+      .then((req: FetchedCurrentUser & { error?: string }) => {
         if (!req.error) {
           handleClose();
           setAvatarState(initialAvatarState);
@@ -114,7 +119,7 @@ function ChangeAvatar({ handleClose, isOpen }) {
           max={20}
           min={10}
           onChange={(e) =>
-            setAvatarState({ ...avatarState, scale: e.target.value / 10 })
+            setAvatarState({ ...avatarState, scale: +e.target.value / 10 })
           }
           value={avatarState.scale * 10}
         />
@@ -131,7 +136,7 @@ function ChangeAvatar({ handleClose, isOpen }) {
             accept="image/png, image/jpeg, , image/bmp"
             className="form-control d-none"
             id="customFile1"
-            onChange={(e) => handleChangeAvatar(e)}
+            onChange={handleChangeAvatar}
             type="file"
           />
         </Button>

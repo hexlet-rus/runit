@@ -1,4 +1,4 @@
-function Avatar({ username }) {
+function Avatar({ username }: { username: string }) {
   return (
     <div className="rounded-circle overflow-hidden h-100">
       <svg

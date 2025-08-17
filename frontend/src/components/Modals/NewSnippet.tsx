@@ -13,12 +13,13 @@ import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 
 import axios from 'axios';
-import routes from '../../routes';
+import routes from '../../routes.js';
 
-import { useAuth, useSnippets } from '../../hooks';
-import { snippetName } from '../../utils/validationSchemas';
-import { actions as modalActions } from '../../slices/modalSlice.js';
-import icons from '../../utils/icons';
+import { useAuth, useSnippets } from '../../hooks/index.js';
+import { snippetName } from '../../utils/validationSchemas.js';
+import { actions as modalActions } from '../../slices/modalSlice';
+import icons from '../../utils/icons.js';
+import { Languages, RootReducerType, SupportedLanguagesArr } from 'src/types/slices.js';
 
 const generateGuestUserData = () => {
   const username = `guest_${faker.string.alphanumeric(5)}`;
@@ -37,10 +38,10 @@ function NewSnippet({ handleClose, isOpen }) {
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
   const navigate = useNavigate();
-  const inputRefTemplate = useRef(null);
-  const inputRefName = useRef(null);
-  const username = useSelector((state) => state.user.userInfo.username);
-  const { supportedLanguages } = useSelector((state) => state.languages);
+  const inputRefTemplate = useRef<HTMLInputElement>(null);
+  const inputRefName = useRef<HTMLInputElement>(null);
+  const username = useSelector((state: RootReducerType) => state.user.userInfo.username);
+  const { supportedLanguages } = useSelector((state: RootReducerType) => state.languages);
   const [once, setOnce] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -56,7 +57,7 @@ function NewSnippet({ handleClose, isOpen }) {
 
   const formik = useFormik({
     initialValues: {
-      template: '',
+      template: '' as Languages,
       name: '',
     },
     validationSchema,
@@ -97,6 +98,7 @@ function NewSnippet({ handleClose, isOpen }) {
       const code = t(`codeTemplates.${template}`);
       if (!supportedLanguages.includes(template)) {
         dispatch(modalActions.openModal({ type: 'inDevelopment' }));
+        return;
       }
       try {
         const snipName = `${values.name}`;
@@ -158,7 +160,7 @@ function NewSnippet({ handleClose, isOpen }) {
     setIsLoading(false);
   };
 
-  const handleLanguageChange = (inputValue = '') => {
+  const handleLanguageChange = (inputValue = ''): void => {
     const lowerInput = inputValue.trim().toLowerCase();
 
     if (!lowerInput) {
@@ -167,7 +169,7 @@ function NewSnippet({ handleClose, isOpen }) {
       return;
     }
 
-    const filteredOptions = supportedLanguages.filter((language) =>
+    const filteredOptions: SupportedLanguagesArr = supportedLanguages.filter((language: Languages) =>
       language.toLowerCase().startsWith(lowerInput),
     );
 
@@ -189,7 +191,7 @@ function NewSnippet({ handleClose, isOpen }) {
     }
   };
 
-  const resetLanguage = () => {
+  const resetLanguage = (): void => {
     try {
       formik.setFieldValue('template', '');
       inputRefTemplate.current.focus();
@@ -214,7 +216,7 @@ function NewSnippet({ handleClose, isOpen }) {
                     id="language"
                     labelKey="template"
                     maxResults={12}
-                    onChange={([e]) => handleLanguageChange(e)}
+                    onChange={([e]: [string]) => handleLanguageChange(e)}
                     options={supportedLanguages}
                     renderInput={({ referenceElementRef, ...inputProps }) => {
                       return (

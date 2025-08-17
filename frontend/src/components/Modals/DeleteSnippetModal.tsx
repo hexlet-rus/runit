@@ -4,12 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
+import { CheckedSnippetsType, RootReducerType } from 'src/types/slices';
 import { useSnippets } from '../../hooks';
-import { actions as snippetsActions } from '../../slices/snippetsSlice.js';
-import { actions as checkboxesActions } from '../../slices/checkboxesSlice.js';
+import { actions as snippetsActions } from '../../slices/snippetsSlice';
+import { actions as checkboxesActions } from '../../slices/checkboxesSlice';
 
 function DeleteSnippetModal({ handleClose, isOpen }) {
-  const { checkedSnippets } = useSelector((state) => state.checkboxes);
+  const { checkedSnippets } = useSelector((state: RootReducerType) => state.checkboxes);
 
   const countChecked = checkedSnippets.filter(
     (snippet) => snippet.isChecked,
@@ -18,13 +19,13 @@ function DeleteSnippetModal({ handleClose, isOpen }) {
   const snippetApi = useSnippets();
   const { t } = useTranslation();
 
-  const handleSnippetDelete = async (currSnippets) => {
+  const handleSnippetDelete = async (currSnippets: CheckedSnippetsType[]) => {
     const checkedIds = currSnippets
       .filter((snippet) => snippet.isChecked)
       .map((snippet) => snippet.id);
     handleClose();
     try {
-      await snippetApi.deleteSnippet(...checkedIds);
+      await snippetApi.deleteSnippet(checkedIds);
       dispatch(snippetsActions.deleteSnippet(checkedIds));
       dispatch(checkboxesActions.CloseCheckboxes());
     } catch (error) {

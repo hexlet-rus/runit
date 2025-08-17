@@ -14,13 +14,13 @@ function AuthButtons() {
   return (
     <>
       <Nav.Item as="li">
-        <Button as={Link} to={routes.signInPagePath()} variant="primary">
+        <Button as={Link as any} to={routes.signInPagePath()} variant="primary">
           {tPA('signIn')}
         </Button>
       </Nav.Item>
       <Nav.Item as="li">
         <Button
-          as={Link}
+          as={Link as any}
           to={routes.signUpPagePath()}
           variant="outline-primary"
         >

@@ -9,7 +9,8 @@ import { useAuth } from '../../hooks';
 import { actions } from '../../slices/modalSlice.js';
 import routes from '../../routes.js';
 
-import Avatar from '../Avatar/index.jsx';
+import Avatar from '../Avatar/index';
+import { RootReducerType } from 'src/types/slices';
 
 function UserMenu() {
   const { signOut } = useAuth();
@@ -20,8 +21,8 @@ function UserMenu() {
     keyPrefix: 'snippetActions',
   });
   const dispatch = useDispatch();
-  const username = useSelector((state) => state.user.userInfo.username);
-  const avatar = useSelector((state) => state.userSettings.avatar);
+  const username = useSelector((state: RootReducerType) => state.user.userInfo.username);
+  const avatar = useSelector((state: RootReducerType) => state.userSettings.avatar);
 
   const handleNewSnippet = () => {
     dispatch(actions.openModal({ type: 'newSnippet' }));

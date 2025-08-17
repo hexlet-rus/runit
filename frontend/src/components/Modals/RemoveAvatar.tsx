@@ -3,19 +3,21 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserSettings } from '../../slices/userSettingsSlice';
+import { RootReducerType } from 'src/types/slices';
+import { AppDispatch } from 'src/slices';
 
 function RemoveAvatar({ handleClose, isOpen }) {
   const { t: tMRA } = useTranslation('translation', {
     keyPrefix: 'modals.removeAvatar',
   });
-  const dispatch = useDispatch();
-  const { id } = useSelector((state) => state.user.userInfo);
-  const { loadingStatus } = useSelector((state) => state.userSettings);
+  const dispatch = useDispatch<AppDispatch>();
+  const { id } = useSelector((state: RootReducerType) => state.user.userInfo);
+  const { loadingStatus } = useSelector((state: RootReducerType) => state.userSettings);
 
   const handleDeleteAvatar = async () => {
     const data = { avatar_base64: null };
-    dispatch(updateUserSettings({ id, data })).then((req) => {
-      if (!req.error) {
+    dispatch(updateUserSettings({ id, data })).then((res) => {
+      if (res.type.endsWith('/fulfilled')) {
         handleClose();
       } else {
         toast.error('Ошибка сети');
@@ -24,7 +26,7 @@ function RemoveAvatar({ handleClose, isOpen }) {
   };
 
   return (
-    <Modal centered onHide={handleClose} show={isOpen} size="m">
+    <Modal centered onHide={handleClose} show={isOpen} > { /* Here was a size attr that had value (size='m') but, => Type '"m"' is not assignable to type '"sm" | "lg" | "xl"' */ }
       <Modal.Body>
         <div className="text-center">
           <p>{tMRA('message')}</p>

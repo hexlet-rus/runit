@@ -9,9 +9,10 @@ import Modal from 'react-bootstrap/Modal';
 import { Clipboard } from 'react-bootstrap-icons';
 
 import { useSnippets } from '../../hooks';
+import { RootReducerType } from 'src/types/slices';
 
 function ShareSnippet({ isOpen, handleClose }) {
-  const { name, slug, ownerUsername } = useSelector(({ modal }) => modal.item);
+  const { name, slug, ownerUsername } = useSelector(({ modal }: RootReducerType) => modal.item);
   const snippetApi = useSnippets();
   const { t: tMS } = useTranslation('translation', {
     keyPrefix: 'modals.share',
@@ -65,7 +66,7 @@ function ShareSnippet({ isOpen, handleClose }) {
             <Form.Control
               as="textarea"
               className="w-100 embed-code text-secondary overflow-x-hidden"
-              onClick={(e) => e.target.select()}
+              onClick={(e) => (e.target as HTMLTextAreaElement).select()}
               readOnly
               rows={embedCode.match(/^/gm).length}
               value={embedCode}

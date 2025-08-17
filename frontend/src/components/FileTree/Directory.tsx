@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 
-import { useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { DocumentImage } from './DocumentImage';
 
 export function Directory({
@@ -12,7 +12,7 @@ export function Directory({
 }) {
   const [isShow, setIsShow] = useState(false);
 
-  const showDocumentHandler = (event) => {
+  const showDocumentHandler = (event: React.MouseEvent) => {
     event.stopPropagation();
     setIsShow((prevState) => !prevState);
   };
@@ -30,7 +30,7 @@ export function Directory({
         <div className="d-inline-block px-2" />
         <div className="w-100">
           {isShow &&
-            documentChildren.map((child) => renderDocumentChildren(child))}
+            documentChildren.map((child: ReactElement) => renderDocumentChildren(child))}
         </div>
       </div>
     </div>

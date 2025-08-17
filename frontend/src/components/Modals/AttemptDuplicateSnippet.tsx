@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import routes from '../../routes';
 import { actions } from '../../slices';
 import { useAuth } from '../../hooks';
+import { RootReducerType } from 'src/types/slices';
 
 const generateGuestUserData = () => {
   const username = `guest_${faker.string.alphanumeric(5)}`;
@@ -24,7 +25,7 @@ function AttemptDuplicateSnippet({ handleClose, isOpen }) {
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
   const auth = useAuth();
   const dispatch = useDispatch();
-  const { currSnippetName, code } = useSelector(({ modal }) => modal.item);
+  const { currSnippetName, code } = useSelector(({ modal }: RootReducerType) => modal.item);
 
   const handleCopy = async () => {
     const guestData = generateGuestUserData();

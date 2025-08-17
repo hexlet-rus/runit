@@ -1,10 +1,12 @@
 // import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { actions } from '../../slices';
-import theme from '../../utils/theme.js';
+import { actions, AppDispatch } from '../../slices';
+import theme from '../../utils/theme';
+import type { RootReducerType } from 'src/types/slices';
+import type { ColourThemeConfigType } from 'src/types/components';
 
-const lightTheme = {
+const lightTheme: ColourThemeConfigType = {
   base: 'vs',
   inherit: true,
   rules: [
@@ -19,7 +21,7 @@ const lightTheme = {
   },
 };
 
-const darkTheme = {
+const darkTheme: ColourThemeConfigType = {
   base: 'vs-dark',
   inherit: true,
   rules: [
@@ -35,11 +37,11 @@ const darkTheme = {
 };
 
 export const useEditor = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   // TODO: нужно уходить от передачи кода в запросе на компиляцию и передавать только данные снипета, который нужно запустить
-  const { code, snippetData } = useSelector((state) => state.editor);
-  const language = useSelector((state) => state.languages.currentLanguage);
+  const { code, snippetData } = useSelector((state: RootReducerType) => state.editor);
+  const language = useSelector((state: RootReducerType) => state.languages.currentLanguage);
   const snippet = { ...snippetData, language };
 
   const beforeMount = (monaco) => {
@@ -47,7 +49,7 @@ export const useEditor = () => {
     monaco.editor.defineTheme('dark', darkTheme);
   };
 
-  const onChange = (newCode) => {
+  const onChange = (newCode: string) => {
     dispatch(actions.updateCode(newCode));
   };
 

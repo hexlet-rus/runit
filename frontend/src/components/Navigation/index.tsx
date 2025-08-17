@@ -11,18 +11,19 @@ import { useAuth } from '../../hooks';
 import routes from '../../routes.js';
 
 import Logo from '../../assets/images/RunITLogo.svg';
-import AuthButtons from './AuthButtons.jsx';
-import LanguageSelector from './LanguageSelector.jsx';
-import NavMenu from './NavMenu.jsx';
-import ThemeSelector from './ThemeSelector.jsx';
-import UserMenu from './UserMenu.jsx';
-import GuestMenu from './GuestMenu.jsx';
+import AuthButtons from './AuthButtons';
+import LanguageSelector from './LanguageSelector';
+import NavMenu from './NavMenu';
+import ThemeSelector from './ThemeSelector';
+import UserMenu from './UserMenu';
+import GuestMenu from './GuestMenu';
 import AdminPanelButton from './AdminPanelButton';
+import { RootReducerType } from 'src/types/slices';
 
 function Navigation() {
   const { isLoggedIn } = useAuth();
   const { t: tN } = useTranslation('translation', { keyPrefix: 'navbar' });
-  const isAdmin = useSelector((state) => state.user.userInfo.isAdmin);
+  const isAdmin = useSelector((state: RootReducerType) => state.user.userInfo.isAdmin);
   const guestUser = localStorage.getItem('guestUserData');
 
   return (

@@ -48,7 +48,7 @@ function ThemeSelector() {
           <ThemeOption
             key={themeName}
             active={themeName === ternaryDarkMode}
-            handleSelect={() => setTernaryDarkMode(themeName)}
+            handleSelect={() => setTernaryDarkMode(themeName as typeof ternaryDarkMode)}
             themeName={themeName}
           />
         ))}

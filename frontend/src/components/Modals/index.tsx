@@ -2,18 +2,19 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { actions } from '../../slices';
 
-import SignUpModal from './SignUp.jsx';
-import SignInModal from './SignIn.jsx';
-import RemoveAccount from './RemoveAccount.jsx';
+import SignUpModal from './SignUp';
+import SignInModal from './SignIn';
+import RemoveAccount from './RemoveAccount';
 import NewSnippet from './NewSnippet';
-import ShareSnippet from './ShareSnippet.jsx';
-import InDevelopment from './InDevelopment.jsx';
-import SnippetUnavailable from './SnippetUnavailable.jsx';
+import ShareSnippet from './ShareSnippet';
+import InDevelopment from './InDevelopment';
+import SnippetUnavailable from './SnippetUnavailable';
 import DuplicateSnippetModal from './DuplicateSnippetModal';
-import AttemptDuplicateSnippet from './AttemptDuplicateSnippet.jsx';
+import AttemptDuplicateSnippet from './AttemptDuplicateSnippet';
 import ChangeAvatarModal from './ChangeAvatar';
 import RemoveAvatarModal from './RemoveAvatar';
 import DeleteSnippetModal from './DeleteSnippetModal';
+import { RootReducerType } from 'src/types/slices';
 
 const modals = {
   signingUp: SignUpModal,
@@ -32,7 +33,7 @@ const modals = {
 
 function ModalWindow() {
   const dispatch = useDispatch();
-  const { isOpen, type } = useSelector((state) => state.modal);
+  const { isOpen, type } = useSelector((state: RootReducerType) => state.modal);
 
   const handleClose = () => dispatch(actions.closeModal());
 

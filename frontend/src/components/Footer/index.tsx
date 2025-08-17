@@ -2,8 +2,9 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
 import { Youtube, Telegram, TwitterX } from 'react-bootstrap-icons';
-import { ReactComponent as Vk } from '../../assets/images/icons/vk.svg';
 import classes from './index.module.css';
+
+const Vk = require('../../assets/images/icons/vk.svg').React.Component;
 
 function Footer() {
   const { t: tF } = useTranslation('translation', {
@@ -27,7 +28,7 @@ function Footer() {
                   {tF('about')}
                 </Nav.Link>
               </li>
-              <li>
+              {/* <li>
                 <Nav.Link
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0`}
@@ -37,9 +38,9 @@ function Footer() {
                 >
                   {tF('career')}
                 </Nav.Link>
-              </li>
+              </li> */}
               <li>
-                <Nav.Link
+                {/* <Nav.Link
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0`}
                   eventKey="shop"
@@ -47,7 +48,7 @@ function Footer() {
                   target="_blank"
                 >
                   {tF('shop')}
-                </Nav.Link>
+                </Nav.Link> */}
                 <Nav.Link
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0`}
