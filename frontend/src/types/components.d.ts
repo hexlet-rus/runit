@@ -1,6 +1,6 @@
 import React from "react";
 
-export type InitialFormStateType = {
+export type TypeInitialFormState = {
   state: 'initial' | 'failed' | 'success';
   message: string;
 }

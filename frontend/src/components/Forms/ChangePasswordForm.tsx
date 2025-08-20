@@ -13,6 +13,7 @@ import { password, required } from '../../utils/validationSchemas';
 import PasswordVisibilityButton from './PasswordVisibilityButton.jsx';
 import FormAlert from './FormAlert.jsx';
 import { RootReducerType } from 'src/types/slices';
+import { TypeInitialFormState } from 'src/types/components';
 
 function ChangePasswordForm() {
   const { t: tPS } = useTranslation('translation', {
@@ -21,7 +22,7 @@ function ChangePasswordForm() {
   const { t } = useTranslation();
   const inputRef = useRef<HTMLInputElement>(null);
   const userInfo = useSelector((state: RootReducerType) => state.user.userInfo);
-  const initialFormState = { state: 'initial', message: '' };
+  const initialFormState: TypeInitialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
   const [isCurrentPasswordVisible, setCurrentPasswordVisibility] =
     useState(false);
