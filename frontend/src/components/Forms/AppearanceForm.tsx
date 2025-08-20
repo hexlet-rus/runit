@@ -7,7 +7,6 @@ import { useState } from 'react';
 import type { Themes, UILanguages } from 'src/types/slices';
 import { useLanguage } from '../../hooks';
 import FormAlert from './FormAlert.jsx';
-import { InitialFormStateType } from 'src/types/components';
 
 interface ILanguageItemArgs {
   value: UILanguages;
@@ -38,7 +37,7 @@ function ApperearanceForm() {
   const { language, availableLanguages, setLanguage } = useLanguage();
   const { ternaryDarkMode, setTernaryDarkMode } = useTernaryDarkMode();
   const themes: Themes[] = ['system', 'light', 'dark'];
-  const initialFormState: InitialFormStateType = { state: 'initial', message: '' };
+  const initialFormState = { state: 'initial', message: '' };
   const [formState, setFormState] = useState(initialFormState);
   const initialValues = {
     selectedLanguage: '',
@@ -76,7 +75,7 @@ function ApperearanceForm() {
             {t(`profileSettings.${language}`)}
           </option>
           {availableLanguages.map((lang) => {
-            return <LanguageItem key={lang} language={language} value={lang as UILanguages} />;
+            return <LanguageItem key={lang} language={language} value={lang} />;
           })}
         </Form.Select>
       </Form.Group>
