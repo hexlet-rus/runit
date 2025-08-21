@@ -37,22 +37,32 @@ export type LanguagesStateType = {
     currentLanguage: Languages;
 }
 
-export interface ISnippet {
+
+type CopiedSnippet = {
     code: string;             // string???
     currSnippetLng: Languages;
     currSnippetName: string;
     ownerUsername: string;
 }
 
+type SharedSnippet = {
+    name: string;
+    id: number;
+    slug: string;
+    ownerUsername: string;
+}
+
+export interface ISnippet extends CopiedSnippet, SharedSnippet {}
+
 export type ModalStateType = {
     isOpen: boolean;
     type: string | null;
-    item: ISnippet | null;
+    item: Partial<ISnippet> | null;
 }
 
 type Statuses = 'empty' | 'fullfilled' | 'pending' | 'rejected';
 
-interface SnippetOwnerType {
+export interface SnippetOwnerType {
     created_at: string;
     email: string;
     id: number;

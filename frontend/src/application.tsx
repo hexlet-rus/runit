@@ -4,11 +4,11 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import AppRoutes from './AppRoutes.jsx';
-import ModalWindow from './components/Modals/index.jsx';
+import ModalWindow from './components/Modals/index';
 import Toast from './components/Toast/index.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
 import SnippetsProvider from './providers/SnippetsProvider.jsx';
-import { rootReducer } from './slices/index.js';
+import { rootReducer } from './slices/index';
 import { initI18next } from './initI18next.js';
 
 export default async () => {
