@@ -7,8 +7,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { PersonFillDash } from 'react-bootstrap-icons';
 
-import { RootReducerType } from 'src/types/slices';
-import { InitialFormStateType } from 'src/types/components';
+import type { RootReducerType } from 'src/types/slices';
+import type { TypeInitialFormState } from 'src/types/components';
 import { useAuth } from '../../hooks';
 import routes from '../../routes';
 import FormAlert from '../Forms/FormAlert';
@@ -22,10 +22,15 @@ function RemoveAccount({ handleClose, isOpen }) {
 
   const [isSubmitting, setSubmitting] = useState(false);
   const userInfo = useSelector((state: RootReducerType) => state.user.userInfo);
-  const initialFormState: InitialFormStateType = { state: 'initial', message: '' };
+  const initialFormState: TypeInitialFormState = {
+    state: 'initial',
+    message: '',
+  };
   const [formState, setFormState] = useState(initialFormState);
 
-  const handleRemoveAccount = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleRemoveAccount = async (
+    e: React.MouseEvent<HTMLButtonElement>,
+  ) => {
     e.preventDefault();
     setSubmitting(true);
     setFormState(initialFormState);
@@ -52,7 +57,7 @@ function RemoveAccount({ handleClose, isOpen }) {
   };
 
   return (
-    <Modal centered onHide={handleClose} show={isOpen}> { /* Here was a size attr that had 'md' value (size='md) but, => Type '"md"' is not assignable to type '"sm" | "lg" | "xl"' */ }
+    <Modal centered onHide={handleClose} show={isOpen}>
       <Modal.Body>
         <div className="d-flex flex-column gap-3 text-center">
           <FormAlert

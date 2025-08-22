@@ -5,13 +5,15 @@ import { Link, useLocation } from 'react-router-dom';
 import { GridFill } from 'react-bootstrap-icons';
 import Nav from 'react-bootstrap/Nav';
 
-import { RootReducerType } from 'src/types/slices';
+import type { RootReducerType } from 'src/types/slices';
 import { useAuth } from '../../hooks';
-import routes from '../../routes.js';
+import routes from '../../routes';
 
 function MySnippetsLink() {
   const { t: tN } = useTranslation('translation', { keyPrefix: 'navbar' });
-  const username = useSelector((state: RootReducerType) => state.user.userInfo.username);
+  const username = useSelector(
+    (state: RootReducerType) => state.user.userInfo.username,
+  );
 
   return (
     <Nav.Item as="li">

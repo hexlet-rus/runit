@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
 import { useTranslation } from 'react-i18next';
 
-import routes from '../../routes.js';
+import routes from '../../routes';
 
 const ADMIN_LINK = new URL(routes.adminPanelPath(), window.location.origin);
 

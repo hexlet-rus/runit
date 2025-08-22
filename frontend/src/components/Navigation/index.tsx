@@ -7,8 +7,9 @@ import Image from 'react-bootstrap/Image';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
+import type { RootReducerType } from 'src/types/slices';
 import { useAuth } from '../../hooks';
-import routes from '../../routes.js';
+import routes from '../../routes';
 
 import Logo from '../../assets/images/RunITLogo.svg';
 import AuthButtons from './AuthButtons';
@@ -18,12 +19,13 @@ import ThemeSelector from './ThemeSelector';
 import UserMenu from './UserMenu';
 import GuestMenu from './GuestMenu';
 import AdminPanelButton from './AdminPanelButton';
-import { RootReducerType } from 'src/types/slices';
 
 function Navigation() {
   const { isLoggedIn } = useAuth();
   const { t: tN } = useTranslation('translation', { keyPrefix: 'navbar' });
-  const isAdmin = useSelector((state: RootReducerType) => state.user.userInfo.isAdmin);
+  const isAdmin = useSelector(
+    (state: RootReducerType) => state.user.userInfo.isAdmin,
+  );
   const guestUser = localStorage.getItem('guestUserData');
 
   return (

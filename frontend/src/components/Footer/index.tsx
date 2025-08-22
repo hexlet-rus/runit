@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Nav } from 'react-bootstrap';
 import { Youtube, Telegram, TwitterX } from 'react-bootstrap-icons';
 import classes from './index.module.css';
-
-const Vk = require('../../assets/images/icons/vk.svg').React.Component;
+import { ReactComponent as Vk } from '../../assets/images/icons/vk.svg';
+// const Vk = require('../../assets/images/icons/vk.svg').React.Component;
 
 function Footer() {
   const { t: tF } = useTranslation('translation', {
@@ -28,27 +28,7 @@ function Footer() {
                   {tF('about')}
                 </Nav.Link>
               </li>
-              {/* <li>
-                <Nav.Link
-                  as="a"
-                  className={`${classes.footerNavLink} py-1 px-0`}
-                  eventKey="career"
-                  href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
-                  target="_blank"
-                >
-                  {tF('career')}
-                </Nav.Link>
-              </li> */}
               <li>
-                {/* <Nav.Link
-                  as="a"
-                  className={`${classes.footerNavLink} py-1 px-0`}
-                  eventKey="shop"
-                  href="https://hexlet.printdirect.ru/?partner_id=615497"
-                  target="_blank"
-                >
-                  {tF('shop')}
-                </Nav.Link> */}
                 <Nav.Link
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0`}
@@ -134,8 +114,8 @@ function Footer() {
                   as={Link}
                   className={`${classes.footerNavLink} py-1 px-0`}
                   eventKey="licenseAgreement"
+                  target="_blank"
                   to="/licenseAgreement"
-                  target='_blank'
                 >
                   <span>{tF('licenseAgreement')}</span>
                 </Nav.Link>

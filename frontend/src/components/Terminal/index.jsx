@@ -5,7 +5,7 @@ import useResizeObserver from 'use-resize-observer';
 import { useTernaryDarkMode } from 'usehooks-ts';
 
 import { useTerminal } from './hooks.js';
-import theme from '../../utils/theme.js';
+import theme from '../../utils/theme';
 
 import 'xterm/css/xterm.css';
 

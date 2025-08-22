@@ -5,12 +5,12 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
+import type { RootReducerType } from 'src/types/slices';
 import { useAuth } from '../../hooks';
-import { actions } from '../../slices/modalSlice.js';
-import routes from '../../routes.js';
+import { actions } from '../../slices/modalSlice';
+import routes from '../../routes';
 
 import Avatar from '../Avatar/index';
-import { RootReducerType } from 'src/types/slices';
 
 function UserMenu() {
   const { signOut } = useAuth();
@@ -21,8 +21,12 @@ function UserMenu() {
     keyPrefix: 'snippetActions',
   });
   const dispatch = useDispatch();
-  const username = useSelector((state: RootReducerType) => state.user.userInfo.username);
-  const avatar = useSelector((state: RootReducerType) => state.userSettings.avatar);
+  const username = useSelector(
+    (state: RootReducerType) => state.user.userInfo.username,
+  );
+  const avatar = useSelector(
+    (state: RootReducerType) => state.userSettings.avatar,
+  );
 
   const handleNewSnippet = () => {
     dispatch(actions.openModal({ type: 'newSnippet' }));

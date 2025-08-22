@@ -1,3 +1,4 @@
+import type { RootReducerType } from 'src/types/slices';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -9,10 +10,11 @@ import Modal from 'react-bootstrap/Modal';
 import { Clipboard } from 'react-bootstrap-icons';
 
 import { useSnippets } from '../../hooks';
-import { RootReducerType } from 'src/types/slices';
 
 function ShareSnippet({ isOpen, handleClose }) {
-  const { name, slug, ownerUsername } = useSelector(({ modal }: RootReducerType) => modal.item);
+  const { name, slug, ownerUsername } = useSelector(
+    ({ modal }: RootReducerType) => modal.item,
+  );
   const snippetApi = useSnippets();
   const { t: tMS } = useTranslation('translation', {
     keyPrefix: 'modals.share',
