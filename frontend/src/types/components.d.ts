@@ -1,4 +1,5 @@
 import React from "react";
+import { EditorStateType } from "./slices";
 
 export type TypeInitialFormState = {
   state: 'initial' | 'failed' | 'success';
@@ -38,4 +39,16 @@ export type CardsType = {
   id: number;
   image: string;
   text: string;
+}
+
+export interface IAvatar {
+  username: string;
+}
+
+export interface IHTMLPreview {
+  code: string;
+}
+
+export interface IFileToolbar {
+  snippet: Partial<EditorStateType>;
 }
