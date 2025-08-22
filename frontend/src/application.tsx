@@ -3,13 +3,13 @@ import * as Sentry from '@sentry/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import AppRoutes from './AppRoutes.jsx';
+import AppRoutes from './AppRoutes';
 import ModalWindow from './components/Modals/index';
-import Toast from './components/Toast/index.jsx';
-import AuthProvider from './providers/AuthProvider.jsx';
-import SnippetsProvider from './providers/SnippetsProvider.jsx';
+import Toast from './components/Toast/index';
+import AuthProvider from './providers/AuthProvider';
+import SnippetsProvider from './providers/SnippetsProvider';
 import { rootReducer } from './slices/index';
-import { initI18next } from './initI18next.js';
+import { initI18next } from './initI18next';
 
 export default async () => {
   await initI18next();
