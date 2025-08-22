@@ -6,9 +6,9 @@ import { Button, Col, Container, Image, Row } from 'react-bootstrap';
 
 import { useTernaryDarkMode } from 'usehooks-ts';
 import { useAuth } from '../../hooks';
-import routes from '../../routes.js';
+import routes from '../../routes';
 import { actions } from '../../slices/modalSlice';
-import Faq from './Faq.jsx';
+import Faq from './Faq';
 import Footer from './Footer';
 import Header from './Header';
 import Theses from './Theses';
@@ -73,10 +73,10 @@ function NewLanding() {
           <Row className="my-5" xs="auto">
             <Col className="mb-3" lg={{ offset: 1 }}>
               <Button
-                as={Link as any}
+                as="a"
                 className="btn-start rounded-5"
                 size="lg"
-                to={routes.signInPagePath()}
+                href={routes.signInPagePath()}
               >
                 {tL('startCoding')}
               </Button>

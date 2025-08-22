@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Row, Col, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
@@ -91,10 +91,10 @@ function Landing() {
           </Row>
           <Row className="justify-content-center">
             <Button
-              as={Link as any}
+              as="a"
               className={`btn ${classes.btnPrimary} ${classes.btnAttention} py-3 ${classes.fs5} fw-bold ${classes.mt65} ${classes.lh5}"`}
               size="lg"
-              to={routes.signInPagePath()}
+              href={routes.signInPagePath()}
             >
               {tL('startCoding')}
             </Button>
@@ -217,10 +217,10 @@ function Landing() {
           </h3>
           <Row className="justify-content-center">
             <Button
-              as={Link as any}
+              as="a"
               className={`btn ${classes.btnPrimary} ${classes.btnAttention} py-3 ${classes.fs5} fw-bold ${classes.mt40} ${classes.lh5}"`}
               size="lg"
-              to={routes.signInPagePath()}
+              href={routes.signInPagePath()}
             >
               {tL('startCoding')}
             </Button>
