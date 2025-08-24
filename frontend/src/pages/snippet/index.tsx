@@ -128,7 +128,7 @@ function SnippetPage() {
         saveSnippet(editorData);
       }
 
-      dispatch(actions.resetEditor(undefined));
+      dispatch(actions.resetEditor());
     };
   }, [dispatch, hasViewSnippetParams, saveSnippet, snippetApi, snippetParams]);
 

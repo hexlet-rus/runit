@@ -4,7 +4,6 @@ import { Container, Row, Col, Nav } from 'react-bootstrap';
 import { Youtube, Telegram, TwitterX } from 'react-bootstrap-icons';
 import classes from './index.module.css';
 import { ReactComponent as Vk } from '../../assets/images/icons/vk.svg';
-// const Vk = require('../../assets/images/icons/vk.svg').React.Component;
 
 function Footer() {
   const { t: tF } = useTranslation('translation', {
