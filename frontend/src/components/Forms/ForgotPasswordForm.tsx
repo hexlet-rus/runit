@@ -7,11 +7,11 @@ import { object } from 'yup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import type { TypeInitialFormState } from 'src/types/components';
 import routes from '../../routes';
 import { email } from '../../utils/validationSchemas';
 
-import FormAlert from './FormAlert.jsx';
-import { TypeInitialFormState } from 'src/types/components';
+import FormAlert from './FormAlert';
 
 function ForgotPasswordForm() {
   const { t } = useTranslation();
@@ -22,7 +22,10 @@ function ForgotPasswordForm() {
   const emailRef = useRef<HTMLInputElement>(null);
   const location = window.location.origin;
 
-  const initialFormState: TypeInitialFormState = { state: 'initial', message: '' };
+  const initialFormState: TypeInitialFormState = {
+    state: 'initial',
+    message: '',
+  };
   const [formState, setFormState] = useState(initialFormState);
 
   const validationSchema = object().shape({

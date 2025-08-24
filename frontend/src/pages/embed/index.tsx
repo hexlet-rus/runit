@@ -9,9 +9,9 @@ import Image from 'react-bootstrap/Image';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-import { RootReducerType } from 'src/types/slices';
+import type { RootReducerType } from 'src/types/slices';
 import { useRunButton, useSnippets } from '../../hooks';
-import routes from '../../routes.js';
+import routes from '../../routes';
 import { actions } from '../../slices/index';
 
 import Logo from '../../assets/images/RunITLogo.svg';

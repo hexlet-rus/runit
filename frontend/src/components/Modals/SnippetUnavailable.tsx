@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import { EmojiExpressionless } from 'react-bootstrap-icons';
 
 import { useAuth } from '../../hooks';
-import routes from '../../routes.js';
+import routes from '../../routes';
 
 function SnippetUnavailable({ handleClose, isOpen }) {
   const { t: tMSU } = useTranslation('translation', {

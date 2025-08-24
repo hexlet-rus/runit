@@ -1,6 +1,6 @@
-import { ThemesType } from "src/types/components";
+import type { ThemesType } from 'src/types/components';
 
-export default<ThemesType> {
+export default <ThemesType>{
   monospaceFontFamily:
     'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
   colors: {

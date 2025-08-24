@@ -7,6 +7,7 @@ import { object } from 'yup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import type { TypeInitialFormState } from 'src/types/components';
 import { useAuth } from '../../hooks';
 import routes from '../../routes';
 import { email, password, username } from '../../utils/validationSchemas';
@@ -14,7 +15,6 @@ import { email, password, username } from '../../utils/validationSchemas';
 import GithubSignInButton from './GithubSignInButton';
 import PasswordVisibilityButton from './PasswordVisibilityButton';
 import FormAlert from './FormAlert';
-import { TypeInitialFormState } from 'src/types/components';
 
 function SignupForm({ onSuccess = () => null }) {
   const { t: tPS } = useTranslation('translation', {
@@ -26,7 +26,10 @@ function SignupForm({ onSuccess = () => null }) {
   const usernameRef = useRef<HTMLInputElement>(null);
   const auth = useAuth();
 
-  const initialFormState: TypeInitialFormState = { state: 'initial', message: '' };
+  const initialFormState: TypeInitialFormState = {
+    state: 'initial',
+    message: '',
+  };
   const [formState, setFormState] = useState(initialFormState);
 
   const [isPasswordVisible, setPasswordVisibility] = useState(false);

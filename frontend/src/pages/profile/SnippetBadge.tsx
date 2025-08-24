@@ -3,15 +3,17 @@ import { Trash3, XLg } from 'react-bootstrap-icons';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
+import type { RootReducerType } from 'src/types/slices';
 import { actions as modalActions } from '../../slices/modalSlice';
 import { actions as checkboxesActions } from '../../slices/checkboxesSlice';
-import type { RootReducerType } from 'src/types/slices';
 
 function SnippetBadge() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const { checkedSnippets } = useSelector((state: RootReducerType) => state.checkboxes);
+  const { checkedSnippets } = useSelector(
+    (state: RootReducerType) => state.checkboxes,
+  );
   const checkedSnippet = checkedSnippets.filter((snippet) => snippet.isChecked);
   const countChecked = checkedSnippet.length;
   const isChecked = checkedSnippet.length > 0;

@@ -2,8 +2,8 @@ import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import axios from 'axios';
-import { actions } from '../slices/index.js';
-import routes from '../routes.js';
+import { actions } from '../slices/index';
+import routes from '../routes';
 
 const { runCode } = actions;
 

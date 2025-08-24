@@ -12,13 +12,13 @@ import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 
+import type { IFileToolbar } from 'src/types/components';
 import { useAuth, useSnippets } from '../../hooks';
 import { actions } from '../../slices/index';
 import { snippetName } from '../../utils/validationSchemas';
 import icons from '../../utils/icons';
-import type { EditorStateType } from 'src/types/slices';
 
-function SnippetName({ snippet }: { snippet: Partial<EditorStateType>}) {
+function SnippetName({ snippet }: IFileToolbar) {
   const { isLoggedIn } = useAuth();
   const [isRenaming, setRenaming] = useState(false);
   const {
@@ -55,7 +55,7 @@ function SnippetName({ snippet }: { snippet: Partial<EditorStateType>}) {
       try {
         await snippetApi.renameSnippet(id, { code, name: preparedValues.name });
         dispatch(actions.updateActiveSnippetName(preparedValues.name));
-        formik.resetForm({ values: preparedValues as { name: string }});
+        formik.resetForm({ values: preparedValues as { name: string } });
       } catch (error) {
         formik.resetForm();
         if (!error.isAxiosError) {
@@ -68,24 +68,25 @@ function SnippetName({ snippet }: { snippet: Partial<EditorStateType>}) {
       }
     },
   });
-  
+
   function handleSubmit(e: React.FocusEvent<HTMLInputElement>): void;
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void;
-  function handleSubmit (e: React.FocusEvent<HTMLInputElement> | React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(
+    e: React.FocusEvent<HTMLInputElement> | React.FormEvent<HTMLFormElement>,
+  ) {
     if (e.type === 'submit') e.preventDefault();
-    
     if (formik.isValid && formik.dirty) {
       formik.handleSubmit();
     } else {
       formik.resetForm();
     }
     setRenaming(false);
-  };
+  }
 
   return (
     <Form
       className="d-flex flex-row align-items-center"
-      onSubmit={handleSubmit}
+      onSubmit={() => handleSubmit}
     >
       <Image
         alt="JavaScript"
@@ -104,7 +105,7 @@ function SnippetName({ snippet }: { snippet: Partial<EditorStateType>}) {
             isInvalid={!!formik.errors.name}
             maxLength={30}
             name="name"
-            onBlur={handleSubmit}
+            onBlur={() => handleSubmit}
             onChange={formik.handleChange}
             plaintext={!isRenaming}
             readOnly={!isRenaming}
@@ -160,7 +161,7 @@ function SavingIndicator({ isAllSaved = false }) {
   );
 }
 
-function FileToolbar({ snippet }: { snippet: Partial<EditorStateType>}) {
+function FileToolbar({ snippet }: IFileToolbar) {
   const { isLoggedIn } = useAuth();
   const { isAllSaved } = snippet;
 

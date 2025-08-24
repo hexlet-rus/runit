@@ -1,4 +1,6 @@
-function Avatar({ username }: { username: string }) {
+import type { IAvatar } from 'src/types/components';
+
+function Avatar({ username }: IAvatar) {
   return (
     <div className="rounded-circle overflow-hidden h-100">
       <svg

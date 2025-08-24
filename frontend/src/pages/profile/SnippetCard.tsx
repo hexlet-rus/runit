@@ -16,7 +16,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Image from 'react-bootstrap/Image';
 
-import type { FetchedSnippet, RootReducerType, SnippetOwnerType } from 'src/types/slices';
+import type {
+  FetchedSnippet,
+  RootReducerType,
+  SnippetOwnerType,
+} from 'src/types/slices';
 import { useSnippets } from '../../hooks';
 import { actions as modalActions } from '../../slices/modalSlice';
 import { actions as snippetsActions } from '../../slices/snippetsSlice';
@@ -35,7 +39,9 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   });
   const { t } = useTranslation();
   const snippetApi = useSnippets();
-  const { name, id, code, language } = data as FetchedSnippet & { user: SnippetOwnerType };
+  const { name, id, code, language } = data as FetchedSnippet & {
+    user: SnippetOwnerType;
+  };
   const { isCheckboxesOpen, checkedSnippets } = useSelector(
     (state: RootReducerType) => state.checkboxes,
   );
@@ -81,9 +87,11 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
     },
   });
 
-  function handleSubmit(e: React.FocusEvent<HTMLInputElement>): void
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void
-  function handleSubmit(e: React.FocusEvent<HTMLInputElement> | React.FormEvent<HTMLFormElement>): void {
+  function handleSubmit(e: React.FocusEvent<HTMLInputElement>): void;
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void;
+  function handleSubmit(
+    e: React.FocusEvent<HTMLInputElement> | React.FormEvent<HTMLFormElement>,
+  ): void {
     e.preventDefault();
 
     if (formik.isValid && formik.dirty) {
@@ -92,7 +100,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
       formik.resetForm();
     }
     handleCancel();
-  };
+  }
 
   const handleOnChange = () => {
     dispatch(
@@ -107,7 +115,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
         className="snippet-card-header-icon"
         src={icons.get(language)}
       />
-      <Form className="flex-fill" onSubmit={handleSubmit}>
+      <Form className="flex-fill" onSubmit={() => handleSubmit}>
         {formik.isSubmitting ? null : (
           <Form.Group className="position-relative">
             <Form.Control
@@ -118,7 +126,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
               isInvalid={!!formik.errors.name}
               maxLength={30}
               name="name"
-              onBlur={handleSubmit}
+              onBlur={() => handleSubmit}
               onChange={formik.handleChange}
               plaintext={!isRenaming}
               readOnly={!isRenaming}
@@ -152,11 +160,15 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   );
 }
 
-function CardCode({ data, noLink = false }:
-  {
-    data: FetchedSnippet & { user: SnippetOwnerType },
-    noLink: boolean
-  }) {
+function CardCode({
+  data,
+  noLink = false,
+}: {
+  data: FetchedSnippet & {
+    user: SnippetOwnerType;
+  };
+  noLink: boolean;
+}) {
   const { t: tSA } = useTranslation('translation', {
     keyPrefix: 'snippetActions',
   });
@@ -181,11 +193,21 @@ function CardCode({ data, noLink = false }:
 
 const ViewMode = CardCode;
 
-function RenameMode({ data }: { data: FetchedSnippet & { user: SnippetOwnerType } }) {
+function RenameMode({
+  data,
+}: {
+  data: FetchedSnippet & { user: SnippetOwnerType };
+}) {
   return <CardCode data={data} noLink />;
 }
 
-function DeleteMode({ data, handleCancel }: { data: FetchedSnippet & { user: SnippetOwnerType }, handleCancel: () => void }) {
+function DeleteMode({
+  data,
+  handleCancel,
+}: {
+  data: FetchedSnippet & { user: SnippetOwnerType };
+  handleCancel: () => void;
+}) {
   const { id } = data;
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
   const { t: tSA } = useTranslation('translation', {
@@ -246,8 +268,7 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
     <div className="snippet-card-footer">
       <div className="toolbar z-1 w-100">
         <div
-          className={`toolbar animated flex-grow-1 ${isOpened ? 'opened' : 'collapsed'
-            }`}
+          className={`toolbar animated flex-grow-1 ${isOpened ? 'opened' : 'collapsed'}`}
         >
           <Button
             className={`btn-icon-only me-auto ${isOpened ? '' : 'd-none'}`}
@@ -292,7 +313,11 @@ function CardFooter({ handleDelete, handleShare, handleDuplicate }) {
   );
 }
 
-function SnippetCard({ data }: { data: FetchedSnippet & { user: SnippetOwnerType } }) {
+function SnippetCard({
+  data,
+}: {
+  data: FetchedSnippet & { user: SnippetOwnerType };
+}) {
   const { id, name, slug, code, language } = data;
   const ownerUsername = data.user.username;
   const dispatch = useDispatch();

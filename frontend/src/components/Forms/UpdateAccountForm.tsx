@@ -9,12 +9,12 @@ import { object } from 'yup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import type { RootReducerType } from 'src/types/slices';
+import type { TypeInitialFormState } from 'src/types/components';
 import { actions as userActions } from '../../slices/userSlice';
 import routes from '../../routes';
 import { email, username } from '../../utils/validationSchemas';
 import FormAlert from './FormAlert';
-import { RootReducerType } from 'src/types/slices';
-import { InitialFormStateType } from 'src/types/components';
 
 function UpdateAccountForm() {
   const { t: tPS } = useTranslation('translation', {
@@ -25,7 +25,10 @@ function UpdateAccountForm() {
   const usernameRef = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
   const userInfo = useSelector((state: RootReducerType) => state.user.userInfo);
-  const initialFormState: InitialFormStateType = { state: 'initial', message: '' };
+  const initialFormState: TypeInitialFormState = {
+    state: 'initial',
+    message: '',
+  };
   const [formState, setFormState] = useState(initialFormState);
 
   const validationSchema = object().shape({

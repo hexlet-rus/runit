@@ -5,7 +5,7 @@ import { GridFill } from 'react-bootstrap-icons';
 
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
-import { actions } from '../../slices/modalSlice.js';
+import { actions } from '../../slices/modalSlice';
 
 function GuestMenu() {
   const { t: tPA } = useTranslation('translation', {

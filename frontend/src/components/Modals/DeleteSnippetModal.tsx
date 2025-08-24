@@ -4,13 +4,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-import { CheckedSnippetsType, RootReducerType } from 'src/types/slices';
+import type { CheckedSnippetsType, RootReducerType } from 'src/types/slices';
 import { useSnippets } from '../../hooks';
 import { actions as snippetsActions } from '../../slices/snippetsSlice';
 import { actions as checkboxesActions } from '../../slices/checkboxesSlice';
 
 function DeleteSnippetModal({ handleClose, isOpen }) {
-  const { checkedSnippets } = useSelector((state: RootReducerType) => state.checkboxes);
+  const { checkedSnippets } = useSelector(
+    (state: RootReducerType) => state.checkboxes,
+  );
 
   const countChecked = checkedSnippets.filter(
     (snippet) => snippet.isChecked,

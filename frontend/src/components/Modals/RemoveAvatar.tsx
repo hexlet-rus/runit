@@ -1,10 +1,10 @@
+import type { AppDispatch } from 'src/slices';
 import { Button, Modal, FormGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
+import type { RootReducerType } from 'src/types/slices';
 import { updateUserSettings } from '../../slices/userSettingsSlice';
-import { RootReducerType } from 'src/types/slices';
-import { AppDispatch } from 'src/slices';
 
 function RemoveAvatar({ handleClose, isOpen }) {
   const { t: tMRA } = useTranslation('translation', {
@@ -12,7 +12,9 @@ function RemoveAvatar({ handleClose, isOpen }) {
   });
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useSelector((state: RootReducerType) => state.user.userInfo);
-  const { loadingStatus } = useSelector((state: RootReducerType) => state.userSettings);
+  const { loadingStatus } = useSelector(
+    (state: RootReducerType) => state.userSettings,
+  );
 
   const handleDeleteAvatar = async () => {
     const data = { avatar_base64: null };
@@ -26,7 +28,7 @@ function RemoveAvatar({ handleClose, isOpen }) {
   };
 
   return (
-    <Modal centered onHide={handleClose} show={isOpen} > { /* Here was a size attr that had value (size='m') but, => Type '"m"' is not assignable to type '"sm" | "lg" | "xl"' */ }
+    <Modal centered onHide={handleClose} show={isOpen}>
       <Modal.Body>
         <div className="text-center">
           <p>{tMRA('message')}</p>

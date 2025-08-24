@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../contexts';
-import routes from '../routes.js';
-import { fetchUserData } from '../slices/userSlice.js';
+import routes from '../routes';
+import { fetchUserData } from '../slices/userSlice';
 
 function AuthProvider({ children }) {
   const dispatch = useDispatch();

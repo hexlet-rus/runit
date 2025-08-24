@@ -12,7 +12,11 @@ interface IFormAlert {
   onClose: () => void;
 }
 
-function FormAlert({ state = 'failed', children, onClose = () => null }: IFormAlert): ReactElement | null  {
+function FormAlert({
+  state,
+  children,
+  onClose = () => null,
+}: IFormAlert): ReactElement | null {
   if (!children) {
     return null;
   }
@@ -27,5 +31,10 @@ function FormAlert({ state = 'failed', children, onClose = () => null }: IFormAl
     </Alert>
   );
 }
+
+FormAlert.defaultProps = {
+  state: 'failed',
+  children: null,
+};
 
 export default FormAlert;

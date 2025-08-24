@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Col, Image, Row } from 'react-bootstrap';
 
-import { CardsType } from 'src/types/components';
+import type { CardsType } from 'src/types/components';
 import ImageCarousel1 from './assets/DisplayWithCode1.jpeg';
 import ImageCarousel2 from './assets/DisplayWithCode2.jpeg';
 import ImageCarousel3 from './assets/DisplayWithCode3.jpeg';

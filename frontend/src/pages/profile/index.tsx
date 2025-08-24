@@ -1,11 +1,16 @@
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import type {
+  FetchedCurrentUser,
+  FetchedSnippet,
+  RootReducerType,
+  SnippetOwnerType,
+} from 'src/types/slices';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import useAppDispatch from '../../hooks/useAppDispatch';
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { fetchUserSnippets } from '../../slices/snippetsSlice';
 import { fetchUserSettings } from '../../slices/userSettingsSlice';
@@ -15,17 +20,17 @@ import NewSnippetForm from './NewSnippetForm';
 import SnippetCard from './SnippetCard';
 import SnippetBadge from './SnippetBadge';
 import SnippetCheck from './SnippetCheck';
-import type { FetchedCurrentUser, FetchedSnippet, RootReducerType, SnippetOwnerType } from 'src/types/slices';
 
-function ProfileLayout({ data, isEditable }: {
-  data: 
-    { 
-      snippets: Array<FetchedSnippet & { user: SnippetOwnerType }>;
-      user: FetchedCurrentUser;
-    },
-  isEditable: boolean 
-}
-) {
+function ProfileLayout({
+  data,
+  isEditable,
+}: {
+  data: {
+    snippets: Array<FetchedSnippet & { user: SnippetOwnerType }>;
+    user: FetchedCurrentUser;
+  };
+  isEditable: boolean;
+}) {
   const { user, snippets } = data;
 
   const guestUser = localStorage.getItem('guestUserData');
@@ -50,7 +55,7 @@ function ProfileLayout({ data, isEditable }: {
           {isEditable ? <NewSnippetForm /> : null}
           {snippets.map((snippet) => (
             <CSSTransition key={snippet.id} classNames="width" timeout={250}>
-              <SnippetCard data={snippet} /> { /** Here was prop isEditable={isEditable} although SnippetCard do not accept this prop */ }
+              <SnippetCard data={snippet} />
             </CSSTransition>
           ))}
         </Row>
@@ -85,10 +90,12 @@ function ProfilePage() {
   // TODO: добавить возможность получать сниппеты другого пользователя, когда появится возможность делится профилем
   return isMyProfile ? (
     <ProfileLayout
-      data={{ user, snippets: snippetsSlice.snippets } as {
-        user: FetchedCurrentUser,
-        snippets: Array<FetchedSnippet & { user: SnippetOwnerType }>
-      }} 
+      data={
+        { user, snippets: snippetsSlice.snippets } as {
+          user: FetchedCurrentUser;
+          snippets: Array<FetchedSnippet & { user: SnippetOwnerType }>;
+        }
+      }
       isEditable={isMyProfile}
     />
   ) : (

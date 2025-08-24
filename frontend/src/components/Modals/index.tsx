@@ -1,3 +1,4 @@
+import type { RootReducerType } from 'src/types/slices';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { actions } from '../../slices';
@@ -14,7 +15,6 @@ import AttemptDuplicateSnippet from './AttemptDuplicateSnippet';
 import ChangeAvatarModal from './ChangeAvatar';
 import RemoveAvatarModal from './RemoveAvatar';
 import DeleteSnippetModal from './DeleteSnippetModal';
-import { RootReducerType } from 'src/types/slices';
 
 const modals = {
   signingUp: SignUpModal,

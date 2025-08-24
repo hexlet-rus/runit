@@ -4,14 +4,16 @@ import { useSelector } from 'react-redux';
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import { useTernaryDarkMode } from 'usehooks-ts';
 
+import type { RootReducerType } from './types/slices';
+
 import { useAuth } from './hooks';
-import Layout from './pages/Layout.jsx';
-import routes from './routes.js';
+import Layout from './pages/Layout';
+import routes from './routes';
 import ScrollToTop from './utils/scrollToTop.js';
 
-import DefaultLoader from './components/Loaders/DefaultLoader.jsx';
+import DefaultLoader from './components/Loaders/DefaultLoader';
 
-const Landing = lazy(() => import('./pages/landing/Landing.jsx'));
+const Landing = lazy(() => import('./pages/landing/Landing'));
 const OldLanding = lazy(() => import('./pages/old-landing'));
 
 const ProfilePage = lazy(() => import('./pages/profile'));
@@ -27,7 +29,9 @@ const NotFoundPage = lazy(() => import('./pages/404'));
 const EmbeddedPage = lazy(() => import('./pages/embed'));
 
 function MyProfileRoute() {
-  const username = useSelector((state) => state.user.userInfo.username);
+  const username = useSelector(
+    (state: RootReducerType) => state.user.userInfo.username,
+  );
 
   return <Navigate to={routes.profilePagePath(username)} replace />;
 }

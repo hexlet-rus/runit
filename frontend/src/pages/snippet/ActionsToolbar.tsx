@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import type { EditorStateType, RootReducerType } from 'src/types/slices';
 
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
@@ -7,7 +8,6 @@ import { BoxArrowUp, Files, PlayFill } from 'react-bootstrap-icons';
 import { toast } from 'react-toastify';
 import { actions } from '../../slices';
 import DisplayIconView from '../../components/ActionsToolbar/index';
-import type { EditorStateType, RootReducerType } from 'src/types/slices';
 import { useAuth, useRunButton, useSaveButton } from '../../hooks';
 import 'react-toastify/dist/ReactToastify.css';
 
