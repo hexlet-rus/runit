@@ -7,6 +7,7 @@ import { useDebounce, useMediaQuery, useTernaryDarkMode } from 'usehooks-ts';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
+import type { RootReducerType } from 'src/types/slices';
 import { useAuth, useSnippets } from '../../hooks/index';
 import { actions } from '../../slices/index';
 
@@ -17,7 +18,6 @@ import Terminal from '../../components/Terminal/index';
 import ActionsToolbar from './ActionsToolbar';
 import AuthWarning from './AuthWarning';
 import FileToolbar from './FileToolbar';
-import type { RootReducerType } from 'src/types/slices';
 
 const AUTOSAVE_TIMEOUT = 1000;
 
@@ -37,7 +37,9 @@ function SnippetPage() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const { currentLanguage } = useSelector((state: RootReducerType) => state.languages);
+  const { currentLanguage } = useSelector(
+    (state: RootReducerType) => state.languages,
+  );
 
   const snippetParams = useMemo(
     () => ({
@@ -99,22 +101,17 @@ function SnippetPage() {
       if (hasViewSnippetParams) {
         const response =
           await snippetApi.getSnippetDataByViewParams(snippetParams);
-        // #TODO: remove check once redirect to 404 is configured
-        if (response.length === 0) {
-          dispatch(actions.openModal({ type: 'snippetUnavailable' }));
-        } else {
-          dispatch(
-            actions.setActiveSnippetData({
-              id: response.id,
-              name: response.name,
-              ownerUsername: snippetParams.username,
-              slug: response.slug,
-              language: response.language,
-            }),
-          );
-          dispatch(actions.changeLanguage(response.language));
-          dispatch(actions.setCodeAndSavedCode(response.code));
-        }
+        dispatch(
+          actions.setActiveSnippetData({
+            id: response.id,
+            name: response.name,
+            ownerUsername: snippetParams.username,
+            slug: response.slug,
+            language: response.language,
+          }),
+        );
+        dispatch(actions.changeLanguage(response.language));
+        dispatch(actions.setCodeAndSavedCode(response.code));
       }
     };
 
@@ -131,7 +128,7 @@ function SnippetPage() {
         saveSnippet(editorData);
       }
 
-      dispatch(actions.resetEditor(undefined));
+      dispatch(actions.resetEditor());
     };
   }, [dispatch, hasViewSnippetParams, saveSnippet, snippetApi, snippetParams]);
 
@@ -167,9 +164,8 @@ function SnippetPage() {
         </Panel>
         <ResizeHandler direction={direction} />
         <Panel
-          className={`${
-            isDarkMode ? 'bg-dark' : 'bg-white'
-          } rounded-3 overflow-hidden`}
+          className={`
+            ${isDarkMode ? 'bg-dark' : 'bg-white'} rounded-3 overflow-hidden`}
           collapsible
           minSize={10}
         >

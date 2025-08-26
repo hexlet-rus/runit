@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
 import { Container, Navbar, Image, Nav, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useTernaryDarkMode } from 'usehooks-ts';
 import LanguageSelector from '../../components/Navigation/LanguageSelector';
 import ThemeSelector from '../../components/Navigation/ThemeSelector';
-import routes from '../../routes.js';
+import routes from '../../routes';
 
 import RunItLogoLight from './assets/LogoHeaderLightTheme.svg';
 import RunItLogoDark from './assets/LogoHeaderDarkTheme.svg';
@@ -67,17 +66,17 @@ function Header() {
               <LanguageSelector />
               <ThemeSelector />
               <Button
-                as={Link as any}
+                as="a"
                 className="rounded-5 btn-signin"
-                to={routes.signInPagePath()}
+                href={routes.signInPagePath()}
                 variant="primary"
               >
                 <span>{tPA('signIn')}</span>
               </Button>
               <Button
-                as={Link as any}
+                as="a"
                 className="rounded-5 btn-signup"
-                to={routes.signUpPagePath()}
+                href={routes.signUpPagePath()}
                 variant="secondary"
               >
                 <span>{tPA('signUp')}</span>

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { Languages } from 'src/types/slices';
+import type { ICreateSnippetsContext } from 'src/types/context';
 
 export const AuthContext = createContext({
   signIn: () => null,
@@ -7,16 +7,16 @@ export const AuthContext = createContext({
   isLoggedIn: false,
 });
 
-export const SnippetsContext = createContext({
-  saveSnippet: (_code: string, _snippetName: string, _template: Languages | string) => null,
-  renameSnippet: (_id: number, _data: { code: string, name: string}) => null,
-  updateSnippet: (_id: string, _params: { code: string, name: string }) => null,
-  deleteSnippet: (_ids: Array<number> | number) => null,
-  genEmbedFrame: (_f: (_username: string, _slug: string) => null) => null,
-  genViewSnippetLink: (_username: string, _slug: string) => null,
-  getSnippetData: (_id: number) => null,
-  getSnippetDataByViewParams: (_params: { username: string, slug: string}) => null,
-  hasViewSnippetParams: (_data: { username: string, slug: string }) => null,
-  genEmbedSnippetLink: (_ownerUsername: string, _slug: string) => null,
+export const SnippetsContext = createContext<ICreateSnippetsContext>({
+  saveSnippet: () => null,
+  renameSnippet: () => null,
+  updateSnippet: () => null,
+  deleteSnippet: () => null,
+  genEmbedFrame: () => null,
+  genViewSnippetLink: () => null,
+  getSnippetData: () => null,
+  getSnippetDataByViewParams: () => null,
+  hasViewSnippetParams: () => null,
+  genEmbedSnippetLink: () => null,
   getDefaultSnippetName: () => null,
 });

@@ -1,3 +1,4 @@
+import type { AppDispatch } from 'src/slices';
 import { toast } from 'react-toastify';
 import { Button, Modal, FormControl, FormLabel, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -5,8 +6,8 @@ import React, { useRef, useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import Resizer from 'react-image-file-resizer';
 import { useDispatch, useSelector } from 'react-redux';
+import type { FetchedCurrentUser, RootReducerType } from 'src/types/slices';
 import { updateUserSettings } from '../../slices/userSettingsSlice';
-import { FetchedCurrentUser, RootReducerType } from 'src/types/slices';
 
 const resizeFile = (file: Blob) =>
   new Promise((resolve) => {
@@ -24,8 +25,6 @@ const resizeFile = (file: Blob) =>
     );
   });
 
-import { AppDispatch } from 'src/slices';
-
 function ChangeAvatar({ handleClose, isOpen }) {
   const dispatch = useDispatch<AppDispatch>();
   const { t: tMCA } = useTranslation('translation', {
@@ -39,7 +38,9 @@ function ChangeAvatar({ handleClose, isOpen }) {
   const [avatarState, setAvatarState] = useState(initialAvatarState);
 
   const { id } = useSelector((state: RootReducerType) => state.user.userInfo);
-  const { loadingStatus } = useSelector((state: RootReducerType) => state.userSettings);
+  const { loadingStatus } = useSelector(
+    (state: RootReducerType) => state.userSettings,
+  );
   const fileInputRef = useRef(null);
   const cropRef = useRef(null);
 
@@ -82,15 +83,15 @@ function ChangeAvatar({ handleClose, isOpen }) {
       });
       const data = { avatar_base64: image as string };
       dispatch(updateUserSettings({ id, data }))
-      .unwrap()
-      .then((req: FetchedCurrentUser & { error?: string }) => {
-        if (!req.error) {
-          handleClose();
-          setAvatarState(initialAvatarState);
-        } else {
-          toast.error('Ошибка сети');
-        }
-      });
+        .unwrap()
+        .then((req: FetchedCurrentUser & { error?: string }) => {
+          if (!req.error) {
+            handleClose();
+            setAvatarState(initialAvatarState);
+          } else {
+            toast.error('Ошибка сети');
+          }
+        });
     }
   };
 

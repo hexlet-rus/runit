@@ -1,9 +1,9 @@
 import Editor from '@monaco-editor/react';
 import { useTernaryDarkMode } from 'usehooks-ts';
 
-import { useEditor } from './hooks.js';
-import theme from '../../utils/theme.js';
-import { Themes } from 'src/types/slices.js';
+import type { Themes } from 'src/types/slices';
+import { useEditor } from './hooks';
+import theme from '../../utils/theme';
 
 function CodeEditor({ readOnly = false }) {
   const { isDarkMode } = useTernaryDarkMode();

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Github } from 'react-bootstrap-icons';
 import Button from 'react-bootstrap/Button';
 
-import routes from '../../routes.js';
+import routes from '../../routes';
 
 const OAUTH_LINK = new URL(routes.oAuthPath(), window.location.origin);
 

@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { actions as checkboxesActions } from '../../slices/checkboxesSlice';
 import type { RootReducerType } from 'src/types/slices';
+import { actions as checkboxesActions } from '../../slices/checkboxesSlice';
 
 function SnippetCheck() {
-  const { isCheckboxesOpen } = useSelector((state: RootReducerType) => state.checkboxes);
+  const { isCheckboxesOpen } = useSelector(
+    (state: RootReducerType) => state.checkboxes,
+  );
   const { t } = useTranslation();
   const { snippets } = useSelector((state: RootReducerType) => state.snippets);
   const isCreateSnippet = snippets.length > 0;

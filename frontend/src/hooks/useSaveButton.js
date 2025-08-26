@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { actions } from '../slices/editorSlice.js';
+import { actions } from '../slices/editorSlice';
 
 const useSaveButton = () => {
   const currentCode = useSelector((state) => state.editor.code);

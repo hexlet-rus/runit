@@ -8,10 +8,10 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
-import routes from '../../routes.js';
+import routes from '../../routes';
 
 import ResetPasswordForm from '../../components/Forms/ResetPasswordForm';
-import NotFoundPage from '../404/index';
+import NotFoundPage from '../404';
 
 function ResetPasswordPage() {
   const { t: tRP } = useTranslation('translation', { keyPrefix: 'resetPass' });

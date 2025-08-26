@@ -13,13 +13,17 @@ import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 
 import axios from 'axios';
-import routes from '../../routes.js';
+import type {
+  Languages,
+  RootReducerType,
+  SupportedLanguagesArr,
+} from 'src/types/slices';
+import routes from '../../routes';
 
-import { useAuth, useSnippets } from '../../hooks/index.js';
-import { snippetName } from '../../utils/validationSchemas.js';
+import { useAuth, useSnippets } from '../../hooks/index';
+import { snippetName } from '../../utils/validationSchemas';
 import { actions as modalActions } from '../../slices/modalSlice';
-import icons from '../../utils/icons.js';
-import { Languages, RootReducerType, SupportedLanguagesArr } from 'src/types/slices.js';
+import icons from '../../utils/icons';
 
 const generateGuestUserData = () => {
   const username = `guest_${faker.string.alphanumeric(5)}`;
@@ -40,8 +44,12 @@ function NewSnippet({ handleClose, isOpen }) {
   const navigate = useNavigate();
   const inputRefTemplate = useRef<HTMLInputElement>(null);
   const inputRefName = useRef<HTMLInputElement>(null);
-  const username = useSelector((state: RootReducerType) => state.user.userInfo.username);
-  const { supportedLanguages } = useSelector((state: RootReducerType) => state.languages);
+  const username = useSelector(
+    (state: RootReducerType) => state.user.userInfo.username,
+  );
+  const { supportedLanguages } = useSelector(
+    (state: RootReducerType) => state.languages,
+  );
   const [once, setOnce] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -169,8 +177,8 @@ function NewSnippet({ handleClose, isOpen }) {
       return;
     }
 
-    const filteredOptions: SupportedLanguagesArr = supportedLanguages.filter((language: Languages) =>
-      language.toLowerCase().startsWith(lowerInput),
+    const filteredOptions: SupportedLanguagesArr = supportedLanguages.filter(
+      (language: Languages) => language.toLowerCase().startsWith(lowerInput),
     );
 
     if (filteredOptions.length === 0) {
@@ -226,19 +234,18 @@ function NewSnippet({ handleClose, isOpen }) {
                               inputRefTemplate.current = node;
                               referenceElementRef(node);
                             }}
+                            id="template"
                             onBlur={formik.handleBlur}
                             onChange={formik.handleChange}
                             onFocus={inputProps.onFocus}
                             placeholder={inputProps.placeholder}
                             type={inputProps.type}
                             value={formik.values.template}
-                            id="template"
                           />
                           {formik.values.template && (
                             <Button
-                              type="button"
                               className="btn"
-                              variant="link"
+                              onClick={resetLanguage}
                               style={{
                                 fontSize: '30px',
                                 textDecoration: 'none',
@@ -250,7 +257,8 @@ function NewSnippet({ handleClose, isOpen }) {
                                 color: '#6c757d',
                                 zIndex: 5,
                               }}
-                              onClick={resetLanguage}
+                              type="button"
+                              variant="link"
                             >
                               &times;
                             </Button>
@@ -291,8 +299,6 @@ function NewSnippet({ handleClose, isOpen }) {
                     value={formik.values.name}
                   />
                   <Form.Control.Feedback
-                    tooltip
-                    type="invalid"
                     style={{
                       textDecoration: 'none',
                       position: 'absolute',
@@ -304,6 +310,8 @@ function NewSnippet({ handleClose, isOpen }) {
                       color: '#fff',
                       zIndex: 5,
                     }}
+                    tooltip
+                    type="invalid"
                   >
                     {t(formik.errors.name)}
                   </Form.Control.Feedback>

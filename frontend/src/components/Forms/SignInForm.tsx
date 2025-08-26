@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-import { TypeInitialFormState } from 'src/types/components';
+import type { TypeInitialFormState } from 'src/types/components';
 import { useAuth } from '../../hooks';
 import routes from '../../routes';
 import { email, required } from '../../utils/validationSchemas';
@@ -26,7 +26,10 @@ function SignInForm({ onSuccess = () => null }) {
   const emailRef = useRef<HTMLInputElement>(null);
   const auth = useAuth();
 
-  const initialFormState: TypeInitialFormState = { state: 'initial', message: '' };
+  const initialFormState: TypeInitialFormState = {
+    state: 'initial',
+    message: '',
+  };
   const [formState, setFormState] = useState(initialFormState);
 
   const [isPasswordVisible, setPasswordVisibility] = useState(false);

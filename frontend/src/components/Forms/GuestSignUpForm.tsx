@@ -7,6 +7,8 @@ import { object } from 'yup';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
+import type { RootReducerType } from 'src/types/slices';
+import type { TypeInitialFormState } from 'src/types/components';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import routes from '../../routes';
@@ -17,8 +19,6 @@ import PasswordVisibilityButton from './PasswordVisibilityButton';
 import FormAlert from './FormAlert';
 import { actions as userActions } from '../../slices/userSlice';
 import { actions as modalActions } from '../../slices/modalSlice';
-import { RootReducerType } from 'src/types/slices';
-import { TypeInitialFormState } from 'src/types/components';
 
 function GuestSignupForm() {
   const { t: tPS } = useTranslation('translation', {
@@ -33,7 +33,10 @@ function GuestSignupForm() {
 
   const userInfo = useSelector((state: RootReducerType) => state.user.userInfo);
 
-  const initialFormState: TypeInitialFormState = { state: 'initial', message: '' };
+  const initialFormState: TypeInitialFormState = {
+    state: 'initial',
+    message: '',
+  };
   const [formState, setFormState] = useState(initialFormState);
 
   const [isPasswordVisible, setPasswordVisibility] = useState(false);

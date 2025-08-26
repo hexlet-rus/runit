@@ -3,8 +3,10 @@ interface EditorSnippetData {
     name: string | null;
     ownerUsername: string | null;
     slug: string;
-    language: string;
+    language?: string;
 }
+
+type DirectionType = 'horizontal' | 'vertical';
 
 export type EditorStateType = {
     snippetData: EditorSnippetData;
@@ -14,8 +16,32 @@ export type EditorStateType = {
     code: string;
     savedCode: string;
     isAllSaved: boolean;
-    direction: 'horizontal' | 'vertical';
+    direction: DirectionType;
     isNotMobile: boolean;
+}
+
+export interface IActionResetEditor {
+  payload: string | null | undefined;
+}
+
+export interface IActionUpdateDirection {
+  payload: DirectionType;
+}
+
+export interface IActionUpdateCode {
+  payload: string;
+}
+
+export interface IActionIsNotMobile {
+  payload: boolean;
+}
+
+export interface IActionUpdateActiveSnippetName {
+  payload: string;
+}
+
+export interface IActionSetActiveSnippetData {
+  payload: EditorSnippetData;
 }
 
 export type CheckedSnippetsType = {
@@ -156,5 +182,3 @@ export type RootReducerType = {
     checkboxes: CheckboxesSnippetsStateType;
     userSettings: UserSettingsStateType;
 }
-
-

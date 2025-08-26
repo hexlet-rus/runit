@@ -7,19 +7,22 @@ import { useNavigate } from 'react-router';
 import { object } from 'yup';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { InitialFormStateType } from 'src/types/components';
+import type { RootReducerType } from 'src/types/slices';
+import type { TypeInitialFormState } from 'src/types/components';
 import { useSnippets } from '../../hooks';
 import useDuplicateSnippet from '../../hooks/useDuplicateSnippet';
 import { snippetName } from '../../utils/validationSchemas';
 import genDuplicateSnippetName from '../../utils/genDuplicateSnippetName';
 import FormAlert from '../Forms/FormAlert';
-import { RootReducerType } from 'src/types/slices';
 
 const validationSchema = object().shape({
   snippetName: snippetName(),
 });
 
-const initialFormState: InitialFormStateType = { state: 'initial', message: '' };
+const initialFormState: TypeInitialFormState = {
+  state: 'initial',
+  message: '',
+};
 
 // duplicateSnippet
 function DuplicateSnippetModal({ handleClose, isOpen }) {
@@ -36,10 +39,15 @@ function DuplicateSnippetModal({ handleClose, isOpen }) {
     keyPrefix: 'toasts.duplicateSnippet',
   });
   const { t } = useTranslation();
-  const username = useSelector((state: RootReducerType) => state.user.userInfo.username);
+  const username = useSelector(
+    (state: RootReducerType) => state.user.userInfo.username,
+  );
 
   const nameRef = useRef<HTMLInputElement>(null);
-  const [formState, setFormState] = useState<InitialFormStateType>({ state: 'initial', message: '' });
+  const [formState, setFormState] = useState<TypeInitialFormState>({
+    state: 'initial',
+    message: '',
+  });
 
   const [newSnippetName, setNewSnippetName] = useState('');
 
