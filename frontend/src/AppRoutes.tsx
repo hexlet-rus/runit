@@ -36,7 +36,13 @@ function MyProfileRoute() {
   return <Navigate to={routes.profilePagePath(username)} replace />;
 }
 
-function ProtectedRoute({ redirectTo = routes.homePagePath(), isAllowed }) {
+function ProtectedRoute({
+  redirectTo = routes.homePagePath(),
+  isAllowed,
+}: {
+  redirectTo: string;
+  isAllowed: boolean;
+}) {
   if (isAllowed) {
     return <Outlet />;
   }

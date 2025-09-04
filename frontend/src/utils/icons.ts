@@ -5,7 +5,7 @@ import HTMLIcon from '../assets/images/icons/html.svg';
 import JavaIcon from '../assets/images/icons/java.svg';
 import RubyIcon from '../assets/images/icons/ruby.svg';
 
-const icons = new Map()
+const icons: Map<unknown, string> = new Map()
   .set('javascript', JavaScriptIcon)
   .set('python', PythonIcon)
   .set('php', PhpIcon)

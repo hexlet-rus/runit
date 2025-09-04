@@ -7,13 +7,13 @@ import type {
 } from 'src/types/slices';
 import routes from '../routes';
 
-export const fetchUserData = createAsyncThunk<
-  UserSettingsThunkType,
-  UserSettingsThunkType
->('user/fetchUserData', async () => {
-  const response = await axios.get(routes.userProfilePath());
-  return response.data;
-});
+export const fetchUserData = createAsyncThunk<UserSettingsThunkType, void>(
+  'user/fetchUserData',
+  async () => {
+    const response = await axios.get(routes.userProfilePath());
+    return response.data;
+  },
+);
 
 const initialState: UserSliceStateType = {
   status: 'empty',
