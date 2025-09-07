@@ -1,7 +1,10 @@
 import { createContext } from 'react';
-import type { ICreateSnippetsContext } from 'src/types/context';
+import type {
+  ICreateSnippetsContext,
+  ICreateAuthContext,
+} from 'src/types/context';
 
-export const AuthContext = createContext({
+export const AuthContext = createContext<ICreateAuthContext>({
   signIn: () => null,
   signOut: () => null,
   isLoggedIn: false,
