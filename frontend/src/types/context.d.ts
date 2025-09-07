@@ -1,5 +1,6 @@
 import { URL } from "url";
 import { Languages, FetchedSnippet } from "./slices";
+import type { FetchedSnippet } from "./slices";
 
 type SaveSnippetContext = (code: string, snippetName: string, template: Languages | string) => Promise<number>;
 type RenameSnippetContext = (id: number, data: { code: string, name: string }) => any;
@@ -7,8 +8,8 @@ type UpdateSnippetContext = (id: number, data: { code: string, name: string }) =
 type DeleteSnippetContext = (ids: Array<number> | number) => AxiosResponse<any, any>
 type GenEmbedFrameContext = (link: string) => string
 type GenViewSnippetLinkContext = (username: string, slug: string) => string;
-type GetSnippetDataContext = (id: number) => any; //?FetchedSnippet
-type GetSnippetDataByViewParamsContext = (data: { username: string, slug: string }) => any; //? string
+type GetSnippetDataContext = (id: number) => Promise<FetchedSnippet>
+type GetSnippetDataByViewParamsContext = (data: { username: string, slug: string }) => Promise<FetchedSnippet>
 type HasViewSnippetParamsContext = (data: { username?: string, slug?: string }) => boolean;
 type GenEmbedSnippetLinkContext = (ownerUsername?: string, slug?: string) => any;
 type getDefaultSnippetNameContext = () => AxiosResponse<any, any>
