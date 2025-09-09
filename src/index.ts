@@ -1,4 +1,5 @@
 import { fastify } from 'fastify';
+import cors from 'fastify-cors'
 import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
 // import { initializeTables } from './db/connection';
 import { runMigrations } from './db/connection';
@@ -36,14 +37,21 @@ const getApp = async () => {
     reply.type('text/plain').send('Hello world');
   });
 
+  await server.register(cors, {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Access-Control-Allow-Origin'],
+    exposedHeaders: ['Authorization', 'Access-Control-Allow-Origin'],
+    credentials: true,
+  })
 
   // Регистрация tRPC плагина
   await server.register(fastifyTRPCPlugin, {
     prefix: '/trpc',
-    trpcOptions: { 
-        router: appRouter,
-        createContext,
-     },
+    trpcOptions: {
+      router: appRouter,
+      createContext,
+    },
   });
 
   return server;
