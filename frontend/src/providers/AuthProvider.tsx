@@ -2,15 +2,16 @@ import axios from 'axios';
 import { useEffect, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import { AppDispatch } from '../slices';
 import { AuthContext } from '../contexts';
+import type { ICreateAuthContext } from '../types/context';
 import routes from '../routes';
 import { fetchUserData } from '../slices/userSlice';
 
-function AuthProvider({ children }) {
-  const dispatch = useDispatch();
+function AuthProvider({ children }: { children: JSX.Element }) {
+  const dispatch: AppDispatch = useDispatch();
   const signInStatus = JSON.parse(localStorage.getItem('signInStatus'));
-  const [isLoggedIn, setLoggedIn] = useState(
+  const [isLoggedIn, setLoggedIn] = useState<boolean>(
     signInStatus ? signInStatus.status : false,
   );
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ function AuthProvider({ children }) {
       });
   }, [dispatch]);
 
-  const memoizedValue = useMemo(
+  const memoizedValue: ICreateAuthContext = useMemo(
     () => ({
       signOut: async () => {
         await axios.post(routes.signOutPath());
