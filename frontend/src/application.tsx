@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createTRPCClient, httpLink } from '@trpc/client';
-import { AppRouter } from '~/../../src/router';
+import type { AppRouter } from '../../src/router';
 import AppRoutes from './AppRoutes';
 import ModalWindow from './components/Modals/index';
 import Toast from './components/Toast/index';
@@ -29,7 +29,7 @@ export default async () => {
   const trpcClient = createTRPCClient<AppRouter>({
     links: [
       httpLink({
-        url: 'http://localhost:3001/trpc',
+        url: '/trpc',
         headers() {
           const token = localStorage.getItem('token');
           return token ? { authorization: `Bearer ${token}` } : {};

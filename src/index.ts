@@ -38,7 +38,6 @@ const getApp = async () => {
   });
 
   await server.register(cors, {
-    origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Access-Control-Allow-Origin'],
     exposedHeaders: ['Authorization', 'Access-Control-Allow-Origin'],
