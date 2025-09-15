@@ -37,13 +37,6 @@ const getApp = async () => {
     reply.type('text/plain').send('Hello world');
   });
 
-  await server.register(cors, {
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Access-Control-Allow-Origin'],
-    exposedHeaders: ['Authorization', 'Access-Control-Allow-Origin'],
-    credentials: true,
-  })
-
   // Регистрация tRPC плагина
   await server.register(fastifyTRPCPlugin, {
     prefix: '/trpc',
