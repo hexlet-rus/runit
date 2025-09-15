@@ -1,5 +1,4 @@
 import { fastify } from 'fastify';
-import cors from 'fastify-cors'
 import { fastifyTRPCPlugin } from '@trpc/server/adapters/fastify';
 // import { initializeTables } from './db/connection';
 import { runMigrations } from './db/connection';
