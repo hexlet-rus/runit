@@ -102,7 +102,7 @@ Define the following environment variables for the deploy:
 
 ## How you can help the project
 
-Look at the list of issues, choose an interesting task, write to the issue to say you would like to work on the task.
+Look at the list of [issues](https://github.com/hexlet-rus/runit/issues?page=1), choose an interesting task, write to the issue to say you would like to work on the task.
 
 ---
 
