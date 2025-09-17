@@ -147,12 +147,12 @@
       "second": "system"
     },
     "allLanguages": {
-      "text": "For now, our development environment only runs code in JavaScript. In the near future we will implement in the editor support for other popular programming languages",
+      "text": "Our development environment supports running code in the most popular programming languages: JavaScript, Python, Go, Java, C++ and others. You can try any of them right in your browser - without installation or registration",
       "title": "All languages"
     },
     "allOS": "Use the editor on macOS, Windows, Linux or any other OS",
     "easyStart": {
-      "first": "Run JavaScript code without installing",
+      "first": "Run code without installing",
       "second": "the application"
     },
     "fast": "The free online code editor Run IT will allow you to do this quickly and without fussing with settings",
