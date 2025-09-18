@@ -261,17 +261,6 @@ function Footer() {
                 <Nav.Link
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0`}
-                  eventKey="guides"
-                  href="https://guides.hexlet.io/ru"
-                  target="_blank"
-                >
-                  {tF('guides')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  className={`${classes.footerNavLink} py-1 px-0`}
                   eventKey="cv"
                   href="https://cv.hexlet.io"
                   target="_blank"
