@@ -186,15 +186,6 @@ function Footer() {
               <li className="mb-2">
                 <NavbarBrand
                   className="p-0"
-                  href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
-                  target="_blank"
-                >
-                  {tF('career')}
-                </NavbarBrand>
-              </li>
-              <li className="mb-2">
-                <NavbarBrand
-                  className="p-0"
                   href="https://hexlet.printdirect.ru/?partner_id=615497"
                   target="_blank"
                 >
