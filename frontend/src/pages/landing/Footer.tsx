@@ -186,15 +186,6 @@ function Footer() {
               <li className="mb-2">
                 <NavbarBrand
                   className="p-0"
-                  href="https://hexlet.printdirect.ru/?partner_id=615497"
-                  target="_blank"
-                >
-                  {tF('shop')}
-                </NavbarBrand>
-              </li>
-              <li className="mb-2">
-                <NavbarBrand
-                  className="p-0"
                   href="mailto: runit@hexlet.io"
                   target="_blank"
                 >
