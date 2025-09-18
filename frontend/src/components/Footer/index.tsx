@@ -32,7 +32,8 @@ function Footer() {
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0`}
                   eventKey="support_email"
-                  href="mailto: runit@hexlet.io"
+                  href="https://t.me/hexlet_help_bot"
+                  rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
                   {tF('mailSupport')}
@@ -222,17 +223,6 @@ function Footer() {
                   target="_blank"
                 >
                   {tF('hexlet')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  className={`${classes.footerNavLink} py-1 px-0`}
-                  eventKey="college"
-                  href="https://hexly.ru/"
-                  target="_blank"
-                >
-                  {tF('college')}
                 </Nav.Link>
               </li>
               <li>

@@ -186,7 +186,8 @@ function Footer() {
               <li className="mb-2">
                 <NavbarBrand
                   className="p-0"
-                  href="mailto: runit@hexlet.io"
+                  href="https://t.me/hexlet_help_bot"
+                  rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
                   {tF('mailSupport')}
