@@ -169,17 +169,6 @@ function Footer() {
                     <Vk className="bi" />
                   </a>
                 </li>
-                <li className="me-4 mb-2">
-                  <a
-                    aria-label="Twitter"
-                    className={`${classes.footerLink}`}
-                    href="https://x.com/HexletHQ"
-                    rel="noopener noreferrer nofollow"
-                    target="_blank"
-                  >
-                    <TwitterX />
-                  </a>
-                </li>
               </ul>
             </Nav>
             {/* Add it when english version will be available

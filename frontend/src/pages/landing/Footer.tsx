@@ -84,20 +84,6 @@ function Footer() {
                   />
                 </NavbarBrand>
               </li>
-              <li>
-                <NavbarBrand
-                  aria-label="X"
-                  className="px-0"
-                  href="https://x.com/HexletHQ"
-                  rel="noopener noreferrer nofollow"
-                  target="_blank"
-                >
-                  <Image
-                    fluid
-                    src={theme ? TwitterLightMobile : TwitterDarkMobile}
-                  />
-                </NavbarBrand>
-              </li>
             </Nav>
           </Col>
         </Row>
@@ -138,16 +124,6 @@ function Footer() {
                   target="_blank"
                 >
                   <Image fluid src={theme ? YouTubeLight : YouTubeDark} />
-                </NavbarBrand>
-              </li>
-              <li>
-                <NavbarBrand
-                  aria-label="X"
-                  href="https://x.com/HexletHQ"
-                  rel="noopener noreferrer nofollow"
-                  target="_blank"
-                >
-                  <Image fluid src={theme ? TwitterLight : TwitterDark} />
                 </NavbarBrand>
               </li>
             </Nav>
