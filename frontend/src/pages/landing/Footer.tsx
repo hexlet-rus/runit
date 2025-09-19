@@ -43,7 +43,7 @@ function Footer() {
           <Col className="col-6 d-flex gap-2 mb-4">
             <Nav
               as="ul"
-              className="d-flex flex-fill justify-content-between px-3 social-networks align-content-center"
+              className="d-flex flex-fill justify-content-evenly px-3 social-networks align-content-center"
             >
               <li>
                 <NavbarBrand
@@ -94,7 +94,7 @@ function Footer() {
           <Col className="d-flex gap-4 flex-nowrap">
             <Nav
               as="ul"
-              className="justify-content-between w-75 social-networks flex-nowrap"
+              className="justify-content-between w-50 social-networks flex-nowrap"
             >
               <li>
                 <NavbarBrand
