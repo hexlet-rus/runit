@@ -32,7 +32,8 @@ function Footer() {
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0`}
                   eventKey="support_email"
-                  href="mailto: runit@hexlet.io"
+                  href="https://t.me/hexlet_help_bot"
+                  rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
                   {tF('mailSupport')}
@@ -169,17 +170,6 @@ function Footer() {
                     <Vk className="bi" />
                   </a>
                 </li>
-                <li className="me-4 mb-2">
-                  <a
-                    aria-label="Twitter"
-                    className={`${classes.footerLink}`}
-                    href="https://x.com/HexletHQ"
-                    rel="noopener noreferrer nofollow"
-                    target="_blank"
-                  >
-                    <TwitterX />
-                  </a>
-                </li>
               </ul>
             </Nav>
             {/* Add it when english version will be available
@@ -239,17 +229,6 @@ function Footer() {
                 <Nav.Link
                   as="a"
                   className={`${classes.footerNavLink} py-1 px-0`}
-                  eventKey="college"
-                  href="https://hexly.ru/"
-                  target="_blank"
-                >
-                  {tF('college')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  className={`${classes.footerNavLink} py-1 px-0`}
                   eventKey="codeBasics"
                   href="https://code-basics.com/ru"
                   target="_blank"
@@ -266,17 +245,6 @@ function Footer() {
                   target="_blank"
                 >
                   {tF('codeBattle')}
-                </Nav.Link>
-              </li>
-              <li>
-                <Nav.Link
-                  as="a"
-                  className={`${classes.footerNavLink} py-1 px-0`}
-                  eventKey="guides"
-                  href="https://guides.hexlet.io/ru"
-                  target="_blank"
-                >
-                  {tF('guides')}
                 </Nav.Link>
               </li>
               <li>
