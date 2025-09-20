@@ -36,14 +36,13 @@ const getApp = async () => {
     reply.type('text/plain').send('Hello world');
   });
 
-
   // Регистрация tRPC плагина
   await server.register(fastifyTRPCPlugin, {
     prefix: '/trpc',
-    trpcOptions: { 
-        router: appRouter,
-        createContext,
-     },
+    trpcOptions: {
+      router: appRouter,
+      createContext,
+    },
   });
 
   return server;
