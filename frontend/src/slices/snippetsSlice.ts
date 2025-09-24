@@ -26,8 +26,12 @@ const snippetSlice = createSlice({
   name: 'snippets',
   initialState,
   reducers: {
+    changeStatus: (state, { payload }) => {
+      state.status = payload;
+    },
     addSnippets: (state, { payload }) => {
-      state.snippets = [...state.snippets, ...payload];
+      state.snippets = [...state.snippets, payload];
+      state.status = 'empty';
     },
     deleteSnippet: (state, { payload }) => {
       const snippetId = !Array.isArray(payload) ? [payload] : payload;
@@ -41,16 +45,6 @@ const snippetSlice = createSlice({
       );
       renamedSnippet.name = name;
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchUserSnippets.pending, (state) => {
-        state.status = 'pending';
-      })
-      .addCase(fetchUserSnippets.fulfilled, (state, { payload }) => {
-        state.snippets = payload.snippets;
-        state.status = 'fullfilled';
-      });
   },
 });
 

@@ -1,29 +1,55 @@
 import { useMemo } from 'react';
 import axios from 'axios';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useDispatch } from 'react-redux';
+import { useTRPC } from '../utils/trpc';
+import type { Languages } from '../types/slices';
 import { SnippetsContext } from '../contexts';
 import routes from '../routes';
+import { actions as snippetActions} from '../slices/snippetsSlice';
 
 function SnippetsProvider({ children }) {
-  const getSnippetData = async (id) => {
-    const response = await axios.get(routes.getSnippetPath(id));
-    return response.data;
+
+  const trpc = useTRPC();
+  const dispatch = useDispatch();
+
+  const saveSnippetMutation = useMutation(
+    trpc.snippets.createSnippet.mutationOptions({
+      onSuccess(data) {
+        dispatch(snippetActions.addSnippets(data));
+        return data.id;
+      },
+    }),
+  );
+  const updateSnippetMutation = useMutation(
+    trpc.snippets.updateSnippet.mutationOptions({
+      onSuccess(updatedSnippet) {
+        return updatedSnippet;
+      },
+    }),
+  );
+
+  const { refetch, data, isSuccess, status } = useQuery(trpc.snippets.generateSnippetName.queryOptions());
+
+  const getSnippetData = async (id: number) => {
+    const response = trpc.snippets.getSnippetById.queryOptions(id);
+    return response;
   };
 
   const getSnippetDataByViewParams = async ({ username, slug }) => {
-    const response = await axios.get(
-      routes.getSnippetPathByParams(username, slug),
+    const response = trpc.snippets.getSnippetByUsernameSlug.queryOptions(
+      username,
+      slug,
     );
-    // #TODO: ответ должен содержать данные о языке сниппета (response.data.language)
-    return response.data;
+    return response;
   };
 
-  const saveSnippet = async (code, name, language) => {
-    const { data } = await axios.post(routes.createSnippetPath(), {
+  const saveSnippet = async (code: string, name: string, language: Languages) => {
+    await saveSnippetMutation.mutateAsync({
       name,
       code,
       language,
     });
-    return data.id;
   };
 
   const deleteSnippet = async (...decodedId) => {
@@ -33,15 +59,20 @@ function SnippetsProvider({ children }) {
     return response;
   };
 
-  const renameSnippet = async (decodedId, data) => {
-    const response = await axios.put(routes.updateSnippetPath(decodedId), data);
+  const renameSnippet = async (decodedId, snippetData) => {
+    const response = await axios.put(
+      routes.updateSnippetPath(decodedId),
+      snippetData,
+    );
     const renamedSnippet = response.data;
     return renamedSnippet;
   };
 
-  const updateSnippet = async (id, data) => {
-    const response = await axios.put(routes.updateSnippetPath(id), data);
-    const updatedSnippet = response.data;
+  const updateSnippet = async (id, snippetData) => {
+    const updatedSnippet = await updateSnippetMutation.mutateAsync(
+      id,
+      snippetData,
+    );
     return updatedSnippet;
   };
 
@@ -74,9 +105,8 @@ function SnippetsProvider({ children }) {
   allowFullScreen
 >`;
 
-  const getDefaultSnippetName = async () => {
-    const response = await axios.get(routes.getDefaultSnippetName());
-    return response.data;
+  const getDefaultSnippetName = async (): Promise<{ name: string }> => {
+    return data;
   };
 
   const memoizedValue = useMemo(

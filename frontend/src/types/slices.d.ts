@@ -86,7 +86,7 @@ export type ModalStateType = {
     item: Partial<ISnippet> | null;
 }
 
-type Statuses = 'empty' | 'fullfilled' | 'pending' | 'rejected';
+type Statuses = 'empty' | 'signedIn' | 'signedOut';
 
 export interface SnippetOwnerType {
     created_at: string;
@@ -131,7 +131,7 @@ export type ResponseUserSnippets = {
 }
 
 export type SnippetsStateType = {
-    status: SnippetsStatuses;
+    status: 'empty' | 'fulfilled' | 'pending' | 'rejected';
     snippets: FetchedSnippet[];
 }
 
@@ -169,7 +169,7 @@ export type UserSliceStateType = {
     status: Statuses;
     // userInfo пока так потому что с бэка из сервиса || контроллера 
     // прилетает cannot read properties of undefined (reading: 'toLowerCase')
-    userInfo: Partial<FetchedCurrentUser> 
+    userInfo: Partial<FetchedCurrentUser>;
 }
 
 export type RootReducerType = {

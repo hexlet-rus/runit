@@ -37,6 +37,19 @@ export class SnippetDatabase {
     }
   }
 
+  static async getSnippetsOfUser(curId: number): Promise<Snippet[] | Error> {
+    const snips = this.verifyUserExists(curId)
+      .then(async () => {
+        const userSnippets = await db
+          .select()
+          .from(snippets)
+          .where(eq(snippets.userId, curId));
+        return userSnippets;
+      })
+      .catch((err) => new Error(err));
+    return snips;
+  }
+
   static async getSnippetById(id: number): Promise<Snippet | undefined> {
     try {
       const [snippet] = await db
@@ -110,7 +123,7 @@ export class SnippetDatabase {
     }
   }
 
-  static async updateSnippet(id: number, updates: UpdateSnippetInput): Promise<Snippet> {
+  static async updateSnippet(id: number, updates: Omit<UpdateSnippetInput, 'id'>): Promise<Snippet> {
     try {
       const [result] = await db
         .update(snippets)
@@ -152,11 +165,13 @@ export class SnippetDatabase {
         .select({ slug: snippets.slug })
         .from(snippets)
         .where(eq(snippets.userId, userId));
-      
-      return generateUniqSlug(userSnippets);
+
+      const validSnippets = userSnippets
+      .filter((snippet): snippet is { slug: string } => snippet.slug !== null);
+      return generateUniqSlug(validSnippets);
     } catch (error) {
       console.error('Error in generateSlug:', error);
-      // Fallback to random slug if generation fails
+      
       return Math.random().toString(36).substring(2, 10);
     }
   }
@@ -165,6 +180,6 @@ export class SnippetDatabase {
     const adjectiveLength = 3 + Math.round(Math.random() * 6);
     const adjective = faker.word.adjective(adjectiveLength);
     const animal = faker.animal.type();
-    return `${adjective}-${animal}`;
+    return adjective + '-' + animal;
   }
 }

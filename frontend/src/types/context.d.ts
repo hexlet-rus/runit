@@ -11,7 +11,7 @@ type GetSnippetDataContext = (id: number) => FetchedSnippet;
 type GetSnippetDataByViewParamsContext = (data: { username: string, slug: string }) => FetchedSnippet;
 type HasViewSnippetParamsContext = (data: { username: string, slug: string }) => string;
 type GenEmbedSnippetLinkContext = (ownerUsername: string, slug: string) => string;
-type getDefaultSnippetNameContext = () => void;
+type getDefaultSnippetNameContext = () => Promise<string>;
 
 export interface ICreateSnippetsContext {
   saveSnippet: SaveSnippetContext,

@@ -10,9 +10,11 @@ import type {
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { useTRPC } from '../../utils/trpc';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
-import { fetchUserSnippets } from '../../slices/snippetsSlice';
+import { actions as snippetActions } from '../../slices/snippetsSlice';
 import { fetchUserSettings } from '../../slices/userSettingsSlice';
 
 import NotFoundPage from '../404/index';
@@ -67,21 +69,25 @@ function ProfileLayout({
 
 function ProfilePage() {
   const dispatch = useAppDispatch();
+  const trpc = useTRPC();
   const { username } = useParams();
   const user = useSelector((state: RootReducerType) => state.user.userInfo);
   const snippetsSlice = useSelector((state: RootReducerType) => state.snippets);
+  const snippets = useQuery(
+    trpc.snippets.getSnippetsOfUser.queryOptions(user.id),
+  );
+  if (!user) {
+    snippets.refetch();
+  }
 
   const isMyProfile = username === user.username;
 
-  useEffect(() => {
-    dispatch(fetchUserSnippets())
-      .unwrap()
-      .catch((serializedError) => {
-        const error = new Error(serializedError.message);
-        error.name = serializedError.name;
-        throw error;
-      });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   if (snippets.isSuccess) {
+  //     dispatch(snippetActions.changeStatus('fulfilled'))
+  //     // dispatch(snippetActions.addSnippets(snippets.data));
+  //   };
+  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchUserSettings());

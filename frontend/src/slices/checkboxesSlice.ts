@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import type {
   CheckedSnippetsType,
   CheckboxesSnippetsStateType,
+  FetchedSnippet,
 } from '../types/slices';
-import { fetchUserSnippets } from './snippetsSlice';
 
 const initialState: CheckboxesSnippetsStateType = {
   checkedSnippets: [],
@@ -33,11 +33,8 @@ const checkboxSlice = createSlice({
         snippet.isChecked = false;
       });
     },
-  },
-
-  extraReducers: (builder) => {
-    builder.addCase(fetchUserSnippets.fulfilled, (state, { payload }) => {
-      state.checkedSnippets = payload.snippets.map((snippet) => {
+    setUncheck: (state, { payload }) => {
+      state.checkedSnippets = payload.snippets.map((snippet: FetchedSnippet) => {
         const container: CheckedSnippetsType = {
           id: snippet.id,
           isChecked: false, // somnitel'no no okay
@@ -45,7 +42,7 @@ const checkboxSlice = createSlice({
         return container;
       });
       state.isCheckboxesOpen = false;
-    });
+    }
   },
 });
 

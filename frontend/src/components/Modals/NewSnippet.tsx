@@ -12,18 +12,19 @@ import Modal from 'react-bootstrap/Modal';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 
-import axios from 'axios';
 import type {
   Languages,
   RootReducerType,
   SupportedLanguagesArr,
 } from 'src/types/slices';
-import routes from '../../routes';
 
 import { useAuth, useSnippets } from '../../hooks/index';
 import { snippetName } from '../../utils/validationSchemas';
 import { actions as modalActions } from '../../slices/modalSlice';
+import { actions as userActions } from '../../slices/userSlice';
 import icons from '../../utils/icons';
+import { useTRPC } from 'src/utils/trpc';
+import { useMutation } from '@tanstack/react-query';
 
 const generateGuestUserData = () => {
   const username = `guest_${faker.string.alphanumeric(5)}`;
@@ -38,6 +39,13 @@ function NewSnippet({ handleClose, isOpen }) {
   });
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
   const { t } = useTranslation();
+  const trpc = useTRPC();
+  const createGuestUserOptions = trpc.users.createUser.mutationOptions({
+    onSuccess(data) {
+      dispatch(userActions.setUserInfo(data));
+    }
+  });
+  const createGuestUserMutation = useMutation(createGuestUserOptions);
   const auth = useAuth();
   const dispatch = useDispatch();
   const snippetApi = useSnippets();
@@ -76,7 +84,7 @@ function NewSnippet({ handleClose, isOpen }) {
       const targetUsername = auth.isLoggedIn ? username : guestData.username;
       if (!auth.isLoggedIn) {
         try {
-          await axios.post(routes.usersPath(), guestData);
+          await createGuestUserMutation.mutateAsync(guestData);
           auth.signIn();
           localStorage.setItem(
             'guestUserData',
@@ -110,12 +118,12 @@ function NewSnippet({ handleClose, isOpen }) {
       }
       try {
         const snipName = `${values.name}`;
-        const id = await snippetApi.saveSnippet(code, snipName, template);
-        const { slug } = await snippetApi.getSnippetData(id);
+        const id = snippetApi.saveSnippet(code, snipName, template);
+        
+        const { slug } = snippetApi.getSnippetData(id);
         const url = new URL(
           snippetApi.genViewSnippetLink(targetUsername, slug),
         );
-        console.log(id, slug, url.pathname);
         formik.values.name = '';
         navigate(url.pathname);
         handleClose();
@@ -153,8 +161,8 @@ function NewSnippet({ handleClose, isOpen }) {
   const generateSnippetName = async () => {
     setIsLoading(true);
     try {
-      const generatedName = await snippetApi.getDefaultSnippetName();
-      formik.setFieldValue('name', generatedName);
+      const { name } = snippetApi.getDefaultSnippetName();
+      formik.setFieldValue('name', name);
       formik.setFieldTouched('name', true);
     } catch (error) {
       if (!error.isAxiosError) {

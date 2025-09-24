@@ -47,7 +47,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
   );
 
   const checkedSnippet = checkedSnippets.find((snippet) => snippet.id === id);
-  const { isChecked } = checkedSnippet;
+  // const { isChecked } = checkedSnippet;
 
   useEffect(() => {
     const filenameInput = inputRef.current;
@@ -104,7 +104,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
 
   const handleOnChange = () => {
     dispatch(
-      checkboxesActions.updateCheckedSnippet({ id, checked: !isChecked }),
+      checkboxesActions.updateCheckedSnippet({ id, checked: false }),
     );
   };
 
@@ -140,7 +140,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
       </Form>
       <Form.Check
         aria-label={name}
-        checked={isChecked || false}
+        // checked={isChecked || false}
         className={`z-2 form-check ${isCheckboxesOpen ? '' : 'd-none'}`}
         onChange={handleOnChange}
         type="checkbox"
@@ -174,7 +174,7 @@ function CardCode({
   });
   const snippetApi = useSnippets();
   const { code, slug } = data;
-  const snippetCreatorUsername = data.user.username;
+  const snippetCreatorUsername = useSelector((state: RootReducerType) => state.user.userInfo.username);
 
   return (
     <div className="snippet-card-body">
@@ -319,7 +319,7 @@ function SnippetCard({
   data: FetchedSnippet & { user: SnippetOwnerType };
 }) {
   const { id, name, slug, code, language } = data;
-  const ownerUsername = data.user.username;
+  const ownerUsername = useSelector((state: RootReducerType) => state.user.userInfo.username);
   const dispatch = useDispatch();
   const [mode, setMode] = useState('viewing');
 
