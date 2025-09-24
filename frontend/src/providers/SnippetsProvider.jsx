@@ -64,15 +64,14 @@ function SnippetsProvider({ children }) {
     return url.toString();
   };
 
-  const genEmbedFrame = (link) => `<iframe 
-  height="300"
-  scrolling="no"
-  style="width: 754px"
+  const genEmbedFrame = (link) => `<iframe
   src="${link}"
+  title="RunIT Snippet"
   loading="lazy"
-  allowTransparency
-  allowFullScreen
->`;
+  style="width: 100%; height: 300px; border: 0;"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  referrerpolicy="no-referrer-when-downgrade"
+></iframe>`;
 
   const getDefaultSnippetName = async () => {
     const response = await axios.get(routes.getDefaultSnippetName());
