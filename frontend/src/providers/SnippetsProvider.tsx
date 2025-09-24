@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import axios from 'axios';
 import { SnippetsContext } from '../contexts';
 import routes from '../routes';
+import type { ICreateSnippetsContext } from '../types/context';
 
 function SnippetsProvider({ children }) {
   const getSnippetData = async (id) => {
@@ -45,8 +46,12 @@ function SnippetsProvider({ children }) {
     return updatedSnippet;
   };
 
-  const hasViewSnippetParams = (urlData = {}) =>
-    urlData.username && urlData.slug;
+  const hasViewSnippetParams = (
+    urlData: {
+      username?: string;
+      slug?: string;
+    } = {},
+  ) => !!(urlData.username && urlData.slug);
 
   const genViewSnippetLink = (username, slug) => {
     const url = new URL(
@@ -79,7 +84,7 @@ function SnippetsProvider({ children }) {
     return response.data;
   };
 
-  const memoizedValue = useMemo(
+  const memoizedValue: ICreateSnippetsContext = useMemo(
     () => ({
       saveSnippet,
       renameSnippet,
