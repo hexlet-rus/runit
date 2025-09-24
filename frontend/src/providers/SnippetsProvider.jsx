@@ -70,6 +70,7 @@ function SnippetsProvider({ children }) {
   loading="lazy"
   style="width: 100%; height: 300px; border: 0;"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
   referrerpolicy="no-referrer-when-downgrade"
 ></iframe>`;
 
