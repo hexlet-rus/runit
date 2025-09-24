@@ -1,14 +1,17 @@
-import axios from 'axios';
 import { useFormik } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { object } from 'yup';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import type { TypeInitialFormState } from 'src/types/components';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useDispatch } from 'react-redux';
+import { actions as userActions } from '../../slices/userSlice';
+import { actions as modalActions } from '../../slices/modalSlice';
 import { useAuth } from '../../hooks';
 import routes from '../../routes';
 import { email, required } from '../../utils/validationSchemas';
@@ -16,8 +19,14 @@ import { email, required } from '../../utils/validationSchemas';
 import GithubSignInButton from './GithubSignInButton';
 import PasswordVisibilityButton from './PasswordVisibilityButton';
 import FormAlert from './FormAlert';
+import { useTRPC } from '../../utils/trpc';
+import { TRPCClientError } from '@trpc/client';
 
-function SignInForm({ onSuccess = () => null }) {
+function SignInForm() {
+  const dispatch = useDispatch();
+  const trpc = useTRPC();
+  const redir = useNavigate();
+
   const { t: tPS } = useTranslation('translation', {
     keyPrefix: 'profileSettings',
   });
@@ -25,6 +34,19 @@ function SignInForm({ onSuccess = () => null }) {
   const { t } = useTranslation();
   const emailRef = useRef<HTMLInputElement>(null);
   const auth = useAuth();
+
+  const loginUserOptions = trpc.users.isUserExist.mutationOptions({
+    onSuccess(data) {
+      dispatch(modalActions.closeModal());
+      dispatch(userActions.setUserStatus('signedIn'));
+      dispatch(userActions.setUserInfo(data.user));
+      redir(routes.myProfilePagePath());
+    },
+    onError(e) {
+      console.log(e);
+    },
+  });
+  const loginUserMutation = useMutation(loginUserOptions);
 
   const initialFormState: TypeInitialFormState = {
     state: 'initial',
@@ -53,22 +75,20 @@ function SignInForm({ onSuccess = () => null }) {
       const preparedValues = validationSchema.cast(values);
       try {
         actions.setSubmitting(true);
-        await axios.post(routes.signInPath(), {
+        await loginUserMutation.mutateAsync({
           email: preparedValues.email,
-          password: values.password,
+          password: preparedValues.password,
         });
         auth.signIn();
-        actions.setSubmitting(false);
-        onSuccess();
       } catch (err) {
-        if (!err.isAxiosError) {
+        if (!(err instanceof TRPCClientError)) {
           setFormState({
             state: 'failed',
             message: 'errors.unknown',
           });
           throw err;
         }
-        if (err.response?.status === 401) {
+        if (err.data.httpStatus === '401') {
           setFormState({
             state: 'failed',
             message: 'errors.signInFailed',

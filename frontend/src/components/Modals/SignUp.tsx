@@ -27,11 +27,7 @@ function SignUpModal({ handleClose, isOpen }) {
         <Modal.Title className="display-6">{tSU('pageHeader')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {auth.isLoggedIn && guestUser ? (
-          <GuestSignupForm />
-        ) : (
-          <SignupForm onSuccess={handleClose} />
-        )}
+        {auth.isLoggedIn && guestUser ? <GuestSignupForm /> : <SignupForm />}
         {!guestUser && (
           <div className="d-flex justify-content-center align-items-baseline mt-5">
             <span className="text-body-secondary">{tSUF('signInHeader')}</span>{' '}

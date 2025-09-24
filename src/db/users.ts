@@ -13,12 +13,17 @@ export const createUserSchema = z.object({
 export const updateUserSchema = z.object({
   id: z.number(),
   username: z.string().min(3).max(20).optional(),
-  email: z.string().email().max(60).optional(),
+  email: z.string().email().optional(),
   password: z.string().min(6).max(60).optional(),
   recoverHash: z.string().max(50).optional(),
 });
 
 export const getUserByIdSchema = z.number();
+
+export const getUserByEmailSchema = z.object({
+  email: z.string().email().max(60),
+  password: z.string().min(6),
+})
 
 export type CreateUserInput = z.infer<typeof createUserSchema>;
 export type UpdateUserInput = z.infer<typeof updateUserSchema>;

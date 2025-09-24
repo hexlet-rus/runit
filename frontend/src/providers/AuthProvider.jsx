@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useEffect, useMemo, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../contexts';
 import routes from '../routes';
-import { fetchUserData } from '../slices/userSlice';
+import { actions } from '../slices/userSlice';
 
 function AuthProvider({ children }) {
   const dispatch = useDispatch();
@@ -14,38 +14,35 @@ function AuthProvider({ children }) {
     signInStatus ? signInStatus.status : false,
   );
   const navigate = useNavigate();
+  const statusOfUser = useSelector((state) => state.user.status);
 
   useEffect(() => {
-    dispatch(fetchUserData())
-      .unwrap()
-      .then(() => {
-        setLoggedIn(true);
-      })
-      .catch(() => {
-        localStorage.removeItem('signInStatus');
-        localStorage.removeItem('guestUserData');
-        setLoggedIn(false);
-      });
-  }, [dispatch]);
+      if (statusOfUser === 'signedIn') setLoggedIn(true);
+      localStorage.removeItem('signInStatus');
+      localStorage.removeItem('guestUserData');
+      setLoggedIn(false);
+  }, [dispatch, statusOfUser]);
 
   const memoizedValue = useMemo(
     () => ({
       signOut: async () => {
-        await axios.post(routes.signOutPath());
+        dispatch(actions.setUserInfo({}));
+        dispatch(actions.setUserStatus('signedOut'));
         localStorage.removeItem('signInStatus');
         setLoggedIn(false);
         navigate(routes.landingPath());
       },
 
       signIn: () => {
-        localStorage.removeItem('guestUserData');
-        dispatch(fetchUserData())
-          .unwrap()
-          .catch((serializedError) => {
+        if (statusOfUser === 'signedIn') {
+          try {
+            localStorage.removeItem('guestUserData');
+          } catch (serializedError) {
             const error = new Error(serializedError.message);
             error.name = serializedError.name;
             throw error;
-          });
+          }
+        }
         localStorage.setItem('signInStatus', JSON.stringify({ status: true }));
         setLoggedIn(true);
       },

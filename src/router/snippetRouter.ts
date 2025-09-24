@@ -1,5 +1,4 @@
 import { router, publicProcedure } from '../context';
-import { z } from 'zod';
 import { 
   SnippetDatabase, 
   createSnippetSchema, 
@@ -9,6 +8,13 @@ import {
 } from '../db/snippets';
 
 export const snippetRouter = router({
+  getSnippetsOfUser: publicProcedure
+    .input(getSnippetByIdSchema)
+    .query(async ({ input }) => {
+      const result = await SnippetDatabase.getSnippetsOfUser(input);
+      return result;
+    }),
+  
   getSnippetById: publicProcedure
     .input(getSnippetByIdSchema)
     .query(async ({ input }) => {

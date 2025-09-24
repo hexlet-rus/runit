@@ -1,13 +1,28 @@
 import { router, publicProcedure } from '../context';
-import { z } from 'zod';
 import { 
   UserDatabase, 
   createUserSchema, 
+  getUserByEmailSchema, 
   getUserByIdSchema,
   updateUserSchema 
 } from '../db/users';
 
+// Это написал фронтендер :) Нужен анализ
 export const userRouter = router({
+  isUserExist: publicProcedure
+  .input(getUserByEmailSchema)
+  .mutation(async ({ input, ctx }) => {
+    const user = await UserDatabase.getUserByEmail(input.email);
+    if (user) {
+      const correctPwd = user?.password === input.password;
+      if (correctPwd) {
+        return { success: true, user };
+      } 
+      throw new Error('Wrong password!');
+    }
+    throw new Error('Email doesnt exist');
+  }),
+
   getUserById: publicProcedure
     .input(getUserByIdSchema)
     .query(async ({ input, ctx }) => {

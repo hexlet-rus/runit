@@ -26,11 +26,7 @@ function SignUp() {
           <Col className="max-w-sm p-0">
             <div className="d-flex flex-column gap-sm-3 gap-4 bg-body rounded-4 p-4 p-sm-5">
               <h1 className="display-6">{tSU('pageHeader')}</h1>
-              <SignUpForm
-                onSuccess={() => {
-                  navigate(routes.myProfilePagePath());
-                }}
-              />
+              <SignUpForm />
               <hr />
               <div className="small">
                 <span className="text-body-secondary">

@@ -1534,21 +1534,6 @@ fast-uri@^3.0.0, fast-uri@^3.0.1:
   resolved "https://registry.npmjs.org/fast-uri/-/fast-uri-3.1.0.tgz"
   integrity sha512-iPeeDKJSWf4IEOasVVrknXpaBV0IApz/gp7S2bb7Z4Lljbl2MGJRqInZiUrQwV16cpzw/D3S5j5Julj/gT52AA==
 
-fastify-cors@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.npmjs.org/fastify-cors/-/fastify-cors-3.0.3.tgz"
-  integrity sha512-SDMa+GtyTTAU7pWZwY4fukb/VwCZ4c30p0oEaE7/d/+VCvceB1+NzW2udp2dSZZfWR7J1kUookCpw2dLmtAsSw==
-  dependencies:
-    fastify-plugin "^1.6.0"
-    vary "^1.1.2"
-
-fastify-plugin@^1.6.0:
-  version "1.6.1"
-  resolved "https://registry.npmjs.org/fastify-plugin/-/fastify-plugin-1.6.1.tgz"
-  integrity sha512-APBcb27s+MjaBIerFirYmBLatoPCgmHZM6XP0K+nDL9k0yX8NJPWDY1RAC3bh6z+AB5ULS2j31BUfLMT3uaZ4A==
-  dependencies:
-    semver "^6.3.0"
-
 fastify@^5.4.0:
   version "5.5.0"
   resolved "https://registry.npmjs.org/fastify/-/fastify-5.5.0.tgz"
@@ -2987,11 +2972,6 @@ v8-to-istanbul@^9.0.1:
     "@jridgewell/trace-mapping" "^0.3.12"
     "@types/istanbul-lib-coverage" "^2.0.1"
     convert-source-map "^2.0.0"
-
-vary@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
-  integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
 walker@^1.0.8:
   version "1.0.8"
