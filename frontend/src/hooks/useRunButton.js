@@ -13,11 +13,20 @@ const useRunButton = () => {
     (state) => state.terminal.codeExecutionState,
   );
   const snippet = useSelector((state) => state.editor.snippetData);
-  const code = useSelector((state) => state.editor.code);
-  const onClick = useCallback(
-    () => dispatch(runCode({ ...snippet, code })),
-    [dispatch, code, snippet],
+  const isSnippetRunnable = Boolean(
+    snippet &&
+      snippet.id !== null &&
+      snippet.slug &&
+      snippet.language,
   );
+  const code = useSelector((state) => state.editor.code);
+  const onClick = useCallback(() => {
+    if (!isSnippetRunnable) {
+      return;
+    }
+
+    dispatch(runCode({ ...snippet, code }));
+  }, [dispatch, code, snippet, isSnippetRunnable]);
   const update = async (id, name) => {
     const response = await axios.put(routes.updateSnippetPath(id), {
       code,
@@ -27,7 +36,8 @@ const useRunButton = () => {
     return response;
   };
 
-  const disabled = codeExecutionState === 'executing';
+  const disabled =
+    codeExecutionState === 'executing' || !isSnippetRunnable;
 
   return {
     onClick,
