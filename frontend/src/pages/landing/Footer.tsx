@@ -43,7 +43,7 @@ function Footer() {
           <Col className="col-6 d-flex gap-2 mb-4">
             <Nav
               as="ul"
-              className="d-flex flex-fill justify-content-between px-3 social-networks align-content-center"
+              className="d-flex flex-fill justify-content-evenly px-3 social-networks align-content-center"
             >
               <li>
                 <NavbarBrand
@@ -84,20 +84,6 @@ function Footer() {
                   />
                 </NavbarBrand>
               </li>
-              <li>
-                <NavbarBrand
-                  aria-label="X"
-                  className="px-0"
-                  href="https://x.com/HexletHQ"
-                  rel="noopener noreferrer nofollow"
-                  target="_blank"
-                >
-                  <Image
-                    fluid
-                    src={theme ? TwitterLightMobile : TwitterDarkMobile}
-                  />
-                </NavbarBrand>
-              </li>
             </Nav>
           </Col>
         </Row>
@@ -108,7 +94,7 @@ function Footer() {
           <Col className="d-flex gap-4 flex-nowrap">
             <Nav
               as="ul"
-              className="justify-content-between w-75 social-networks flex-nowrap"
+              className="justify-content-between w-50 social-networks flex-nowrap"
             >
               <li>
                 <NavbarBrand
@@ -138,16 +124,6 @@ function Footer() {
                   target="_blank"
                 >
                   <Image fluid src={theme ? YouTubeLight : YouTubeDark} />
-                </NavbarBrand>
-              </li>
-              <li>
-                <NavbarBrand
-                  aria-label="X"
-                  href="https://x.com/HexletHQ"
-                  rel="noopener noreferrer nofollow"
-                  target="_blank"
-                >
-                  <Image fluid src={theme ? TwitterLight : TwitterDark} />
                 </NavbarBrand>
               </li>
             </Nav>
@@ -210,25 +186,8 @@ function Footer() {
               <li className="mb-2">
                 <NavbarBrand
                   className="p-0"
-                  href="https://hexlet-ru.notion.site/c6406ed8890747e690d32b050faf42c2"
-                  target="_blank"
-                >
-                  {tF('career')}
-                </NavbarBrand>
-              </li>
-              <li className="mb-2">
-                <NavbarBrand
-                  className="p-0"
-                  href="https://hexlet.printdirect.ru/?partner_id=615497"
-                  target="_blank"
-                >
-                  {tF('shop')}
-                </NavbarBrand>
-              </li>
-              <li className="mb-2">
-                <NavbarBrand
-                  className="p-0"
-                  href="mailto: runit@hexlet.io"
+                  href="https://t.me/hexlet_help_bot"
+                  rel="noopener noreferrer nofollow"
                   target="_blank"
                 >
                   {tF('mailSupport')}
