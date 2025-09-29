@@ -43,11 +43,15 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
     user: SnippetOwnerType;
   };
   const { isCheckboxesOpen, checkedSnippets } = useSelector(
-    (state: RootReducerType) => state.checkboxes,
+    (state: RootReducerType) => ({
+      isCheckboxesOpen: state.checkboxes.isCheckboxesOpen,
+      checkedSnippets: state.checkboxes.checkedSnippets || [],
+    }),
   );
 
-  const checkedSnippet = checkedSnippets.find((snippet) => snippet.id === id);
-  // const { isChecked } = checkedSnippet;
+  const isChecked = checkedSnippets.find(
+    (snippet) => snippet.id === id,
+  )?.isChecked;
 
   useEffect(() => {
     const filenameInput = inputRef.current;
@@ -104,7 +108,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
 
   const handleOnChange = () => {
     dispatch(
-      checkboxesActions.updateCheckedSnippet({ id, checked: false }),
+      checkboxesActions.updateCheckedSnippet({ id, checked: !isChecked }),
     );
   };
 
@@ -140,7 +144,7 @@ function CardHeader({ data, isRenaming, handleRename, handleCancel }) {
       </Form>
       <Form.Check
         aria-label={name}
-        // checked={isChecked || false}
+        checked={isChecked}
         className={`z-2 form-check ${isCheckboxesOpen ? '' : 'd-none'}`}
         onChange={handleOnChange}
         type="checkbox"
@@ -174,7 +178,9 @@ function CardCode({
   });
   const snippetApi = useSnippets();
   const { code, slug } = data;
-  const snippetCreatorUsername = useSelector((state: RootReducerType) => state.user.userInfo.username);
+  const snippetCreatorUsername = useSelector(
+    (state: RootReducerType) => state.user.userInfo.username,
+  );
 
   return (
     <div className="snippet-card-body">
@@ -213,13 +219,11 @@ function DeleteMode({
   const { t: tSA } = useTranslation('translation', {
     keyPrefix: 'snippetActions',
   });
-  const dispatch = useDispatch();
   const snippetApi = useSnippets();
 
   const handleSnippetDelete = async (snippetId: number[] | number) => {
     try {
       await snippetApi.deleteSnippet(snippetId);
-      dispatch(snippetsActions.deleteSnippet(snippetId));
     } catch (error) {
       if (!error.isAxiosError) {
         console.log(tErr('unknown'));
@@ -319,7 +323,9 @@ function SnippetCard({
   data: FetchedSnippet & { user: SnippetOwnerType };
 }) {
   const { id, name, slug, code, language } = data;
-  const ownerUsername = useSelector((state: RootReducerType) => state.user.userInfo.username);
+  const ownerUsername = useSelector(
+    (state: RootReducerType) => state.user.userInfo.username,
+  );
   const dispatch = useDispatch();
   const [mode, setMode] = useState('viewing');
 

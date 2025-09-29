@@ -19,30 +19,34 @@ const checkboxSlice = createSlice({
       const checkedSnippet = state.checkedSnippets.find(
         (snippet: CheckedSnippetsType) => snippet.id === id,
       );
-      if (checkedSnippet) checkedSnippet.isChecked = checked;
+      if (checkedSnippet === undefined) {
+        state.checkedSnippets.push({ id, isChecked: checked });
+      }
     },
     OpenCheckboxes: (state) => {
       state.isCheckboxesOpen = true;
-      state.checkedSnippets.forEach((snippet: CheckedSnippetsType) => {
+      state.checkedSnippets.forEach((snippet) => {
         snippet.isChecked = false;
       });
     },
     CloseCheckboxes: (state) => {
       state.isCheckboxesOpen = false;
-      state.checkedSnippets.forEach((snippet: CheckedSnippetsType) => {
+      state.checkedSnippets.forEach((snippet) => {
         snippet.isChecked = false;
       });
     },
     setUncheck: (state, { payload }) => {
-      state.checkedSnippets = payload.snippets.map((snippet: FetchedSnippet) => {
-        const container: CheckedSnippetsType = {
-          id: snippet.id,
-          isChecked: false, // somnitel'no no okay
-        };
-        return container;
-      });
-      state.isCheckboxesOpen = false;
-    }
+      if (payload.snippets !== undefined) {
+        state.checkedSnippets = payload.snippets.map(
+          (snippet: FetchedSnippet) => {
+            const container: CheckedSnippetsType = {};
+            container.id = snippet.id
+            return container;
+          },
+        );
+        state.isCheckboxesOpen = false;
+      }
+    },
   },
 });
 

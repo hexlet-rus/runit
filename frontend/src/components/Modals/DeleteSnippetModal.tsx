@@ -6,7 +6,6 @@ import Modal from 'react-bootstrap/Modal';
 
 import type { CheckedSnippetsType, RootReducerType } from 'src/types/slices';
 import { useSnippets } from '../../hooks';
-import { actions as snippetsActions } from '../../slices/snippetsSlice';
 import { actions as checkboxesActions } from '../../slices/checkboxesSlice';
 
 function DeleteSnippetModal({ handleClose, isOpen }) {
@@ -28,7 +27,6 @@ function DeleteSnippetModal({ handleClose, isOpen }) {
     handleClose();
     try {
       await snippetApi.deleteSnippet(checkedIds);
-      dispatch(snippetsActions.deleteSnippet(checkedIds));
       dispatch(checkboxesActions.CloseCheckboxes());
     } catch (error) {
       if (!error.isAxiosError) {

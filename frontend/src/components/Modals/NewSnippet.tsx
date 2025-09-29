@@ -18,13 +18,13 @@ import type {
   SupportedLanguagesArr,
 } from 'src/types/slices';
 
+import { useMutation } from '@tanstack/react-query';
+import { useTRPC } from '../../utils/trpc';
 import { useAuth, useSnippets } from '../../hooks/index';
 import { snippetName } from '../../utils/validationSchemas';
 import { actions as modalActions } from '../../slices/modalSlice';
 import { actions as userActions } from '../../slices/userSlice';
 import icons from '../../utils/icons';
-import { useTRPC } from 'src/utils/trpc';
-import { useMutation } from '@tanstack/react-query';
 
 const generateGuestUserData = () => {
   const username = `guest_${faker.string.alphanumeric(5)}`;
@@ -39,15 +39,15 @@ function NewSnippet({ handleClose, isOpen }) {
   });
   const { t: tErr } = useTranslation('translation', { keyPrefix: 'errors' });
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   const trpc = useTRPC();
   const createGuestUserOptions = trpc.users.createUser.mutationOptions({
     onSuccess(data) {
       dispatch(userActions.setUserInfo(data));
-    }
+    },
   });
   const createGuestUserMutation = useMutation(createGuestUserOptions);
   const auth = useAuth();
-  const dispatch = useDispatch();
   const snippetApi = useSnippets();
   const navigate = useNavigate();
   const inputRefTemplate = useRef<HTMLInputElement>(null);
@@ -118,17 +118,19 @@ function NewSnippet({ handleClose, isOpen }) {
       }
       try {
         const snipName = `${values.name}`;
-        const id = snippetApi.saveSnippet(code, snipName, template);
-        
-        const { slug } = snippetApi.getSnippetData(id);
+        const id = await snippetApi.saveSnippet(code, snipName, template);
+
+        const snipData = await snippetApi.getSnippetData(id);
+
         const url = new URL(
-          snippetApi.genViewSnippetLink(targetUsername, slug),
+          await snippetApi.genViewSnippetLink(targetUsername, snipData.slug),
         );
         formik.values.name = '';
         navigate(url.pathname);
         handleClose();
       } catch (error) {
         if (!error.isAxiosError) {
+          console.log(error.message);
           console.log(tErr('unknown'));
           throw error;
         } else {
@@ -161,7 +163,7 @@ function NewSnippet({ handleClose, isOpen }) {
   const generateSnippetName = async () => {
     setIsLoading(true);
     try {
-      const { name } = snippetApi.getDefaultSnippetName();
+      const name = await snippetApi.getDefaultSnippetName();
       formik.setFieldValue('name', name);
       formik.setFieldTouched('name', true);
     } catch (error) {

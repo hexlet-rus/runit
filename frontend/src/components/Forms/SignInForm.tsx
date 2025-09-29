@@ -10,6 +10,9 @@ import Form from 'react-bootstrap/Form';
 import type { TypeInitialFormState } from 'src/types/components';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
+import { TRPCClientError } from '@trpc/client';
+import { actions as checkboxActions } from '../../slices/checkboxesSlice';
+import { actions as snippetActions } from '../../slices/snippetsSlice';
 import { actions as userActions } from '../../slices/userSlice';
 import { actions as modalActions } from '../../slices/modalSlice';
 import { useAuth } from '../../hooks';
@@ -20,13 +23,12 @@ import GithubSignInButton from './GithubSignInButton';
 import PasswordVisibilityButton from './PasswordVisibilityButton';
 import FormAlert from './FormAlert';
 import { useTRPC } from '../../utils/trpc';
-import { TRPCClientError } from '@trpc/client';
 
 function SignInForm() {
   const dispatch = useDispatch();
   const trpc = useTRPC();
   const redir = useNavigate();
-
+  const [userId, setUserId] = useState<number>(null);
   const { t: tPS } = useTranslation('translation', {
     keyPrefix: 'profileSettings',
   });
@@ -34,12 +36,27 @@ function SignInForm() {
   const { t } = useTranslation();
   const emailRef = useRef<HTMLInputElement>(null);
   const auth = useAuth();
+  const getSnippetsQuery = useQuery(
+    trpc.snippets.getSnippetsOfUser.queryOptions(userId, {
+      enabled: !!userId,
+    }),
+  );
 
   const loginUserOptions = trpc.users.isUserExist.mutationOptions({
-    onSuccess(data) {
+    onSuccess: async (userData) => {
       dispatch(modalActions.closeModal());
       dispatch(userActions.setUserStatus('signedIn'));
-      dispatch(userActions.setUserInfo(data.user));
+      dispatch(userActions.setUserInfo(userData.user));
+      setUserId(userData.user.id);
+      try {
+        const { data } = getSnippetsQuery;
+        if (data !== undefined) {
+          dispatch(snippetActions.addSnippets(data));
+          dispatch(checkboxActions.setUncheck(data));
+        }
+      } catch (error) {
+        console.error('Failed to fetch snippets', error);
+      }
       redir(routes.myProfilePagePath());
     },
     onError(e) {

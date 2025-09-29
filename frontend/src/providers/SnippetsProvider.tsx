@@ -1,18 +1,34 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import axios from 'axios';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import type { ICreateSnippetsContext } from 'src/types/context';
 import { useDispatch } from 'react-redux';
 import { useTRPC } from '../utils/trpc';
-import type { Languages } from '../types/slices';
+import type { FetchedSnippet, Languages } from '../types/slices';
 import { SnippetsContext } from '../contexts';
 import routes from '../routes';
-import { actions as snippetActions} from '../slices/snippetsSlice';
+import { actions as snippetActions } from '../slices/snippetsSlice';
 
 function SnippetsProvider({ children }) {
-
   const trpc = useTRPC();
   const dispatch = useDispatch();
+  const [snippetId, setSnippetId] = useState<number | null>(null);
+  const [snippetViewParams, setSnippetViewParams] = useState<{
+    username: string;
+    slug: string;
+  } | null>(null);
 
+  const deleteSnippetMutation = useMutation(
+    trpc.snippets.deleteSnippet.mutationOptions({
+      onSuccess(data) {
+        dispatch(snippetActions.deleteSnippet(data.ids));
+        return data.success;
+      },
+      onError(e) {
+        console.warn(e.message);
+      },
+    }),
+  );
   const saveSnippetMutation = useMutation(
     trpc.snippets.createSnippet.mutationOptions({
       onSuccess(data) {
@@ -24,38 +40,53 @@ function SnippetsProvider({ children }) {
   const updateSnippetMutation = useMutation(
     trpc.snippets.updateSnippet.mutationOptions({
       onSuccess(updatedSnippet) {
+        dispatch(snippetActions.updateSnippet(updatedSnippet));
         return updatedSnippet;
       },
     }),
   );
+  const snippetNameQuery = useQuery(
+    trpc.snippets.generateSnippetName.queryOptions(),
+  );
+  const snippetDataQuery = useQuery(
+    trpc.snippets.getSnippetById.queryOptions(snippetId, {
+      enabled: !!snippetId,
+    }),
+  );
 
-  const { refetch, data, isSuccess, status } = useQuery(trpc.snippets.generateSnippetName.queryOptions());
+  const snippetDataByViewParamsQuery = useQuery(
+    trpc.snippets.getSnippetByUsernameSlug.queryOptions(snippetViewParams, {
+      enabled: !!snippetViewParams,
+    }),
+  );
 
   const getSnippetData = async (id: number) => {
-    const response = trpc.snippets.getSnippetById.queryOptions(id);
-    return response;
+    setSnippetId(id);
+    return snippetDataQuery;
   };
 
-  const getSnippetDataByViewParams = async ({ username, slug }) => {
-    const response = trpc.snippets.getSnippetByUsernameSlug.queryOptions(
-      username,
-      slug,
-    );
-    return response;
+  const getSnippetDataByViewParams = async (snippetData: {
+    username: string;
+    slug: string;
+  }) => {
+    setSnippetViewParams(snippetData);
+    return snippetDataByViewParamsQuery;
   };
-
-  const saveSnippet = async (code: string, name: string, language: Languages) => {
-    await saveSnippetMutation.mutateAsync({
+  const saveSnippet = async (
+    code: string,
+    name: string,
+    language: Languages,
+  ) => {
+    const { id } = await saveSnippetMutation.mutateAsync({
       name,
       code,
       language,
     });
+    return id;
   };
 
-  const deleteSnippet = async (...decodedId) => {
-    const response = await Promise.all(
-      decodedId.map((id) => axios.delete(routes.deleteSnippetPath(id))),
-    );
+  const deleteSnippet = async (decodedId) => {
+    const response = await deleteSnippetMutation.mutateAsync(decodedId);
     return response;
   };
 
@@ -76,8 +107,8 @@ function SnippetsProvider({ children }) {
     return updatedSnippet;
   };
 
-  const hasViewSnippetParams = (urlData = {}) =>
-    urlData.username && urlData.slug;
+  const hasViewSnippetParams = (urlData) =>
+    !!urlData.username && !!urlData.slug;
 
   const genViewSnippetLink = (username, slug) => {
     const url = new URL(
@@ -105,11 +136,15 @@ function SnippetsProvider({ children }) {
   allowFullScreen
 >`;
 
-  const getDefaultSnippetName = async (): Promise<{ name: string }> => {
-    return data;
+  const getDefaultSnippetName = async () => {
+    if (snippetNameQuery.status === 'success') {
+      return snippetNameQuery.data.name;
+    }
+    const snippName = await snippetNameQuery.refetch();
+    return snippName.data.name;
   };
 
-  const memoizedValue = useMemo(
+  const memoizedValue = useMemo<ICreateSnippetsContext>(
     () => ({
       saveSnippet,
       renameSnippet,

@@ -45,8 +45,8 @@ export interface IActionSetActiveSnippetData {
 }
 
 export type CheckedSnippetsType = {
-    id: number,                             // string???
-    isChecked: boolean,
+    id?: number,                             // string???
+    isChecked?: boolean,
 }
 
 export type CheckboxesSnippetsStateType = {
