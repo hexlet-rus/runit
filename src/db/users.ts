@@ -80,7 +80,7 @@ export class UserDatabase {
       const allUsers = await db
         .select()
         .from(users)
-        .orderBy(desc(users.createdAt));
+        .orderBy(desc(users.created_at));
       
       return allUsers;
     } catch (error) {

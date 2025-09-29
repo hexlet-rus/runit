@@ -4,7 +4,8 @@ import {
   createSnippetSchema, 
   updateSnippetSchema,
   getSnippetByIdSchema,
-  getSnippetByUsernameSlugSchema
+  getSnippetByUsernameSlugSchema,
+  removeSnippetsSchema
 } from '../db/snippets';
 
 export const snippetRouter = router({
@@ -60,7 +61,7 @@ export const snippetRouter = router({
     }),
 
   deleteSnippet: publicProcedure
-    .input(getSnippetByIdSchema)
+    .input(removeSnippetsSchema)
     .mutation(async ({ input }) => {
       const success = await SnippetDatabase.deleteSnippet(input);
       
@@ -68,7 +69,7 @@ export const snippetRouter = router({
         throw new Error('Snippet not found');
       }
       
-      return { success: true, id: input };
+      return { success: true, ids: input };
     }),
 
   generateSnippetName: publicProcedure

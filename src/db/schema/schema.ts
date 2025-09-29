@@ -8,8 +8,8 @@ export const users = sqliteTable('users', {
   email: text('email', { length: 60 }).notNull().unique(),
   password: text('password', { length: 60 }).notNull(),
   recoverHash: text('recover_hash', { length: 50 }),
-  createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+  created_at: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+  updated_at: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
 });
 
 export const snippets = sqliteTable('snippets', {
@@ -18,8 +18,8 @@ export const snippets = sqliteTable('snippets', {
   slug: text('slug', { length: 30 }),
   code: text('code').notNull(),
   language: text('language', { length: 50 }),
-  createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
-  updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+  created_at: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+  updated_at: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
   userId: integer('userId').references(() => users.id),
 });
 

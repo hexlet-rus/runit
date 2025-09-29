@@ -1,4 +1,4 @@
-import { eq, and, desc } from 'drizzle-orm';
+import { eq, and, desc, inArray } from 'drizzle-orm';
 import { z } from 'zod';
 import { db } from './connection';
 import { snippets, users, type Snippet, type NewSnippet } from './schema/schema';
@@ -15,6 +15,7 @@ export const updateSnippetSchema = createSnippetSchema.partial().extend({
   id: z.number()
 });
 
+export const removeSnippetsSchema = z.array(z.number()).or(z.number());
 export const getSnippetByIdSchema = z.number();
 export const getSnippetByUsernameSlugSchema = z.object({
   username: z.string(),
@@ -86,7 +87,7 @@ export class SnippetDatabase {
       return await db
         .select()
         .from(snippets)
-        .orderBy(desc(snippets.createdAt));
+        .orderBy(desc(snippets.created_at));
     } catch (error) {
       console.error('Error in getAllSnippets:', error);
       throw new Error('Failed to get all snippets');
@@ -146,11 +147,12 @@ export class SnippetDatabase {
     }
   }
 
-  static async deleteSnippet(id: number): Promise<boolean> {
+  static async deleteSnippet(ids: number[] | number): Promise<boolean> {
+    const idsArray = Array.isArray(ids) ? ids : [ids];
     try {
       const result = await db
         .delete(snippets)
-        .where(eq(snippets.id, id));
+        .where(inArray(snippets.id, idsArray));
       
       return result.changes > 0;
     } catch (error) {
@@ -176,10 +178,10 @@ export class SnippetDatabase {
     }
   }
 
-  static generateName(): string {
+  static generateName() {
     const adjectiveLength = 3 + Math.round(Math.random() * 6);
     const adjective = faker.word.adjective(adjectiveLength);
     const animal = faker.animal.type();
-    return adjective + '-' + animal;
+    return `${adjective}-${animal}`;
   }
 }
