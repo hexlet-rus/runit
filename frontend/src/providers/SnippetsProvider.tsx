@@ -126,7 +126,7 @@ function SnippetsProvider({ children }) {
     return url.toString();
   };
 
-  const genEmbedFrame = (link) = `<iframe
+  const genEmbedFrame = (link: string) => `<iframe
   src="${link}"
   title="RunIT Snippet"
   loading="lazy"
@@ -134,7 +134,7 @@ function SnippetsProvider({ children }) {
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
   allowfullscreen
   referrerpolicy="no-referrer-when-downgrade"
-></iframe>`
+  ></iframe>`
 
   const getDefaultSnippetName = async () => {
     if (snippetNameQuery.status === 'success') {
