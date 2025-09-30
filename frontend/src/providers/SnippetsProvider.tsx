@@ -5,9 +5,9 @@ import routes from '../routes';
 import type { ICreateSnippetsContext } from '../types/context';
 
 function SnippetsProvider({ children }) {
-  const getSnippetData = async (id) => {
+  const getSnippetData = async (id)=> {
     const response = await axios.get(routes.getSnippetPath(id));
-    return response.data;
+    return response.data ;
   };
 
   const getSnippetDataByViewParams = async ({ username, slug }) => {
