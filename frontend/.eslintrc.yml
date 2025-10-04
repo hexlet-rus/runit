@@ -50,6 +50,7 @@ rules:
   react/prop-types: 'off'
   consistent-return: 0
   react/jsx-sort-props: 1
+  "import/no-relative-packages": "off"
   '@typescript-eslint/interface-name-prefix': 'off'
   '@typescript-eslint/explicit-function-return-type': 'off'
   '@typescript-eslint/explicit-module-boundary-types': 'off'
