@@ -23,6 +23,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "emitDeclarationOnly": true,
+    "types": ["@mantine/core"]
   },
     "include": ["src/**/*"],  
   "exclude": ["node_modules", "src/db"]     
