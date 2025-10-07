@@ -15,7 +15,7 @@ import SnippetsProvider from './providers/SnippetsProvider';
 import { rootReducer } from './slices/index';
 import { initI18next } from './initI18next';
 import { TRPCProvider } from './utils/trpc';
-import '@mantine/core/styles.css'
+import '@mantine/core/styles.css';
 
 const makeQueryClient = () =>
   new QueryClient({
@@ -50,7 +50,7 @@ export default async () => {
     integrations: [new Sentry.BrowserTracing()],
     tracesSampleRate: 1.0,
   });
- 
+
   return (
     <QueryClientProvider client={queryClient}>
       <TRPCProvider queryClient={queryClient} trpcClient={trpcClient}>

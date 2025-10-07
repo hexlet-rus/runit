@@ -39,7 +39,7 @@ $panel-handler-padding: 4px;
     --handler-height: var(--handler-size);
     --handler-transition: height 0.15s ease-in-out;
     cursor: ew-resize;
-    
+
     &::before {
       top: 0;
       bottom: 0;
@@ -53,7 +53,7 @@ $panel-handler-padding: 4px;
     --handler-height: 0.125rem;
     --handler-transition: width 0.15s ease-in-out;
     cursor: ns-resize;
-    
+
     &::before {
       left: 0;
       right: 0;

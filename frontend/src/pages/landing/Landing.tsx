@@ -12,7 +12,6 @@ import Faq from './Faq';
 import Footer from './Footer';
 import Header from './Header';
 import Theses from './Theses';
-import TechnologiesSection from './TechnologiesSection';
 import './assets/fonts/NunitoSans_10pt-Light.ttf';
 import './landing.scss';
 
@@ -41,12 +40,11 @@ function NewLanding() {
     }
     dispatch(actions.openModal({ type: 'newSnippet' }));
   };
-
+ 
   return (
     <div className="wrapper-for-bg-images">
       <div className="first-bg-image mx-auto">
         <Header />
-        <TechnologiesSection/>
         <Container className="landing-body">
           <Row className="my-5 pt-5 about-project" id="aboutProject">
             <Col className="pt-5 d-lg-none" lg={{ offset: 1 }}>
