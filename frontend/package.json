@@ -5,6 +5,8 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@faker-js/faker": "^8.4.0",
+    "@mantine/core": "^8.3.3",
+    "@mantine/hooks": "^8.3.3",
     "@monaco-editor/react": "^4.5.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@sentry/react": "^7.47.0",

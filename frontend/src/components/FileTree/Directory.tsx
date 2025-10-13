@@ -30,7 +30,9 @@ export function Directory({
         <div className="d-inline-block px-2" />
         <div className="w-100">
           {isShow &&
-            documentChildren.map((child: ReactElement) => renderDocumentChildren(child))}
+            documentChildren.map((child: ReactElement) =>
+              renderDocumentChildren(child),
+            )}
         </div>
       </div>
     </div>

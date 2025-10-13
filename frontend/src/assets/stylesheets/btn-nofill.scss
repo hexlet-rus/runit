@@ -2,8 +2,11 @@
   $color,
   $hover-background: $color,
   $hover-color: color-contrast($hover-background),
-  $active-background:
-    if($hover-color == $color-contrast-light, shade-color($color, $btn-active-bg-shade-amount), tint-color($color, $btn-active-bg-tint-amount)),
+  $active-background: if(
+      $hover-color == $color-contrast-light,
+      shade-color($color, $btn-active-bg-shade-amount),
+      tint-color($color, $btn-active-bg-tint-amount)
+    ),
   $active-color: color-contrast($active-background),
   $disabled-color: $color
 ) {

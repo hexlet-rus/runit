@@ -40,7 +40,7 @@ function NewLanding() {
     }
     dispatch(actions.openModal({ type: 'newSnippet' }));
   };
-
+ 
   return (
     <div className="wrapper-for-bg-images">
       <div className="first-bg-image mx-auto">
