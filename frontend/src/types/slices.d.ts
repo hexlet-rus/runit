@@ -54,15 +54,21 @@ export type CheckboxesSnippetsStateType = {
     isCheckboxesOpen: boolean;
 }
 
-type Languages = 'javascript' | 'html' | 'php' | 'python' | 'java' | 'ruby';
+enum Languages {
+  javascript = 'javascript',
+  html = 'html',
+  php = 'php',
+  python = 'python',
+  java = 'java',
+  ruby = 'ruby',
+};
 
 export type SupportedLanguagesArr = Languages[];
 
 export type LanguagesStateType = {
     supportedLanguages: SupportedLangsArr;
-    currentLanguage: Languages;
+    currentLanguage: keyof typeof Languages;
 }
-
 
 type CopiedSnippet = {
     code: string;             // string???
@@ -109,7 +115,7 @@ export type FetchedTerminalDataType = {
     id: number;
     code: string;
     slug: string;
-    language: Languages;
+    language: keyof typeof Languages;
     ownerUsername: string;
     name: string;
 }
@@ -119,7 +125,7 @@ export type FetchedSnippet = {
     slug: string;
     name: string;
     code: string;
-    language: Languages;
+    language: keyof typeof Languages;
     userId: number;
     created_at: string;
     updated_at: string;

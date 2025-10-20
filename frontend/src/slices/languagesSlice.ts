@@ -3,19 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import type {
   LanguagesStateType,
   SupportedLanguagesArr,
-} from 'src/types/slices';
+} from '../types/slices';
 
-const languages: SupportedLanguagesArr = [
-  'javascript',
-  'html',
-  'php',
-  'python',
-  'java',
-  'ruby',
-];
+const languages = ['javascript', 'html', 'php', 'python', 'java', 'ruby'];
 
 const initialState: LanguagesStateType = {
-  supportedLanguages: languages,
+  supportedLanguages: languages as SupportedLanguagesArr,
   currentLanguage: 'javascript',
 };
 
