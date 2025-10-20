@@ -1,17 +1,14 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import type {
-  LanguagesStateType,
-  SupportedLanguagesArr,
-} from 'src/types/slices';
+import { Languages, LanguagesStateType } from '../types/slices';
 
-const languages: SupportedLanguagesArr = [
-  'javascript',
-  'html',
-  'php',
-  'python',
-  'java',
-  'ruby',
+const languages: Languages[] = [
+  Languages.javascript,
+  Languages.html,
+  Languages.php,
+  Languages.python,
+  Languages.java,
+  Languages.ruby,
 ];
 
 const initialState: LanguagesStateType = {

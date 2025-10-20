@@ -21,27 +21,27 @@ export type EditorStateType = {
 }
 
 export interface IActionResetEditor {
-  payload: string | null | undefined;
+    payload: string | null | undefined;
 }
 
 export interface IActionUpdateDirection {
-  payload: DirectionType;
+    payload: DirectionType;
 }
 
 export interface IActionUpdateCode {
-  payload: string;
+    payload: string;
 }
 
 export interface IActionIsNotMobile {
-  payload: boolean;
+    payload: boolean;
 }
 
 export interface IActionUpdateActiveSnippetName {
-  payload: string;
+    payload: string;
 }
 
 export interface IActionSetActiveSnippetData {
-  payload: EditorSnippetData;
+    payload: EditorSnippetData;
 }
 
 export type CheckedSnippetsType = {
@@ -54,15 +54,21 @@ export type CheckboxesSnippetsStateType = {
     isCheckboxesOpen: boolean;
 }
 
-type Languages = 'javascript' | 'html' | 'php' | 'python' | 'java' | 'ruby';
+enum Languages {
+  javascript = 'javascript',
+  html = 'html',
+  java = 'java',
+  php = 'php',
+  ruby = 'ruby',
+  python = 'python',
+}
 
 export type SupportedLanguagesArr = Languages[];
 
 export type LanguagesStateType = {
-    supportedLanguages: SupportedLangsArr;
-    currentLanguage: Languages;
+    supportedLanguages: SupportedLanguagesArr;
+    currentLanguage: keyof typeof Languages;
 }
-
 
 type CopiedSnippet = {
     code: string;             // string???
@@ -78,7 +84,7 @@ type SharedSnippet = {
     ownerUsername: string;
 }
 
-export interface ISnippet extends CopiedSnippet, SharedSnippet {}
+export interface ISnippet extends CopiedSnippet, SharedSnippet { }
 
 export type ModalStateType = {
     isOpen: boolean;
@@ -109,7 +115,7 @@ export type FetchedTerminalDataType = {
     id: number;
     code: string;
     slug: string;
-    language: Languages;
+    language: keyof typeof Languages;
     ownerUsername: string;
     name: string;
 }
