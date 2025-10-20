@@ -54,15 +54,21 @@ export type CheckboxesSnippetsStateType = {
     isCheckboxesOpen: boolean;
 }
 
-type Languages = 'javascript' | 'html' | 'php' | 'python' | 'java' | 'ruby';
+enum Languages {
+    'ruby',
+    'java',
+    'php',
+    'python',
+    'javascript',
+    'html'
+};
 
 export type SupportedLanguagesArr = Languages[];
 
 export type LanguagesStateType = {
-    supportedLanguages: SupportedLangsArr;
+    supportedLanguages: SupportedLanguagesArr;
     currentLanguage: Languages;
 }
-
 
 type CopiedSnippet = {
     code: string;             // string???
