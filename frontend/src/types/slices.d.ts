@@ -54,12 +54,12 @@ export type CheckboxesSnippetsStateType = {
     isCheckboxesOpen: boolean;
 }
 
-type Languages = 'javascript' | 'html' | 'php' | 'python' | 'java' | 'ruby';
+type Languages = 'javascript' | 'python' | 'java' | 'php' | 'ruby' | 'html';
 
 export type SupportedLanguagesArr = Languages[];
 
 export type LanguagesStateType = {
-    supportedLanguages: SupportedLangsArr;
+    supportedLanguages: SupportedLanguagesArr;
     currentLanguage: Languages;
 }
 
