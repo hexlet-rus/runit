@@ -85,36 +85,29 @@ export function Header(_data: PropsType) {
 
   return (
     <Box pb={120} pt={22}>
-      <header>
-        <Group justify="space-around" h="96%">
-          <img src={logo} alt="hexletLogo" />
-          <Group h="100%" gap={18} visibleFrom="lg">
-            {ComputedAnchorElements()}
-          </Group>
-
-          <Group visibleFrom="md">
-            <LanguageSelector />
-            <ThemeSelector />
-            <Button
-              variant="default"
-              radius="xl"
-              onClick={() => handleRedirToSignIn()}
-            >
-              {tPA('signIn')}
-            </Button>
-            <Button radius="xl" onClick={() => handleRedirToSignUp()}>
-              {tPA('signUp')}
-            </Button>
-          </Group>
-
-          <Burger
-            opened={drawerOpened}
-            onClick={toggleDrawer}
-            hiddenFrom="lg"
-          />
+      <Group justify="space-around" h="96%">
+        <img src={logo} alt="hexletLogo" />
+        <Group h="100%" gap={18} visibleFrom="lg">
+          {ComputedAnchorElements()}
         </Group>
-      </header>
 
+        <Group visibleFrom="md">
+          <LanguageSelector />
+          <ThemeSelector />
+          <Button
+            variant="default"
+            radius="xl"
+            onClick={() => handleRedirToSignIn()}
+          >
+            {tPA('signIn')}
+          </Button>
+          <Button radius="xl" onClick={() => handleRedirToSignUp()}>
+            {tPA('signUp')}
+          </Button>
+        </Group>
+
+        <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="lg" />
+      </Group>
       <Drawer
         opened={drawerOpened}
         onClose={closeDrawer}
