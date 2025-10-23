@@ -3,13 +3,14 @@
     "allowJs": true,
     "checkJs": false,
     "jsx": "react-jsx",
-    "module": "CommonJS",
+    "module": "es2020",
+    "moduleResolution": "node",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2017",
+    "target": "es2020",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
@@ -21,8 +22,8 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "emitDeclarationOnly": true,
+    "types": ["@mantine/core"]
   },
-    "include": ["src/**/*"],  
-  "exclude": ["node_modules"]     
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "src/db"]
 }
-

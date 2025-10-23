@@ -1,8 +1,15 @@
 const handleTypoReporter = (options) => {
-  if (!options || !options.authorizationToken && !options.workSpaceId) {
-    throw new Error('Для работы модуля требуется указать workSpaceId и authorizationToken');
+  if (!options || (!options.authorizationToken && !options.workSpaceId)) {
+    throw new Error(
+      'Для работы модуля требуется указать workSpaceId и authorizationToken',
+    );
   }
-  const { workSpaceUrl = 'https://hexlet-correction.herokuapp.com/api/workspaces', userName = null, authorizationToken, workSpaceId } = options;
+  const {
+    workSpaceUrl = 'https://hexlet-correction.herokuapp.com/api/workspaces',
+    userName = null,
+    authorizationToken,
+    workSpaceId,
+  } = options;
   const state = {
     modalShown: false,
   };
@@ -52,16 +59,24 @@ const handleTypoReporter = (options) => {
 
     const submitButton = document.createElement('button');
     submitButton.type = 'button';
-    submitButton.id = 'hexlet-correction-modal_ReportTypo-submit'
+    submitButton.id = 'hexlet-correction-modal_ReportTypo-submit';
     submitButton.textContent = 'Отправить';
 
     const cancelButton = document.createElement('button');
     cancelButton.type = 'button';
-    cancelButton.id = 'hexlet-correction-modal_ReportTypo-cancel'
+    cancelButton.id = 'hexlet-correction-modal_ReportTypo-cancel';
     cancelButton.textContent = 'Отмена';
 
     divButtons.append(submitButton, cancelButton);
-    divTypoReporter.append(divHeader, divFirstLabel, divMessage, inputName, textareaComment, divSecondLabel, divButtons);
+    divTypoReporter.append(
+      divHeader,
+      divFirstLabel,
+      divMessage,
+      inputName,
+      textareaComment,
+      divSecondLabel,
+      divButtons,
+    );
     const body = document.querySelector('body');
     body.append(divModal);
 
@@ -175,7 +190,7 @@ const handleTypoReporter = (options) => {
     #hexlet-correction-modal_ReportTypo-cancel:hover {
       background-color: #e2e6ea;
     }
-    `
+    `;
     document.head.append(style);
   };
 
@@ -200,11 +215,21 @@ const handleTypoReporter = (options) => {
         renderModal();
       }
       const modal = document.getElementById('hexlet-correction-modal_modal');
-      const selectedText = document.getElementById('hexlet-correction-modal_ReportTypo-message');
-      const commentField = document.getElementById('hexlet-correction-modal_ReportTypo-comment');
-      const submitButton = document.getElementById('hexlet-correction-modal_ReportTypo-submit');
-      const cancelBtn = document.getElementById('hexlet-correction-modal_ReportTypo-cancel');
-      const name = document.getElementById('hexlet-correction-modal_ReportTypo-name');
+      const selectedText = document.getElementById(
+        'hexlet-correction-modal_ReportTypo-message',
+      );
+      const commentField = document.getElementById(
+        'hexlet-correction-modal_ReportTypo-comment',
+      );
+      const submitButton = document.getElementById(
+        'hexlet-correction-modal_ReportTypo-submit',
+      );
+      const cancelBtn = document.getElementById(
+        'hexlet-correction-modal_ReportTypo-cancel',
+      );
+      const name = document.getElementById(
+        'hexlet-correction-modal_ReportTypo-name',
+      );
 
       const closeModal = () => {
         modal.style.display = 'none';
@@ -213,7 +238,6 @@ const handleTypoReporter = (options) => {
         submitButton.removeEventListener('click', sendDataHandler);
         cancelBtn.removeEventListener('click', sendDataHandler);
       };
-
 
       const sendData = async (event) => {
         event.preventDefault();
@@ -225,9 +249,9 @@ const handleTypoReporter = (options) => {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Basic ${authorizationToken}`
+              Authorization: `Basic ${authorizationToken}`,
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
           });
           closeModal();
         } catch (error) {
@@ -243,8 +267,13 @@ const handleTypoReporter = (options) => {
       const maxLength = 50;
       const end = Math.min(focusOffset + maxLength, anchorNode.length);
       const start = Math.max(anchorOffset - maxLength, 0);
-      const textBeforeSelection = anchorNode.textContent.substring(start, anchorOffset);
-      const textAfterSelection = anchorNode.substringData ? anchorNode.substringData(focusOffset, end - focusOffset) : '';
+      const textBeforeSelection = anchorNode.textContent.substring(
+        start,
+        anchorOffset,
+      );
+      const textAfterSelection = anchorNode.substringData
+        ? anchorNode.substringData(focusOffset, end - focusOffset)
+        : '';
 
       selectedText.innerHTML = `${textBeforeSelection}<u id="hexlet-correction-modal_ReportTypo-highlight">${selectionText}</u>${textAfterSelection}`;
       commentField.focus();
