@@ -1,91 +1,155 @@
-import { Container, Navbar, Image, Nav, Button } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+import { useDisclosure } from '@mantine/hooks';
 import { useTernaryDarkMode } from 'usehooks-ts';
-import LanguageSelector from '../../components/Navigation/LanguageSelector';
-import ThemeSelector from '../../components/Navigation/ThemeSelector';
-import routes from '../../routes';
+import {
+  Box,
+  Burger,
+  Button,
+  Divider,
+  Drawer,
+  Flex,
+  Group,
+  ScrollArea,
+  Anchor,
+} from '@mantine/core';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 
 import RunItLogoLight from './assets/LogoHeaderLightTheme.svg';
 import RunItLogoDark from './assets/LogoHeaderDarkTheme.svg';
-import Burger from './assets/Burger.svg';
 
-import './landing.scss';
-import './custom-colors.scss';
+import LanguageSelector from '../../components/Navigation/LanguageSelector';
+import ThemeSelector from '../../components/Navigation/ThemeSelector';
 
-function Header() {
+import routes from '../../routes';
+
+interface AnchorData {
+  owner: string;
+  textContent: string;
+}
+
+type PropsType = {
+  data: Array<AnchorData>;
+};
+
+const mockdata: AnchorData[] = [
+  {
+    owner: 'about',
+    textContent: 'О проекте',
+  },
+  {
+    owner: 'possibilities',
+    textContent: 'Возможности',
+  },
+  {
+    owner: 'technologies',
+    textContent: 'Технологии',
+  },
+  {
+    owner: 'community',
+    textContent: 'Сообщество',
+  },
+  {
+    owner: 'faq',
+    textContent: 'FAQ',
+  },
+];
+
+export function Header(_data: PropsType) {
   const { t: tLH } = useTranslation('translation', {
     keyPrefix: 'landing.header',
   });
   const { t: tPA } = useTranslation('translation', {
     keyPrefix: 'profileActions',
   });
-  const { isDarkMode } = useTernaryDarkMode();
 
+  const redir = useNavigate();
+
+  const handleRedirToSignUp = () => {
+    redir(routes.signUpPagePath());
+  };
+
+  const handleRedirToSignIn = () => {
+    redir(routes.signInPagePath());
+  };
+
+  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
+    useDisclosure(false);
+  const { isDarkMode } = useTernaryDarkMode();
   const logo = isDarkMode ? RunItLogoDark : RunItLogoLight;
+
+  const ComputedAnchorElements = () => {
+    return mockdata.map((el) => (
+      <Anchor key={el.owner}>{el.textContent}</Anchor>
+    )); // После того как будет написан роут заменить "mockdata" на данные приходящие из trpc....
+  };
+
   return (
-    <header>
-      <Navbar expand="lg">
-        <Container className="justify-content-between">
-          <Navbar.Brand className="mr-5">
-            <Image className="navbar-logo" src={logo} />
-          </Navbar.Brand>
-          <Navbar.Toggle
-            aria-controls="navbar-responsive"
-            className="border-0 ms-auto"
-            data-bs-toogle="collapse"
-          >
-            <Image src={Burger} />
-          </Navbar.Toggle>
-          <Navbar.Collapse className="my-3 mb-lg-0" id="navbar-responsive">
-            <Nav as="ul" className="text-left text-xl-center">
-              <li>
-                <Navbar.Brand className="header-link" href="#aboutProject">
-                  <span>{tLH('about')}</span>
-                </Navbar.Brand>
-              </li>
-              <li>
-                <Navbar.Brand className="header-link" href="#advantages">
-                  <span>{tLH('advantages')}</span>
-                </Navbar.Brand>
-              </li>
-              <li>
-                <Navbar.Brand className="header-link" href="#possibilities">
-                  <span>{tLH('opportunities')}</span>
-                </Navbar.Brand>
-              </li>
-              <li>
-                <Navbar.Brand className="header-link" href="#faq">
-                  <span>{tLH('faq')}</span>
-                </Navbar.Brand>
-              </li>
-            </Nav>
-            <Nav
-              as="ul"
-              className="mb-3 mb-lg-0 gap-1 ms-auto align-items-xl-center align-items-start"
+    <Box pb={120} pt={22}>
+      <header>
+        <Group justify="space-around" h="96%">
+          <img src={logo} alt="hexletLogo" />
+          <Group h="100%" gap={18} visibleFrom="lg">
+            {ComputedAnchorElements()}
+          </Group>
+
+          <Group visibleFrom="md">
+            <LanguageSelector />
+            <ThemeSelector />
+            <Button
+              variant="default"
+              radius="xl"
+              onClick={() => handleRedirToSignIn()}
             >
-              <LanguageSelector />
-              <ThemeSelector />
-              <Button
-                as="a"
-                className="rounded-5 btn-signin"
-                href={routes.signInPagePath()}
-                variant="primary"
-              >
-                <span>{tPA('signIn')}</span>
-              </Button>
-              <Button
-                as="a"
-                className="rounded-5 btn-signup"
-                href={routes.signUpPagePath()}
-                variant="secondary"
-              >
-                <span>{tPA('signUp')}</span>
-              </Button>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </header>
+              {tPA('signIn')}
+            </Button>
+            <Button radius="xl" onClick={() => handleRedirToSignUp()}>
+              {tPA('signUp')}
+            </Button>
+          </Group>
+
+          <Burger
+            opened={drawerOpened}
+            onClick={toggleDrawer}
+            hiddenFrom="lg"
+          />
+        </Group>
+      </header>
+
+      <Drawer
+        opened={drawerOpened}
+        onClose={closeDrawer}
+        title={<img src={logo} alt="" width="70%" />}
+        size="100%"
+        padding="md"
+        zIndex={65535}
+      >
+        <ScrollArea h="calc(100vh - 80px)" mx="-md">
+          <Divider my="sm" />
+          <Flex
+            mih={50}
+            gap="sm"
+            justify="center"
+            align="flex-start"
+            direction="column"
+            wrap="wrap"
+            pl={10}
+          >
+            {ComputedAnchorElements()}
+          </Flex>
+
+          <Divider my="sm" />
+
+          <Group justify="center" grow pb="xl" px="md">
+            <Button variant="default" onClick={() => handleRedirToSignUp()}>
+              <span>{tPA('signUp')}</span>
+            </Button>
+            <Button onClick={() => handleRedirToSignIn()}>
+              <span>{tPA('signIn')}</span>
+            </Button>
+          </Group>
+        </ScrollArea>
+      </Drawer>
+    </Box>
   );
 }
 
