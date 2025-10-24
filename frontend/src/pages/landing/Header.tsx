@@ -15,8 +15,8 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
-import RunItLogoLight from './assets/LogoHeaderLightTheme.svg';
-import RunItLogoDark from './assets/LogoHeaderDarkTheme.svg';
+import RunItLogoLight from './assets/HeaderLightThemeLogo.svg';
+import RunItLogoDark from './assets/HeaderDarkThemeLogo.svg';
 
 import LanguageSelector from '../../components/Navigation/LanguageSelector';
 import ThemeSelector from '../../components/Navigation/ThemeSelector';
@@ -63,9 +63,9 @@ export function Header() {
   };
 
   return (
-    <Box mb={80} pt={12}>
-      <Group justify="space-around" h="96%">
-        <img src={logo} alt="hexletLogo" />
+    <Box mb={80} py={22}>
+      <Group justify="space-around">
+        <img src={logo} alt="hexletLogo" width={"75px"}/>
         <Group h="100%" gap={18} visibleFrom="lg">
           {ComputedAnchorElements()}
         </Group>
@@ -90,7 +90,7 @@ export function Header() {
       <Drawer
         opened={drawerOpened}
         onClose={closeDrawer}
-        title={<img src={logo} alt="" width="70%" />}
+        title={<img src={logo} alt="hexletLogo" width="100px" />}
         size="100%"
         padding="md"
         zIndex={65535}
@@ -104,14 +104,14 @@ export function Header() {
             align="flex-start"
             direction="column"
             wrap="wrap"
-            pl={10}
+            px="md"
           >
             {ComputedAnchorElements()}
           </Flex>
 
           <Divider my="sm" />
 
-          <Group justify="center" grow pb="xl" px="md">
+          <Group justify="flex-start" pb="xl" px="md">
             <Button variant="default" onClick={() => handleRedirToSignUp()}>
               <span>{tPA('signUp')}</span>
             </Button>

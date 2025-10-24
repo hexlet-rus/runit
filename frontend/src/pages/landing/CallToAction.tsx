@@ -16,7 +16,7 @@ function CallToAction() {
   const { t: tLCTA } = useTranslation('translation', {
     keyPrefix: 'landing.callToAction',
   });
-  const { data } = mockdata;
+  const { data } = mockdata; // убрать после появления роута !!!!
   const dispatch = useDispatch();
 
   const handleOpenIDE = () => {
@@ -44,7 +44,7 @@ function CallToAction() {
         </Text>
       </Flex>
       <Stack justify="flex-end" mt="20px">
-        <Flex gap="sm">
+        <Flex gap="sm" direction={{ base: "column", xs: "row" }}>
           <Button variant="filled" radius="lg" onClick={() => handleOpenIDE()}>
             {tLCTA('ideButton')}
           </Button>
