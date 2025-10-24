@@ -7,7 +7,18 @@ export const users = sqliteTable('users', {
   username: text('username', { length: 20 }).notNull().unique(),
   email: text('email', { length: 60 }).notNull().unique(),
   password: text('password', { length: 60 }).notNull(),
+  isAdmin: integer('is_admin', { mode: 'boolean' }).notNull().default(false),
   recoverHash: text('recover_hash', { length: 50 }),
+  createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+});
+
+export const userSettings = sqliteTable('user_settings', {
+  settingsId: integer('id').primaryKey({ autoIncrement: true }),
+  userId: integer('user_id').notNull().references(() => users.id),
+  theme: text('theme', { length: 20 }).notNull().default('system'),
+  language: text('language', { length: 10 }).notNull().default('ru'),
+  avatarBase64: text('avatar_base64'),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
   updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
 });
@@ -18,13 +29,17 @@ export const snippets = sqliteTable('snippets', {
   slug: text('slug', { length: 30 }),
   code: text('code').notNull(),
   language: text('language', { length: 50 }),
+  userId: integer('userId').references(() => users.id),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
   updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
-  userId: integer('userId').references(() => users.id),
 });
 
-export const usersRelations = relations(users, ({ many }) => ({
+export const usersRelations = relations(users, ({ many, one }) => ({
   snippets: many(snippets),
+  settings: one(userSettings, {
+    fields: [users.id],
+    references: [userSettings.userId],
+  }),
 }));
 
 export const snippetsRelations = relations(snippets, ({ one }) => ({
@@ -34,7 +49,16 @@ export const snippetsRelations = relations(snippets, ({ one }) => ({
   }),
 }));
 
+export const userSettingsRelations = relations(userSettings, ({ one }) => ({
+  user: one(users, {
+    fields: [userSettings.userId],
+    references: [users.id],
+  }),
+}));
+
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
 export type Snippet = typeof snippets.$inferSelect;
 export type NewSnippet = typeof snippets.$inferInsert;
+export type UserSettings = typeof userSettings.$inferSelect;
+export type NewUserSettings = typeof userSettings.$inferInsert;
