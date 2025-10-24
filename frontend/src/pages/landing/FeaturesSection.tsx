@@ -12,6 +12,7 @@ import {
 } from '@mantine/core';
 
 import { motion } from 'framer-motion';
+import '@mantine/core/styles.css';
 
 import { ReactComponent as BeakerIcon } from './assets/IconFeatureSection/Beaker.svg';
 import { ReactComponent as BriefcaseIcon } from './assets/IconFeatureSection/Briefcase.svg';
@@ -80,10 +81,10 @@ const MotionCard = motion(Card as any);
 const items = (data: Feature[]) => data.map((item) => {
   return (
   <MotionCard 
-    key={item.id} 
-    p="md" 
-    radius="md" 
-    withBorder 
+    key={item.id}
+    p="md"
+    radius="md"
+    withBorder
     whileHover={{ scale: 1.1}}
     transition={{ duration: 0.3 }}
     style={{ cursor: 'pointer' }}
