@@ -52,3 +52,11 @@ export interface IHTMLPreview {
 export interface IFileToolbar {
   snippet: Partial<EditorStateType>;
 }
+
+export type CommunityType = {
+  badge: string
+  title: string
+  text: string
+  btn: string
+  link: string
+}
