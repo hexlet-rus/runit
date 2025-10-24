@@ -44,7 +44,7 @@ function CallToAction() {
         </Text>
       </Flex>
       <Stack justify="flex-end" mt="20px">
-        <Flex gap="sm" direction={{ base: "column", xs: "row" }}>
+        <Flex gap="sm" direction={{ base: 'column', xs: 'row' }}>
           <Button variant="filled" radius="lg" onClick={() => handleOpenIDE()}>
             {tLCTA('ideButton')}
           </Button>
