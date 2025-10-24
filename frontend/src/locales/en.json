@@ -167,8 +167,9 @@
     "freeProject": "Free Hexlet Project",
     "header": {
       "about": "About",
-      "advantages": "Advantages",
       "opportunities": "Opportunities",
+      "technologies": "Advantages",
+      "community": "Community",
       "faq": "FAQ"
     },
     "inBrowser": "The editor runs entirely in the browser, so you can start coding in seconds",
