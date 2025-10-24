@@ -143,6 +143,10 @@
     "withGithub": "Войти с помощью GitHub"
   },
   "landing": {
+    "callToAction": {
+      "ideButton": "Открыть IDE",
+      "docButton": "Документация"
+    },
     "allComputers": "Работайте с любого компьютера, имеющего доступ в интернет",
     "allDevices": {
       "first": "Работайте на любом устройстве,",
@@ -165,8 +169,9 @@
     "freeProject": "Бесплатный проект Хекслета",
     "header": {
       "about": "О проекте",
-      "advantages": "Преимущества",
       "opportunities": "Возможности",
+      "technologies": "Преимущества",
+      "community": "Сообщество",
       "faq": "FAQ"
     },
 

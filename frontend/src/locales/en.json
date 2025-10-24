@@ -141,6 +141,10 @@
     "withGithub": "Sign in with GitHub"
   },
   "landing": {
+    "callToAction": {
+      "ideButton": "Open IDE",
+      "docButton": "Documentation"
+    },
     "allComputers": "Work from any computer with Internet access",
     "allDevices": {
       "first": "Work on any device with any operating",
