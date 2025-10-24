@@ -10,6 +10,7 @@ import {
   Group,
   ScrollArea,
   Anchor,
+  Text,
 } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
@@ -22,39 +23,7 @@ import ThemeSelector from '../../components/Navigation/ThemeSelector';
 
 import routes from '../../routes';
 
-interface AnchorData {
-  owner: string;
-  textContent: string;
-}
-
-type PropsType = {
-  data: Array<AnchorData>;
-};
-
-const mockdata: AnchorData[] = [
-  {
-    owner: 'about',
-    textContent: 'О проекте',
-  },
-  {
-    owner: 'possibilities',
-    textContent: 'Возможности',
-  },
-  {
-    owner: 'technologies',
-    textContent: 'Технологии',
-  },
-  {
-    owner: 'community',
-    textContent: 'Сообщество',
-  },
-  {
-    owner: 'faq',
-    textContent: 'FAQ',
-  },
-];
-
-export function Header(_data: PropsType) {
+export function Header() {
   const { t: tLH } = useTranslation('translation', {
     keyPrefix: 'landing.header',
   });
@@ -78,17 +47,23 @@ export function Header(_data: PropsType) {
   const logo = isDarkMode ? RunItLogoDark : RunItLogoLight;
 
   const ComputedAnchorElements = () => {
-    return mockdata.map((el) => (
-      <Anchor key={el.owner}>
-        <Text c="dark">
-          {el.textContent}
-        </Text>
+    const anchorsKeys = {
+      about: 'about',
+      opportunities: 'opportunities',
+      technologies: 'technologies',
+      community: 'community',
+      faq: 'faq',
+    } as const;
+
+    return Object.entries(anchorsKeys).map(([key, label]) => (
+      <Anchor underline="never" key={key}>
+        <Text c="dark">{tLH(label)}</Text>
       </Anchor>
-    )); // После того как будет написан роут заменить "mockdata" на данные приходящие из trpc....
+    ));
   };
 
   return (
-    <Box pb={120} pt={22}>
+    <Box mb={80} pt={12}>
       <Group justify="space-around" h="96%">
         <img src={logo} alt="hexletLogo" />
         <Group h="100%" gap={18} visibleFrom="lg">
@@ -146,6 +121,7 @@ export function Header(_data: PropsType) {
           </Group>
         </ScrollArea>
       </Drawer>
+      <Divider my="lg" />
     </Box>
   );
 }
