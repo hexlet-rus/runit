@@ -79,7 +79,11 @@ export function Header(_data: PropsType) {
 
   const ComputedAnchorElements = () => {
     return mockdata.map((el) => (
-      <Anchor key={el.owner}>{el.textContent}</Anchor>
+      <Anchor key={el.owner}>
+        <Text c="dark">
+          {el.textContent}
+        </Text>
+      </Anchor>
     )); // После того как будет написан роут заменить "mockdata" на данные приходящие из trpc....
   };
 
