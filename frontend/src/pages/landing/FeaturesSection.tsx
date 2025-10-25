@@ -76,33 +76,36 @@ const mocData: Feature[] = [
     },
   ];
 
-const MotionCard = motion(Card as any);
+const MotionCardWrapper = motion.div;
 
 const items = (data: Feature[]) => data.map((item) => {
   return (
-  <MotionCard 
-    key={item.id}
-    p="md"
-    radius="md"
-    withBorder
+    <MotionCardWrapper
     whileHover={{ scale: 1.1}}
     transition={{ duration: 0.3 }}
     style={{ cursor: 'pointer' }}
-  >
-    <Group align="start" wrap="nowrap">
-      <ThemeIcon variant="white" size="md">
-        {item.icon}
-      </ThemeIcon>
-      <Stack align="start" gap={0}>
-        <Text fw={700} size="md">
-          {item.title}
-        </Text>
-        <Text size="xs">
-          {item.textContent}
-        </Text>
-      </Stack>
-    </Group>
-  </MotionCard>
+    >
+      <Card 
+        key={item.id}
+        p="md"
+        radius="md"
+        withBorder
+      >
+      <Group align="start" wrap="nowrap">
+        <ThemeIcon variant="white" size="md">
+          {item.icon}
+        </ThemeIcon>
+        <Stack align="start" gap={0}>
+          <Text fw={700} size="md">
+            {item.title}
+          </Text>
+          <Text size="xs">
+            {item.textContent}
+          </Text>
+        </Stack>
+      </Group>
+    </Card>
+  </MotionCardWrapper>
 )});
 
 function FeaturesSection({ features = mocData }: FeaturesSectionProps) {
