@@ -1,5 +1,7 @@
-[data-bs-theme="dark"] {
-  --bs-body-bg: #050914;
+
+[data-bs-theme=dark] {
+    --bs-body-bg: #050914;
+
   --bs-body-color: #ebf1f9;
   .btn-signup {
     --bs-btn-bg: #ebf1f9;
@@ -15,6 +17,23 @@
     &:hover,
     :focus {
       font-weight: 600;
+
+    }
+    }
+    .btn-start-no-reg {
+    --bs-btn-bg: #050914;
+    --bs-btn-color: #ebf1f9;
+    --bs-btn-border-color: #136ef6;
+    --hover-background: #136ef6;
+    --hover-border: #136ef6;
+    --hover-color: #ebf1f9;
+    --bs-btn-hover-color: #ebf1f9;
+    --bs-btn-hover-bg: #136ef6;
+    --bs-btn-hover-border-color: #136ef6;
+  }
+    .footer {
+        background-color: #136EF6;
+
     }
   }
   .btn-start-no-reg {
@@ -31,9 +50,10 @@
   .footer {
     background-color: #136ef6;
   }
-}
 
-[data-bs-theme="light"] {
+
+
+[data-bs-theme=light] {
   --bs-body-bg: #ebf1f9;
   --bs-body-color: #050914;
   .btn-signup {
@@ -51,8 +71,10 @@
     :focus {
       font-weight: 600;
     }
-  }
-  .btn-start-no-reg {
+
+    }
+      .btn-start-no-reg {
+
     --bs-btn-bg: #ebf1f9;
     --bs-btn-color: #136ef6;
     --bs-btn-border-color: #136ef6;
@@ -63,8 +85,10 @@
     --bs-btn-hover-bg: #136ef6;
     --bs-btn-hover-border-color: #136ef6;
   }
-  .footer {
-    background-color: #050914;
-    width: 100vw;
-  }
+
+    .footer {
+        background-color: #050914;
+        width: 100vw;
+    }
 }
+

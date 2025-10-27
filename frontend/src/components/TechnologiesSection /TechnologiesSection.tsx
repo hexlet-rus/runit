@@ -1,16 +1,46 @@
-import React from 'react';
 import { Title, Box, Flex, Paper, Text, Badge, Group } from '@mantine/core';
-import type { TechnologyCategories } from 'src/types/components';
+import type { TechnologyCategory } from 'src/types/components';
 
+export const mocData: TechnologyCategory[] = [
+  {
+    category: 'Языки',
+    items: [
+      'JavaScript',
+      'TypeScript',
+      'Python',
+      'Go',
+      'Rust',
+      'C',
+      'C++',
+      'PHP',
+      'Ruby',
+    ],
+  },
+  {
+    category: 'Базы данных',
+    items: [
+      'PostgreSQL',
+      'MySQL',
+      'SQLite',
+      'MongoDB',
+      'Redis',
+      'ClickHouse',
+    ],
+  },
+  {
+    category: 'Инструменты',
+    items: ['Git', 'grep', 'curl', 'Mermaid', 'Latex'],
+  },
+];
 
-function TechnologiesSection  ({ technologies }: TechnologyCategories)  {
+function TechnologiesSection({ technologies }: { technologies: TechnologyCategory[] }) {
   return (
     <Box component="section" p="md">
       <Title order={2} mb="xl">
         Технологии
       </Title>
       <Text size="md">
-        Поддерживаем популярные языки, базы данных инструментов.
+        Поддерживаем популярные языки, базы данных и инструменты.
       </Text>
       <Flex
         my="lg"
@@ -20,7 +50,7 @@ function TechnologiesSection  ({ technologies }: TechnologyCategories)  {
         direction="row"
         wrap="wrap"
       >
-        {technologies.map(({ typeTehnology, listNamesTehnology }, index) => {
+        {technologies.map(({ category, items }, index) => {
           return (
             <Paper
               key={index}
@@ -34,10 +64,10 @@ function TechnologiesSection  ({ technologies }: TechnologyCategories)  {
               flex={1}
             >
               <Title opacity={0.5} order={4} mb="xl">
-                {typeTehnology}
+                {category}
               </Title>
               <Group gap="sm">
-                {listNamesTehnology.map((nameTehnology, index) => {
+                {items.map((nameTehnology, index) => {
                   return (
                     <Badge
                       key={index}

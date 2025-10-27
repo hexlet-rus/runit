@@ -53,9 +53,9 @@ export interface IFileToolbar {
   snippet: Partial<EditorStateType>;
 }
 
-interface Technology {
-  typeTehnology: string;
-  listNamesTehnology: string[];
+interface TechnologySection {
+  typeTechnology: string;
+  listNamesTechnology: string[];
 }
 
 export interface TechnologyCategories {

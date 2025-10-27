@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { MantineProvider } from '@mantine/core';
 import * as Sentry from '@sentry/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-
+import '@mantine/core/styles.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createTRPCClient, httpLink } from '@trpc/client';
-import type { AppRouter } from '../../src/router/index';
+import type { AppRouter } from '../../src/router';
 import AppRoutes from './AppRoutes';
 import ModalWindow from './components/Modals/index';
 import Toast from './components/Toast/index';
@@ -15,7 +14,7 @@ import SnippetsProvider from './providers/SnippetsProvider';
 import { rootReducer } from './slices/index';
 import { initI18next } from './initI18next';
 import { TRPCProvider } from './utils/trpc';
-import '@mantine/core/styles.css';
+import { MantineProvider } from '@mantine/core';
 
 const makeQueryClient = () =>
   new QueryClient({
@@ -55,17 +54,17 @@ export default async () => {
     <QueryClientProvider client={queryClient}>
       <TRPCProvider queryClient={queryClient} trpcClient={trpcClient}>
         <Provider store={store}>
-          <MantineProvider>
-            <BrowserRouter>
-              <AuthProvider>
-                <SnippetsProvider>
+          <BrowserRouter>
+            <AuthProvider>
+              <SnippetsProvider>
+                <MantineProvider withStaticClasses withCssVariables>
                   <AppRoutes />
                   <ModalWindow />
-                  <Toast />
-                </SnippetsProvider>
-              </AuthProvider>
-            </BrowserRouter>
-          </MantineProvider>
+                </MantineProvider>
+                <Toast />
+              </SnippetsProvider>
+            </AuthProvider>
+          </BrowserRouter>
         </Provider>
       </TRPCProvider>
     </QueryClientProvider>
