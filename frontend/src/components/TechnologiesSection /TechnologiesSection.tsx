@@ -35,7 +35,7 @@ export const mocData: TechnologyCategory[] = [
 
 function TechnologiesSection({ technologies }: { technologies: TechnologyCategory[] }) {
   return (
-    <Box component="section" p="md">
+    <Box component="section">
       <Title order={2} mb="xl">
         Технологии
       </Title>

@@ -1,25 +1,30 @@
-import { AppShell } from "@mantine/core";
+import { AppShell, Flex, useMantineTheme } from "@mantine/core";
 import Footer from "../Footer";
+import TechnologiesSection, { mocData } from "../TechnologiesSection /TechnologiesSection";
+import { SectionContainer } from "./layout";
 
-const mockdata = [
-  { link: '#', label: 'Contact' },
-  { link: '#', label: 'Privacy' },
-  { link: '#', label: 'Blog' },
-  { link: '#', label: 'Careers' },
-]
+
 function HomePage() {
-  
+  const theme = useMantineTheme();
   return (
-    <AppShell header={{ height: 'auto' }} footer={{ height: 'auto' }} padding="md">
+    <AppShell header={{ height: 60 }}>
 
-      <AppShell.Header pos="sticky">
-          <AppShell.Section mx="auto" px="md" py="md" style={{maxWidth: 1440}}>Header</AppShell.Section>
+      <AppShell.Header>
+        <SectionContainer>
+            Header
+        </SectionContainer>
       </AppShell.Header>
 
-      <AppShell.Main mx="auto" px="md" py={0} style={{maxWidth: 1440}}>Main</AppShell.Main>
+      <AppShell.Main >
+        <SectionContainer>
+          <TechnologiesSection technologies={mocData}/>
+        </SectionContainer>
+      </AppShell.Main>
 
-      <AppShell.Footer>
-        <Footer/>
+      <AppShell.Footer pos="relative">
+        <SectionContainer>
+          <Footer/>
+        </SectionContainer>
       </AppShell.Footer>
 
     </AppShell>
