@@ -13,20 +13,21 @@ const themeIcons = {
 };
 
 function ThemeOption({ themeName, handleSelect, active = false }) {
-  const { t } = useTranslation();
-
+  const { t: themesTranslation } = useTranslation('translation', {
+    keyPrefix: 'settings.themes',
+  });
   const ThemeIcon = themeIcons[themeName];
   return (
     <Button onClick={handleSelect}>
       <ThemeIcon className="bi" />
-      {t(`settings.themes.${themeName}`)}
+      {themesTranslation(`${themeName}`)}
     </Button>
   );
 }
 
 function ThemeSelector() {
   const [popoverOpen, setPopoverOpen] = useState<boolean>(false);
-  const { t: tST } = useTranslation('translation', {
+  const { t: settingTextContent } = useTranslation('translation', {
     keyPrefix: 'settings.themes',
   });
   const { ternaryDarkMode, setTernaryDarkMode } = useTernaryDarkMode();
@@ -46,7 +47,9 @@ function ThemeSelector() {
       <Popover.Target>
         <UnstyledButton onClick={() => setPopoverOpen((o) => !o)}>
           <CurrentThemeIcon />
-          <span className="visually-hidden">{tST('header')}</span>
+          <span className="visually-hidden">
+            {settingTextContent('header')}
+          </span>
         </UnstyledButton>
       </Popover.Target>
       <Popover.Dropdown>

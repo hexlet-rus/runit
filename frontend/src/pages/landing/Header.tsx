@@ -24,10 +24,10 @@ import ThemeSelector from '../../components/Navigation/ThemeSelector';
 import routes from '../../routes';
 
 export function Header() {
-  const { t: tLH } = useTranslation('translation', {
+  const { t: headerTextContent } = useTranslation('translation', {
     keyPrefix: 'landing.header',
   });
-  const { t: tPA } = useTranslation('translation', {
+  const { t: profileTextContent } = useTranslation('translation', {
     keyPrefix: 'profileActions',
   });
 
@@ -57,7 +57,7 @@ export function Header() {
 
     return Object.entries(anchorsKeys).map(([key, label]) => (
       <Anchor underline="never" key={key}>
-        <Text c="dark">{tLH(label)}</Text>
+        <Text c="dark">{headerTextContent(label)}</Text>
       </Anchor>
     ));
   };
@@ -78,10 +78,10 @@ export function Header() {
             radius="xl"
             onClick={() => handleRedirToSignIn()}
           >
-            {tPA('signIn')}
+            {profileTextContent('signIn')}
           </Button>
           <Button radius="xl" onClick={() => handleRedirToSignUp()}>
-            {tPA('signUp')}
+            {profileTextContent('signUp')}
           </Button>
         </Group>
 
@@ -113,10 +113,10 @@ export function Header() {
 
           <Group justify="flex-start" pb="xl" px="md">
             <Button variant="default" onClick={() => handleRedirToSignUp()}>
-              <span>{tPA('signUp')}</span>
+              <span>{profileTextContent('signUp')}</span>
             </Button>
             <Button onClick={() => handleRedirToSignIn()}>
-              <span>{tPA('signIn')}</span>
+              <span>{profileTextContent('signIn')}</span>
             </Button>
           </Group>
         </ScrollArea>

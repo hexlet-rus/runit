@@ -6,7 +6,7 @@ import { useLanguage } from '../../hooks';
 
 function LanguageSelector() {
   const [popoverOpen, setPopoverOpen] = useState<boolean>(false);
-  const { t: tSL, i18n } = useTranslation('translation', {
+  const { t: settingTextContent, i18n } = useTranslation('translation', {
     keyPrefix: 'settings.languages',
   });
 
@@ -30,7 +30,9 @@ function LanguageSelector() {
       <Popover.Target>
         <UnstyledButton onClick={() => setPopoverOpen((o) => !o)}>
           <span className="text-uppercase">{language}</span>
-          <span className="visually-hidden">{tSL('header')}</span>
+          <span className="visually-hidden">
+            {settingTextContent('header')}
+          </span>
         </UnstyledButton>
       </Popover.Target>
       <Popover.Dropdown>

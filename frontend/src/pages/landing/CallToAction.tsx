@@ -13,7 +13,7 @@ const mockdata = {
 };
 
 function CallToAction() {
-  const { t: tLCTA } = useTranslation('translation', {
+  const { t: ctaTextContent } = useTranslation('translation', {
     keyPrefix: 'landing.callToAction',
   });
   const { data } = mockdata; // убрать после появления роута !!!!
@@ -46,10 +46,10 @@ function CallToAction() {
       <Stack justify="flex-end" mt="20px">
         <Flex gap="sm" direction={{ base: 'column', xs: 'row' }}>
           <Button variant="filled" radius="lg" onClick={() => handleOpenIDE()}>
-            {tLCTA('ideButton')}
+            {ctaTextContent('ideButton')}
           </Button>
           <Button variant="filled" radius="lg" onClick={() => handleOpenDocs()}>
-            {tLCTA('docButton')}
+            {ctaTextContent('docButton')}
           </Button>
         </Flex>
       </Stack>
