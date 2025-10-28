@@ -1,91 +1,128 @@
-import { Container, Navbar, Image, Nav, Button } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
+import { useDisclosure } from '@mantine/hooks';
 import { useTernaryDarkMode } from 'usehooks-ts';
+import {
+  Box,
+  Burger,
+  Button,
+  Divider,
+  Drawer,
+  Flex,
+  Group,
+  ScrollArea,
+  Anchor,
+  Text,
+} from '@mantine/core';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
+
+import RunItLogoLight from './assets/HeaderLightThemeLogo.svg';
+import RunItLogoDark from './assets/HeaderDarkThemeLogo.svg';
+
 import LanguageSelector from '../../components/Navigation/LanguageSelector';
 import ThemeSelector from '../../components/Navigation/ThemeSelector';
+
 import routes from '../../routes';
 
-import RunItLogoLight from './assets/LogoHeaderLightTheme.svg';
-import RunItLogoDark from './assets/LogoHeaderDarkTheme.svg';
-import Burger from './assets/Burger.svg';
-
-import './landing.scss';
-import './custom-colors.scss';
-
-function Header() {
-  const { t: tLH } = useTranslation('translation', {
+export function Header() {
+  const { t: headerTextContent } = useTranslation('translation', {
     keyPrefix: 'landing.header',
   });
-  const { t: tPA } = useTranslation('translation', {
+  const { t: profileTextContent } = useTranslation('translation', {
     keyPrefix: 'profileActions',
   });
-  const { isDarkMode } = useTernaryDarkMode();
 
+  const redir = useNavigate();
+
+  const handleRedirToSignUp = () => {
+    redir(routes.signUpPagePath());
+  };
+
+  const handleRedirToSignIn = () => {
+    redir(routes.signInPagePath());
+  };
+
+  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
+    useDisclosure(false);
+  const { isDarkMode } = useTernaryDarkMode();
   const logo = isDarkMode ? RunItLogoDark : RunItLogoLight;
+
+  const ComputedAnchorElements = () => {
+    const anchorsKeys = {
+      about: 'about',
+      opportunities: 'opportunities',
+      technologies: 'technologies',
+      community: 'community',
+      faq: 'faq',
+    } as const;
+
+    return Object.entries(anchorsKeys).map(([key, label]) => (
+      <Anchor underline="never" key={key}>
+        <Text c="dark">{headerTextContent(label)}</Text>
+      </Anchor>
+    ));
+  };
+
   return (
-    <header>
-      <Navbar expand="lg">
-        <Container className="justify-content-between">
-          <Navbar.Brand className="mr-5">
-            <Image className="navbar-logo" src={logo} />
-          </Navbar.Brand>
-          <Navbar.Toggle
-            aria-controls="navbar-responsive"
-            className="border-0 ms-auto"
-            data-bs-toogle="collapse"
+    <Box mb={80} py={22}>
+      <Group justify="space-around">
+        <img src={logo} alt="hexletLogo" width="75px" />
+        <Group h="100%" gap={18} visibleFrom="lg">
+          {ComputedAnchorElements()}
+        </Group>
+
+        <Group visibleFrom="md">
+          <LanguageSelector />
+          <ThemeSelector />
+          <Button
+            variant="default"
+            radius="xl"
+            onClick={() => handleRedirToSignIn()}
           >
-            <Image src={Burger} />
-          </Navbar.Toggle>
-          <Navbar.Collapse className="my-3 mb-lg-0" id="navbar-responsive">
-            <Nav as="ul" className="text-left text-xl-center">
-              <li>
-                <Navbar.Brand className="header-link" href="#aboutProject">
-                  <span>{tLH('about')}</span>
-                </Navbar.Brand>
-              </li>
-              <li>
-                <Navbar.Brand className="header-link" href="#advantages">
-                  <span>{tLH('advantages')}</span>
-                </Navbar.Brand>
-              </li>
-              <li>
-                <Navbar.Brand className="header-link" href="#possibilities">
-                  <span>{tLH('opportunities')}</span>
-                </Navbar.Brand>
-              </li>
-              <li>
-                <Navbar.Brand className="header-link" href="#faq">
-                  <span>{tLH('faq')}</span>
-                </Navbar.Brand>
-              </li>
-            </Nav>
-            <Nav
-              as="ul"
-              className="mb-3 mb-lg-0 gap-1 ms-auto align-items-xl-center align-items-start"
-            >
-              <LanguageSelector />
-              <ThemeSelector />
-              <Button
-                as="a"
-                className="rounded-5 btn-signin"
-                href={routes.signInPagePath()}
-                variant="primary"
-              >
-                <span>{tPA('signIn')}</span>
-              </Button>
-              <Button
-                as="a"
-                className="rounded-5 btn-signup"
-                href={routes.signUpPagePath()}
-                variant="secondary"
-              >
-                <span>{tPA('signUp')}</span>
-              </Button>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </header>
+            {profileTextContent('signIn')}
+          </Button>
+          <Button radius="xl" onClick={() => handleRedirToSignUp()}>
+            {profileTextContent('signUp')}
+          </Button>
+        </Group>
+
+        <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="lg" />
+      </Group>
+      <Drawer
+        opened={drawerOpened}
+        onClose={closeDrawer}
+        title={<img src={logo} alt="hexletLogo" width="100px" />}
+        size="100%"
+        padding="md"
+        zIndex={65535}
+      >
+        <ScrollArea h="calc(100vh - 80px)" mx="-md">
+          <Divider my="sm" />
+          <Flex
+            mih={50}
+            gap="sm"
+            justify="center"
+            align="flex-start"
+            direction="column"
+            wrap="wrap"
+            px="md"
+          >
+            {ComputedAnchorElements()}
+          </Flex>
+
+          <Divider my="sm" />
+
+          <Group justify="flex-start" pb="xl" px="md">
+            <Button variant="default" onClick={() => handleRedirToSignUp()}>
+              <span>{profileTextContent('signUp')}</span>
+            </Button>
+            <Button onClick={() => handleRedirToSignIn()}>
+              <span>{profileTextContent('signIn')}</span>
+            </Button>
+          </Group>
+        </ScrollArea>
+      </Drawer>
+      <Divider my="lg" />
+    </Box>
   );
 }
 
