@@ -4,14 +4,14 @@ import { db } from './db/connection';
 
 export interface Context {
   db: typeof db;
-  req: CreateFastifyContextOptions['req'];
-  res: CreateFastifyContextOptions['res'];
+  // req: CreateFastifyContextOptions['req'];
+  // res: CreateFastifyContextOptions['res'];
 }
  
 export const createContext = ({ req, res }: CreateFastifyContextOptions): Context => ({
   db,
-  req,
-  res,
+  // req,
+  // res,
 });
 
 export const t = initTRPC.context<Context>().create({

@@ -12,15 +12,20 @@ const getApp = async () => {
     console.error('Migration failed:', error);
     throw error;
   }
+ 
+// to do: подключить полноценное логирование (pino-pretty)
+// убрать consol.log с прода
 
   const server = fastify({
-    logger: process.env.NODE_ENV === 'development',
-    routerOptions: {
-      maxParamLength: 1000,
-      caseSensitive: false,
-      ignoreTrailingSlash: true
-   },
-  });
+  logger: {
+    level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+  },
+  routerOptions: {
+    maxParamLength: 1000,
+    caseSensitive: false,
+    ignoreTrailingSlash: true
+  },
+});
 
   console.log('🔍 appRouter type:', typeof appRouter);
   console.log('🔍 createContext type:', typeof createContext);
