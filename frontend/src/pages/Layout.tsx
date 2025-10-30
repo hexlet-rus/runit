@@ -23,7 +23,7 @@ function PageLayout() {
 function AwaitUserData({ children }) {
   const userSlice = useSelector((state: RootReducerType) => state.user);
 
-  if (userSlice.status === 'fullfilled') {
+  if (userSlice.status === 'fulfilled') {
     return children;
   }
 

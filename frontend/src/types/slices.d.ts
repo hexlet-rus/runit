@@ -85,7 +85,7 @@ export type ModalStateType = {
   item: Partial<ISnippet> | null;
 };
 
-type Statuses = 'empty' | 'fullfilled' | 'pending' | 'rejected';
+type Statuses = 'empty' | 'fulfilled' | 'pending' | 'rejected';
 
 export interface SnippetOwnerType {
   created_at: string;
