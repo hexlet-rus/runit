@@ -53,6 +53,13 @@ export interface IFileToolbar {
   snippet: Partial<EditorStateType>;
 }
 
+export type CommunityType = {
+  badge: string
+  title: string
+  text: string
+  btn: string
+  link: string
+}
 interface TechnologySection {
   typeTechnology: string;
   listNamesTechnology: string[];
