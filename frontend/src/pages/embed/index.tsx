@@ -53,8 +53,10 @@ function EmbeddedPage() {
           name: response.name,
           ownerUsername: snippetParams.username,
           slug: response.slug,
+          language: response.language,
         }),
       );
+      dispatch(actions.changeLanguage(response.language));
       dispatch(actions.setCodeAndSavedCode(response.code));
     };
 
