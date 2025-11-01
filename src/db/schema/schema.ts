@@ -15,7 +15,7 @@ export const users = sqliteTable('users', {
 
 export const userSettings = sqliteTable('user_settings', {
   settingsId: integer('id').primaryKey({ autoIncrement: true }),
-  userId: integer('user_id').notNull().references(() => users.id),
+  userId: integer('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
   theme: text('theme', { length: 20 }).notNull().default('system'),
   language: text('language', { length: 10 }).notNull().default('ru'),
   avatarBase64: text('avatar_base64'),
@@ -29,7 +29,7 @@ export const snippets = sqliteTable('snippets', {
   slug: text('slug', { length: 30 }),
   code: text('code').notNull(),
   language: text('language', { length: 50 }),
-  userId: integer('userId').references(() => users.id),
+  userId: integer('user_id').references(() => users.id, { onDelete: 'cascade' }),
   createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
   updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
 });
