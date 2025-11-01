@@ -20,6 +20,7 @@
     "test": "playwright test",
     "test:ci": "npx start-server-and-test start-server http://localhost:3000 test",
     "test:withDocker": "WITHOUT_DOCKER = false playwright test",
+    "generate:types": "tsc --emitDeclarationOnly --outDir types",
     "test:debug": "yarn test -- --ui"
   },
   "repository": {
