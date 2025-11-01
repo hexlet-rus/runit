@@ -5,16 +5,14 @@
     "moduleResolution": "node",
     "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
-    // "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
-    "rootDir": "./src",
     "declaration": true,
     "sourceMap": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "types/**/*"],
   "exclude": ["node_modules", "dist"]
 }
