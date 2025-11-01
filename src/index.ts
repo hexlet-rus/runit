@@ -3,7 +3,7 @@ import { fastifyTRPCPlugin, FastifyTRPCPluginOptions, } from '@trpc/server/adapt
 
 import { runMigrations } from './db/connection';
 import { appRouter, type AppRouter } from './router/index';
-import { createContext } from './context';
+// import { createContext } from './context';
 
 const getApp = async () => {
    try {
@@ -28,7 +28,7 @@ const getApp = async () => {
 });
 
   console.log('🔍 appRouter type:', typeof appRouter);
-  console.log('🔍 createContext type:', typeof createContext);
+  // console.log('🔍 createContext type:', typeof createContext);
   console.log('🔍 appRouter procedures:', Object.keys(appRouter._def?.procedures || {}));
 
   server.get('/', async (request, reply) => {
@@ -59,7 +59,7 @@ const getApp = async () => {
       prefix: '/trpc',
       trpcOptions: {
         router: appRouter,
-        createContext,
+        // createContext,
         onError({ path, error }) {
           console.error(`❌ tRPC Error on path '${path}':`, error.message);
         },
