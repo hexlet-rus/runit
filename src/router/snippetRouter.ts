@@ -1,28 +1,36 @@
 import { router, publicProcedure } from '../context';
-import { z } from 'zod';
 import { 
-  SnippetDatabase, 
   createSnippetSchema, 
   updateSnippetSchema,
   getSnippetByIdSchema,
-  getSnippetByUsernameSlugSchema
+  getSnippetByUsernameSlugSchema,
+  deleteSnippetSchema,
+  getSnippetById,
+  getSnippetByUsernameSlug,
+  getAllSnippets,
+  createSnippet,
+  updateSnippet,
+  deleteSnippet,
+  generateName
 } from '../db/snippets';
 
 export const snippetRouter = router({
+
   getSnippetById: publicProcedure
     .input(getSnippetByIdSchema)
     .query(async ({ input }) => {
-      const snippet = await SnippetDatabase.getSnippetById(input);
+      const snippet = await getSnippetById(input);
       if (!snippet) {
         throw new Error('Snippet not found');
       }
       return snippet;
     }),
 
+  //пример запроса: input={"username":"testuser3","slug":"l8740h"}
   getSnippetByUsernameSlug: publicProcedure
     .input(getSnippetByUsernameSlugSchema)
     .query(async ({ input }) => {
-      const snippet = await SnippetDatabase.getSnippetByUsernameSlug(input.username, input.slug);
+      const snippet = await getSnippetByUsernameSlug(input.username, input.slug);
       if (!snippet) {
         throw new Error('Snippet not found');
       }
@@ -31,20 +39,21 @@ export const snippetRouter = router({
 
   getAllSnippets: publicProcedure
     .query(async () => {
-      return await SnippetDatabase.getAllSnippets();
+      console.log('getAllSnippets called');
+      return await getAllSnippets();
     }),
 
   createSnippet: publicProcedure
     .input(createSnippetSchema)
     .mutation(async ({ input }) => {
-      return await SnippetDatabase.createSnippet(1, input); // TEMP_USER_ID = 1
+      return await createSnippet(input);
     }),
 
   updateSnippet: publicProcedure
     .input(updateSnippetSchema)
     .mutation(async ({ input }) => {
       const { id, ...updates } = input;
-      const updatedSnippet = await SnippetDatabase.updateSnippet(id, updates);
+      const updatedSnippet = await updateSnippet(id, updates);
       
       if (!updatedSnippet) {
         throw new Error('Snippet not found');
@@ -54,19 +63,19 @@ export const snippetRouter = router({
     }),
 
   deleteSnippet: publicProcedure
-    .input(getSnippetByIdSchema)
+    .input(deleteSnippetSchema)
     .mutation(async ({ input }) => {
-      const success = await SnippetDatabase.deleteSnippet(input);
-      
+      const success = await deleteSnippet(input.id);
+        
       if (!success) {
         throw new Error('Snippet not found');
       }
-      
-      return { success: true, id: input };
+        
+      return { success: true, id: input.id };
     }),
 
   generateSnippetName: publicProcedure
     .query(() => {
-      return { name: SnippetDatabase.generateName() };
+      return { name: generateName() };
     }),
 });
