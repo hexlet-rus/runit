@@ -16,6 +16,7 @@ import {
 } from '@mantine/core';
 
 import '@mantine/core/styles.css';
+import { motion } from 'framer-motion';
 import { ReactComponent as PencilIcon } from './assets/IconMainBanner/Pencil.svg';
 import { ReactComponent as PlayIcon } from './assets/IconMainBanner/Play.svg';
 
@@ -36,7 +37,7 @@ interface HeroBanner {
 }
 
 interface HeroBannerProps {
-  data?: HeroBanner;
+  data: HeroBanner;
 }
 
 /* mockData - Моковые данные для пропса
@@ -91,74 +92,85 @@ function HeroBanner({ data = mockData }: HeroBannerProps) {
 
 greet('RunIT');`;
 
+  const MotionWrapper = motion.div;
+
   return (
     <Container mb="xl" mt="xl" mx={{ base: 'sm', md: 'sm' }} strategy="grid">
-      <Grid align="center" justify="center" mb="xl" mt="xl">
-        <Grid.Col mb="xl" mt="xl" span={{ base: 12, md: 12, lg: 6 }}>
-          <Text c="dimmed" fw={400} size="xs" tt="uppercase">
-            {data.subHeader}
-          </Text>
-          <Title fw={700} order={1} size="h2">
-            {data.header}
-          </Title>
-          <Text size="md">{data.subtitle}</Text>
-          <Button mb="xl" mt="xl" radius="lg">
-            Начать кодить
-          </Button>
-          <SimpleGrid cols={3} spacing="xs">
-            {items(data.content)}
-          </SimpleGrid>
-        </Grid.Col>
-        <Grid.Col span={{ sx: 12, sm: 8, md: 6, lg: 6 }}>
-          <Box>
-            <Card bg="#1a1b1e" pl={0} pr={0} pt="xs" radius="md">
-              <Group gap="xs" justify="space-between" pl="xs" pr="xs">
-                <Group gap="xs" justify="space-between">
-                  <ThemeIcon color="red" radius="xl" size={10} />
-                  <ThemeIcon color="yellow" radius="xl" size={10} />
-                  <ThemeIcon color="green" radius="xl" size={10} />
-                  <Text c="gray" size="xs">
-                    JavaScript - demo.js
-                  </Text>
+      <MotionWrapper
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{
+          duration: 1.8,
+          ease: [0.33, 1, 0.68, 1],
+        }}
+      >
+        <Grid align="center" justify="center" mb="xl" mt="xl">
+          <Grid.Col mb="xl" mt="xl" span={{ base: 12, md: 12, lg: 6 }}>
+            <Text c="dimmed" fw={400} size="xs" tt="uppercase">
+              {data.subHeader}
+            </Text>
+            <Title fw={700} order={1} size="h1">
+              {data.header}
+            </Title>
+            <Text size="md">{data.subtitle}</Text>
+            <Button mb="xl" mt="xl" radius="lg">
+              Начать кодить
+            </Button>
+            <SimpleGrid cols={3} spacing="xs">
+              {items(data.content)}
+            </SimpleGrid>
+          </Grid.Col>
+          <Grid.Col span={{ sx: 12, sm: 8, md: 6, lg: 6 }}>
+            <Box>
+              <Card bg="#1a1b1e" pl={0} pr={0} pt="xs" radius="md">
+                <Group gap="xs" justify="space-between" pl="xs" pr="xs">
+                  <Group gap="xs" justify="space-between">
+                    <ThemeIcon color="red" radius="xl" size={10} />
+                    <ThemeIcon color="yellow" radius="xl" size={10} />
+                    <ThemeIcon color="green" radius="xl" size={10} />
+                    <Text c="gray" size="xs">
+                      JavaScript - demo.js
+                    </Text>
+                  </Group>
+                  <Grid>
+                    <Badge
+                      color="gray"
+                      mr="xs"
+                      radius="sm"
+                      size="md"
+                      styles={{
+                        label: { textTransform: 'none' },
+                      }}
+                      variant="filled"
+                    >
+                      snippet
+                    </Badge>
+                  </Grid>
                 </Group>
-                <Grid>
-                  <Badge
-                    color="gray"
-                    mr="xs"
-                    radius="sm"
-                    size="md"
-                    styles={{
-                      label: { textTransform: 'none' },
-                    }}
-                    variant="filled"
+                <Divider color="gray" my="sm" />
+                <Code block c="white" color="#1a1b1e" contentEditable h={120}>
+                  {codeExample}
+                </Code>
+                <Group gap="xs" mt="sm" pl="xs" pr="xs">
+                  <Button
+                    color="blue"
+                    leftSection={<PlayIcon style={{ height: 15 }} />}
                   >
-                    snippet
-                  </Badge>
-                </Grid>
-              </Group>
-              <Divider color="gray" my="sm" />
-              <Code block c="white" color="#1a1b1e" contentEditable h={120}>
-                {codeExample}
-              </Code>
-              <Group gap="xs" mt="sm" pl="xs" pr="xs">
-                <Button
-                  color="blue"
-                  leftSection={<PlayIcon style={{ height: 15 }} />}
-                >
-                  Запустить
-                </Button>
-                <Button
-                  color="gray"
-                  leftSection={<PencilIcon style={{ height: 15 }} />}
-                  variant="outline"
-                >
-                  Редактировать
-                </Button>
-              </Group>
-            </Card>
-          </Box>
-        </Grid.Col>
-      </Grid>
+                    Запустить
+                  </Button>
+                  <Button
+                    color="gray"
+                    leftSection={<PencilIcon style={{ height: 15 }} />}
+                    variant="outline"
+                  >
+                    Редактировать
+                  </Button>
+                </Group>
+              </Card>
+            </Box>
+          </Grid.Col>
+        </Grid>
+      </MotionWrapper>
     </Container>
   );
 }
