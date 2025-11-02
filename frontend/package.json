@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@faker-js/faker": "^8.4.0",
+    "@mantine/code-highlight": "^8.3.6",
     "@mantine/core": "^8.3.5",
     "@mantine/hooks": "^8.3.5",
     "@monaco-editor/react": "^4.5.1",
@@ -19,6 +20,7 @@
     "bootstrap": "^5.3.1",
     "clipboard": "^2.0.11",
     "formik": "^2.4.2",
+    "framer-motion": "^12.23.24",
     "i18next": "^23.4.1",
     "i18next-browser-languagedetector": "^7.1.0",
     "math-intrinsics": "^1.1.0",
