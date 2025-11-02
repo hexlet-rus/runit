@@ -134,7 +134,7 @@ greet('RunIT');`;
                   </Group>
                   <Grid>
                     <Badge
-                      color="gray"
+                      color="dark"
                       mr="xs"
                       radius="sm"
                       size="md"
