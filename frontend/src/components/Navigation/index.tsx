@@ -36,10 +36,7 @@ function Navigation() {
       expand="sm"
     >
       <Container className="px-xl-3" fluid>
-        <Navbar.Brand
-          as={Link}
-          to={isLoggedIn ? routes.myProfilePagePath() : routes.landingPath()}
-        >
+        <Navbar.Brand as={Link} to={routes.landingPath()}>
           <Image alt={tN('mainLabel')} className="logo-height" src={Logo} />
         </Navbar.Brand>
         <Navbar.Toggle
