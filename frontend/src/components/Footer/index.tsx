@@ -24,7 +24,7 @@ function Footer() {
   ));
 
   return (
-    <Flex justify="space-between" wrap="wrap" mx="auto" style={{maxWidth: 1440}} px="md" py="xl">
+    <Flex direction="row" justify="space-between" wrap="wrap" py="xl">
         <Text size="sm" c="dimmed">© {currentYear} RunIT</Text>
         <Group >{items}</Group>
     </Flex>
