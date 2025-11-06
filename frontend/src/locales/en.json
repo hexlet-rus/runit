@@ -141,6 +141,10 @@
     "withGithub": "Sign in with GitHub"
   },
   "landing": {
+    "callToAction": {
+      "ideButton": "Open IDE",
+      "docButton": "Documentation"
+    },
     "allComputers": "Work from any computer with Internet access",
     "allDevices": {
       "first": "Work on any device with any operating",
@@ -163,8 +167,9 @@
     "freeProject": "Free Hexlet Project",
     "header": {
       "about": "About",
-      "advantages": "Advantages",
       "opportunities": "Opportunities",
+      "technologies": "Advantages",
+      "community": "Community",
       "faq": "FAQ"
     },
     "inBrowser": "The editor runs entirely in the browser, so you can start coding in seconds",
