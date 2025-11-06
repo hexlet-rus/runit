@@ -9,7 +9,6 @@ import { useAuth } from '../../hooks';
 import routes from '../../routes';
 import { actions } from '../../slices/modalSlice';
 import Faq from './Faq';
-import Footer from './Footer';
 import Header from './Header';
 import Theses from './Theses';
 import './assets/fonts/NunitoSans_10pt-Light.ttf';
@@ -22,7 +21,7 @@ import Share from './assets/Icons=Share.svg';
 import TeamWork from './assets/Icons=TeamWork.svg';
 import Template from './assets/Icons=Template.svg';
 import ImageUnderCarousel from './assets/ReadyAssets.jpeg';
-import TechnologiesSection,{mocData} from 'src/components/TechnologiesSection /TechnologiesSection';
+import TechnologiesSection,{mocData} from 'src/pages/landing/TechnologiesSection';
 
 function NewLanding() {
   const { isLoggedIn } = useAuth();
@@ -216,7 +215,6 @@ function NewLanding() {
           </Row>
         </Container>
         <TechnologiesSection technologies={mocData}/>
-        <Footer />
       </div>
     </div>
   );

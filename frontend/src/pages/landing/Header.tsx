@@ -63,7 +63,7 @@ export function Header() {
   };
 
   return (
-    <Box mb={80} py={22}>
+    <Box component='section' py="sm">
       <Group justify="space-around">
         <img src={logo} alt="hexletLogo" width="75px" />
         <Group h="100%" gap={18} visibleFrom="lg">
@@ -121,7 +121,6 @@ export function Header() {
           </Group>
         </ScrollArea>
       </Drawer>
-      <Divider my="lg" />
     </Box>
   );
 }
