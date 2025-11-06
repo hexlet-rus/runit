@@ -1,10 +1,10 @@
-import React from "react";
-import { EditorStateType } from "./slices";
+import React from 'react';
+import { EditorStateType } from './slices';
 
 export type TypeInitialFormState = {
   state: 'initial' | 'failed' | 'success';
   message: string;
-}
+};
 
 export type ThemesType = {
   monospaceFontFamily: string;
@@ -18,8 +18,8 @@ export type ThemesType = {
       bg: string;
       color: string;
     };
-  }
-}
+  };
+};
 
 export type ColourThemeConfigType = {
   base: 'vs' | 'vs-dark';
@@ -28,18 +28,18 @@ export type ColourThemeConfigType = {
     {
       background: string;
       token: string;
-    }
-  ]
+    },
+  ];
   colors: {
-    [key: `editor.${string}`]: `#${string}`
-  }
-}
+    [key: `editor.${string}`]: `#${string}`;
+  };
+};
 
 export type CardsType = {
   id: number;
   image: string;
   text: string;
-}
+};
 
 export interface IAvatar {
   username: string;
@@ -60,3 +60,8 @@ export type CommunityType = {
   btn: string
   link: string
 }
+export interface TechnologyCategory{
+  category: string;
+  items: string[];
+}
+

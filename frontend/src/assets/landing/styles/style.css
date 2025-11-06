@@ -22,7 +22,7 @@
 }
 
 body {
-  font-family: 'Onest', sans-serif;
+  font-family: "Onest", sans-serif;
 }
 
 .accordion {
@@ -52,7 +52,7 @@ body {
 }
 
 .accordion-button::before {
-  content: '';
+  content: "";
   flex-shrink: 0;
   width: var(--bs-accordion-btn-icon-width);
   height: var(--bs-accordion-btn-icon-width);
@@ -184,7 +184,7 @@ body {
 }
 
 .custom-list li::before {
-  content: '';
+  content: "";
   display: block;
   width: 27px;
   height: 27px;
@@ -192,5 +192,6 @@ body {
   position: absolute;
   top: 0;
   left: -40px;
-  background: url('../images/checked.svg') no-repeat;
+  background: url("../images/checked.svg") no-repeat;
 }
+

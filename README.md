@@ -102,7 +102,7 @@ Define the following environment variables for the deploy:
 
 ## How you can help the project
 
-Look at the list of issues, choose an interesting task, write to the issue to say you would like to work on the task.
+Look at the list of [issues](https://github.com/hexlet-rus/runit/issues?page=1), choose an interesting task, write to the issue to say you would like to work on the task.
 
 ---
 
@@ -111,3 +111,4 @@ Look at the list of issues, choose an interesting task, write to the issue to sa
 This repository is created and maintained by the team and the community of Hexlet Rus Ltd, an educational project. [Read more about Hexlet](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=hexlet-editor).
 
 See most active contributors on [hexlet-friends](https://friends.hexlet.io/).
+.

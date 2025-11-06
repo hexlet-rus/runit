@@ -15,7 +15,7 @@ jobs:
           echo "🚧 Deployment is temporarily disabled"
           echo "This is a stub to prevent job failure"
           echo "Tag: ${{ github.ref_name }}"
-          echo "Repository: ${{ github.repository }}
+          echo "Repository: ${{ github.repository }}"
 
 # jobs:
 

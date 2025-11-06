@@ -35,7 +35,7 @@ const userSlice = createSlice({
       })
       .addCase(fetchUserData.fulfilled, (state, { payload }) => {
         state.userInfo = payload.currentUser;
-        state.status = 'fullfilled';
+        state.status = 'fulfilled';
       });
   },
 });
