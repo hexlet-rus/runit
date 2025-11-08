@@ -21,7 +21,7 @@ import Share from './assets/Icons=Share.svg';
 import TeamWork from './assets/Icons=TeamWork.svg';
 import Template from './assets/Icons=Template.svg';
 import ImageUnderCarousel from './assets/ReadyAssets.jpeg';
-import TechnologiesSection,{mocData} from 'src/pages/landing/TechnologiesSection';
+import TechnologiesSection,{mockDataTechnology} from 'src/pages/landing/TechnologiesSection';
 
 function NewLanding() {
   const { isLoggedIn } = useAuth();
@@ -214,7 +214,7 @@ function NewLanding() {
             </Col>
           </Row>
         </Container>
-        <TechnologiesSection technologies={mocData}/>
+        <TechnologiesSection technologies={mockDataTechnology}/>
       </div>
     </div>
   );

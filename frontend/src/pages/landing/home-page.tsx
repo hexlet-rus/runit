@@ -1,59 +1,51 @@
-import { AppShell, Box, Container, Flex, useMantineTheme } from "@mantine/core";
-import Footer from "./footer";
-import TechnologiesSection, { mocData } from "./TechnologiesSection";
-import { SectionContainer } from "./layout";
-import FeaturesSection from "./FeaturesSection";
-import HeroBanner, { mockData } from "./MainBanner";
-import Header from "./Header";
-import CallToAction from "./CallToAction";
-import CommunitySection from "./CommunitySection";
-import { CommunityType } from "src/types/components";
-
+import { AppShell, Box, Container } from '@mantine/core';
+import Footer from './footer';
+import TechnologiesSection, { mockDataTechnology } from './TechnologiesSection';
+import { SectionContainer } from './layout';
+import FeaturesSection from './FeaturesSection';
+import HeroBanner, { mockData } from './MainBanner';
+import Header from './Header';
+import CallToAction from './CallToAction';
 
 function HomePage() {
-  const theme = useMantineTheme();
   return (
     <AppShell header={{ height: 60 }}>
-
       <AppShell.Header>
         <SectionContainer>
-            <Header/>
+          <Header />
         </SectionContainer>
       </AppShell.Header>
 
-      <AppShell.Main >
+      <AppShell.Main>
         <SectionContainer>
-          <HeroBanner data={mockData}/>
+          <HeroBanner data={mockData} />
         </SectionContainer>
 
-        {/* <Container bd="gray.1" m={0} p={0}> */}
         <Box bg="gray.1">
           <SectionContainer>
-          <FeaturesSection/>
+            <FeaturesSection />
           </SectionContainer>
         </Box>
-        {/* </Container> */}
 
         <SectionContainer>
-          <TechnologiesSection technologies={mocData}/>
+          <TechnologiesSection technologies={mockDataTechnology} />
         </SectionContainer>
         <Box bg="gray.1">
-        <SectionContainer>
-          <Container>//CommunitySection вставить</Container>
-        </SectionContainer>
+          <SectionContainer>
+            <Container>//CommunitySection вставить</Container>
+          </SectionContainer>
         </Box>
 
         <SectionContainer>
-          <CallToAction/>
+          <CallToAction />
         </SectionContainer>
       </AppShell.Main>
 
       <AppShell.Footer pos="relative">
         <SectionContainer>
-          <Footer/>
+          <Footer />
         </SectionContainer>
       </AppShell.Footer>
-
     </AppShell>
   );
 }

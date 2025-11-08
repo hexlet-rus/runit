@@ -1,18 +1,4 @@
-import {
-  Text,
-  Divider,
-  Grid,
-  Group,
-  Box,
-  Badge,
-  Stack,
-  Code,
-  Card,
-  Button,
-  SimpleGrid,
-  ThemeIcon,
-  Title,
-} from '@mantine/core';
+import { Text, Divider, Grid, Group, Box, Badge, Stack, Code, Card, Button, SimpleGrid, ThemeIcon, Title } from '@mantine/core';
 
 import '@mantine/core/styles.css';
 import { motion } from 'framer-motion';
@@ -39,8 +25,8 @@ interface HeroBannerProps {
   data: HeroBanner;
 }
 
-/* mockData - Моковые данные для пропса
-  mockData - Data for props of HeroBanner */
+// mockData - Моковые данные для пропса 
+// mockData - Data for props of HeroBanner 
 
 export const mockData: HeroBanner = {
   id: 1,
@@ -95,8 +81,7 @@ greet('RunIT');`;
 
   return (
     <Box component="section"
-    // mb="xl" mt="xl" mx={{ base: 'sm', md: 'sm' }} 
-    //strategy="grid"
+    /* mb="xl" mt="xl" mx={{ base: 'sm', md: 'sm' }} strategy="grid" */
     >
       <MotionWrapper
         animate={{ opacity: 1 }}

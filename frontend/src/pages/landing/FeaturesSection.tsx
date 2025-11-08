@@ -1,6 +1,5 @@
 import {
   Text,
-  Container,
   Flex,
   Group,
   Box,
