@@ -1,11 +1,11 @@
 import { AppShell, Box, Container } from '@mantine/core';
-import Footer from './footer';
 import TechnologiesSection, { mockDataTechnology } from './TechnologiesSection';
 import { SectionContainer } from './layout';
 import FeaturesSection from './FeaturesSection';
 import HeroBanner, { mockData } from './MainBanner';
 import Header from './Header';
 import CallToAction from './CallToAction';
+import Footer from './Footer';
 
 function HomePage() {
   return (
@@ -43,7 +43,7 @@ function HomePage() {
 
       <AppShell.Footer pos="relative">
         <SectionContainer>
-          <Footer />
+          <Footer/>
         </SectionContainer>
       </AppShell.Footer>
     </AppShell>
