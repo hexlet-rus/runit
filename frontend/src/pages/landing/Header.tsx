@@ -64,7 +64,7 @@ export function Header() {
 
   return (
     <Box mb={80} py={22}>
-      <Group justify="space-around">
+      <Group justify="space-between">
         <img src={logo} alt="hexletLogo" width="75px" />
         <Group h="100%" gap={18} visibleFrom="lg">
           {ComputedAnchorElements()}
