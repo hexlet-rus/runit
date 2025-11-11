@@ -68,3 +68,8 @@ interface TechnologySection {
 export interface TechnologyCategories {
   technologies: Technology[];
 }
+export interface TechnologyCategory{
+  category: string;
+  items: string[];
+}
+
