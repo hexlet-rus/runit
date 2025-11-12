@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 import { useSnippets } from '.';
 import { DuplicateSnippetFunction, DuplicateSnippetParams,DuplicateSnippetResult } from '../types/hooks';
 
-
 const useDuplicateSnippet = (): DuplicateSnippetFunction => {
   const { saveSnippet, getSnippetData } = useSnippets();
  
