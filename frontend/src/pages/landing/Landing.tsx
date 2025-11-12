@@ -22,7 +22,7 @@ import Share from './assets/Icons=Share.svg';
 import TeamWork from './assets/Icons=TeamWork.svg';
 import Template from './assets/Icons=Template.svg';
 import ImageUnderCarousel from './assets/ReadyAssets.jpeg';
-import TechnologiesSection,{mocData} from 'src/components/TechnologiesSection /TechnologiesSection';
+
 
 function NewLanding() {
   const { isLoggedIn } = useAuth();
@@ -215,7 +215,6 @@ function NewLanding() {
             </Col>
           </Row>
         </Container>
-        <TechnologiesSection technologies={mocData}/>
         <Footer />
       </div>
     </div>
