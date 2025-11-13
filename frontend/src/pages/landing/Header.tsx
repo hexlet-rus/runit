@@ -63,8 +63,8 @@ export function Header() {
   };
 
   return (
-    <Box component='section' py="sm">
-      <Group justify="space-around">
+    <Box mb={80} py={22}>
+      <Group justify="space-between">
         <img src={logo} alt="hexletLogo" width="75px" />
         <Group h="100%" gap={18} visibleFrom="lg">
           {ComputedAnchorElements()}
