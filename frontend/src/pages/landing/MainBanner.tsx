@@ -1,19 +1,4 @@
-import {
-  Text,
-  Container,
-  Divider,
-  Grid,
-  Group,
-  Box,
-  Badge,
-  Stack,
-  Code,
-  Card,
-  Button,
-  SimpleGrid,
-  ThemeIcon,
-  Title,
-} from '@mantine/core';
+import { Text, Divider, Grid, Group, Box, Badge, Stack, Code, Card, Button, SimpleGrid, ThemeIcon, Title } from '@mantine/core';
 
 import '@mantine/core/styles.css';
 import { motion } from 'framer-motion';
@@ -40,10 +25,10 @@ interface HeroBannerProps {
   data: HeroBanner;
 }
 
-/* mockData - Моковые данные для пропса
-  mockData - Data for props of HeroBanner */
+// mockData - Моковые данные для пропса 
+// mockData - Data for props of HeroBanner 
 
-const mockData: HeroBanner = {
+export const mockData: HeroBanner = {
   id: 1,
   subHeader: 'Быстрый старт',
   header: 'Мгновенный IDE в браузере',
@@ -95,7 +80,9 @@ greet('RunIT');`;
   const MotionWrapper = motion.div;
 
   return (
-    <Container mb="xl" mt="xl" mx={{ base: 'sm', md: 'sm' }} strategy="grid">
+    <Box component="section"
+    /* mb="xl" mt="xl" mx={{ base: 'sm', md: 'sm' }} strategy="grid" */
+    >
       <MotionWrapper
         animate={{ opacity: 1 }}
         initial={{ opacity: 0 }}
@@ -109,7 +96,7 @@ greet('RunIT');`;
             <Text c="dimmed" fw={400} size="xs" tt="uppercase">
               {data.subHeader}
             </Text>
-            <Title fw={700} order={1} size="h1">
+            <Title order={1} fw={900} fz="h1">
               {data.header}
             </Title>
             <Text size="md">{data.subtitle}</Text>
@@ -171,7 +158,7 @@ greet('RunIT');`;
           </Grid.Col>
         </Grid>
       </MotionWrapper>
-    </Container>
+    </Box>
   );
 }
 

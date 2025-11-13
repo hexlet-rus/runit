@@ -1,4 +1,4 @@
-import { Flex, Title, Text, Button, Stack } from '@mantine/core';
+import { Flex, Title, Text, Button, Stack, Box } from '@mantine/core';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { actions as modalActions } from '../../slices/modalSlice';
@@ -28,6 +28,7 @@ function CallToAction() {
   };
 
   return (
+    <Box py="xl" component='section'>
     <Flex
       bdrs="lg"
       bd="1px solid #d0e9ffff"
@@ -54,6 +55,7 @@ function CallToAction() {
         </Flex>
       </Stack>
     </Flex>
+    </Box>
   );
 }
 
