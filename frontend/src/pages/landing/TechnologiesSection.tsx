@@ -1,7 +1,7 @@
 import { Title, Box, Flex, Paper, Text, Badge, Group } from '@mantine/core';
 import type { TechnologyCategory } from 'src/types/components';
 
-export const mocData: TechnologyCategory[] = [
+export const mockDataTechnology: TechnologyCategory[] = [
   {
     category: 'Языки',
     items: [
@@ -18,14 +18,7 @@ export const mocData: TechnologyCategory[] = [
   },
   {
     category: 'Базы данных',
-    items: [
-      'PostgreSQL',
-      'MySQL',
-      'SQLite',
-      'MongoDB',
-      'Redis',
-      'ClickHouse',
-    ],
+    items: ['PostgreSQL', 'MySQL', 'SQLite', 'MongoDB', 'Redis', 'ClickHouse'],
   },
   {
     category: 'Инструменты',
@@ -33,9 +26,13 @@ export const mocData: TechnologyCategory[] = [
   },
 ];
 
-function TechnologiesSection({ technologies }: { technologies: TechnologyCategory[] }) {
+function TechnologiesSection({
+  technologies,
+}: {
+  technologies: TechnologyCategory[];
+}) {
   return (
-    <Box component="section">
+    <Box component="section" py="xl">
       <Title order={2} mb="xl">
         Технологии
       </Title>
@@ -91,6 +88,6 @@ function TechnologiesSection({ technologies }: { technologies: TechnologyCategor
       </Flex>
     </Box>
   );
-};
+}
 
 export default TechnologiesSection;

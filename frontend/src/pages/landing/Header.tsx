@@ -121,7 +121,6 @@ export function Header() {
           </Group>
         </ScrollArea>
       </Drawer>
-      <Divider my="lg" />
     </Box>
   );
 }
