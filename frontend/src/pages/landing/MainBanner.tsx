@@ -2,8 +2,8 @@ import { Text, Divider, Grid, Group, Box, Badge, Stack, Code, Card, Button, Simp
 
 import '@mantine/core/styles.css';
 import { motion } from 'framer-motion';
-import { ReactComponent as PencilIcon } from './assets/IconMainBanner/Pencil.svg';
-import { ReactComponent as PlayIcon } from './assets/IconMainBanner/Play.svg';
+import  PencilIcon  from './assets/IconMainBanner/Pencil.svg';
+import PlayIcon from './assets/IconMainBanner/Play.svg';
 
 // Типы данных
 interface HeroBannerContent {

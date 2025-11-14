@@ -14,12 +14,12 @@ import {
 import { motion } from 'framer-motion';
 import '@mantine/core/styles.css';
 
-import { ReactComponent as BeakerIcon } from './assets/IconFeatureSection/Beaker.svg';
-import { ReactComponent as BriefcaseIcon } from './assets/IconFeatureSection/Briefcase.svg';
-import { ReactComponent as CheckIcon } from './assets/IconFeatureSection/Check.svg';
-import { ReactComponent as ClipboardIcon} from './assets/IconFeatureSection/ClipboardDocumentCheck.svg';
-import { ReactComponent as LinkIcon } from './assets/IconFeatureSection/Link.svg';
-import { ReactComponent as UsersIcon } from './assets/IconFeatureSection/Users.svg';
+import  BeakerIcon  from './assets/IconFeatureSection/Beaker.svg';
+import  BriefcaseIcon  from './assets/IconFeatureSection/Briefcase.svg';
+import  CheckIcon  from './assets/IconFeatureSection/Check.svg';
+import  ClipboardIcon from './assets/IconFeatureSection/ClipboardDocumentCheck.svg';
+import LinkIcon  from './assets/IconFeatureSection/Link.svg';
+import UsersIcon  from './assets/IconFeatureSection/Users.svg';
 import { ReactNode } from 'react';
 
 // Типы данных

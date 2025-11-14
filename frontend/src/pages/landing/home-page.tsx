@@ -1,5 +1,5 @@
 import { AppShell, Box, Container } from '@mantine/core';
-import Footer from './footer';
+import Footer from './Footer-1';
 import TechnologiesSection, { mockDataTechnology } from './TechnologiesSection';
 import { SectionContainer } from './layout';
 import FeaturesSection from './FeaturesSection';
