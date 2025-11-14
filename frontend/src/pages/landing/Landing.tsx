@@ -9,7 +9,6 @@ import { useAuth } from '../../hooks';
 import routes from '../../routes';
 import { actions } from '../../slices/modalSlice';
 import Faq from './Faq';
-import Footer from './Footer';
 import Header from './Header';
 import Theses from './Theses';
 import './assets/fonts/NunitoSans_10pt-Light.ttf';

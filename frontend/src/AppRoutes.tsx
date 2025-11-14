@@ -13,7 +13,9 @@ import ScrollToTop from './utils/scrollToTop.js';
 
 import DefaultLoader from './components/Loaders/DefaultLoader';
 
-const Landing = lazy(() => import('./pages/landing/Landing'));
+// const Landing = lazy(() => import('./pages/landing/Landing'));
+const Landing = lazy(() => import('./pages/landing/home-page'));
+
 const OldLanding = lazy(() => import('./pages/old-landing'));
 
 const ProfilePage = lazy(() => import('./pages/profile'));

@@ -1,6 +1,5 @@
 import {
   Text,
-  Container,
   Flex,
   Group,
   Box,
@@ -9,6 +8,7 @@ import {
   Card,
   SimpleGrid,
   Anchor,
+  Title,
 } from '@mantine/core';
 
 import { motion } from 'framer-motion';
@@ -111,12 +111,7 @@ const items = (data: Feature[]) => data.map((item) => {
 function FeaturesSection({ features = mocData }: FeaturesSectionProps) {
 
     return (
-    <Container
-      bg="gray.1"
-      h={{ base: 800, sm: 600, md: 400 }}
-      mt="xxs"
-      strategy="grid"
-    >
+    <Box component="section" py="xl">
       <Flex
         align="start"
         direction={{ base: 'column', sm: 'row' }}
@@ -124,11 +119,11 @@ function FeaturesSection({ features = mocData }: FeaturesSectionProps) {
         justify={{ sm: 'center' }}
         wrap="wrap"
       >
-        <Box pt="md" w="100%">
+        <Box w="100%">
           <Group gap="xs" justify="space-between" pb={50} pt={0}>
-            <Text fw={700} size="xl">
+            <Title order={2} mb="xl">
               Что умеет RunIT
-            </Text>
+            </Title>
             <Anchor href="#" c="blue" size="xs">
               Документация
             </Anchor>
@@ -143,7 +138,7 @@ function FeaturesSection({ features = mocData }: FeaturesSectionProps) {
           </SimpleGrid>
         </Box>
       </Flex>
-    </Container>
+    </Box>
   );
 }
 
