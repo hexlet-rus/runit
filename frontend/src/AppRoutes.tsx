@@ -64,8 +64,10 @@ function AppRoutes() {
         <Route
           element={
             <ProtectedRoute
-              isAllowed={!isLoggedIn}
-              redirectTo={routes.myProfilePagePath()}
+              // FIXME: Всегда  isAllowed пока не готова авторизация
+              // isAllowed={!isLoggedIn}
+              isAllowed
+              redirectTo={routes.signInPagePath()}
             />
           }
         >
