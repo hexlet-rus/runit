@@ -26,7 +26,11 @@ const useLanguage = (): UseLanguageReturn => {
 
   useLayoutEffect(() => {
     changeLanguage(language);
-    localStorage.setItem('language', language);
+    try {
+      localStorage.setItem('language', language);
+    } catch (error) {
+      console.error('Failed to save language to localStorage:', error);
+    }
   }, [language, changeLanguage]);
 
   return {
