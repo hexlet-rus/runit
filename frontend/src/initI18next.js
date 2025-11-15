@@ -6,14 +6,14 @@ import resources from './locales';
 
 const defaultLanguage = localStorage.getItem('language') || 'ru';
 const baseI18NextConfig = {
-  debug: process.env.NODE_ENV === 'development',
+  debug: import.meta.env.MODE === 'development',
   resources,
 };
 
 export const AVAILABLE_LANGUAGES = ['en', 'ru'];
 
 export const initI18next = async () => {
-  if (process.env.REACT_APP_NODE_ENV === 'test') {
+  if (import.meta.env.MODE === 'test') {
     await i18next
       .use(initReactI18next)
       .init({ ...baseI18NextConfig, lng: defaultLanguage });
