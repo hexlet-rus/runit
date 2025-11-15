@@ -10,4 +10,7 @@ export default defineConfig({
       icon: true
     }
   })],
+  server: {
+    port: 3000
+  }
 })
