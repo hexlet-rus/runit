@@ -60,6 +60,14 @@ export type CommunityType = {
   btn: string
   link: string
 }
+interface TechnologySection {
+  typeTechnology: string;
+  listNamesTechnology: string[];
+}
+
+export interface TechnologyCategories {
+  technologies: Technology[];
+}
 export interface TechnologyCategory{
   category: string;
   items: string[];
