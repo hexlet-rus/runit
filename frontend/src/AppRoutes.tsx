@@ -12,7 +12,7 @@ import routes from './routes';
 import ScrollToTop from './utils/scrollToTop.js';
 
 import DefaultLoader from './components/Loaders/DefaultLoader';
-
+const ProfilePageNew = lazy(()=>import('./pages/ProfilePage'))
 // const Landing = lazy(() => import('./pages/landing/Landing'));
 const Landing = lazy(() => import('./pages/landing/home-page'));
 
