@@ -69,7 +69,7 @@ function AppRoutes() {
             />
           }
         >
-          <Route index element={<Landing />} />
+          <Route index element={<ProfilePageNew/>} />
         </Route>
         <Route element={<Layout />}>
           <Route path={routes.oldLandingPath()} element={<OldLanding />} />
