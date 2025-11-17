@@ -12,13 +12,37 @@ import '@mantine/core/styles.css';
 
 import type { CommunityType } from 'src/types/components';
 
+export const communityMockData = [
+  {
+    badge: '+1k каждый месяц',
+    btn: 'Перейти в канал',
+    link: 'https://t.me/HexletCareerBot',
+    text: 'Обсуждение вакансий и резюме',
+    title: 'Тг Карьера',
+  },
+  {
+    badge: 'Активные обсуждения',
+    btn: 'Присоединиться',
+    link: 'https://t.me/hexletcommunity',
+    text: 'Вопросы по коду и обмен опытом',
+    title: 'Тг Сообщество',
+  },
+  {
+    badge: 'Закрытый клуб',
+    btn: 'Узнать подробнее',
+    link: 'https://t.me/HexletClubBot',
+    text: 'Нетворкинг и коллаборации',
+    title: 'Клуб Хекслета',
+  },
+];
+
 interface CommunitySectionProps {
   communities: Array<CommunityType>;
 }
 
 function CommunitySection({ communities }: CommunitySectionProps) {
   return (
-    <Box bg="#FFFAFA" component="section" ml="10px" mr="10px" p="40px">
+    <Box component="section" pb="40px" pt="40px" px={0}>
       <Title order={1} ta="center">
         Join the Community
       </Title>
@@ -27,7 +51,7 @@ function CommunitySection({ communities }: CommunitySectionProps) {
         каналам и оставайтесь в курсе новостей.
       </Text>
       <Space h="lg" />
-      <Group grow justify="center" style={{ gap: 0 }}>
+      <Group grow justify="center" gap={0} style={{ margin: 0, padding: 0 }}>
         {communities.map(({ badge, btn, link, text, title }) => (
           <Card key={title} padding="lg" radius="md" withBorder>
             <Group justify="center">
@@ -73,28 +97,3 @@ function CommunitySection({ communities }: CommunitySectionProps) {
 }
 
 export default CommunitySection;
-
-// Data for props of CommunitySectionComponent
-// const mockData = [
-//  {
-//    badge: '+1k каждый месяц',
-//    btn: 'Перейти в канал',
-//    link: 'https://t.me/HexletCareerBot',
-//    text: 'Обсуждение вакансий и резюме',
-//    title: 'Тг Карьера',
-//  },
-//  {
-//    badge: 'Активные обсуждения',
-//    btn: 'Присоединиться',
-//    link: 'https://t.me/hexletcommunity',
-//    text: 'Вопросы по коду и обмен опытом',
-//    title: 'Тг Сообщество',
-//  },
-//  {
-//    badge: 'Закрытый клуб',
-//    btn: 'Узнать подробнее',
-//    link: 'https://t.me/HexletClubBot',
-//    text: 'Нетворкинг и коллаборации',
-//    title: 'Клуб Хекслета',
-//  },
-// ];
