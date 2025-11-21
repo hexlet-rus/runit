@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 
 import { AuthContext, SnippetsContext } from '../contexts';
-import useLanguage from './useLanguage.js';
-import useRunButton from './useRunButton.js';
-import useSaveButton from './useSaveButton.js';
+import useLanguage from './useLanguage';
+import useRunButton from './useRunButton';
+import useSaveButton from './useSaveButton';
 
 const useAuth = () => useContext(AuthContext);
 const useSnippets = () => useContext(SnippetsContext);
