@@ -6,6 +6,7 @@ import HeroBanner, { mockData } from './MainBanner';
 import Header from './Header';
 import CallToAction from './CallToAction';
 import Footer from './Footer';
+import CommunitySection, { communityMockData } from './CommunitySection';
 
 function HomePage() {
   return (
@@ -32,7 +33,7 @@ function HomePage() {
         </SectionContainer>
         <Box bg="gray.1">
           <SectionContainer>
-            <Container>//CommunitySection вставить</Container>
+            <CommunitySection communities={communityMockData} />
           </SectionContainer>
         </Box>
 
@@ -43,7 +44,7 @@ function HomePage() {
 
       <AppShell.Footer pos="relative">
         <SectionContainer>
-          <Footer/>
+          <Footer />
         </SectionContainer>
       </AppShell.Footer>
     </AppShell>
