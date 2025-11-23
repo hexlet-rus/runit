@@ -14,12 +14,12 @@ import {
 import { motion } from 'framer-motion';
 import '@mantine/core/styles.css';
 
-import { ReactComponent as BeakerIcon } from './assets/IconFeatureSection/Beaker.svg';
-import { ReactComponent as BriefcaseIcon } from './assets/IconFeatureSection/Briefcase.svg';
-import { ReactComponent as CheckIcon } from './assets/IconFeatureSection/Check.svg';
-import { ReactComponent as ClipboardIcon} from './assets/IconFeatureSection/ClipboardDocumentCheck.svg';
-import { ReactComponent as LinkIcon } from './assets/IconFeatureSection/Link.svg';
-import { ReactComponent as UsersIcon } from './assets/IconFeatureSection/Users.svg';
+import BeakerIcon  from './assets/IconFeatureSection/Beaker.svg?react';
+import  BriefcaseIcon  from './assets/IconFeatureSection/Briefcase.svg?react';
+import  CheckIcon  from './assets/IconFeatureSection/Check.svg?react';
+import  ClipboardIcon from './assets/IconFeatureSection/ClipboardDocumentCheck.svg?react';
+import LinkIcon  from './assets/IconFeatureSection/Link.svg?react';
+import UsersIcon  from './assets/IconFeatureSection/Users.svg?react';
 import { ReactNode } from 'react';
 
 // Типы данных
@@ -81,6 +81,7 @@ const MotionCardWrapper = motion.div;
 const items = (data: Feature[]) => data.map((item) => {
   return (
     <MotionCardWrapper
+    key={item.id}
     whileHover={{ scale: 1.1}}
     transition={{ duration: 0.3 }}
     style={{ cursor: 'pointer' }}

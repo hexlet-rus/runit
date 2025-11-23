@@ -2,8 +2,8 @@ import { Text, Divider, Grid, Group, Box, Badge, Stack, Code, Card, Button, Simp
 
 import '@mantine/core/styles.css';
 import { motion } from 'framer-motion';
-import { ReactComponent as PencilIcon } from './assets/IconMainBanner/Pencil.svg';
-import { ReactComponent as PlayIcon } from './assets/IconMainBanner/Play.svg';
+import  PencilIcon  from './assets/IconMainBanner/Pencil.svg?react';
+import PlayIcon from './assets/IconMainBanner/Play.svg?react';
 
 // Типы данных
 interface HeroBannerContent {
@@ -135,7 +135,7 @@ greet('RunIT');`;
                   </Grid>
                 </Group>
                 <Divider color="gray" my="sm" />
-                <Code block c="white" color="#1a1b1e" contentEditable h={120}>
+                <Code block c="white" color="#1a1b1e" h={120}>
                   {codeExample}
                 </Code>
                 <Group gap="xs" mt="sm" pl="xs" pr="xs">
