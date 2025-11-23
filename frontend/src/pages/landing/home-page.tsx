@@ -1,11 +1,12 @@
 import { AppShell, Box, Container } from '@mantine/core';
-import Footer from './Footer-1';
 import TechnologiesSection, { mockDataTechnology } from './TechnologiesSection';
 import { SectionContainer } from './layout';
 import FeaturesSection from './FeaturesSection';
 import HeroBanner, { mockData } from './MainBanner';
 import Header from './Header';
 import CallToAction from './CallToAction';
+import CommunitySection, { communityMockData } from './CommunitySection';
+import Footer from './Footer-1';
 
 function HomePage() {
   return (
@@ -32,7 +33,7 @@ function HomePage() {
         </SectionContainer> 
         <Box bg="gray.1">
           <SectionContainer>
-            <Container>//CommunitySection вставить</Container>
+            <CommunitySection communities={communityMockData} />
           </SectionContainer>
         </Box>
 
