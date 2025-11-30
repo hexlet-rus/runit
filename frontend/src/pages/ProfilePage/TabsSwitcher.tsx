@@ -1,53 +1,55 @@
-import { Tabs, Paper } from '@mantine/core';
+import { Tabs, Paper, useMantineTheme } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 
 
+export type TabItem = {
+    id: number,
+    valueName: string;
+    title: string;
+    children: React.ReactNode;
+}
 
-function TabsSwitcher() {
+interface TabsSwitcherProp {
+    tabs: TabItem[]
+}
+
+const TabsSwitcher: React.FC<TabsSwitcherProp> = ({ tabs }) => {
+    console.log(tabs[0].title)
+    const theme = useMantineTheme();
+    const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.xs})`);
     return (
         <Tabs
-
             variant='pills'
             defaultValue='snippets'
-            orientation='vertical'
+            orientation={isMobile ? 'horizontal' : 'vertical'}
             keepMounted={false}
             radius='md'
             color='var(--mantine-color-blue-1)'
-          
-          
+            styles={{
+                root: {
+                    '--tabs-text-color': 'var(--mantine-color-indigo-8)',
+                }
+            }}
+
+
+
         >
-            <Paper radius='lg' shadow='sm' p='md' m='md'>
+            <Paper radius='lg' shadow='sm' p='md' m='md' h="fit-content">
                 <Tabs.List >
-                    <Tabs.Tab 
-                   
-                    styles={{
-                    tab: {
-                        // Стили для неактивного состояния
-                        color: 'var(--mantine-color-gray-6)',
-                        
-                        // Стили для активного состояния
-                        '&[data-active=true]': {
-                            color: 'green',
-                            backgroundColor: 'var(--mantine-color-blue-1)',
-                            borderColor: 'green'
-                        },
-                        
-                        // Ховер для активного состояния
-                        '&[data-active]:hover': {
-                            backgroundColor: 'var(--mantine-color-blue-9)',
-                            color:'green'
-                        }
-                    }
-                }}
-                     value="snippets"
-              
-                     >Сниппеты</Tabs.Tab>
-                    <Tabs.Tab value="profile">
-                        Профиль
-                    </Tabs.Tab>
+                    {tabs.map((tab) => {
+                        return (
+                            <Tabs.Tab
+                                key={tab.id}
+                                value={tab.valueName}
+                            >
+                                {tab.title}
+                            </Tabs.Tab>)
+                    })}
                 </Tabs.List>
             </Paper>
-            <Tabs.Panel value='snippets'>Сниппgеты</Tabs.Panel>
-            <Tabs.Panel value="profile">Профgиль</Tabs.Panel>
+            {tabs.map((tab) => {
+                return <Tabs.Panel m='md' key={tab.id} value={tab.valueName}>{tab.children}</Tabs.Panel>
+            })}
         </Tabs>
     )
 }

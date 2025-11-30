@@ -8,6 +8,7 @@
     "@mantine/code-highlight": "^8.3.6",
     "@mantine/core": "^8.3.5",
     "@mantine/hooks": "^8.3.5",
+    "@mantine/notifications": "^8.3.9",
     "@monaco-editor/react": "^4.5.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@sentry/react": "^7.47.0",
