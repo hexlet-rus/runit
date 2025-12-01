@@ -9,15 +9,22 @@ import {
     FileButton,
     Avatar,
     Tooltip,
-    Group
+    Group,
+    Title,
+    Checkbox,
+    SimpleGrid
 } from '@mantine/core';
 import { ReactComponent as DonwloadIcon } from './donwload.svg'
 import { notifications } from '@mantine/notifications';
 
+
 const dataUser = {
     name: 'Иван Петров',
     isLawStatus: true,
-    dateLawStatus: '01.01.2025'
+    dateLawStatus: '01.01.2025',
+    email: 'ivan@example.com',
+    isEmailVerified: false,
+    isTelegramConnected: false
 }
 
 const profilePageProps = {
@@ -40,7 +47,8 @@ const ProfileForm = () => {
                     title: 'Ошибка',
                     message: 'Файл слишком большой. Максимальный размер: 5MB',
                     color: 'red',
-                    // icon: <IconX size={18} />,
+                    position: 'top-center',
+                    autoClose: 1500
                 });
                 return;
             }
@@ -52,7 +60,8 @@ const ProfileForm = () => {
                     title: 'Успешно',
                     message: 'Аватар успешно загружен',
                     color: 'teal',
-                    // icon: <IconCheck size={18} />,
+                    position: 'top-center',
+                    autoClose: 1500
                 });
             }
         } catch (error) {
@@ -60,7 +69,8 @@ const ProfileForm = () => {
                 title: 'Ошибка',
                 message: 'Произошла ошибка при загрузке файла',
                 color: 'red',
-                // icon: <IconX size={18} />,
+                position: 'top-center',
+                autoClose: 1500
             });
         }
     };
@@ -75,7 +85,7 @@ const ProfileForm = () => {
 
 
     return (
-        <Flex>
+        <Flex gap="md">
             <Stack >
                 <Paper radius='lg' shadow='sm' p='md'>
                     {avatarUrl ? (
@@ -120,14 +130,14 @@ const ProfileForm = () => {
                         </FileButton>
                     )}
                     <Text fw={600} mb='xs' >{dataUser.name}</Text>
-                    <Button variant="default" radius="lg" onClick={() => console.log(files)}>
+                    <Button variant="default" radius="lg" >
                         Редактировать
                     </Button>
                 </Paper>
                 <Paper radius='lg' shadow='sm' p='md' >
                     <Text mb="md">Правовой статус</Text>
-                    <Group >
-                        <Text>Принято при регистрации:</Text>
+                    <Group wrap="nowrap">
+                        <Text style={{ whiteSpace: 'nowrap' }}>Принято при регистрации:</Text>
                         <Text span c={dataUser.isLawStatus ? "green" : "red"} fw={500}>
                             {dataUser.isLawStatus ? "да" : "нет"}
                         </Text>
@@ -138,6 +148,80 @@ const ProfileForm = () => {
                             <Text key={index} size="sm">{doc}</Text>
                         ))}
                     </Stack>
+                </Paper>
+            </Stack>
+            <Stack>
+                <Paper radius='lg' shadow='sm' p='md'>
+                    <Title order={4} mb="md">
+                        Контакты
+                    </Title>
+                    <Flex gap='md' rowGap={4} wrap="wrap">
+                        <Group wrap="nowrap">
+                            <Text c="dimmed" >Email:{dataUser.email}:</Text>
+                            <Text span c={dataUser.isEmailVerified ? "green" : "orange"} style={{ whiteSpace: 'nowrap' }} fw={500}>
+                                {dataUser.isEmailVerified ? "подтвержден" : "не подтвержден"}
+                            </Text>
+                        </Group>
+                        <Group wrap="nowrap">
+                            <Text c="dimmed">Telegram:</Text>
+                            <Text span c={dataUser.isTelegramConnected ? "green" : "orange"} fw={500} style={{ whiteSpace: 'nowrap' }}>
+                                {dataUser.isEmailVerified ? "подключен" : "не подключен"}
+                            </Text>
+                        </Group>
+                    </Flex>
+                </Paper>
+                <Paper radius='lg' shadow='sm' p='md'>
+                    <Title order={4} mb="md">
+                        Подключения
+                    </Title>
+                    <Flex gap='md' wrap="wrap" >
+                        <Paper radius='lg' withBorder shadow='sm' p='sm' style={{ flexGrow: 1 }}>
+                            <Flex align='center' gap='sm' justify="space-between">
+                                <Stack gap={4} >
+                                    <Text >Email:</Text>
+                                    <Text c="dimmed" fw={500} style={{ whiteSpace: 'nowrap' }}>
+                                        Статус: {dataUser.isEmailVerified ? "подключен" : "не подключен"}
+                                    </Text>
+                                </Stack>
+                                {!dataUser.isEmailVerified && <Button variant="filled" radius="lg">Подтвердить</Button>}
+                            </Flex>
+                        </Paper>
+                        <Paper radius='lg' withBorder shadow='sm' p='sm' style={{ flexGrow: 1 }}>
+                            <Flex align='center' gap='sm' justify="space-between">
+                                <Stack gap={4} >
+                                    <Text >Telegram:</Text>
+                                    <Text c="dimmed" fw={500} style={{ whiteSpace: 'nowrap' }}>
+                                        Статус: {dataUser.isTelegramConnected ? "подключен" : "не подключен"}
+                                    </Text>
+                                </Stack>
+                                <Button variant="filled" radius="lg">
+                                    {dataUser.isTelegramConnected ? "Отключить" : "Подключить"}
+                                </Button>
+                            </Flex>
+                        </Paper>
+                    </Flex>
+                </Paper>
+                <Paper radius='lg' shadow='sm' p='md'>
+                    <Title order={4} mb='md'>
+                        Уведомления
+                    </Title>
+                    <Text c='dimmer'>Получать новости сервера</Text>
+                    <Paper radius='lg' withBorder shadow='sm' p='sm' >
+                        <Checkbox label='Новости сервиса' checked={true} labelPosition='left' />
+                    </Paper>
+                    <SimpleGrid cols={2} spacing="sm">
+                        <Paper radius='xl' withBorder shadow='sm' px='sm' py={4}>
+                            <Checkbox label='Email' />
+                        </Paper>
+                        <Paper radius='xl' withBorder shadow='sm' px='sm' py={4}>
+                            <Checkbox label='Telegram' />
+                        </Paper>
+                    </SimpleGrid>
+                </Paper>
+                <Paper radius='lg' shadow='sm' p='md'>
+                    <Title order={4}>
+                        Язык
+                    </Title>
                 </Paper>
             </Stack>
         </Flex>)
