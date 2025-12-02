@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import  {ReactComponent as IconLanguage}  from './Language.svg'
 import {
     Paper,
     Stack,
@@ -18,13 +19,15 @@ import { ReactComponent as DonwloadIcon } from './donwload.svg'
 import { notifications } from '@mantine/notifications';
 
 
+
 const dataUser = {
     name: 'Иван Петров',
     isLawStatus: true,
     dateLawStatus: '01.01.2025',
     email: 'ivan@example.com',
     isEmailVerified: false,
-    isTelegramConnected: false
+    isTelegramConnected: false,
+    language:'Русский'
 }
 
 const profilePageProps = {
@@ -202,12 +205,33 @@ const ProfileForm = () => {
                     </Flex>
                 </Paper>
                 <Paper radius='lg' shadow='sm' p='md'>
-                    <Title order={4} mb='md'>
+                    <Title order={4} mb='sm'>
                         Уведомления
                     </Title>
-                    <Text c='dimmer'>Получать новости сервера</Text>
-                    <Paper radius='lg' withBorder shadow='sm' p='sm' >
-                        <Checkbox label='Новости сервиса' checked={true} labelPosition='left' />
+                    <Text c='dimmed' mb='sm' >Получать новости сервера</Text>
+                    <Paper radius='lg' withBorder shadow='sm' p='sm' mb='sm'>
+                        <Checkbox
+                            label='Новости сервиса'
+                            styles={{
+                                root: {
+                                    width: '100%',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                },
+                                body: {
+                                    width: '100%',
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    flexDirection: 'row-reverse',
+                                },
+                                label: {
+                                    flex: 1,
+                                    marginRight: 'auto',
+                                }
+                            }}
+                        />
                     </Paper>
                     <SimpleGrid cols={2} spacing="sm">
                         <Paper radius='xl' withBorder shadow='sm' px='sm' py={4}>
@@ -219,9 +243,13 @@ const ProfileForm = () => {
                     </SimpleGrid>
                 </Paper>
                 <Paper radius='lg' shadow='sm' p='md'>
-                    <Title order={4}>
+                    <Title order={4} mb='sm'>
                         Язык
                     </Title>
+                    <Button leftSection={<IconLanguage style={{ width: 20, height: 20 }}/> } variant="default" radius='md' mb='sm'>
+                        Russian
+                    </Button>
+                    <Text c='dimmed' size='sm'>Текущий язык:{dataUser.language}</Text>
                 </Paper>
             </Stack>
         </Flex>)
