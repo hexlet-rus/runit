@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import  {ReactComponent as IconLanguage}  from './Language.svg'
+import { ReactComponent as IconLanguage } from './Language.svg'
 import {
     Paper,
     Stack,
@@ -13,7 +13,8 @@ import {
     Group,
     Title,
     Checkbox,
-    SimpleGrid
+    SimpleGrid,
+    Box
 } from '@mantine/core';
 import { ReactComponent as DonwloadIcon } from './donwload.svg'
 import { notifications } from '@mantine/notifications';
@@ -28,7 +29,7 @@ const dataUser = {
     email: 'ivan@example.com',
     isEmailVerified: false,
     isTelegramConnected: false,
-    language:'Русский'
+    language: 'Русский'
 }
 
 const profilePageProps = {
@@ -91,55 +92,61 @@ const ProfileForm = () => {
 
     return (
         <Flex gap="md" wrap={isWrap ? 'wrap' : 'nowrap'}>
-            <Flex direction={isWrap ? "row" : 'column'}  gap="md">
-                <Paper radius='lg' shadow='sm' p='md' >
-                    {avatarUrl ? (
-                        <FileButton
-                            onChange={handleFileChange}
-                            accept="image/png,image/jpeg,image/jpg"
-                            multiple
-                        >
-                            {(props) => (
-                                <Tooltip label={dataUser.name} withArrow>
-                                    <Avatar
+            <Flex direction={isWrap ? "row" : 'column'} style={isWrap && { flexGrow: 1 }} wrap={isWrap ? 'wrap' : 'nowrap'} gap="md">
+                <Paper radius='lg' shadow='sm' p='md' style={isWrap && { flexGrow: 1 }} >
+                    <Flex direction='column' justify='space-between'  style={{ height: '100%' }}>
+                         <Box>
+                        {avatarUrl ? (
+                            <FileButton
+                                onChange={handleFileChange}
+                                accept="image/png,image/jpeg,image/jpg"
+                                multiple
+                            >
+                                {(props) => (
+                                    <Tooltip label={dataUser.name} withArrow>
+                                        <Avatar
+                                            {...props}
+                                            src={avatarUrl}
+                                            alt="Аватар пользователя"
+                                            size="xl"
+                                            radius="xl"
+                                            mb='xs'
+                                            style={{ cursor: 'pointer' }}
+                                        />
+                                    </Tooltip>
+                                )}
+                            </FileButton>
+                        ) : (
+                            <FileButton
+                                onChange={handleFileChange}
+                                accept="image/png,image/jpeg,image/jpg"
+                                multiple
+                            >
+                                {(props) => (
+                                    <ThemeIcon
+                                        component='button'
                                         {...props}
-                                        src={avatarUrl}
-                                        alt="Аватар пользователя"
                                         size="xl"
-                                        radius="xl"
-                                        mb='xs'
+                                        radius="md"
+                                        color="var(--mantine-color-gray-4)"
                                         style={{ cursor: 'pointer' }}
-                                    />
-                                </Tooltip>
-                            )}
-                        </FileButton>
-                    ) : (
-                        <FileButton
-                            onChange={handleFileChange}
-                            accept="image/png,image/jpeg,image/jpg"
-                            multiple
-                        >
-                            {(props) => (
-                                <ThemeIcon
-                                    component='button'
-                                    {...props}
-                                    size="xl"
-                                    radius="md"
-                                    color="var(--mantine-color-gray-4)"
-                                    style={{ cursor: 'pointer' }}
-                                    mb='xs'
-                                >
-                                    <DonwloadIcon style={{ width: '40%', height: '40%' }} />
-                                </ThemeIcon>
-                            )}
-                        </FileButton>
-                    )}
-                    <Text fw={600} mb='xs' >{dataUser.name}</Text>
-                    <Button variant="default" radius="lg" >
+                                        mb='xs'
+                                    >
+                                        <DonwloadIcon style={{ width: '40%', height: '40%' }} />
+                                    </ThemeIcon>
+                                )}
+                            </FileButton>
+                        )}
+                        <Text fw={600} mb='xs' >{dataUser.name}</Text>
+                    </Box>
+
+                    <Button variant="default" radius="lg" style={{ width: 'fit-content' }} >
                         Редактировать
                     </Button>
+                    </Flex>
+                   
                 </Paper>
-                <Paper radius='lg' shadow='sm' p='md' >
+                <Paper radius='lg' shadow='sm' p='md' style={isWrap && { flexGrow: 1 }}>
                     <Text mb="md">Правовой статус</Text>
                     <Group wrap="nowrap">
                         <Text style={{ whiteSpace: 'nowrap' }}>Принято при регистрации:</Text>
@@ -248,7 +255,7 @@ const ProfileForm = () => {
                     <Title order={4} mb='sm'>
                         Язык
                     </Title>
-                    <Button leftSection={<IconLanguage style={{ width: 20, height: 20 }}/> } variant="default" radius='md' mb='sm'>
+                    <Button leftSection={<IconLanguage style={{ width: 20, height: 20 }} />} variant="default" radius='md' mb='sm'>
                         Russian
                     </Button>
                     <Text c='dimmed' size='sm'>Текущий язык:{dataUser.language}</Text>
