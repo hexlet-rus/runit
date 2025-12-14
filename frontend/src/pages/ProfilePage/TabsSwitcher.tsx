@@ -16,12 +16,12 @@ interface TabsSwitcherProp {
 const TabsSwitcher: React.FC<TabsSwitcherProp> = ({ tabs }) => {
     console.log(tabs[0].title)
     const theme = useMantineTheme();
-    const isMobile = useMediaQuery(`(max-width: ${theme.breakpoints.xs})`);
+    const isHorizontal = useMediaQuery('(max-width: 830px)');
     return (
         <Tabs
             variant='pills'
             defaultValue='snippets'
-            orientation={isMobile ? 'horizontal' : 'vertical'}
+            orientation={isHorizontal ? 'horizontal' : 'vertical'}
             keepMounted={false}
             radius='md'
             color='var(--mantine-color-blue-1)'

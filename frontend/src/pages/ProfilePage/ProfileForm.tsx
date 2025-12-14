@@ -17,6 +17,7 @@ import {
 } from '@mantine/core';
 import { ReactComponent as DonwloadIcon } from './donwload.svg'
 import { notifications } from '@mantine/notifications';
+import { useMediaQuery } from '@mantine/hooks';
 
 
 
@@ -42,6 +43,7 @@ const profilePageProps = {
 const ProfileForm = () => {
     const [files, setFiles] = useState<File[]>([]);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+    const isWrap = useMediaQuery('(max-width: 650px)');
 
     const handleFileChange = (selectedFiles: File[]) => {
         try {
@@ -88,9 +90,9 @@ const ProfileForm = () => {
 
 
     return (
-        <Flex gap="md">
-            <Stack >
-                <Paper radius='lg' shadow='sm' p='md'>
+        <Flex gap="md" wrap={isWrap ? 'wrap' : 'nowrap'}>
+            <Flex direction={isWrap ? "row" : 'column'}  gap="md">
+                <Paper radius='lg' shadow='sm' p='md' >
                     {avatarUrl ? (
                         <FileButton
                             onChange={handleFileChange}
@@ -152,7 +154,7 @@ const ProfileForm = () => {
                         ))}
                     </Stack>
                 </Paper>
-            </Stack>
+            </Flex>
             <Stack>
                 <Paper radius='lg' shadow='sm' p='md'>
                     <Title order={4} mb="md">

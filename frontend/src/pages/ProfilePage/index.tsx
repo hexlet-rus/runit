@@ -3,6 +3,7 @@ import TabsSwitcher from "./TabsSwitcher";
 import SnippetForm from "./SnippetForm";
 import ProfileForm from "./ProfileForm";
 import { TabItem } from "./TabsSwitcher";
+import Header from "./Header";
 
 const tabs: TabItem[] = [
     {   
@@ -23,7 +24,7 @@ function ProfilePage({ }) {
     return (
         <AppShell header={{ height: 60 }}>
             <AppShell.Header>
-                Header
+                <Header/>
             </AppShell.Header>
             <AppShell.Main styles={{
                 main: {
