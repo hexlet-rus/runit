@@ -30,9 +30,6 @@ const TabsSwitcher: React.FC<TabsSwitcherProp> = ({ tabs }) => {
                     '--tabs-text-color': 'var(--mantine-color-indigo-8)',
                 }
             }}
-
-
-
         >
             <Paper radius='lg' shadow='sm' p='md' m='md' h="fit-content">
                 <Tabs.List >

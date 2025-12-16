@@ -1,25 +1,22 @@
 import { useState, useEffect } from 'react';
-import { ReactComponent as IconLanguage } from './Language.svg'
+import { ReactComponent as IconLanguage } from './assets/Language.svg'
 import {
     Paper,
     Stack,
-    ThemeIcon,
     Flex,
     Text,
     Button,
-    FileButton,
-    Avatar,
-    Tooltip,
     Group,
     Title,
     Checkbox,
     SimpleGrid,
-    Box
 } from '@mantine/core';
-import { ReactComponent as DonwloadIcon } from './donwload.svg'
+import AvatarUpload from './AvatarUploadProps';
+import LegalStatus from './LegalStatus';
+import UserInfoCard from './UserInfoCard';
+import ContactsCard from './ContactsCard';
 import { notifications } from '@mantine/notifications';
 import { useMediaQuery } from '@mantine/hooks';
-
 
 
 const dataUser = {
@@ -33,22 +30,54 @@ const dataUser = {
 }
 
 const profilePageProps = {
-    lawDocuments: [
-        "Условия использования ",
-        "Соглашение об обработке ПД",
-        "Политика обработки данных",
-        "Использование Cookie-файлов"
-    ]
+    legalStatus: {
+        lawDocuments: [
+            "Условия использования",
+            "Соглашение об обработке ПД",
+            "Политика обработки данных",
+            "Использование Cookie-файлов"
+        ],
+        lawStatus: "Правовой статус",
+        data: "Дата",
+        acceptedRegistration: "Принято при регистрации",
+        yes: 'да',
+        no: 'нет'
+    },
+    notifications: {
+        title: {
+            success: 'Успешно',
+            error: 'Ошибка'
+        },
+        message: {
+            tooBigFile: 'Файл слишком большой. Максимальный размер: 5MB',
+            networkError: 'Произошла ошибка при загрузке файла',
+            isSucessAvatar: 'Аватар успешно загружен',
+        }
+    },
+    avatarUploadText: {
+        avatarUser: 'Аватар пользователя'
+    },
+    userInfoCard: {
+        edit: "Редактировать"
+    },
+    contactsCard: {
+        contacts:'Контакты',
+        connect:'подключен',
+        disconnect:'не подключен',
+        confirmed: 'подтвержден',
+        notConfirmed: 'не подтвержден'
+    }
 }
 
 const ProfileForm = () => {
-    const [files, setFiles] = useState<File[]>([]);
+    const [avatarFile, setAvatarFile] = useState<File | null>(null);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
+
     const isWrap = useMediaQuery('(max-width: 650px)');
 
-    const handleFileChange = (selectedFiles: File[]) => {
+    const handleFileChange = (selectedFile: File | null) => {
         try {
-            if (selectedFiles[0].size > 5 * 1024 * 1024) {
+            if (selectedFile.size > 5 * 1024 * 1024) {
                 notifications.show({
                     title: 'Ошибка',
                     message: 'Файл слишком большой. Максимальный размер: 5MB',
@@ -58,9 +87,9 @@ const ProfileForm = () => {
                 });
                 return;
             }
-            setFiles(selectedFiles);
-            if (selectedFiles.length > 0) {
-                const url = URL.createObjectURL(selectedFiles[0]);
+            setAvatarFile(selectedFile);
+            if (selectedFile) {
+                const url = URL.createObjectURL(selectedFile);
                 setAvatarUrl(url);
                 notifications.show({
                     title: 'Успешно',
@@ -93,95 +122,33 @@ const ProfileForm = () => {
     return (
         <Flex gap="md" wrap={isWrap ? 'wrap' : 'nowrap'}>
             <Flex direction={isWrap ? "row" : 'column'} style={isWrap && { flexGrow: 1 }} wrap={isWrap ? 'wrap' : 'nowrap'} gap="md">
-                <Paper radius='lg' shadow='sm' p='md' style={isWrap && { flexGrow: 1 }} >
-                    <Flex direction='column' justify='space-between'  style={{ height: '100%' }}>
-                         <Box>
-                        {avatarUrl ? (
-                            <FileButton
-                                onChange={handleFileChange}
-                                accept="image/png,image/jpeg,image/jpg"
-                                multiple
-                            >
-                                {(props) => (
-                                    <Tooltip label={dataUser.name} withArrow>
-                                        <Avatar
-                                            {...props}
-                                            src={avatarUrl}
-                                            alt="Аватар пользователя"
-                                            size="xl"
-                                            radius="xl"
-                                            mb='xs'
-                                            style={{ cursor: 'pointer' }}
-                                        />
-                                    </Tooltip>
-                                )}
-                            </FileButton>
-                        ) : (
-                            <FileButton
-                                onChange={handleFileChange}
-                                accept="image/png,image/jpeg,image/jpg"
-                                multiple
-                            >
-                                {(props) => (
-                                    <ThemeIcon
-                                        component='button'
-                                        {...props}
-                                        size="xl"
-                                        radius="md"
-                                        color="var(--mantine-color-gray-4)"
-                                        style={{ cursor: 'pointer' }}
-                                        mb='xs'
-                                    >
-                                        <DonwloadIcon style={{ width: '40%', height: '40%' }} />
-                                    </ThemeIcon>
-                                )}
-                            </FileButton>
-                        )}
-                        <Text fw={600} mb='xs' >{dataUser.name}</Text>
-                    </Box>
-
-                    <Button variant="default" radius="lg" style={{ width: 'fit-content' }} >
-                        Редактировать
-                    </Button>
-                    </Flex>
-                   
-                </Paper>
+                <UserInfoCard
+                    userName={dataUser.name}
+                    isWrap={isWrap}
+                    textData={profilePageProps.userInfoCard}
+                >
+                    <AvatarUpload
+                        avatarUrl={avatarUrl}
+                        onFileChange={handleFileChange}
+                        userName={dataUser.name}
+                        textData={profilePageProps.avatarUploadText}
+                    />
+                </UserInfoCard>
                 <Paper radius='lg' shadow='sm' p='md' style={isWrap && { flexGrow: 1 }}>
-                    <Text mb="md">Правовой статус</Text>
-                    <Group wrap="nowrap">
-                        <Text style={{ whiteSpace: 'nowrap' }}>Принято при регистрации:</Text>
-                        <Text span c={dataUser.isLawStatus ? "green" : "red"} fw={500}>
-                            {dataUser.isLawStatus ? "да" : "нет"}
-                        </Text>
-                    </Group>
-                    <Text mb="md">Дата: {dataUser.dateLawStatus} </Text>
-                    <Stack gap={0} c="dimmed">
-                        {profilePageProps.lawDocuments.map((doc, index) => (
-                            <Text key={index} size="sm">{doc}</Text>
-                        ))}
-                    </Stack>
+                    <LegalStatus
+                        isLawStatus={dataUser.isLawStatus}
+                        dateLawStatus={dataUser.dateLawStatus}
+                        textData={profilePageProps.legalStatus}
+                    />
                 </Paper>
             </Flex>
             <Stack>
-                <Paper radius='lg' shadow='sm' p='md'>
-                    <Title order={4} mb="md">
-                        Контакты
-                    </Title>
-                    <Flex gap='md' rowGap={4} wrap="wrap">
-                        <Group wrap="nowrap">
-                            <Text c="dimmed" >Email:{dataUser.email}:</Text>
-                            <Text span c={dataUser.isEmailVerified ? "green" : "orange"} style={{ whiteSpace: 'nowrap' }} fw={500}>
-                                {dataUser.isEmailVerified ? "подтвержден" : "не подтвержден"}
-                            </Text>
-                        </Group>
-                        <Group wrap="nowrap">
-                            <Text c="dimmed">Telegram:</Text>
-                            <Text span c={dataUser.isTelegramConnected ? "green" : "orange"} fw={500} style={{ whiteSpace: 'nowrap' }}>
-                                {dataUser.isEmailVerified ? "подключен" : "не подключен"}
-                            </Text>
-                        </Group>
-                    </Flex>
-                </Paper>
+                <ContactsCard
+                    email={dataUser.email}
+                    isEmailVerified={dataUser.isEmailVerified}
+                    isTelegramConnected={dataUser.isTelegramConnected}
+                    textData={profilePageProps.contactsCard}
+                />
                 <Paper radius='lg' shadow='sm' p='md'>
                     <Title order={4} mb="md">
                         Подключения
