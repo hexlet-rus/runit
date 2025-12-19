@@ -1,9 +1,10 @@
 import { AppShell } from "@mantine/core";
 import TabsSwitcher from "./TabsSwitcher";
 import SnippetForm from "./SnippetForm";
-import ProfileForm from "./ProfileForm";
+import ProfileForm from './ProfileForm'
 import { TabItem } from "./TabsSwitcher";
 import Header from "./Header";
+import { profilePageProps } from "./data/mock-data";
 
 const tabs: TabItem[] = [
     {   
@@ -16,7 +17,7 @@ const tabs: TabItem[] = [
         id:2,
         valueName:'profile',
         title: 'Профиль',
-        children: <ProfileForm/>,
+        children: <ProfileForm {...profilePageProps} />,
     }
 ]
 

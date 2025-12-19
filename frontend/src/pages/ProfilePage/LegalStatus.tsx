@@ -3,19 +3,12 @@ import {
     Text,
     Stack
 } from "@mantine/core";
-
+import { LegalStatusTexts} from './type/profile-texts';
 
 interface LegalStatusProps {
     isLawStatus: boolean;
     dateLawStatus: string;
-    textData: {
-        lawDocuments: string[];
-        lawStatus: string;
-        data: string;
-        acceptedRegistration: string;
-        yes:string;
-        no:string
-    }
+    textData: LegalStatusTexts
 }
 
 const LegalStatus: React.FC<LegalStatusProps> = ({ isLawStatus, dateLawStatus, textData }) => {

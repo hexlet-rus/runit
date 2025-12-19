@@ -1,23 +1,19 @@
 import { useState, useEffect } from 'react';
-import { ReactComponent as IconLanguage } from './assets/Language.svg'
 import {
     Paper,
     Stack,
     Flex,
-    Text,
-    Button,
-    Group,
-    Title,
-    Checkbox,
-    SimpleGrid,
 } from '@mantine/core';
 import AvatarUpload from './AvatarUploadProps';
 import LegalStatus from './LegalStatus';
 import UserInfoCard from './UserInfoCard';
 import ContactsCard from './ContactsCard';
-import { notifications } from '@mantine/notifications';
+import ConnectionsCard from './ConnectionsCard';
+import NotificationsCard from './NotificationsCard';
+import LanguageCard from './LanguageCard';
 import { useMediaQuery } from '@mantine/hooks';
-
+import { ProfilePageProps } from './type/profile-texts'
+import { notification } from './utils/utils'
 
 const dataUser = {
     name: 'Иван Петров',
@@ -26,88 +22,94 @@ const dataUser = {
     email: 'ivan@example.com',
     isEmailVerified: false,
     isTelegramConnected: false,
-    language: 'Русский'
-}
-
-const profilePageProps = {
-    legalStatus: {
-        lawDocuments: [
-            "Условия использования",
-            "Соглашение об обработке ПД",
-            "Политика обработки данных",
-            "Использование Cookie-файлов"
-        ],
-        lawStatus: "Правовой статус",
-        data: "Дата",
-        acceptedRegistration: "Принято при регистрации",
-        yes: 'да',
-        no: 'нет'
-    },
+    language: 'Русский',
     notifications: {
-        title: {
-            success: 'Успешно',
-            error: 'Ошибка'
-        },
-        message: {
-            tooBigFile: 'Файл слишком большой. Максимальный размер: 5MB',
-            networkError: 'Произошла ошибка при загрузке файла',
-            isSucessAvatar: 'Аватар успешно загружен',
-        }
-    },
-    avatarUploadText: {
-        avatarUser: 'Аватар пользователя'
-    },
-    userInfoCard: {
-        edit: "Редактировать"
-    },
-    contactsCard: {
-        contacts:'Контакты',
-        connect:'подключен',
-        disconnect:'не подключен',
-        confirmed: 'подтвержден',
-        notConfirmed: 'не подтвержден'
+        news: false,
+        email: false,
+        telegram: false,
     }
 }
+type NotificationState = {
+    news: boolean;
+    email: boolean;
+    telegram: boolean;
+};
 
-const ProfileForm = () => {
+const ProfileForm = (
+    { components,
+        notificationsText
+    }: ProfilePageProps) => {
     const [avatarFile, setAvatarFile] = useState<File | null>(null);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
-
+    const [isEmailVerified, setIsEmailVerified] = useState<boolean>(dataUser.isEmailVerified);
+    const [isTelegramConnected, setIsTelegramConnected] = useState<boolean>(dataUser.isTelegramConnected);
+    const [notificationState, setNotificationState] = useState<NotificationState>(dataUser.notifications)
+    
+    const setNotificationFieldInState = (fieldName: keyof NotificationState) =>{
+        setNotificationState((state) => {
+            return {
+                ...state,
+                [fieldName]: !state[fieldName]
+            }
+        })
+    } 
+    interface SubscriptionResult {
+    success: boolean;
+    message: string;
+   }
+    const sendRequestForSubscription = async (subcription:string):Promise<SubscriptionResult> =>{
+        return {
+            success:true,
+            message:`${subcription}`
+        }
+    }
     const isWrap = useMediaQuery('(max-width: 650px)');
 
+    const handleConfirmEmail = () => {
+        setIsEmailVerified(value => !value)
+        console.log('Подтверждение email');
+    };
+
+    const handleToggleTelegram = () => {
+        setIsTelegramConnected(value => !value)
+        console.log('Переключение Telegram');
+    };
     const handleFileChange = (selectedFile: File | null) => {
         try {
             if (selectedFile.size > 5 * 1024 * 1024) {
-                notifications.show({
-                    title: 'Ошибка',
-                    message: 'Файл слишком большой. Максимальный размер: 5MB',
-                    color: 'red',
-                    position: 'top-center',
-                    autoClose: 1500
-                });
+                notification(notificationsText.title.error, notificationsText.message.tooBigFile, false)
                 return;
             }
             setAvatarFile(selectedFile);
             if (selectedFile) {
                 const url = URL.createObjectURL(selectedFile);
                 setAvatarUrl(url);
-                notifications.show({
-                    title: 'Успешно',
-                    message: 'Аватар успешно загружен',
-                    color: 'teal',
-                    position: 'top-center',
-                    autoClose: 1500
-                });
+                notification(notificationsText.title.success, notificationsText.message.isSucessAvatar, true)
             }
         } catch (error) {
-            notifications.show({
-                title: 'Ошибка',
-                message: 'Произошла ошибка при загрузке файла',
-                color: 'red',
-                position: 'top-center',
-                autoClose: 1500
-            });
-        }
+            notification(notificationsText.title.error, notificationsText.message.networkError, false)
+                  }
+    };
+
+    const handleNewsChange = (event) => {
+
+        setNotificationFieldInState('news')
+        console.log('Новости сервиса:', event.currentTarget.checked);
+    };
+
+    const handleEmailNotificationsChange = (event) => {
+        setNotificationFieldInState('email')
+        console.log('Email уведомления:', event.currentTarget.checked);
+    };
+
+    const handleTelegramNotificationsChange = (event) => {
+        setNotificationFieldInState('telegram')
+        console.log('Telegram уведомления:', event.currentTarget.checked);
+    };
+
+    const handleChangeLanguage = () => {
+        // Реализация смены языка
+        console.log('Смена языка');
     };
 
     useEffect(() => {
@@ -125,108 +127,49 @@ const ProfileForm = () => {
                 <UserInfoCard
                     userName={dataUser.name}
                     isWrap={isWrap}
-                    textData={profilePageProps.userInfoCard}
+                    textData={components.userInfoCard}
                 >
                     <AvatarUpload
                         avatarUrl={avatarUrl}
                         onFileChange={handleFileChange}
                         userName={dataUser.name}
-                        textData={profilePageProps.avatarUploadText}
+                        textData={components.avatarUpload}
                     />
                 </UserInfoCard>
                 <Paper radius='lg' shadow='sm' p='md' style={isWrap && { flexGrow: 1 }}>
                     <LegalStatus
                         isLawStatus={dataUser.isLawStatus}
                         dateLawStatus={dataUser.dateLawStatus}
-                        textData={profilePageProps.legalStatus}
+                        textData={components.legalStatus}
                     />
                 </Paper>
             </Flex>
             <Stack>
                 <ContactsCard
                     email={dataUser.email}
-                    isEmailVerified={dataUser.isEmailVerified}
-                    isTelegramConnected={dataUser.isTelegramConnected}
-                    textData={profilePageProps.contactsCard}
+                    isEmailVerified={isEmailVerified}
+                    isTelegramConnected={isTelegramConnected}
+                    textData={components.contactsCard}
                 />
-                <Paper radius='lg' shadow='sm' p='md'>
-                    <Title order={4} mb="md">
-                        Подключения
-                    </Title>
-                    <Flex gap='md' wrap="wrap" >
-                        <Paper radius='lg' withBorder shadow='sm' p='sm' style={{ flexGrow: 1 }}>
-                            <Flex align='center' gap='sm' justify="space-between">
-                                <Stack gap={4} >
-                                    <Text >Email:</Text>
-                                    <Text c="dimmed" fw={500} style={{ whiteSpace: 'nowrap' }}>
-                                        Статус: {dataUser.isEmailVerified ? "подключен" : "не подключен"}
-                                    </Text>
-                                </Stack>
-                                {!dataUser.isEmailVerified && <Button variant="filled" radius="lg">Подтвердить</Button>}
-                            </Flex>
-                        </Paper>
-                        <Paper radius='lg' withBorder shadow='sm' p='sm' style={{ flexGrow: 1 }}>
-                            <Flex align='center' gap='sm' justify="space-between">
-                                <Stack gap={4} >
-                                    <Text >Telegram:</Text>
-                                    <Text c="dimmed" fw={500} style={{ whiteSpace: 'nowrap' }}>
-                                        Статус: {dataUser.isTelegramConnected ? "подключен" : "не подключен"}
-                                    </Text>
-                                </Stack>
-                                <Button variant="filled" radius="lg">
-                                    {dataUser.isTelegramConnected ? "Отключить" : "Подключить"}
-                                </Button>
-                            </Flex>
-                        </Paper>
-                    </Flex>
-                </Paper>
-                <Paper radius='lg' shadow='sm' p='md'>
-                    <Title order={4} mb='sm'>
-                        Уведомления
-                    </Title>
-                    <Text c='dimmed' mb='sm' >Получать новости сервера</Text>
-                    <Paper radius='lg' withBorder shadow='sm' p='sm' mb='sm'>
-                        <Checkbox
-                            label='Новости сервиса'
-                            styles={{
-                                root: {
-                                    width: '100%',
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                },
-                                body: {
-                                    width: '100%',
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    flexDirection: 'row-reverse',
-                                },
-                                label: {
-                                    flex: 1,
-                                    marginRight: 'auto',
-                                }
-                            }}
-                        />
-                    </Paper>
-                    <SimpleGrid cols={2} spacing="sm">
-                        <Paper radius='xl' withBorder shadow='sm' px='sm' py={4}>
-                            <Checkbox label='Email' />
-                        </Paper>
-                        <Paper radius='xl' withBorder shadow='sm' px='sm' py={4}>
-                            <Checkbox label='Telegram' />
-                        </Paper>
-                    </SimpleGrid>
-                </Paper>
-                <Paper radius='lg' shadow='sm' p='md'>
-                    <Title order={4} mb='sm'>
-                        Язык
-                    </Title>
-                    <Button leftSection={<IconLanguage style={{ width: 20, height: 20 }} />} variant="default" radius='md' mb='sm'>
-                        Russian
-                    </Button>
-                    <Text c='dimmed' size='sm'>Текущий язык:{dataUser.language}</Text>
-                </Paper>
+                <ConnectionsCard
+                    isEmailVerified={isEmailVerified}
+                    isTelegramConnected={isTelegramConnected}
+                    onConfirmEmail={handleConfirmEmail}
+                    onToggleTelegram={handleToggleTelegram}
+                    textData={components.connectionsCard}
+                />
+                <NotificationsCard
+                    onNewsChange={handleNewsChange}
+                    onEmailNotificationsChange={handleEmailNotificationsChange}
+                    onTelegramNotificationsChange={handleTelegramNotificationsChange}
+                    notifications={notificationState}
+                    textData={components.notificationsCard}
+                />
+                <LanguageCard
+                    currentLanguage={dataUser.language}
+                    onChangeLanguage={handleChangeLanguage}
+                    textData={components.languageCard}
+                />
             </Stack>
         </Flex>)
 }

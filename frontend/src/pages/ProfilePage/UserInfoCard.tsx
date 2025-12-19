@@ -1,13 +1,12 @@
 import { Paper, Flex, Text, Button, Box } from '@mantine/core';
 import { ReactNode } from 'react';
+import { UserInfoCardTexts } from './type/profile-texts';
 
 interface UserInfoCardProps {
   userName: string;
   isWrap: boolean;
   children?: ReactNode;
-  textData:{
-    edit:string;
-  }
+  textData: UserInfoCardTexts
 }
 
 const UserInfoCard = ({

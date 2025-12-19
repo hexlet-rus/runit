@@ -5,18 +5,13 @@ import {
     Group,
     Text
 } from '@mantine/core';
+import { ContactsCardTexts } from './type/profile-texts';
 
 interface ContactsCardProps {
     email: string;
     isEmailVerified: boolean;
     isTelegramConnected: boolean;
-    textData: {
-        contacts: string;
-        connect: string;
-        disconnect: string;
-        confirmed: string;
-        notConfirmed: string;
-    }
+    textData: ContactsCardTexts
 }
 
 const ContactsCard = ({
