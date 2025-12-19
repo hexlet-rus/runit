@@ -5,8 +5,8 @@ import FeaturesSection from './FeaturesSection';
 import HeroBanner, { mockData } from './MainBanner';
 import Header from './Header';
 import CallToAction from './CallToAction';
-import Footer from './Footer';
 import CommunitySection, { communityMockData } from './CommunitySection';
+import Footer from './Footer-1';
 
 function HomePage() {
   return (
@@ -18,7 +18,7 @@ function HomePage() {
       </AppShell.Header>
 
       <AppShell.Main>
-        <SectionContainer>
+         <SectionContainer>
           <HeroBanner data={mockData} />
         </SectionContainer>
 
@@ -30,7 +30,7 @@ function HomePage() {
 
         <SectionContainer>
           <TechnologiesSection technologies={mockDataTechnology} />
-        </SectionContainer>
+        </SectionContainer> 
         <Box bg="gray.1">
           <SectionContainer>
             <CommunitySection communities={communityMockData} />
