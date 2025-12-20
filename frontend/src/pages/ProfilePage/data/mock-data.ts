@@ -55,14 +55,21 @@ export const profilePageProps: ProfilePageProps = {
             tooBigFile: 'Файл слишком большой. Максимальный размер: 5MB',
             networkError: 'Произошла ошибка при загрузке файла',
             isSucessAvatar: 'Аватар успешно загружен',
-            telegramConnect:'Telegram подключен',
-            telegramDisconnect:'Telegram отключен',
-            emailConfirm:"Email подтвержден", 
-            subscription:{
-                news:'',
-                email:'',
-                telegram:''
+            telegramConnect: 'Telegram подключен',
+            telegramDisconnect: 'Telegram отключен',
+            emailConfirm: "Email подтвержден",
+            subscription: {
+                news: '',
+                email: '',
+                telegram: ''
+            },
+            unSubscription: {
+                news: '',
+                email: '',
+                telegram: ''
             }
-        }
+
+        },
+
     },
 }

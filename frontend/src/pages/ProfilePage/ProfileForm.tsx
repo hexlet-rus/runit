@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useForm } from '@mantine/form';
 import {
     Paper,
     Stack,
@@ -29,11 +30,26 @@ const dataUser = {
         telegram: false,
     }
 }
-type NotificationState = {
-    news: boolean;
-    email: boolean;
-    telegram: boolean;
+
+interface ProfileFormValues {
+    name: string;
+    email: string;
+    language: string;
+    notifications: {
+        news: boolean;
+        email: boolean;
+        telegram: boolean;
+    };
+}
+
+const initialValues: ProfileFormValues = {
+    name: dataUser.name,
+    email: dataUser.email,
+    language: dataUser.language,
+    notifications: dataUser.notifications,
 };
+
+export type NotificationField = 'news' | 'email' | 'telegram';
 
 const ProfileForm = (
     { components,
@@ -43,26 +59,78 @@ const ProfileForm = (
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
     const [isEmailVerified, setIsEmailVerified] = useState<boolean>(dataUser.isEmailVerified);
     const [isTelegramConnected, setIsTelegramConnected] = useState<boolean>(dataUser.isTelegramConnected);
-    const [notificationState, setNotificationState] = useState<NotificationState>(dataUser.notifications)
-    
-    const setNotificationFieldInState = (fieldName: keyof NotificationState) =>{
-        setNotificationState((state) => {
-            return {
-                ...state,
-                [fieldName]: !state[fieldName]
+
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [pendingField, setPendingField] = useState<NotificationField[]>([]);
+
+    const form = useForm<ProfileFormValues>({
+        initialValues,
+
+        validate: {
+            name: (value) => value.trim().length < 2 ? 'Имя слишком короткое' : null,
+            email: (value) => !/^\S+@\S+$/.test(value) ? 'Неверный формат email' : null,
+        },
+
+        validateInputOnChange: true,
+    });
+
+
+
+    const handleNotificationChange = async (
+        fieldName: keyof ProfileFormValues['notifications'],
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        if (isLoading) return;
+
+        const newValue = event.currentTarget.checked;
+        const oldValue = form.values.notifications[fieldName];
+
+        // Оптимистичное обновление
+        form.setFieldValue(`notifications.${fieldName}`, newValue);
+        setPendingField(prev => [...prev, fieldName]);
+        setIsLoading(true);
+
+        try {
+            const result = await sendRequestForSubscription(fieldName, newValue);
+
+            if (result.success) {
+                notification(notificationsText.title.success, result.message, true);
+            } else {
+                // Откат при ошибке
+                form.setFieldValue(`notifications.${fieldName}`, oldValue);
+                notification(notificationsText.title.error, result.message, false);
             }
-        })
-    } 
-    interface SubscriptionResult {
-    success: boolean;
-    message: string;
-   }
-    const sendRequestForSubscription = async (subcription:string):Promise<SubscriptionResult> =>{
-        return {
-            success:true,
-            message:`${subcription}`
+        } catch (error) {
+            // Откат при ошибке сети
+            form.setFieldValue(`notifications.${fieldName}`, oldValue);
+            notification(notificationsText.title.error, notificationsText.message.networkError, false);
+        } finally {
+            setIsLoading(false);
+            setPendingField(prev => prev.filter(field => field !== fieldName));
         }
+    };
+    interface SubscriptionResult {
+        success: boolean;
+        message: string;
     }
+    const sendRequestForSubscription = async (
+        fieldName: string,
+        isSubscription: boolean
+    ): Promise<SubscriptionResult> => {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        const isSuccess = true;
+        const error = Math.random() < 0.3;
+        console.log(error)
+        if (error) { console.log('NetworkError') }
+        return {
+            success: isSuccess,
+            message: isSubscription
+                ? notificationsText.message.subscription[fieldName]
+                : notificationsText.message.unSubscription[fieldName]
+                // ? `Во подписаны на уведосления в "${fieldName}" обновлена`
+                // : `Подписка по "${fieldName}" отменена`,
+        };
+    };
     const isWrap = useMediaQuery('(max-width: 650px)');
 
     const handleConfirmEmail = () => {
@@ -88,25 +156,21 @@ const ProfileForm = (
             }
         } catch (error) {
             notification(notificationsText.title.error, notificationsText.message.networkError, false)
-                  }
+        }
     };
 
-    const handleNewsChange = (event) => {
 
-        setNotificationFieldInState('news')
-        console.log('Новости сервиса:', event.currentTarget.checked);
+    const handleNewsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        handleNotificationChange('news', event);
     };
 
-    const handleEmailNotificationsChange = (event) => {
-        setNotificationFieldInState('email')
-        console.log('Email уведомления:', event.currentTarget.checked);
+    const handleEmailNotificationsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        handleNotificationChange('email', event);
     };
 
-    const handleTelegramNotificationsChange = (event) => {
-        setNotificationFieldInState('telegram')
-        console.log('Telegram уведомления:', event.currentTarget.checked);
+    const handleTelegramNotificationsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        handleNotificationChange('telegram', event);
     };
-
     const handleChangeLanguage = () => {
         // Реализация смены языка
         console.log('Смена языка');
@@ -144,7 +208,7 @@ const ProfileForm = (
                     />
                 </Paper>
             </Flex>
-            <Stack>
+            <Stack >
                 <ContactsCard
                     email={dataUser.email}
                     isEmailVerified={isEmailVerified}
@@ -162,8 +226,10 @@ const ProfileForm = (
                     onNewsChange={handleNewsChange}
                     onEmailNotificationsChange={handleEmailNotificationsChange}
                     onTelegramNotificationsChange={handleTelegramNotificationsChange}
-                    notifications={notificationState}
+                    notifications={form.values.notifications}
                     textData={components.notificationsCard}
+                    loading={isLoading}
+                    pendingNotification={pendingField}
                 />
                 <LanguageCard
                     currentLanguage={dataUser.language}

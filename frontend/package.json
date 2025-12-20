@@ -7,6 +7,7 @@
     "@faker-js/faker": "^8.4.0",
     "@mantine/code-highlight": "^8.3.6",
     "@mantine/core": "^8.3.5",
+    "@mantine/form": "^8.3.10",
     "@mantine/hooks": "^8.3.5",
     "@mantine/notifications": "^8.3.9",
     "@monaco-editor/react": "^4.5.1",

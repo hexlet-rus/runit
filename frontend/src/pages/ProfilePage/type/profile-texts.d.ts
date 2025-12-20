@@ -55,6 +55,11 @@ export interface NotificationMessages {
     news: string;
     email: string;
     telegram: string;
+  },
+  unSubscription: {
+    news: string;
+    email: string;
+    telegram: string;
   }
 }
 
