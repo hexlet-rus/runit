@@ -14,7 +14,6 @@ interface TabsSwitcherProp {
 }
 
 const TabsSwitcher: React.FC<TabsSwitcherProp> = ({ tabs }) => {
-    console.log(tabs[0].title)
     const theme = useMantineTheme();
     const isHorizontal = useMediaQuery('(max-width: 830px)');
     return (

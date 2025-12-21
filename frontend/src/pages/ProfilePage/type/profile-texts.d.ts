@@ -55,11 +55,19 @@ export interface NotificationMessages {
     news: string;
     email: string;
     telegram: string;
+    isEmailVerified: string;
+    isTelegramConnected: string;
   },
   unSubscription: {
     news: string;
     email: string;
     telegram: string;
+    isEmailVerified: string;
+    isTelegramConnected: string;
+  },
+  error: {
+    networkError: string;
+    failedPerform: string;
   }
 }
 

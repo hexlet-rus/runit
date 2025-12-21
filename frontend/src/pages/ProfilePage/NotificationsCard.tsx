@@ -1,6 +1,7 @@
 import { Paper, Title, Text, SimpleGrid, Checkbox, LoadingOverlay } from '@mantine/core';
 import { NotificationsCardTexts } from './type/profile-texts';
-import { NotificationField } from './ProfileForm';
+import { NotificationField } from './type/notification';
+
 interface NotificationsCardProps {
     onNewsChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     onEmailNotificationsChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

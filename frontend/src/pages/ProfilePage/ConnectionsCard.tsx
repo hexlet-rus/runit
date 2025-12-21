@@ -1,4 +1,4 @@
-import { Paper, Flex, Stack, Text, Button, Title } from '@mantine/core';
+import { Paper, Flex, Stack, Text, Button, Title, LoadingOverlay } from '@mantine/core';
 import { ConnectionsCardTexts } from './type/profile-texts';
 
 interface ConnectionsCardProps {
@@ -6,7 +6,12 @@ interface ConnectionsCardProps {
     isTelegramConnected: boolean;
     onConfirmEmail: () => void;
     onToggleTelegram: () => void;
-    textData: ConnectionsCardTexts
+    textData: ConnectionsCardTexts;
+    loading?: boolean;
+    pendingActions?: {
+        emailVerification: boolean;
+        telegramConnection: boolean;
+    };
 }
 
 const ConnectionsCard = ({
@@ -14,7 +19,9 @@ const ConnectionsCard = ({
     isTelegramConnected,
     onConfirmEmail,
     onToggleTelegram,
-    textData
+    textData,
+    loading = false,
+    pendingActions = { emailVerification: false, telegramConnection: false },
 }: ConnectionsCardProps) => (
     <Paper radius='lg' shadow='sm' p='md'>
         <Title order={4} mb="md">
@@ -28,6 +35,8 @@ const ConnectionsCard = ({
                 buttonText={textData.confirm}
                 onButtonClick={onConfirmEmail}
                 textData={textData.status}
+                loading={pendingActions.emailVerification}
+                disabled={loading}
             />
             <ConnectionItem
                 label="Telegram"
@@ -36,6 +45,8 @@ const ConnectionsCard = ({
                 buttonText={isTelegramConnected ? textData.disable : textData.connect}
                 onButtonClick={onToggleTelegram}
                 textData={textData.status}
+                loading={pendingActions.telegramConnection}
+                disabled={loading}
             />
         </Flex>
     </Paper>
@@ -48,6 +59,8 @@ interface ConnectionItemProps {
     buttonText: string;
     onButtonClick: () => void;
     textData: string;
+    loading?: boolean;
+    disabled?: boolean;
 }
 
 const ConnectionItem = ({
@@ -56,9 +69,18 @@ const ConnectionItem = ({
     showButton,
     buttonText,
     onButtonClick,
-    textData
+    textData,
+    loading = false,
+    disabled = false,
 }: ConnectionItemProps) => (
-    <Paper radius='lg' withBorder shadow='sm' p='sm' style={{ flexGrow: 1 }}>
+    <Paper radius='lg' withBorder shadow='sm' p='sm' style={{ flexGrow: 1, position: 'relative' }}>
+        {loading && (
+            <LoadingOverlay
+                visible={true}
+                loaderProps={{ color: 'blue', type: 'dots', size: 'sm' }}
+                zIndex={1000}
+            />
+        )}
         <Flex align='center' gap='sm' justify="space-between">
             <Stack gap={4}>
                 <Text>{label}</Text>
@@ -67,7 +89,13 @@ const ConnectionItem = ({
                 </Text>
             </Stack>
             {showButton && (
-                <Button variant="filled" radius="lg" onClick={onButtonClick}>
+                <Button
+                    variant="filled"
+                    radius="lg"
+                    onClick={onButtonClick}
+                    disabled={disabled}
+                    loading={loading}
+                >
                     {buttonText}
                 </Button>
             )}

@@ -11,14 +11,19 @@ interface ContactsCardProps {
     email: string;
     isEmailVerified: boolean;
     isTelegramConnected: boolean;
-    textData: ContactsCardTexts
+    textData: ContactsCardTexts;
+    pendingActions?: {
+        emailVerification: boolean;
+        telegramConnection: boolean;
+    };
 }
 
 const ContactsCard = ({
     email,
     isEmailVerified,
     isTelegramConnected,
-    textData
+    textData,
+     pendingActions = { emailVerification: false, telegramConnection: false },
 }: ContactsCardProps) => (
     <Paper radius='lg' shadow='sm' p='md'>
         <Title order={4} mb="md">{textData.contacts}</Title>
@@ -31,7 +36,7 @@ const ContactsCard = ({
                     style={{ whiteSpace: 'nowrap' }}
                     fw={500}
                 >
-                    {isEmailVerified ? textData.confirmed : textData.notConfirmed}
+                    {!pendingActions.emailVerification && (isEmailVerified ? textData.confirmed : textData.notConfirmed)}
                 </Text>
             </Group>
             <Group wrap="nowrap">
@@ -42,7 +47,7 @@ const ContactsCard = ({
                     fw={500}
                     style={{ whiteSpace: 'nowrap' }}
                 >
-                    {isTelegramConnected ? textData.connect : textData.disconnect}
+                    {!pendingActions.telegramConnection && (isTelegramConnected ? textData.connect : textData.disconnect)}
                 </Text>
             </Group>
         </Flex>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useForm } from '@mantine/form';
 import {
     Paper,
@@ -14,7 +14,10 @@ import NotificationsCard from './NotificationsCard';
 import LanguageCard from './LanguageCard';
 import { useMediaQuery } from '@mantine/hooks';
 import { ProfilePageProps } from './type/profile-texts'
-import { notification } from './utils/utils'
+import { showNotification, makeSendRequestForSubscription } from './utils/utils'
+import { useNotificationToggle } from './hooks/useNotificationToggle';
+import { NotificationField } from './type/notification';
+import { profilePageProps } from "./data/mock-data";
 
 const dataUser = {
     name: 'Иван Петров',
@@ -35,6 +38,8 @@ interface ProfileFormValues {
     name: string;
     email: string;
     language: string;
+    isEmailVerified: boolean;
+    isTelegramConnected: boolean;
     notifications: {
         news: boolean;
         email: boolean;
@@ -47,119 +52,90 @@ const initialValues: ProfileFormValues = {
     email: dataUser.email,
     language: dataUser.language,
     notifications: dataUser.notifications,
+    isEmailVerified: dataUser.isEmailVerified,
+    isTelegramConnected: dataUser.isTelegramConnected,
 };
 
-export type NotificationField = 'news' | 'email' | 'telegram';
-
 const ProfileForm = (
-    { components,
-        notificationsText
-    }: ProfilePageProps) => {
+    // {
+    //     components,
+    //     notificationsText
+    // }: ProfilePageProps
+) => {
     const [avatarFile, setAvatarFile] = useState<File | null>(null);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
-    const [isEmailVerified, setIsEmailVerified] = useState<boolean>(dataUser.isEmailVerified);
-    const [isTelegramConnected, setIsTelegramConnected] = useState<boolean>(dataUser.isTelegramConnected);
-
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [pendingField, setPendingField] = useState<NotificationField[]>([]);
-
+    const { components, notificationsText } = profilePageProps;
     const form = useForm<ProfileFormValues>({
         initialValues,
-
-        validate: {
-            name: (value) => value.trim().length < 2 ? 'Имя слишком короткое' : null,
-            email: (value) => !/^\S+@\S+$/.test(value) ? 'Неверный формат email' : null,
-        },
-
-        validateInputOnChange: true,
     });
 
 
-
-    const handleNotificationChange = async (
-        fieldName: keyof ProfileFormValues['notifications'],
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        if (isLoading) return;
-
-        const newValue = event.currentTarget.checked;
-        const oldValue = form.values.notifications[fieldName];
-
-        // Оптимистичное обновление
-        form.setFieldValue(`notifications.${fieldName}`, newValue);
-        setPendingField(prev => [...prev, fieldName]);
-        setIsLoading(true);
-
-        try {
-            const result = await sendRequestForSubscription(fieldName, newValue);
-
-            if (result.success) {
-                notification(notificationsText.title.success, result.message, true);
-            } else {
-                // Откат при ошибке
-                form.setFieldValue(`notifications.${fieldName}`, oldValue);
-                notification(notificationsText.title.error, result.message, false);
-            }
-        } catch (error) {
-            // Откат при ошибке сети
-            form.setFieldValue(`notifications.${fieldName}`, oldValue);
-            notification(notificationsText.title.error, notificationsText.message.networkError, false);
-        } finally {
-            setIsLoading(false);
-            setPendingField(prev => prev.filter(field => field !== fieldName));
-        }
-    };
-    interface SubscriptionResult {
-        success: boolean;
-        message: string;
-    }
-    const sendRequestForSubscription = async (
-        fieldName: string,
-        isSubscription: boolean
-    ): Promise<SubscriptionResult> => {
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        const isSuccess = true;
-        const error = Math.random() < 0.3;
-        console.log(error)
-        if (error) { console.log('NetworkError') }
-        return {
-            success: isSuccess,
-            message: isSubscription
-                ? notificationsText.message.subscription[fieldName]
-                : notificationsText.message.unSubscription[fieldName]
-                // ? `Во подписаны на уведосления в "${fieldName}" обновлена`
-                // : `Подписка по "${fieldName}" отменена`,
-        };
-    };
     const isWrap = useMediaQuery('(max-width: 650px)');
 
-    const handleConfirmEmail = () => {
-        setIsEmailVerified(value => !value)
-        console.log('Подтверждение email');
-    };
-
-    const handleToggleTelegram = () => {
-        setIsTelegramConnected(value => !value)
-        console.log('Переключение Telegram');
-    };
     const handleFileChange = (selectedFile: File | null) => {
         try {
             if (selectedFile.size > 5 * 1024 * 1024) {
-                notification(notificationsText.title.error, notificationsText.message.tooBigFile, false)
+                showNotification(notificationsText.title.error, notificationsText.message.tooBigFile, false)
                 return;
             }
             setAvatarFile(selectedFile);
             if (selectedFile) {
                 const url = URL.createObjectURL(selectedFile);
                 setAvatarUrl(url);
-                notification(notificationsText.title.success, notificationsText.message.isSucessAvatar, true)
+                showNotification(notificationsText.title.success, notificationsText.message.isSucessAvatar, true)
+            } else {
+                setAvatarUrl(null);
             }
         } catch (error) {
-            notification(notificationsText.title.error, notificationsText.message.networkError, false)
+            showNotification(notificationsText.title.error, notificationsText.message.networkError, false)
         }
     };
 
+    const sendRequestForSubscription = useCallback(makeSendRequestForSubscription(notificationsText), [notificationsText])
 
+    const {
+        isLoading,
+        pendingField,
+        toggleField,
+        cancelAllRequests,
+        isPending
+    } = useNotificationToggle({
+        onUpdateForm: (fieldName, value) => {
+            if (fieldName === 'isEmailVerified' || fieldName === 'isTelegramConnected') {
+                form.setFieldValue(fieldName, value);
+            } else {
+                form.setFieldValue(`notifications.${fieldName}`, value);
+            }
+        },
+        sendRequest: sendRequestForSubscription,
+        onSuccess: (message) => {
+            showNotification(notificationsText.title.success, message, true);
+        },
+        onError: (message) => {
+            showNotification(notificationsText.title.error, message, false);
+        },
+    });
+
+    const handleNotificationChange = (
+        fieldName: NotificationField,
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const newValue = event.currentTarget.checked;
+        const oldValue = form.values.notifications[fieldName];
+        toggleField(fieldName, oldValue, newValue);
+    };
+
+    const handleConfirmEmail = () => {
+        const oldValue = form.values.isEmailVerified;
+        const newValue = !oldValue;
+        toggleField('isEmailVerified', oldValue, newValue);
+    };
+
+    const handleToggleTelegram = () => {
+        const oldValue = form.values.isTelegramConnected;
+        const newValue = !oldValue;
+        toggleField('isTelegramConnected', oldValue, newValue);
+    };
     const handleNewsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         handleNotificationChange('news', event);
     };
@@ -172,7 +148,6 @@ const ProfileForm = (
         handleNotificationChange('telegram', event);
     };
     const handleChangeLanguage = () => {
-        // Реализация смены языка
         console.log('Смена языка');
     };
 
@@ -181,8 +156,9 @@ const ProfileForm = (
             if (avatarUrl) {
                 URL.revokeObjectURL(avatarUrl);
             }
+            cancelAllRequests();
         };
-    }, [avatarUrl]);
+    }, [avatarUrl, cancelAllRequests]);
 
 
     return (
@@ -211,16 +187,25 @@ const ProfileForm = (
             <Stack >
                 <ContactsCard
                     email={dataUser.email}
-                    isEmailVerified={isEmailVerified}
-                    isTelegramConnected={isTelegramConnected}
+                    isEmailVerified={form.values.isEmailVerified}
+                    isTelegramConnected={form.values.isTelegramConnected}
                     textData={components.contactsCard}
+                    pendingActions={{
+                        emailVerification: isPending('isEmailVerified'),
+                        telegramConnection: isPending('isTelegramConnected'),
+                    }}
                 />
                 <ConnectionsCard
-                    isEmailVerified={isEmailVerified}
-                    isTelegramConnected={isTelegramConnected}
+                    isEmailVerified={form.values.isEmailVerified}
+                    isTelegramConnected={form.values.isTelegramConnected}
                     onConfirmEmail={handleConfirmEmail}
                     onToggleTelegram={handleToggleTelegram}
                     textData={components.connectionsCard}
+                    loading={isLoading}
+                    pendingActions={{
+                        emailVerification: isPending('isEmailVerified'),
+                        telegramConnection: isPending('isTelegramConnected'),
+                    }}
                 />
                 <NotificationsCard
                     onNewsChange={handleNewsChange}
@@ -229,7 +214,9 @@ const ProfileForm = (
                     notifications={form.values.notifications}
                     textData={components.notificationsCard}
                     loading={isLoading}
-                    pendingNotification={pendingField}
+                    pendingNotification={pendingField.filter(field =>
+                        ['news', 'email', 'telegram'].includes(field)
+                    ) as NotificationField[]}
                 />
                 <LanguageCard
                     currentLanguage={dataUser.language}

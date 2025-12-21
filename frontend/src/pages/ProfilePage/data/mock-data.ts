@@ -59,16 +59,23 @@ export const profilePageProps: ProfilePageProps = {
             telegramDisconnect: 'Telegram отключен',
             emailConfirm: "Email подтвержден",
             subscription: {
-                news: '',
-                email: '',
-                telegram: ''
+                news: 'Вы подписались на новости сервера',
+                email: 'Вы подписались на получения новостей по электронной почте',
+                telegram: 'Вы подписались на получения новостей по telegram',
+                isEmailVerified: 'Email успешно подтвержден',
+                isTelegramConnected: 'Telegram успешно подключен',
             },
             unSubscription: {
-                news: '',
-                email: '',
-                telegram: ''
+                news: 'Подписка на получения новостей сервера отменена',
+                email: 'Подписка на получения новостей сервера по электронной почте отменена',
+                telegram: 'Подписка на получения новостей сервера по telegram отменена',
+                isEmailVerified: 'Подтверждение email отменено',
+                isTelegramConnected:'Telegram отключен',
+            },
+            error: {
+                networkError: 'Ошибка сети',
+                failedPerform: 'Не удалось выполнить действие'
             }
-
         },
 
     },
