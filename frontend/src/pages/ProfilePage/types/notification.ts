@@ -24,3 +24,4 @@ export interface NotificationsState {
     email: boolean;
     telegram: boolean;
 }
+

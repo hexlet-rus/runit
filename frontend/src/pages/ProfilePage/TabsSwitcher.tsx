@@ -1,17 +1,8 @@
 import { Tabs, Paper, useMantineTheme } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import { TabsSwitcherProp } from './types/components';
 
 
-export type TabItem = {
-    id: number,
-    valueName: string;
-    title: string;
-    children: React.ReactNode;
-}
-
-interface TabsSwitcherProp {
-    tabs: TabItem[]
-}
 
 const TabsSwitcher: React.FC<TabsSwitcherProp> = ({ tabs }) => {
     const theme = useMantineTheme();

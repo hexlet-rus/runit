@@ -1,13 +1,7 @@
 import { Paper, Flex, Text, Button, Box } from '@mantine/core';
-import { ReactNode } from 'react';
-import { UserInfoCardTexts } from './type/profile-texts';
+import { UserInfoCardProps } from './types/components';
 
-interface UserInfoCardProps {
-  userName: string;
-  isWrap: boolean;
-  children?: ReactNode;
-  textData: UserInfoCardTexts
-}
+
 
 const UserInfoCard = ({
   userName,

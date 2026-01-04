@@ -13,11 +13,15 @@ import ConnectionsCard from './ConnectionsCard';
 import NotificationsCard from './NotificationsCard';
 import LanguageCard from './LanguageCard';
 import { useMediaQuery } from '@mantine/hooks';
-import { ProfilePageProps } from './type/profile-texts'
 import { showNotification, makeSendRequestForSubscription } from './utils/utils'
 import { useNotificationToggle } from './hooks/useNotificationToggle';
-import { NotificationField } from './type/notification';
+import { NotificationField } from './types/notification';
 import { profilePageProps } from "./data/mock-data";
+import { ProfileFormValues } from "./types/components";
+import { useTRPCClient } from '../../utils/trpc';
+
+
+
 
 const dataUser = {
     name: 'Иван Петров',
@@ -34,18 +38,6 @@ const dataUser = {
     }
 }
 
-interface ProfileFormValues {
-    name: string;
-    email: string;
-    language: string;
-    isEmailVerified: boolean;
-    isTelegramConnected: boolean;
-    notifications: {
-        news: boolean;
-        email: boolean;
-        telegram: boolean;
-    };
-}
 
 const initialValues: ProfileFormValues = {
     name: dataUser.name,
@@ -56,12 +48,7 @@ const initialValues: ProfileFormValues = {
     isTelegramConnected: dataUser.isTelegramConnected,
 };
 
-const ProfileForm = (
-    // {
-    //     components,
-    //     notificationsText
-    // }: ProfilePageProps
-) => {
+const ProfileForm = () => {
     const [avatarFile, setAvatarFile] = useState<File | null>(null);
     const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
     const { components, notificationsText } = profilePageProps;
@@ -69,6 +56,11 @@ const ProfileForm = (
         initialValues,
     });
 
+    const trpcClient = useTRPCClient();
+
+    trpcClient.users.getAllUsers.query().then((result) => {
+        console.log(result)
+    })
 
     const isWrap = useMediaQuery('(max-width: 650px)');
 

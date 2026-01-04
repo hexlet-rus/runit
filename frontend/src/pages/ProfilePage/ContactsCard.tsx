@@ -5,25 +5,16 @@ import {
     Group,
     Text
 } from '@mantine/core';
-import { ContactsCardTexts } from './type/profile-texts';
+import { ContactsCardProps } from './types/components';
 
-interface ContactsCardProps {
-    email: string;
-    isEmailVerified: boolean;
-    isTelegramConnected: boolean;
-    textData: ContactsCardTexts;
-    pendingActions?: {
-        emailVerification: boolean;
-        telegramConnection: boolean;
-    };
-}
+
 
 const ContactsCard = ({
     email,
     isEmailVerified,
     isTelegramConnected,
     textData,
-     pendingActions = { emailVerification: false, telegramConnection: false },
+    pendingActions = { emailVerification: false, telegramConnection: false },
 }: ContactsCardProps) => (
     <Paper radius='lg' shadow='sm' p='md'>
         <Title order={4} mb="md">{textData.contacts}</Title>

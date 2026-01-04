@@ -1,12 +1,8 @@
 import { Paper, Title, Button, Text } from '@mantine/core';
 import { ReactComponent as IconLanguage } from './assets/Language.svg';
-import { LanguageCardTexts } from './type/profile-texts';
+import { LanguageCardProps } from './types/components';
 
-interface LanguageCardProps {
-  currentLanguage: string;
-  onChangeLanguage: () => void;
-  textData:LanguageCardTexts;
-}
+
 
 const LanguageCard = ({ currentLanguage, onChangeLanguage, textData }: LanguageCardProps) => (
   <Paper radius='lg' shadow='sm' p='md'>

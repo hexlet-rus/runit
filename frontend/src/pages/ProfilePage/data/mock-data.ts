@@ -1,4 +1,4 @@
-import { ProfilePageProps } from "../type/profile-texts"
+import { ProfilePageProps } from "../types/profile-texts"
 export const profilePageProps: ProfilePageProps = {
     components: {
         legalStatus: {

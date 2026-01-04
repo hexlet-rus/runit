@@ -1,20 +1,7 @@
 import { Paper, Title, Text, SimpleGrid, Checkbox, LoadingOverlay } from '@mantine/core';
-import { NotificationsCardTexts } from './type/profile-texts';
-import { NotificationField } from './type/notification';
 
-interface NotificationsCardProps {
-    onNewsChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onEmailNotificationsChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onTelegramNotificationsChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    notifications: {
-        news: boolean;
-        email: boolean;
-        telegram: boolean;
-    }
-    textData: NotificationsCardTexts;
-    loading: boolean;
-    pendingNotification: NotificationField[]
-}
+import { NewsServiceCheckboxProps, NotificationsCardProps, NotificationChannelProps } from './types/components'
+
 
 const NotificationsCard = ({
     onNewsChange,
@@ -55,12 +42,7 @@ const NotificationsCard = ({
     </Paper>
 );
 
-interface NewsServiceCheckboxProps {
-    checked?: boolean;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    disabled: boolean;
-    isLoading:boolean;
-}
+
 
 const NewsServiceCheckbox = ({ onChange, checked, disabled, isLoading }: NewsServiceCheckboxProps) => (
     <Paper radius='lg' withBorder shadow='sm' p='sm' mb='sm' style={{ position: 'relative' }}>
@@ -95,14 +77,6 @@ const NewsServiceCheckbox = ({ onChange, checked, disabled, isLoading }: NewsSer
         />
     </Paper>
 );
-
-interface NotificationChannelProps {
-    label: string;
-    checked?: boolean;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    disabled: boolean;
-    isLoading: boolean;
-}
 
 const NotificationChannel = ({ label, onChange, checked, disabled, isLoading }: NotificationChannelProps) => (
     <Paper radius='xl' withBorder shadow='sm' px='sm' py={4} style={{ position: 'relative' }}>

@@ -1,6 +1,6 @@
 import { notifications } from '@mantine/notifications';
-import { NotificationTexts } from '../type/profile-texts'
-import { ToggleField } from '../type/notification';
+import { NotificationTexts } from '../types/profile-texts'
+import { ToggleField } from '../types/notification';
 
 export const showNotification = (title: string, message: string, isSuccess: boolean): void => {
     notifications.show({

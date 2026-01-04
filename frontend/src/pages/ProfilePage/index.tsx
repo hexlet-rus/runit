@@ -1,15 +1,15 @@
-import { AppShell, Loader, Text,Flex } from "@mantine/core";
+import { AppShell, Loader, Text, Flex } from "@mantine/core";
 import { Suspense, lazy } from "react";
 import TabsSwitcher from "./TabsSwitcher";
 
-import { TabItem } from "./TabsSwitcher";
+import { TabItem } from "./types/components";
 import Header from "./Header";
 const SnippetForm = lazy(() => import("./SnippetForm"));
 const ProfileForm = lazy(() => import("./ProfileForm"));
 
 
 const LoadingFallback = () => (
-       <Flex
+    <Flex
         h="100vh"
         direction="column"
         align="center"
@@ -44,7 +44,7 @@ const tabs: TabItem[] = [
     }
 ]
 
-function ProfilePage({ }) {
+const ProfilePage = () => {
     return (
         <AppShell header={{ height: 60 }}>
             <AppShell.Header>

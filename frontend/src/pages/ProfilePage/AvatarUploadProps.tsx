@@ -1,19 +1,12 @@
-import { FileButton,
-    Tooltip,
-    Avatar,
-    ThemeIcon
- } from "@mantine/core";
- import { ReactComponent as DonwloadIcon } from './assets/donwload.svg'
-import { AvatarUploadTexts } from './type/profile-texts';
+import {
+  FileButton,
+  Tooltip,
+  Avatar,
+  ThemeIcon
+} from "@mantine/core";
+import { ReactComponent as DonwloadIcon } from './assets/donwload.svg'
+import { AvatarUploadProps } from './types/components';
 
-
-
-interface AvatarUploadProps {
-  avatarUrl: string | null;
-  onFileChange: (file: File | null) => void;
-  userName: string;
-  textData:AvatarUploadTexts
-}
 
 const AvatarUpload: React.FC<AvatarUploadProps> = ({ avatarUrl, onFileChange, userName, textData }) => {
   return (
@@ -62,4 +55,3 @@ const AvatarUpload: React.FC<AvatarUploadProps> = ({ avatarUrl, onFileChange, us
 };
 
 export default AvatarUpload;
-   

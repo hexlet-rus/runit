@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef } from 'react';
 import {  NotificationToggleOptions,
     ToggleField
-    } from '../type/notification';
+    } from '../types/notification';
 
 
 export const useNotificationToggle = ({
@@ -34,8 +34,7 @@ export const useNotificationToggle = ({
 
         try {
             const result = await sendRequest(fieldName, newValue);
-            
-            
+                        
             if (abortController.signal.aborted) return;
 
             if (result.success) {

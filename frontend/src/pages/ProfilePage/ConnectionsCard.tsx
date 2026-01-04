@@ -1,18 +1,6 @@
 import { Paper, Flex, Stack, Text, Button, Title, LoadingOverlay } from '@mantine/core';
-import { ConnectionsCardTexts } from './type/profile-texts';
+import { ConnectionsCardProps, ConnectionItemProps } from './types/components';
 
-interface ConnectionsCardProps {
-    isEmailVerified: boolean;
-    isTelegramConnected: boolean;
-    onConfirmEmail: () => void;
-    onToggleTelegram: () => void;
-    textData: ConnectionsCardTexts;
-    loading?: boolean;
-    pendingActions?: {
-        emailVerification: boolean;
-        telegramConnection: boolean;
-    };
-}
 
 const ConnectionsCard = ({
     isEmailVerified,
@@ -52,16 +40,6 @@ const ConnectionsCard = ({
     </Paper>
 );
 
-interface ConnectionItemProps {
-    label: string;
-    status: string;
-    showButton: boolean;
-    buttonText: string;
-    onButtonClick: () => void;
-    textData: string;
-    loading?: boolean;
-    disabled?: boolean;
-}
 
 const ConnectionItem = ({
     label,
