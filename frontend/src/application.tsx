@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import * as Sentry from '@sentry/react';
+// import * as Sentry from '@sentry/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import '@mantine/core/styles.css';
@@ -47,11 +47,11 @@ export default async () => {
   const store = configureStore({
     reducer: rootReducer,
   });
-  Sentry.init({
-    dsn: process.env.REACT_APP_SENTRY_DSN,
-    integrations: [new Sentry.BrowserTracing()],
-    tracesSampleRate: 1.0,
-  });
+  // Sentry.init({
+  //   dsn: process.env.REACT_APP_SENTRY_DSN,
+  //   integrations: [new Sentry.BrowserTracing()],
+  //   tracesSampleRate: 1.0,
+  // });
 
   return (
     <QueryClientProvider client={queryClient}>
