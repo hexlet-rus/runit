@@ -62,7 +62,7 @@ const ProfileForm = () => {
         console.log(result)
     })
 
-    const isWrap = useMediaQuery('(max-width: 650px)');
+    const isWrap = useMediaQuery('(max-width: 720px)');
 
     const handleFileChange = (selectedFile: File | null) => {
         try {

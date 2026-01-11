@@ -12,8 +12,10 @@ import { ReactComponent as IconLanguage } from './assets/Language.svg';
 
 const Header = () => {
     return (
-        <Paper  px='md'>
-            <Group justify="space-between" h={60} wrap='nowrap' align="center">
+        <Group justify='center'>
+            <Group justify="space-between" h={60} wrap='nowrap' align="center" px='md' maw="1100px" style={{
+                flexGrow: 1  
+            }}>
                 <Anchor
                     component={Link}
                     to='/'
@@ -48,7 +50,7 @@ const Header = () => {
                     </Button>
                 </Group>
             </Group>
-        </Paper>
+        </Group>
     )
 }
 

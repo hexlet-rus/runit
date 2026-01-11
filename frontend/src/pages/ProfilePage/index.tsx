@@ -1,4 +1,4 @@
-import { AppShell, Loader, Text, Flex } from "@mantine/core";
+import { AppShell, Loader, Text, Flex, Container } from "@mantine/core";
 import { Suspense, lazy } from "react";
 import TabsSwitcher from "./TabsSwitcher";
 
@@ -52,10 +52,15 @@ const ProfilePage = () => {
             </AppShell.Header>
             <AppShell.Main styles={{
                 main: {
-                    background: 'var(--mantine-color-gray-0)'
+                    background: 'var(--mantine-color-gray-0)',
+                    display: 'flex',
+                    justifyContent: 'center'
                 }
+
             }}>
-                <TabsSwitcher tabs={tabs} />
+                <Container size="lg" w="100%">
+                    <TabsSwitcher tabs={tabs} />
+                </Container>
             </AppShell.Main>
         </AppShell>
     )
