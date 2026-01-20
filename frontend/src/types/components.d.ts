@@ -54,12 +54,13 @@ export interface IFileToolbar {
 }
 
 export type CommunityType = {
-  badge: string
-  title: string
-  text: string
-  btn: string
-  link: string
-}
+  badge: string;
+  title: string;
+  text: string;
+  btn: string;
+  link: string;
+};
+
 interface TechnologySection {
   typeTechnology: string;
   listNamesTechnology: string[];
@@ -68,8 +69,15 @@ interface TechnologySection {
 export interface TechnologyCategories {
   technologies: Technology[];
 }
-export interface TechnologyCategory{
+export interface TechnologyCategory {
   category: string;
   items: string[];
 }
 
+export interface UpdateUserInput {
+  id: number;
+  username: string;
+  email: string;
+  // currentPassword: string;
+  password: string;
+}
