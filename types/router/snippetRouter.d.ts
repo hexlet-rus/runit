@@ -1,5 +1,5 @@
 export declare const snippetRouter: import("@trpc/server").TRPCBuiltRouter<{
-    ctx: import("../context").Context;
+    ctx: object;
     meta: object;
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: false;
@@ -11,10 +11,10 @@ export declare const snippetRouter: import("@trpc/server").TRPCBuiltRouter<{
             name: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: number | null;
+            language: string | null;
             slug: string | null;
             code: string;
-            language: string | null;
-            userId: number | null;
         };
         meta: object;
     }>;
@@ -28,10 +28,10 @@ export declare const snippetRouter: import("@trpc/server").TRPCBuiltRouter<{
             name: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: number | null;
+            language: string | null;
             slug: string | null;
             code: string;
-            language: string | null;
-            userId: number | null;
         };
         meta: object;
     }>;
@@ -42,28 +42,30 @@ export declare const snippetRouter: import("@trpc/server").TRPCBuiltRouter<{
             name: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: number | null;
+            language: string | null;
             slug: string | null;
             code: string;
-            language: string | null;
-            userId: number | null;
         }[];
         meta: object;
     }>;
     createSnippet: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             name: string;
+            userId: number;
+            language: "ruby" | "java" | "php" | "python" | "javascript" | "html";
             code: string;
-            language: "javascript" | "python" | "java" | "php" | "ruby" | "html";
+            slug?: string | undefined;
         };
         output: {
             id: number;
             name: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: number | null;
+            language: string | null;
             slug: string | null;
             code: string;
-            language: string | null;
-            userId: number | null;
         };
         meta: object;
     }>;
@@ -71,23 +73,27 @@ export declare const snippetRouter: import("@trpc/server").TRPCBuiltRouter<{
         input: {
             id: number;
             name?: string | undefined;
+            userId?: number | undefined;
+            language?: "ruby" | "java" | "php" | "python" | "javascript" | "html" | undefined;
+            slug?: string | undefined;
             code?: string | undefined;
-            language?: "javascript" | "python" | "java" | "php" | "ruby" | "html" | undefined;
         };
         output: {
             id: number;
             name: string;
             createdAt: Date;
             updatedAt: Date;
+            userId: number | null;
+            language: string | null;
             slug: string | null;
             code: string;
-            language: string | null;
-            userId: number | null;
         };
         meta: object;
     }>;
     deleteSnippet: import("@trpc/server").TRPCMutationProcedure<{
-        input: number;
+        input: {
+            id: number;
+        };
         output: {
             success: boolean;
             id: number;
