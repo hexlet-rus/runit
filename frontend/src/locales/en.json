@@ -46,7 +46,9 @@
     "signInFailed": "Wrong email or password",
     "unknown": "Unknown error",
     "userNotFound": "User is not found",
+    "userNotUpdated": "User's profile is not updated",
     "validation": {
+      "confirmPassword": "Passwords must match",
       "emailIsUsed": "This email address is already being used",
       "incorrectEmail": "Incorrect email",
       "incorrectPassword": "Only Latin letters, numbers and punctuation are allowed",
@@ -275,6 +277,23 @@
       "body": "In most situations, error 404 is displayed if the connection with the server is established, but there is no information on the specified request. There may be a typo in the address — this happens when typing manually. Or the page was deleted, but remained in your browser bookmarks",
       "title": "Why did this happen?"
     }
+  },
+  "profileEdit": {
+    "header": "runit",
+    "logout": "Log out",
+    "snippets": "Snippets",
+    "profile": "Profile",
+    "formHeader": "Profile settings",
+    "name": "Name",
+    "login": "Login",
+    "email": "Email",
+    "notConfirmed": "Email is not confirmed.",
+    "sendLetterAgain": "Send letter again",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm new password",
+    "cancel": "Cancel",
+    "save": "Save",
+    "loading": "Loading..."
   },
   "profileActions": {
     "header": "Profile",
