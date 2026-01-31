@@ -1,4 +1,4 @@
-import { Grid, Group, Box, Button, Input } from '@mantine/core';
+import { Grid, Group, Box, Button, Input, Divider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import PlayIcon from '../../assets/images/icons/snippetIcons/Play.svg?react';
 import SaveIcon from '../../assets/images/icons/snippetIcons/DocumentPlus.svg?react';
@@ -24,25 +24,28 @@ function ItemButtons() {
       </Button>
     );
   });
-  return <Group gap="md">{ButtonItem}</Group>;
+  return (
+    <Group gap="xs" justify="flex-start">
+      {ButtonItem}
+    </Group>
+  );
 }
 
 export function Editor() {
   return (
     <Box component="section">
       <header>
-        <div>
-          <Grid gutter="sm" justify="space-between">
-            <Grid.Col span={7}>
-              <Input placeholder="Новый сниппет" radius="md" />
-            </Grid.Col>
+        <Grid align="center" columns={24} grow gutter="sm" justify="center">
+          <Grid.Col offset={1}>
+            <Input placeholder="Новый сниппет" radius="md" />
+          </Grid.Col>
 
-            <Grid.Col span={5}>
-              <ItemButtons />
-            </Grid.Col>
-          </Grid>
-        </div>
+          <Grid.Col span={9}>
+            <ItemButtons />
+          </Grid.Col>
+        </Grid>
       </header>
+      <Divider my="sm" />
     </Box>
   );
 }
