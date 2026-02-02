@@ -12,7 +12,7 @@ import routes from './routes';
 import ScrollToTop from './utils/scrollToTop.js';
 
 import DefaultLoader from './components/Loaders/DefaultLoader';
-
+const ProfilePageNew = lazy(()=>import('./pages/ProfilePage'))
 // const Landing = lazy(() => import('./pages/landing/Landing'));
 const Landing = lazy(() => import('./pages/landing/home-page'));
 
@@ -71,7 +71,7 @@ function AppRoutes() {
             />
           }
         >
-          <Route index element={<Landing />} />
+          <Route index element={<ProfilePageNew/>} />
         </Route>
         <Route element={<Layout />}>
           <Route path={routes.oldLandingPath()} element={<OldLanding />} />
