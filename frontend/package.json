@@ -54,7 +54,9 @@
   "scripts": {
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint --ext .jsx,.js,.tsx,.ts ./",
+    "lint:fix": "eslint --ext .jsx,.js,.tsx,.ts ./ --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -79,6 +81,7 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^8.54.0",
     "@vitejs/plugin-react": "^5.1.1",
     "eslint": "^8.47.0",
     "eslint-config-airbnb": "^19.0.4",
