@@ -4,7 +4,7 @@ import {
   Avatar,
   ThemeIcon
 } from "@mantine/core";
-import { ReactComponent as DonwloadIcon } from './assets/donwload.svg'
+import DonwloadIcon from './assets/donwload.svg?react';
 import { AvatarUploadProps } from './types/components';
 
 
