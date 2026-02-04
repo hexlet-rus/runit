@@ -61,6 +61,7 @@ function AppRoutes() {
     <Suspense fallback={<DefaultLoader />}>
       <ScrollToTop />
       <Routes>
+        <Route path='/signin' element={<ProfilePageNew/>}/>
         <Route
           element={
             <ProtectedRoute
@@ -71,7 +72,7 @@ function AppRoutes() {
             />
           }
         >
-          <Route index element={<ProfilePageNew/>} />
+          <Route index element={<Landing/>} />
         </Route>
         <Route element={<Layout />}>
           <Route path={routes.oldLandingPath()} element={<OldLanding />} />

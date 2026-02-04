@@ -1,5 +1,5 @@
 import { Paper, Title, Button, Text } from '@mantine/core';
-import { ReactComponent as IconLanguage } from './assets/Language.svg';
+import IconLanguage from './assets/Language.svg?react';
 import { LanguageCardProps } from './types/components';
 
 

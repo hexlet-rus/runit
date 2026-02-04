@@ -8,7 +8,7 @@ import {
     Anchor
 } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { ReactComponent as IconLanguage } from './assets/Language.svg';
+import IconLanguage from './assets/Language.svg?react';
 
 const Header = () => {
     return (
