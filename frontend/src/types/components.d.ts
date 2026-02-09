@@ -1,4 +1,5 @@
-import React from 'react';
+import { UseFormReturnType } from '@mantine/form';
+import { ProfileEditFormValues } from '../pages/ProfileEditForm/TranslatedYupResolver';
 import { EditorStateType } from './slices';
 
 export type TypeInitialFormState = {
@@ -74,10 +75,16 @@ export interface TechnologyCategory {
   items: string[];
 }
 
-export interface UpdateUserInput {
+export interface UpdateUserInputData {
   id: number;
   username: string;
   email: string;
   // currentPassword: string;
   password: string;
+}
+
+export interface EditFormFieldsProps {
+  form: UseFormReturnType<ProfileEditFormValues>;
+  emailConfirmed?: boolean;
+  isSubmitting?: boolean;
 }

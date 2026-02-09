@@ -1,5 +1,3 @@
-import ProfilePageNew from "./pages/profile/ProfilePageNew";
-
 const apiPath = '/api';
 
 export default {
@@ -60,8 +58,8 @@ export default {
   runCode: () => [apiPath, 'runner', 'run'].join('/'),
 
   // Path for ProfileEditForm
-  profilePageNew: () => [apiPath, 'users', 'profile'].join('/'),
   editProfilePath: () => [apiPath, 'users', 'profile', 'edit'].join('/'),
+  profilePageNew: () => [apiPath, 'users', 'profile'].join('/'),
 
   oldLandingPath: () => '/oldLanding',
   homePagePath: () => '/editor',

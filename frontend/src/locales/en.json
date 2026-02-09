@@ -289,6 +289,7 @@
     "email": "Email",
     "notConfirmed": "Email is not confirmed.",
     "sendLetterAgain": "Send letter again",
+    "currentPassword":"Current password",
     "newPassword": "New password",
     "confirmPassword": "Confirm new password",
     "cancel": "Cancel",
@@ -360,7 +361,14 @@
       "signInHeader": "Already have an account? "
     },
     "pageHeader": "Signing Up",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "checkedOutAgree": "I checked out and agree",
+    "userAgreement": "Пользовательское соглашение(v1.3)",
     "registerButton": "Sign up",
+    "haveAnAccount": "I already have an account",
+    "or": "or",
     "signUpFailed": "Sign Up is failed"
   },
   "snippetActions": {

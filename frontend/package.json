@@ -10,6 +10,7 @@
     "@mantine/core": "^8.3.5",
     "@mantine/form": "^8.3.8",
     "@mantine/hooks": "^8.3.5",
+    "@mantinex/dev-icons": "^2.0.0",
     "@monaco-editor/react": "^4.5.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@sentry/react": "^7.47.0",

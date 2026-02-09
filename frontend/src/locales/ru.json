@@ -422,6 +422,7 @@
     "email": "Почта",
     "notConfirmed": "Почта не подтверждена.",
     "sendLetterAgain": "Отправить письмо еще раз",
+    "currentPassword":"Текущий пароль",
     "newPassword": "Новый пароль",
     "confirmPassword": "Повтор пароля",
     "cancel": "Отмена",
@@ -493,7 +494,14 @@
       "signInHeader": "Уже есть аккаунт?"
     },
     "pageHeader": "Регистрация",
+    "username": "Имя",
+    "email": "Почта",
+    "password": "Пароль",
+    "checkedOutAgree": "Я ознакомился и принимаю",
+    "userAgreement": "Пользовательское соглашение(v1.3)",
     "registerButton": "Зарегистрироваться",
+    "haveAnAccount": "У меня уже есть аккаунт",
+    "or": "или",
     "signUpFailed": "Невозможно зарегистрировать пользователя"
   },
   "snippetActions": {

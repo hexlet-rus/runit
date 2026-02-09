@@ -12,8 +12,9 @@ import routes from './routes';
 import ScrollToTop from './utils/scrollToTop.js';
 
 import DefaultLoader from './components/Loaders/DefaultLoader';
-import ProfileEditForm from './pages/profile/ProfileEditForm';
+import ProfileEditForm from './pages/ProfileEditForm/ProfileEditForm';
 
+const ProfilePageNew = lazy(() => import('./pages/ProfilePage'));
 // const Landing = lazy(() => import('./pages/landing/Landing'));
 const Landing = lazy(() => import('./pages/landing/home-page'));
 
@@ -23,7 +24,7 @@ const ProfilePage = lazy(() => import('./pages/profile'));
 const SettingsPage = lazy(() => import('./pages/settings'));
 const SnippetPage = lazy(() => import('./pages/snippet'));
 const AboutPage = lazy(() => import('./pages/about'));
-const SignUpPage = lazy(() => import('./pages/signup/newIndex'));
+const SignUpPage = lazy(() => import('./pages/signup'));
 const SignInPage = lazy(() => import('./pages/signin'));
 const LicenseAgreement = lazy(() => import('./pages/license-agreement'));
 const ForgotPasswordPage = lazy(() => import('./pages/forgot-password'));
@@ -62,10 +63,14 @@ function AppRoutes() {
     <Suspense fallback={<DefaultLoader />}>
       <ScrollToTop />
       <Routes>
+        <Route path={routes.profilePageNew()} element={<ProfilePageNew />} />
+        <Route path={routes.editProfilePath()} element={<ProfileEditForm />} />
         <Route
           element={
             <ProtectedRoute
-              isAllowed={!isLoggedIn}
+              // FIXME: Всегда isAllowed пока не готова авторизация
+              // isAllowed={!isLoggedIn}
+              isAllowed
               redirectTo={routes.myProfilePagePath()}
             />
           }
@@ -94,10 +99,6 @@ function AppRoutes() {
             <Route
               path={routes.settingsPagePath()}
               element={<SettingsPage />}
-            />
-            <Route
-              path={routes.editProfilePath()}
-              element={<ProfileEditForm />}
             />
           </Route>
 
