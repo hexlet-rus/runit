@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import * as Sentry from '@sentry/react';
+// import * as Sentry from '@sentry/react';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createTRPCClient, httpLink } from '@trpc/client';
 import type { AppRouter } from '../../types/router/index';
@@ -15,6 +16,8 @@ import { rootReducer } from './slices/index';
 import { initI18next } from './initI18next';
 import { TRPCProvider } from './utils/trpc';
 import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
+
 
 const makeQueryClient = () =>
   new QueryClient({
@@ -44,11 +47,11 @@ export default async () => {
   const store = configureStore({
     reducer: rootReducer,
   });
-  Sentry.init({
-    dsn: process.env.REACT_APP_SENTRY_DSN,
-    integrations: [new Sentry.BrowserTracing()],
-    tracesSampleRate: 1.0,
-  });
+  // Sentry.init({
+  //   dsn: process.env.REACT_APP_SENTRY_DSN,
+  //   integrations: [new Sentry.BrowserTracing()],
+  //   tracesSampleRate: 1.0,
+  // });
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -58,6 +61,7 @@ export default async () => {
             <AuthProvider>
               <SnippetsProvider>
                 <MantineProvider withStaticClasses withCssVariables>
+                  <Notifications />
                   <AppRoutes />
                   <ModalWindow />
                 </MantineProvider>

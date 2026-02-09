@@ -1,10 +1,15 @@
 import { Anchor, Flex, Group, Text } from '@mantine/core';
 
-const links = [
-  { link: '#', label: 'О проекте' },
-  { link: '#', label: 'Возможности' },
-  { link: '#', label: 'Технологии' },
-  { link: '#', label: 'Сообщество' },
+type PropsFooter = {
+  id: number | string;
+  link: string;
+  label: string
+}
+ export const links: PropsFooter[] = [
+  {id: 1, link: '#', label: 'О проекте' },
+  {id: 2, link: '#', label: 'Возможности' },
+  {id: 3, link: '#', label: 'Технологии' },
+  {id: 3, link: '#', label: 'Сообщество' },
 ];
 
 function Footer() {

@@ -24,78 +24,27 @@ Runit — это среда для написания и выполнения к
 * node >= 18
 * [Yarn 1 (Classic)](https://classic.yarnpkg.com/)
 * PostgreSQL для продакшена, либо SQLite для локальной разработки
-* Docker для локальной разработки
 
-## Установка
+## Установка зависимостей для бекенда и его запуск
 
 ```bash
-make setup
-make docker-builds
+yarn
+yarn dev
 ```
 
-## Запуск приложения
+## Установка зависимостей для фронтенда и его запуск
 
 ```bash
-make start
+cd frontend
+yarn
+yarn start
 ```
 
 <http://localhost:3000>
 
-## Запуск тестов
+## Старая API документация
 
-### unit тесты
-
-```bash
-make test
-```
-
-### e2e тесты
-
-```bash
-make test-e2e
-```
-
-## API документация
-
-Структура API проекта находится [здесь](https://runit.hexlet.ru/api).
-
-## Деплой на render.com
-
-Для деплоя на [render.com](https://dashboard.render.com/) выполните следующие действия:
-
-1. Создайте базу данных Postgres. После её подготовки, скопируйте *Internal Database URL*.
-2. Создайте Web Service, выберите ваш форк.
-3. Name — лучше использовать префикс с вашим ником. Например *fey-runit*.
-4. Region — любой, можно *Frankfurt (EU Central)*.
-5. Branch — из неё будет деплоиться приложение. Можно для начала использовать `main`. В дальнейшем используйте ветку, в которой нужно демонстрировать изменения.
-6. Root Directory — оставляем пустым.
-7. Runtime — *Node*.
-8. Build Command — `make install build`.
-9. Start Command — `make db-migrate start-prod`.
-10. План можно выбрать любой, достаточно бесплатного.
-11. Установите переменные окружения. Нажмите на *Advanced* и *Add Environment Variable*.
-
-Потребуются следующие переменные:
-
-* `DATABASE_URL` — этот URL вы скопировали ранее — *Internal Database URL*
-* `NODE_ENV` — `production`
-* `SECRET_KEY_JWT` — любая строка, можно сгенерировать случайную или вставить `simpleDevKey` для простоты
-* `TRANSPORT_MAILER_URL` — здесь должен быть URL строки подключения почтового отправителя. Для тестов можно использовать сервис [Mailtrap](https://mailtrap.io/). Пример урла будет `smtp://login:password@sandbox.smtp.mailtrap.io:2525`
-
-Жмите *Create Web Service* и следите за деплоем и логами. Если будут проблемы, задавайте вопросы [здесь](https://github.com/hexlet-rus/runit/discussions/categories/q-a). Сперва проверьте, что нет похожего открытого топика.
-
-### Использование авторизации через GitHub
-
-Для настройки авторизации через механизм OAuth 2.0 необходимо предварительно [создать и настроить GitHub App](https://docs.github.com/ru/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps).
-
-В настройках в качестве *Authorization callback URL* укажите `{appURL}/api/oauth`, где *{appURL}* – это адрес, по которому будет доступен деплой.
-
-Определите для деплоя следующие переменные окружения:
-
-* `OAUTH_CLIENT_ID` — это *Client ID*, который доступен после создания GitHub App.
-* `OAUTH_CLIENT_SECRET` — это *Client secret*, который необходимо сгенерировать в настройках GitHub App.
-
-*Примечание. Для нужд тестирования вместо GitHub App вы можете воспользоваться [OAuth App](https://docs.github.com/ru/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps). GitHub не рекомендует этот тип приложений, но он немного проще в настройке.*
+Структура API старого проекта находится [здесь](https://runit.hexlet.ru/api).
 
 ## Как помочь проекту
 

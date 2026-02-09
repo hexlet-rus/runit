@@ -75,7 +75,7 @@ function AppRoutes() {
             />
           }
         >
-          <Route index element={<Landing />} />
+          <Route index element={<Landing/>} />
         </Route>
         <Route element={<Layout />}>
           <Route path={routes.oldLandingPath()} element={<OldLanding />} />
