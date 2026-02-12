@@ -65,10 +65,10 @@ function FormFields({
       </Stack>
       {!emailConfirmed && (
         <Group gap="xs" justify="flex-start" mt="md">
-          <Anchor size="xs" style={{ color: 'orange' }} underline="never">
+          <Anchor c='orange' size="xs" underline="never">
             {profileEditText('notConfirmed')}
           </Anchor>
-          <Anchor size="xs" style={{ color: 'orange' }} underline="always">
+          <Anchor c='orange' size="xs" underline="always">
             {profileEditText('sendLetterAgain')}
           </Anchor>
         </Group>
