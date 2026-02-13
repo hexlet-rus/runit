@@ -46,7 +46,9 @@
     "signInFailed": "Неверная электронная почта или пароль",
     "unknown": "Неизвестная ошибка",
     "userNotFound": "Пользователь не найден",
+    "userNotUpdated": "Ошибка обновления данных пользователя",
     "validation": {
+      "confirmPassword": "Пароли должны совпадать",
       "emailIsUsed": "Этот адрес уже зарегистрирован",
       "incorrectEmail": "Некорректная электронная почта",
       "incorrectPassword": "Допустимы только латинские буквы, цифры и знаки препинания",
@@ -409,6 +411,24 @@
       "title": "Почему это произошло?"
     }
   },
+  "profileEdit": {
+    "header": "runit",
+    "logout": "Выйти",
+    "snippets": "Сниппеты",
+    "profile": "Профиль",
+    "formHeader": "Настройки профиля",
+    "name": "Имя",
+    "login": "Логин",
+    "email": "Почта",
+    "notConfirmed": "Почта не подтверждена.",
+    "sendLetterAgain": "Отправить письмо еще раз",
+    "currentPassword":"Текущий пароль",
+    "newPassword": "Новый пароль",
+    "confirmPassword": "Повтор пароля",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "loading": "Загрузка..."
+  },
   "profileActions": {
     "header": "Профиль",
     "logout": "Выйти",
@@ -474,7 +494,14 @@
       "signInHeader": "Уже есть аккаунт?"
     },
     "pageHeader": "Регистрация",
+    "username": "Имя",
+    "email": "Почта",
+    "password": "Пароль",
+    "checkedOutAgree": "Я ознакомился и принимаю",
+    "userAgreement": "Пользовательское соглашение(v1.3)",
     "registerButton": "Зарегистрироваться",
+    "haveAnAccount": "У меня уже есть аккаунт",
+    "or": "или",
     "signUpFailed": "Невозможно зарегистрировать пользователя"
   },
   "snippetActions": {

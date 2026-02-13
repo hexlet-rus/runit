@@ -57,6 +57,10 @@ export default {
   // RunCode
   runCode: () => [apiPath, 'runner', 'run'].join('/'),
 
+  // Path for ProfileEditForm
+  editProfilePath: () => [apiPath, 'users', 'profile', 'edit'].join('/'),
+  profilePageNew: () => [apiPath, 'users', 'profile'].join('/'),
+
   oldLandingPath: () => '/oldLanding',
   homePagePath: () => '/editor',
   aboutPagePath: () => '/about',

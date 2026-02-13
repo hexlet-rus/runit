@@ -41,7 +41,7 @@ export const confirmPassword = () =>
     .test(
       'confirmPassword',
       'errors.validation.confirmPassword',
-      (value, context) => value === context.parent.password,
+      (value, context) => value === context.parent.newPassword,
     );
 
 export const snippetName = () =>
