@@ -18,7 +18,12 @@ import PlayIcon from '../../assets/images/icons/snippetIcons/Play.svg?react';
 import SaveIcon from '../../assets/images/icons/snippetIcons/DocumentPlus.svg?react';
 import LinkIcon from '../../assets/images/icons/snippetIcons/Link.svg?react';
 
-const mockData = {
+interface MockData {
+  script: string;
+  iframe: string;
+}
+
+const mockData: MockData = {
   script: `<script src="https://sandbox.example.com/widget.js"></script>`,
   iframe: `<iframe src="https://ваш-сайт.ru/sandbox/123" width="100%" height="400"></iframe>`,
 };
