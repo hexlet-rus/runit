@@ -9,21 +9,31 @@ import {
   Code,
   Text,
   Stack,
+  Accordion,
+  Paper,
+  CopyButton,
 } from '@mantine/core';
 import '@mantine/core/styles.css';
 import PlayIcon from '../../assets/images/icons/snippetIcons/Play.svg?react';
 import SaveIcon from '../../assets/images/icons/snippetIcons/DocumentPlus.svg?react';
+import LinkIcon from '../../assets/images/icons/snippetIcons/Link.svg?react';
+
+const mockData = {
+  script: `<script src="https://sandbox.example.com/widget.js"></script>`,
+  iframe: `<iframe src="https://ваш-сайт.ru/sandbox/123" width="100%" height="400"></iframe>`,
+};
 
 function ItemButtons() {
   const items = [
-    { icon: null, label: 'Мои сниппеты', variant: 'default' },
-    { icon: PlayIcon, label: 'Запустить', variant: 'filled' },
-    { icon: SaveIcon, label: 'Сохранить', variant: 'default' },
+    { id: 1, icon: null, label: 'Мои сниппеты', variant: 'default' },
+    { id: 2, icon: PlayIcon, label: 'Запустить', variant: 'filled' },
+    { id: 3, icon: SaveIcon, label: 'Сохранить', variant: 'default' },
   ];
 
   const ButtonItem = items.map((item) => {
     return (
       <Button
+        key={item.id}
         color="dark"
         leftSection={
           item.icon ? <item.icon style={{ height: 20 }} /> : undefined
@@ -98,6 +108,79 @@ export function Editor() {
           </Stack>
         </Card>
       </Group>
+      <Accordion radius="md" variant="contained">
+        <Accordion.Item value="code">
+          <Accordion.Control
+            color="dark"
+            icon={<LinkIcon style={{ height: 20 }} />}
+            variant="default"
+          >
+            <Group justify="space-between" style={{ flex: 1 }}>
+              <Text>Код для вставки</Text>
+              <Text c="gray" size="xs">
+                показать
+              </Text>
+            </Group>
+          </Accordion.Control>
+          <Accordion.Panel>
+            <Group align="stretch" grow style={{ width: '100%' }}>
+              {/* JS виджет */}
+              <Paper mih="150px" p="md" radius="md" withBorder>
+                <Text c="gray" fw={500} mb="xs" size="xs">
+                  JS-виджет
+                </Text>
+                <Text
+                  bg="gray.0"
+                  component="pre"
+                  p="xs"
+                  size="xs"
+                  style={{
+                    borderRadius: 4,
+                    whiteSpace: 'pre-wrap',
+                    wordBreak: 'break-word',
+                    overflowX: 'hidden',
+                  }}
+                >
+                  {mockData.script}
+                </Text>
+                <CopyButton value={mockData.script}>
+                  {({ copied, copy }) => (
+                    <Button onClick={copy} size="xs" variant="subtle">
+                      {copied ? 'Скопировано' : 'Копировать'}
+                    </Button>
+                  )}
+                </CopyButton>
+              </Paper>
+
+              {/* Iframe — код вставки */}
+              <Paper mih="150px" p="md" radius="md" withBorder>
+                <Text c="gray" fw={500} mb="xs" size="xs">
+                  Iframe
+                </Text>
+                <Code
+                  block
+                  style={{
+                    padding: '12px',
+                    fontSize: 13,
+                    whiteSpace: 'pre-wrap',
+                    wordBreak: 'break-word',
+                    overflowX: 'hidden',
+                  }}
+                >
+                  {mockData.iframe}
+                </Code>
+                <CopyButton value={mockData.iframe}>
+                  {({ copied, copy }) => (
+                    <Button onClick={copy} size="xs" variant="subtle">
+                      {copied ? 'Скопировано' : 'Копировать'}
+                    </Button>
+                  )}
+                </CopyButton>
+              </Paper>
+            </Group>
+          </Accordion.Panel>
+        </Accordion.Item>
+      </Accordion>
     </Stack>
   );
 }
