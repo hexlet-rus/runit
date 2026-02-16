@@ -1,4 +1,5 @@
-import React from 'react';
+import { UseFormReturnType } from '@mantine/form';
+import { ProfileEditFormValues } from '../pages/ProfileEditForm/TranslatedYupResolver';
 import { EditorStateType } from './slices';
 
 export type TypeInitialFormState = {
@@ -54,12 +55,13 @@ export interface IFileToolbar {
 }
 
 export type CommunityType = {
-  badge: string
-  title: string
-  text: string
-  btn: string
-  link: string
-}
+  badge: string;
+  title: string;
+  text: string;
+  btn: string;
+  link: string;
+};
+
 interface TechnologySection {
   typeTechnology: string;
   listNamesTechnology: string[];
@@ -68,8 +70,21 @@ interface TechnologySection {
 export interface TechnologyCategories {
   technologies: Technology[];
 }
-export interface TechnologyCategory{
+export interface TechnologyCategory {
   category: string;
   items: string[];
 }
 
+export interface UpdateUserInputData {
+  id: number;
+  username: string;
+  email: string;
+  // currentPassword: string;
+  password: string;
+}
+
+export interface EditFormFieldsProps {
+  form: UseFormReturnType<ProfileEditFormValues>;
+  emailConfirmed?: boolean;
+  isSubmitting?: boolean;
+}

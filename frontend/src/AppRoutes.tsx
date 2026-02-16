@@ -12,7 +12,9 @@ import routes from './routes';
 import ScrollToTop from './utils/scrollToTop.js';
 
 import DefaultLoader from './components/Loaders/DefaultLoader';
-const ProfilePageNew = lazy(()=>import('./pages/ProfilePage'))
+import ProfileEditForm from './pages/ProfileEditForm/ProfileEditForm';
+
+const ProfilePageNew = lazy(() => import('./pages/ProfilePage'));
 // const Landing = lazy(() => import('./pages/landing/Landing'));
 const Landing = lazy(() => import('./pages/landing/home-page'));
 
@@ -61,12 +63,13 @@ function AppRoutes() {
     <Suspense fallback={<DefaultLoader />}>
       <ScrollToTop />
       <Routes>
-        <Route path='/signin' element={<ProfilePageNew/>}/>
+        <Route path={routes.profilePageNew()} element={<ProfilePageNew />} />
+        <Route path={routes.editProfilePath()} element={<ProfileEditForm />} />
         <Route
           element={
             <ProtectedRoute
-              // FIXME: Всегда  isAllowed пока не готова авторизация
-              //isAllowed={!isLoggedIn}
+              // FIXME: Всегда isAllowed пока не готова авторизация
+              // isAllowed={!isLoggedIn}
               isAllowed
               redirectTo={routes.myProfilePagePath()}
             />

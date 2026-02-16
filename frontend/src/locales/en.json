@@ -46,7 +46,9 @@
     "signInFailed": "Wrong email or password",
     "unknown": "Unknown error",
     "userNotFound": "User is not found",
+    "userNotUpdated": "User's profile is not updated",
     "validation": {
+      "confirmPassword": "Passwords must match",
       "emailIsUsed": "This email address is already being used",
       "incorrectEmail": "Incorrect email",
       "incorrectPassword": "Only Latin letters, numbers and punctuation are allowed",
@@ -276,6 +278,24 @@
       "title": "Why did this happen?"
     }
   },
+  "profileEdit": {
+    "header": "runit",
+    "logout": "Log out",
+    "snippets": "Snippets",
+    "profile": "Profile",
+    "formHeader": "Profile settings",
+    "name": "Name",
+    "login": "Login",
+    "email": "Email",
+    "notConfirmed": "Email is not confirmed.",
+    "sendLetterAgain": "Send letter again",
+    "currentPassword":"Current password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm new password",
+    "cancel": "Cancel",
+    "save": "Save",
+    "loading": "Loading..."
+  },
   "profileActions": {
     "header": "Profile",
     "logout": "Log out",
@@ -341,7 +361,14 @@
       "signInHeader": "Already have an account? "
     },
     "pageHeader": "Signing Up",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "checkedOutAgree": "I checked out and agree",
+    "userAgreement": "Пользовательское соглашение(v1.3)",
     "registerButton": "Sign up",
+    "haveAnAccount": "I already have an account",
+    "or": "or",
     "signUpFailed": "Sign Up is failed"
   },
   "snippetActions": {

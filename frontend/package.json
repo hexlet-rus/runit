@@ -5,11 +5,13 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@faker-js/faker": "^8.4.0",
+    "@heroicons/react": "^2.2.0",
     "@mantine/code-highlight": "^8.3.6",
     "@mantine/core": "^8.3.5",
     "@mantine/form": "^8.3.10",
     "@mantine/hooks": "^8.3.5",
     "@mantine/notifications": "^8.3.9",
+    "@mantinex/dev-icons": "^2.0.0",
     "@monaco-editor/react": "^4.5.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@sentry/react": "^7.47.0",
@@ -25,6 +27,7 @@
     "framer-motion": "^12.23.24",
     "i18next": "^23.4.1",
     "i18next-browser-languagedetector": "^7.1.0",
+    "mantine-form-yup-resolver": "^2.0.0",
     "motion": "^12.23.24",
     "punycode": "^2.3.0",
     "react": "^18.2.0",
@@ -49,7 +52,7 @@
     "web-vitals": "^3.1.1",
     "xterm": "^5.2.1",
     "xterm-addon-fit": "^0.7.0",
-    "yup": "^1.2.0"
+    "yup": "^1.7.1"
   },
   "scripts": {
     "start": "vite",
